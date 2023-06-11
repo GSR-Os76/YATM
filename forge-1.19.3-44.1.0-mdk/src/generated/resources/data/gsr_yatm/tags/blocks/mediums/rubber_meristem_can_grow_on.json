@@ -1,0 +1,13 @@
+{
+  "values": [
+    "#gsr_yatm:soul_rubber_tree_blocks",
+    "#gsr_yatm:rubber_tree_blocks",
+    "minecraft:dirt",
+    "minecraft:grass_block",
+    "minecraft:farmland",
+    "minecraft:mud",
+    "minecraft:clay",
+    "minecraft:soul_sand",
+    "minecraft:soul_soil"
+  ]
+}

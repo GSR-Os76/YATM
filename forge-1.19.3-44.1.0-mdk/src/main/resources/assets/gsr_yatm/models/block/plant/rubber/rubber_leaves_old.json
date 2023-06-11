@@ -1,0 +1,8 @@
+{
+	"parent": "minecraft:block/leaves",
+	"render_type": "cutout",
+	"textures":
+	{
+		"all": "gsr_yatm:block/plant/rubber/rubber_leaves_old"
+	}
+}

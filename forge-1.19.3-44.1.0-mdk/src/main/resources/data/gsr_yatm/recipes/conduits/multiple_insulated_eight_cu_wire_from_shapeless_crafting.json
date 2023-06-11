@@ -1,0 +1,24 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "gsr_yatm:eight_cu_wire"
+		},
+		{
+			"item": "gsr_yatm:eight_cu_wire"
+		},
+		{
+			"item": "gsr_yatm:eight_cu_wire"
+		},
+		{
+			"item": "gsr_yatm:eight_cu_wire"
+		},
+		{
+			"item": "gsr_yatm:rubber_bar"
+		}
+	],
+	"result": {
+		"item": "gsr_yatm:insulated_eight_cu_wire",
+		"count": 4
+	}
+}

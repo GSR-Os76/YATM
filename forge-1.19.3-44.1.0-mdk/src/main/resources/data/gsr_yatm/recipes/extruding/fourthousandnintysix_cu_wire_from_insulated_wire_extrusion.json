@@ -1,0 +1,17 @@
+{
+	"type": "gsr_yatm:extruding",
+	"input": {
+		"item": "gsr_yatm:insulated_fourthousandnintysix_cu_wire",
+		"remainder": {
+			"item": "gsr_yatm:rubber_scrap"
+		}
+	},
+	"die": {
+		"tag": "gsr_yatm:dies/wire"
+	},
+	"result": {
+		"item": "gsr_yatm:fourthousandnintysix_cu_wire"
+	},
+	"cost": 1,
+	"time": 3
+}

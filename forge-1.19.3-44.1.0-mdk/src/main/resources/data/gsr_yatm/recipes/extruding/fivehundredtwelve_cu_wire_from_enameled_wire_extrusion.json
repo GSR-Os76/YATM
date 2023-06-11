@@ -1,0 +1,17 @@
+{
+	"type": "gsr_yatm:extruding",
+	"input": {
+		"item": "gsr_yatm:enameled_fivehundredtwelve_cu_wire",
+		"remainder": {
+			"item": "gsr_yatm:wax_bit"
+		}
+	},
+	"die": {
+		"tag": "gsr_yatm:dies/wire"
+	},
+	"result": {
+		"item": "gsr_yatm:fivehundredtwelve_cu_wire"
+	},
+	"cost": 1,
+	"time": 2
+}

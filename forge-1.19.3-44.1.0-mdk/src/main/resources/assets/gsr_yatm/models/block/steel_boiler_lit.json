@@ -1,0 +1,9 @@
+{
+	"parent": "gsr_yatm:block/boiler",
+	"textures": {
+		"0": "gsr_yatm:block/device/boiler/steel_boiler_face_plate_and_ports",
+		"1": "gsr_yatm:block/device/boiler/steel_boiler_top",
+		"2": "gsr_yatm:block/device/boiler/steel_boiler_port_sides",
+		"3": "gsr_yatm:block/device/boiler/steel_boiler_face_side_lit"
+	}
+}

@@ -1,0 +1,73 @@
+{
+	"item_group.gsr_yatm.yatm_general": "Yet Another Tech Mod General",
+	
+	"block.gsr_yatm.rubber_meristem": "Rubber Bush Meristem",
+	"block.gsr_yatm.rubber_leaves_young": "Rubber Bush Leaves (Young)",
+	"block.gsr_yatm.rubber_leaves_flowering": "Rubber Bush Leaves (Flowering)",
+	"block.gsr_yatm.rubber_leaves_old": "Rubber Bush Leaves (Old)",
+	"block.gsr_yatm.rubber_log": "Rubber Log",
+	
+	"block.gsr_yatm.soul_afflicted_rubber_meristem": "Soul Afflicted Rubber Bush Meristem",
+	"block.gsr_yatm.soul_afflicted_rubber_log": "Soul Afflicted Rubber Log",
+	
+	"block.gsr_yatm.large_copper_heat_sink": "Large Copper Heat Sink",
+	
+	"block.gsr_yatm.steel_boiler_tank": "Steel Boiler Tank",
+	"block.gsr_yatm.steel_boiler": "Steel Boiler",
+	
+	"block.gsr_yatm.current_unit_forge_energy_interchanger": "Energy Converter (CU to FE)",
+	
+	"block.gsr_yatm.one_cu_wire": "1cu Wire",
+	"block.gsr_yatm.eight_cu_wire": "8cu Wire",
+	"block.gsr_yatm.sixtyfour_cu_wire": "64cu Wire",
+	"block.gsr_yatm.fivehundredtwelve_cu_wire": "512cu Wire",
+	"block.gsr_yatm.fourthousandnintysix_cu_wire": "4096cu Wire",
+	
+	"block.gsr_yatm.enameled_one_cu_wire": "Enameled 1cu Wire",
+	"block.gsr_yatm.enameled_eight_cu_wire": "Enameled 8cu Wire",
+	"block.gsr_yatm.enameled_sixtyfour_cu_wire": "Enameled 64cu Wire",
+	"block.gsr_yatm.enameled_fivehundredtwelve_cu_wire": "Enameled 512cu Wire",
+	"block.gsr_yatm.enameled_fourthousandnintysix_cu_wire": "Enameled 4096cu Wire",
+	
+	"block.gsr_yatm.insulated_one_cu_wire": "Insulated 1cu Wire",
+	"block.gsr_yatm.insulated_eight_cu_wire": "Insulated 8cu Wire",
+	"block.gsr_yatm.insulated_sixtyfour_cu_wire": "Insulated 64cu Wire",
+	"block.gsr_yatm.insulated_fivehundredtwelve_cu_wire": "Insulated 512cu Wire",
+	"block.gsr_yatm.insulated_fourthousandnintysix_cu_wire": "Insulated 4096cu Wire",
+	
+	"block.gsr_yatm.steel_fluid_conduit": "Steel Fluid Conduit",
+	
+	
+	
+	"item.gsr_yatm.steel_fluid_exchanger_component": "Steel Fluid Exchanger",
+	
+	"item.gsr_yatm.one_cu_current_regulator_component": "1cu Current Regulator",
+	"item.gsr_yatm.eight_cu_current_regulator_component": "8cu Current Regulator",
+	"item.gsr_yatm.sixtyfour_cu_current_regulator_component": "64cu Current Regulator",
+	"item.gsr_yatm.fivehundredtwelve_cu_current_regulator_component": "512cu Current Regulator",
+	"item.gsr_yatm.fourthousandnintysix_cu_current_regulator_component": "4096cu Current Regulator",
+	
+	
+	"item.gsr_yatm.iron_wire_die": "Iron Die (Wire)",
+	"item.gsr_yatm.steel_wire_die": "Steel Die (Wire)",
+	
+	
+	"item.gsr_yatm.silver_ingot": "Silver Ingot",
+	"item.gsr_yatm.steel_ingot": "Steel Ingot",	
+	"item.gsr_yatm.rubber_bar": "Rubber Bar",
+	
+	"item.gsr_yatm.silver_nugget": "Silver Nugget",
+	"item.gsr_yatm.copper_nugget": "Copper Nugget",
+	"item.gsr_yatm.netherite_nugget": "Netherite Nugget",
+	
+	"item.gsr_yatm.wax_bit": "Wax bit",
+	"item.gsr_yatm.rubber_scrap": "Rubber Scraps",
+	
+	
+	
+	
+	
+	
+	"menu.title.gsr_yatm.boiler_menu": "Boiler",
+	"menu.title.gsr_yatm.extruder_menu": "Extruder"
+}

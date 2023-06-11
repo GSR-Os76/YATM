@@ -1,0 +1,12 @@
+// 1.19.4	2023-06-10T19:17:30.3423501	Tags for minecraft:block mod id gsr_yatm
+ae03c7f5a14f674a125f762d1f54c5fc58535fe0 data/gsr_yatm/tags/blocks/conduits/sixtyfour_cu.json
+3512b39ab7c336c2edadb8fd6dfd6c821af96581 data/gsr_yatm/tags/blocks/mediums/rubber_meristem_can_grow_on.json
+5040076889bd282df7819422d9e990b9415bbb7f data/gsr_yatm/tags/blocks/mediums/rubber_roots_can_grow_in.json
+c651bb8413acd409c2a842454cce61e44e4517a2 data/gsr_yatm/tags/blocks/mediums/soul_afflicting_blocks.json
+92a1d56531aaf1bba448f37e71e0b486103e1f38 data/gsr_yatm/tags/blocks/rubber_tree_blocks.json
+2f9b1725cffe4929d762b1b1d38b9ad8bd423ba0 data/gsr_yatm/tags/blocks/soul_rubber_tree_blocks.json
+cabad7018263250a65993dc1bfafd32b2163b2f7 data/gsr_yatm/tags/blocks/unoxidized_copper_blocks.json
+ae88bd8aabf02699bb3fdbf65bd64fc377fbc780 data/minecraft/tags/blocks/flowers.json
+0b0ef2d5b58fd3421f0b24b7305f952b607f04ee data/minecraft/tags/blocks/logs.json
+59d8edfe056f15f3cff621f10b35fa3ba99c9baf data/minecraft/tags/blocks/saplings.json
+f5d7b14c2f1493c3ccb34b9c12e5fbe82dd6d3fb data/minecraft/tags/blocks/soul_fire_base_blocks.json

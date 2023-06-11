@@ -1,0 +1,62 @@
+{
+	"multipart": [
+		{
+			"apply": {
+				"model": "gsr_yatm:block/device/conduit/steel_fluid_conduit_center"
+			}
+		},
+		{
+			"when": {
+				"north": "true"
+			},
+			"apply": {
+				"model": "gsr_yatm:block/device/conduit/steel_fluid_conduit_branch"				
+			}
+		},
+		{
+			"when": {
+				"south": "true"
+			},
+			"apply": {
+				"model": "gsr_yatm:block/device/conduit/steel_fluid_conduit_branch",
+				"y": 180
+			}
+		},
+		{
+			"when": {
+				"east": "true"
+			},
+			"apply": {
+				"model": "gsr_yatm:block/device/conduit/steel_fluid_conduit_branch",
+				"y": 90
+			}
+		},
+		{
+			"when": {
+				"west": "true"
+			},
+			"apply": {
+				"model": "gsr_yatm:block/device/conduit/steel_fluid_conduit_branch",
+				"y": 270
+			}
+		},
+		{
+			"when": {
+				"up": "true"
+			},
+			"apply": {
+				"model": "gsr_yatm:block/device/conduit/steel_fluid_conduit_branch",
+				"x": 270
+			}
+		},
+		{
+			"when": {
+				"down": "true"
+			},
+			"apply": {
+				"model": "gsr_yatm:block/device/conduit/steel_fluid_conduit_branch",
+				"x": 90
+			}
+		}
+	]
+}

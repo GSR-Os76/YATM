@@ -1,0 +1,136 @@
+{
+  "variants": {
+    "axis=x,facing=down,flowing=false": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_dry",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,facing=down,flowing=true": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_leaking",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,facing=east,flowing=false": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_dry",
+      "x": 90,
+      "y": 180
+    },
+    "axis=x,facing=east,flowing=true": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_leaking",
+      "x": 90,
+      "y": 180
+    },
+    "axis=x,facing=north,flowing=false": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_dry",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,facing=north,flowing=true": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_leaking",
+      "x": 90,
+      "y": 90
+    },
+    "axis=x,facing=south,flowing=false": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_dry",
+      "x": 90,
+      "y": 270
+    },
+    "axis=x,facing=south,flowing=true": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_leaking",
+      "x": 90,
+      "y": 270
+    },
+    "axis=x,facing=west,flowing=false": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_dry",
+      "x": 90,
+      "y": 360
+    },
+    "axis=x,facing=west,flowing=true": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_leaking",
+      "x": 90,
+      "y": 360
+    },
+    "axis=y,facing=down,flowing=false": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_dry"
+    },
+    "axis=y,facing=down,flowing=true": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_leaking"
+    },
+    "axis=y,facing=east,flowing=false": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_dry",
+      "y": 90
+    },
+    "axis=y,facing=east,flowing=true": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_leaking",
+      "y": 90
+    },
+    "axis=y,facing=north,flowing=false": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_dry"
+    },
+    "axis=y,facing=north,flowing=true": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_leaking"
+    },
+    "axis=y,facing=south,flowing=false": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_dry",
+      "y": 180
+    },
+    "axis=y,facing=south,flowing=true": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_leaking",
+      "y": 180
+    },
+    "axis=y,facing=west,flowing=false": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_dry",
+      "y": 270
+    },
+    "axis=y,facing=west,flowing=true": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_leaking",
+      "y": 270
+    },
+    "axis=z,facing=down,flowing=false": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_dry",
+      "x": 90
+    },
+    "axis=z,facing=down,flowing=true": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_leaking",
+      "x": 90
+    },
+    "axis=z,facing=east,flowing=false": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_dry",
+      "x": 90,
+      "y": 90
+    },
+    "axis=z,facing=east,flowing=true": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_leaking",
+      "x": 90,
+      "y": 90
+    },
+    "axis=z,facing=north,flowing=false": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_dry",
+      "x": 90
+    },
+    "axis=z,facing=north,flowing=true": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_leaking",
+      "x": 90
+    },
+    "axis=z,facing=south,flowing=false": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_dry",
+      "x": 90,
+      "y": 180
+    },
+    "axis=z,facing=south,flowing=true": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_leaking",
+      "x": 90,
+      "y": 180
+    },
+    "axis=z,facing=west,flowing=false": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_dry",
+      "x": 90,
+      "y": 270
+    },
+    "axis=z,facing=west,flowing=true": {
+      "model": "gsr_yatm:blocks/partially_stripped_rubber_log_leaking",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

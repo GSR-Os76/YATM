@@ -1,0 +1,6 @@
+{
+	"parent": "gsr_yatm:block/device/conduit/current/wire_center",
+	"textures": {
+		"0": "gsr_yatm:block/device/conduit/current/eight_cu_wire"
+	}
+}

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/cube_bottom_top",
+  "textures": {
+    "bottom": "gsr_yatm:block/plant/rubber/rubber_log_side",
+    "side": "gsr_yatm:block/plant/rubber/rubber_log_side",
+    "top": "gsr_yatm:block/plant/rubber/rubber_log_side"
+  }
+}

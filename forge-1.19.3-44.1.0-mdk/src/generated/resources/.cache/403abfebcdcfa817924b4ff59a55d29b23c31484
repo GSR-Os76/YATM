@@ -1,0 +1,13 @@
+// 1.19.4	2023-06-10T12:35:31.5511229	Tags for minecraft:item mod id gsr_yatm
+072803c35014f6741a231cc30a732fe900812905 data/forge/tags/items/ingots/silver.json
+7c408df731c23a13c46254c2cc5fe7e60ec904bd data/forge/tags/items/ingots/steel.json
+8089a15aac56d928ea6e3e7044cdf9cbd03997aa data/forge/tags/items/nuggets/copper.json
+18795a8c0bcbdd7d7450b4a7ba2b97df86e0d87a data/forge/tags/items/nuggets/netherite.json
+96cbda48628a6f92541b4b85ce1fad0369930ffc data/forge/tags/items/nuggets/silver.json
+ae03c7f5a14f674a125f762d1f54c5fc58535fe0 data/gsr_yatm/tags/items/conduits/sixtyfour_cu.json
+6d71a9b29224c88790686a6d26a6f4d262b0d804 data/gsr_yatm/tags/items/dies/wire.json
+cabad7018263250a65993dc1bfafd32b2163b2f7 data/gsr_yatm/tags/items/unoxidized_copper_blocks.json
+72670c2006934598503543cc69e410f73a0162ab data/minecraft/tags/items/beacon_payment_items.json
+ae88bd8aabf02699bb3fdbf65bd64fc377fbc780 data/minecraft/tags/items/flowers.json
+9a220dbaa0bde7b059d584e2bfa1741f106831e0 data/minecraft/tags/items/piglin_loved.json
+59d8edfe056f15f3cff621f10b35fa3ba99c9baf data/minecraft/tags/items/saplings.json

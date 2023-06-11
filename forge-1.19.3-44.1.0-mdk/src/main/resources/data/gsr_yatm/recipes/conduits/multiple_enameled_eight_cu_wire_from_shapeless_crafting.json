@@ -1,0 +1,36 @@
+{
+	"type": "minecraft:crafting_shapeless",
+	"ingredients": [
+		{
+			"item": "gsr_yatm:eight_cu_wire"
+		},
+		{
+			"item": "gsr_yatm:eight_cu_wire"
+		},
+		{
+			"item": "gsr_yatm:eight_cu_wire"
+		},
+		{
+			"item": "gsr_yatm:eight_cu_wire"
+		},
+		{
+			"item": "gsr_yatm:eight_cu_wire"
+		},
+		{
+			"item": "gsr_yatm:eight_cu_wire"
+		},
+		{
+			"item": "gsr_yatm:eight_cu_wire"
+		},
+		{
+			"item": "gsr_yatm:eight_cu_wire"
+		},
+		{
+			"item": "minecraft:honeycomb"
+		}
+	],
+	"result": {
+		"item": "gsr_yatm:enameled_eight_cu_wire",
+		"count": 8
+	}
+}

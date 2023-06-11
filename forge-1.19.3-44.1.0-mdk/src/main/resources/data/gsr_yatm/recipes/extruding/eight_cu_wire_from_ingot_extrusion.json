@@ -1,0 +1,14 @@
+{
+	"type": "gsr_yatm:extruding",
+	"input": {
+		"tag": "forge:ingots/copper"
+	},
+	"die": {
+		"tag": "gsr_yatm:dies/wire"
+	},
+	"result": {
+		"item": "gsr_yatm:eight_cu_wire",
+		"count": 6
+	},
+	"time": 60
+}

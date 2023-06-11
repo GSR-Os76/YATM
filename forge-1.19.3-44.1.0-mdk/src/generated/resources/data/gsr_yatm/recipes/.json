@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "tag": "gsr_yatm:unoxidized_copper_blocks"
+    },
+    "f": {
+      "tag": "forge:ingots/copper"
+    }
+  },
+  "pattern": [
+    "fff",
+    "fbf",
+    "bbb"
+  ],
+  "result": {
+    "item": "gsr_yatm:large_copper_heat_sink"
+  },
+  "show_notification": true
+}

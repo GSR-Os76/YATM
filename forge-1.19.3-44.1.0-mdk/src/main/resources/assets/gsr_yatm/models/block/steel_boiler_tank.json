@@ -1,0 +1,8 @@
+{
+	"parent": "gsr_yatm:block/boiler_tank",
+	"textures":
+	{
+		"0": "gsr_yatm:block/steel_boiler_tank_top_and_bottom",
+		"1": "gsr_yatm:block/steel_boiler_tank_side"
+	}
+}

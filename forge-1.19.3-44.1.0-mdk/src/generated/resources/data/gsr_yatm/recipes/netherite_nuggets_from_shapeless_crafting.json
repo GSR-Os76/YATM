@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/netherite"
+    }
+  ],
+  "result": {
+    "count": 9,
+    "item": "gsr_yatm:netherite_nugget"
+  }
+}

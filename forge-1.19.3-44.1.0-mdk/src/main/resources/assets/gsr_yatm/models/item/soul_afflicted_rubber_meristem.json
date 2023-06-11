@@ -1,0 +1,6 @@
+{
+	"parent": "minecraft:item/generated",
+	"textures": {
+		"layer0": "gsr_yatm:block/plant/rubber/soul_afflicted_rubber_meristem"
+	}
+}
