@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_fence_gate",
+  "textures": {
+    "texture": "gsr_yatm:block/plant/rubber/rubber_planks"
+  }
+}

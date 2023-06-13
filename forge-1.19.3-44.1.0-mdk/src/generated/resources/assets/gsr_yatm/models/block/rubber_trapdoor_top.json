@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/template_orientable_trapdoor_top",
+  "textures": {
+    "texture": "gsr_yatm:block/plant/rubber/rubber_trapdoor_top"
+  }
+}

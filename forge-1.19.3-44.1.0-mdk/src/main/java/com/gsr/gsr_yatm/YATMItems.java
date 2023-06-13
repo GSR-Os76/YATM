@@ -23,6 +23,7 @@ public class YATMItems
 	public static final RegistryObject<Item> PARTIALLY_STRIPPED_RUBBER_LOG_ITEM = generalTabEnqueue(ITEMS.register("partially_stripped_rubber_log", () -> new BlockItem(YATMBlocks.PARTIALLY_STRIPPED_RUBBER_LOG.get(), new Item.Properties())));
 	public static final RegistryObject<Item> STRIPPED_RUBBER_WOOD_ITEM = generalTabEnqueue(ITEMS.register("stripped_rubber_wood", () -> new BlockItem(YATMBlocks.STRIPPED_RUBBER_WOOD.get(), new Item.Properties())));
 	public static final RegistryObject<Item> RUBBER_PLANKS_ITEM = generalTabEnqueue(ITEMS.register("rubber_planks", () -> new BlockItem(YATMBlocks.RUBBER_PLANKS.get(), new Item.Properties())));
+	public static final RegistryObject<Item> FANCY_RUBBER_PLANKS_ITEM = generalTabEnqueue(ITEMS.register("fancy_rubber_planks", () -> new BlockItem(YATMBlocks.FANCY_RUBBER_PLANKS.get(), new Item.Properties())));
 	public static final RegistryObject<Item> RUBBER_STAIRS_ITEM = generalTabEnqueue(ITEMS.register("rubber_stairs", () -> new BlockItem(YATMBlocks.RUBBER_STAIRS.get(), new Item.Properties())));
 	public static final RegistryObject<Item> RUBBER_SLAB_ITEM = generalTabEnqueue(ITEMS.register("rubber_slab", () -> new BlockItem(YATMBlocks.RUBBER_SLAB.get(), new Item.Properties())));
 	public static final RegistryObject<Item> RUBBER_FENCE_ITEM = generalTabEnqueue(ITEMS.register("rubber_fence", () -> new BlockItem(YATMBlocks.RUBBER_FENCE.get(), new Item.Properties())));

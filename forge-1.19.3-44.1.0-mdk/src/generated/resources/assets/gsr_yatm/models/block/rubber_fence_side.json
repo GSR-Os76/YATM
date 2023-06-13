@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/fence_side",
+  "textures": {
+    "texture": "gsr_yatm:block/plant/rubber/rubber_planks"
+  }
+}

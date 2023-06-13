@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "gsr_yatm:block/rubber_slab_bottom"
+    },
+    "type=double": {
+      "model": "gsr_yatm:block/rubber_planks"
+    },
+    "type=top": {
+      "model": "gsr_yatm:block/rubber_slab_top"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=x": {
+      "model": "gsr_yatm:block/fancy_rubber_planks",
+      "x": 90,
+      "y": 90
+    },
+    "axis=y": {
+      "model": "gsr_yatm:block/fancy_rubber_planks"
+    },
+    "axis=z": {
+      "model": "gsr_yatm:block/fancy_rubber_planks",
+      "x": 90
+    }
+  }
+}

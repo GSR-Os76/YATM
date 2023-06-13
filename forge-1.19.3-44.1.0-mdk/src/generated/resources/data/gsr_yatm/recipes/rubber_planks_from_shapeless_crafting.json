@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "gsr_yatm:rubber_tree_logs"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "gsr_yatm:rubber_planks"
+  }
+}

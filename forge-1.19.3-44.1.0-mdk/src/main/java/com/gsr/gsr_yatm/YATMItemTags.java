@@ -26,7 +26,10 @@ public class YATMItemTags extends ItemTagsProvider
 	
 	public static final TagKey<Item> MINECRAFT_BEACON_PAYMENT_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "beacon_payment_items"));
 	public static final TagKey<Item> MINECRAFT_FLOWER_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "flowers"));
+	public static final TagKey<Item> MINECRAFT_LOGS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "logs"));
+	public static final TagKey<Item> MINECRAFT_LOGS_THAT_BURN_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "logs_that_burn"));
 	public static final TagKey<Item> MINECRAFT_PIGLIN_LOVED_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "piglin_loved"));
+	public static final TagKey<Item> MINECRAFT_PLANKS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "planks"));
 	public static final TagKey<Item> MINECRAFT_SAPLINGS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "saplings"));
 	
 	public static final TagKey<Item> FORGE_COPPER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/copper"));
@@ -37,7 +40,8 @@ public class YATMItemTags extends ItemTagsProvider
 	public static final TagKey<Item> FORGE_NETHERITE_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "nuggets/netherite"));
 	public static final TagKey<Item> FORGE_SILVER_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "nuggets/silver"));
 
-
+	public static final TagKey<Item> RUBBER_TREE_LOGS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "rubber_tree_logs"));
+	public static final TagKey<Item> RUBBER_TREE_PLANKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "rubber_planks"));
 	public static final TagKey<Item> UNOXIDIXED_COPPER_BLOCKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "unoxidized_copper_blocks"));
 	public static final TagKey<Item> SIXTYFOUR_CU_WIRE_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "conduits/sixtyfour_cu"));
 	public static final TagKey<Item> WIRE_DIES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "dies/wire"));
@@ -57,7 +61,10 @@ public class YATMItemTags extends ItemTagsProvider
 	{
 		this.copy(YATMBlockTags.MINECRAFT_FLOWERS_KEY, MINECRAFT_FLOWER_KEY);
 		this.tag(MINECRAFT_BEACON_PAYMENT_KEY).add(YATMItems.STEEL_INGOT.get()).add(YATMItems.SILVER_INGOT.get());
+		this.copy(YATMBlockTags.MINECRAFT_LOGS_KEY, MINECRAFT_LOGS_KEY);
+		this.copy(YATMBlockTags.MINECRAFT_LOGS_THAT_BURN_KEY, MINECRAFT_LOGS_THAT_BURN_KEY);
 		this.tag(MINECRAFT_PIGLIN_LOVED_KEY).add(YATMItems.SIXTYFOUR_CU_CURRENT_REGULATOR_ITEM.get()).addTag(SIXTYFOUR_CU_WIRE_KEY);
+		this.copy(YATMBlockTags.MINECRAFT_PLANKS_KEY, MINECRAFT_PLANKS_KEY);
 		this.copy(YATMBlockTags.MINECRAFT_SAPLINGS_KEY, MINECRAFT_SAPLINGS_KEY);
 		
 		this.tag(FORGE_SILVER_INGOTS_KEY).add(YATMItems.SILVER_INGOT.get());
@@ -66,10 +73,11 @@ public class YATMItemTags extends ItemTagsProvider
 		this.tag(FORGE_NETHERITE_NUGGETS_KEY).add(YATMItems.NETHERITE_NUGGET.get());
 		this.tag(FORGE_SILVER_NUGGETS_KEY).add(YATMItems.SILVER_NUGGET.get());
 		
+		this.copy(YATMBlockTags.RUBBER_TREE_LOGS_KEY, RUBBER_TREE_LOGS_KEY);
+		this.copy(YATMBlockTags.RUBBER_TREE_PLANKS_KEY, RUBBER_TREE_PLANKS_KEY);
 		this.copy(YATMBlockTags.UNOXIDIXED_COPPER_BLOCKS_KEY, UNOXIDIXED_COPPER_BLOCKS_KEY);
 		this.copy(YATMBlockTags.SIXTYFOUR_CU_WIRE_KEY, SIXTYFOUR_CU_WIRE_KEY);
-		this.tag(WIRE_DIES_KEY).add(YATMItems.IRON_WIRE_DIE.get()).add(YATMItems.STEEL_WIRE_DIE.get());
-		
+		this.tag(WIRE_DIES_KEY).add(YATMItems.IRON_WIRE_DIE.get()).add(YATMItems.STEEL_WIRE_DIE.get());		
 	} // end addTags
 
 } // end class

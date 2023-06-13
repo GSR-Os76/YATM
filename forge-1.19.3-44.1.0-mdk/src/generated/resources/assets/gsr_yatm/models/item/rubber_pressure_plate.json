@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/pressure_plate_up",
+  "textures": {
+    "texture": "gsr_yatm:block/plant/rubber/rubber_planks"
+  }
+}

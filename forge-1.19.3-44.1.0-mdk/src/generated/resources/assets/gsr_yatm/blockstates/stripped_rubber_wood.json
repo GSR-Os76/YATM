@@ -1,15 +1,15 @@
 {
   "variants": {
     "axis=x": {
-      "model": "gsr_yatm:blocks/stripped_rubber_wood",
+      "model": "gsr_yatm:block/stripped_rubber_wood",
       "x": 90,
       "y": 90
     },
     "axis=y": {
-      "model": "gsr_yatm:blocks/stripped_rubber_wood"
+      "model": "gsr_yatm:block/stripped_rubber_wood"
     },
     "axis=z": {
-      "model": "gsr_yatm:blocks/stripped_rubber_wood",
+      "model": "gsr_yatm:block/stripped_rubber_wood",
       "x": 90
     }
   }

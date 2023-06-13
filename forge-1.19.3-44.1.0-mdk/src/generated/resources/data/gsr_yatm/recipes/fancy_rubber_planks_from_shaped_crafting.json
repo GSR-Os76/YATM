@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "item": "gsr_yatm:rubber_planks"
+    },
+    "s": {
+      "item": "gsr_yatm:rubber_slab"
+    }
+  },
+  "pattern": [
+    "bs",
+    "sb"
+  ],
+  "result": {
+    "count": 3,
+    "item": "gsr_yatm:fancy_rubber_planks"
+  },
+  "show_notification": true
+}
