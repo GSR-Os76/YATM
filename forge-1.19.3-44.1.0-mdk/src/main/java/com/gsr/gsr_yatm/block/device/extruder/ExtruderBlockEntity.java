@@ -190,6 +190,7 @@ public class ExtruderBlockEntity extends BlockEntity
 						return;
 					}
 				}
+				// TODO, change this to use an inventory that will invoke setChanged() on this object
 				this.m_activeRecipe.setResults(this.m_rawInventory);
 				this.tryStartNewRecipe();
 			}
@@ -232,6 +233,7 @@ public class ExtruderBlockEntity extends BlockEntity
 				this.m_activeRecipeIdentifier = r.getId().toString();
 				this.m_activeRecipe = r;
 				this.m_extrudeTime = r.getTimeInTicks();
+				// TODO, change this to use an inventory that will invoke setChanged() on this object
 				this.m_extrudeProgress = this.m_extrudeTime;
 				r.startRecipe(this.m_rawInventory);
 			}

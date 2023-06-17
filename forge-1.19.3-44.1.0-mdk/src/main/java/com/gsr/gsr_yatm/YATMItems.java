@@ -1,10 +1,16 @@
 package com.gsr.gsr_yatm;
 
+import com.gsr.gsr_yatm.creative.CreativeFluidSourceItem;
+import com.gsr.gsr_yatm.creative.CreativeFluidStorerItem;
+import com.gsr.gsr_yatm.creative.CreativeFluidVoidItem;
 import com.gsr.gsr_yatm.item.InsulatingItem;
 import com.gsr.gsr_yatm.item.component.CurrentRegulatorItem;
 import com.gsr.gsr_yatm.item.component.fluid.FluidExchangerItem;
+
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -52,6 +58,7 @@ public class YATMItems
 
 	public static final RegistryObject<Item> STEEL_BOILER_TANK_ITEM = generalTabEnqueue(ITEMS.register("steel_boiler_tank", () -> new BlockItem(YATMBlocks.STEEL_BOILER_TANK.get(), new Item.Properties())));
 	public static final RegistryObject<Item> STEEL_BOILER_ITEM = generalTabEnqueue(ITEMS.register("steel_boiler", () -> new BlockItem(YATMBlocks.STEEL_BOILER.get(), new Item.Properties())));
+	public static final RegistryObject<Item> STEEL_EXTRACTOR_ITEM = generalTabEnqueue(ITEMS.register("steel_extractor", () -> new BlockItem(YATMBlocks.STEEL_EXTRACTOR.get(), new Item.Properties())));
 	public static final RegistryObject<Item> STEEL_EXTRUDER_ITEM = generalTabEnqueue(ITEMS.register("steel_extruder", () -> new BlockItem(YATMBlocks.STEEL_EXTRUDER.get(), new Item.Properties())));
 	public static final RegistryObject<Item> C_U_F_E_I_ITEM = generalTabEnqueue(ITEMS.register("current_unit_forge_energy_interchanger", () -> new BlockItem(YATMBlocks.C_U_F_E_I.get(), new Item.Properties())));
 
@@ -62,34 +69,33 @@ public class YATMItems
 	public static final RegistryObject<Item> SIXTYFOUR_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("sixtyfour_cu_wire", () -> new BlockItem(YATMBlocks.SIXTYFOUR_CU_WIRE.get(), new Item.Properties())));
 	public static final RegistryObject<Item> FIVEHUNDREDTWELVE_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("fivehundredtwelve_cu_wire", () -> new BlockItem(YATMBlocks.FIVEHUNDREDTWELVE_CU_WIRE.get(), new Item.Properties())));
 	public static final RegistryObject<Item> FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("fourthousandnintysix_cu_wire", () -> new BlockItem(YATMBlocks.FOURTHOUSANDNINTYSIX_CU_WIRE.get(), new Item.Properties())));
-	
 	public static final RegistryObject<Item> ENAMELED_ONE_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("enameled_one_cu_wire", () -> new BlockItem(YATMBlocks.ENAMELED_ONE_CU_WIRE.get(), new Item.Properties())));
 	public static final RegistryObject<Item> ENAMELED_EIGHT_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("enameled_eight_cu_wire", () -> new BlockItem(YATMBlocks.ENAMELED_EIGHT_CU_WIRE.get(), new Item.Properties())));
 	public static final RegistryObject<Item> ENAMELED_SIXTYFOUR_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("enameled_sixtyfour_cu_wire", () -> new BlockItem(YATMBlocks.ENAMELED_SIXTYFOUR_CU_WIRE.get(), new Item.Properties())));
 	public static final RegistryObject<Item> ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("enameled_fivehundredtwelve_cu_wire", () -> new BlockItem(YATMBlocks.ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE.get(), new Item.Properties())));
 	public static final RegistryObject<Item> ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("enameled_fourthousandnintysix_cu_wire", () -> new BlockItem(YATMBlocks.ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE.get(), new Item.Properties())));
-	
 	public static final RegistryObject<Item> INSULATED_ONE_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("insulated_one_cu_wire", () -> new BlockItem(YATMBlocks.INSULATED_ONE_CU_WIRE.get(), new Item.Properties())));
 	public static final RegistryObject<Item> INSULATED_EIGHT_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("insulated_eight_cu_wire", () -> new BlockItem(YATMBlocks.INSULATED_EIGHT_CU_WIRE.get(), new Item.Properties())));
 	public static final RegistryObject<Item> INSULATED_SIXTYFOUR_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("insulated_sixtyfour_cu_wire", () -> new BlockItem(YATMBlocks.INSULATED_SIXTYFOUR_CU_WIRE.get(), new Item.Properties())));
 	public static final RegistryObject<Item> INSULATED_FIVEHUNDREDTWELVE_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("insulated_fivehundredtwelve_cu_wire", () -> new BlockItem(YATMBlocks.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE.get(), new Item.Properties())));
 	public static final RegistryObject<Item> INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("insulated_fourthousandnintysix_cu_wire", () -> new BlockItem(YATMBlocks.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE.get(), new Item.Properties())));
 	
-	
-	// liquid latex that burns you if you're in the sun light
-	
 	public static final RegistryObject<Item> STEEL_FLUID_CONDUIT_ITEM = generalTabEnqueue(ITEMS.register("steel_fluid_conduit", () -> new BlockItem(YATMBlocks.STEEL_FLUID_CONDUIT.get(), new Item.Properties())));
-	
+		
 	
 	
 	public static final RegistryObject<Item> STEEL_FLUID_EXCHANGER = generalTabEnqueue(ITEMS.register("steel_fluid_exchanger_component", () -> new FluidExchangerItem(new Item.Properties().stacksTo(1), 128)));
 	
-	public static final RegistryObject<Item> ONE_CU_CURRENT_REGULATOR_ITEM = generalTabEnqueue(ITEMS.register("one_cu_current_regulator_component", () -> new CurrentRegulatorItem(new Item.Properties().stacksTo(1), 1, 8)));
-	public static final RegistryObject<Item> EIGHT_CU_CURRENT_REGULATOR_ITEM = generalTabEnqueue(ITEMS.register("eight_cu_current_regulator_component", () -> new CurrentRegulatorItem(new Item.Properties().stacksTo(1), 8, 64)));
-	public static final RegistryObject<Item> SIXTYFOUR_CU_CURRENT_REGULATOR_ITEM = generalTabEnqueue(ITEMS.register("sixtyfour_cu_current_regulator_component", () -> new CurrentRegulatorItem(new Item.Properties().stacksTo(1), 64, 512)));
-	public static final RegistryObject<Item> FIVEHUNDREDTWELVE_CU_CURRENT_REGULATOR_ITEM = generalTabEnqueue(ITEMS.register("fivehundredtwelve_cu_current_regulator_component", () -> new CurrentRegulatorItem(new Item.Properties().stacksTo(1), 512, 4096)));
-	public static final RegistryObject<Item> FOURTHOUSANDNINTYSIX_CU_CURRENT_REGULATOR_ITEM = generalTabEnqueue(ITEMS.register("fourthousandnintysix_cu_current_regulator_component", () -> new CurrentRegulatorItem(new Item.Properties().stacksTo(1), 4096,  32768)));
+	public static final RegistryObject<Item> ONE_CU_CURRENT_REGULATOR = generalTabEnqueue(ITEMS.register("one_cu_current_regulator_component", () -> new CurrentRegulatorItem(new Item.Properties().stacksTo(1), 1, 8)));
+	public static final RegistryObject<Item> EIGHT_CU_CURRENT_REGULATOR = generalTabEnqueue(ITEMS.register("eight_cu_current_regulator_component", () -> new CurrentRegulatorItem(new Item.Properties().stacksTo(1), 8, 64)));
+	public static final RegistryObject<Item> SIXTYFOUR_CU_CURRENT_REGULATOR = generalTabEnqueue(ITEMS.register("sixtyfour_cu_current_regulator_component", () -> new CurrentRegulatorItem(new Item.Properties().stacksTo(1), 64, 512)));
+	public static final RegistryObject<Item> FIVEHUNDREDTWELVE_CU_CURRENT_REGULATOR = generalTabEnqueue(ITEMS.register("fivehundredtwelve_cu_current_regulator_component", () -> new CurrentRegulatorItem(new Item.Properties().stacksTo(1), 512, 4096)));
+	public static final RegistryObject<Item> FOURTHOUSANDNINTYSIX_CU_CURRENT_REGULATOR = generalTabEnqueue(ITEMS.register("fourthousandnintysix_cu_current_regulator_component", () -> new CurrentRegulatorItem(new Item.Properties().stacksTo(1), 4096,  32768)));
 
+	// liquid latex that burns you if you're in the sun light
+	public static final RegistryObject<Item> LATEX_BUCKET = generalTabEnqueue(ITEMS.register("latex_bucket", () -> new BucketItem(YATMFluids.LATEX, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
+	public static final RegistryObject<Item> SOUL_SAP_BUCKET = generalTabEnqueue(ITEMS.register("soul_sap_bucket", () -> new BucketItem(YATMFluids.LATEX, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
+	
 	
 
 	public static final RegistryObject<Item> IRON_WIRE_DIE = generalTabEnqueue(ITEMS.register("iron_wire_die", () -> new Item(new Item.Properties())));
@@ -107,6 +113,10 @@ public class YATMItems
 	
 	public static final RegistryObject<Item> WAX_BIT_ITEM = generalTabEnqueue(ITEMS.register("wax_bit", () -> new InsulatingItem(new Item.Properties(), InsulatingItem.WAX_BIT_WAXING_TABLE)));
 	public static final RegistryObject<Item> RUBBER_SCRAP_ITEM = generalTabEnqueue(ITEMS.register("rubber_scrap", () -> new InsulatingItem(new Item.Properties(), InsulatingItem.RUBBER_SCRAP_WAXING_TABLE)));
+	
+	public static final RegistryObject<Item> CREATIVE_FLUID_VOID = generalTabEnqueue(ITEMS.register("creative_fluid_void", () -> new CreativeFluidVoidItem(new Item.Properties())));
+	public static final RegistryObject<Item> CREATIVE_FLUID_STORER = generalTabEnqueue(ITEMS.register("creative_fluid_storer", () -> new CreativeFluidStorerItem(new Item.Properties())));
+	public static final RegistryObject<Item> CREATIVE_FLUID_SOURCE = generalTabEnqueue(ITEMS.register("creative_fluid_source", () -> new CreativeFluidSourceItem(new Item.Properties())));
 	
 	
 	

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import org.slf4j.Logger;
 
 import com.gsr.gsr_yatm.block.device.boiler.BoilerScreen;
+import com.gsr.gsr_yatm.block.device.extractor.ExtractorScreen;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderScreen;
 import com.mojang.logging.LogUtils;
 
@@ -45,6 +46,8 @@ public class YetAnotherTechMod
 		YATMBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
 		YATMRecipeTypes.RECIPE_TYPES.register(modEventBus);
 		YATMRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
+		YATMFluids.FLUIDS.register(modEventBus);
+		YATMFluidTypes.FLUID_TYPES.register(modEventBus);
 		
 		modEventBus.addListener(this::creativeModeTabsBuildContent);
 		modEventBus.addListener(this::creativeModeTabsRegister);
@@ -75,6 +78,7 @@ public class YetAnotherTechMod
 	private void clientSetup(FMLClientSetupEvent event)
 	{
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BOILER_MENU.get(), BoilerScreen::new));
+		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRACTOR_MENU.get(), ExtractorScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRUDER_MENU.get(), ExtruderScreen::new));
 		
 		//net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer(Blocks.RUBBER_MERISTEM, RenderType.yt);
@@ -82,33 +86,39 @@ public class YetAnotherTechMod
 
 	private void gatherData(GatherDataEvent event)
 	{
-			DataProvider.Factory<YATMBlockStateProvider> blockStateProviderFactory = (o) -> new YATMBlockStateProvider(o, YetAnotherTechMod.MODID, event.getExistingFileHelper());
-			event.getGenerator().addProvider(event.includeClient(), blockStateProviderFactory);
-		
-			
-			
-			DataProvider.Factory<YATMBlockTags> blockTagProviderFactory 
-			= new DataProvider.Factory<YATMBlockTags>() {
-				YATMBlockTags backing = null;
-			
-				@Override
-				public YATMBlockTags create(PackOutput output)
+		DataProvider.Factory<YATMItemModelProvider> itemModelProviderFactory = (o) -> new YATMItemModelProvider(o, event.getExistingFileHelper());
+		event.getGenerator().addProvider(event.includeClient(), itemModelProviderFactory);
+
+		DataProvider.Factory<YATMBlockStateProvider> blockStateProviderFactory = (o) -> new YATMBlockStateProvider(o, YetAnotherTechMod.MODID, event.getExistingFileHelper());
+		event.getGenerator().addProvider(event.includeClient(), blockStateProviderFactory);
+
+		DataProvider.Factory<YATMLanguageProviderUnitedStatesEnglish> unitedStatesEnglishLanguageProviderFactory = (o) -> new YATMLanguageProviderUnitedStatesEnglish(o);
+		event.getGenerator().addProvider(event.includeClient(), unitedStatesEnglishLanguageProviderFactory);
+
+
+
+		DataProvider.Factory<YATMBlockTags> blockTagProviderFactory = new DataProvider.Factory<YATMBlockTags>()
+		{
+			YATMBlockTags backing = null;
+
+			@Override
+			public YATMBlockTags create(PackOutput output)
+			{
+				if (backing == null)
 				{
-					if(backing == null) 
-						{
-							backing = new YATMBlockTags(output, event.getLookupProvider(), MODID, event.getExistingFileHelper());
-						}
-						return backing;
-				} // end create()
-			};		
-			event.getGenerator().addProvider(event.includeServer(), blockTagProviderFactory);
-			
-			DataProvider.Factory<YATMItemTags> itemTagProviderFactory 
-			= (pOP) -> new YATMItemTags(pOP, event.getLookupProvider(), blockTagProviderFactory.create(pOP).contentsGetter(), MODID, event.getExistingFileHelper());
-			event.getGenerator().addProvider(event.includeServer(), itemTagProviderFactory);
-			
-			DataProvider.Factory<YATMRecipeProvider> recipeProviderFactory = (o) -> new YATMRecipeProvider(o);
-			event.getGenerator().addProvider(event.includeServer(), recipeProviderFactory);
+					backing = new YATMBlockTags(output, event.getLookupProvider(), MODID, event.getExistingFileHelper());
+				}
+				return backing;
+			} // end create()
+
+		};
+		event.getGenerator().addProvider(event.includeServer(), blockTagProviderFactory);
+
+		DataProvider.Factory<YATMItemTags> itemTagProviderFactory = (pOP) -> new YATMItemTags(pOP, event.getLookupProvider(), blockTagProviderFactory.create(pOP).contentsGetter(), MODID, event.getExistingFileHelper());
+		event.getGenerator().addProvider(event.includeServer(), itemTagProviderFactory);
+
+		DataProvider.Factory<YATMRecipeProvider> recipeProviderFactory = (o) -> new YATMRecipeProvider(o);
+		event.getGenerator().addProvider(event.includeServer(), recipeProviderFactory);
 	} // end gatherData()
 
 	

@@ -1,5 +1,6 @@
 package com.gsr.gsr_yatm;
 
+import com.gsr.gsr_yatm.recipe.ExtractionRecipe;
 import com.gsr.gsr_yatm.recipe.ExtrusionRecipe;
 import com.gsr.gsr_yatm.recipe.FluidInjectionRecipe;
 import net.minecraft.world.item.crafting.RecipeType;
@@ -13,7 +14,9 @@ public class YATMRecipeTypes
 	
 	
 	
-	public static final RegistryObject<RecipeType<FluidInjectionRecipe>> FLUID_INJECTION_RECIPE_TYPE = RECIPE_TYPES.register("fluid_injection", () -> new RecipeType<FluidInjectionRecipe>(){});
+	
+	public static final RegistryObject<RecipeType<ExtractionRecipe>> EXTRACTION_RECIPE_TYPE = RECIPE_TYPES.register("extracting", () -> new RecipeType<ExtractionRecipe>(){});
 	public static final RegistryObject<RecipeType<ExtrusionRecipe>> EXTRUSION_RECIPE_TYPE = RECIPE_TYPES.register("extruding", () -> new RecipeType<ExtrusionRecipe>(){});
+	public static final RegistryObject<RecipeType<FluidInjectionRecipe>> FLUID_INJECTION_RECIPE_TYPE = RECIPE_TYPES.register("fluid_injection", () -> new RecipeType<FluidInjectionRecipe>(){});
 	
 } // end class

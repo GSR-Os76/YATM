@@ -1,0 +1,17 @@
+{
+	"type": "gsr_yatm:extracting",
+	"input": {
+		"ingredient": {
+			"item": "gsr_yatm:copper_nugget"
+		},
+		"remainder": {
+			"item": "gsr_yatm:silver_nugget"
+		}
+	},
+	"result": {
+		"fluid": "minecraft:water",
+		"count": 1000
+	},
+	"cost": 9302903,
+	"time": 56
+}

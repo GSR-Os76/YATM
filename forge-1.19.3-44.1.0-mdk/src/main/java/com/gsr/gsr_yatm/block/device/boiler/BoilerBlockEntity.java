@@ -490,7 +490,7 @@ public class BoilerBlockEntity extends BlockEntity
 			this.m_initialDrainInputTankTransferSize = 0;
 		}
 		
-		// draing result tank
+		// draining result tank
 		if (this.m_resultTankDrainCountDown > 0)
 		{
 			this.m_resultTankDrainCountDown -= this.m_maxTransferRate;

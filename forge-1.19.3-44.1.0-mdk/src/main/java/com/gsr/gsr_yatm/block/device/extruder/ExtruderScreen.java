@@ -37,12 +37,12 @@ public class ExtruderScreen extends AbstractContainerScreen<ExtruderMenu>
 	{
 		// render background image
 		RenderSystem.setShaderTexture(0, BACKGROUND);
-		this.blit(poseStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+		blit(poseStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 
 		float eProg = this.menu.getExtrudeProgress();
 		if(eProg > 0) 
 		{
-			this.blit(poseStack, this.leftPos + 74, this.topPos + 29, 176, 0, (int)(28f * eProg), 16);
+			blit(poseStack, this.leftPos + 74, this.topPos + 29, 176, 0, (int)(28f * eProg), 16);
 		}
 	} // end renderBg()
 

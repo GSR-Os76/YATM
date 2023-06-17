@@ -1,9 +1,6 @@
 package com.gsr.gsr_yatm;
 
-import com.gsr.gsr_yatm.recipe.ExtrusionRecipe;
-import com.gsr.gsr_yatm.recipe.ExtrusionRecipeSerializer;
-import com.gsr.gsr_yatm.recipe.FluidInjectionRecipe;
-import com.gsr.gsr_yatm.recipe.FluidInjectionRecipeSerializer;
+import com.gsr.gsr_yatm.recipe.*;
 
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.registries.DeferredRegister;
@@ -15,8 +12,8 @@ public class YATMRecipeSerializers
 	public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, YetAnotherTechMod.MODID);
 	
 	
-	
-	public static final RegistryObject<RecipeSerializer<FluidInjectionRecipe>> FLUID_INJECTION_SERIALIZER = RECIPE_SERIALIZERS.register("fluid_injection", () -> new FluidInjectionRecipeSerializer());//RECIPE_TYPES.register("fluid_injection", () -> RecipeType.register("fluid_injection"));
+	public static final RegistryObject<RecipeSerializer<ExtractionRecipe>> EXTRACTION_SERIALIZER = RECIPE_SERIALIZERS.register("extracting", () -> new ExtractionRecipeSerializer());
 	public static final RegistryObject<RecipeSerializer<ExtrusionRecipe>> EXTRUSION_SERIALIZER = RECIPE_SERIALIZERS.register("extruding", () -> new ExtrusionRecipeSerializer());
-
+	public static final RegistryObject<RecipeSerializer<FluidInjectionRecipe>> FLUID_INJECTION_SERIALIZER = RECIPE_SERIALIZERS.register("fluid_injection", () -> new FluidInjectionRecipeSerializer());//RECIPE_TYPES.register("fluid_injection", () -> RecipeType.register("fluid_injection"));
+	
 } // end class

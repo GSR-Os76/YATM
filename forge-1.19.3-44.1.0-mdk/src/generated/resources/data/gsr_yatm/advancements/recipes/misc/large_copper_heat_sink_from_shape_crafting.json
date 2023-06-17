@@ -16,7 +16,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gsr_yatm:"
+        "recipe": "gsr_yatm:large_copper_heat_sink_from_shape_crafting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -29,7 +29,7 @@
   ],
   "rewards": {
     "recipes": [
-      "gsr_yatm:"
+      "gsr_yatm:large_copper_heat_sink_from_shape_crafting"
     ]
   }
 }

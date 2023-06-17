@@ -60,6 +60,10 @@ public class CurrentRegulatorItemStack implements ICurrentHandler, IDamageableRe
 
 	private void setForwardingBuffer(int value)
 	{
+		if (!m_container.hasTag())
+		{
+			m_container.setTag(new CompoundTag());
+		}
 		this.m_container.getTag().putInt(FORWARDING_BUFFER_TAG_NAME, value);
 	} // end setForwardingBuffer()
 

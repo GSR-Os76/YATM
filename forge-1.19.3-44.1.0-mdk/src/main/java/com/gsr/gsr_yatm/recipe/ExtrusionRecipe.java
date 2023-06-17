@@ -24,7 +24,7 @@ public class ExtrusionRecipe implements Recipe<Container>
 	private final ResourceLocation m_identifier;
 	private final ItemStack m_result;
 
-	// TODO, swap to 'Ingredients' most likely
+	// TODO, swap to 'Ingredient's most likely
 	private ItemStack m_inputStack = null;
 	private ITag<Item> m_inputTag = null;
 	private int m_inputCount = 1;

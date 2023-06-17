@@ -5,6 +5,7 @@ import com.gsr.gsr_yatm.block.conduit.FluidConduitBlockEntity;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlockEntity;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlockEntity;
 import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInterchangerBlockEntity;
+import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlockEntity;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderBlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -20,6 +21,7 @@ public class YATMBlockEntityTypes
 	public static final RegistryObject<BlockEntityType<BoilerTankBlockEntity>> BOILER_TANK_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("boiler_tank_block_entity", () -> BlockEntityType.Builder.of(BoilerTankBlockEntity::new, YATMBlocks.STEEL_BOILER_TANK.get()).build(null));
 	public static final RegistryObject<BlockEntityType<BoilerBlockEntity>> BOILER_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("boiler_block_entity", () -> BlockEntityType.Builder.of(BoilerBlockEntity::new, YATMBlocks.STEEL_BOILER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<ExtruderBlockEntity>> EXTRUDER_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("extruder_block_entity", () -> BlockEntityType.Builder.of(ExtruderBlockEntity::new, YATMBlocks.STEEL_EXTRUDER.get()).build(null));
+	public static final RegistryObject<BlockEntityType<ExtractorBlockEntity>> EXTRACTOR_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("extractor_block_entity", () -> BlockEntityType.Builder.of(ExtractorBlockEntity::new, YATMBlocks.STEEL_EXTRACTOR.get()).build(null));
 	public static final RegistryObject<BlockEntityType<CurrentUnitForgeEnergyInterchangerBlockEntity>> C_U_F_E_I_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("current_unit_forge_energy_interchanger_block_entity", () -> BlockEntityType.Builder.of(CurrentUnitForgeEnergyInterchangerBlockEntity::new, YATMBlocks.C_U_F_E_I.get()).build(null));
 
 	public static final RegistryObject<BlockEntityType<CurrentConduitBlockEntity>> CURRENT_CONDUIT_BLOCK_ENTITY = BLOCK_ENTITY_TYPES.register("current_conduit_block_entity", () -> BlockEntityType.Builder.of(CurrentConduitBlockEntity::new, 

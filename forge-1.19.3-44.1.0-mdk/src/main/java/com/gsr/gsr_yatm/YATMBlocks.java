@@ -8,6 +8,7 @@ import com.gsr.gsr_yatm.block.conduit.InsulatedCurrentConduitBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlock;
 import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInterchangerBlock;
+import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlock;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
 import com.gsr.gsr_yatm.block.plant.tree.StrippedSapLogBlock;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.LeavesBlock;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.PressurePlateBlock.Sensitivity;
 import net.minecraft.world.level.block.RotatedPillarBlock;
@@ -78,10 +80,15 @@ public class YATMBlocks
 
 	
 	
+	// TODO, properties
+	public static final RegistryObject<Block> RUBBER_BLOCK = BLOCKS.register("rubber_block", () -> new Block(BlockBehaviour.Properties.of(Material.FROGLIGHT).strength(2f).sound(SoundType.CANDLE)));
+	
+	
 	
 	public static final RegistryObject<Block> LARGE_COPPER_HEAT_SINK = BLOCKS.register("large_copper_heat_sink", () -> new HeatSinkBlock(BlockBehaviour.Properties.of(Material.STONE)));
 	public static final RegistryObject<Block> STEEL_BOILER_TANK = BLOCKS.register("steel_boiler_tank", () -> new BoilerTankBlock(BlockBehaviour.Properties.of(Material.STONE), 256, 32000));
 	public static final RegistryObject<Block> STEEL_BOILER = BLOCKS.register("steel_boiler", () -> new BoilerBlock(BlockBehaviour.Properties.of(Material.STONE)));
+	public static final RegistryObject<Block> STEEL_EXTRACTOR = BLOCKS.register("steel_extractor", () -> new ExtractorBlock(BlockBehaviour.Properties.of(Material.STONE)));
 	public static final RegistryObject<Block> STEEL_EXTRUDER = BLOCKS.register("steel_extruder", () -> new ExtruderBlock(BlockBehaviour.Properties.of(Material.STONE)));
 	public static final RegistryObject<Block> C_U_F_E_I = BLOCKS.register("current_unit_forge_energy_interchanger", () -> new CurrentUnitForgeEnergyInterchangerBlock(BlockBehaviour.Properties.of(Material.STONE)));
 	
@@ -109,7 +116,10 @@ public class YATMBlocks
 
 	public static final RegistryObject<Block> STEEL_FLUID_CONDUIT = BLOCKS.register("steel_fluid_conduit", () -> new FluidConduitBlock(BlockBehaviour.Properties.of(Material.STONE), BlockShapes.STEEL_FLUID_CONDUIT_SHAPE));
 	
+	public static final RegistryObject<Block> LATEX_LIQUID_BLOCK = BLOCKS.register("latex", () -> new LiquidBlock(YATMFluids.LATEX, BlockBehaviour.Properties.of(Material.WATER).noCollission().strength(100.0F).noLootTable()));
 	
+	// TODO, investigate, at net.minecraftforge.client.ForgeHooksClient.getFluidSprites(ForgeHooksClient.java:505) ~[forge-1.19.4-45.1.0_mapped_official_1.19.4-recomp.jar%23188%23195!/:?] {re:classloading}
+
 	
 	private static Block getPartiallyStrippedRubberLog() 
 	{

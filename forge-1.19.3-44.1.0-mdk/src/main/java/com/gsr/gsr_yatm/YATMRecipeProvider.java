@@ -4,6 +4,8 @@ import java.util.function.Consumer;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.recipe.ExtractionRecipeBuilder;
+
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -16,6 +18,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraftforge.fluids.FluidStack;
 
 public class YATMRecipeProvider extends RecipeProvider
 {
@@ -30,28 +33,36 @@ public class YATMRecipeProvider extends RecipeProvider
 	@Override
 	protected void buildRecipes(Consumer<FinishedRecipe> writer)
 	{
-		this.addNineToOne(writer, YATMItemTags.FORGE_COPPER_NUGGETS_KEY, Items.COPPER_INGOT, YetAnotherTechMod.MODID +":copper_ingot_from_shapeless_crafting");
-		this.addNineToOne(writer, YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY, Items.NETHERITE_INGOT, YetAnotherTechMod.MODID +":netherite_ingot_from_shapeless_crafting");
-		this.addNineToOne(writer, YATMItemTags.FORGE_SILVER_NUGGETS_KEY, YATMItems.SILVER_INGOT.get(), YetAnotherTechMod.MODID +":silver_ingot_from_shapeless_crafting");
-		this.addOneToNine(writer, YATMItemTags.FORGE_COPPER_INGOTS_KEY, YATMItems.COPPER_NUGGET.get(),  YetAnotherTechMod.MODID +":copper_nuggets_from_shapeless_crafting");
-		this.addOneToNine(writer, YATMItemTags.FORGE_NETHERITE_INGOTS_KEY, YATMItems.NETHERITE_NUGGET.get(),  YetAnotherTechMod.MODID +":netherite_nuggets_from_shapeless_crafting");
-		this.addOneToNine(writer, YATMItemTags.FORGE_SILVER_INGOTS_KEY, YATMItems.SILVER_NUGGET.get(),  YetAnotherTechMod.MODID +":silver_nuggets_from_shapeless_crafting");
-		
-		this.addLargeHeatSink(writer, "gsr_yatm:", YATMItems.LARGE_COPPER_HEAT_SINK_ITEM.get(), YATMItemTags.FORGE_COPPER_INGOTS_KEY, YATMItemTags.UNOXIDIXED_COPPER_BLOCKS_KEY);
-		
-		this.addTwoByTwoToX(writer, YATMItems.RUBBER_LOG_ITEM.get(), YATMItems.RUBBER_WOOD_ITEM.get(), 3, YetAnotherTechMod.MODID +":rubber_wood_from_shaped_crafting");
-		this.addTwoByTwoToX(writer, YATMItems.STRIPPED_RUBBER_LOG_ITEM.get(), YATMItems.STRIPPED_RUBBER_WOOD_ITEM.get(), 3, YetAnotherTechMod.MODID +":stripped_rubber_wood_from_shaped_crafting");
-		this.addOneToFour(writer, YATMItemTags.RUBBER_TREE_LOGS_KEY, YATMItems.RUBBER_PLANKS_ITEM.get(), YetAnotherTechMod.MODID +":rubber_planks_from_shapeless_crafting");
-		this.addFancyPlanks(writer, YATMItems.RUBBER_PLANKS_ITEM.get(), YATMItems.RUBBER_SLAB_ITEM.get(), YATMItems.FANCY_RUBBER_PLANKS_ITEM.get(), YetAnotherTechMod.MODID +":fancy_rubber_planks_from_shaped_crafting");
-		this.addStairs(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_STAIRS_ITEM.get(), YetAnotherTechMod.MODID +":rubber_stairs_from_shaped_crafting");
-		this.addSlabs(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_SLAB_ITEM.get(), YetAnotherTechMod.MODID +":rubber_slab_from_shaped_crafting");
-		this.addFence(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_FENCE_ITEM.get(), YetAnotherTechMod.MODID +":rubber_fence_from_shaped_crafting");
-		this.addFenceGate(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_FENCE_GATE_ITEM.get(), YetAnotherTechMod.MODID +":rubber_fence_gate_from_shaped_crafting");
-		this.addDoor(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_DOOR_ITEM.get(), YetAnotherTechMod.MODID +":rubber_door_from_shaped_crafting");
-		this.addTrapdoor(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_TRAPDOOR_ITEM.get(), YetAnotherTechMod.MODID +":rubber_trapdoor_from_shaped_crafting");
-		this.addPressurePlate(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_PRESSURE_PLATE_ITEM.get(), YetAnotherTechMod.MODID +":rubber_pressure_plate_from_shaped_crafting");
-		this.addButton(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_BUTTON_ITEM.get(), YetAnotherTechMod.MODID +":rubber_button_from_shaped_crafting");
-		
+		this.addNineToOne(writer, YATMItemTags.FORGE_COPPER_NUGGETS_KEY, Items.COPPER_INGOT, YetAnotherTechMod.MODID + ":copper_ingot_from_shapeless_crafting");
+		this.addNineToOne(writer, YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY, Items.NETHERITE_INGOT, YetAnotherTechMod.MODID + ":netherite_ingot_from_shapeless_crafting");
+		this.addNineToOne(writer, YATMItemTags.FORGE_SILVER_NUGGETS_KEY, YATMItems.SILVER_INGOT.get(), YetAnotherTechMod.MODID + ":silver_ingot_from_shapeless_crafting");
+		this.addOneToNine(writer, YATMItemTags.FORGE_COPPER_INGOTS_KEY, YATMItems.COPPER_NUGGET.get(), YetAnotherTechMod.MODID + ":copper_nuggets_from_shapeless_crafting");
+		this.addOneToNine(writer, YATMItemTags.FORGE_NETHERITE_INGOTS_KEY, YATMItems.NETHERITE_NUGGET.get(), YetAnotherTechMod.MODID + ":netherite_nuggets_from_shapeless_crafting");
+		this.addOneToNine(writer, YATMItemTags.FORGE_SILVER_INGOTS_KEY, YATMItems.SILVER_NUGGET.get(), YetAnotherTechMod.MODID + ":silver_nuggets_from_shapeless_crafting");
+
+		this.addLargeHeatSink(writer, YetAnotherTechMod.MODID + ":large_copper_heat_sink_from_shape_crafting", YATMItems.LARGE_COPPER_HEAT_SINK_ITEM.get(), YATMItemTags.FORGE_COPPER_INGOTS_KEY, YATMItemTags.UNOXIDIXED_COPPER_BLOCKS_KEY);
+
+		this.addTwoByTwoToX(writer, YATMItems.RUBBER_LOG_ITEM.get(), YATMItems.RUBBER_WOOD_ITEM.get(), 3, YetAnotherTechMod.MODID + ":rubber_wood_from_shaped_crafting");
+		this.addTwoByTwoToX(writer, YATMItems.STRIPPED_RUBBER_LOG_ITEM.get(), YATMItems.STRIPPED_RUBBER_WOOD_ITEM.get(), 3, YetAnotherTechMod.MODID + ":stripped_rubber_wood_from_shaped_crafting");
+		this.addOneToFour(writer, YATMItemTags.RUBBER_TREE_LOGS_KEY, YATMItems.RUBBER_PLANKS_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_planks_from_shapeless_crafting");
+		this.addFancyPlanks(writer, YATMItems.RUBBER_PLANKS_ITEM.get(), YATMItems.RUBBER_SLAB_ITEM.get(), YATMItems.FANCY_RUBBER_PLANKS_ITEM.get(), YetAnotherTechMod.MODID + ":fancy_rubber_planks_from_shaped_crafting");
+		this.addStairs(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_STAIRS_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_stairs_from_shaped_crafting");
+		this.addSlabs(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_SLAB_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_slab_from_shaped_crafting");
+		this.addFence(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_FENCE_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_fence_from_shaped_crafting");
+		this.addFenceGate(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_FENCE_GATE_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_fence_gate_from_shaped_crafting");
+		this.addDoor(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_DOOR_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_door_from_shaped_crafting");
+		this.addTrapdoor(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_TRAPDOOR_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_trapdoor_from_shaped_crafting");
+		this.addPressurePlate(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_PRESSURE_PLATE_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_pressure_plate_from_shaped_crafting");
+		this.addButton(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_BUTTON_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_button_from_shaped_crafting");
+
+		new ExtractionRecipeBuilder()
+		.input(Ingredient.of(YATMItems.RUBBER_LOG_ITEM.get(), YATMItems.RUBBER_WOOD_ITEM.get()))
+				// .inputRemainder(wood pulp 6)
+		.result(new FluidStack(YATMFluids.LATEX.get(), 120))
+		.currentPerTick(12)
+		.timeInTicks(246)
+		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.RUBBER_LOG_ITEM.get(), YATMItems.RUBBER_WOOD_ITEM.get()).build()))
+		.save(writer, YetAnotherTechMod.MODID + ":latex_from_log_extraction");
 	} // end buildRecipes()
 	
 	
@@ -82,6 +93,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addCompressed()
 	
+	@SuppressWarnings("unused")
 	private void addTwoByTwoToOne(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, String key) 
 	{
 //		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
@@ -181,4 +193,5 @@ public class YATMRecipeProvider extends RecipeProvider
 		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);
 	} // end addButton()
+
 } // end class
