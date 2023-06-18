@@ -46,10 +46,25 @@ public class YATMItems
 	public static final RegistryObject<Item> SOUL_AFFLICTED_RUBBER_LEAVES_LEAVES_FLOWERING_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_leaves_flowering", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get(), new Item.Properties())));
 	public static final RegistryObject<Item> SOUL_AFFLICTED_RUBBER_LEAVES_OLD_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_leaves_old", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_OLD.get(), new Item.Properties())));
 	public static final RegistryObject<Item> SOUL_AFFLICTED_RUBBER_LOG_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_log", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_LOG.get(), new Item.Properties())));
+	public static final RegistryObject<Item> SOUL_AFFLICTED_RUBBER_WOOD_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_wood", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_WOOD.get(), new Item.Properties())));
+	public static final RegistryObject<Item> SOUL_AFFLICTED_STRIPPED_RUBBER_LOG_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_stripped_rubber_log", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_STRIPPED_RUBBER_LOG.get(), new Item.Properties())));
+	public static final RegistryObject<Item> SOUL_AFFLICTED_PARTIALLY_STRIPPED_RUBBER_LOG_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_partially_stripped_rubber_log", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_PARTIALLY_STRIPPED_RUBBER_LOG.get(), new Item.Properties())));
+	public static final RegistryObject<Item> SOUL_AFFLICTED_STRIPPED_RUBBER_WOOD_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_stripped_rubber_wood", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_STRIPPED_RUBBER_WOOD.get(), new Item.Properties())));
+	public static final RegistryObject<Item> SOUL_AFFLICTED_RUBBER_PLANKS_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_planks", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_PLANKS.get(), new Item.Properties())));
+	public static final RegistryObject<Item> SOUL_AFFLICTED_FANCY_RUBBER_PLANKS_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_fancy_rubber_planks", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_FANCY_RUBBER_PLANKS.get(), new Item.Properties())));
+	public static final RegistryObject<Item> SOUL_AFFLICTED_FANCY_RUBBER_PLANKS_TILED_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_fancy_rubber_planks_tiled", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_FANCY_RUBBER_PLANKS_TILED.get(), new Item.Properties())));
+	public static final RegistryObject<Item> SOUL_AFFLICTED_RUBBER_STAIRS_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_stairs", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_STAIRS.get(), new Item.Properties())));
+	public static final RegistryObject<Item> SOUL_AFFLICTED_RUBBER_SLAB_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_slab", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_SLAB.get(), new Item.Properties())));
+	public static final RegistryObject<Item> SOUL_AFFLICTED_RUBBER_FENCE_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_fence", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_FENCE.get(), new Item.Properties())));
+	public static final RegistryObject<Item> SOUL_AFFLICTED_RUBBER_FENCE_GATE_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_fence_gate", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_FENCE_GATE.get(), new Item.Properties())));
+	public static final RegistryObject<Item> SOUL_AFFLICTED_RUBBER_DOOR_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_door", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_DOOR.get(), new Item.Properties())));
+	public static final RegistryObject<Item> SOUL_AFFLICTED_RUBBER_TRAPDOOR_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_trapdoor", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_TRAPDOOR.get(), new Item.Properties())));
+	public static final RegistryObject<Item> SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_pressure_plate", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE.get(), new Item.Properties())));
+	public static final RegistryObject<Item> SOUL_AFFLICTED_RUBBER_BUTTON_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_button", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_BUTTON.get(), new Item.Properties())));
 	
 	
 	// add celestial altar
-	// add liquid celestial light, light lunar light, and the liquid solar liquids;
+	// add liquid celestial light, liquid lunar light, and the liquid solar liquids;
 	// add their ingots from alloying them with molten netherite
 	// for these at least tools I feel are worthy to make
 	
@@ -113,6 +128,9 @@ public class YATMItems
 	
 	public static final RegistryObject<Item> WAX_BIT_ITEM = generalTabEnqueue(ITEMS.register("wax_bit", () -> new InsulatingItem(new Item.Properties(), InsulatingItem.WAX_BIT_WAXING_TABLE)));
 	public static final RegistryObject<Item> RUBBER_SCRAP_ITEM = generalTabEnqueue(ITEMS.register("rubber_scrap", () -> new InsulatingItem(new Item.Properties(), InsulatingItem.RUBBER_SCRAP_WAXING_TABLE)));
+	
+	public static final RegistryObject<Item> WOOD_PULP = generalTabEnqueue(ITEMS.register("wood_pulp", () -> new Item(new Item.Properties())));
+	public static final RegistryObject<Item> LEAF_MULCH = generalTabEnqueue(ITEMS.register("leaf_mulch", () -> new Item(new Item.Properties())));
 	
 	public static final RegistryObject<Item> CREATIVE_FLUID_VOID = generalTabEnqueue(ITEMS.register("creative_fluid_void", () -> new CreativeFluidVoidItem(new Item.Properties())));
 	public static final RegistryObject<Item> CREATIVE_FLUID_STORER = generalTabEnqueue(ITEMS.register("creative_fluid_storer", () -> new CreativeFluidStorerItem(new Item.Properties())));

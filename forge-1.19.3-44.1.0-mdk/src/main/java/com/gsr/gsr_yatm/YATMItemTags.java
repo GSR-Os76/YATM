@@ -31,6 +31,14 @@ public class YATMItemTags extends ItemTagsProvider
 	public static final TagKey<Item> MINECRAFT_PIGLIN_LOVED_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "piglin_loved"));
 	public static final TagKey<Item> MINECRAFT_PLANKS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "planks"));
 	public static final TagKey<Item> MINECRAFT_SAPLINGS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "saplings"));
+	public static final TagKey<Item> MINECRAFT_WOODEN_BUTTONS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_buttons"));
+	public static final TagKey<Item> MINECRAFT_WOODEN_DOORS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_doors"));
+	public static final TagKey<Item> MINECRAFT_WOODEN_FENCES_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_fences"));
+	public static final TagKey<Item> MINECRAFT_WOODEN_PRESSURE_PLATES_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_pressure_plates"));
+	public static final TagKey<Item> MINECRAFT_WOODEN_SLABS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_slabs"));
+	public static final TagKey<Item> MINECRAFT_WOODEN_STAIRS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_stairs"));
+	public static final TagKey<Item> MINECRAFT_WOODEN_TRAPDOORS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_trapdoors"));
+
 	
 	public static final TagKey<Item> FORGE_COPPER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/copper"));
 	public static final TagKey<Item> FORGE_NETHERITE_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/netherite"));
@@ -44,6 +52,8 @@ public class YATMItemTags extends ItemTagsProvider
 	public static final TagKey<Item> RUBBER_TREE_PLANKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "rubber_planks"));
 	public static final TagKey<Item> UNOXIDIXED_COPPER_BLOCKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "unoxidized_copper_blocks"));
 	public static final TagKey<Item> SIXTYFOUR_CU_WIRE_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "conduits/sixtyfour_cu"));
+	public static final TagKey<Item> SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "soul_afflicted_rubber_tree_logs"));
+	public static final TagKey<Item> SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "soul_afflicted_rubber_planks"));
 	public static final TagKey<Item> WIRE_DIES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "dies/wire"));
 	
 	
@@ -66,6 +76,16 @@ public class YATMItemTags extends ItemTagsProvider
 		this.tag(MINECRAFT_PIGLIN_LOVED_KEY).add(YATMItems.SIXTYFOUR_CU_CURRENT_REGULATOR.get()).addTag(SIXTYFOUR_CU_WIRE_KEY);
 		this.copy(YATMBlockTags.MINECRAFT_PLANKS_KEY, MINECRAFT_PLANKS_KEY);
 		this.copy(YATMBlockTags.MINECRAFT_SAPLINGS_KEY, MINECRAFT_SAPLINGS_KEY);
+		this.copy(YATMBlockTags.MINECRAFT_WOODEN_BUTTONS_KEY, MINECRAFT_WOODEN_BUTTONS_KEY);
+		this.copy(YATMBlockTags.MINECRAFT_WOODEN_DOORS_KEY, MINECRAFT_WOODEN_DOORS_KEY);
+		this.copy(YATMBlockTags.MINECRAFT_WOODEN_FENCES_KEY, MINECRAFT_WOODEN_FENCES_KEY);
+		this.copy(YATMBlockTags.MINECRAFT_WOODEN_PRESSURE_PLATES_KEY, MINECRAFT_WOODEN_PRESSURE_PLATES_KEY);
+		this.copy(YATMBlockTags.MINECRAFT_WOODEN_SLABS_KEY, MINECRAFT_WOODEN_SLABS_KEY);
+		this.copy(YATMBlockTags.MINECRAFT_WOODEN_STAIRS_KEY, MINECRAFT_WOODEN_STAIRS_KEY);
+		this.copy(YATMBlockTags.MINECRAFT_WOODEN_TRAPDOORS_KEY, MINECRAFT_WOODEN_TRAPDOORS_KEY);
+		
+		
+		
 		
 		this.tag(FORGE_SILVER_INGOTS_KEY).add(YATMItems.SILVER_INGOT.get());
 		this.tag(FORGE_STEEL_INGOTS_KEY).add(YATMItems.STEEL_INGOT.get());
@@ -77,6 +97,9 @@ public class YATMItemTags extends ItemTagsProvider
 		this.copy(YATMBlockTags.RUBBER_TREE_PLANKS_KEY, RUBBER_TREE_PLANKS_KEY);
 		this.copy(YATMBlockTags.UNOXIDIXED_COPPER_BLOCKS_KEY, UNOXIDIXED_COPPER_BLOCKS_KEY);
 		this.copy(YATMBlockTags.SIXTYFOUR_CU_WIRE_KEY, SIXTYFOUR_CU_WIRE_KEY);
+		this.copy(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY, SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);
+		this.copy(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY);
+		
 		this.tag(WIRE_DIES_KEY).add(YATMItems.IRON_WIRE_DIE.get()).add(YATMItems.STEEL_WIRE_DIE.get());		
 	} // end addTags
 

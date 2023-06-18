@@ -50,11 +50,9 @@ public class YATMBlocks
 	public static final RegistryObject<Block> RUBBER_LEAVES_FLOWERING = BLOCKS.register("rubber_leaves_flowering", () ->  new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isSuffocating((bs, bg, bp) -> false).isViewBlocking((bs,bg,bp) -> false)));
 	// maybe make persistent?
 	public static final RegistryObject<Block> RUBBER_LEAVES_OLD = BLOCKS.register("rubber_leaves_old", () ->  new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.3F).randomTicks().sound(SoundType.GRASS).noOcclusion().isSuffocating((bs, bg, bp) -> false).isViewBlocking((bs,bg,bp) -> false)));
-	
 	public static final RegistryObject<Block> RUBBER_LOG = BLOCKS.register("rubber_log", () -> new StrippableRotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD), YATMBlocks::getPartiallyStrippedRubberLog));
 	public static final RegistryObject<Block> RUBBER_WOOD = BLOCKS.register("rubber_wood", () -> new StrippableRotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD), YATMBlocks::getStrippedRubberWood));
 	public static final RegistryObject<Block> PARTIALLY_STRIPPED_RUBBER_LOG = BLOCKS.register("partially_stripped_rubber_log", () -> new StrippedSapLogBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD).randomTicks(), YATMBlocks::getStrippedRubberLog));
-	
 	public static final RegistryObject<Block> STRIPPED_RUBBER_LOG = BLOCKS.register("stripped_rubber_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> STRIPPED_RUBBER_WOOD = BLOCKS.register("stripped_rubber_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD)));
 	public static final RegistryObject<Block> RUBBER_PLANKS = BLOCKS.register("rubber_planks", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD)));
@@ -76,8 +74,23 @@ public class YATMBlocks
 	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG = BLOCKS.register("soul_afflicted_rubber_leaves_young", () ->  new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isSuffocating((bs, bg, bp) -> false).isViewBlocking((bs,bg,bp) -> false)));
 	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING = BLOCKS.register("soul_afflicted_rubber_leaves_flowering", () ->  new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isSuffocating((bs, bg, bp) -> false).isViewBlocking((bs,bg,bp) -> false)));
 	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_LEAVES_OLD = BLOCKS.register("soul_afflicted_rubber_leaves_old", () ->  new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.3F).randomTicks().sound(SoundType.GRASS).noOcclusion().isSuffocating((bs, bg, bp) -> false).isViewBlocking((bs,bg,bp) -> false)));
-	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_LOG = BLOCKS.register("soul_afflicted_rubber_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD)));
-
+	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_LOG = BLOCKS.register("soul_afflicted_rubber_log", () -> new StrippableRotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD), YATMBlocks::getSoulAfflictedPartiallyStrippedRubberLog));
+	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_WOOD = BLOCKS.register("soul_afflicted_rubber_wood", () -> new StrippableRotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD), YATMBlocks::getSoulAfflictedStrippedRubberWood));
+	public static final RegistryObject<Block> SOUL_AFFLICTED_PARTIALLY_STRIPPED_RUBBER_LOG = BLOCKS.register("soul_afflicted_partially_stripped_rubber_log", () -> new StrippedSapLogBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD).randomTicks(), YATMBlocks::getSoulAfflictedStrippedRubberLog));
+	public static final RegistryObject<Block> SOUL_AFFLICTED_STRIPPED_RUBBER_LOG = BLOCKS.register("soul_afflicted_stripped_rubber_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> SOUL_AFFLICTED_STRIPPED_RUBBER_WOOD = BLOCKS.register("soul_afflicted_stripped_rubber_wood", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_PLANKS = BLOCKS.register("soul_afflicted_rubber_planks", () -> new Block(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> SOUL_AFFLICTED_FANCY_RUBBER_PLANKS = BLOCKS.register("soul_afflicted_fancy_rubber_planks", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> SOUL_AFFLICTED_FANCY_RUBBER_PLANKS_TILED = BLOCKS.register("soul_afflicted_fancy_rubber_planks_tiled", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_STAIRS = BLOCKS.register("soul_afflicted_rubber_stairs", () -> new StairBlock(() -> SOUL_AFFLICTED_RUBBER_PLANKS.get().defaultBlockState(),BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_SLAB = BLOCKS.register("soul_afflicted_rubber_slab", () -> new SlabBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_FENCE = BLOCKS.register("soul_afflicted_rubber_fence", () -> new FenceBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD)));
+	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_FENCE_GATE = BLOCKS.register("soul_afflicted_rubber_fence_gate", () -> new FenceGateBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD), SoundEvents.FENCE_GATE_OPEN, SoundEvents.FENCE_GATE_CLOSE));
+	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_DOOR = BLOCKS.register("soul_afflicted_rubber_door", () -> new DoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD), RUBBER_BLOCK_SET_TYPE));
+	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_TRAPDOOR = BLOCKS.register("soul_afflicted_rubber_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD), RUBBER_BLOCK_SET_TYPE));
+	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE = BLOCKS.register("soul_afflicted_rubber_pressure_plate", () -> new PressurePlateBlock(Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.WOOD).noCollission().strength(0.5F), RUBBER_BLOCK_SET_TYPE));
+	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_BUTTON = BLOCKS.register("soul_afflicted_rubber_button", () -> new ButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5F), RUBBER_BLOCK_SET_TYPE, 30, true));
+	
 	
 	
 	// TODO, properties
@@ -135,4 +148,22 @@ public class YATMBlocks
 	{
 		return STRIPPED_RUBBER_WOOD.get();
 	} // end getStrippedRubberWood()
+
+	
+	
+	private static Block getSoulAfflictedPartiallyStrippedRubberLog() 
+	{
+		return SOUL_AFFLICTED_PARTIALLY_STRIPPED_RUBBER_LOG.get();
+	} // end getPartiallyStrippedRubberLog()
+	
+	private static Block getSoulAfflictedStrippedRubberLog() 
+	{
+		return SOUL_AFFLICTED_STRIPPED_RUBBER_LOG.get();
+	} // end getStrippedRubberLog()
+	
+	private static Block getSoulAfflictedStrippedRubberWood() 
+	{
+		return SOUL_AFFLICTED_STRIPPED_RUBBER_WOOD.get();
+	} // end getStrippedRubberWood()
+
 } // end class

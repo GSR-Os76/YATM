@@ -40,7 +40,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add(YATMBlocks.RUBBER_FENCE.get(), "Rubber Fence");
 		this.add(YATMBlocks.RUBBER_FENCE_GATE.get(), "Fancy Fence Gate");
 		this.add(YATMBlocks.RUBBER_DOOR.get(), "Rubber Door");
-		this.add(YATMBlocks.RUBBER_TRAPDOOR.get(), "Fance Trapdoor");
+		this.add(YATMBlocks.RUBBER_TRAPDOOR.get(), "Rubber Trapdoor");
 		this.add(YATMBlocks.RUBBER_PRESSURE_PLATE.get(), "Rubber Pressure Plate");
 		this.add(YATMBlocks.RUBBER_BUTTON.get(), "Rubber Button");
 		
@@ -49,7 +49,21 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get(), "Soul Afflicted Rubber Leaves Flowering");
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_OLD.get(), "Soul Afflicted Rubber Leaves Old");	
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LOG.get(), "Soul Afflicted Rubber Log");
-
+		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_WOOD.get(), "Soul Afflicted Rubber Wood");
+		this.add(YATMBlocks.SOUL_AFFLICTED_PARTIALLY_STRIPPED_RUBBER_LOG.get(), "Soul Afflicted Partially Stripped Rubber Log");
+		this.add(YATMBlocks.SOUL_AFFLICTED_STRIPPED_RUBBER_LOG.get(), "Soul Afflicted Stripped Rubber Log");
+		this.add(YATMBlocks.SOUL_AFFLICTED_STRIPPED_RUBBER_WOOD.get(), "Soul Afflicted Stripped Rubber Wood");
+		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_PLANKS.get(), "Soul Afflicted Rubber Planks");
+		this.add(YATMBlocks.SOUL_AFFLICTED_FANCY_RUBBER_PLANKS.get(), "Soul Afflicted Fancy Rubber Planks (Untiled Whirl)");
+		this.add(YATMBlocks.SOUL_AFFLICTED_FANCY_RUBBER_PLANKS_TILED.get(), "Soul Afflicted Fancy Rubber Planks (Tiled Whirl)");
+		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_STAIRS.get(), "Soul Afflicted Rubber Stairs");
+		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_SLAB.get(), "Soul Afflicted Rubber Slab");
+		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_FENCE.get(), "Soul Afflicted Rubber Fence");
+		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_FENCE_GATE.get(), "Fancy Fence Gate");
+		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_DOOR.get(), "Rubber Door");
+		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_TRAPDOOR.get(), "Soul Afflicted Rubber Trapdoor");
+		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE.get(), "Soul Afflicted Rubber Pressure Plate");
+		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_BUTTON.get(), "Soul Afflicted Rubber Button");
 		
 		
 		this.add(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), "Large Copper Heat Sink");
@@ -90,6 +104,9 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add(YATMItems.SIXTYFOUR_CU_CURRENT_REGULATOR.get(), "64cu Current Regulator");
 		this.add(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_REGULATOR.get(), "512cu Current Regulator");
 		this.add(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_REGULATOR.get(), "4096cu Current Regulator");
+		
+		this.add(YATMItems.LATEX_BUCKET.get(), "Latex Bucket");
+		this.add(YATMItems.SOUL_SAP_BUCKET.get(), "Soul Sap Bucket");
 		
 		this.add(YATMItems.IRON_WIRE_DIE.get(), "Iron Die (Wire)");
 		this.add(YATMItems.STEEL_WIRE_DIE.get(), "Steel Die (Wire)");

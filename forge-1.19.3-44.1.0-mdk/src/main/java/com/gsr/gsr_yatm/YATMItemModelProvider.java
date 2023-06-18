@@ -20,6 +20,8 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.LATEX_BUCKET.get());
 		this.basicItem(YATMItems.SOUL_SAP_BUCKET.get());
 		
+		this.basicItem(YATMItems.IRON_WIRE_DIE.get());
+		
 		this.basicItem(YATMItems.CREATIVE_FLUID_VOID.get());
 		this.basicItem(YATMItems.CREATIVE_FLUID_STORER.get());
 		this.basicItem(YATMItems.CREATIVE_FLUID_SOURCE.get());
