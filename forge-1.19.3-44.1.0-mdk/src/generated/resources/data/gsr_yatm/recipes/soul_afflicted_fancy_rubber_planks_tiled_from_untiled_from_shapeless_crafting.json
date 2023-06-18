@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gsr_yatm:soul_afflicted_fancy_rubber_planks"
+    }
+  ],
+  "result": {
+    "item": "gsr_yatm:soul_afflicted_fancy_rubber_planks_tiled"
+  }
+}

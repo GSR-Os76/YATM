@@ -1,6 +1,6 @@
 {
   "criteria": {
-    "criteria": {
+    "has_ingredient": {
       "conditions": {
         "items": [
           {
@@ -16,7 +16,7 @@
   },
   "requirements": [
     [
-      "criteria"
+      "has_ingredient"
     ]
   ]
 }

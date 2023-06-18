@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "redstone",
+  "ingredients": [
+    {
+      "tag": "gsr_yatm:soul_afflicted_rubber_planks"
+    }
+  ],
+  "result": {
+    "item": "gsr_yatm:soul_afflicted_rubber_button"
+  }
+}

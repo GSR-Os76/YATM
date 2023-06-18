@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/pressure_plate_down",
+  "textures": {
+    "texture": "gsr_yatm:block/plant/rubber/soul_afflicted_rubber_planks"
+  }
+}

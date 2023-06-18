@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/button",
+  "textures": {
+    "texture": "gsr_yatm:block/plant/rubber/soul_afflicted_rubber_planks"
+  }
+}

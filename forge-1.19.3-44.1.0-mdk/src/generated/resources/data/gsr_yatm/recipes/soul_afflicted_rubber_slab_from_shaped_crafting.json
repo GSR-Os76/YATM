@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "building",
+  "key": {
+    "#": {
+      "tag": "gsr_yatm:soul_afflicted_rubber_planks"
+    }
+  },
+  "pattern": [
+    "###"
+  ],
+  "result": {
+    "count": 6,
+    "item": "gsr_yatm:soul_afflicted_rubber_slab"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,12 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "gsr_yatm:block/plant/rubber/soul_afflicted_rubber_log_top",
+    "east": "gsr_yatm:block/plant/rubber/soul_afflicted_rubber_log_side",
+    "north": "gsr_yatm:block/plant/rubber/soul_afflicted_rubber_log_side_partially_stripped_sap",
+    "particle": "gsr_yatm:block/plant/rubber/soul_afflicted_rubber_log_side_partially_stripped_sap",
+    "south": "gsr_yatm:block/plant/rubber/soul_afflicted_rubber_log_side",
+    "up": "gsr_yatm:block/plant/rubber/soul_afflicted_rubber_log_top",
+    "west": "gsr_yatm:block/plant/rubber/soul_afflicted_rubber_log_side"
+  }
+}

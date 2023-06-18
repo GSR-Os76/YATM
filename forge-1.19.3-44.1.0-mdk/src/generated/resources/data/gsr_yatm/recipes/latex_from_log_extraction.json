@@ -9,7 +9,11 @@
       {
         "item": "gsr_yatm:rubber_wood"
       }
-    ]
+    ],
+    "remainder": {
+      "count": 6,
+      "item": "gsr_yatm:wood_pulp"
+    }
   },
   "result": {
     "count": 120,

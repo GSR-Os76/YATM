@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/door_bottom_left_open",
+  "textures": {
+    "bottom": "gsr_yatm:block/plant/rubber/soul_afflicted_rubber_door_bottom",
+    "top": "gsr_yatm:block/plant/rubber/soul_afflicted_rubber_door_top"
+  }
+}

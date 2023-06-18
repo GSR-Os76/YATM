@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "item": "gsr_yatm:soul_afflicted_rubber_planks"
+    },
+    "s": {
+      "item": "gsr_yatm:soul_afflicted_rubber_slab"
+    }
+  },
+  "pattern": [
+    "bs",
+    "sb"
+  ],
+  "result": {
+    "count": 3,
+    "item": "gsr_yatm:soul_afflicted_fancy_rubber_planks_tiled"
+  },
+  "show_notification": true
+}

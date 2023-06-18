@@ -2,8 +2,8 @@
   "values": [
     "gsr_yatm:rubber_log",
     "gsr_yatm:rubber_wood",
-    "gsr_yatm:stripped_rubber_log",
     "gsr_yatm:partially_stripped_rubber_log",
+    "gsr_yatm:stripped_rubber_log",
     "gsr_yatm:stripped_rubber_wood"
   ]
 }

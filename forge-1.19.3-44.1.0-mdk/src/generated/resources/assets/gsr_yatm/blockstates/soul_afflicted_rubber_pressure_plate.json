@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "powered=false": {
+      "model": "gsr_yatm:block/soul_afflicted_rubber_pressure_plate"
+    },
+    "powered=true": {
+      "model": "gsr_yatm:block/soul_afflicted_rubber_pressure_plate_down"
+    }
+  }
+}

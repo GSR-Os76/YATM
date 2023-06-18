@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "type=bottom": {
+      "model": "gsr_yatm:block/soul_afflicted_rubber_slab_bottom"
+    },
+    "type=double": {
+      "model": "gsr_yatm:block/soul_afflicted_rubber_planks"
+    },
+    "type=top": {
+      "model": "gsr_yatm:block/soul_afflicted_rubber_slab_top"
+    }
+  }
+}
