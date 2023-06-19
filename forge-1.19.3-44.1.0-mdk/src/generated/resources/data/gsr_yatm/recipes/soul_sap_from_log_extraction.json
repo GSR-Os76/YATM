@@ -1,0 +1,23 @@
+{
+  "type": "gsr_yatm:extracting",
+  "cost": 12,
+  "input": {
+    "ingedient": [
+      {
+        "item": "gsr_yatm:soul_afflicted_rubber_log"
+      },
+      {
+        "item": "gsr_yatm:soul_afflicted_rubber_wood"
+      }
+    ],
+    "remainder": {
+      "count": 6,
+      "item": "gsr_yatm:wood_pulp"
+    }
+  },
+  "result": {
+    "count": 120,
+    "fluid": "gsr_yatm:soul_sap"
+  },
+  "time": 246
+}

@@ -2,6 +2,7 @@ package com.gsr.gsr_yatm.block.device.extractor;
 
 import com.gsr.gsr_yatm.YATMMenuTypes;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderBlockEntity;
+import com.gsr.gsr_yatm.utilities.NetworkUtilities;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -13,7 +14,6 @@ import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.material.Fluid;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
@@ -114,7 +114,17 @@ public class ExtractorMenu extends AbstractContainerMenu
 
 	public Fluid getFluid()
 	{
-		return Fluids.FLOWING_WATER;
+//		int fIndex = this.m_data.get(ExtractorBlockEntity.FLUID_INDEX_SLOT);
+//		int i = 0;
+//		for (Entry<ResourceKey<Fluid>, Fluid> enty : ForgeRegistries.FLUIDS.getEntries())
+//		{
+//			if (i++ == fIndex)
+//			{
+//				return enty.getValue();
+//			}
+//		}
+		int index = NetworkUtilities.composeInt(this.m_data.get(ExtractorBlockEntity.FLUID_INDEX_LOW_SLOT), this.m_data.get(ExtractorBlockEntity.FLUID_INDEX_HIGH_SLOT));
+		return NetworkUtilities.getFluid(index);//Fluids.EMPTY;
 	} // end getFluid()
 
 	

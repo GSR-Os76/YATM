@@ -1,6 +1,7 @@
 package com.gsr.gsr_yatm.block.device.boiler;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.gui.StoredFluidWidget;
 import com.mojang.blaze3d.systems.RenderSystem;
 import com.mojang.blaze3d.vertex.PoseStack;
 
@@ -8,25 +9,18 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.fluids.FluidStack;
 
 public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 {
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/boiler.png");
-	// 18 by 57
-	// private static final ResourceLocation TANK = new
-	// ResourceLocation(YetAnotherTechMod.MODID,
-	// "textures/gui/container/tank_widget.png");
 
-	private BoilerMenu m_menu;
-
+	private StoredFluidWidget m_inputTankWidget;
+	private StoredFluidWidget m_resultTankWidget;
 	// add face configuration, and
 
 	public BoilerScreen(BoilerMenu boilerMenu, Inventory inventory, Component titleComponentMaybe)
 	{
 		super(boilerMenu, inventory, titleComponentMaybe);
-
-		this.m_menu = boilerMenu;
 
 		int newYDownShift = 36;
 		this.imageHeight = 166 + newYDownShift;
@@ -38,21 +32,18 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 	@Override
 	protected void init()
 	{
-		// TODO Auto-generated method stub
 		super.init();
-
-		// this.addRenderableWidget(Button);
-		// ImageButton faceConfigurationButton;
-		// ImageButton redstoneConfigurationButton;
-		// AbstractFurnaceScreen l;
-
-	}
+		this.setInputTankWidget();
+		this.setResultTankWidget();
+	} // end init()
 
 	@Override
 	public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTick)
 	{
 		super.renderBackground(poseStack);
 		this.renderBg(poseStack, partialTick, mouseX, mouseY);
+		this.updateInputTankWidget();
+		this.updateResultTankWidget();
 		super.render(poseStack, mouseX, mouseY, partialTick);
 		this.renderTooltip(poseStack, mouseX, mouseY);
 		;
@@ -66,41 +57,13 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 		blit(poseStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 		// burn square is 14x14, at 177 0
 		// draw it to 80 70
-		float burnFractionRemaining = this.m_menu.burnFractionRemaining();
+		float burnFractionRemaining = this.menu.burnFractionRemaining();
 		if (burnFractionRemaining > 0f)
 		{
 			int renderDownSet = 14 - ((int) (14 * burnFractionRemaining));
 			blit(poseStack, this.leftPos + 80, (this.topPos + 70) + renderDownSet, 176, 0 + renderDownSet, 14, 14 - renderDownSet);
 		}
 
-		FluidStack iTCs = this.m_menu.getInputTankContents();
-		if (!iTCs.isEmpty())
-		{
-			// figure out how to get the texture from fluid
-			RenderSystem.setShaderTexture(0, new ResourceLocation(""));
-			// iTCs.getRawFluid().defaultFluidState()
-			// ForgeHooksClient.getFluidSprites(new BlockAndTintGetter() {}, BlockPos.ZERO,
-			// iTCs.getRawFluid().defaultFluidState());
-
-			int renderDownSet = 51 - ((int) (51 * ((float) iTCs.getAmount() / (float) this.m_menu.getInputTankCapacity())));
-			blit(poseStack, this.leftPos + 10, (this.topPos + 23) + renderDownSet, 0, renderDownSet, 12, 51 - renderDownSet);
-			// render over fluid with the level indicators
-			RenderSystem.setShaderTexture(0, BACKGROUND);
-			blit(poseStack, this.leftPos + 10, this.topPos + 23, 176, 35, 12, 51);
-		}
-
-		FluidStack oTCs = this.m_menu.getOutputTankContents();
-		if (!oTCs.isEmpty())
-		{
-			// figure out how to get the texture from fluid
-			RenderSystem.setShaderTexture(0, new ResourceLocation(""));
-
-			int renderDownSet = 51 - ((int) (51 * ((float) oTCs.getAmount() / (float) this.m_menu.getOutputTankCapacity())));
-			blit(poseStack, this.leftPos + 154, (this.topPos + 23) + renderDownSet, 0, renderDownSet, 12, 51 - renderDownSet);
-
-			RenderSystem.setShaderTexture(0, BACKGROUND);
-			blit(poseStack, this.leftPos + 154, this.topPos + 23, 176, 35, 12, 51);
-		}
 
 
 		// draw input tank fill progress
@@ -138,6 +101,87 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 
 	} // end renderBg
 
+	
+	
+	
+	public void updateInputTankWidget() 
+	{
+		// TODO, ideally we could have the menu tell us when that value has changed, rather than constantly having to recheck it to see if it's been set. see if this is possible.
+		if(this.m_inputTankWidget == null || this.menu.getInputTankCapacity() != this.m_inputTankWidget.getCapacity()) 
+		{
+			this.setInputTankWidget();
+		}
+		if(this.m_inputTankWidget.getFluid() != this.menu.getInputTankContents().getFluid()) 
+		{
+			this.m_inputTankWidget.setStoredFluid(this.menu.getInputTankContents().getFluid());
+		}
+		this.m_inputTankWidget.setStoredAmount(this.menu.getInputTankContents().getAmount());
+	} // end updateResultTankWidget()
+	
+	public void setInputTankWidget() 
+	{
+		if(this.m_inputTankWidget != null) 
+		{			
+			this.removeWidget(this.m_inputTankWidget);
+		}
+		this.m_inputTankWidget = new StoredFluidWidget(this.leftPos + 7, this.topPos + 20, this.menu.getInputTankCapacity(), this.menu.getInputTankContents().getFluid());
+		this.addRenderableWidget(this.m_inputTankWidget);
+	} // end setWidget()
 
-
+	
+	
+	public void updateResultTankWidget() 
+	{
+		// TODO, ideally we could have the menu tell us when that value has changed, rather than constantly having to recheck it to see if it's been set. see if this is possible.
+		if(this.m_resultTankWidget == null || this.menu.getOutputTankCapacity() != this.m_resultTankWidget.getCapacity()) 
+		{
+			this.setResultTankWidget();
+		}
+		if(this.m_resultTankWidget.getFluid() != this.menu.getOutputTankContents().getFluid()) 
+		{
+			this.m_resultTankWidget.setStoredFluid(this.menu.getOutputTankContents().getFluid());
+		}
+		this.m_resultTankWidget.setStoredAmount(this.menu.getOutputTankContents().getAmount());
+	} // end updateResultTankWidget()
+	
+	public void setResultTankWidget() 
+	{
+		if(this.m_resultTankWidget != null) 
+		{			
+			this.removeWidget(this.m_resultTankWidget);
+		}
+		
+		this.m_resultTankWidget = new StoredFluidWidget(this.leftPos + 151, this.topPos + 20, this.menu.getOutputTankCapacity(), this.menu.getOutputTankContents().getFluid());
+		this.addRenderableWidget(this.m_resultTankWidget);
+	} // end setWidget()
+	
 } // end class
+
+//FluidStack iTCs = this.menu.getInputTankContents();
+//if (!iTCs.isEmpty())
+//{
+//	// figure out how to get the texture from fluid
+//	RenderSystem.setShaderTexture(0, new ResourceLocation(""));
+//	// iTCs.getRawFluid().defaultFluidState()
+//	// ForgeHooksClient.getFluidSprites(new BlockAndTintGetter() {}, BlockPos.ZERO,
+//	// iTCs.getRawFluid().defaultFluidState());
+//
+//	int renderDownSet = 51 - ((int) (51 * ((float) iTCs.getAmount() / (float) this.menu.getInputTankCapacity())));
+//	blit(poseStack, this.leftPos + 10, (this.topPos + 23) + renderDownSet, 0, renderDownSet, 12, 51 - renderDownSet);
+//	// render over fluid with the level indicators
+//	RenderSystem.setShaderTexture(0, BACKGROUND);
+//	blit(poseStack, this.leftPos + 10, this.topPos + 23, 176, 35, 12, 51);
+//}
+//
+//FluidStack oTCs = this.menu.getOutputTankContents();
+//if (!oTCs.isEmpty())
+//{
+//	// figure out how to get the texture from fluid
+//	RenderSystem.setShaderTexture(0, new ResourceLocation(""));
+//
+//	int renderDownSet = 51 - ((int) (51 * ((float) oTCs.getAmount() / (float) this.menu.getOutputTankCapacity())));
+//	blit(poseStack, this.leftPos + 154, (this.topPos + 23) + renderDownSet, 0, renderDownSet, 12, 51 - renderDownSet);
+//
+//	RenderSystem.setShaderTexture(0, BACKGROUND);
+//	blit(poseStack, this.leftPos + 154, this.topPos + 23, 176, 35, 12, 51);
+//}

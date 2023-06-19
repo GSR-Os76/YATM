@@ -1,7 +1,11 @@
 package com.gsr.gsr_yatm;
 
+import net.minecraft.Util;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.level.material.Fluid;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.data.LanguageProvider;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 {
@@ -132,6 +136,36 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add(YATMItems.CREATIVE_FLUID_STORER.get(), "Creative Fluid Storer");
 		this.add(YATMItems.CREATIVE_FLUID_VOID.get(), "Creative Fluid Void");
 		
+		
+		
+		this.add(YATMFluids.LATEX.get(), "Latex");
+		this.add(YATMFluids.SOUL_SAP.get(), "Soul Sap");
+		this.add(YATMFluids.ESSENCE_OF_DECAY.get(), "Essence Of Decay");
+		
+		
+		
+		
+		
+		this.addMinecraftTranslations();		
+		
 	} // end addTranslations()
 
+	
+	
+	public void add(Fluid fluid, String name)
+	{
+		this.add(Util.makeDescriptionId("fluid", ForgeRegistries.FLUIDS.getKey(fluid)), name);
+	} // end add()
+	
+	
+	
+	private void addMinecraftTranslations() 
+	{
+		this.add(Fluids.EMPTY, "Empty");
+		this.add(Fluids.FLOWING_LAVA, "Lava");
+		this.add(Fluids.LAVA, "Lava");
+		this.add(Fluids.FLOWING_WATER, "Water");
+		this.add(Fluids.WATER, "Water");
+	} // end addMinecraftTranslations()
+	
 } // end class

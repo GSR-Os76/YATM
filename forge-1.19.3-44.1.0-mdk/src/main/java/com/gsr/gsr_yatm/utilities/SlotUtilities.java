@@ -1,13 +1,9 @@
-package com.gsr.gsr_yatm.utilities.slot;
+package com.gsr.gsr_yatm.utilities;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.api.IComponent;
 
-import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.MilkBucketItem;
-import net.minecraft.world.item.MobBucketItem;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
@@ -28,6 +24,7 @@ public class SlotUtilities
 	
 	public static int getHeatingTemperature(ItemStack itemStack) 
 	{
+		// TODO, implement or remove
 		return 512;
 	} // end getHeatingTemperature()
 	
@@ -45,19 +42,25 @@ public class SlotUtilities
 	
 	public static boolean isValidTankFillSlotInsert(ItemStack itemStack)
 	{
-		return (itemStack.getItem() instanceof BucketItem || 
-				itemStack.getItem() instanceof MilkBucketItem ||
-				itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).isPresent()) && 
-				itemStack.getItem() != Items.BUCKET &&
-				// maybe eventually handler mob buckets, take the fluid, and spawn the creature nearby
-				!(itemStack.getItem() instanceof MobBucketItem);
+		return 
+//				(itemStack.getItem() instanceof BucketItem || 
+//				itemStack.getItem() instanceof MilkBucketItem ||
+				itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent()
+//				) 
+//				&& 
+//				itemStack.getItem() != Items.BUCKET &&
+//				// maybe eventually handler mob buckets, take the fluid, and spawn the creature nearby
+//				!(itemStack.getItem() instanceof MobBucketItem)
+				;
 	} // end isValidTankFillSlotInsert()
 	
 	public static boolean isValidTankDrainSlotInsert(ItemStack itemStack)
 	{
-		return itemStack.getItem() instanceof BucketItem 
-				? itemStack.getItem() == Items.BUCKET 
-				: itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).isPresent();
+		return 
+//				itemStack.getItem() instanceof BucketItem 
+//				? itemStack.getItem() == Items.BUCKET 
+//				: 
+					itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent();
 	} // end isValidTankDrainSlotInsert()
 	
 	

@@ -1,7 +1,6 @@
 package com.gsr.gsr_yatm.block.device.extractor;
 
 import java.util.List;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -10,7 +9,8 @@ import com.gsr.gsr_yatm.YATMRecipeTypes;
 import com.gsr.gsr_yatm.api.implementation.CurrentUnitHandler;
 import com.gsr.gsr_yatm.recipe.ExtractionRecipe;
 import com.gsr.gsr_yatm.utilities.ConfigurableInventoryWrapper;
-import com.gsr.gsr_yatm.utilities.slot.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.NetworkUtilities;
+import com.gsr.gsr_yatm.utilities.SlotUtilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -28,7 +28,7 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public class ExtractorBlockEntity extends BlockEntity
 {
-	public static final int DATA_SLOT_COUNT = 9;
+	public static final int DATA_SLOT_COUNT = 11;
 	public static final int INVENTORY_SLOT_COUNT = 4;
 	
 	
@@ -45,8 +45,9 @@ public class ExtractorBlockEntity extends BlockEntity
 	public static final int FLUID_TRANSFER_SIZE_SLOT = 5;
 	public static final int STORED_POWER_SLOT = 6;
 	public static final int POWER_CAPACITY_SLOT = 7;
-	// TODO, add
 	public static final int DATA_FLAGS_SLOT = 8;
+	public static final int FLUID_INDEX_LOW_SLOT = 9;
+	public static final int FLUID_INDEX_HIGH_SLOT = 10;
 
 	public static final String ACTIVE_RECIPE_TAG_NAME = "recipe";
 	public static final String EXTRACT_PROGRESS_TAG_NAME = "extractProgress";
@@ -109,6 +110,14 @@ public class ExtractorBlockEntity extends BlockEntity
 				{
 					return m_flags;
 				}
+				case FLUID_INDEX_LOW_SLOT:
+				{
+					return NetworkUtilities.splitInt(NetworkUtilities.getFluidIndex(m_resultTank.getFluid().getFluid()), false);
+				}
+				case FLUID_INDEX_HIGH_SLOT:
+				{
+					return NetworkUtilities.splitInt(NetworkUtilities.getFluidIndex(m_resultTank.getFluid().getFluid()), true);
+				}
 				default:
 				{
 					throw new IndexOutOfBoundsException("get index of: " + index + ", is out of the range");
@@ -161,6 +170,10 @@ public class ExtractorBlockEntity extends BlockEntity
 				{
 					m_flags = value;
 					break;
+				}
+				case FLUID_INDEX_LOW_SLOT:
+				{
+					return;
 				}
 				default:
 				{
@@ -478,7 +491,7 @@ public class ExtractorBlockEntity extends BlockEntity
 		
 		public static enum Flags
 		{
-			CURRENT_RECIPE_HAS_REMAINDER(0x0000_0000_0000_0000_0000_0000_0000_0001);
+			CURRENT_RECIPE_HAS_REMAINDER(0b0000_0000_0000_0000_0000_0000_0000_0001);
 			
 			public final int FLAG;
 			

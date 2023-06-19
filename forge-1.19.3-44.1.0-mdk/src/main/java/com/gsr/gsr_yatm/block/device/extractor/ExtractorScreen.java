@@ -89,6 +89,10 @@ public class ExtractorScreen extends AbstractContainerScreen<ExtractorMenu>
 		{
 			this.setResultTankWidget();
 		}
+		if(this.m_fluidTankWidget.getFluid() != this.menu.getFluid()) 
+		{
+			this.m_fluidTankWidget.setStoredFluid(this.menu.getFluid());
+		}
 		this.m_fluidTankWidget.setStoredAmount(this.menu.getFluidAmount());
 	} // end updateResultTankWidget()
 	

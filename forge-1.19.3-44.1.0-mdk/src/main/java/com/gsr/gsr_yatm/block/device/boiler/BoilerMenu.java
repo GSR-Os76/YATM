@@ -1,7 +1,8 @@
 package com.gsr.gsr_yatm.block.device.boiler;
 
 import com.gsr.gsr_yatm.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.slot.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.NetworkUtilities;
+import com.gsr.gsr_yatm.utilities.SlotUtilities;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -12,7 +13,6 @@ import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
@@ -206,11 +206,12 @@ public class BoilerMenu extends AbstractContainerMenu
 	
 	public FluidStack getInputTankContents()
 	{
-		// TODO, implement fluid getting
-		return new FluidStack(Fluids.WATER, this.m_data.get(BoilerBlockEntity.INPUT_HOLDING_INDEX));
+		int index = NetworkUtilities.composeInt(this.m_data.get(BoilerBlockEntity.INPUT_TANK_FLUID_INDEX_LOW), this.m_data.get(BoilerBlockEntity.INPUT_TANK_FLUID_INDEX_HIGH));
+		return new FluidStack(NetworkUtilities.getFluid(index), this.m_data.get(BoilerBlockEntity.INPUT_HOLDING_INDEX));
 	} // end getInputTankFluid()
 	
-	
+
+
 	
 	public int getOutputTankCapacity() 
 	{
@@ -219,8 +220,8 @@ public class BoilerMenu extends AbstractContainerMenu
 	
 	public FluidStack getOutputTankContents()
 	{
-		// TODO, implement fluid getting
-		return new FluidStack(Fluids.LAVA, this.m_data.get(BoilerBlockEntity.RESULT_HOLDING_INDEX));
+		int index = NetworkUtilities.composeInt(this.m_data.get(BoilerBlockEntity.RESULT_TANK_FLUID_INDEX_LOW), this.m_data.get(BoilerBlockEntity.RESULT_TANK_FLUID_INDEX_HIGH));
+		return new FluidStack(NetworkUtilities.getFluid(index), this.m_data.get(BoilerBlockEntity.RESULT_HOLDING_INDEX));
 	} // end getOutputTankFluid()
 	
 	

@@ -1,0 +1,18 @@
+{
+  "type": "gsr_yatm:extracting",
+  "cost": 4,
+  "input": {
+    "ingedient": {
+      "item": "gsr_yatm:soul_afflicted_rubber_leaves_flowering"
+    },
+    "remainder": {
+      "count": 2,
+      "item": "gsr_yatm:leaf_mulch"
+    }
+  },
+  "result": {
+    "count": 30,
+    "fluid": "gsr_yatm:soul_sap"
+  },
+  "time": 46
+}

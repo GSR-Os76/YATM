@@ -143,7 +143,9 @@ public class YATMItems
 	public static final RegistryObject<Item> WOOD_PULP = generalTabEnqueue(ITEMS.register("wood_pulp", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> LEAF_MULCH = generalTabEnqueue(ITEMS.register("leaf_mulch", () -> new Item(new Item.Properties())));
 	
+	
 	public static final RegistryObject<Item> CREATIVE_FLUID_VOID = generalTabEnqueue(ITEMS.register("creative_fluid_void", () -> new CreativeFluidVoidItem(new Item.Properties())));
+	// TODO, add in tooltips for various different things
 	public static final RegistryObject<Item> CREATIVE_FLUID_STORER = generalTabEnqueue(ITEMS.register("creative_fluid_storer", () -> new CreativeFluidStorerItem(new Item.Properties())));
 	public static final RegistryObject<Item> CREATIVE_FLUID_SOURCE = generalTabEnqueue(ITEMS.register("creative_fluid_source", () -> new CreativeFluidSourceItem(new Item.Properties())));
 	

@@ -6,7 +6,8 @@ import org.jetbrains.annotations.Nullable;
 import com.gsr.gsr_yatm.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.utilities.ConfigurableInventoryWrapper;
 import com.gsr.gsr_yatm.utilities.ConfigurableTankWrapper;
-import com.gsr.gsr_yatm.utilities.slot.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.NetworkUtilities;
+import com.gsr.gsr_yatm.utilities.SlotUtilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -29,7 +30,7 @@ import net.minecraftforge.items.ItemStackHandler;
 public class BoilerBlockEntity extends BlockEntity
 {
 	public static final int INVENTORY_SLOT_COUNT = 4;
-	public static final int DATA_SLOT_COUNT = 13;
+	public static final int DATA_SLOT_COUNT = 17;
 
 
 	public static final int FILL_INPUT_TANK_SLOT = 0;
@@ -58,6 +59,11 @@ public class BoilerBlockEntity extends BlockEntity
 	public static final int DRAIN_INPUT_TANK_TRANSFER_INITIAL = 10;
 	public static final int DRAIN_RESULT_TANK_TRANSFER_PROGRESS = 11;
 	public static final int DRAIN_RESULT_TANK_TRANSFER_INITIAL = 12;
+	public static final int INPUT_TANK_FLUID_INDEX_LOW = 13;
+	public static final int INPUT_TANK_FLUID_INDEX_HIGH = 14;
+	public static final int RESULT_TANK_FLUID_INDEX_LOW = 15;
+	public static final int RESULT_TANK_FLUID_INDEX_HIGH = 16;
+
 
 	private static final String INVENTORY_TAG_NAME = "inventory";
 	private static final String INPUT_TANK_TAG_NAME = "inputTank";
@@ -138,7 +144,22 @@ public class BoilerBlockEntity extends BlockEntity
 				{
 					return m_initialDrainResultTankTransferSize;
 				}
-
+				case INPUT_TANK_FLUID_INDEX_LOW:
+				{
+					return NetworkUtilities.splitInt(NetworkUtilities.getFluidIndex(m_inputTank.getFluid().getFluid()), false);
+				}
+				case INPUT_TANK_FLUID_INDEX_HIGH:
+				{
+					return NetworkUtilities.splitInt(NetworkUtilities.getFluidIndex(m_inputTank.getFluid().getFluid()), true);
+				}
+				case RESULT_TANK_FLUID_INDEX_LOW:
+				{
+					return NetworkUtilities.splitInt(NetworkUtilities.getFluidIndex(m_resultTank.getFluid().getFluid()), false);
+				}
+				case RESULT_TANK_FLUID_INDEX_HIGH:
+				{
+					return NetworkUtilities.splitInt(NetworkUtilities.getFluidIndex(m_resultTank.getFluid().getFluid()), true);
+				}
 				default:
 				{
 					throw new IndexOutOfBoundsException("get index of: " + index + ", is out of the range");

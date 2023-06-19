@@ -7,6 +7,7 @@ import com.gsr.gsr_yatm.YATMEntityTypeTags;
 import com.gsr.gsr_yatm.YATMItems;
 
 import net.minecraft.core.NonNullList;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Containers;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -18,6 +19,8 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
 
 public class SoulSapBucketItem extends BucketItem
 {
@@ -58,4 +61,13 @@ public class SoulSapBucketItem extends BucketItem
 		return super.use(level, player, hand);
 	} // end use()
 
+
+
+
+	@Override
+	public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag nbt)
+	{
+		return new FluidBucketWrapper(stack);
+	} // end initCapabilities()
+	
 } // end class

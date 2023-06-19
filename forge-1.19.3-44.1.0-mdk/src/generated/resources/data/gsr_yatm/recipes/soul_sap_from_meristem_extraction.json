@@ -1,0 +1,14 @@
+{
+  "type": "gsr_yatm:extracting",
+  "cost": 1,
+  "input": {
+    "ingedient": {
+      "item": "gsr_yatm:soul_afflicted_rubber_meristem"
+    }
+  },
+  "result": {
+    "count": 2,
+    "fluid": "gsr_yatm:soul_sap"
+  },
+  "time": 12
+}

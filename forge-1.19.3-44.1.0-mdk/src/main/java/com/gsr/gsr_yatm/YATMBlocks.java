@@ -99,7 +99,7 @@ public class YATMBlocks
 	public static final RegistryObject<Block> RUBBER_BLOCK = BLOCKS.register("rubber_block", () -> new Block(BlockBehaviour.Properties.of(Material.FROGLIGHT).strength(2f).sound(SoundType.CANDLE)));
 	
 	
-	
+	// TODO, add in inventory content dropping on break
 	public static final RegistryObject<Block> LARGE_COPPER_HEAT_SINK = BLOCKS.register("large_copper_heat_sink", () -> new HeatSinkBlock(BlockBehaviour.Properties.of(Material.STONE)));
 	public static final RegistryObject<Block> STEEL_BOILER_TANK = BLOCKS.register("steel_boiler_tank", () -> new BoilerTankBlock(BlockBehaviour.Properties.of(Material.STONE), 256, 32000));
 	public static final RegistryObject<Block> STEEL_BOILER = BLOCKS.register("steel_boiler", () -> new BoilerBlock(BlockBehaviour.Properties.of(Material.STONE)));

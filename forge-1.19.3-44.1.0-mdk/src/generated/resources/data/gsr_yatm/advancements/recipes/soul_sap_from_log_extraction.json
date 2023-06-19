@@ -1,0 +1,22 @@
+{
+  "criteria": {
+    "has_ingredient": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gsr_yatm:soul_afflicted_rubber_log",
+              "gsr_yatm:soul_afflicted_rubber_wood"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_ingredient"
+    ]
+  ]
+}
