@@ -3,6 +3,8 @@ package com.gsr.gsr_yatm;
 import com.gsr.gsr_yatm.creative.CreativeFluidSourceItem;
 import com.gsr.gsr_yatm.creative.CreativeFluidStorerItem;
 import com.gsr.gsr_yatm.creative.CreativeFluidVoidItem;
+import com.gsr.gsr_yatm.fluid.item.FluidBottleItem;
+import com.gsr.gsr_yatm.fluid.item.SoulSapBucketItem;
 import com.gsr.gsr_yatm.item.InsulatingItem;
 import com.gsr.gsr_yatm.item.component.CurrentRegulatorItem;
 import com.gsr.gsr_yatm.item.component.fluid.FluidExchangerItem;
@@ -63,6 +65,10 @@ public class YATMItems
 	public static final RegistryObject<Item> SOUL_AFFLICTED_RUBBER_BUTTON_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_button", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_BUTTON.get(), new Item.Properties())));
 	
 	
+	
+	public static final RegistryObject<Item> RUBBER_BLOCK_ITEM = generalTabEnqueue(ITEMS.register("rubber_block", () -> new BlockItem(YATMBlocks.RUBBER_BLOCK.get(), new Item.Properties())));
+	
+	
 	// add celestial altar
 	// add liquid celestial light, liquid lunar light, and the liquid solar liquids;
 	// add their ingots from alloying them with molten netherite
@@ -109,7 +115,11 @@ public class YATMItems
 
 	// liquid latex that burns you if you're in the sun light
 	public static final RegistryObject<Item> LATEX_BUCKET = generalTabEnqueue(ITEMS.register("latex_bucket", () -> new BucketItem(YATMFluids.LATEX, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
-	public static final RegistryObject<Item> SOUL_SAP_BUCKET = generalTabEnqueue(ITEMS.register("soul_sap_bucket", () -> new BucketItem(YATMFluids.LATEX, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
+	public static final RegistryObject<Item> SOUL_SAP_BUCKET = generalTabEnqueue(ITEMS.register("soul_sap_bucket", () -> new SoulSapBucketItem(YATMFluids.SOUL_SAP, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
+	public static final RegistryObject<Item> ESSENCE_OF_DECAY_BUCKET = generalTabEnqueue(ITEMS.register("essence_of_decay_bucket", () -> new BucketItem(YATMFluids.ESSENCE_OF_DECAY, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
+	
+	public static final RegistryObject<Item> SOUL_SAP_BOTTLE = generalTabEnqueue(ITEMS.register("soul_sap_bottle", () -> new FluidBottleItem(YATMFluids.SOUL_SAP, new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(1))));
+	public static final RegistryObject<Item> ESSENCE_OF_DECAY_BOTTLE = generalTabEnqueue(ITEMS.register("essence_of_decay_bottle", () -> new FluidBottleItem(YATMFluids.ESSENCE_OF_DECAY, new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(1))));
 	
 	
 
@@ -120,7 +130,8 @@ public class YATMItems
 	
 	public static final RegistryObject<Item> SILVER_INGOT = generalTabEnqueue(ITEMS.register("silver_ingot", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> STEEL_INGOT = generalTabEnqueue(ITEMS.register("steel_ingot", () -> new Item(new Item.Properties())));
-	public static final RegistryObject<Item> RUBBER_BAR_ITEM = generalTabEnqueue(ITEMS.register("rubber_bar", () -> new InsulatingItem(new Item.Properties(), InsulatingItem.RUBBER_SCRAP_WAXING_TABLE)));
+	public static final RegistryObject<Item> RUBBER_BAR = generalTabEnqueue(ITEMS.register("rubber_bar", () -> new InsulatingItem(new Item.Properties(), InsulatingItem.RUBBER_SCRAP_WAXING_TABLE)));
+	public static final RegistryObject<Item> RUBBER_SCRAP_BALL = generalTabEnqueue(ITEMS.register("rubber_scrap_ball", () -> new Item(new Item.Properties())));
 	
 	public static final RegistryObject<Item> SILVER_NUGGET = generalTabEnqueue(ITEMS.register("silver_nugget", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> COPPER_NUGGET = generalTabEnqueue(ITEMS.register("copper_nugget", () -> new Item(new Item.Properties())));

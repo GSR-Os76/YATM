@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerScreen;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorScreen;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderScreen;
+import com.gsr.gsr_yatm.fluid.item.GlassBottleItemStack;
 import com.mojang.logging.LogUtils;
 
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -16,7 +17,10 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
+import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.CreativeModeTabEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
@@ -39,6 +43,7 @@ public class YetAnotherTechMod
 	public YetAnotherTechMod()
 	{
 		IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+		IEventBus eventBus = MinecraftForge.EVENT_BUS;
 		
 		YATMBlocks.BLOCKS.register(modEventBus);
 		YATMItems.ITEMS.register(modEventBus);
@@ -53,6 +58,8 @@ public class YetAnotherTechMod
 		modEventBus.addListener(this::creativeModeTabsRegister);
 		modEventBus.addListener(this::clientSetup);
 		modEventBus.addListener(this::gatherData);
+		
+		eventBus.addGenericListener(ItemStack.class, this::attachItemStackCapabilities);
 	} // end constructor
 	
 	
@@ -74,7 +81,6 @@ public class YetAnotherTechMod
 		}
 	} // end creativeModeTabsBuildContent()
 	
-
 	private void clientSetup(FMLClientSetupEvent event)
 	{
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BOILER_MENU.get(), BoilerScreen::new));
@@ -117,10 +123,24 @@ public class YetAnotherTechMod
 		DataProvider.Factory<YATMItemTags> itemTagProviderFactory = (pOP) -> new YATMItemTags(pOP, event.getLookupProvider(), blockTagProviderFactory.create(pOP).contentsGetter(), MODID, event.getExistingFileHelper());
 		event.getGenerator().addProvider(event.includeServer(), itemTagProviderFactory);
 
+		DataProvider.Factory<YATMEntityTypeTags> entityTypeTagProviderFactory = (pOP) -> new YATMEntityTypeTags(pOP, event.getLookupProvider(), event.getExistingFileHelper());
+		event.getGenerator().addProvider(event.includeServer(), entityTypeTagProviderFactory);
+
 		DataProvider.Factory<YATMRecipeProvider> recipeProviderFactory = (o) -> new YATMRecipeProvider(o);
 		event.getGenerator().addProvider(event.includeServer(), recipeProviderFactory);
 	} // end gatherData()
 
+	
+	
+	private void attachItemStackCapabilities(AttachCapabilitiesEvent<ItemStack> event) 
+	{
+		if(event.getObject().getItem() == Items.GLASS_BOTTLE) 
+		{
+			event.addCapability(new ResourceLocation(MODID, "glass_bottle_fluid_handler"), new GlassBottleItemStack(event.getObject()));
+		}
+	} // end attachItemStackCapabilities()
+	
+	
 	
 	
 	public static RegistryObject<Item> queueForGeneralCreativeTab(RegistryObject<Item> item)
@@ -128,11 +148,6 @@ public class YetAnotherTechMod
 		YATM_GENERAL_CREATIVE_TAB_QUEUE.add(item);
 		return item;		
 	} // end queueForGeneralCreativeTab()
-
-	
-	
-	
-	
 	
 } // end outer class
 

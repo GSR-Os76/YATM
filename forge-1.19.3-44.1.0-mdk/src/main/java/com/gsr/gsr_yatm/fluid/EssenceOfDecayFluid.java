@@ -4,10 +4,10 @@ import com.gsr.gsr_yatm.YATMBlocks;
 import com.gsr.gsr_yatm.YATMFluidTypes;
 import com.gsr.gsr_yatm.YATMFluids;
 import com.gsr.gsr_yatm.YATMItems;
+import com.gsr.gsr_yatm.api.IBottleable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -21,43 +21,47 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.fluids.FluidType;
 
-public abstract class LatexFluid extends FlowingFluid
+public abstract class EssenceOfDecayFluid extends FlowingFluid implements IBottleable
 {
-
-	@Override
-	public Fluid getFlowing()
-	{
-		return YATMFluids.LATEX_FLOWING.get();
-	} // end getFlowing()
-
+	
 	@Override
 	public Fluid getSource()
 	{
-		return YATMFluids.LATEX.get();
+		return YATMFluids.ESSENCE_OF_DECAY.get();
 	} // end getSource()
 	
 	@Override
+	public Fluid getFlowing()
+	{
+		return YATMFluids.ESSENCE_OF_DECAY_FLOWING.get();
+	} // end getFlowing()
+
+	@Override
 	protected BlockState createLegacyBlock(FluidState state)
 	{
-		return YATMBlocks.LATEX_LIQUID_BLOCK.get()
-				.defaultBlockState()
-				.setValue(LiquidBlock.LEVEL, Integer.valueOf(getLegacyLevel(state)));
+		return YATMBlocks.ESSENCE_OF_DECAY_LIQUID_BLOCK.get().defaultBlockState().setValue(LiquidBlock.LEVEL, Integer.valueOf(getLegacyLevel(state)));
 	} // end createLegacyBlock()
-	
+
 	@Override
 	public FluidType getFluidType()
 	{
-		return YATMFluidTypes.LATEX.get();
+		return YATMFluidTypes.ESSENCE_OF_DECAY.get();
 	} // end getFluidType()
 	
 	@Override
 	public Item getBucket()
 	{
-		return YATMItems.LATEX_BUCKET.get();
+		return YATMItems.ESSENCE_OF_DECAY_BUCKET.get();
 	} // end getBucket()
 	
+	@Override
+	public Item getBottle()
+	{
+		return YATMItems.ESSENCE_OF_DECAY_BOTTLE.get();
+	} // end getBottle()
 	
-
+	
+	
 	@Override
 	protected boolean canConvertToSource(Level level)
 	{
@@ -73,7 +77,7 @@ public abstract class LatexFluid extends FlowingFluid
 	@Override
 	protected int getSlopeFindDistance(LevelReader levelReader)
 	{
-		return 1;
+		return 0;
 	} // end getSlopeFindDistance()
 
 	@Override
@@ -85,9 +89,8 @@ public abstract class LatexFluid extends FlowingFluid
 	@Override
 	protected boolean canBeReplacedWith(FluidState fluidState, BlockGetter blockGetter, BlockPos blockPos, Fluid fluid, Direction direction)
 	{
-		// TODO Auto-generated method stub
 		return false;
-	}
+	} // end canBeReplacedWith()
 
 	@Override
 	public int getTickDelay(LevelReader levelReader)
@@ -98,54 +101,20 @@ public abstract class LatexFluid extends FlowingFluid
 	@Override
 	protected float getExplosionResistance()
 	{
-		// TODO, learn explosion resistance
-		return 2f;
-	}
-
+		return 1000f;
+	} // end getExplosionResistance()
+	
 	@Override
 	public boolean isSame(Fluid fluid)
 	{
-		return fluid == YATMFluids.LATEX.get() || fluid == YATMFluids.LATEX_FLOWING.get();
+		return fluid == YATMFluids.ESSENCE_OF_DECAY.get() || fluid == YATMFluids.ESSENCE_OF_DECAY_FLOWING.get();
 	} // end isSame()
 
 
 
-	
-	
-
-
-	@Override
-	protected boolean isRandomlyTicking()
-	{
-		return true;
-	} // end isRandomlyTicking()
-
-	@Override
-	protected void randomTick(Level level, BlockPos blockPos, FluidState fluidState, RandomSource randomSource)
-	{
-		if(!fluidState.isSource()) 
-		{
-			return;
-		}
-		// TODO, temperature should be the one factoring in height and such things, that method is private though and deprecated, hmmmmm
-		int temperatureScaledEvaporationSpeed = (int)(10f * (1f / level.getBiome(blockPos).get().getBaseTemperature()));
-		if(randomSource.nextInt(temperatureScaledEvaporationSpeed) == 1)
-		{
-			level.setBlock(blockPos, YATMBlocks.RUBBER_BLOCK.get().defaultBlockState(), 3);
-		}
-	} // end randomTick()
-
-
-
-
-
-
-
 	// IMPLEMENTATIONS \\
-	public static class Flowing extends LatexFluid
+	public static class Flowing extends EssenceOfDecayFluid
 	{
-		
-
 		protected void createFluidStateDefinition(StateDefinition.Builder<Fluid, FluidState> builder)
 		{
 			super.createFluidStateDefinition(builder.add(LEVEL));
@@ -163,7 +132,7 @@ public abstract class LatexFluid extends FlowingFluid
 
 	} // end flowing class
 
-	public static class Source extends LatexFluid
+	public static class Source extends EssenceOfDecayFluid
 	{
 		public int getAmount(FluidState state)
 		{

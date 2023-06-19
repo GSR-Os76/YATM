@@ -1,6 +1,7 @@
-// 1.19.4	2023-06-17T21:50:41.9627453	Block States: gsr_yatm
+// 1.19.4	2023-06-18T16:43:31.3476524	Block States: gsr_yatm
 69c7129326d0b79a2a3a853e0639631a5cae3217 assets/gsr_yatm/blockstates/fancy_rubber_planks.json
 cae06ad1051ad9b3a87210c4fa87a444d728ff6a assets/gsr_yatm/blockstates/partially_stripped_rubber_log.json
+1aa005af603b7e66317c85ae32e78f7657ff2c37 assets/gsr_yatm/blockstates/rubber_block.json
 5966dcefaa7b6b972060555ddab6fe6eb5dea231 assets/gsr_yatm/blockstates/rubber_button.json
 768004c5e05eb22df582e5adec65653a76a7d8c2 assets/gsr_yatm/blockstates/rubber_door.json
 0d1e9eb89ceb3b701363d77be75f84d0079b076f assets/gsr_yatm/blockstates/rubber_fence.json
@@ -33,6 +34,7 @@ ef24fbcb17ce825f127a82e91ceadd3651ef8072 assets/gsr_yatm/blockstates/soul_afflic
 189cb568c67e71e5461920eb2692572261fb0a74 assets/gsr_yatm/blockstates/stripped_rubber_wood.json
 706056341466c8e35e216b42ae2f81b82f05a23a assets/gsr_yatm/models/blocks/partially_stripped_rubber_log_dry.json
 47d81ee5ca024b1c93b928b04f673686f8b8cfd8 assets/gsr_yatm/models/blocks/partially_stripped_rubber_log_leaking.json
+f74e752fab0c457d79c5225e8bf0af690590c209 assets/gsr_yatm/models/blocks/rubber_block.json
 507fca8ea27bab18f8e3c1305cb91a07dce4a90d assets/gsr_yatm/models/blocks/soul_afflicted_partially_stripped_rubber_log_dry.json
 08cb473833d6ab9e504272a579f815e7c2f64025 assets/gsr_yatm/models/blocks/soul_afflicted_partially_stripped_rubber_log_leaking.json
 84b938d716bd9c782169550266a27e93bc429b1e assets/gsr_yatm/models/blocks/soul_afflicted_rubber_leaves_flowering.json
@@ -103,6 +105,7 @@ e31e7a745af51b5381eef8a098162e2bb9165b2d assets/gsr_yatm/models/block/stripped_r
 184f039d3749ccc0eb3399d425ae3b83fd5862c0 assets/gsr_yatm/models/block/stripped_rubber_wood.json
 274ee5f5103c5f7169b2a4f10f6a2a65c6b738fe assets/gsr_yatm/models/item/fancy_rubber_planks.json
 3191913ca1f526aea2c23446cec6ab2377783669 assets/gsr_yatm/models/item/partially_stripped_rubber_log.json
+03479fe96ddac65864934553e0f69b550dc371af assets/gsr_yatm/models/item/rubber_block.json
 148e69a05c0036276695b779a3c1f6e532fb77df assets/gsr_yatm/models/item/rubber_button.json
 8c1b5e30e39b30da191c8d991fcac16c9ae6edc0 assets/gsr_yatm/models/item/rubber_door.json
 3f1c899d689e1fd5ab07aa1364dd6fb0a072b2e4 assets/gsr_yatm/models/item/rubber_fence.json

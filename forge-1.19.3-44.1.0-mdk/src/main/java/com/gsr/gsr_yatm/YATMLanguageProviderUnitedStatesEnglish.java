@@ -65,6 +65,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE.get(), "Soul Afflicted Rubber Pressure Plate");
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_BUTTON.get(), "Soul Afflicted Rubber Button");
 		
+		this.add(YATMBlocks.RUBBER_BLOCK.get(), "Rubber Block");
+		
 		
 		this.add(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), "Large Copper Heat Sink");
 		this.add(YATMBlocks.STEEL_BOILER_TANK.get(), "Steel Boiler Tank");
@@ -105,15 +107,20 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_REGULATOR.get(), "512cu Current Regulator");
 		this.add(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_REGULATOR.get(), "4096cu Current Regulator");
 		
+		this.add(YATMItems.ESSENCE_OF_DECAY_BUCKET.get(), "Essence Of Decay Bucket");
 		this.add(YATMItems.LATEX_BUCKET.get(), "Latex Bucket");
 		this.add(YATMItems.SOUL_SAP_BUCKET.get(), "Soul Sap Bucket");
+		
+		this.add(YATMItems.ESSENCE_OF_DECAY_BOTTLE.get(), "Esence Of Decay Bottle");
+		this.add(YATMItems.SOUL_SAP_BOTTLE.get(), "Soul Sap Bottle");
 		
 		this.add(YATMItems.IRON_WIRE_DIE.get(), "Iron Die (Wire)");
 		this.add(YATMItems.STEEL_WIRE_DIE.get(), "Steel Die (Wire)");
 		
 		this.add(YATMItems.SILVER_INGOT.get(), "Silver Ingot");
 		this.add(YATMItems.STEEL_INGOT.get(), "Steel Ingot");
-		this.add(YATMItems.RUBBER_BAR_ITEM.get(), "Rubber Bar");
+		this.add(YATMItems.RUBBER_BAR.get(), "Rubber Bar");
+		this.add(YATMItems.RUBBER_SCRAP_BALL.get(), "Rubber Scrap Ball");
 		
 		this.add(YATMItems.SILVER_NUGGET.get(), "Silver Nugget");
 		this.add(YATMItems.COPPER_NUGGET.get(), "Copper Nugget");
