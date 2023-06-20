@@ -130,7 +130,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add(YATMItems.COPPER_NUGGET.get(), "Copper Nugget");
 		this.add(YATMItems.NETHERITE_NUGGET.get(), "Netherite Nugget");
 		this.add(YATMItems.WAX_BIT_ITEM.get(), "Wax Bit");
-		this.add(YATMItems.RUBBER_SCRAP_ITEM.get(), "Rubber Scraps");
+		this.add(YATMItems.RUBBER_SCRAP.get(), "Rubber Scraps");
 		
 		this.add(YATMItems.CREATIVE_FLUID_SOURCE.get(), "Creative Fluid Source");
 		this.add(YATMItems.CREATIVE_FLUID_STORER.get(), "Creative Fluid Storer");

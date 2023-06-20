@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gsr_yatm:fourthousandnintysix_cu_wire"
+    },
+    {
+      "item": "gsr_yatm:wax_bit"
+    }
+  ],
+  "result": {
+    "item": "gsr_yatm:enameled_fourthousandnintysix_cu_wire"
+  }
+}

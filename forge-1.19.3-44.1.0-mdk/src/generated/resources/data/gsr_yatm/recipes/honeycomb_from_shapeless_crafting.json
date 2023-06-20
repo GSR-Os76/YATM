@@ -1,0 +1,33 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gsr_yatm:wax_bit"
+    },
+    {
+      "item": "gsr_yatm:wax_bit"
+    },
+    {
+      "item": "gsr_yatm:wax_bit"
+    },
+    {
+      "item": "gsr_yatm:wax_bit"
+    },
+    {
+      "item": "gsr_yatm:wax_bit"
+    },
+    {
+      "item": "gsr_yatm:wax_bit"
+    },
+    {
+      "item": "gsr_yatm:wax_bit"
+    },
+    {
+      "item": "gsr_yatm:wax_bit"
+    }
+  ],
+  "result": {
+    "item": "minecraft:honeycomb"
+  }
+}

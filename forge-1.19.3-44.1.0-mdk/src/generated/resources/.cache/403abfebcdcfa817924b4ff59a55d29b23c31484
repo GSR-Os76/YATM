@@ -1,9 +1,11 @@
-// 1.19.4	2023-06-17T21:01:03.4413349	Tags for minecraft:item mod id gsr_yatm
+// 1.19.4	2023-06-19T18:18:55.6383735	Tags for minecraft:item mod id gsr_yatm
+bade3c9b0ab674f2efd3dc51c76e3652a9021029 data/forge/tags/items/ingots/rubber.json
 072803c35014f6741a231cc30a732fe900812905 data/forge/tags/items/ingots/silver.json
 7c408df731c23a13c46254c2cc5fe7e60ec904bd data/forge/tags/items/ingots/steel.json
 8089a15aac56d928ea6e3e7044cdf9cbd03997aa data/forge/tags/items/nuggets/copper.json
 18795a8c0bcbdd7d7450b4a7ba2b97df86e0d87a data/forge/tags/items/nuggets/netherite.json
 96cbda48628a6f92541b4b85ce1fad0369930ffc data/forge/tags/items/nuggets/silver.json
+5cde157d29986a1af6fac3eed0972c55ed684ae6 data/forge/tags/items/storage_blocks/rubber.json
 ae03c7f5a14f674a125f762d1f54c5fc58535fe0 data/gsr_yatm/tags/items/conduits/sixtyfour_cu.json
 6d71a9b29224c88790686a6d26a6f4d262b0d804 data/gsr_yatm/tags/items/dies/wire.json
 dbc7ff55315393ed7b1d401f282d24be3c0e6096 data/gsr_yatm/tags/items/rubber_planks.json

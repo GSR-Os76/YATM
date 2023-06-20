@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "w": {
+      "tag": "forge:nuggets/gold"
+    }
+  },
+  "pattern": [
+    "   ",
+    "www",
+    "   "
+  ],
+  "result": {
+    "item": "gsr_yatm:sixtyfour_cu_wire"
+  },
+  "show_notification": true
+}

@@ -1,0 +1,13 @@
+{
+  "type": "gsr_yatm:boiling",
+  "input": {
+    "count": 1,
+    "fluid": "gsr_yatm:soul_sap"
+  },
+  "result": {
+    "count": 1,
+    "fluid": "gsr_yatm:soul_syrup"
+  },
+  "temperature": 722,
+  "time": 3
+}

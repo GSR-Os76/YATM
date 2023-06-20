@@ -21,6 +21,7 @@ public class ExtractionFinishedRecipe implements FinishedRecipe
 	private int m_currentPerTick = 8;
 	private int m_timeInTicks = 20;
 	private String m_group;
+	
 	private ResourceLocation m_advancementIdentifier;	
 	private Advancement.Builder m_advancement;
 	
@@ -68,7 +69,7 @@ public class ExtractionFinishedRecipe implements FinishedRecipe
 	} // end getId()
 
 	@Override
-	public RecipeSerializer<?> getType()
+	public RecipeSerializer<ExtractionRecipe> getType()
 	{
 		return YATMRecipeSerializers.EXTRACTION_SERIALIZER.get();
 	} // end getType()

@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gsr_yatm:sixtyfour_cu_wire"
+    },
+    {
+      "item": "gsr_yatm:sixtyfour_cu_wire"
+    },
+    {
+      "item": "gsr_yatm:sixtyfour_cu_wire"
+    },
+    {
+      "item": "gsr_yatm:sixtyfour_cu_wire"
+    },
+    {
+      "item": "gsr_yatm:sixtyfour_cu_wire"
+    },
+    {
+      "item": "gsr_yatm:sixtyfour_cu_wire"
+    },
+    {
+      "item": "gsr_yatm:sixtyfour_cu_wire"
+    },
+    {
+      "item": "gsr_yatm:sixtyfour_cu_wire"
+    },
+    {
+      "item": "minecraft:honeycomb"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "item": "gsr_yatm:enameled_sixtyfour_cu_wire"
+  }
+}

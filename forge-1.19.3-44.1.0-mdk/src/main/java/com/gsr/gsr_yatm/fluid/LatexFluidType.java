@@ -55,19 +55,13 @@ public class LatexFluidType extends FluidType
             public ResourceLocation getStillTexture()
             {
                 return LATEX_STILL;
-            }
+            } // end getStillTexture()
 
             @Override
             public ResourceLocation getFlowingTexture()
             {
                 return LATEX_FLOW;
-            }
-			@Override
-			public @Nullable ResourceLocation getOverlayTexture()
-			{
-				return new ResourceLocation("minecraft:block/water_overlay");//IClientFluidTypeExtensions.super.getOverlayTexture();
-			} // end getOverlayTexture()
-			
+            } // end getFlowingTexture()			
 		}
 		);
 	} // end initializeClient()

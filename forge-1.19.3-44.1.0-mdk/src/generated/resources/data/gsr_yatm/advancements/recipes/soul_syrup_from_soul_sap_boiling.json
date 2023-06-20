@@ -1,0 +1,21 @@
+{
+  "criteria": {
+    "has_device": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gsr_yatm:steel_boiler"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_device"
+    ]
+  ]
+}

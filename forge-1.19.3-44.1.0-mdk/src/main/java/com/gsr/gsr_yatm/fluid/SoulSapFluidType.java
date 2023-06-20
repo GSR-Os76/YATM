@@ -29,13 +29,13 @@ public class SoulSapFluidType extends FluidType
             public ResourceLocation getStillTexture()
             {
                 return SOUL_SAP_STILL;
-            }
+            } // end getStillTexture()
 
             @Override
             public ResourceLocation getFlowingTexture()
             {
                 return SOUL_SAP_FLOW;
-            }
+            } // end getFlowingTexture()
 		}
 		);
 	} // end initializeClient()

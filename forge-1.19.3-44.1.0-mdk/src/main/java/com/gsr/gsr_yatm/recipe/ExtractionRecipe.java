@@ -28,6 +28,7 @@ public class ExtractionRecipe implements Recipe<Container>
 	ItemStack m_inputRemainder = ItemStack.EMPTY;
 	int m_currentPerTick = 8;
 	int m_timeInTicks = 20;
+	String m_group = "";
 	
 	
 	
@@ -65,7 +66,7 @@ public class ExtractionRecipe implements Recipe<Container>
 				resultTank.fill(this.m_result, FluidAction.SIMULATE) == this.m_result.getAmount();
 	} // end canBeUsedOn()
 	
-	public void startRecipe(IItemHandler inventory, IFluidHandler resultTank)
+	public void startRecipe(IItemHandler inventory)
 	{
 		inventory.extractItem(ExtractorBlockEntity.INPUT_SLOT, 1, false);
 	} // end startRecipe()
@@ -126,9 +127,15 @@ public class ExtractionRecipe implements Recipe<Container>
 	{
 		return new ItemStack(YATMItems.STEEL_EXTRACTOR_ITEM.get());
 	} // end getToastSymbol()
+	
+	@Override
+	public String getGroup()
+	{
+		return this.m_group;
+	} // end getGroup()
 
-	
-	
+
+
 	@Deprecated
 	public String writeSomeInfo()
 	{

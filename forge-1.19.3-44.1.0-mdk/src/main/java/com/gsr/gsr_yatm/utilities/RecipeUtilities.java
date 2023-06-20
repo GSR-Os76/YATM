@@ -1,11 +1,14 @@
 package com.gsr.gsr_yatm.utilities;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.google.gson.JsonObject;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -19,15 +22,21 @@ public class RecipeUtilities
 	public static final String INPUT_OBJECT_KEY = "input";
 	public static final String RESULT_OBJECT_KEY = "result";
 	
+	// unique secondary keys
+	public static final String DIE_OBJECT_KEY = "die";
+
+	
 	public static final String CURRENT_PER_TICK_KEY = "cost";
 	public static final String TIME_IN_TICKS_KEY = "time";
 			
-	public static final String INGREDIENT_KEY = "ingedient";
-	public static final String REMAINDER_STACK_KEY = "remainder";
-	public static final String FLUID_KEY = "fluid";
-	public static final String ITEM_KEY = "item";
-	public static final String TAG_KEY = "tag";
 	public static final String COUNT_KEY = "count";
+	public static final String FLUID_KEY = "fluid";
+	public static final String INGREDIENT_KEY = "ingedient";
+	public static final String ITEM_KEY = "item";
+	public static final String REMAINDER_STACK_KEY = "remainder";
+	public static final String TAG_KEY = "tag";
+	// NOTE: it's in kelvin
+	public static final String TEMPERATURE_KEY = "temperature";
 
 	
 	
@@ -70,5 +79,32 @@ public class RecipeUtilities
 		result.addProperty(COUNT_KEY, itemStack.getCount());
 		return result;
 	} // end itemStackToJson()
+
+	
+	
+	public static int getReqiuredCountFor(@NotNull Item countFor, @NotNull Ingredient in)
+	{
+		for(ItemStack i : in.getItems()) 
+		{
+			if(i.getItem() == countFor) 
+			{
+				return i.getCount();
+			}
+		}
+		return -1;
+	} // end getReqiuredCountFor()
+
+	// respects item and count but not nbt
+	public static boolean testIngredientAgainst(ItemStack against, Ingredient ingredient)
+	{
+		for(ItemStack i : ingredient.getItems()) 
+		{
+			if(i.getItem() == against.getItem() && i.getCount() <= against.getCount()) 
+			{
+				return true;
+			}
+		}
+		return false;
+	} // end testIngredientAgainst()
 
 } // end class

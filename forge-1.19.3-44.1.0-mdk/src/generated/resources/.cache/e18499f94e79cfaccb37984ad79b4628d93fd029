@@ -1,4 +1,5 @@
-// 1.19.4	2023-06-17T21:01:03.4369307	Tags for minecraft:block mod id gsr_yatm
+// 1.19.4	2023-06-19T18:18:55.6303992	Tags for minecraft:block mod id gsr_yatm
+5cde157d29986a1af6fac3eed0972c55ed684ae6 data/forge/tags/blocks/storage_blocks/rubber.json
 ae03c7f5a14f674a125f762d1f54c5fc58535fe0 data/gsr_yatm/tags/blocks/conduits/sixtyfour_cu.json
 3512b39ab7c336c2edadb8fd6dfd6c821af96581 data/gsr_yatm/tags/blocks/mediums/rubber_meristem_can_grow_on.json
 5040076889bd282df7819422d9e990b9415bbb7f data/gsr_yatm/tags/blocks/mediums/rubber_roots_can_grow_in.json

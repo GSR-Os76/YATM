@@ -87,7 +87,6 @@ public class YetAnotherTechMod
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRACTOR_MENU.get(), ExtractorScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRUDER_MENU.get(), ExtruderScreen::new));
 		
-		//net.minecraft.client.renderer.ItemBlockRenderTypes.setRenderLayer(Blocks.RUBBER_MERISTEM, RenderType.yt);
 	} // end clientSetup()
 
 	private void gatherData(GatherDataEvent event)

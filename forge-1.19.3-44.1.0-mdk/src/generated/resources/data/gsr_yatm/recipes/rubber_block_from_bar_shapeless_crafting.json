@@ -1,0 +1,36 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "tag": "forge:ingots/rubber"
+    },
+    {
+      "tag": "forge:ingots/rubber"
+    },
+    {
+      "tag": "forge:ingots/rubber"
+    },
+    {
+      "tag": "forge:ingots/rubber"
+    },
+    {
+      "tag": "forge:ingots/rubber"
+    },
+    {
+      "tag": "forge:ingots/rubber"
+    },
+    {
+      "tag": "forge:ingots/rubber"
+    },
+    {
+      "tag": "forge:ingots/rubber"
+    },
+    {
+      "tag": "forge:ingots/rubber"
+    }
+  ],
+  "result": {
+    "item": "gsr_yatm:rubber_block"
+  }
+}

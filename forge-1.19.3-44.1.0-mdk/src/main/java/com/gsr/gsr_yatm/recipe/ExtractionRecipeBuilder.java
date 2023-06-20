@@ -70,6 +70,7 @@ public class ExtractionRecipeBuilder implements RecipeBuilder
 		r.m_inputRemainder = this.m_inputRemainder;
 		r.m_currentPerTick = this.m_currentPerTick;
 		r.m_timeInTicks = this.m_timeInTicks;
+		r.m_group = this.m_group;
 		return r;
 	} // end build()
 

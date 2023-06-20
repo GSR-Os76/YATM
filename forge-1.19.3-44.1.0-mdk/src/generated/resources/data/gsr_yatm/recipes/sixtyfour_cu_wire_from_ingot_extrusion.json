@@ -1,0 +1,19 @@
+{
+  "type": "gsr_yatm:extruding",
+  "cost": 4,
+  "die": {
+    "ingedient": {
+      "tag": "gsr_yatm:dies/wire"
+    }
+  },
+  "input": {
+    "ingedient": {
+      "tag": "forge:ingots/gold"
+    }
+  },
+  "result": {
+    "count": 6,
+    "item": "gsr_yatm:sixtyfour_cu_wire"
+  },
+  "time": 34
+}

@@ -1,0 +1,23 @@
+{
+  "type": "gsr_yatm:extruding",
+  "cost": 1,
+  "die": {
+    "ingedient": {
+      "tag": "gsr_yatm:dies/wire"
+    }
+  },
+  "input": {
+    "ingedient": {
+      "item": "gsr_yatm:insulated_sixtyfour_cu_wire"
+    },
+    "remainder": {
+      "count": 1,
+      "item": "gsr_yatm:rubber_scrap"
+    }
+  },
+  "result": {
+    "count": 1,
+    "item": "gsr_yatm:sixtyfour_cu_wire"
+  },
+  "time": 12
+}

@@ -19,6 +19,8 @@ import net.minecraftforge.registries.tags.ITagManager;
 public class YATMBlockTags extends BlockTagsProvider
 {
 	private static final String MINECRAFT_ID = "minecraft";
+	private static final String FORGE_ID = "forge";
+	
 	private static final ITagManager<Block> TM = ForgeRegistries.BLOCKS.tags();
 	
 	
@@ -39,7 +41,11 @@ public class YATMBlockTags extends BlockTagsProvider
 	public static final TagKey<Block> MINECRAFT_WOODEN_STAIRS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_stairs"));
 	public static final TagKey<Block> MINECRAFT_WOODEN_TRAPDOORS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_trapdoors"));
 
-	// forge
+	
+	
+	public static final TagKey<Block> FORGE_RUBBER_STORAGE_BLOCK_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "storage_blocks/rubber"));
+	
+	
 	
 	public static final TagKey<Block> RUBBER_TREE_BLOCKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "rubber_tree_blocks"));
 	public static final TagKey<Block> RUBBER_TREE_LOGS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "rubber_tree_logs"));
@@ -60,7 +66,7 @@ public class YATMBlockTags extends BlockTagsProvider
 	
 	// seems pretty safe to store long term and keep
 	public static final ITag<Block> SOUL_AFFLICTING_BLOCKS = TM.getTag(SOUL_AFFLICTING_BLOCKS_KEY);
-	public static final ITag<Block> RUBBER_MERISTEM_CAN_GROW_ON = TM.getTag(RUBBER_MERISTEM_CAN_GROW_ON_KEY);	
+	public static final ITag<Block> RUBBER_MERISTEM_CAN_GROW_ON = TM.getTag(RUBBER_MERISTEM_CAN_GROW_ON_KEY);
 	
 	
 	
@@ -93,6 +99,8 @@ public class YATMBlockTags extends BlockTagsProvider
 		this.tag(MINECRAFT_WOODEN_TRAPDOORS_KEY).add(YATMBlocks.RUBBER_TRAPDOOR.get()).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_TRAPDOOR.get());
 		
 		
+		
+		this.tag(FORGE_RUBBER_STORAGE_BLOCK_KEY).add(YATMBlocks.RUBBER_BLOCK.get());
 		
 		
 		

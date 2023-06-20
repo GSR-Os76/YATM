@@ -1,0 +1,25 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gsr_yatm:fivehundredtwelve_cu_wire"
+    },
+    {
+      "item": "gsr_yatm:fivehundredtwelve_cu_wire"
+    },
+    {
+      "item": "gsr_yatm:fivehundredtwelve_cu_wire"
+    },
+    {
+      "item": "gsr_yatm:fivehundredtwelve_cu_wire"
+    },
+    {
+      "item": "gsr_yatm:rubber_bar"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "gsr_yatm:insulated_fivehundredtwelve_cu_wire"
+  }
+}

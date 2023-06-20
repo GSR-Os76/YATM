@@ -364,7 +364,7 @@ public class ExtractorBlockEntity extends BlockEntity
 				{
 					this.m_flags |= Flags.CURRENT_RECIPE_HAS_REMAINDER.FLAG;
 				}
-				r.startRecipe(this.m_uncheckedInventory, this.m_resultTank);
+				r.startRecipe(this.m_uncheckedInventory);
 				this.setChanged();
 			}
 		}

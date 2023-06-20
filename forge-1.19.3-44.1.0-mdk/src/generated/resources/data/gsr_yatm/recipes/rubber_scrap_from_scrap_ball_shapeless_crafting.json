@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gsr_yatm:rubber_scrap_ball"
+    }
+  ],
+  "result": {
+    "count": 4,
+    "item": "gsr_yatm:rubber_scrap"
+  }
+}

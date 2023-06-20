@@ -7,32 +7,66 @@ import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.crafting.CraftingHelper;
-import net.minecraftforge.registries.tags.ITag;
 
 public class ExtrusionRecipeSerializer implements RecipeSerializer<ExtrusionRecipe>
-{
-	public static final String INPUT_OBJECT_KEY = "input";
-	public static final String DIE_OBJECT_KEY = "die";
-	public static final String RESULT_OBJECT_KEY = "result";
-	
-	public static final String INPUT_REMAINDER_STACK_KEY = "remainder";
-	public static final String DIE_REMAINDER_KEY = "remainder";
-	public static final String CURRENT_PER_TICK_KEY = "cost";
-	public static final String TIME_IN_TICKS_KEY = "time";
-	
-	public static final String ITEM_KEY = "item";
-	public static final String TAG_KEY = "tag";
-	public static final String COUNT_KEY = "count";
-	
+{	
 	
 	@Override
 	public ExtrusionRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject)
 	{
-		//SimpleCraftingRecipeSerializer s;
+		ExtrusionRecipeBuilder builder = new ExtrusionRecipeBuilder();
+		
+		builder.identifier(resourceLocation);
+		builder.result(CraftingHelper.getItemStack(jsonObject.getAsJsonObject(RecipeUtilities.RESULT_OBJECT_KEY), false));
+		
+		JsonObject inputObj = jsonObject.getAsJsonObject(RecipeUtilities.INPUT_OBJECT_KEY);
+		builder.input(Ingredient.fromJson(inputObj.get(RecipeUtilities.INGREDIENT_KEY)));
+		if(inputObj.has(RecipeUtilities.REMAINDER_STACK_KEY)) 
+		{
+			builder.inputRemainder(CraftingHelper.getItemStack(inputObj.getAsJsonObject(RecipeUtilities.REMAINDER_STACK_KEY), false));
+		}
+		
+		JsonObject dieObj = jsonObject.getAsJsonObject(RecipeUtilities.DIE_OBJECT_KEY);
+		builder.die(Ingredient.fromJson(dieObj.get(RecipeUtilities.INGREDIENT_KEY)));
+		if(dieObj.has(RecipeUtilities.REMAINDER_STACK_KEY)) 
+		{
+			builder.dieRemainder(CraftingHelper.getItemStack(dieObj.getAsJsonObject(RecipeUtilities.REMAINDER_STACK_KEY), false));
+		}
+		
+		if(jsonObject.has(RecipeUtilities.CURRENT_PER_TICK_KEY)) 
+		{
+			builder.currentPerTick(jsonObject.get(RecipeUtilities.CURRENT_PER_TICK_KEY).getAsInt());
+		}
+		if(jsonObject.has(RecipeUtilities.TIME_IN_TICKS_KEY)) 
+		{
+			builder.timeInTicks(jsonObject.get(RecipeUtilities.TIME_IN_TICKS_KEY).getAsInt());
+		}
+		if(jsonObject.has(RecipeUtilities.GROUP_KEY)) 
+		{
+			builder.group(jsonObject.get(RecipeUtilities.GROUP_KEY).getAsString());
+		}
+		
+		return builder.build();		
+	} // end fromJson()
+
+	@Override
+	public @Nullable ExtrusionRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf)
+	{
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void toNetwork(FriendlyByteBuf friendlyByteBuf, ExtrusionRecipe recipe)
+	{
+		// TODO Auto-generated method stub
+	}
+	
+} // end class
+/* //SimpleCraftingRecipeSerializer s;
 		ResourceLocation identifier = resourceLocation;
 		ItemStack result = CraftingHelper.getItemStack(jsonObject.getAsJsonObject(RESULT_OBJECT_KEY), false);
 		ExtrusionRecipe.Builder builder = new ExtrusionRecipe.Builder(identifier, result);
@@ -94,23 +128,9 @@ public class ExtrusionRecipeSerializer implements RecipeSerializer<ExtrusionReci
 		}
 		
 		return builder.build();
-	} // end fromJson()
-
-	@Override
-	public @Nullable ExtrusionRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf)
-	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void toNetwork(FriendlyByteBuf friendlyByteBuf, ExtrusionRecipe recipe)
-	{
-		// TODO Auto-generated method stub
-	}
-	
-} // end class
-/*
+  
+  
+ 
  * @Override
 	public ExtrusionRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject)
 	{

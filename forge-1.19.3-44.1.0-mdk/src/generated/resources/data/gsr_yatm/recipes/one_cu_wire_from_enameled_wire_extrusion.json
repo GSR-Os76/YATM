@@ -1,0 +1,23 @@
+{
+  "type": "gsr_yatm:extruding",
+  "cost": 1,
+  "die": {
+    "ingedient": {
+      "tag": "gsr_yatm:dies/wire"
+    }
+  },
+  "input": {
+    "ingedient": {
+      "item": "gsr_yatm:enameled_one_cu_wire"
+    },
+    "remainder": {
+      "count": 1,
+      "item": "gsr_yatm:wax_bit"
+    }
+  },
+  "result": {
+    "count": 1,
+    "item": "gsr_yatm:one_cu_wire"
+  },
+  "time": 12
+}

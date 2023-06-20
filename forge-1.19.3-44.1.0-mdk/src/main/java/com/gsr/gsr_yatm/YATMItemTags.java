@@ -40,14 +40,24 @@ public class YATMItemTags extends ItemTagsProvider
 	public static final TagKey<Item> MINECRAFT_WOODEN_TRAPDOORS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_trapdoors"));
 
 	
-	public static final TagKey<Item> FORGE_COPPER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/copper"));
-	public static final TagKey<Item> FORGE_NETHERITE_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/netherite"));
+	
+	
+	public static final TagKey<Item> FORGE_RUBBER_STORAGE_BLOCK_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "storage_blocks/rubber"));
+	
+	// public static final TagKey<Item> FORGE_COPPER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/copper"));
+	// public static final TagKey<Item> FORGE_GOLD_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/gold"));;
+	// public static final TagKey<Item> FORGE_IRON_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/iron"));;
+	// public static final TagKey<Item> FORGE_NETHERITE_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/netherite"));
+	public static final TagKey<Item> FORGE_RUBBER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/rubber"));
 	public static final TagKey<Item> FORGE_SILVER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/silver"));
 	public static final TagKey<Item> FORGE_STEEL_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/steel"));
+	
 	public static final TagKey<Item> FORGE_COPPER_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "nuggets/copper"));
 	public static final TagKey<Item> FORGE_NETHERITE_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "nuggets/netherite"));
 	public static final TagKey<Item> FORGE_SILVER_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "nuggets/silver"));
-
+	
+	
+	
 	public static final TagKey<Item> RUBBER_TREE_LOGS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "rubber_tree_logs"));
 	public static final TagKey<Item> RUBBER_TREE_PLANKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "rubber_planks"));
 	public static final TagKey<Item> UNOXIDIXED_COPPER_BLOCKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "unoxidized_copper_blocks"));
@@ -85,13 +95,16 @@ public class YATMItemTags extends ItemTagsProvider
 		this.copy(YATMBlockTags.MINECRAFT_WOODEN_TRAPDOORS_KEY, MINECRAFT_WOODEN_TRAPDOORS_KEY);
 		
 		
+		this.copy(YATMBlockTags.FORGE_RUBBER_STORAGE_BLOCK_KEY, FORGE_RUBBER_STORAGE_BLOCK_KEY);
 		
-		
+		this.tag(FORGE_RUBBER_INGOTS_KEY).add(YATMItems.RUBBER_BAR.get());
 		this.tag(FORGE_SILVER_INGOTS_KEY).add(YATMItems.SILVER_INGOT.get());
 		this.tag(FORGE_STEEL_INGOTS_KEY).add(YATMItems.STEEL_INGOT.get());
 		this.tag(FORGE_COPPER_NUGGETS_KEY).add(YATMItems.COPPER_NUGGET.get());
 		this.tag(FORGE_NETHERITE_NUGGETS_KEY).add(YATMItems.NETHERITE_NUGGET.get());
 		this.tag(FORGE_SILVER_NUGGETS_KEY).add(YATMItems.SILVER_NUGGET.get());
+		
+		
 		
 		this.copy(YATMBlockTags.RUBBER_TREE_LOGS_KEY, RUBBER_TREE_LOGS_KEY);
 		this.copy(YATMBlockTags.RUBBER_TREE_PLANKS_KEY, RUBBER_TREE_PLANKS_KEY);

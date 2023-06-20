@@ -3,7 +3,6 @@ package com.gsr.gsr_yatm.recipe;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonObject;
-import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 
 import net.minecraft.network.FriendlyByteBuf;
@@ -17,19 +16,17 @@ public class ExtractionRecipeSerializer implements RecipeSerializer<ExtractionRe
 	@Override
 	public ExtractionRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject)
 	{
-		YetAnotherTechMod.LOGGER.info("made it at least into the serializer");
 		ExtractionRecipeBuilder builder = new ExtractionRecipeBuilder();
 		
 		builder.identifier(resourceLocation);
+		builder.result(RecipeUtilities.fluidStackFromJson(jsonObject.getAsJsonObject(RecipeUtilities.RESULT_OBJECT_KEY)));
 		
 		JsonObject inputObj = jsonObject.getAsJsonObject(RecipeUtilities.INPUT_OBJECT_KEY);
-		builder.input(Ingredient.fromJson(inputObj.get(RecipeUtilities.INGREDIENT_KEY))); // vanilla serializer accepts both "item" and "tag", expectably this'll work similarly so
+		builder.input(Ingredient.fromJson(inputObj.get(RecipeUtilities.INGREDIENT_KEY)));
 		if(inputObj.has(RecipeUtilities.REMAINDER_STACK_KEY)) 
 		{
 			builder.inputRemainder(CraftingHelper.getItemStack(inputObj.getAsJsonObject(RecipeUtilities.REMAINDER_STACK_KEY), false));
 		}
-		
-		builder.result(RecipeUtilities.fluidStackFromJson(jsonObject.getAsJsonObject(RecipeUtilities.RESULT_OBJECT_KEY)));
 		
 		// current
 		if(jsonObject.has(RecipeUtilities.CURRENT_PER_TICK_KEY)) 
@@ -41,8 +38,10 @@ public class ExtractionRecipeSerializer implements RecipeSerializer<ExtractionRe
 		{
 			builder.timeInTicks(jsonObject.get(RecipeUtilities.TIME_IN_TICKS_KEY).getAsInt());
 		}
-		
-		
+		if(jsonObject.has(RecipeUtilities.GROUP_KEY)) 
+		{
+			builder.group(jsonObject.get(RecipeUtilities.GROUP_KEY).getAsString());
+		}
 		return builder.build();
 	} // end fromJson()
 
