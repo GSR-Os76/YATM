@@ -60,12 +60,6 @@ public abstract class SoulSapFluid extends FlowingFluid implements IBottleable
 		return YATMItems.SOUL_SAP_BOTTLE.get();
 	} // end getBottle()
 
-	@Override
-	public boolean isSame(Fluid fluid)
-	{
-		return fluid == YATMFluids.SOUL_SAP.get() || fluid == YATMFluids.SOUL_SAP_FLOWING.get();
-	} // end isSame()
-
 	
 	
 	@Override
@@ -112,7 +106,12 @@ public abstract class SoulSapFluid extends FlowingFluid implements IBottleable
 		return 7f;
 	} // end getExplosionResistance()
 
-	
+	@Override
+	public boolean isSame(Fluid fluid)
+	{
+		return fluid == YATMFluids.SOUL_SAP.get() || fluid == YATMFluids.SOUL_SAP_FLOWING.get();
+	} // end isSame()
+
 
 
 

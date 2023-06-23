@@ -111,31 +111,12 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_REGULATOR.get(), "512cu Current Regulator");
 		this.add(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_REGULATOR.get(), "4096cu Current Regulator");
 		
-		
-		
-		this.add(YATMItems.BIO_BUCKET.get(), "Biofluid Bucket");
-		this.add(YATMItems.CHORUS_BUCKET.get(), "Chorus Fluid Bucket");
-		this.add(YATMItems.CHORUS_BIO_BUCKET.get(), "Chorus Biofluid Bucket");
-		this.add(YATMItems.ENDER_BUCKET.get(), "Liquid Ender Bucket");
 		this.add(YATMItems.ESSENCE_OF_DECAY_BUCKET.get(), "Essence Of Decay Bucket");
-		this.add(YATMItems.ESSENCE_OF_SOULS_BUCKET.get(), "Essence Of Souls Bucket");		
 		this.add(YATMItems.LATEX_BUCKET.get(), "Latex Bucket");
 		this.add(YATMItems.SOUL_SAP_BUCKET.get(), "Soul Sap Bucket");
-		this.add(YATMItems.SOUL_SYRUP_BUCKET.get(), "Soul Syrup Bucket");
 		
-		this.add(YATMItems.BIO_BOTTLE.get(), "Biofluid Bottle");
-		this.add(YATMItems.CHORUS_BOTTLE.get(), "Chorus Fluid Bottle");
-		this.add(YATMItems.CHORUS_BIO_BOTTLE.get(), "Chorus Biofluid Bottle");
-		this.add(YATMItems.ENDER_BOTTLE.get(), "Liquid Ender Bottle");
-		this.add(YATMItems.ESSENCE_OF_DECAY_BOTTLE.get(), "Essence Of Decay Bottle");
-		this.add(YATMItems.ESSENCE_OF_SOULS_BOTTLE.get(), "Essence Of Souls Bottle");		
-		this.add(YATMItems.LATEX_BOTTLE.get(), "Latex Bottle");
+		this.add(YATMItems.ESSENCE_OF_DECAY_BOTTLE.get(), "Esence Of Decay Bottle");
 		this.add(YATMItems.SOUL_SAP_BOTTLE.get(), "Soul Sap Bottle");
-		this.add(YATMItems.SOUL_SYRUP_BOTTLE.get(), "Soul Syrup Bottle");
-		// this.add(YATMItems.ESSENCE_OF_DECAY_BOTTLE.get(), "Esence Of Decay Bottle");
-		// this.add(YATMItems.SOUL_SAP_BOTTLE.get(), "Soul Sap Bottle");
-		
-				
 		
 		this.add(YATMItems.IRON_WIRE_DIE.get(), "Iron Die (Wire)");
 		this.add(YATMItems.STEEL_WIRE_DIE.get(), "Steel Die (Wire)");
@@ -157,19 +138,11 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		
 		
 		
-		this.add(YATMFluids.BIO.get(), "Biofluid");
-		this.add(YATMFluids.CHORUS.get(), "Chorus");
-		this.add(YATMFluids.CHORUS_BIO.get(), "Chorus Biofluid");
-		this.add(YATMFluids.ENDER.get(), "Ender");		
-		this.add(YATMFluids.ESSENCE_OF_DECAY.get(), "Essence Of Decay");
-		this.add(YATMFluids.ESSENCE_OF_SOULS.get(), "Essence Of Souls");
 		this.add(YATMFluids.LATEX.get(), "Latex");
 		this.add(YATMFluids.SOUL_SAP.get(), "Soul Sap");
-		this.add(YATMFluids.SOUL_SYRUP.get(), "Soul Syrup");
+		this.add(YATMFluids.ESSENCE_OF_DECAY.get(), "Essence Of Decay");
 		
-		this.add(YATMFluids.CELESTIAL_LIGHT.get(), "Celestial Light");
-		this.add(YATMFluids.LUNAR_LIGHT.get(), "Lunar light");
-		this.add(YATMFluids.SOLAR_LIGHT.get(), "Solar Light");
+		
 		
 		
 		
@@ -177,6 +150,15 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		
 	} // end addTranslations()
 
+	
+	
+	public void add(Fluid fluid, String name)
+	{
+		this.add(Util.makeDescriptionId("fluid", ForgeRegistries.FLUIDS.getKey(fluid)), name);
+	} // end add()
+	
+	
+	
 	private void addMinecraftTranslations() 
 	{
 		this.add(Fluids.EMPTY, "Empty");
@@ -185,12 +167,5 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add(Fluids.FLOWING_WATER, "Water");
 		this.add(Fluids.WATER, "Water");
 	} // end addMinecraftTranslations()
-	
-	
-	
-	public void add(Fluid fluid, String name)
-	{
-		this.add(Util.makeDescriptionId("fluid", ForgeRegistries.FLUIDS.getKey(fluid)), name);
-	} // end add()
 	
 } // end class

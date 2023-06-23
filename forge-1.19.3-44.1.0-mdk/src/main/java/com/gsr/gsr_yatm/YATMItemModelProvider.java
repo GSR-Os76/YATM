@@ -17,26 +17,12 @@ public class YATMItemModelProvider extends ItemModelProvider
 	@Override
 	protected void registerModels()
 	{
-		this.basicItem(YATMItems.BIO_BUCKET.get());
-		this.basicItem(YATMItems.CHORUS_BUCKET.get());
-		this.basicItem(YATMItems.CHORUS_BIO_BUCKET.get());
-		this.basicItem(YATMItems.ENDER_BUCKET.get());		
-		this.basicItem(YATMItems.ESSENCE_OF_DECAY_BUCKET.get());
-		this.basicItem(YATMItems.ESSENCE_OF_SOULS_BUCKET.get());
 		this.basicItem(YATMItems.LATEX_BUCKET.get());
 		this.basicItem(YATMItems.SOUL_SAP_BUCKET.get());
-		this.basicItem(YATMItems.SOUL_SYRUP_BUCKET.get());
-		
-		this.basicItem(YATMItems.BIO_BOTTLE.get());
-		this.basicItem(YATMItems.CHORUS_BOTTLE.get());
-		this.basicItem(YATMItems.CHORUS_BIO_BOTTLE.get());
-		this.basicItem(YATMItems.ENDER_BOTTLE.get());		
-		this.basicItem(YATMItems.ESSENCE_OF_DECAY_BOTTLE.get());
-		this.basicItem(YATMItems.ESSENCE_OF_SOULS_BOTTLE.get());
-		this.basicItem(YATMItems.LATEX_BOTTLE.get());
+		this.basicItem(YATMItems.ESSENCE_OF_DECAY_BUCKET.get());
+
 		this.basicItem(YATMItems.SOUL_SAP_BOTTLE.get());
-		this.basicItem(YATMItems.SOUL_SYRUP_BOTTLE.get());
-		
+		this.basicItem(YATMItems.ESSENCE_OF_DECAY_BOTTLE.get());
 		
 		this.basicItem(YATMItems.IRON_WIRE_DIE.get());
 		

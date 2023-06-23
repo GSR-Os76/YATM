@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "gsr_yatm:item/essence_of_souls_bucket"
-  }
-}

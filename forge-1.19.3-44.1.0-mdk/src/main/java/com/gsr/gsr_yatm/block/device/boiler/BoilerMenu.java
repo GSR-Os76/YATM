@@ -54,7 +54,7 @@ public class BoilerMenu extends AbstractContainerMenu
 		this.addSlot(new SlotItemHandler(objInventory, BoilerBlockEntity.DRAIN_INPUT_TANK_SLOT, 8 + 18, yPos));
 		this.addSlot(new SlotItemHandler(objInventory, BoilerBlockEntity.DRAIN_RESULT_TANK_SLOT, 152, yPos));
 		
-		this.addSlot(new SlotItemHandler(objInventory, BoilerBlockEntity.HEAT_SLOT, 80, yPos));
+		this.addSlot(new SlotItemHandler(objInventory, BoilerBlockEntity.FUEL_SLOT, 80, yPos));
 		
 		// add player inventory. indexing of the slots begins with hotbar, notably
 		for (int y = 0; y < 3; ++y)
@@ -121,7 +121,7 @@ public class BoilerMenu extends AbstractContainerMenu
 				}
 				else if(SlotUtilities.isValidHeatingSlotInsert(slotsStack)) 
 				{
-					if(!this.moveItemStackTo(slotsStack, BoilerBlockEntity.HEAT_SLOT, BoilerBlockEntity.HEAT_SLOT + 1, false)) 
+					if(!this.moveItemStackTo(slotsStack, BoilerBlockEntity.FUEL_SLOT, BoilerBlockEntity.FUEL_SLOT + 1, false)) 
 					{						
 						return ItemStack.EMPTY;
 					}
@@ -175,11 +175,6 @@ public class BoilerMenu extends AbstractContainerMenu
 
 	
 	
-	public float boilProgress() 
-	{
-		return 1f - (((float)this.m_data.get(BoilerBlockEntity.BOIL_PROGESS_INDEX)) / ((float)this.m_data.get(BoilerBlockEntity.BOIL_TIME_INDEX)));
-	} // end boilProgress()
-	
 	public float burnFractionRemaining()
 	{
 		int elapsed = this.m_data.get(BoilerBlockEntity.BURN_TIME_ELAPSED_INDEX);
@@ -230,72 +225,7 @@ public class BoilerMenu extends AbstractContainerMenu
 	} // end getOutputTankFluid()
 	
 	
-	
-	public int getMaxTemperature()
-	{
-		return this.m_data.get(BoilerBlockEntity.MAXIMUM_TEMPERATURE_INDEX);
-	} // end getMaxTemperature()
-	
-	public int getTemperature()
-	{
-		return this.m_data.get(BoilerBlockEntity.TEMPERATURE_INDEX);
-		// TODO, this might finally be what we've been looking for
-		// this.addSlotListener(null);
-		// ContainerListener
-	} // end getMaxTemperature() 
 
-	
-	// does not do as I was expecting it seesm
-//	public void maximumTemperatureChanged(@NotNull Consumer<Integer> onChanged) 
-//	{
-//		ContainerListener cl = new ContainerListener() 
-//		{
-//			private Consumer<Integer> m_onChanged = onChanged;
-//			
-//			@Override
-//			public void slotChanged(AbstractContainerMenu menu, int index, ItemStack contents)
-//			{
-//
-//			} // end slotChanged()
-//
-//			@Override
-//			public void dataChanged(AbstractContainerMenu menu, int index, int value)
-//			{
-//				YetAnotherTechMod.LOGGER.info("data was changed, 1: " + index + ", 2: " + value);
-//				if(index == BoilerBlockEntity.MAXIMUM_TEMPERATURE_INDEX) 
-//				{
-//					this.m_onChanged.accept(value);
-//				}
-//			} // end dataChanged()
-//			
-//		};
-//		this.addSlotListener(cl);
-//	} // end maximumTemperatureChanged()
-//
-//	public void temperatureChanged(@NotNull Consumer<Integer> onChanged) 
-//	{
-//		ContainerListener cl = new ContainerListener() 
-//		{
-//			private Consumer<Integer> m_onChanged = onChanged;
-//			
-//			@Override
-//			public void slotChanged(AbstractContainerMenu menu, int index, ItemStack contents)
-//			{
-//
-//			} // end slotChanged()
-//
-//			@Override
-//			public void dataChanged(AbstractContainerMenu menu, int index, int value)
-//			{
-//				YetAnotherTechMod.LOGGER.info("data was changed, 1: " + index + ", 2: " + value);
-//				if(index == BoilerBlockEntity.TEMPERATURE_INDEX) 
-//				{
-//					this.m_onChanged.accept(value);
-//				}
-//			} // end dataChanged()
-//			
-//		};
-//		this.addSlotListener(cl);
-//	} // end maximumTemperatureChanged()
-	
+	// ForgeHoooks.getBurnTime(x, RecipeType.Smelting);
+
 } // end class
