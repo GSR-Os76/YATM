@@ -48,10 +48,14 @@ public class BoilingRecipe implements Recipe<Container>
 	
 	
 	
-	public boolean canBeUsedOn(IFluidHandler inputTank, IFluidHandler resultTank)
+	public boolean canBeUsedOn(IFluidHandler inputTank, IFluidHandler resultTank, int temperature)
 	{
-		return  inputTank.fill(this.m_input, FluidAction.SIMULATE) == this.m_input.getAmount() &&
-				resultTank.fill(this.m_result, FluidAction.SIMULATE) == this.m_result.getAmount();
+		// fix, input should be if it has m_input not can accept m_input
+		FluidStack inputDrainSimulated = inputTank.drain(this.m_input, FluidAction.SIMULATE);
+		return inputDrainSimulated.getFluid() == this.m_input.getFluid() && 
+				inputDrainSimulated.getAmount() == this.m_input.getAmount() &&
+				resultTank.fill(this.m_result, FluidAction.SIMULATE) == this.m_result.getAmount() &&
+				temperature >= this.m_temperature;
 	} // end canBeUsedOn()
 	
 	public void startRecipe(IFluidHandler inputTank)

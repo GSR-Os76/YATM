@@ -1,10 +1,11 @@
 package com.gsr.gsr_yatm.utilities;
 
-import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.api.IComponent;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -25,7 +26,7 @@ public class SlotUtilities
 	public static int getHeatingTemperature(ItemStack itemStack) 
 	{
 		// TODO, implement or remove
-		return 512;
+		return 1024;
 	} // end getHeatingTemperature()
 	
 	
@@ -37,9 +38,7 @@ public class SlotUtilities
 	}
 
 	
-	
-	//add component considerations
-	
+		
 	public static boolean isValidTankFillSlotInsert(ItemStack itemStack)
 	{
 		return 
@@ -77,22 +76,75 @@ public class SlotUtilities
 		return (c != null) && (c.fill(tank.drain(maxTransfer, FluidAction.SIMULATE), FluidAction.SIMULATE) > 0);
 	} // end canDrainTankTo()
 	
+	public static int maxDrainTankTo(ItemStack to, IFluidHandler from) 
+	{
+		IFluidHandler c = getFluidHandlerCapability(to);
+		return (c != null) ? maxDrainTankTo(c, from) : 0;
+	} // end maxDrainTankTo()
+
+	public static int maxDrainTankTo(IFluidHandler to, ItemStack from) 
+	{
+		IFluidHandler c = getFluidHandlerCapability(from);
+		return (c != null) ? maxDrainTankTo(to, c) : 0;
+	} // end maxDrainTankTo()
+	
+	public static int maxDrainTankTo(IFluidHandler to, IFluidHandler from) 
+	{
+		return to.fill(from.drain(Integer.MAX_VALUE, FluidAction.SIMULATE), FluidAction.SIMULATE);
+	} // end maxDrainTankTo()
+	
+	public static int minDrainTankTo(ItemStack to, IFluidHandler from) 
+	{
+		IFluidHandler c = getFluidHandlerCapability(to);
+		return (c != null) ? minDrainTankTo(c, from) : 0;
+	} // end minDrainTankTo()
+	
+	public static int minDrainTankTo(IFluidHandler to, ItemStack from) 
+	{
+		IFluidHandler c = getFluidHandlerCapability(from);
+		return (c != null) ? minDrainTankTo(to, c) : 0;
+	} // end minDrainTankTo()
+	
+	public static int minDrainTankTo(IFluidHandler to, IFluidHandler from) 
+	{
+		// TODO, implement actual logic
+		return maxDrainTankTo(to, from);
+	} // end minDrainTankTo()
+	
+	public static int drainClosestToFavoringLow(ItemStack to, IFluidHandler from, int goal) 
+	{
+		IFluidHandler c = getFluidHandlerCapability(to);
+		return (c != null) ? drainClosestToFavoringLow(c, from, goal) : 0;
+	} // end drainClosestToFavoringLow()
+
+	public static int drainClosestToFavoringLow(IFluidHandler to, ItemStack from, int goal) 
+	{
+		IFluidHandler c = getFluidHandlerCapability(from);
+		return (c != null) ? drainClosestToFavoringLow(to, c, goal) : 0;
+	} // end drainClosestToFavoringLow()
+
+	public static int drainClosestToFavoringLow(IFluidHandler to, IFluidHandler from, int goal) 
+	{
+		return to.fill(from.drain(goal, FluidAction.SIMULATE), FluidAction.SIMULATE);
+	} // end drainClosestToFavoringLow()
+
+	
 	
 	
 	// returns the remainder or whatever
-	public static ItemStack fillTankFrom(ItemStack itemStack, IFluidHandler tank, int maxTransfer) 
+	public static ItemStack fillTankFrom(ItemStack from, IFluidHandler to, int maxTransfer) 
 	{
-		if(isValidTankFillSlotInsert(itemStack)) 
+		if(isValidTankFillSlotInsert(from)) 
 		{
-			IFluidHandlerItem c = getFluidHandlerCapability(itemStack);
+			IFluidHandlerItem c = getFluidHandlerCapability(from);
 			if(c == null) 
 			{
-				return itemStack;
+				return from;
 			}
-			tank.fill(c.drain(tank.fill(c.drain(maxTransfer, FluidAction.SIMULATE), FluidAction.SIMULATE), FluidAction.EXECUTE), FluidAction.EXECUTE);
+			to.fill(c.drain(to.fill(c.drain(maxTransfer, FluidAction.SIMULATE), FluidAction.SIMULATE), FluidAction.EXECUTE), FluidAction.EXECUTE);
 			return c.getContainer();
 		}
-		return itemStack;
+		return from;
 	} // end fillTankFrom
 	
 	private static IFluidHandlerItem getFluidHandlerCapability(ItemStack itemStack) 
@@ -104,7 +156,6 @@ public class SlotUtilities
 	
 	public static ItemStack drainTankTo(ItemStack itemStack, IFluidHandler tank, int maxTransfer)
 	{
-		YetAnotherTechMod.LOGGER.info("entered drain to");
 		if(isValidTankDrainSlotInsert(itemStack)) 
 		{
 			IFluidHandlerItem c = getFluidHandlerCapability(itemStack);
@@ -116,7 +167,7 @@ public class SlotUtilities
 			return c.getContainer();
 		}
 		return itemStack;
-	}
+	} // end drainTankTo()
 	
 	
 	
@@ -145,5 +196,53 @@ public class SlotUtilities
 		}
 		return null;
 	} // end getSlotCapability()
+	
+	
+	
+	// returns an amount of fluid possible to be drained from the tank to the slot
+	public static int queueToDrainToSlot(IItemHandler inventory, int slot, IFluidHandler toDrain, int tank, int favoredTransferSize)
+	{
+		ItemStack stackInSlot = inventory.getStackInSlot(slot);
+		if(stackInSlot.isEmpty() || toDrain.getFluidInTank(tank).getAmount() <= 0) 
+		{
+			return 0;
+		}
+		return  Math.max(minDrainTankTo(stackInSlot, toDrain), drainClosestToFavoringLow(stackInSlot, toDrain, favoredTransferSize));
+	} // end queueToDrainToSlot()
+	
+	public static int countDownOrDrainToSlot(Level level, BlockPos position, IItemHandler inventory, int slot, IFluidHandler toDrain, int tank, int transferSize, int countDownTime, int maxRateOfTransfer) 
+	{
+		countDownTime -= maxRateOfTransfer;
+		if (countDownTime <= 0)
+		{
+			if (SlotUtilities.canDrainTankto(inventory.getStackInSlot(slot), toDrain, transferSize))
+			{
+					ItemStack remainder = SlotUtilities.drainTankTo(inventory.extractItem(slot, inventory.getSlotLimit(slot), false), toDrain, transferSize);
+					InventoryUtilities.insertItemOrDrop(level, position, inventory, slot, remainder);
+			}
+		}		
+		return countDownTime;
+	} // end countDownOrDrainToSlot()
+	
+	
+	
+	public static int queueToFillFromSlot(Level level, BlockPos position, IItemHandler inventory, int slot, IFluidHandler toFill, int tank, IFluidHandler fillBuffer, int favoredTransferSize)
+	{
+		ItemStack stackInSlot = inventory.getStackInSlot(slot);
+		int freeVolume = toFill.getTankCapacity(tank) - toFill.getFluidInTank(tank).getAmount();
+		if(stackInSlot.isEmpty() || freeVolume <= 0) 
+		{
+			return 0;
+		}
+		
+		int amountTransferableToBuffer = Math.max(minDrainTankTo(fillBuffer, stackInSlot), drainClosestToFavoringLow(fillBuffer, stackInSlot, favoredTransferSize));
+		int amountTransferableToTank = Math.max(minDrainTankTo(toFill, stackInSlot), drainClosestToFavoringLow(toFill, stackInSlot, favoredTransferSize));
+		int amountTransferable = Math.min(amountTransferableToBuffer, amountTransferableToTank);
+		ItemStack remainder = SlotUtilities.fillTankFrom(inventory.extractItem(slot, inventory.getSlotLimit(slot), false), fillBuffer, amountTransferable);
+		InventoryUtilities.insertItemOrDrop(level, position, inventory, slot, remainder);
+			
+		return fillBuffer.getFluidInTank(0).getAmount();		
+	} // end queueToFillFromSlot()
+	
 	
 } // end class

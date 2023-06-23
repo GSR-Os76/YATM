@@ -64,7 +64,7 @@ public class GlassBottleItemStack implements IFluidHandlerItem, ICapabilityProvi
 	@Override
 	public boolean isFluidValid(int tank, @NotNull FluidStack stack)
 	{
-		return stack.getFluid() instanceof IBottleable;
+		return stack.getFluid() instanceof IBottleable;// || stack.getFluid() == Fluids.WATER;
 	} // end isFluidValid()
 
 	@Override
@@ -79,8 +79,9 @@ public class GlassBottleItemStack implements IFluidHandlerItem, ICapabilityProvi
 		
 		if(action.execute()) 
 		{
-			// change container around
-			this.m_container = new ItemStack(((IBottleable)resource.getFluid()).getBottle());
+			this.m_container = 
+					//resource.getFluid() == Fluids.WATER ? Items.POTION :
+						new ItemStack(((IBottleable)resource.getFluid()).getBottle());
 		}
 		
 		return FluidBottleItem.BOTTLE_CAPACITY;

@@ -1,6 +1,7 @@
 package com.gsr.gsr_yatm.utilities;
 
 import com.gsr.gsr_yatm.block.conduit.IConduit;
+import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
@@ -12,6 +13,26 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BlockShapes
 {
+	public static final VoxelShapeGetter BOILER_SHAPE = new VoxelShapeGetter()
+	{		
+		@Override
+		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		{
+			VoxelShape baseShape = Block.box(0, 0, 0, 16, 14, 16);
+			VoxelShape hasTankShape = Block.box(1, 14, 1, 15, 16, 15);
+
+			VoxelShape shape = baseShape;
+			
+			if (blockState.getValue(BoilerBlock.HAS_TANK))
+			{
+				shape = Shapes.or(shape, hasTankShape);
+			}
+
+			return shape;
+		} // end getShape()
+
+	};
+	
 	// maybe refine shape further
 	public static final VoxelShapeGetter STEEL_FLUID_CONDUIT_SHAPE = new VoxelShapeGetter()
 	{		
@@ -54,7 +75,7 @@ public class BlockShapes
 			}
 
 			return shape;
-		} // end getShape
+		} // end getShape()
 
 	};
 

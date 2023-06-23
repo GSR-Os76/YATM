@@ -9,6 +9,7 @@ import com.gsr.gsr_yatm.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.YATMRecipeTypes;
 import com.gsr.gsr_yatm.recipe.ExtrusionRecipe;
 import com.gsr.gsr_yatm.utilities.ConfigurableInventoryWrapper;
+import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -50,7 +51,7 @@ public class ExtruderBlockEntity extends BlockEntity
 
 
 
-	private String m_activeRecipeIdentifier = null;
+	//private String m_activeRecipeIdentifier = null;
 	private int m_extrudeProgress = 0;
 	private int m_extrudeTime = 0;
 	private int m_storedPower = 0;
@@ -123,17 +124,16 @@ public class ExtruderBlockEntity extends BlockEntity
 	};
 
 	private final ItemStackHandler m_rawInventory = new ItemStackHandler(INVENTORY_SLOT_COUNT);
-	// TODO, make so you don't have to specify the slot conversion table, make so
-	// you don't have to specify everything or have very many constructors
-	private final ConfigurableInventoryWrapper m_inventory = new ConfigurableInventoryWrapper(m_rawInventory, new int[]
-	{ 0, 1, 2, 3, 4 }, this::stackInsertionValidator, this::onStackInsertion, this::onStackWithdrawal);
+	private final ConfigurableInventoryWrapper m_uncheckedInventory = new ConfigurableInventoryWrapper.Builder(this.m_rawInventory).onInsertion(this::onStackInsertion).onWithdrawal(this::onStackWithdrawal).build();
+	private final ConfigurableInventoryWrapper m_inventory = new ConfigurableInventoryWrapper.Builder(m_uncheckedInventory).slotValidator(this::stackInsertionValidator).build();
+	
 	private LazyOptional<IItemHandler> m_inventoryLazyOptional = LazyOptional.of(() -> this.m_inventory);
 
-	private final ConfigurableInventoryWrapper m_inputsSlots = new ConfigurableInventoryWrapper(m_rawInventory, new int[]
+	private final ConfigurableInventoryWrapper m_inputsSlots = new ConfigurableInventoryWrapper(m_inventory, new int[]
 	{ INPUT_SLOT, DIE_SLOT });
 	private LazyOptional<IItemHandler> m_inputsSlotsLazyOptional = LazyOptional.of(() -> this.m_inputsSlots);
 
-	private final ConfigurableInventoryWrapper m_resultsSlots = new ConfigurableInventoryWrapper(m_rawInventory, new int[]
+	private final ConfigurableInventoryWrapper m_resultsSlots = new ConfigurableInventoryWrapper(m_inventory, new int[]
 	{ RESULT_SLOT, INPUT_REMAINDER_SLOT });
 	private LazyOptional<IItemHandler> m_resultsSlotsLazyOptional = LazyOptional.of(() -> this.m_resultsSlots);
 
@@ -174,24 +174,11 @@ public class ExtruderBlockEntity extends BlockEntity
 	{
 		// accept in power
 		// decrease power according to need. if not possible resverse recipe progress(wait no that doesn't make sense for this
-		// why do i do count down not count up? seems like just adding complexity
 		if (this.m_extrudeProgress > 0)
 		{
 			if( --this.m_extrudeProgress == 0) 
 			{
-				if (this.m_activeRecipeIdentifier == null)
-				{
-					return;
-				}
-				if (this.m_activeRecipe == null)
-				{
-					if(!this.loadRecipe(level)) 
-					{
-						return;
-					}
-				}
-				// TODO, change this to use an inventory that will invoke setChanged() on this object
-				this.m_activeRecipe.setResults(this.m_rawInventory);
+				this.m_activeRecipe.setResults(this.m_uncheckedInventory);
 				this.tryStartNewRecipe();
 			}
 		}
@@ -200,27 +187,11 @@ public class ExtruderBlockEntity extends BlockEntity
 			this.m_timeSinceRecheck = 0;
 			this.tryStartNewRecipe();
 		}
-		// if ther's a recipe to match us start doing recipe things
-		// on craft check it again
 	} // end serverTick()
-
-	private boolean loadRecipe(Level level)
-	{
-		List<ExtrusionRecipe> recipes = level.getRecipeManager().getAllRecipesFor(YATMRecipeTypes.EXTRUSION_RECIPE_TYPE.get());
-		for (ExtrusionRecipe r : recipes)
-		{
-			if (r.getId().toString() == this.m_activeRecipeIdentifier)
-			{
-				this.m_activeRecipe = r;
-				return true;
-			}
-		}
-		return false;
-	} // end loadRecipe()
 
 	private void tryStartNewRecipe() 
 	{
-		this.m_activeRecipeIdentifier = null;
+		// this.m_activeRecipeIdentifier = null;
 		this.m_activeRecipe = null;
 		this.m_extrudeTime = 0;
 		this.m_extrudeProgress = 0;
@@ -230,12 +201,11 @@ public class ExtruderBlockEntity extends BlockEntity
 		{
 			if (r.canBeUsedOn(this.m_rawInventory))
 			{
-				this.m_activeRecipeIdentifier = r.getId().toString();
 				this.m_activeRecipe = r;
 				this.m_extrudeTime = r.getTimeInTicks();
 				// TODO, change this to use an inventory that will invoke setChanged() on this object
 				this.m_extrudeProgress = this.m_extrudeTime;
-				r.startRecipe(this.m_rawInventory);
+				r.startRecipe(this.m_uncheckedInventory);
 			}
 		}
 	} // end tryStartNewRecipe()
@@ -246,9 +216,9 @@ public class ExtruderBlockEntity extends BlockEntity
 	protected void saveAdditional(CompoundTag tag)
 	{
 		super.saveAdditional(tag);
-		if(this.m_activeRecipeIdentifier != null) 
+		if(this.m_activeRecipe != null) 
 		{
-			tag.putString(ACTIVE_RECIPE_TAG_NAME, this.m_activeRecipeIdentifier);
+			tag.putString(ACTIVE_RECIPE_TAG_NAME, this.m_activeRecipe.getId().toString());
 		}
 		tag.putInt(EXTRUDE_PROGRESS_TAG_NAME, this.m_extrudeProgress);
 		tag.putInt(EXTRUDE_TIME_TAG_NAME, this.m_extrudeTime);
@@ -260,10 +230,7 @@ public class ExtruderBlockEntity extends BlockEntity
 	public void load(CompoundTag tag)
 	{
 		super.load(tag);
-		if (tag.contains(ACTIVE_RECIPE_TAG_NAME))
-		{
-			this.m_activeRecipeIdentifier = tag.getString(ACTIVE_RECIPE_TAG_NAME);
-		}
+		
 		if (tag.contains(EXTRUDE_PROGRESS_TAG_NAME))
 		{
 			this.m_extrudeProgress = tag.getInt(EXTRUDE_PROGRESS_TAG_NAME);
@@ -272,6 +239,15 @@ public class ExtruderBlockEntity extends BlockEntity
 		{
 			this.m_extrudeTime = tag.getInt(EXTRUDE_TIME_TAG_NAME);
 		}
+		if (tag.contains(ACTIVE_RECIPE_TAG_NAME))
+		{
+			this.m_activeRecipe = RecipeUtilities.loadRecipe(tag.getString(ACTIVE_RECIPE_TAG_NAME), level, YATMRecipeTypes.EXTRUSION_RECIPE_TYPE.get());
+				if(this.m_activeRecipe == null) 
+				{
+					this.m_extrudeProgress = 0;
+					this.m_extrudeTime = 0;
+				}
+		}		
 		// power tag here
 		if (tag.contains(INVENTORY_TAG_NAME))
 		{

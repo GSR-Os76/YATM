@@ -60,6 +60,12 @@ public abstract class EssenceOfDecayFluid extends FlowingFluid implements IBottl
 		return YATMItems.ESSENCE_OF_DECAY_BOTTLE.get();
 	} // end getBottle()
 	
+	@Override
+	public boolean isSame(Fluid fluid)
+	{
+		return fluid == YATMFluids.ESSENCE_OF_DECAY.get() || fluid == YATMFluids.ESSENCE_OF_DECAY_FLOWING.get();
+	} // end isSame()
+
 	
 	
 	@Override
@@ -104,12 +110,7 @@ public abstract class EssenceOfDecayFluid extends FlowingFluid implements IBottl
 		return 1000f;
 	} // end getExplosionResistance()
 	
-	@Override
-	public boolean isSame(Fluid fluid)
-	{
-		return fluid == YATMFluids.ESSENCE_OF_DECAY.get() || fluid == YATMFluids.ESSENCE_OF_DECAY_FLOWING.get();
-	} // end isSame()
-
+	
 
 
 	// IMPLEMENTATIONS \\

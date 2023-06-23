@@ -1,12 +1,15 @@
 package com.gsr.gsr_yatm.block.device.boiler;
 
 import com.gsr.gsr_yatm.YATMBlockEntityTypes;
+import com.gsr.gsr_yatm.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.YATMMenuTypes;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.utilities.VoxelShapeGetter;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -31,20 +34,29 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 
-public class BoilerBlock extends Block implements EntityBlock //IForgeBlockState
+public class BoilerBlock extends Block implements EntityBlock
 {
-	public static final DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
+	public static final DirectionProperty FACING = YATMBlockStateProperties.FACING_HORIZONTAL;
 	public static final BooleanProperty HAS_TANK = BooleanProperty.create("has_tank");
-	public static final BooleanProperty LIT = BooleanProperty.create("lit");
+	public static final BooleanProperty LIT = YATMBlockStateProperties.LIT;
 
-	private static final VoxelShape BASE_SHAPE = Block.box(0, 0, 0, 16, 14, 16);
+	private final VoxelShapeGetter m_shapeGetter;
+	private final int m_maximumTemperature;
+	private final int m_tankCapacities;
+	private final int m_maximumFluidTransferRate;
+	
 
-
-
-	public BoilerBlock(Properties p_49795_)
+	
+	public BoilerBlock(Properties properties, VoxelShapeGetter shapeGetter, int maximumTemperature, int tankCapacities, int maximumFluidTransferRate)
 	{
-		super(p_49795_);
-		this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(HAS_TANK, Boolean.FALSE).setValue(LIT, Boolean.FALSE);
+		super(properties);
+		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH).setValue(HAS_TANK, Boolean.FALSE).setValue(LIT, Boolean.FALSE));
+		
+		this.m_shapeGetter = shapeGetter;
+		this.m_maximumTemperature = maximumTemperature;
+		this.m_tankCapacities = tankCapacities;
+		this.m_maximumFluidTransferRate = maximumFluidTransferRate;
+		
 	} // end constructor
 
 
@@ -52,8 +64,7 @@ public class BoilerBlock extends Block implements EntityBlock //IForgeBlockState
 	@Override
 	protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
 	{
-		builder.add(FACING).add(HAS_TANK).add(LIT);
-		super.createBlockStateDefinition(builder);
+		super.createBlockStateDefinition(builder.add(FACING).add(HAS_TANK).add(LIT));
 	} // createBlockStateDefinition()
 
 	@Override
@@ -77,16 +88,21 @@ public class BoilerBlock extends Block implements EntityBlock //IForgeBlockState
 		super.neighborChanged(blockState, level, thissPos, p_60512_, p_60513_, p_60514_);
 	} // end onNeighborChange()
 
-
+	
+	
+	@Override
+	public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState)
+	{
+		return new BoilerBlockEntity(blockPos, blockState, this.m_maximumTemperature, this.m_tankCapacities, this.m_maximumFluidTransferRate);
+	} // end newBlockEntity()
 
 	@Override
-	public VoxelShape getShape(BlockState blockState, BlockGetter p_60556_, BlockPos p_60557_, CollisionContext p_60558_)
-	{		// blockState.getValue(HAS_TANK) ? Shapes.join(BASE_SHAPE, HAS_TANK_MULTIPART_SHAPE, BooleanOp.AND) : 
-		return BASE_SHAPE;
-	} // end getShape()
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType)
+	{
+		return blockEntityType == YATMBlockEntityTypes.BOILER_BLOCK_ENTITY.get() ? (l, bp, bs, be) -> BoilerBlockEntity.tick(l, bp, bs, (BoilerBlockEntity)be) : null;
+	} // end getTicker()
 
-
-
+	
 	
 	@Override
 	public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult)
@@ -97,8 +113,6 @@ public class BoilerBlock extends Block implements EntityBlock //IForgeBlockState
 		}
 		return InteractionResult.sidedSuccess(level.isClientSide);		
 	} // end use()
-
-
 
 	@Override
 	public MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos)
@@ -113,24 +127,30 @@ public class BoilerBlock extends Block implements EntityBlock //IForgeBlockState
 				blockEntity.getDataAccessor())
 				, Component.translatable("menu.title." + YetAnotherTechMod.MODID + "." + YATMMenuTypes.BOILER_MENU.getId().getPath()));//, null, null, null, null));
 	} // end getMenuProvider()
-
-
-
-	@Override
-	public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState)
-	{
-		return new BoilerBlockEntity(blockPos, blockState);
-	} // end newBlockEntity()
-
-	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType)
-	{
-		return blockEntityType == YATMBlockEntityTypes.BOILER_BLOCK_ENTITY.get() ? (l, bp, bs, be) -> BoilerBlockEntity.tick(l, bp, bs, (BoilerBlockEntity)be) : null;
-	} // end getTicker()
-
-
-
 	
 	
+	
+	@Override
+	public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
+	{		
+		return this.m_shapeGetter.getShape(blockState, blockGetter, blockPos, context);
+	} // end getShape()
+
+
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public void onRemove(BlockState fromBlockState, Level level, BlockPos blockPos, BlockState toBlockstate, boolean dunno)
+	{
+		if(!fromBlockState.is(toBlockstate.getBlock())) 
+		{
+			BlockEntity be = level.getBlockEntity(blockPos);
+			if(be instanceof BoilerBlockEntity bbe && level instanceof ServerLevel) 
+			{
+				bbe.blockBroken();
+			}
+		}
+		super.onRemove(fromBlockState, level, blockPos, toBlockstate, dunno);;
+	} // end onRemove()
 
 } // end class
