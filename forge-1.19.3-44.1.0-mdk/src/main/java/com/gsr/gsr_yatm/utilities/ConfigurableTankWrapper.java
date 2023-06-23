@@ -55,7 +55,7 @@ public class ConfigurableTankWrapper implements IFluidHandler, IFluidTank
 		//FluidStack wrappedResource = new FluidStack(resource.getFluid(), Math.min(resource.getAmount(), this.m_capacity));
 		
 		int result = this.m_tank.fill(resource, action);
-		if(result > 0) 
+		if(action.execute() && result > 0) 
 		{
 			this.m_onChanged.whatever();
 		}
@@ -67,7 +67,7 @@ public class ConfigurableTankWrapper implements IFluidHandler, IFluidTank
 	{
 		//FluidStack wrappedResource = new FluidStack(resource.getFluid(), Math.min(resource.getAmount(), this.m_capacity));
 		FluidStack result = this.m_tank.drain(resource, action);
-		if(!result.isEmpty()) 
+		if(action.execute() && !result.isEmpty()) 
 		{
 			this.m_onChanged.whatever();
 		}
@@ -78,7 +78,7 @@ public class ConfigurableTankWrapper implements IFluidHandler, IFluidTank
 	public @NotNull FluidStack drain(int maxDrain, FluidAction action)
 	{
 		FluidStack result = this.m_tank.drain(maxDrain, action);
-		if(!result.isEmpty()) 
+		if(action.execute() && !result.isEmpty()) 
 		{
 			this.m_onChanged.whatever();
 		}

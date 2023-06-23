@@ -117,12 +117,23 @@ public class YATMItems
 	public static final RegistryObject<Item> FOURTHOUSANDNINTYSIX_CU_CURRENT_REGULATOR = generalTabEnqueue(ITEMS.register("fourthousandnintysix_cu_current_regulator_component", () -> new CurrentRegulatorItem(new Item.Properties().stacksTo(1), 4096,  32768)));
 
 	// liquid latex that burns you if you're in the sun light
+	public static final RegistryObject<Item> BIO_BUCKET = generalTabEnqueue(ITEMS.register("bio_bucket", () -> new BucketItem(YATMFluids.BIO, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
+	public static final RegistryObject<Item> CHORUS_BUCKET = generalTabEnqueue(ITEMS.register("chorus_bucket", () -> new BucketItem(YATMFluids.CHORUS, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
+	public static final RegistryObject<Item> CHORUS_BIO_BUCKET = generalTabEnqueue(ITEMS.register("chorus_bio_bucket", () -> new BucketItem(YATMFluids.CHORUS_BIO, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
+	public static final RegistryObject<Item> ENDER_BUCKET = generalTabEnqueue(ITEMS.register("ender_bucket", () -> new BucketItem(YATMFluids.ENDER, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
 	public static final RegistryObject<Item> ESSENCE_OF_DECAY_BUCKET = generalTabEnqueue(ITEMS.register("essence_of_decay_bucket", () -> new BucketItem(YATMFluids.ESSENCE_OF_DECAY, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
+	public static final RegistryObject<Item> ESSENCE_OF_SOULS_BUCKET = generalTabEnqueue(ITEMS.register("essence_of_souls_bucket", () -> new BucketItem(YATMFluids.ESSENCE_OF_SOULS, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
 	public static final RegistryObject<Item> LATEX_BUCKET = generalTabEnqueue(ITEMS.register("latex_bucket", () -> new BucketItem(YATMFluids.LATEX, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
 	public static final RegistryObject<Item> SOUL_SAP_BUCKET = generalTabEnqueue(ITEMS.register("soul_sap_bucket", () -> new SoulSapBucketItem(YATMFluids.SOUL_SAP, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
 	public static final RegistryObject<Item> SOUL_SYRUP_BUCKET = generalTabEnqueue(ITEMS.register("soul_syrup_bucket", () -> new BucketItem(YATMFluids.SOUL_SYRUP, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
 	
+	public static final RegistryObject<Item> BIO_BOTTLE = generalTabEnqueue(ITEMS.register("bio_bottle", () -> new FluidBottleItem(YATMFluids.BIO, new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(1))));
+	public static final RegistryObject<Item> CHORUS_BOTTLE = generalTabEnqueue(ITEMS.register("chorus_bottle", () -> new FluidBottleItem(YATMFluids.CHORUS, new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(1))));
+	public static final RegistryObject<Item> CHORUS_BIO_BOTTLE = generalTabEnqueue(ITEMS.register("chorus_bio_bottle", () -> new FluidBottleItem(YATMFluids.CHORUS_BIO, new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(1))));
+	public static final RegistryObject<Item> ENDER_BOTTLE = generalTabEnqueue(ITEMS.register("ender_bottle", () -> new FluidBottleItem(YATMFluids.ENDER, new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(1))));
 	public static final RegistryObject<Item> ESSENCE_OF_DECAY_BOTTLE = generalTabEnqueue(ITEMS.register("essence_of_decay_bottle", () -> new FluidBottleItem(YATMFluids.ESSENCE_OF_DECAY, new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(1))));
+	public static final RegistryObject<Item> ESSENCE_OF_SOULS_BOTTLE = generalTabEnqueue(ITEMS.register("essence_of_souls_bottle", () -> new FluidBottleItem(YATMFluids.ESSENCE_OF_SOULS, new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(1))));
+	public static final RegistryObject<Item> LATEX_BOTTLE = generalTabEnqueue(ITEMS.register("latex_bottle", () -> new FluidBottleItem(YATMFluids.LATEX, new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(1))));
 	public static final RegistryObject<Item> SOUL_SAP_BOTTLE = generalTabEnqueue(ITEMS.register("soul_sap_bottle", () -> new FluidBottleItem(YATMFluids.SOUL_SAP, new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(1))));
 	public static final RegistryObject<Item> SOUL_SYRUP_BOTTLE = generalTabEnqueue(ITEMS.register("soul_syrup_bottle", () -> new FluidBottleItem(YATMFluids.SOUL_SYRUP, new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(1))));
 	

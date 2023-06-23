@@ -1,14 +1,19 @@
 package com.gsr.gsr_yatm.utilities;
 
+import java.util.List;
+
 import org.jetbrains.annotations.NotNull;
 
 import com.google.gson.JsonObject;
-
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.Container;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.item.crafting.Recipe;
+import net.minecraft.world.item.crafting.RecipeType;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -106,5 +111,18 @@ public class RecipeUtilities
 		}
 		return false;
 	} // end testIngredientAgainst()
+
+	public static <C extends Container, T extends Recipe<C>> T loadRecipe(String string, Level level, RecipeType<T> type)
+	{
+		List<T> recipes = level.getRecipeManager().getAllRecipesFor(type);
+		for (T r : recipes)
+		{
+			if (r.getId().toString() == string)
+			{
+				return r;
+			}
+		}
+		return null;
+	} // end loadRecipe()
 
 } // end class

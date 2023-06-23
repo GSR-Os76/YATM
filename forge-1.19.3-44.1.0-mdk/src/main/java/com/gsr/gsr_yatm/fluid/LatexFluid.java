@@ -56,6 +56,12 @@ public abstract class LatexFluid extends FlowingFluid
 		return YATMItems.LATEX_BUCKET.get();
 	} // end getBucket()
 	
+	@Override
+	public boolean isSame(Fluid fluid)
+	{
+		return fluid == YATMFluids.LATEX.get() || fluid == YATMFluids.LATEX_FLOWING.get();
+	} // end isSame()
+
 	
 
 	@Override
@@ -102,12 +108,7 @@ public abstract class LatexFluid extends FlowingFluid
 		return 2f;
 	}
 
-	@Override
-	public boolean isSame(Fluid fluid)
-	{
-		return fluid == YATMFluids.LATEX.get() || fluid == YATMFluids.LATEX_FLOWING.get();
-	} // end isSame()
-
+	
 
 
 	
