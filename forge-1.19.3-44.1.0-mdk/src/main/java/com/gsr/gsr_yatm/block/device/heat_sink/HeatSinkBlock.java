@@ -1,5 +1,7 @@
 package com.gsr.gsr_yatm.block.device.heat_sink;
 
+import com.gsr.gsr_yatm.YATMBlockStateProperties;
+
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.block.Block;
@@ -9,13 +11,13 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
 public class HeatSinkBlock extends Block
 {
-	private static final DirectionProperty FACING = DirectionProperty.create("facing");
+	public static final DirectionProperty FACING = YATMBlockStateProperties.FACING;
 	
 	
 	
-	public HeatSinkBlock(Properties p_49795_)
+	public HeatSinkBlock(Properties properties)
 	{
-		super(p_49795_);
+		super(properties);
 		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.DOWN));
 	} // end constructor
 
@@ -29,12 +31,10 @@ public class HeatSinkBlock extends Block
 	} // end createBlockStateDefinition()
 
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext p_49820_)
+	public BlockState getStateForPlacement(BlockPlaceContext context)
 	{		
-		Direction direction = p_49820_.getClickedFace().getOpposite();
+		Direction direction = context.getClickedFace();//.getOpposite();
 		return this.defaultBlockState().setValue(FACING, direction);
 	} // end getStateForPlacement()
-
-	
 	
 } // end class

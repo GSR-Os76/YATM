@@ -1,7 +1,0 @@
-{
-	"parent": "gsr_yatm:block/boiler_has_tank_multipart",
-	"textures": {
-		"0": "gsr_yatm:block/steel_boiler_tank_top_and_bottom",
-		"1": "gsr_yatm:block/steel_boiler_has_tank_multipart_side"
-	}
-}

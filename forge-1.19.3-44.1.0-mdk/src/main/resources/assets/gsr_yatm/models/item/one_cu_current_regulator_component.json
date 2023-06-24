@@ -1,6 +1,0 @@
-{
-	"parent": "item/generated",
-	"textures": {
-	"layer0": "gsr_yatm:item/one_cu_current_regulator_component"
-	}
-}

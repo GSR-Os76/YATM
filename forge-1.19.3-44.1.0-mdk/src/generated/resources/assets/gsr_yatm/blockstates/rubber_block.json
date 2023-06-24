@@ -1,7 +1,7 @@
 {
   "variants": {
     "": {
-      "model": "gsr_yatm:blocks/rubber_block"
+      "model": "gsr_yatm:block/rubber_block"
     }
   }
 }

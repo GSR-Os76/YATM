@@ -29,7 +29,7 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 
 public class BoilerTankBlock extends Block implements EntityBlock// implements IForgeBlockState
 {
-	private static final BooleanProperty HAS_BOILER = BooleanProperty.create("has_boiler");
+	public static final BooleanProperty HAS_BOILER = BooleanProperty.create("has_boiler");
 
 	private static final VoxelShape SHAPE = Block.box(1d, 0d, 1d, 15d, 16d, 15d);
 

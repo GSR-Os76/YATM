@@ -1,7 +1,0 @@
-{
-	"parent": "minecraft:block/cross",
-	"render_type": "cutout",
-	"textures": {
-		"cross": "gsr_yatm:block/plant/rubber/soul_afflicted_rubber_meristem"
-	}
-}

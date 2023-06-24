@@ -1,0 +1,6 @@
+{
+  "parent": "gsr_yatm:block/device/conduit/current/wire_branch_low",
+  "textures": {
+    "0": "gsr_yatm:block/device/conduit/current/sixtyfour_cu_wire"
+  }
+}

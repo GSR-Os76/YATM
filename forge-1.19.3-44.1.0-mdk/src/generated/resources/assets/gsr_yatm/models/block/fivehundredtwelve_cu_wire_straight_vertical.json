@@ -1,0 +1,6 @@
+{
+  "parent": "gsr_yatm:block/device/conduit/current/wire_straight_vertical",
+  "textures": {
+    "0": "gsr_yatm:block/device/conduit/current/fivehundredtwelve_cu_wire"
+  }
+}

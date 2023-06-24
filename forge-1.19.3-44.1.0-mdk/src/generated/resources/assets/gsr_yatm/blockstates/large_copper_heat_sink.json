@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "gsr_yatm:block/large_copper_heat_sink",
+      "x": 180
+    },
+    "facing=east": {
+      "model": "gsr_yatm:block/large_copper_heat_sink",
+      "x": 90,
+      "y": 90
+    },
+    "facing=north": {
+      "model": "gsr_yatm:block/large_copper_heat_sink",
+      "x": 90
+    },
+    "facing=south": {
+      "model": "gsr_yatm:block/large_copper_heat_sink",
+      "x": 90,
+      "y": 180
+    },
+    "facing=up": {
+      "model": "gsr_yatm:block/large_copper_heat_sink"
+    },
+    "facing=west": {
+      "model": "gsr_yatm:block/large_copper_heat_sink",
+      "x": 90,
+      "y": 270
+    }
+  }
+}

@@ -1,7 +1,0 @@
-{
-	"parent": "minecraft:block/cube_column",
-	"textures": {
-		"side": "gsr_yatm:block/plant/rubber/soul_afflicted_rubber_log_side",
-		"end": "gsr_yatm:block/plant/rubber/soul_afflicted_rubber_log_top"
-	}
-}

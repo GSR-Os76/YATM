@@ -1,88 +1,88 @@
 {
   "variants": {
     "distance=1,persistent=false,waterlogged=false": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=1,persistent=false,waterlogged=true": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=1,persistent=true,waterlogged=false": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=1,persistent=true,waterlogged=true": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=2,persistent=false,waterlogged=false": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=2,persistent=false,waterlogged=true": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=2,persistent=true,waterlogged=false": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=2,persistent=true,waterlogged=true": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=3,persistent=false,waterlogged=false": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=3,persistent=false,waterlogged=true": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=3,persistent=true,waterlogged=false": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=3,persistent=true,waterlogged=true": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=4,persistent=false,waterlogged=false": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=4,persistent=false,waterlogged=true": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=4,persistent=true,waterlogged=false": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=4,persistent=true,waterlogged=true": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=5,persistent=false,waterlogged=false": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=5,persistent=false,waterlogged=true": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=5,persistent=true,waterlogged=false": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=5,persistent=true,waterlogged=true": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=6,persistent=false,waterlogged=false": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=6,persistent=false,waterlogged=true": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=6,persistent=true,waterlogged=false": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=6,persistent=true,waterlogged=true": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=7,persistent=false,waterlogged=false": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=7,persistent=false,waterlogged=true": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=7,persistent=true,waterlogged=false": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     },
     "distance=7,persistent=true,waterlogged=true": {
-      "model": "gsr_yatm:blocks/soul_afflicted_rubber_leaves_old"
+      "model": "gsr_yatm:block/soul_afflicted_rubber_leaves_old"
     }
   }
 }

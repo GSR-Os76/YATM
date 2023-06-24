@@ -1,6 +1,0 @@
-{
-	"parent": "gsr_yatm:block/device/conduit/current/insulated_wire_center",
-	"textures": {
-		"0": "gsr_yatm:block/device/conduit/current/insulated_fourthousandnintysix_cu_wire"
-	}
-}

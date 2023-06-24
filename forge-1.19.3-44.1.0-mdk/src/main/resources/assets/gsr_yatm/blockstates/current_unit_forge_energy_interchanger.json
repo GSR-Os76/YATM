@@ -1,7 +1,0 @@
-{
-	"variants": {
-		"": {
-			"model": "gsr_yatm:block/device/energy_converter/current_unit_forge_energy_interchanger"
-		}
-	}
-}

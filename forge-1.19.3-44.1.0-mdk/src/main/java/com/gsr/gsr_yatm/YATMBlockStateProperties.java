@@ -6,6 +6,7 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
 public class YATMBlockStateProperties
 {
+	public static final DirectionProperty FACING = DirectionProperty.create("facing");
 	public static final DirectionProperty FACING_HORIZONTAL = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
 	public static final BooleanProperty LIT = BooleanProperty.create("lit");
 

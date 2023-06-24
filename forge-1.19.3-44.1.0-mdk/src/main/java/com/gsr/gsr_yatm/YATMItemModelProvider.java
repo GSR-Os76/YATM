@@ -17,6 +17,16 @@ public class YATMItemModelProvider extends ItemModelProvider
 	@Override
 	protected void registerModels()
 	{
+		// this.basicItem(YATMItems.STEEL_FLUID_EXCHANGER.get());
+
+		this.basicItem(YATMItems.ONE_CU_CURRENT_REGULATOR.get());
+		this.basicItem(YATMItems.EIGHT_CU_CURRENT_REGULATOR.get());
+		this.basicItem(YATMItems.SIXTYFOUR_CU_CURRENT_REGULATOR.get());
+		this.basicItem(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_REGULATOR.get());
+		this.basicItem(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_REGULATOR.get());
+
+		
+		
 		this.basicItem(YATMItems.BIO_BUCKET.get());
 		this.basicItem(YATMItems.CHORUS_BUCKET.get());
 		this.basicItem(YATMItems.CHORUS_BIO_BUCKET.get());
@@ -38,9 +48,28 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.SOUL_SYRUP_BOTTLE.get());
 		
 		
+		
+		this.basicItem(YATMItems.STEEL_WIRE_DIE.get());
 		this.basicItem(YATMItems.IRON_WIRE_DIE.get());
 		
+		
+		
+		this.basicItem(YATMItems.SILVER_INGOT.get());
+		this.basicItem(YATMItems.STEEL_INGOT.get());
+		this.basicItem(YATMItems.RUBBER_BAR.get());
 		this.basicItem(YATMItems.RUBBER_SCRAP_BALL.get());
+		
+		this.basicItem(YATMItems.SILVER_NUGGET.get());
+		this.basicItem(YATMItems.COPPER_NUGGET.get());
+		this.basicItem(YATMItems.NETHERITE_NUGGET.get());
+		
+		this.basicItem(YATMItems.WAX_BIT_ITEM.get());
+		this.basicItem(YATMItems.RUBBER_SCRAP.get());
+		
+		// WOOD_PULP
+		// LEAF_MULCH
+		
+
 		
 		this.basicItem(YATMItems.CREATIVE_FLUID_VOID.get());
 		this.basicItem(YATMItems.CREATIVE_FLUID_STORER.get());

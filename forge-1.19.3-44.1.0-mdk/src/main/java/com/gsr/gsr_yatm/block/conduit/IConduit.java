@@ -1,5 +1,8 @@
 package com.gsr.gsr_yatm.block.conduit;
 
+import java.util.Map;
+
+import com.google.common.collect.ImmutableMap;
 import com.gsr.gsr_yatm.block.conduit.network_manager.IConduitNetwork;
 
 import net.minecraft.core.Direction;
@@ -12,6 +15,7 @@ import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
 // a heaping pile of helpers and logic for conduits, and handling their overarching networks
+// TODO, investigate PipeBlock class
 public interface IConduit<T>
 {
 	public static final Direction[] ALL_DIRECTIONS = new Direction[]
@@ -24,7 +28,14 @@ public interface IConduit<T>
 	public static final BooleanProperty UP = BooleanProperty.create("up");
 	public static final BooleanProperty DOWN = BooleanProperty.create("down");
 	
-	
+	public static final Map<Direction, BooleanProperty> DIRECTION_PROPERTIES_BY_DIRECTION = ImmutableMap.of(
+			Direction.UP, UP, 
+			Direction.DOWN, DOWN, 
+			Direction.NORTH, NORTH, 
+			Direction.EAST, EAST, 
+			Direction.SOUTH, SOUTH, 
+			Direction.WEST, WEST);
+
 	
 	public IConduitNetwork<T> getNetwork();
 
