@@ -6,6 +6,8 @@ import com.gsr.gsr_yatm.block.plant.tree.SelfLayeringSaplingBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -49,7 +51,12 @@ public class SoulAfflictedRubberBushSaplingBlock extends SelfLayeringSaplingBloc
 				level.addParticle(ParticleTypes.SOUL, 
 					(double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, 
 					(double)((randomSource.nextFloat() / 12F) * (randomSource.nextIntBetweenInclusive(0, 1) == 0 ? -1 : 1)), (double)(randomSource.nextFloat() / 12F)* (randomSource.nextIntBetweenInclusive(0, 1) == 0 ? -1 : 1), (double)(randomSource.nextFloat() / 12F)* (randomSource.nextIntBetweenInclusive(0, 1) == 0 ? -1 : 1));
-			}			
+				
+			}	
+			level.playLocalSound((double)blockPos.getX() + 0.5D, (double)blockPos.getY() + 0.5D, (double)blockPos.getZ() + 0.5D, SoundEvents.SOUL_ESCAPE, SoundSource.BLOCKS
+					// TODO, figure out better what these floats represent, first's seemingly volume, second's a mystery to me
+					, 12f * randomSource.nextFloat(), 1f
+					, false);		
 			//level.playLocalSound(blockPos, null, null, friction, explosionResistance, dynamicShape)
 			level.setBlock(blockPos, blockState.setValue(RECENTLY_AFFLICTED, false), UPDATE_ALL);
 		}

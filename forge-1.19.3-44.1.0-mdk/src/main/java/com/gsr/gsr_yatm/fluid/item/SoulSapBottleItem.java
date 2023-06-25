@@ -17,9 +17,9 @@ import net.minecraft.world.level.material.Fluid;
 public class SoulSapBottleItem extends FluidBottleItem
 {
 
-	public SoulSapBottleItem(Supplier<? extends Fluid> fluid, Properties properties)
+	public SoulSapBottleItem(Properties properties, Supplier<? extends Fluid> fluid)
 	{
-		super(fluid, properties);
+		super(properties, fluid);
 	} // end constructor
 
 	

@@ -8,7 +8,12 @@ import com.gsr.gsr_yatm.api.IBottleable;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
@@ -19,11 +24,14 @@ import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
+import net.minecraft.world.level.material.LavaFluid;
 import net.minecraftforge.fluids.FluidType;
 
 public abstract class SoulSyrupFluid extends FlowingFluid implements IBottleable
 {
-	
+	// TODO, figure out how to set that up close fog effect lava and water have when you're submerged in them.
+	// TODO, figure out how to give constant soul affliction to entities which're in content.
+	// TODO, maybe add randomly soul afflicting nearby entities,
 	@Override
 	public Fluid getSource()
 	{
@@ -102,7 +110,7 @@ public abstract class SoulSyrupFluid extends FlowingFluid implements IBottleable
 	@Override
 	public int getTickDelay(LevelReader levelReader)
 	{
-		return 4;
+		return 32;
 	} // end getTickDelay()
 
 	@Override
@@ -112,7 +120,29 @@ public abstract class SoulSyrupFluid extends FlowingFluid implements IBottleable
 		return 20f;
 	} // end getExplosionResistance()
 
-	
+
+
+	@Override
+	protected void animateTick(Level level, BlockPos blockPos, FluidState fluidState, RandomSource randomSource)
+	{
+		BlockState above = level.getBlockState(blockPos.above());
+		if((above.isAir() || above.isSolidRender(level, blockPos)) && randomSource.nextInt(60) == 0) 
+		{
+			double atX = (double)blockPos.getX() + randomSource.nextDouble();
+			double atY = (double)blockPos.getY() + 1d;
+			double atZ = (double)blockPos.getZ() + randomSource.nextDouble();
+			level.addParticle(ParticleTypes.SOUL, 
+					atX, atY, atZ, 
+					(double)((randomSource.nextFloat() / 12F) * (randomSource.nextIntBetweenInclusive(0, 1) == 0 ? -1 : 1)), (double)(randomSource.nextFloat() / 12F)* (randomSource.nextIntBetweenInclusive(0, 1) == 0 ? -1 : 1), (double)(randomSource.nextFloat() / 12F)* (randomSource.nextIntBetweenInclusive(0, 1) == 0 ? -1 : 1));
+			
+			level.playLocalSound(atX, atY, atZ, SoundEvents.SOUL_ESCAPE, SoundSource.BLOCKS
+					// TODO, figure out better what these floats represent, first's seemingly volume, second's a mystery to me
+					, 12f * randomSource.nextFloat(), 1f					
+					, false);
+		}
+	} // end animateTick()
+
+
 
 
 
@@ -120,8 +150,6 @@ public abstract class SoulSyrupFluid extends FlowingFluid implements IBottleable
 	// IMPLEMENTATIONS \\
 	public static class Flowing extends SoulSyrupFluid
 	{
-		
-
 		protected void createFluidStateDefinition(StateDefinition.Builder<Fluid, FluidState> builder)
 		{
 			super.createFluidStateDefinition(builder.add(LEVEL));

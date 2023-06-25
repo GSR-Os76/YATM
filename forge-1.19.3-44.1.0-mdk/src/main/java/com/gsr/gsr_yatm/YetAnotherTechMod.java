@@ -1,6 +1,8 @@
 package com.gsr.gsr_yatm;
 
 import java.util.ArrayList;
+import java.util.Collection;
+
 import org.slf4j.Logger;
 
 import com.gsr.gsr_yatm.block.device.boiler.BoilerScreen;
@@ -14,6 +16,10 @@ import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -22,6 +28,7 @@ import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.CreativeModeTabEvent;
+import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -34,7 +41,7 @@ public class YetAnotherTechMod
 	public static final String MODID = "gsr_yatm";
 	public static final Logger LOGGER = LogUtils.getLogger();
 	
-	private static final ArrayList<RegistryObject<Item>> YATM_GENERAL_CREATIVE_TAB_QUEUE = new ArrayList<RegistryObject<Item>>();
+	private static final ArrayList<RegistryObject<? extends Item>> YATM_GENERAL_CREATIVE_TAB_QUEUE = new ArrayList<>();
 
 	public static CreativeModeTab YATM_GENERAL;
 	
@@ -53,17 +60,20 @@ public class YetAnotherTechMod
 		YATMRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
 		YATMFluids.FLUIDS.register(modEventBus);
 		YATMFluidTypes.FLUID_TYPES.register(modEventBus);
+		YATMMobEffects.MOB_EFFECTS.register(modEventBus);
 		
 		modEventBus.addListener(this::creativeModeTabsBuildContent);
 		modEventBus.addListener(this::creativeModeTabsRegister);
 		modEventBus.addListener(this::clientSetup);
 		modEventBus.addListener(this::gatherData);
 		
+		eventBus.addListener(this::onEntityDamaged);
 		eventBus.addGenericListener(ItemStack.class, this::attachItemStackCapabilities);
 	} // end constructor
 	
 	
 	
+	// should probably move these events into a separate class
 
 	private void creativeModeTabsRegister(CreativeModeTabEvent.Register event)
 	{
@@ -131,6 +141,30 @@ public class YetAnotherTechMod
 
 	
 	
+	private void onEntityDamaged(LivingDamageEvent event) 
+	{
+		if(event.getSource().is(DamageTypes.WITHER)) 
+		{
+			LivingEntity entity = event.getEntity();
+			Collection<MobEffectInstance> effects = entity.getActiveEffects();
+			for(MobEffectInstance effect : effects) 
+			{
+				if(effect.getEffect() == YATMMobEffects.SOUL_AFFLICTION.get()) 
+				{
+					entity.removeEffect(YATMMobEffects.SOUL_AFFLICTION.get());
+					entity.addEffect(new MobEffectInstance(
+							MobEffects.WITHER, 
+							effect.getDuration(), 
+							effect.getAmplifier(), 
+							effect.isAmbient(), 
+							effect.isVisible(),
+							effect.showIcon()));
+					break;
+				}
+			}
+		}
+	} // end onEntityDamaged()
+	
 	private void attachItemStackCapabilities(AttachCapabilitiesEvent<ItemStack> event) 
 	{
 		if(event.getObject().getItem() == Items.GLASS_BOTTLE) 
@@ -142,7 +176,7 @@ public class YetAnotherTechMod
 	
 	
 	
-	public static RegistryObject<Item> queueForGeneralCreativeTab(RegistryObject<Item> item)
+	public static <T extends Item> RegistryObject<T> queueForGeneralCreativeTab(RegistryObject<T> item)
 	{
 		YATM_GENERAL_CREATIVE_TAB_QUEUE.add(item);
 		return item;		

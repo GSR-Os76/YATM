@@ -17,7 +17,7 @@ public class FluidBottleItem extends Item
 	
 	
 	
-	public FluidBottleItem(Supplier<? extends Fluid> fluid, Properties properties)
+	public FluidBottleItem(Properties properties, Supplier<? extends Fluid> fluid)
 	{
 		super(properties);
 		this.m_fluid = fluid;

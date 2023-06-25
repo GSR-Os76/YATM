@@ -157,6 +157,12 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		
 		
 		
+		this.add(YATMMobEffects.CHORUS_INSTANT_TELEPORTATION.get(), "Instant Teleportation");
+		this.add(YATMMobEffects.ENDER_INSTANT_TELEPORTATION.get(), "Instant Teleportation");		
+		this.add(YATMMobEffects.SOUL_AFFLICTION.get(), "Soul Affliction");
+		
+		
+		
 		this.add(YATMFluids.BIO.get(), "Biofluid");
 		this.add(YATMFluids.CHORUS.get(), "Chorus");
 		this.add(YATMFluids.CHORUS_BIO.get(), "Chorus Biofluid");
