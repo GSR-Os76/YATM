@@ -6,6 +6,7 @@ import java.util.Collection;
 import org.slf4j.Logger;
 
 import com.gsr.gsr_yatm.block.device.boiler.BoilerScreen;
+import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerScreen;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorScreen;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderScreen;
 import com.gsr.gsr_yatm.fluid.item.GlassBottleItemStack;
@@ -94,6 +95,7 @@ public class YetAnotherTechMod
 	private void clientSetup(FMLClientSetupEvent event)
 	{
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BOILER_MENU.get(), BoilerScreen::new));
+		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.CRYSTALLIZER_MENU.get(), CrystallizerScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRACTOR_MENU.get(), ExtractorScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRUDER_MENU.get(), ExtruderScreen::new));
 		

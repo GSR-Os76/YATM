@@ -1,0 +1,19 @@
+{
+  "type": "gsr_yatm:crystallization",
+  "cost": 0,
+  "input": {
+    "count": 250,
+    "fluid": "gsr_yatm:ender"
+  },
+  "result": {
+    "count": 1,
+    "item": "minecraft:ender_pearl"
+  },
+  "seed": {
+    "consume": false,
+    "ingedient": {
+      "tag": "forge:sand"
+    }
+  },
+  "time": 300
+}

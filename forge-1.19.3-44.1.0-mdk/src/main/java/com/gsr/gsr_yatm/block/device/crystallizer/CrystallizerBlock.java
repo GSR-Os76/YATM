@@ -1,8 +1,10 @@
-package com.gsr.gsr_yatm.block.device.extruder;
+package com.gsr.gsr_yatm.block.device.crystallizer;
 
 import com.gsr.gsr_yatm.YATMBlockEntityTypes;
+import com.gsr.gsr_yatm.YATMBlockStateProperties;
+import com.gsr.gsr_yatm.YATMLanguageProviderUnitedStatesEnglish;
 import com.gsr.gsr_yatm.YATMMenuTypes;
-import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.utilities.VoxelShapeGetter;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -15,6 +17,7 @@ import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -25,18 +28,27 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.shapes.CollisionContext;
+import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 
-public class ExtruderBlock extends Block implements EntityBlock
+public class CrystallizerBlock extends Block implements EntityBlock
 {
-	public static final DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
-
-
-
-	public ExtruderBlock(Properties properties)
+	public static final DirectionProperty FACING = YATMBlockStateProperties.FACING;
+	
+	private final VoxelShapeGetter m_shape;
+	private final int m_tankCapacities;
+	private final int m_maximumFluidTransferRate;
+	
+	
+	
+	public CrystallizerBlock(Properties properties, VoxelShapeGetter shape, int tankCapacities, int maximumFluidTransferRate)
 	{
 		super(properties);
-		// this.defaultBlockState().setValue(FACING, Direction.NORTH);
+		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
+		this.m_shape = shape;
+		this.m_tankCapacities = tankCapacities;
+		this.m_maximumFluidTransferRate = maximumFluidTransferRate;
 	} // end constructor
 
 
@@ -61,38 +73,53 @@ public class ExtruderBlock extends Block implements EntityBlock
 	{
 		if (!level.isClientSide && player instanceof ServerPlayer serverPlayer)
 		{
-			//ForgeRegistries.ITEMS.tags().forEach((t) -> YetAnotherTechMod.LOGGER.info("found a tag: here's its signature: " + t.toString()));
 			NetworkHooks.openScreen(serverPlayer, blockState.getMenuProvider(level, blockPos));
 		}
 		return InteractionResult.sidedSuccess(level.isClientSide);
 	} // end use()
 
-
-
 	@Override
 	public MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos)
 	{
-		ExtruderBlockEntity blockEntity = (ExtruderBlockEntity) level.getBlockEntity(blockPos);
-		return new SimpleMenuProvider((containerId, playerInventory, player) -> new ExtruderMenu(containerId, playerInventory, ContainerLevelAccess.create(level, blockPos), blockState.getBlock(), blockEntity.getInventory(), blockEntity.getDataAccessor()), Component.translatable("menu.title." + YetAnotherTechMod.MODID + "." + YATMMenuTypes.EXTRUDER_MENU.getId().getPath()));
-		} // end getMenuProvider()
+		CrystallizerBlockEntity blockEntity = (CrystallizerBlockEntity) level.getBlockEntity(blockPos);
+		return new SimpleMenuProvider((containerId, playerInventory, player) -> 
+		new CrystallizerMenu(
+				containerId, 
+				playerInventory, 
+				ContainerLevelAccess.create(level, blockPos), 
+				blockState.getBlock(), 
+				blockEntity.getInventory(), 
+				blockEntity.getDataAccessor()), 
+		Component.translatable(YATMLanguageProviderUnitedStatesEnglish.getTitleNameFor(YATMMenuTypes.CRYSTALLIZER_MENU.get())));
+	} // end getMenuProvider()
 
 
 
 	@Override
 	public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState)
 	{
-		return new ExtruderBlockEntity(blockPos, blockState);
+		return new CrystallizerBlockEntity(blockPos, blockState, this.m_tankCapacities, this.m_maximumFluidTransferRate);
 	} // end newBlockEntity()
 
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType)
 	{
-		return blockEntityType == YATMBlockEntityTypes.EXTRUDER.get() ? (l, bp, bs, be) -> ExtruderBlockEntity.tick(l, bp, bs, (ExtruderBlockEntity) be) : null;
+		return blockEntityType == YATMBlockEntityTypes.CRYSTALLIZER.get() ? (l, bp, bs, be) -> CrystallizerBlockEntity.tick(l, bp, bs, (CrystallizerBlockEntity) be) : null;
 	} // end getTicker()
 
+
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
+	{
+		// TODO Auto-generated method stub
+		return super.getShape(blockState, blockGetter, blockPos, context);
+	}
+
+	
+	
+	
+	
+	
 } // end class
-
-//RecipeUtilities.getTag("gsr_yatm:dies/wire").forEach((i) -> YetAnotherTechMod.LOGGER.info("die tag has an item: " + i));
-
-// level.getRecipeManager().getAllRecipesFor(YetAnotherTechMod.EXTRUSION_RECIPE_TYPE.get()).forEach((er)
-// -> er.tryPrintTags());

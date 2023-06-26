@@ -225,7 +225,7 @@ public class ExtractorBlockEntity extends BlockEntity
 	
 	public ExtractorBlockEntity(BlockPos blockPos, BlockState blockState, int currentCapacity, int fluidCapacity, int maxCurrentTransfer, int maxDrainRate)
 	{
-		super(YATMBlockEntityTypes.EXTRACTOR_BLOCK_ENTITY.get(), blockPos, blockState);
+		super(YATMBlockEntityTypes.EXTRACTOR.get(), blockPos, blockState);
 		this.m_resultTank = new FluidTank(fluidCapacity);
 		this.m_internalCurrentStorer = new CurrentUnitHandler.Builder().capacity(currentCapacity).onCurrentExtracted(this::onCurrentExchanged).onCurrentRecieved(this::onCurrentExchanged).build();
 		this.m_maxCurrentTransfer = maxCurrentTransfer;

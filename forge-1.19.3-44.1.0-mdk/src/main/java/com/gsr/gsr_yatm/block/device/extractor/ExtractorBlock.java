@@ -65,7 +65,7 @@ public class ExtractorBlock extends Block implements EntityBlock
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level levl, BlockState blockState, BlockEntityType<T> blockEntityType)
 	{
-		return blockEntityType == YATMBlockEntityTypes.EXTRACTOR_BLOCK_ENTITY.get() ? (l, bp, bs, be) -> ExtractorBlockEntity.tick(l, bp, bs, (ExtractorBlockEntity) be) : null;
+		return blockEntityType == YATMBlockEntityTypes.EXTRACTOR.get() ? (l, bp, bs, be) -> ExtractorBlockEntity.tick(l, bp, bs, (ExtractorBlockEntity) be) : null;
 	} // end getTicker()
 
 

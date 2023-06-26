@@ -243,6 +243,19 @@ public class SlotUtilities
 			
 		return fillBuffer.getFluidInTank(0).getAmount();		
 	} // end queueToFillFromSlot()
+
+	
+	
+	
+	public static boolean tryToPower(IItemHandler inventory, int powerSlot, int tickRequiredPower)
+	{
+		if(tickRequiredPower <= 0) 
+		{
+			return true;
+		}
+		
+		return true;
+	} // end tryToPower()
 	
 	
 } // end class

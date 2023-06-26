@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.recipe.BoilingRecipeBuilder;
+import com.gsr.gsr_yatm.recipe.CrystallizationRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.ExtractionRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.ExtrusionRecipeBuilder;
 
@@ -110,6 +111,11 @@ public class YATMRecipeProvider extends RecipeProvider
 		
 		
 		this.addWireRecipes(writer);
+		
+		
+		
+		// TODO, create a fluidIngredient, so we can use tags or specifics
+		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ENDER.get(), 250), Tags.Items.SAND, new ItemStack(Items.ENDER_PEARL), false, 0, 300, YetAnotherTechMod.MODID + ":ender_pearl_from_crystallization");
 		
 	} // end buildRecipes()
 	
@@ -432,7 +438,25 @@ public class YATMRecipeProvider extends RecipeProvider
 		.result(result)
 		.temperature(temperature)
 		.timeInTicks(timeInTicks)
+		// TODO, make use tag containing all the boilers
 		.unlockedBy("has_device", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.STEEL_BOILER_ITEM.get()).build()))
+		.save(writer, key);
+	} // end addBoilingRecipe()
+	
+	
+	
+	private void addCrystallizationRecipe(Consumer<FinishedRecipe> writer, FluidStack input, TagKey<Item> seed, ItemStack result, boolean consumeSeed, int currentPerTick, int timeInTicks, String key) 
+	{
+		new CrystallizationRecipeBuilder()
+		.input(input)
+		.seed(Ingredient.of(seed))
+		.result(result)
+		.consumeSeed(consumeSeed)
+		.currentPerTick(currentPerTick)
+		.timeInTicks(timeInTicks)
+		// TODO, make use tag containing all the crystallizers
+		.unlockedBy("has_device", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.STEEL_CRYSTALLIZER_ITEM.get()).build()))
+		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(seed).build()))
 		.save(writer, key);
 	} // end addBoilingRecipe()
 	

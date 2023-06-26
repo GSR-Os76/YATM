@@ -380,19 +380,19 @@ public class BoilerBlockEntity extends BlockEntity
 	
 	public BoilerBlockEntity(BlockPos blockPos, BlockState blockState, int maxTemperature, int tankCapacities, int maxFluidTransferRate)
 	{
-		super(YATMBlockEntityTypes.BOILER_BLOCK_ENTITY.get(), blockPos, blockState);
+		super(YATMBlockEntityTypes.BOILER.get(), blockPos, blockState);
 		this.m_blocksFacingIn = blockState.getValue(BoilerBlock.FACING);
 		this.m_maxTemperature = maxTemperature;
 		this.m_rawInputTank = new FluidTank(tankCapacities);
 		this.m_rawResultTank = new FluidTank(tankCapacities);
 		
-		m_inputTankFillBuffer = new FluidTank(tankCapacities);
+		this.m_inputTankFillBuffer = new FluidTank(tankCapacities);
 		this.m_maxTransferRate = maxFluidTransferRate;
 		
-		m_inputTank = new ConfigurableTankWrapper(this.m_rawInputTank, this::onFluidContentsChanged);
-		m_inputTankLazyOptional = LazyOptional.of(() -> this.m_inputTank);
+		this.m_inputTank = new ConfigurableTankWrapper(this.m_rawInputTank, this::onFluidContentsChanged);
+		this.m_inputTankLazyOptional = LazyOptional.of(() -> this.m_inputTank);
 		
-		m_resultTank = new ConfigurableTankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);
+		this.m_resultTank = new ConfigurableTankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);
 	} // end constructor
 
 
@@ -533,7 +533,7 @@ public class BoilerBlockEntity extends BlockEntity
 		boolean changed = false;
 		if(this.m_inputTankFillBuffer.getFluidAmount() <= 0) 
 		{
-			this.m_initialFillInputTankTransferSize = SlotUtilities.queueToFillFromSlot(this.level, this.worldPosition, m_inventory, FILL_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_inputTankFillBuffer, this.m_maxTransferRate);
+			this.m_initialFillInputTankTransferSize = SlotUtilities.queueToFillFromSlot(this.level, this.worldPosition, this.m_inventory, BoilerBlockEntity.FILL_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_inputTankFillBuffer, this.m_maxTransferRate);
 			if(this.m_initialFillInputTankTransferSize > 0) 
 			{
 				changed = true;
@@ -601,7 +601,7 @@ public class BoilerBlockEntity extends BlockEntity
 		boolean changed = false;		
 		if (this.m_inputTankDrainCountDown > 0)
 		{
-			this.m_inputTankDrainCountDown = SlotUtilities.countDownOrDrainToSlot(this.level, this.worldPosition, this.m_inventory, DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_initialDrainInputTankTransferSize, this.m_inputTankDrainCountDown, this.m_maxTransferRate);
+			this.m_inputTankDrainCountDown = SlotUtilities.countDownOrDrainToSlot(this.level, this.worldPosition, this.m_inventory, BoilerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_initialDrainInputTankTransferSize, this.m_inputTankDrainCountDown, this.m_maxTransferRate);
 			if (this.m_inputTankDrainCountDown <= 0)
 			{
 				this.m_initialDrainInputTankTransferSize = 0;
@@ -610,7 +610,7 @@ public class BoilerBlockEntity extends BlockEntity
 		}
 		if(m_initialDrainInputTankTransferSize == 0) 
 		{
-			this.m_initialDrainInputTankTransferSize = SlotUtilities.queueToDrainToSlot(this.m_inventory, DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_maxTransferRate);
+			this.m_initialDrainInputTankTransferSize = SlotUtilities.queueToDrainToSlot(this.m_inventory, BoilerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_maxTransferRate);
 			this.m_inputTankDrainCountDown = this.m_initialDrainInputTankTransferSize;
 			
 			changed = true;

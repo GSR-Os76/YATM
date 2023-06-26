@@ -71,7 +71,7 @@ public class ExtractorMenu extends AbstractContainerMenu
 	
 	
 	@Override
-	public ItemStack quickMoveStack(Player player, int movedslot)
+	public ItemStack quickMoveStack(Player player, int quickMovedSlotIndex)
 	{
 		// TODO, implement
 		return null;
@@ -80,7 +80,7 @@ public class ExtractorMenu extends AbstractContainerMenu
 	@Override
 	public boolean stillValid(Player player)
 	{
-		return AbstractContainerMenu.stillValid(m_access, player, m_openingBlockType);	
+		return AbstractContainerMenu.stillValid(this.m_access, player, this.m_openingBlockType);	
 	} // end stillValid()
 	
 	

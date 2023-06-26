@@ -28,7 +28,7 @@ public class CurrentUnitForgeEnergyInterchangerBlockEntity extends BlockEntity
 	
 	public CurrentUnitForgeEnergyInterchangerBlockEntity(BlockPos blockPos, BlockState blockState)
 	{
-		super(YATMBlockEntityTypes.C_U_F_E_I_BLOCK_ENTITY.get(), blockPos, blockState);
+		super(YATMBlockEntityTypes.C_U_F_E_I.get(), blockPos, blockState);
 	} // end CurrentUnitForgeEnergyInterchangerBlockEntity()
 
 	

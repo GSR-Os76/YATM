@@ -104,7 +104,7 @@ public class CurrentConduitBlock extends Block implements EntityBlock, IConduitB
 
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType)
 	{
-		return blockEntityType == YATMBlockEntityTypes.CURRENT_CONDUIT_BLOCK_ENTITY.get() ? (l, bp, bs, be) -> CurrentConduitBlockEntity.tick(l, bp, bs, (CurrentConduitBlockEntity) be) : null;
+		return blockEntityType == YATMBlockEntityTypes.CURRENT_CONDUIT.get() ? (l, bp, bs, be) -> CurrentConduitBlockEntity.tick(l, bp, bs, (CurrentConduitBlockEntity) be) : null;
 	} // end getTicker()
 	
 	

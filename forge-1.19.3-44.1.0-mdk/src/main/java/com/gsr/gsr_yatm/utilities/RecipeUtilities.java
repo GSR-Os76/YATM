@@ -22,6 +22,10 @@ import net.minecraftforge.registries.tags.ITagManager;
 
 public class RecipeUtilities
 {	
+	public static final int RECHECK_CRAFTING_PERIOD = 20;
+	
+	
+	
 	public static final String GROUP_KEY = "group";
 
 	public static final String INPUT_OBJECT_KEY = "input";
@@ -29,7 +33,8 @@ public class RecipeUtilities
 	
 	// unique secondary keys
 	public static final String DIE_OBJECT_KEY = "die";
-
+	public static final String SEED_KEY = "seed";
+	public static final String CONSUME_SEED_KEY = "consume";
 	
 	public static final String CURRENT_PER_TICK_KEY = "cost";
 	public static final String TIME_IN_TICKS_KEY = "time";
@@ -42,7 +47,6 @@ public class RecipeUtilities
 	public static final String TAG_KEY = "tag";
 	// NOTE: it's in kelvin
 	public static final String TEMPERATURE_KEY = "temperature";
-
 	
 	
 	

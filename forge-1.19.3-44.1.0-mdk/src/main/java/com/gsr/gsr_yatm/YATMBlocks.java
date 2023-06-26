@@ -7,6 +7,7 @@ import com.gsr.gsr_yatm.block.conduit.FluidConduitBlock;
 import com.gsr.gsr_yatm.block.conduit.InsulatedCurrentConduitBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlock;
+import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlock;
 import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInterchangerBlock;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlock;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderBlock;
@@ -106,6 +107,9 @@ public class YATMBlocks
 	public static final RegistryObject<HeatSinkBlock> LARGE_COPPER_HEAT_SINK = BLOCKS.register("large_copper_heat_sink", () -> new HeatSinkBlock(BlockBehaviour.Properties.of(Material.STONE)));
 	public static final RegistryObject<BoilerTankBlock> STEEL_BOILER_TANK = BLOCKS.register("steel_boiler_tank", () -> new BoilerTankBlock(BlockBehaviour.Properties.of(Material.STONE), 256, 32000));
 	public static final RegistryObject<BoilerBlock> STEEL_BOILER = BLOCKS.register("steel_boiler", () -> new BoilerBlock(BlockBehaviour.Properties.of(Material.STONE), BlockShapes.BOILER_SHAPE, STEEL_MAXIMUM_TEMPERATURE, STEEL_DEVICE_TANK_CAPACITY, STEEL_MAXIMUM_FLUID_TRANSFER_RATE));
+	public static final RegistryObject<CrystallizerBlock> STEEL_CRYSTALLIZER = BLOCKS.register("steel_crystallizer", () -> new CrystallizerBlock(BlockBehaviour.Properties.of(Material.STONE), null, STEEL_DEVICE_TANK_CAPACITY, STEEL_MAXIMUM_FLUID_TRANSFER_RATE));
+	
+	
 	public static final RegistryObject<ExtractorBlock> STEEL_EXTRACTOR = BLOCKS.register("steel_extractor", () -> new ExtractorBlock(BlockBehaviour.Properties.of(Material.STONE)));
 	public static final RegistryObject<ExtruderBlock> STEEL_EXTRUDER = BLOCKS.register("steel_extruder", () -> new ExtruderBlock(BlockBehaviour.Properties.of(Material.STONE)));
 	public static final RegistryObject<CurrentUnitForgeEnergyInterchangerBlock> C_U_F_E_I = BLOCKS.register("current_unit_forge_energy_interchanger", () -> new CurrentUnitForgeEnergyInterchangerBlock(BlockBehaviour.Properties.of(Material.STONE)));

@@ -68,7 +68,7 @@ public class ExtruderMenu extends AbstractContainerMenu
 	
 	
 	@Override
-	public ItemStack quickMoveStack(Player player, int slotIndex)
+	public ItemStack quickMoveStack(Player player, int quickMovedSlotIndex)
 	{
 		// TODO Auto-generated method stub
 		return null;

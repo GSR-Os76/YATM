@@ -127,7 +127,7 @@ public class BoilerTankBlock extends Block implements EntityBlock// implements I
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType)
 	{
 		// TODO Auto-generated method stub
-		return blockEntityType == YATMBlockEntityTypes.BOILER_TANK_BLOCK_ENTITY.get() ? (l, bp, bs, be) -> BoilerTankBlockEntity.tick(l, bp, bs, (BoilerTankBlockEntity)be): null;
+		return blockEntityType == YATMBlockEntityTypes.BOILER_TANK.get() ? (l, bp, bs, be) -> BoilerTankBlockEntity.tick(l, bp, bs, (BoilerTankBlockEntity)be): null;
 	} // end getTicker()
 	
 //	

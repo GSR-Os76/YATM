@@ -114,7 +114,7 @@ public abstract class ChorusBioFluid extends FlowingFluid implements IBottleable
 
 
 	// IMPLEMENTATIONS \\
-	public static class Flowing extends ChorusFluid
+	public static class Flowing extends ChorusBioFluid
 	{
 		protected void createFluidStateDefinition(StateDefinition.Builder<Fluid, FluidState> builder)
 		{
@@ -133,7 +133,7 @@ public abstract class ChorusBioFluid extends FlowingFluid implements IBottleable
 
 	} // end flowing class
 
-	public static class Source extends ChorusFluid
+	public static class Source extends ChorusBioFluid
 	{
 		public int getAmount(FluidState state)
 		{

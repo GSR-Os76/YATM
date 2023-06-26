@@ -107,7 +107,7 @@ public abstract class SolarLightFluid extends FlowingFluid
 
 
 	// IMPLEMENTATIONS \\
-	public static class Flowing extends ChorusFluid
+	public static class Flowing extends SolarLightFluid
 	{
 		protected void createFluidStateDefinition(StateDefinition.Builder<Fluid, FluidState> builder)
 		{
@@ -126,7 +126,7 @@ public abstract class SolarLightFluid extends FlowingFluid
 
 	} // end flowing class
 
-	public static class Source extends ChorusFluid
+	public static class Source extends SolarLightFluid
 	{
 		public int getAmount(FluidState state)
 		{

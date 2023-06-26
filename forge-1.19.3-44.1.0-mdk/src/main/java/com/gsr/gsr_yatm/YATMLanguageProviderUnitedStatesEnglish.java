@@ -2,6 +2,8 @@ package com.gsr.gsr_yatm;
 
 import net.minecraft.Util;
 import net.minecraft.data.PackOutput;
+import net.minecraft.world.inventory.AbstractContainerMenu;
+import net.minecraft.world.inventory.MenuType;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.data.LanguageProvider;
@@ -23,9 +25,9 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add("item_group.gsr_yatm.yatm_general", "Yet Another Tech Mod General");
 		
 		this.add("menu.title.gsr_yatm.boiler_menu", "Boiler");
+		this.add(YATMMenuTypes.CRYSTALLIZER_MENU.get(), "Crystallizer");		
 		this.add("menu.title.gsr_yatm.extruder_menu", "Extruder");
 		this.add("menu.title.gsr_yatm.extractor_menu", "Extractor");
-		
 		
 		
 		this.add(YATMBlocks.RUBBER_MERISTEM.get(), "Rubber Meristem");
@@ -75,6 +77,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), "Large Copper Heat Sink");
 		this.add(YATMBlocks.STEEL_BOILER_TANK.get(), "Steel Boiler Tank");
 		this.add(YATMBlocks.STEEL_BOILER.get(), "Steel Boiler");
+		this.add(YATMBlocks.STEEL_CRYSTALLIZER.get(), "Steel Crystallizer");
 		this.add(YATMBlocks.STEEL_EXTRACTOR.get(), "Steel Extractor");
 		this.add(YATMBlocks.STEEL_EXTRUDER.get(), "Steel Extruder");
 		this.add(YATMBlocks.C_U_F_E_I.get(), "Energy Converter (CU to FE)");
@@ -132,9 +135,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add(YATMItems.LATEX_BOTTLE.get(), "Latex Bottle");
 		this.add(YATMItems.SOUL_SAP_BOTTLE.get(), "Soul Sap Bottle");
 		this.add(YATMItems.SOUL_SYRUP_BOTTLE.get(), "Soul Syrup Bottle");
-		// this.add(YATMItems.ESSENCE_OF_DECAY_BOTTLE.get(), "Esence Of Decay Bottle");
-		// this.add(YATMItems.SOUL_SAP_BOTTLE.get(), "Soul Sap Bottle");
-		
+
 				
 		
 		this.add(YATMItems.IRON_WIRE_DIE.get(), "Iron Die (Wire)");
@@ -198,5 +199,17 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 	{
 		this.add(Util.makeDescriptionId("fluid", ForgeRegistries.FLUIDS.getKey(fluid)), name);
 	} // end add()
+	
+	public <T extends AbstractContainerMenu> void add(MenuType<T> menu, String name) 
+	{
+		this.add(getTitleNameFor(menu), name);
+	} // end add()
+	
+	
+	
+	public static <T extends AbstractContainerMenu> String getTitleNameFor(MenuType<T> menu) 
+	{
+		return Util.makeDescriptionId("menu.title", ForgeRegistries.MENU_TYPES.getKey(menu));//Component.translatable("menu.title." + YetAnotherTechMod.MODID + "." + menu.getId().getPath());
+	} // end getTitleNameFor()
 	
 } // end class

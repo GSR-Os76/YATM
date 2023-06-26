@@ -99,7 +99,7 @@ public class BoilerBlock extends Block implements EntityBlock
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType)
 	{
-		return blockEntityType == YATMBlockEntityTypes.BOILER_BLOCK_ENTITY.get() ? (l, bp, bs, be) -> BoilerBlockEntity.tick(l, bp, bs, (BoilerBlockEntity)be) : null;
+		return blockEntityType == YATMBlockEntityTypes.BOILER.get() ? (l, bp, bs, be) -> BoilerBlockEntity.tick(l, bp, bs, (BoilerBlockEntity)be) : null;
 	} // end getTicker()
 
 	

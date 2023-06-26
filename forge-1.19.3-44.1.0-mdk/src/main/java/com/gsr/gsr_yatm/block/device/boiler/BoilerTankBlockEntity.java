@@ -49,7 +49,7 @@ public class BoilerTankBlockEntity extends BlockEntity
 	// add this place(s)
 	public BoilerTankBlockEntity(BlockPos blockPos, BlockState blockState, int outputRate, int tankCapacity)
 	{
-		super(YATMBlockEntityTypes.BOILER_TANK_BLOCK_ENTITY.get(), blockPos, blockState);
+		super(YATMBlockEntityTypes.BOILER_TANK.get(), blockPos, blockState);
 
 		this.m_maxTransferRate = outputRate;
 		//this.m_rawContents = new FluidTank(tankCapacity);

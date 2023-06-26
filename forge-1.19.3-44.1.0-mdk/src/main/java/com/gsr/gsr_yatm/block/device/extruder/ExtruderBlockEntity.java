@@ -145,7 +145,7 @@ public class ExtruderBlockEntity extends BlockEntity
 
 	public ExtruderBlockEntity(BlockPos blockPos, BlockState blockState)
 	{
-		super(YATMBlockEntityTypes.EXTRUDER_BLOCK_ENTITY.get(), blockPos, blockState);
+		super(YATMBlockEntityTypes.EXTRUDER.get(), blockPos, blockState);
 	} // end constructor
 
 

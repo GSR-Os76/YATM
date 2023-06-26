@@ -42,7 +42,7 @@ public class FluidConduitBlockEntity extends BlockEntity implements IConduit<IFl
 
 	public FluidConduitBlockEntity(BlockPos blockPos, BlockState blockState)
 	{
-		super(YATMBlockEntityTypes.FLUID_CONDUIT_BLOCK_ENTITY.get(), blockPos, blockState);
+		super(YATMBlockEntityTypes.FLUID_CONDUIT.get(), blockPos, blockState);
 		for (int i = 0; i < ALL_DIRECTIONS.length; i++)
 		{
 			this.m_capabilitiesOfNeighbors.put(ALL_DIRECTIONS[i], null);

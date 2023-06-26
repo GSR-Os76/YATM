@@ -56,11 +56,15 @@
   "block.gsr_yatm.soul_afflicted_stripped_rubber_wood": "Soul Afflicted Stripped Rubber Wood",
   "block.gsr_yatm.steel_boiler": "Steel Boiler",
   "block.gsr_yatm.steel_boiler_tank": "Steel Boiler Tank",
+  "block.gsr_yatm.steel_crystallizer": "Steel Crystallizer",
   "block.gsr_yatm.steel_extractor": "Steel Extractor",
   "block.gsr_yatm.steel_extruder": "Steel Extruder",
   "block.gsr_yatm.steel_fluid_conduit": "Steel Fluid Conduit",
   "block.gsr_yatm.stripped_rubber_log": "Stripped Rubber Log",
   "block.gsr_yatm.stripped_rubber_wood": "Stripped Rubber Wood",
+  "effect.gsr_yatm.chorus_instant_teleportation": "Instant Teleportation",
+  "effect.gsr_yatm.ender_instant_teleportation": "Instant Teleportation",
+  "effect.gsr_yatm.soul_affliction": "Soul Affliction",
   "fluid.gsr_yatm.bio": "Biofluid",
   "fluid.gsr_yatm.celestial_light": "Celestial Light",
   "fluid.gsr_yatm.chorus": "Chorus",
@@ -118,6 +122,7 @@
   "item.gsr_yatm.wax_bit": "Wax Bit",
   "item_group.gsr_yatm.yatm_general": "Yet Another Tech Mod General",
   "menu.title.gsr_yatm.boiler_menu": "Boiler",
+  "menu.title.gsr_yatm.crystallizer_menu": "Crystallizer",
   "menu.title.gsr_yatm.extractor_menu": "Extractor",
   "menu.title.gsr_yatm.extruder_menu": "Extruder"
 }

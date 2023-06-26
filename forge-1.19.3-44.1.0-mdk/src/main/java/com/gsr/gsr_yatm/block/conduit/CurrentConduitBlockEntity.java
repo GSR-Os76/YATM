@@ -47,7 +47,7 @@ public class CurrentConduitBlockEntity extends BlockEntity implements IConduit<I
 	
 	public CurrentConduitBlockEntity(BlockPos pos, BlockState blockState, ConductorProperties conductorProperties)
 	{
-		super(YATMBlockEntityTypes.CURRENT_CONDUIT_BLOCK_ENTITY.get(), pos, blockState);
+		super(YATMBlockEntityTypes.CURRENT_CONDUIT.get(), pos, blockState);
 		this.m_conductorProperties = conductorProperties;
 		for (int i = 0; i < ALL_DIRECTIONS.length; i++)
 		{

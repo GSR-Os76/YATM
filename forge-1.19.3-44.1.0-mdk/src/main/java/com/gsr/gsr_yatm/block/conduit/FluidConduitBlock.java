@@ -85,7 +85,7 @@ public class FluidConduitBlock extends Block implements EntityBlock, IConduitBlo
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType)
 	{
-		return blockEntityType == YATMBlockEntityTypes.FLUID_CONDUIT_BLOCK_ENTITY.get() ? (l, bp, bs, be) -> FluidConduitBlockEntity.tick(l, bp, bs, (FluidConduitBlockEntity) be) : null;
+		return blockEntityType == YATMBlockEntityTypes.FLUID_CONDUIT.get() ? (l, bp, bs, be) -> FluidConduitBlockEntity.tick(l, bp, bs, (FluidConduitBlockEntity) be) : null;
 	} // end getTicker()
 
 
