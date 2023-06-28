@@ -1,8 +1,9 @@
 package com.gsr.gsr_yatm.recipe;
 
-import com.gsr.gsr_yatm.YATMItems;
-import com.gsr.gsr_yatm.YATMRecipeSerializers;
-import com.gsr.gsr_yatm.YATMRecipeTypes;
+import com.gsr.gsr_yatm.registry.YATMItems;
+import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
+import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
+
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;

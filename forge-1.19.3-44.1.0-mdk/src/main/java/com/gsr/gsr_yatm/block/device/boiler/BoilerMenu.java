@@ -1,6 +1,6 @@
 package com.gsr.gsr_yatm.block.device.boiler;
 
-import com.gsr.gsr_yatm.YATMMenuTypes;
+import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.NetworkUtilities;
 import com.gsr.gsr_yatm.utilities.SlotUtilities;
 

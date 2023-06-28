@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.block.conduit;
 
-import com.gsr.gsr_yatm.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
+import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.utilities.VoxelShapeGetter;
 
 import net.minecraft.core.BlockPos;

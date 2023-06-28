@@ -1,6 +1,6 @@
 package com.gsr.gsr_yatm.block.device.boiler;
 
-import com.gsr.gsr_yatm.YATMBlockEntityTypes;
+import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionHand;

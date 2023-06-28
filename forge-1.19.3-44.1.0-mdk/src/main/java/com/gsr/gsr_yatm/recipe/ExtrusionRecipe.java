@@ -1,9 +1,9 @@
 package com.gsr.gsr_yatm.recipe;
 
-import com.gsr.gsr_yatm.YATMItems;
-import com.gsr.gsr_yatm.YATMRecipeSerializers;
-import com.gsr.gsr_yatm.YATMRecipeTypes;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderBlockEntity;
+import com.gsr.gsr_yatm.registry.YATMItems;
+import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
+import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 
 import net.minecraft.core.NonNullList;

@@ -2,12 +2,7 @@
   "values": [
     "#gsr_yatm:soul_rubber_tree_blocks",
     "#gsr_yatm:rubber_tree_blocks",
-    "minecraft:dirt",
-    "minecraft:grass_block",
-    "minecraft:farmland",
-    "minecraft:mud",
-    "minecraft:clay",
-    "minecraft:soul_sand",
-    "minecraft:soul_soil"
+    "#gsr_yatm:mediums/rubber_trees_naturally_grow_on",
+    "#gsr_yatm:mediums/soul_afflicted_rubber_trees_naturally_grow_on"
   ]
 }

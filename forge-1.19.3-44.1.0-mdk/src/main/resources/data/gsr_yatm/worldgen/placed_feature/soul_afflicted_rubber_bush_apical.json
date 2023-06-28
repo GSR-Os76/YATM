@@ -1,0 +1,17 @@
+{
+	"feature": "gsr_yatm:soul_afflicted_rubber_bush_apical",
+	"placement": [
+		{
+			"type": "minecraft:block_predicate_filter",
+			"predicate": {
+				"type": "minecraft:would_survive",
+				"state": {
+					"Name": "gsr_yatm:soul_afflicted_rubber_meristem",
+					"Properties": {
+						"stage": "0"
+					}
+				}
+			}
+		}
+	]
+}

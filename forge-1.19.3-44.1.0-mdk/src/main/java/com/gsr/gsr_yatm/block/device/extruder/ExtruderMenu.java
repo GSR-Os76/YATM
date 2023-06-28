@@ -1,6 +1,6 @@
 package com.gsr.gsr_yatm.block.device.extruder;
 
-import com.gsr.gsr_yatm.YATMMenuTypes;
+import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;

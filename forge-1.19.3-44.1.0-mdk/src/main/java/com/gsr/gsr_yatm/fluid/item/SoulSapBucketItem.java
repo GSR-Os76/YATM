@@ -3,8 +3,8 @@ package com.gsr.gsr_yatm.fluid.item;
 import java.util.List;
 import java.util.function.Supplier;
 
-import com.gsr.gsr_yatm.YATMEntityTypeTags;
-import com.gsr.gsr_yatm.YATMItems;
+import com.gsr.gsr_yatm.data_generation.YATMEntityTypeTags;
+import com.gsr.gsr_yatm.registry.YATMItems;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;

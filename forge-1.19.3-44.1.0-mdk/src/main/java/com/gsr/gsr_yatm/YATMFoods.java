@@ -1,5 +1,7 @@
 package com.gsr.gsr_yatm;
 
+import com.gsr.gsr_yatm.registry.YATMMobEffects;
+
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.food.FoodProperties;

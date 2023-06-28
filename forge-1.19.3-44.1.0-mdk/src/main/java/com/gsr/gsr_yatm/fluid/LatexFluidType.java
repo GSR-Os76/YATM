@@ -4,7 +4,7 @@ import java.util.function.Consumer;
 
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.YATMBlocks;
+import com.gsr.gsr_yatm.registry.YATMBlocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;

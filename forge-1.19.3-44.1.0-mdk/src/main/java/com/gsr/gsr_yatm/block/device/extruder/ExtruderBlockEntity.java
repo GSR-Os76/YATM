@@ -5,9 +5,9 @@ import java.util.List;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.YATMBlockEntityTypes;
-import com.gsr.gsr_yatm.YATMRecipeTypes;
 import com.gsr.gsr_yatm.recipe.ExtrusionRecipe;
+import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
+import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.ConfigurableInventoryWrapper;
 import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 

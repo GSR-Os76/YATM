@@ -4,7 +4,7 @@ import static java.util.Map.entry;
 
 import java.util.Map;
 
-import com.gsr.gsr_yatm.YATMBlocks;
+import com.gsr.gsr_yatm.registry.YATMBlocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.InteractionResult;

@@ -1,6 +1,6 @@
 package com.gsr.gsr_yatm.block.device.crystallizer;
 
-import com.gsr.gsr_yatm.YATMMenuTypes;
+import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.NetworkUtilities;
 
 import net.minecraft.world.entity.player.Inventory;

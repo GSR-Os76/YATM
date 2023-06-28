@@ -1,10 +1,10 @@
 package com.gsr.gsr_yatm.fluid;
 
-import com.gsr.gsr_yatm.YATMBlocks;
-import com.gsr.gsr_yatm.YATMFluidTypes;
-import com.gsr.gsr_yatm.YATMFluids;
-import com.gsr.gsr_yatm.YATMItems;
 import com.gsr.gsr_yatm.api.IBottleable;
+import com.gsr.gsr_yatm.registry.YATMBlocks;
+import com.gsr.gsr_yatm.registry.YATMFluidTypes;
+import com.gsr.gsr_yatm.registry.YATMFluids;
+import com.gsr.gsr_yatm.registry.YATMItems;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

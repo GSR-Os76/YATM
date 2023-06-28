@@ -1,8 +1,9 @@
 package com.gsr.gsr_yatm.fluid;
 
-import com.gsr.gsr_yatm.YATMBlocks;
-import com.gsr.gsr_yatm.YATMFluidTypes;
-import com.gsr.gsr_yatm.YATMFluids;
+import com.gsr.gsr_yatm.registry.YATMBlocks;
+import com.gsr.gsr_yatm.registry.YATMFluidTypes;
+import com.gsr.gsr_yatm.registry.YATMFluids;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.Item;

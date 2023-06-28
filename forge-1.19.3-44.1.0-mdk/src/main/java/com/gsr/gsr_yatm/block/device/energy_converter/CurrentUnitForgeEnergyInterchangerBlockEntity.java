@@ -3,10 +3,10 @@ package com.gsr.gsr_yatm.block.device.energy_converter;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.api.implementation.CurrentUnitForgeEnergyInterchanger;
+import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

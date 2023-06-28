@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.recipe;
 
 import com.google.gson.JsonObject;
-import com.gsr.gsr_yatm.YATMRecipeSerializers;
+import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 
 import net.minecraft.advancements.Advancement;

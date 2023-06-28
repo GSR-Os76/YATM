@@ -3,7 +3,7 @@ package com.gsr.gsr_yatm.block.device.boiler;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.YATMBlockEntityTypes;
+import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.utilities.ConfigurableTankWrapper;
 
 import net.minecraft.core.BlockPos;

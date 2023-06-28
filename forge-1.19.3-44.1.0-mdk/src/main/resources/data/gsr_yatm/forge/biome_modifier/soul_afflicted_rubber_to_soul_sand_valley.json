@@ -1,0 +1,6 @@
+{
+	"type": "forge:add_features",
+	"biomes": "#gsr_yatm:has_feature/soul_afflicted_rubber_bush",
+	"features": "gsr_yatm:natural_soul_afflicted_rubber_bush_apical",
+	"step": "vegetal_decoration"
+}

@@ -2,11 +2,11 @@ package com.gsr.gsr_yatm.block.device.crystallizer;
 
 import java.util.List;
 
-import com.gsr.gsr_yatm.YATMBlockEntityTypes;
-import com.gsr.gsr_yatm.YATMBlocks;
-import com.gsr.gsr_yatm.YATMRecipeTypes;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.recipe.CrystallizationRecipe;
+import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
+import com.gsr.gsr_yatm.registry.YATMBlocks;
+import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.ConfigurableInventoryWrapper;
 import com.gsr.gsr_yatm.utilities.ConfigurableTankWrapper;
 import com.gsr.gsr_yatm.utilities.NetworkUtilities;

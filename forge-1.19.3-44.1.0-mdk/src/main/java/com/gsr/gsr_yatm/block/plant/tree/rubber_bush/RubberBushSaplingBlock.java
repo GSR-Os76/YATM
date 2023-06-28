@@ -1,9 +1,10 @@
 package com.gsr.gsr_yatm.block.plant.tree.rubber_bush;
 
 import com.google.common.collect.ImmutableList;
-import com.gsr.gsr_yatm.YATMBlockTags;
-import com.gsr.gsr_yatm.YATMBlocks;
 import com.gsr.gsr_yatm.block.plant.tree.SelfLayeringSaplingBlock;
+import com.gsr.gsr_yatm.block.plant.tree.soul_afflicted_rubber_bush.SoulAfflictedRubberBushSaplingBlock;
+import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
+import com.gsr.gsr_yatm.registry.YATMBlocks;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;

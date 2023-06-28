@@ -5,11 +5,11 @@ import java.util.EnumMap;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.conduit.network_manager.CurrentNetworkManager;
 import com.gsr.gsr_yatm.block.conduit.network_manager.IConduitNetwork;
+import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

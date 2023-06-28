@@ -1,8 +1,8 @@
 package com.gsr.gsr_yatm.block.device.extruder;
 
-import com.gsr.gsr_yatm.YATMBlockEntityTypes;
-import com.gsr.gsr_yatm.YATMMenuTypes;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
+import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
