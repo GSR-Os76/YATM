@@ -1,6 +1,6 @@
 package com.gsr.gsr_yatm.block.device.extruder;
 
-import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.data_generation.YATMLanguageProviderUnitedStatesEnglish;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 
@@ -73,7 +73,10 @@ public class ExtruderBlock extends Block implements EntityBlock
 	public MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos)
 	{
 		ExtruderBlockEntity blockEntity = (ExtruderBlockEntity) level.getBlockEntity(blockPos);
-		return new SimpleMenuProvider((containerId, playerInventory, player) -> new ExtruderMenu(containerId, playerInventory, ContainerLevelAccess.create(level, blockPos), blockState.getBlock(), blockEntity.getInventory(), blockEntity.getDataAccessor()), Component.translatable("menu.title." + YetAnotherTechMod.MODID + "." + YATMMenuTypes.EXTRUDER_MENU.getId().getPath()));
+		return new SimpleMenuProvider((containerId, playerInventory, player) -> new ExtruderMenu(containerId, playerInventory, ContainerLevelAccess.create(level, blockPos), blockState.getBlock(), blockEntity.getInventory(), blockEntity.getDataAccessor()), 
+				Component.translatable(YATMLanguageProviderUnitedStatesEnglish.getTitleNameFor(YATMMenuTypes.EXTRUDER_MENU.get()))
+				// Component.translatable("menu.title." + YetAnotherTechMod.MODID + "." + YATMMenuTypes.EXTRUDER_MENU.getId().getPath())
+				);
 		} // end getMenuProvider()
 
 

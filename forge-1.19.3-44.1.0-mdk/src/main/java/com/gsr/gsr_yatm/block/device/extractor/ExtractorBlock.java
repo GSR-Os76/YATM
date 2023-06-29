@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.block.device.extractor;
 
 import com.gsr.gsr_yatm.YATMBlockStateProperties;
-import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.data_generation.YATMLanguageProviderUnitedStatesEnglish;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 
@@ -85,7 +85,10 @@ public class ExtractorBlock extends Block implements EntityBlock
 	{
 		ExtractorBlockEntity ebe = (ExtractorBlockEntity)level.getBlockEntity(blockPos);
 		return new SimpleMenuProvider((containerId, playerInv, player) -> new ExtractorMenu(containerId, playerInv, ContainerLevelAccess.create(level, blockPos), blockState.getBlock(), ebe.getInventory(), ebe.getDataAccessor())
-				, Component.translatable("menu.title." + YetAnotherTechMod.MODID + "." + YATMMenuTypes.EXTRACTOR_MENU.getId().getPath()));
+				,
+				Component.translatable(YATMLanguageProviderUnitedStatesEnglish.getTitleNameFor(YATMMenuTypes.EXTRACTOR_MENU.get()))
+				// Component.translatable("menu.title." + YetAnotherTechMod.MODID + "." + YATMMenuTypes.EXTRACTOR_MENU.getId().getPath())
+				);
 	} // end getMenuProvider()
 	
 	

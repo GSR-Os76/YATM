@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.block.device.boiler;
 
 import com.gsr.gsr_yatm.YATMBlockStateProperties;
-import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.data_generation.YATMLanguageProviderUnitedStatesEnglish;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.VoxelShapeGetter;
@@ -125,7 +125,10 @@ public class BoilerBlock extends Block implements EntityBlock
 				blockState.getBlock(),
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor())
-				, Component.translatable("menu.title." + YetAnotherTechMod.MODID + "." + YATMMenuTypes.BOILER_MENU.getId().getPath()));//, null, null, null, null));
+				, 
+				Component.translatable(YATMLanguageProviderUnitedStatesEnglish.getTitleNameFor(YATMMenuTypes.BOILER_MENU.get()))
+				// Component.translatable("menu.title." + YetAnotherTechMod.MODID + "." + YATMMenuTypes.BOILER_MENU.getId().getPath())
+				);
 	} // end getMenuProvider()
 	
 	

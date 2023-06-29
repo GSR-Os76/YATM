@@ -5,6 +5,7 @@ import com.gsr.gsr_yatm.block.device.boiler.BoilerMenu;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerMenu;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorMenu;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderMenu;
+import com.gsr.gsr_yatm.block.device.grinder.GrinderMenu;
 
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.inventory.MenuType;
@@ -20,7 +21,12 @@ public class YATMMenuTypes
 	
 	public static final RegistryObject<MenuType<BoilerMenu>> BOILER_MENU = MENU_TYPES.register("boiler_menu", () -> new MenuType<>(BoilerMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<CrystallizerMenu>> CRYSTALLIZER_MENU = MENU_TYPES.register("crystallizer_menu", () -> new MenuType<>(CrystallizerMenu::new, FeatureFlagSet.of()));
+	public static final RegistryObject<MenuType<GrinderMenu>> GRINDER_MENU = MENU_TYPES.register("grinder_menu", () -> new MenuType<>(GrinderMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<ExtractorMenu>> EXTRACTOR_MENU = MENU_TYPES.register("extractor_menu", () -> new MenuType<>(ExtractorMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<ExtruderMenu>> EXTRUDER_MENU = MENU_TYPES.register("extruder_menu", () -> new MenuType<>(ExtruderMenu::new, FeatureFlagSet.of()));
+
+
+
+	
 	
 } // end class

@@ -1,4 +1,5 @@
 {
+  "biome.gsr_yatm.old_growth_soul_sand_valley": "Old Growth Soul Sand Valley",
   "block.gsr_yatm.current_unit_forge_energy_interchanger": "Energy Converter (CU to FE)",
   "block.gsr_yatm.eight_cu_wire": "8cu Wire",
   "block.gsr_yatm.enameled_eight_cu_wire": "Enameled 8cu Wire",
@@ -130,5 +131,6 @@
   "menu.title.gsr_yatm.boiler_menu": "Boiler",
   "menu.title.gsr_yatm.crystallizer_menu": "Crystallizer",
   "menu.title.gsr_yatm.extractor_menu": "Extractor",
-  "menu.title.gsr_yatm.extruder_menu": "Extruder"
+  "menu.title.gsr_yatm.extruder_menu": "Extruder",
+  "menu.title.gsr_yatm.grinder_menu": "Grinder"
 }

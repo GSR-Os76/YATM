@@ -31,12 +31,14 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 	{
 		this.add("item_group.gsr_yatm.yatm_general", "Yet Another Tech Mod General");
 		
-		this.add("menu.title.gsr_yatm.boiler_menu", "Boiler");
+		this.add(YATMMenuTypes.BOILER_MENU.get(), "Boiler");		
+		this.add(YATMMenuTypes.GRINDER_MENU.get(), "Grinder");		
 		this.add(YATMMenuTypes.CRYSTALLIZER_MENU.get(), "Crystallizer");		
-		this.add("menu.title.gsr_yatm.extruder_menu", "Extruder");
-		this.add("menu.title.gsr_yatm.extractor_menu", "Extractor");
+		this.add(YATMMenuTypes.EXTRUDER_MENU.get(), "Extruder");		
+		this.add(YATMMenuTypes.EXTRACTOR_MENU.get(), "Extractor");		
+
 		
-		// TODO, biome and carpet and others once added
+		this.add("biome.gsr_yatm.old_growth_soul_sand_valley", "Old Growth Soul Sand Valley");
 		
 		this.add(YATMBlocks.RUBBER_MERISTEM.get(), "Rubber Meristem");
 		this.add(YATMBlocks.POTTED_RUBBER_MERISTEM.get(), "Potted Rubber Meristem");
@@ -210,6 +212,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 	} // end addMinecraftTranslations()
 	
 	
+	
+	// TODO \\ separate what's below out into another file, as it isn't language specific
 	
 	public void add(Fluid fluid, String name)
 	{
