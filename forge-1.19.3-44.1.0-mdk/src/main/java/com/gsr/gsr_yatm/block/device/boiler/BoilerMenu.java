@@ -96,47 +96,32 @@ public class BoilerMenu extends AbstractContainerMenu
 				quickMovedSlot.onQuickCraft(slotsStack, quickMovedStack);
 			}
 			else if (quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END)
-			{				
-				// if fluid handling
-				//...
-				// elif valid fuel
-				// ...
-				// elif from inventory
-					// go to hotbar
-				// elif from hotbar
-					// go to inventory
-				if(SlotUtilities.isValidTankFillSlotInsert(slotsStack)) 
-				{
-					if(!this.moveItemStackTo(slotsStack, BoilerBlockEntity.FIRST_FILL_FLUID_SLOT, BoilerBlockEntity.LAST_FILL_FLUID_SLOT + 1, false)) 
-					{						
-						return ItemStack.EMPTY;
-					}
+			{			
+				boolean moved = false;
+				if(SlotUtilities.isValidTankFillSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, BoilerBlockEntity.FIRST_FILL_FLUID_SLOT, BoilerBlockEntity.LAST_FILL_FLUID_SLOT + 1, false)) 
+				{					
+					moved = true;				
 				}
-				else if(SlotUtilities.isValidTankDrainSlotInsert(slotsStack)) 
-				{
-					if(!this.moveItemStackTo(slotsStack, BoilerBlockEntity.FIRST_DRAIN_FLUID_SLOT, BoilerBlockEntity.LAST_DRAIN_FLUID_SLOT + 1, false)) 
-					{						
-						return ItemStack.EMPTY;
-					}
+				else if(SlotUtilities.isValidTankDrainSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, BoilerBlockEntity.FIRST_DRAIN_FLUID_SLOT, BoilerBlockEntity.LAST_DRAIN_FLUID_SLOT + 1, false)) 
+				{				
+					moved = true;
 				}
-				else if(SlotUtilities.isValidHeatingSlotInsert(slotsStack)) 
-				{
-					if(!this.moveItemStackTo(slotsStack, BoilerBlockEntity.HEAT_SLOT, BoilerBlockEntity.HEAT_SLOT + 1, false)) 
-					{						
-						return ItemStack.EMPTY;
-					}
+				else if(SlotUtilities.isValidHeatingSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, BoilerBlockEntity.HEAT_SLOT, BoilerBlockEntity.HEAT_SLOT + 1, false)) 
+				{			
+					moved = true;
 				}
-				else if(quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_INVENTORY_END) 
-				{
-					if(!this.moveItemStackTo(slotsStack, PLAYER_HOTBAR_START, PLAYER_HOTBAR_END + 1, false)) 
-					{						
-						return ItemStack.EMPTY;
-					}
+				else if((quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_INVENTORY_END) && this.moveItemStackTo(slotsStack, PLAYER_HOTBAR_START, PLAYER_HOTBAR_END + 1, false)) 
+				{						
+					moved = true;
 				}
-				else if ((quickMovedSlotIndex >= PLAYER_HOTBAR_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END) && !this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_INVENTORY_END + 1, false))
+				else if ((quickMovedSlotIndex >= PLAYER_HOTBAR_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END) && this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_INVENTORY_END + 1, false))
+				{
+					moved = true;
+				}			
+				if(!moved) 
 				{
 					return ItemStack.EMPTY;
-				}				
+				}
 			}
 			// if not result or inventory of player, move from other device slots to player
 			// inventory if is possible

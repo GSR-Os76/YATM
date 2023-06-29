@@ -36,8 +36,6 @@ public class ExtruderBlockEntity extends BlockEntity
 	public static final int INPUT_REMAINDER_SLOT = 3;
 	public static final int POWER_SLOT = 4;
 
-	public static final int LAST_INVENTORY_SLOT = INPUT_REMAINDER_SLOT;
-
 	public static final int EXTRUDE_PROGRESS_SLOT = 0;
 	public static final int EXTRUDE_TIME_SLOT = 1;
 	public static final int STORED_POWER_SLOT = 2;

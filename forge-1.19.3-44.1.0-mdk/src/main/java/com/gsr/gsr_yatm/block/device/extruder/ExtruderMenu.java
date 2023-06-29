@@ -1,6 +1,7 @@
 package com.gsr.gsr_yatm.block.device.extruder;
 
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
+import com.gsr.gsr_yatm.utilities.SlotUtilities;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -17,7 +18,7 @@ import net.minecraftforge.items.SlotItemHandler;
 
 public class ExtruderMenu extends AbstractContainerMenu
 {
-	public static final int PLAYER_INVENTORY_START = ExtruderBlockEntity.LAST_INVENTORY_SLOT + 1;
+	public static final int PLAYER_INVENTORY_START = (ExtruderBlockEntity.INVENTORY_SLOT_COUNT - 1) + 1;
 	public static final int PLAYER_INVENTORY_END = PLAYER_INVENTORY_START + 26;
 	public static final int PLAYER_HOTBAR_START = PLAYER_INVENTORY_END + 1;
 	public static final int PLAYER_HOTBAR_END = PLAYER_HOTBAR_START + 8;
@@ -70,9 +71,73 @@ public class ExtruderMenu extends AbstractContainerMenu
 	@Override
 	public ItemStack quickMoveStack(Player player, int quickMovedSlotIndex)
 	{
-		// TODO Auto-generated method stub
-		return null;
-	}
+		ItemStack quickMovedStack = ItemStack.EMPTY;
+		Slot quickMovedSlot = this.slots.get(quickMovedSlotIndex);
+		if (quickMovedSlot != null && quickMovedSlot.hasItem())
+		{
+			ItemStack slotsStack = quickMovedSlot.getItem();
+			if (quickMovedSlotIndex == ExtruderBlockEntity.RESULT_SLOT)
+			{				
+				if (!this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_HOTBAR_END + 1, true))
+				{					
+					return ItemStack.EMPTY;
+				}
+				quickMovedSlot.onQuickCraft(slotsStack, quickMovedStack);
+			}
+			else if (quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END)
+			{	
+				boolean moved = false;
+				if(this.moveItemStackTo(slotsStack, ExtruderBlockEntity.INPUT_SLOT, ExtruderBlockEntity.INPUT_SLOT + 1, false)) 
+				{						
+					moved = true; //return ItemStack.EMPTY;					
+				}
+				else if(this.moveItemStackTo(slotsStack, ExtruderBlockEntity.DIE_SLOT, ExtruderBlockEntity.DIE_SLOT + 1, false)) 
+				{											
+					moved = true; //return ItemStack.EMPTY;					
+				}
+				else if(SlotUtilities.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, ExtruderBlockEntity.POWER_SLOT, ExtruderBlockEntity.POWER_SLOT + 1, false)) 
+				{					
+					moved = true; //return ItemStack.EMPTY;
+				}
+				else if((quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_INVENTORY_END) && this.moveItemStackTo(slotsStack, PLAYER_HOTBAR_START, PLAYER_HOTBAR_END + 1, false)) 
+				{											
+					moved = true; //return ItemStack.EMPTY;
+				}
+				else if ((quickMovedSlotIndex >= PLAYER_HOTBAR_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END) && this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_INVENTORY_END + 1, false))
+				{
+					moved = true; //return ItemStack.EMPTY;
+				}
+				if(!moved) 
+				{
+					return ItemStack.EMPTY;
+				}
+			}
+			else if (!this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_HOTBAR_END + 1, false))
+			{
+				return ItemStack.EMPTY;
+			}
+			
+			
+			
+			if(slotsStack.isEmpty())
+			{
+				quickMovedSlot.set(ItemStack.EMPTY);
+			}
+			else 
+			{
+				quickMovedSlot.setChanged();
+			}
+			
+			if(slotsStack == quickMovedStack)
+			{
+				return ItemStack.EMPTY;
+			}
+		
+			quickMovedSlot.onTake(player, quickMovedStack);
+		} // end slot usability check
+
+		return quickMovedStack;
+	} // end quickMoveStack()
 
 	@Override
 	public boolean stillValid(Player player)

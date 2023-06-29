@@ -35,7 +35,7 @@ public class SlotUtilities
 	{
 		// TODO, implement actual logic, create recipe type for heating
 		return getHeatingBurnTime(itemStack) > 0;
-	}
+	} // end isValidHeatingSlotInsert()
 
 	
 		
@@ -61,6 +61,14 @@ public class SlotUtilities
 //				: 
 					itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent();
 	} // end isValidTankDrainSlotInsert()
+	
+	
+	
+	public static boolean isValidPowerSlotInsert(ItemStack itemStack) 
+	{
+		// TODO, implement
+		return true;
+	}
 	
 	
 	
