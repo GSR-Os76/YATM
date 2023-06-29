@@ -55,6 +55,7 @@
 			"minecraft:glowstone_extra",
 			"minecraft:glowstone",
 			"minecraft:patch_crimson_roots",
+			"gsr_yatm:patch_warped_roots",
 			"minecraft:ore_magma",
 			"minecraft:spring_closed",
 			"minecraft:ore_soul_sand",
@@ -66,9 +67,10 @@
 			"minecraft:ore_debris_small"
 		],
 		[
-			"gsr_yatm:natural_soul_afflicted_rubber_tree_apical"
+			
 		],
 		[
+			"gsr_yatm:natural_soul_afflicted_rubber_tree_apical",
 			"minecraft:spring_lava"
 		]
 	],

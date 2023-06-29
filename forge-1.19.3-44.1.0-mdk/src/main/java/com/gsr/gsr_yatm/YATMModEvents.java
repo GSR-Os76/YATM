@@ -29,9 +29,14 @@ import com.gsr.gsr_yatm.registry.YATMTrunkPlacerTypes;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.data.worldgen.DimensionTypes;
+import net.minecraft.data.worldgen.biome.NetherBiomes;
+import net.minecraft.world.level.biome.BiomeGenerationSettings;
+import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 
 public class YATMModEvents
 {
@@ -60,7 +65,12 @@ public class YATMModEvents
 	
 	
 	
-	
+	private static void commonSetup(FMLCommonSetupEvent event) 
+	{
+		// TODO, add biome to the nether, biome manager seems to only support the overworld currently, and I wish to not break compatibility
+		// NetherBiomes l
+		// event.enqueueWork(() -> ; BiomeManager.addAdditionalOverworldBiomes(null))
+	}
 	
 	private static void clientSetup(FMLClientSetupEvent event)
 	{
