@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/carpet",
+  "textures": {
+    "wool": "gsr_yatm:block/plant/rubber/soul_afflicted_leaf_mulch"
+  }
+}

@@ -36,8 +36,10 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add("menu.title.gsr_yatm.extruder_menu", "Extruder");
 		this.add("menu.title.gsr_yatm.extractor_menu", "Extractor");
 		
+		// TODO, biome and carpet and others once added
 		
 		this.add(YATMBlocks.RUBBER_MERISTEM.get(), "Rubber Meristem");
+		this.add(YATMBlocks.POTTED_RUBBER_MERISTEM.get(), "Potted Rubber Meristem");
 		this.add(YATMBlocks.RUBBER_LEAVES_YOUNG.get(), "Rubber Leaves Young");
 		this.add(YATMBlocks.RUBBER_LEAVES_FLOWERING.get(), "Rubber Leaves Flowering");
 		this.add(YATMBlocks.RUBBER_LEAVES_OLD.get(), "Rubber Leaves Old");	
@@ -58,6 +60,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add(YATMBlocks.RUBBER_BUTTON.get(), "Rubber Button");
 		
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), "Soul Afflicted Rubber Meristem");
+		this.add(YATMBlocks.POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM.get(), "Potted Soul Afflicted Rubber Meristem");
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG.get(), "Soul Afflicted Rubber Leaves Young");
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get(), "Soul Afflicted Rubber Leaves Flowering");
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_ROOTS.get(), "Soul Afflicted Rubber Roots");
@@ -78,8 +81,13 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_TRAPDOOR.get(), "Soul Afflicted Rubber Trapdoor");
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE.get(), "Soul Afflicted Rubber Pressure Plate");
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_BUTTON.get(), "Soul Afflicted Rubber Button");
+		this.add(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), "Soul Afflicted Leaf Mulch");
+		
+		this.add(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), "Phantasmal Shelf Fungi");
 		
 		this.add(YATMBlocks.RUBBER_BLOCK.get(), "Rubber Block");
+		this.add(YATMBlocks.ROOTED_SOUL_SOIL.get(), "Rooted Soul Soil");
+		
 		
 		
 		this.add(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), "Large Copper Heat Sink");

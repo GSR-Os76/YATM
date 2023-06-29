@@ -19,7 +19,9 @@ import net.minecraftforge.registries.tags.ITagManager;
 
 public class YATMBiomeTags extends BiomeTagsProvider
 {
+	@SuppressWarnings("unused")
 	private static final String MINECRAFT_ID = "minecraft";
+	@SuppressWarnings("unused")
 	private static final String FORGE_ID = "forge";
 	
 	private static final ITagManager<Biome> TM = ForgeRegistries.BIOMES.tags();

@@ -1,6 +1,9 @@
 {
   "variants": {
-    "": {
+    "waterlogged=false": {
+      "model": "gsr_yatm:block/soul_afflicted_rubber_roots"
+    },
+    "waterlogged=true": {
       "model": "gsr_yatm:block/soul_afflicted_rubber_roots"
     }
   }

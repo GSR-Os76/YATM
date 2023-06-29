@@ -23,6 +23,7 @@ import com.gsr.gsr_yatm.registry.YATMMobEffects;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.registry.YATMRootPlacerTypes;
+import com.gsr.gsr_yatm.registry.YATMTreeDecoratorTypes;
 import com.gsr.gsr_yatm.registry.YATMTrunkPlacerTypes;
 
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -48,6 +49,9 @@ public class YATMModEvents
 		YATMFoliagePlacerTypes.FOLIAGE_PLACER_TYPES.register(modEventBus);
 		YATMTrunkPlacerTypes.TRUNK_PLACER_TYPES.register(modEventBus);
 		YATMRootPlacerTypes.ROOT_PLACER_TYPES.register(modEventBus);
+		YATMTreeDecoratorTypes.TREE_DECORATOR_TYPES.register(modEventBus);
+		
+		YATMBlocks.addFlowersToPots();
 		
 		YATMCreativeModTabs.register(modEventBus);
 		modEventBus.addListener(YATMModEvents::clientSetup);

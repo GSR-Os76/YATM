@@ -13,6 +13,8 @@ import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInte
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlock;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
+import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
+import com.gsr.gsr_yatm.block.plant.tree.AerialRootsBlock;
 import com.gsr.gsr_yatm.block.plant.tree.StrippedSapLogBlock;
 import com.gsr.gsr_yatm.block.plant.tree.rubber_bush.RubberBushSaplingBlock;
 import com.gsr.gsr_yatm.block.plant.tree.soul_afflicted_rubber_bush.SoulAfflictedRubberBushSaplingBlock;
@@ -20,13 +22,17 @@ import com.gsr.gsr_yatm.utilities.BlockShapes;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ButtonBlock;
+import net.minecraft.world.level.block.CarpetBlock;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
+import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
+import net.minecraft.world.level.block.RootedDirtBlock;
 import net.minecraft.world.level.block.PressurePlateBlock.Sensitivity;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
@@ -49,12 +55,12 @@ public class YATMBlocks
 	
 	// TODO, add unique rooted dirt block and rooted soul sand.
 	// TODO, consider by some mean letting roots root into cracked blocks, and or break them further, or to break crackable blocks
-	// TODO, decrease tree spawn in soul sand valley significantly so, add in a unique biome to have the much denser forest. maybe come up with other features and foliage to flush the place out
 	// TODO, make rubber tree to match soul rubber in it's growth pattern, probably decorate conditionally with bees.
-	// TODO, design lateral growth, add lateral meristem to apically grown tree, maybe
+	// TODO, design lateral growth, add lateral meristems to apically grown tree, maybe
 	
 	private static final BlockSetType RUBBER_BLOCK_SET_TYPE = new BlockSetType("rubber");
 	public static final RegistryObject<RubberBushSaplingBlock> RUBBER_MERISTEM = BLOCKS.register("rubber_meristem", () -> new RubberBushSaplingBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));	
+	public static final RegistryObject<FlowerPotBlock> POTTED_RUBBER_MERISTEM = BLOCKS.register("potted_rubber_meristem", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.RUBBER_MERISTEM.get(), BlockBehaviour.Properties.of(Material.DECORATION).instabreak().noOcclusion()));
 	public static final RegistryObject<LeavesBlock> RUBBER_LEAVES_YOUNG = BLOCKS.register("rubber_leaves_young", () ->  new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isSuffocating((bs, bg, bp) -> false).isViewBlocking((bs,bg,bp) -> false)));
 	public static final RegistryObject<LeavesBlock> RUBBER_LEAVES_FLOWERING = BLOCKS.register("rubber_leaves_flowering", () ->  new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isSuffocating((bs, bg, bp) -> false).isViewBlocking((bs,bg,bp) -> false)));
 	// maybe make persistent?
@@ -78,14 +84,12 @@ public class YATMBlocks
 	// boat
 	// boat with chest
 	
-
 	public static final RegistryObject<SoulAfflictedRubberBushSaplingBlock> SOUL_AFFLICTED_RUBBER_MERISTEM = BLOCKS.register("soul_afflicted_rubber_meristem", () -> new SoulAfflictedRubberBushSaplingBlock(BlockBehaviour.Properties.of(Material.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS)));
+	public static final RegistryObject<FlowerPotBlock> POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM = BLOCKS.register("potted_soul_afflicted_rubber_meristem", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), BlockBehaviour.Properties.of(Material.DECORATION).instabreak().noOcclusion()));
 	public static final RegistryObject<LeavesBlock> SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG = BLOCKS.register("soul_afflicted_rubber_leaves_young", () ->  new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isSuffocating((bs, bg, bp) -> false).isViewBlocking((bs,bg,bp) -> false)));
 	public static final RegistryObject<LeavesBlock> SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING = BLOCKS.register("soul_afflicted_rubber_leaves_flowering", () ->  new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isSuffocating((bs, bg, bp) -> false).isViewBlocking((bs,bg,bp) -> false)));
 	public static final RegistryObject<LeavesBlock> SOUL_AFFLICTED_RUBBER_LEAVES_OLD = BLOCKS.register("soul_afflicted_rubber_leaves_old", () ->  new LeavesBlock(BlockBehaviour.Properties.of(Material.LEAVES).strength(0.3F).randomTicks().sound(SoundType.GRASS).noOcclusion().isSuffocating((bs, bg, bp) -> false).isViewBlocking((bs,bg,bp) -> false)));
-	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_ROOTS = BLOCKS.register("soul_afflicted_rubber_roots", () ->  new Block(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.PODZOL).strength(0.7F).randomTicks().sound(SoundType.MANGROVE_ROOTS).noOcclusion().isSuffocating((bs, bg, bp) -> false).isViewBlocking((bs,bg,bp) -> false)));
-	//propertiesize ^ this
-	//Blocks
+	public static final RegistryObject<AerialRootsBlock> SOUL_AFFLICTED_RUBBER_ROOTS = BLOCKS.register("soul_afflicted_rubber_roots", () ->  new AerialRootsBlock(BlockBehaviour.Properties.of(Material.WOOD, MaterialColor.PODZOL).strength(0.7F).randomTicks().sound(SoundType.MANGROVE_ROOTS).noOcclusion().isSuffocating((bs, bg, bp) -> false).isViewBlocking((bs,bg,bp) -> false)));
 	public static final RegistryObject<StrippableRotatedPillarBlock> SOUL_AFFLICTED_RUBBER_LOG = BLOCKS.register("soul_afflicted_rubber_log", () -> new StrippableRotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD), YATMBlocks::getSoulAfflictedPartiallyStrippedRubberLog));
 	public static final RegistryObject<StrippableRotatedPillarBlock> SOUL_AFFLICTED_RUBBER_WOOD = BLOCKS.register("soul_afflicted_rubber_wood", () -> new StrippableRotatedPillarBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD), YATMBlocks::getSoulAfflictedStrippedRubberWood));
 	public static final RegistryObject<StrippedSapLogBlock> SOUL_AFFLICTED_PARTIALLY_STRIPPED_RUBBER_LOG = BLOCKS.register("soul_afflicted_partially_stripped_rubber_log", () -> new StrippedSapLogBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD).randomTicks(), YATMBlocks::getSoulAfflictedStrippedRubberLog));
@@ -102,13 +106,17 @@ public class YATMBlocks
 	public static final RegistryObject<TrapDoorBlock> SOUL_AFFLICTED_RUBBER_TRAPDOOR = BLOCKS.register("soul_afflicted_rubber_trapdoor", () -> new TrapDoorBlock(BlockBehaviour.Properties.of(Material.WOOD).strength(2f).sound(SoundType.WOOD), RUBBER_BLOCK_SET_TYPE));
 	public static final RegistryObject<PressurePlateBlock> SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE = BLOCKS.register("soul_afflicted_rubber_pressure_plate", () -> new PressurePlateBlock(Sensitivity.EVERYTHING, BlockBehaviour.Properties.of(Material.WOOD).sound(SoundType.WOOD).noCollission().strength(0.5F), RUBBER_BLOCK_SET_TYPE));
 	public static final RegistryObject<ButtonBlock> SOUL_AFFLICTED_RUBBER_BUTTON = BLOCKS.register("soul_afflicted_rubber_button", () -> new ButtonBlock(BlockBehaviour.Properties.of(Material.DECORATION).noCollission().strength(0.5F), RUBBER_BLOCK_SET_TYPE, 30, true));
-	
-	
+	public static final RegistryObject<CarpetBlock> SOUL_AFFLICTED_LEAF_MULCH = BLOCKS.register("soul_afflicted_leaf_mulch", () -> new CarpetBlock(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.COLOR_BROWN).strength(0.1F).sound(SoundType.MOSS_CARPET)));
+
+	public static final RegistryObject<PhantasmalShelfFungiBlock> PHANTASMAL_SHELF_FUNGUS = BLOCKS.register("phantasmal_shelf_fungus", () -> new PhantasmalShelfFungiBlock(BlockBehaviour.Properties.of(Material.PLANT, MaterialColor.TERRACOTTA_WHITE).strength(0.5F).sound(SoundType.FUNGUS).randomTicks()));
 	
 	//TODO, maybe add some sort of soul stone 
 	
 	// TODO, properties
 	public static final RegistryObject<Block> RUBBER_BLOCK = BLOCKS.register("rubber_block", () -> new Block(BlockBehaviour.Properties.of(Material.FROGLIGHT).strength(2f).sound(SoundType.CANDLE)));
+	public static final RegistryObject<RootedDirtBlock> ROOTED_SOUL_SOIL = BLOCKS.register("rooted_soul_soil", () -> new RootedDirtBlock(BlockBehaviour.Properties.of(Material.DIRT, MaterialColor.DIRT).strength(0.5F).sound(SoundType.ROOTED_DIRT)));
+	
+
 	
 	public static final int STEEL_MAXIMUM_TEMPERATURE = 4000;
 	public static final int STEEL_DEVICE_TANK_CAPACITY = 4000;
@@ -199,5 +207,14 @@ public class YATMBlocks
 	{
 		return SOUL_AFFLICTED_STRIPPED_RUBBER_WOOD.get();
 	} // end getStrippedRubberWood()
+
+	
+	
+	public static void addFlowersToPots()
+	{
+		FlowerPotBlock minecraftFlowerPot = (FlowerPotBlock)Blocks.FLOWER_POT;
+		minecraftFlowerPot.addPlant(YATMBlocks.RUBBER_MERISTEM.getKey().location(), YATMBlocks.POTTED_RUBBER_MERISTEM);
+		minecraftFlowerPot.addPlant(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.getKey().location(), YATMBlocks.POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM);
+	} // end addFlowersToPots()
 
 } // end class

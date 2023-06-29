@@ -124,9 +124,8 @@ public class AgedFoliagePlacer extends RandomSpreadFoliagePlacer
 				//{
 					//if (levelSimReader.isStateAtPosition(toLookAt, (bs) -> bs.getBlock() == block.get()))// block.get() == currentlyOnBlock)
 					//{
-				if(this.canRootThrough(levelSimReader, toLookAt)) 
+				if(this.tryPlaceRoot(levelSimReader, foliageSetter, random, toLookAt))//this.canRootThrough(levelSimReader, toLookAt)) 
 				{
-						foliageSetter.set(toLookAt, this.m_aerialRootProvider.getState(random, toLookAt));
 						sentDownRoots = true;
 						grewARootThisCycle = true;
 				}
@@ -189,14 +188,12 @@ public class AgedFoliagePlacer extends RandomSpreadFoliagePlacer
 		return this.m_foliageHeight.sample(random);
 	} // end foliageHeight()
 	
-	
 	@Override
 	protected boolean shouldSkipLocation(RandomSource random, int p_225596_, int p_225597_, int p_225598_, int p_225599_, boolean p_225600_)
 	{
 		return false;
 	} // end shouldSkipLocation()
 
-	
 	
 	
 	protected boolean tryPlaceAgeConsideredLeaf(LevelSimulatedReader levelSimReader, FoliagePlacer.FoliageSetter foliageSetter, RandomSource random, TreeConfiguration treeConfig, BlockPos at, BlockPos attachmentPos, int foliageHeight, int radius)
@@ -224,6 +221,21 @@ public class AgedFoliagePlacer extends RandomSpreadFoliagePlacer
 		}
 	} // end tryPlaceAgeConsideredLeaf()
 
+	protected boolean tryPlaceRoot(LevelSimulatedReader levelSimReader, FoliagePlacer.FoliageSetter foliageSetter, RandomSource random, BlockPos at) 
+	{
+		if(!this.canRootThrough(levelSimReader, at))
+		{
+			return false;
+		}
+		BlockState blockstate = this.m_aerialRootProvider.getState(random, at);
+		if (blockstate.hasProperty(BlockStateProperties.WATERLOGGED))
+		{
+			blockstate = blockstate.setValue(BlockStateProperties.WATERLOGGED, Boolean.valueOf(levelSimReader.isFluidAtPosition(at, (fs) -> fs.isSourceOfType(Fluids.WATER))));
+		}
+		foliageSetter.set(at, blockstate);
+		return true;
+	} // end tryPlaceRoot()
+	
 	private boolean canRootThrough(LevelSimulatedReader levelSimReader, BlockPos position) 
 	{
 		boolean canRootThrough = false;

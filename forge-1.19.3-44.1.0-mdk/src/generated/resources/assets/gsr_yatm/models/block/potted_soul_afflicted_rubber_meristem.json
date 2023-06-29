@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/flower_pot_cross",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "plant": "gsr_yatm:block/plant/rubber/soul_afflicted_rubber_meristem"
+  }
+}

@@ -16,6 +16,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.tags.ITag;
 import net.minecraftforge.registries.tags.ITagManager;
 
 public class YATMItemTags extends ItemTagsProvider
@@ -61,14 +62,20 @@ public class YATMItemTags extends ItemTagsProvider
 	
 	
 	
+	public static final TagKey<Item> GROWS_PHANTASMAL_SHELF_FUNGI_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "grows_phantasmal_shelf_fungi"));
 	public static final TagKey<Item> RUBBER_TREE_LOGS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "rubber_tree_logs"));
 	public static final TagKey<Item> RUBBER_TREE_PLANKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "rubber_planks"));
 	public static final TagKey<Item> UNOXIDIXED_COPPER_BLOCKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "unoxidized_copper_blocks"));
 	public static final TagKey<Item> SIXTYFOUR_CU_WIRE_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "conduits/sixtyfour_cu"));
 	public static final TagKey<Item> SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "soul_afflicted_rubber_tree_logs"));
 	public static final TagKey<Item> SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "soul_afflicted_rubber_planks"));
+	public static final TagKey<Item> SPREADS_PHANTASMAL_SHELF_FUNGI_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "spreads_phantasmal_shelf_fungi"));
 	public static final TagKey<Item> WIRE_DIES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "dies/wire"));
 	
+	
+	
+	public static final ITag<Item> GROWS_PHANTASMAL_SHELF_FUNGI = TM.getTag(GROWS_PHANTASMAL_SHELF_FUNGI_KEY);
+	public static final ITag<Item> SPREADS_PHANTASMAL_SHELF_FUNGI = TM.getTag(SPREADS_PHANTASMAL_SHELF_FUNGI_KEY);
 	
 	
 	
@@ -109,12 +116,14 @@ public class YATMItemTags extends ItemTagsProvider
 		
 		
 		
+		this.tag(GROWS_PHANTASMAL_SHELF_FUNGI_KEY).addTag(SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);
 		this.copy(YATMBlockTags.RUBBER_TREE_LOGS_KEY, RUBBER_TREE_LOGS_KEY);
 		this.copy(YATMBlockTags.RUBBER_TREE_PLANKS_KEY, RUBBER_TREE_PLANKS_KEY);
 		this.copy(YATMBlockTags.UNOXIDIXED_COPPER_BLOCKS_KEY, UNOXIDIXED_COPPER_BLOCKS_KEY);
 		this.copy(YATMBlockTags.SIXTYFOUR_CU_WIRE_KEY, SIXTYFOUR_CU_WIRE_KEY);
 		this.copy(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY, SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);
 		this.copy(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY);
+		this.tag(SPREADS_PHANTASMAL_SHELF_FUNGI_KEY).add(YATMItems.SOUL_SYRUP_BOTTLE.get());
 		
 		this.tag(WIRE_DIES_KEY).add(YATMItems.IRON_WIRE_DIE.get()).add(YATMItems.STEEL_WIRE_DIE.get());		
 	} // end addTags

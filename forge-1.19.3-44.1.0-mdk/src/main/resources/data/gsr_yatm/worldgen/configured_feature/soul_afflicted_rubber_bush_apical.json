@@ -2,6 +2,29 @@
 	"type": "minecraft:tree",
 	"config": {
 		"decorators": [
+			{
+				"type": "gsr_yatm:leaf_litter_tree_decorator",
+				"can_litter_on": "#gsr_yatm:leaves_litter_on",
+				"litter_provider": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+						"Name": "gsr_yatm:soul_afflicted_leaf_mulch"
+					}
+				},
+				"radius": 6,
+				"vertical_scan_range": 2,
+				"litter_placement_attempts": 96
+			},
+			{
+				"type": "gsr_yatm:trunk_side_tree_decorator",
+				"decoration_provider": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+						"Name": "gsr_yatm:phantasmal_shelf_fungus"
+					}
+				},
+				"chance_per_face": 0.0012
+			}
 		],
 		"force_dirt": false,
 		"ignore_vines": true,
@@ -96,7 +119,7 @@
 			"root_provider": {
 				"type": "minecraft:simple_state_provider",
 				"state": {
-					"Name": "minecraft:rooted_dirt"
+					"Name": "gsr_yatm:rooted_soul_soil"
 				}
 			},
 			"above_root_placement": {

@@ -13,6 +13,7 @@ import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
+import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.tree.SelfLayeringSaplingBlock;
 import com.gsr.gsr_yatm.block.plant.tree.StrippedSapLogBlock;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
@@ -48,10 +49,16 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final String CUTOUT_RENDER_TYPE = "cutout";
 	
 	public static final ModelFile DEFAULT_ITEM_MODEL_PARENT = new ModelFile.UncheckedModelFile("minecraft:item/generated");
+	
+	public static final ModelFile CARPET = new ModelFile.UncheckedModelFile("minecraft:block/carpet");
+	public static final ModelFile FLOWER_POT_CROSS = new ModelFile.UncheckedModelFile("minecraft:block/flower_pot_cross");
 	public static final ModelFile MANGROVE_ROOTS = new ModelFile.UncheckedModelFile("minecraft:block/mangrove_roots");
 	
 	
-	
+	public static final ModelFile SMALL_SHELF_FUNGUS = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/shelf_fungi_small"));
+	public static final ModelFile MEDIUM_SHELF_FUNGUS = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/shelf_fungi_medium"));
+	public static final ModelFile LARGE_SHELF_FUNGUS = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/shelf_fungi_large"));
+
 	public static final ModelFile LARGE_HEAT_SINK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/large_heat_sink"));
 	
 	public static final ModelFile BOILER_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/boiler"));
@@ -83,8 +90,11 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	{
 		this.addRubberSet();
 		this.addSoulAfflictedRubberSet();
+		this.createShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get());
 		
 		this.createAllBlock(YATMBlocks.RUBBER_BLOCK.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rubber_block"));
+		this.createAllBlock(YATMBlocks.ROOTED_SOUL_SOIL.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rooted_soul_soil"));
+		
 		
 		this.addHeatSinks();
 		this.addBoilers();
@@ -98,7 +108,9 @@ public class YATMBlockStateProvider extends BlockStateProvider
 
 	private void addRubberSet() 
 	{
-		this.createSelfLayeringSapling(YATMBlocks.RUBBER_MERISTEM.get(), YATMItems.RUBBER_MERISTEM_ITEM.get(), "block/rubber_meristem", new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_meristem"));
+		ResourceLocation meristemTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_meristem");
+		this.createSelfLayeringSapling(YATMBlocks.RUBBER_MERISTEM.get(), YATMItems.RUBBER_MERISTEM_ITEM.get(), "block/rubber_meristem", meristemTexture);
+		this.addPottedPlant(YATMBlocks.POTTED_RUBBER_MERISTEM.get(), meristemTexture);
 		this.createAllBlock(YATMBlocks.RUBBER_LEAVES_YOUNG.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_leaves_young"));
 		this.createAllBlock(YATMBlocks.RUBBER_LEAVES_FLOWERING.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_leaves_flowering"));
 		this.createAllBlock(YATMBlocks.RUBBER_LEAVES_OLD.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_leaves_old"));
@@ -137,13 +149,13 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	private void addSoulAfflictedRubberSet() 
 	{
-		this.createSelfLayeringSapling(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM_ITEM.get(), "block/soul_afflicted_rubber_meristem", new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_meristem"));
+		ResourceLocation meristemTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_meristem");
+		this.createSelfLayeringSapling(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM_ITEM.get(), "block/soul_afflicted_rubber_meristem", meristemTexture);
+		this.addPottedPlant(YATMBlocks.POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM.get(), meristemTexture);
 		this.createAllBlock(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_leaves_young"));
 		this.createAllBlock(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_leaves_flowering"));
 		this.createAllBlock(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_OLD.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_leaves_old"));
-
 		this.createRootsBlock(YATMBlocks.SOUL_AFFLICTED_RUBBER_ROOTS.get(), YATMItems.SOUL_AFFLICTED_RUBBER_ROOTS_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_roots_side"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_roots_ends"), true);
-
 		ResourceLocation soulAfflictedRubberLogSideTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_log_side");
 		ResourceLocation soulAfflictedRubberLogTopTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_log_top");
 		ResourceLocation soulAfflictedStrippedRubberLogSideTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_log_side_stripped");
@@ -171,7 +183,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createTrapDoor(YATMBlocks.SOUL_AFFLICTED_RUBBER_TRAPDOOR.get(), "item/soul_afflicted_rubber_trapdoor", new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_trapdoor_top"));
 		this.createPressurePlate(YATMBlocks.SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE.get(), "item/soul_afflicted_rubber_pressure_plate", soulAfflictedRubberPlanksTexture);
 		this.createButton(YATMBlocks.SOUL_AFFLICTED_RUBBER_BUTTON.get(),"item/soul_afflicted_rubber_button", soulAfflictedRubberPlanksTexture);
-	
+		this.createCarpet(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_leaf_mulch"));
 	} // end addSoulAfflictedRubberSet()
 
 	private void addHeatSinks() 
@@ -310,6 +322,33 @@ public class YATMBlockStateProvider extends BlockStateProvider
         .texture("layer0", texture);
 	} // end createSelfLayerinSapling
 	
+	private void addPottedPlant(Block block, ResourceLocation texture) 
+	{
+		String name = getModelLocationNameFor(block);			
+		this.models().getBuilder(name).parent(FLOWER_POT_CROSS).texture("plant", texture).renderType(CUTOUT_RENDER_TYPE);		
+		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
+		this.getVariantBuilder(block).forAllStates((blockState) -> new ConfiguredModel[]
+		{ new ConfiguredModel(model) });
+	} // end addPottedPlant()
+	
+	private void createShelfFungus(PhantasmalShelfFungiBlock block, Item item) 
+	{
+		// TODO, likely change model reducing vertex density significantly
+		// TODO, textures
+		String name = getModelLocationNameFor(block);	
+		String smallName = name + "_small";
+		String mediumName = name + "_medium";
+		String largeName = name + "_large";
+		this.models().getBuilder(smallName).parent(SMALL_SHELF_FUNGUS);
+		this.models().getBuilder(mediumName).parent(MEDIUM_SHELF_FUNGUS);	
+		this.models().getBuilder(largeName).parent(LARGE_SHELF_FUNGUS);	
+		ModelFile smallModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, smallName));
+		ModelFile mediumModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, mediumName));
+		ModelFile largeModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, largeName));
+		this.getVariantBuilder(block).forAllStates((bs) -> forShelfFungi(bs, smallModel, mediumModel, largeModel));
+		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(largeModel);
+	}
+	
 	private void createStair(StairBlock block, String name, ResourceLocation texture) 
 	{ 
 		this.stairsBlock(block, name, texture, texture, texture);
@@ -378,6 +417,19 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.simpleBlockItem(block, leakingForItem ? leakingModel : dryModel);
 		this.getVariantBuilder(block).forAllStates((bs) -> forPartiallyStrippedBlock(bs, dryModel, leakingModel));
 	} // end createPartiallyStrippedLog
+	
+	private void createCarpet(Block block, Item item, ResourceLocation texture) 
+	{
+		String name = getModelLocationNameFor(block);			
+		this.models().getBuilder(name).parent(CARPET).texture("wool", texture);		
+		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
+		if (item != null)
+		{
+			this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
+		}
+		this.getVariantBuilder(block).forAllStates((blockState) -> new ConfiguredModel[]
+		{ new ConfiguredModel(model) });
+	} // end createCarpet()
 	
 	
 	
@@ -503,6 +555,19 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	} // end addConduit()
 
 	
+	
+	private static ConfiguredModel[] forShelfFungi(BlockState bs, ModelFile smallModel, ModelFile mediumModel, ModelFile largeModel)
+	{
+		ModelFile model = switch(bs.getValue(PhantasmalShelfFungiBlock.GROWTH_STAGE)) 
+		{
+			case 0 -> smallModel;
+			case 1 -> mediumModel;
+			case 2 -> largeModel;
+			default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(PhantasmalShelfFungiBlock.GROWTH_STAGE));
+		};
+		Vector2i rot = rotationForDirectionFromNorth(bs.getValue(PhantasmalShelfFungiBlock.FACING));
+		return new ConfiguredModel[] {new ConfiguredModel(model, rot.x, rot.y, false)};
+	} // end forShelfFungi()
 	
 	private static ConfiguredModel[] forSelfLayeringSapling(BlockState bs, ModelFile model) 
 	{
