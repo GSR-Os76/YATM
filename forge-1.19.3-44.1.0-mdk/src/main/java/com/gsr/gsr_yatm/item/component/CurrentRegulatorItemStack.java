@@ -106,13 +106,13 @@ public class CurrentRegulatorItemStack implements ICurrentHandler, IDamageableRe
 
 	// TODO, consider changing around, could be forwarding buffer related
 	@Override
-	public int storageCapacity()
+	public int capacity()
 	{
 		return 0;
 	} // end storageCapacity()
 
 	@Override
-	public int storedCapacity()
+	public int stored()
 	{
 		return 0;
 	} // end storedCapacity()

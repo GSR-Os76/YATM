@@ -74,13 +74,13 @@ public class FuelCellItem extends Item implements ICurrentHandler, IFluidHandler
 	}
 
 	@Override
-	public int storageCapacity()
+	public int capacity()
 	{
 		return 0;
 	} // end storageCapacity()
 
 	@Override
-	public int storedCapacity()
+	public int stored()
 	{
 		return 0;
 	} // end storedCapacity()

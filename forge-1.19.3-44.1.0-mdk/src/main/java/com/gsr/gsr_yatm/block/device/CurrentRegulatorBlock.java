@@ -29,14 +29,14 @@ public class CurrentRegulatorBlock extends Block implements ICurrentHandler
 	}
 
 	@Override
-	public int storageCapacity()
+	public int capacity()
 	{
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
 	@Override
-	public int storedCapacity()
+	public int stored()
 	{
 		// TODO Auto-generated method stub
 		return 0;

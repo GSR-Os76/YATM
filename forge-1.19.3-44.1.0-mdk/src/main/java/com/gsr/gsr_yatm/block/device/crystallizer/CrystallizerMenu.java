@@ -51,7 +51,7 @@ public class CrystallizerMenu extends AbstractContainerMenu
 		this.addSlot(new SlotItemHandler(objInventory, CrystallizerBlockEntity.SEED_SLOT, 80, 51));
 		this.addSlot(new SlotItemHandler(objInventory, CrystallizerBlockEntity.RESULT_SLOT, 80, 87));
 		
-		this.addSlot(new SlotItemHandler(objInventory, CrystallizerBlockEntity.POWER_SLOT, 8, 51));
+		this.addSlot(new SlotItemHandler(objInventory, CrystallizerBlockEntity.POWER_SLOT, 8, 87));
 
 		for (int y = 0; y < 3; ++y)
 		{

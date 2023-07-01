@@ -3,12 +3,13 @@ package com.gsr.gsr_yatm.block.device.crystallizer;
 import java.util.List;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
 import com.gsr.gsr_yatm.recipe.CrystallizationRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
-import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.ConfigurableInventoryWrapper;
 import com.gsr.gsr_yatm.utilities.ConfigurableTankWrapper;
+import com.gsr.gsr_yatm.utilities.InventoryUtilities;
 import com.gsr.gsr_yatm.utilities.NetworkUtilities;
 import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 import com.gsr.gsr_yatm.utilities.SlotUtilities;
@@ -133,7 +134,7 @@ public class CrystallizerBlockEntity extends BlockEntity
 	
 	public CrystallizerBlockEntity(BlockPos blockPos, BlockState blockState)
 	{
-		this(blockPos, blockState, YATMBlocks.STEEL_DEVICE_TANK_CAPACITY, YATMBlocks.STEEL_MAXIMUM_FLUID_TRANSFER_RATE);
+		this(blockPos, blockState, DeviceTierConstants.STEEL_TANK_CAPACITY, DeviceTierConstants.STEEL_MAXIMUM_FLUID_TRANSFER_RATE);
 	} // end constructor
 	
 	public CrystallizerBlockEntity(BlockPos blockPos, BlockState blockState, int tankCapacities, int maxFluidTransferRate)
@@ -203,16 +204,16 @@ public class CrystallizerBlockEntity extends BlockEntity
 		// TODO, fix recipe loading, seems this ticks before the recipes are ever loaded
 		if(this.m_activeRecipe == null && this.m_activeRecipeIdentifier != null) 
 		{
-			this.m_activeRecipe = RecipeUtilities.loadRecipe(this.m_activeRecipeIdentifier, level, YATMRecipeTypes.CRYSTALLIZATION_RECIPE_TYPE.get());
+			this.m_activeRecipe = RecipeUtilities.loadRecipe(this.m_activeRecipeIdentifier, level, YATMRecipeTypes.CRYSTALLIZATION.get());
 			this.m_activeRecipeIdentifier = null;
-			if(this.m_activeRecipe == null) 
-			{
-				YetAnotherTechMod.LOGGER.info("failed to load the recipe");
-			}
-			else 
-			{
-				YetAnotherTechMod.LOGGER.info("succeed to load the recipe with id: " + this.m_activeRecipe.getId());
-			}
+//			if(this.m_activeRecipe == null) 
+//			{
+//				YetAnotherTechMod.LOGGER.info("failed to load the recipe");
+//			}
+//			else 
+//			{
+//				YetAnotherTechMod.LOGGER.info("succeed to load the recipe with id: " + this.m_activeRecipe.getId());
+//			}
 			this.m_crystallizeProgress = 0;
 			this.m_crystallizeTime = 0;
 		}
@@ -296,10 +297,10 @@ public class CrystallizerBlockEntity extends BlockEntity
 		this.m_activeRecipe = null;
 		this.m_crystallizeTime = 0;
 		this.m_crystallizeProgress = 0;
-		List<CrystallizationRecipe> recipes = level.getRecipeManager().getAllRecipesFor(YATMRecipeTypes.CRYSTALLIZATION_RECIPE_TYPE.get());
+		List<CrystallizationRecipe> recipes = level.getRecipeManager().getAllRecipesFor(YATMRecipeTypes.CRYSTALLIZATION.get());
 		for (CrystallizationRecipe r : recipes)
 		{
-			YetAnotherTechMod.LOGGER.info("considering a recipe to start: " + r.getId());
+			//YetAnotherTechMod.LOGGER.info("considering a recipe to start: " + r.getId());
 			if (r.canBeUsedOn(this.m_uncheckedInventory, this.m_inputTank))
 			{
 				this.m_activeRecipe = r;
@@ -331,6 +332,13 @@ public class CrystallizerBlockEntity extends BlockEntity
 		}
 		return changed;
 	} // end doDrainInputTank()
+	
+	
+	
+	public void blockBroken() 
+	{
+		InventoryUtilities.drop(this.level, this.worldPosition, this.m_rawInventory);
+	} // end blockBroken()
 	
 	
 

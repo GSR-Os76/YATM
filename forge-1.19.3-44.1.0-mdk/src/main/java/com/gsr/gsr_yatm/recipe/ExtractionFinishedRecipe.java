@@ -71,7 +71,7 @@ public class ExtractionFinishedRecipe implements FinishedRecipe
 	@Override
 	public RecipeSerializer<ExtractionRecipe> getType()
 	{
-		return YATMRecipeSerializers.EXTRACTION_SERIALIZER.get();
+		return YATMRecipeSerializers.EXTRACTION.get();
 	} // end getType()
 
 	@Override

@@ -50,13 +50,13 @@ public class CurrentUnitForgeEnergyInterchanger implements ICurrentHandler, IEne
 	} // end extractCurrent()
 
 	@Override
-	public int storageCapacity()
+	public int capacity()
 	{
 		return this.m_storageCapacityInCUs;
 	} // storageCapacity()
 
 	@Override
-	public int storedCapacity()
+	public int stored()
 	{
 		return this.m_storedEnergyInCUs;
 	} // storedCapacity()

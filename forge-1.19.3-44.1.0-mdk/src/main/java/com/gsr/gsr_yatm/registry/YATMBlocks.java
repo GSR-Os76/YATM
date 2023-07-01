@@ -6,12 +6,14 @@ import com.gsr.gsr_yatm.block.conduit.ConductorProperties;
 import com.gsr.gsr_yatm.block.conduit.CurrentConduitBlock;
 import com.gsr.gsr_yatm.block.conduit.FluidConduitBlock;
 import com.gsr.gsr_yatm.block.conduit.InsulatedCurrentConduitBlock;
+import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlock;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlock;
 import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInterchangerBlock;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlock;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderBlock;
+import com.gsr.gsr_yatm.block.device.grinder.GrinderBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.tree.AerialRootsBlock;
@@ -118,15 +120,14 @@ public class YATMBlocks
 	
 
 	
-	public static final int STEEL_MAXIMUM_TEMPERATURE = 4000;
-	public static final int STEEL_DEVICE_TANK_CAPACITY = 4000;
-	public static final int STEEL_MAXIMUM_FLUID_TRANSFER_RATE = 16;
 	
-	// TODO, add in inventory content dropping on break
+	
+	// TODO, add in inventory content dropping on break, almost done this
 	public static final RegistryObject<HeatSinkBlock> LARGE_COPPER_HEAT_SINK = BLOCKS.register("large_copper_heat_sink", () -> new HeatSinkBlock(BlockBehaviour.Properties.of(Material.STONE)));
 	public static final RegistryObject<BoilerTankBlock> STEEL_BOILER_TANK = BLOCKS.register("steel_boiler_tank", () -> new BoilerTankBlock(BlockBehaviour.Properties.of(Material.STONE), 256, 32000));
-	public static final RegistryObject<BoilerBlock> STEEL_BOILER = BLOCKS.register("steel_boiler", () -> new BoilerBlock(BlockBehaviour.Properties.of(Material.STONE), BlockShapes.BOILER_SHAPE, STEEL_MAXIMUM_TEMPERATURE, STEEL_DEVICE_TANK_CAPACITY, STEEL_MAXIMUM_FLUID_TRANSFER_RATE));
-	public static final RegistryObject<CrystallizerBlock> STEEL_CRYSTALLIZER = BLOCKS.register("steel_crystallizer", () -> new CrystallizerBlock(BlockBehaviour.Properties.of(Material.STONE), null, STEEL_DEVICE_TANK_CAPACITY, STEEL_MAXIMUM_FLUID_TRANSFER_RATE));
+	public static final RegistryObject<BoilerBlock> STEEL_BOILER = BLOCKS.register("steel_boiler", () -> new BoilerBlock(BlockBehaviour.Properties.of(Material.STONE), BlockShapes.BOILER_SHAPE, DeviceTierConstants.STEEL_MAXIMUM_TEMPERATURE, DeviceTierConstants.STEEL_TANK_CAPACITY, DeviceTierConstants.STEEL_MAXIMUM_FLUID_TRANSFER_RATE));
+	public static final RegistryObject<CrystallizerBlock> STEEL_CRYSTALLIZER = BLOCKS.register("steel_crystallizer", () -> new CrystallizerBlock(BlockBehaviour.Properties.of(Material.STONE), null, DeviceTierConstants.STEEL_TANK_CAPACITY, DeviceTierConstants.STEEL_MAXIMUM_FLUID_TRANSFER_RATE));
+	public static final RegistryObject<GrinderBlock> STEEL_GRINDER = BLOCKS.register("steel_grinder", () -> new GrinderBlock(BlockBehaviour.Properties.of(Material.STONE), BlockShapes.CUBE, DeviceTierConstants.STEEL_CURRENT_CAPACITY, DeviceTierConstants.STEEL_MAX_CURRENT));
 	
 	
 	public static final RegistryObject<ExtractorBlock> STEEL_EXTRACTOR = BLOCKS.register("steel_extractor", () -> new ExtractorBlock(BlockBehaviour.Properties.of(Material.STONE)));

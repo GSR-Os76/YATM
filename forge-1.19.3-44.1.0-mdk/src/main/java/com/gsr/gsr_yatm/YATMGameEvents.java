@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import com.gsr.gsr_yatm.fluid.item.GlassBottleItemStack;
 import com.gsr.gsr_yatm.registry.YATMMobEffects;
+import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -12,6 +13,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraftforge.client.event.RecipesUpdatedEvent;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -21,8 +23,11 @@ public class YATMGameEvents
 	public static void register(IEventBus eventBus) 
 	{
 		eventBus.addListener(YATMGameEvents::onEntityDamaged);
+		eventBus.addListener(YATMGameEvents::recipesUpdated);
 		eventBus.addGenericListener(ItemStack.class, YATMGameEvents::attachItemStackCapabilities);
 	} // end register()
+	
+	
 	
 	
 	
@@ -49,6 +54,18 @@ public class YATMGameEvents
 			}
 		}
 	} // end onEntityDamaged()
+
+	private static void recipesUpdated(RecipesUpdatedEvent event) 
+	{
+//		YetAnotherTechMod.LOGGER.info("=");
+//		YetAnotherTechMod.LOGGER.info("=");
+//		YetAnotherTechMod.LOGGER.info("=");
+//		YetAnotherTechMod.LOGGER.info("recipes were updated");
+//		YetAnotherTechMod.LOGGER.info("=");
+//		YetAnotherTechMod.LOGGER.info("=");
+//		YetAnotherTechMod.LOGGER.info("=");
+		RecipeUtilities.recipesUpdated();
+	} // end recipesUpdated()
 	
 	private static void attachItemStackCapabilities(AttachCapabilitiesEvent<ItemStack> event) 
 	{
@@ -57,5 +74,4 @@ public class YATMGameEvents
 			event.addCapability(new ResourceLocation(YetAnotherTechMod.MODID, "glass_bottle_fluid_handler"), new GlassBottleItemStack(event.getObject()));
 		}
 	} // end attachItemStackCapabilities()
-	
 } // end class

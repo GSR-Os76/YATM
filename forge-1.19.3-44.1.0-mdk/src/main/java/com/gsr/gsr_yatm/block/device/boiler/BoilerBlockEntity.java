@@ -476,7 +476,7 @@ public class BoilerBlockEntity extends BlockEntity
 	{
 		if(this.m_activeRecipe == null && this.m_activeRecipeIdentifier != null) 
 		{
-			this.m_activeRecipe = RecipeUtilities.loadRecipe(this.m_activeRecipeIdentifier, level, YATMRecipeTypes.BOILING_RECIPE_TYPE.get());
+			this.m_activeRecipe = RecipeUtilities.loadRecipe(this.m_activeRecipeIdentifier, level, YATMRecipeTypes.BOILING.get());
 			this.m_activeRecipeIdentifier = null;
 		}
 
@@ -583,7 +583,7 @@ public class BoilerBlockEntity extends BlockEntity
 		this.m_activeRecipe = null;
 		this.m_boilTime = 0;
 		this.m_boilProgress = 0;
-		List<BoilingRecipe> recipes = level.getRecipeManager().getAllRecipesFor(YATMRecipeTypes.BOILING_RECIPE_TYPE.get());
+		List<BoilingRecipe> recipes = level.getRecipeManager().getAllRecipesFor(YATMRecipeTypes.BOILING.get());
 		for (BoilingRecipe r : recipes)
 		{
 			if (r.canBeUsedOn(this.m_inputTank, this.m_resultTank, this.m_temperature))

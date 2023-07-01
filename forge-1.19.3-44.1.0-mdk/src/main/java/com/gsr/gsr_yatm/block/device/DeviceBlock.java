@@ -1,22 +1,18 @@
-package com.gsr.gsr_yatm.block.device.crystallizer;
+package com.gsr.gsr_yatm.block.device;
+
+import java.util.function.Supplier;
 
 import com.gsr.gsr_yatm.YATMBlockStateProperties;
-import com.gsr.gsr_yatm.data_generation.YATMLanguageProviderUnitedStatesEnglish;
-import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
-import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.VoxelShapeGetter;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
-import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -33,32 +29,29 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 
-public class CrystallizerBlock extends Block implements EntityBlock
+public abstract class DeviceBlock extends Block implements EntityBlock
 {
-	public static final DirectionProperty FACING = YATMBlockStateProperties.FACING;
+	public static final DirectionProperty FACING = YATMBlockStateProperties.FACING_HORIZONTAL;
 	
-	private final VoxelShapeGetter m_shape;
-	private final int m_tankCapacities;
-	private final int m_maximumFluidTransferRate;
-	
+	protected final Supplier<BlockEntityType<? extends DeviceBlockEntity>> m_type;
+	protected final VoxelShapeGetter m_shape;
 	
 	
-	public CrystallizerBlock(Properties properties, VoxelShapeGetter shape, int tankCapacities, int maximumFluidTransferRate)
+	
+	public DeviceBlock(Properties properties, Supplier<BlockEntityType<? extends DeviceBlockEntity>> type, VoxelShapeGetter shape)
 	{
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
+		this.m_type = type;
 		this.m_shape = shape;
-		this.m_tankCapacities = tankCapacities;
-		this.m_maximumFluidTransferRate = maximumFluidTransferRate;
 	} // end constructor
 
-
-
+	
+	
 	@Override
 	protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
 	{
-		builder.add(FACING);
-		super.createBlockStateDefinition(builder);
+		super.createBlockStateDefinition(builder.add(FACING));
 	} // createBlockStateDefinition()
 
 	@Override
@@ -66,13 +59,29 @@ public class CrystallizerBlock extends Block implements EntityBlock
 	{
 		return this.defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection().getOpposite());
 	} // end getStateForPlacement()
+	
+	
+	
+	public abstract DeviceBlockEntity newDeviceBlockEntity(BlockPos blockPos, BlockState blockState);
+	
+	@Override
+	public final BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState)
+	{
+		return this.newDeviceBlockEntity(blockPos, blockState);
+	} // end newBlockEntity()
 
+	@Override
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType)
+	{
+		return blockEntityType == this.m_type.get() ? (l, bp, bs, be) -> DeviceBlockEntity.tick(l, bp, bs, (DeviceBlockEntity)be) : null;
+	} // end getTicker()
 
-
+	
+	
 	@Override
 	public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult)
 	{
-		if (!level.isClientSide && player instanceof ServerPlayer serverPlayer)
+		if(!level.isClientSide && player instanceof ServerPlayer serverPlayer) 
 		{
 			NetworkHooks.openScreen(serverPlayer, blockState.getMenuProvider(level, blockPos));
 		}
@@ -80,44 +89,16 @@ public class CrystallizerBlock extends Block implements EntityBlock
 	} // end use()
 
 	@Override
-	public MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos)
-	{
-		CrystallizerBlockEntity blockEntity = (CrystallizerBlockEntity) level.getBlockEntity(blockPos);
-		return new SimpleMenuProvider((containerId, playerInventory, player) -> 
-		new CrystallizerMenu(
-				containerId, 
-				playerInventory, 
-				ContainerLevelAccess.create(level, blockPos), 
-				blockState.getBlock(), 
-				blockEntity.getInventory(), 
-				blockEntity.getDataAccessor()), 
-		Component.translatable(YATMLanguageProviderUnitedStatesEnglish.getTitleNameFor(YATMMenuTypes.CRYSTALLIZER_MENU.get())));
-	} // end getMenuProvider()
-
-
-
-	@Override
-	public BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState)
-	{
-		return new CrystallizerBlockEntity(blockPos, blockState, this.m_tankCapacities, this.m_maximumFluidTransferRate);
-	} // end newBlockEntity()
-
-	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType)
-	{
-		return blockEntityType == YATMBlockEntityTypes.CRYSTALLIZER.get() ? (l, bp, bs, be) -> CrystallizerBlockEntity.tick(l, bp, bs, (CrystallizerBlockEntity) be) : null;
-	} // end getTicker()
-
-
-
-	@SuppressWarnings("deprecation")
+	public abstract MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos);
+	
+	
+	
 	@Override
 	public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
-	{
-		// TODO Auto-generated method stub
-		return super.getShape(blockState, blockGetter, blockPos, context);
-	}
-
+	{		
+		return this.m_shape.getShape(blockState, blockGetter, blockPos, context);
+	} // end getShape()
+	
 	
 	
 	@SuppressWarnings("deprecation")
@@ -127,14 +108,12 @@ public class CrystallizerBlock extends Block implements EntityBlock
 		if(!fromBlockState.is(toBlockstate.getBlock())) 
 		{
 			BlockEntity be = level.getBlockEntity(blockPos);
-			if(be instanceof CrystallizerBlockEntity bbe && level instanceof ServerLevel) 
+			if(be instanceof DeviceBlockEntity dbe && level instanceof ServerLevel) 
 			{
-				bbe.blockBroken();
+				dbe.blockBroken();
 			}
 		}
 		super.onRemove(fromBlockState, level, blockPos, toBlockstate, dunno);;
 	} // end onRemove()
-	
-	
-	
+
 } // end class

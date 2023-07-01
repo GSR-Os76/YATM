@@ -4,6 +4,7 @@ import com.gsr.gsr_yatm.block.device.boiler.BoilerScreen;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerScreen;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorScreen;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderScreen;
+import com.gsr.gsr_yatm.block.device.grinder.GrinderScreen;
 import com.gsr.gsr_yatm.data_generation.YATMBiomeTags;
 import com.gsr.gsr_yatm.data_generation.YATMBlockStateProvider;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
@@ -78,6 +79,7 @@ public class YATMModEvents
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.CRYSTALLIZER_MENU.get(), CrystallizerScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRACTOR_MENU.get(), ExtractorScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRUDER_MENU.get(), ExtruderScreen::new));
+		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.GRINDER_MENU.get(), GrinderScreen::new));
 		
 	} // end clientSetup()
 

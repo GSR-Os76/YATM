@@ -1,7 +1,7 @@
 {
   "type": "gsr_yatm:boiling",
   "input": {
-    "count": 1,
+    "count": 3,
     "fluid": "gsr_yatm:soul_sap"
   },
   "result": {

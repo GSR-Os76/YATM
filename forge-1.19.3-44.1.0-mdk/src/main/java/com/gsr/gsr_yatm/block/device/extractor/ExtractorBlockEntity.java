@@ -9,6 +9,7 @@ import com.gsr.gsr_yatm.recipe.ExtractionRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.ConfigurableInventoryWrapper;
+import com.gsr.gsr_yatm.utilities.InventoryUtilities;
 import com.gsr.gsr_yatm.utilities.NetworkUtilities;
 import com.gsr.gsr_yatm.utilities.SlotUtilities;
 
@@ -99,11 +100,11 @@ public class ExtractorBlockEntity extends BlockEntity
 				}
 				case STORED_POWER_SLOT:
 				{
-					return m_internalCurrentStorer.storedCapacity();
+					return m_internalCurrentStorer.stored();
 				}
 				case POWER_CAPACITY_SLOT:
 				{
-					return m_internalCurrentStorer.storageCapacity();
+					return m_internalCurrentStorer.capacity();
 				}
 				
 				case DATA_FLAGS_SLOT:
@@ -331,7 +332,7 @@ public class ExtractorBlockEntity extends BlockEntity
 
 	private boolean loadRecipe(Level level)
 	{
-		List<ExtractionRecipe> recipes = level.getRecipeManager().getAllRecipesFor(YATMRecipeTypes.EXTRACTION_RECIPE_TYPE.get());
+		List<ExtractionRecipe> recipes = level.getRecipeManager().getAllRecipesFor(YATMRecipeTypes.EXTRACTION.get());
 		for (ExtractionRecipe r : recipes)
 		{
 			if (r.getId().toString() == this.m_activeRecipeIdentifier)
@@ -351,7 +352,7 @@ public class ExtractorBlockEntity extends BlockEntity
 		this.m_extractProgress = 0;
 		this.m_flags &= ~Flags.CURRENT_RECIPE_HAS_REMAINDER.FLAG;
 		
-		List<ExtractionRecipe> recipes = level.getRecipeManager().getAllRecipesFor(YATMRecipeTypes.EXTRACTION_RECIPE_TYPE.get());
+		List<ExtractionRecipe> recipes = level.getRecipeManager().getAllRecipesFor(YATMRecipeTypes.EXTRACTION.get());
 		for (ExtractionRecipe r : recipes)
 		{
 			if (r.canBeUsedOn(this.m_rawInventory, this.m_resultTank))
@@ -369,6 +370,13 @@ public class ExtractorBlockEntity extends BlockEntity
 			}
 		}
 	} // end tryStartNewRecipe()
+	
+	
+	
+	public void blockBroken() 
+	{
+		InventoryUtilities.drop(this.level, this.worldPosition, this.m_rawInventory);
+	} // end blockBroken()
 	
 	
 	

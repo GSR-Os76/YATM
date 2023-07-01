@@ -116,13 +116,13 @@ public class CrystallizationRecipe implements Recipe<Container>
 	@Override
 	public RecipeSerializer<CrystallizationRecipe> getSerializer()
 	{
-		return YATMRecipeSerializers.CRYSTALLIZATION_SERIALIZER.get();
+		return YATMRecipeSerializers.CRYSTALLIZATION.get();
 	} // end getSerializer()
 
 	@Override
 	public RecipeType<CrystallizationRecipe> getType()
 	{
-		return YATMRecipeTypes.CRYSTALLIZATION_RECIPE_TYPE.get();
+		return YATMRecipeTypes.CRYSTALLIZATION.get();
 	} // end getType()
 
 	@Override

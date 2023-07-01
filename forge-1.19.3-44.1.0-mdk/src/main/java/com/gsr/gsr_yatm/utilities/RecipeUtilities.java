@@ -1,10 +1,12 @@
 package com.gsr.gsr_yatm.utilities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.jetbrains.annotations.NotNull;
 
 import com.google.gson.JsonObject;
+
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.Container;
@@ -47,6 +49,8 @@ public class RecipeUtilities
 	public static final String TAG_KEY = "tag";
 	// NOTE: it's in kelvin
 	public static final String TEMPERATURE_KEY = "temperature";
+	
+	private static List<Runnable> s_reloadListeners = new ArrayList<>();
 	
 	
 	
@@ -116,12 +120,27 @@ public class RecipeUtilities
 		return false;
 	} // end testIngredientAgainst()
 
-	public static <C extends Container, T extends Recipe<C>> T loadRecipe(String string, Level level, RecipeType<T> type)
+	
+	
+	public static void recipesUpdated() 
+	{
+		for(int i = 0; i < RecipeUtilities.s_reloadListeners.size(); i++) 
+		{
+			RecipeUtilities.s_reloadListeners.remove(0).run();
+		}
+	} // end recipesUpdated()
+	
+	public static void addRecipeLoadListener(Runnable handler) 
+	{
+		RecipeUtilities.s_reloadListeners.add(handler);
+	} // end addRecipeLoadListener()
+	
+	public static <C extends Container, T extends Recipe<C>> T loadRecipe(String recipeIdentifierToMatch, Level level, RecipeType<T> type)
 	{
 		List<T> recipes = level.getRecipeManager().getAllRecipesFor(type);
 		for (T r : recipes)
 		{
-			if (r.getId().toString() == string)
+			if (r.getId().toString().equals(recipeIdentifierToMatch))
 			{
 				return r;
 			}

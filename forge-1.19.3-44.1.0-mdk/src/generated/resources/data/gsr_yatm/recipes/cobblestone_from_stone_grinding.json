@@ -1,0 +1,14 @@
+{
+  "type": "gsr_yatm:grinding",
+  "cost": 3,
+  "input": {
+    "ingedient": {
+      "item": "minecraft:stone"
+    }
+  },
+  "result": {
+    "count": 1,
+    "item": "minecraft:cobblestone"
+  },
+  "time": 80
+}

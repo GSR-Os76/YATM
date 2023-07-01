@@ -1,0 +1,14 @@
+{
+  "type": "gsr_yatm:grinding",
+  "cost": 3,
+  "input": {
+    "ingedient": {
+      "item": "minecraft:gravel"
+    }
+  },
+  "result": {
+    "count": 1,
+    "item": "minecraft:sand"
+  },
+  "time": 80
+}

@@ -113,13 +113,13 @@ public class ExtractionRecipe implements Recipe<Container>
 	@Override
 	public RecipeSerializer<ExtractionRecipe> getSerializer()
 	{
-		return YATMRecipeSerializers.EXTRACTION_SERIALIZER.get();
+		return YATMRecipeSerializers.EXTRACTION.get();
 	} // end getSerializer()
 
 	@Override
 	public RecipeType<ExtractionRecipe> getType()
 	{
-		return YATMRecipeTypes.EXTRACTION_RECIPE_TYPE.get();
+		return YATMRecipeTypes.EXTRACTION.get();
 	} // end getType()
 
 	@Override

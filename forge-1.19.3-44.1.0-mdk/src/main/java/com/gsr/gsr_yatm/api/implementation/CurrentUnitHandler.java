@@ -54,13 +54,13 @@ public class CurrentUnitHandler implements ICurrentHandler, INBTSerializable<Com
 	} // end extractCurrent()
 
 	@Override
-	public int storageCapacity()
+	public int capacity()
 	{
 		return this.m_capacity;
 	} // end storageCapacity()
 
 	@Override
-	public int storedCapacity()
+	public int stored()
 	{
 		return this.m_storedUnits;
 	} // end storedCapcity()

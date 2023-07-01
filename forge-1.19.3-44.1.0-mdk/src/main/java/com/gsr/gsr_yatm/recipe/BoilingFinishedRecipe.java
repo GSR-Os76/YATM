@@ -61,7 +61,7 @@ public class BoilingFinishedRecipe implements FinishedRecipe
 	@Override
 	public RecipeSerializer<BoilingRecipe> getType()
 	{
-		return YATMRecipeSerializers.BOILING_SERIALIZER.get();
+		return YATMRecipeSerializers.BOILING.get();
 	} // end getType()
 
 	@Override

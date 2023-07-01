@@ -105,13 +105,13 @@ public class BoilingRecipe implements Recipe<Container>
 	@Override
 	public RecipeSerializer<BoilingRecipe> getSerializer()
 	{
-		return YATMRecipeSerializers.BOILING_SERIALIZER.get();
+		return YATMRecipeSerializers.BOILING.get();
 	} // end getSerializer()
 
 	@Override
 	public RecipeType<BoilingRecipe> getType()
 	{
-		return YATMRecipeTypes.BOILING_RECIPE_TYPE.get();
+		return YATMRecipeTypes.BOILING.get();
 	} // end getType()
 
 	@Override

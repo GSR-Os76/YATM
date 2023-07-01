@@ -9,6 +9,7 @@ import com.gsr.gsr_yatm.recipe.BoilingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.CrystallizationRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.ExtractionRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.ExtrusionRecipeBuilder;
+import com.gsr.gsr_yatm.recipe.GrindingRecipeBuilder;
 import com.gsr.gsr_yatm.registry.YATMFluids;
 import com.gsr.gsr_yatm.registry.YATMItems;
 
@@ -98,21 +99,21 @@ public class YATMRecipeProvider extends RecipeProvider
 		
 		// TODO, add way to seperate the rootsa dn dirt back out of rooted dirts and like
 		
-		this.addExtractionWithRemainder(writer, new ItemLike[] {YATMItems.RUBBER_LOG_ITEM.get(), YATMItems.RUBBER_WOOD_ITEM.get()}, new ItemStack(YATMItems.WOOD_PULP.get(), 6), new FluidStack(YATMFluids.LATEX.get(), 120), 12, 246, YetAnotherTechMod.MODID + ":latex_from_log_extraction");
-		this.addExtractionWithRemainder(writer, new ItemLike[] {YATMItems.RUBBER_LEAVES_OLD_ITEM.get()}, new ItemStack(YATMItems.WOOD_PULP.get(), 1), new FluidStack(YATMFluids.LATEX.get(), 40), 4, 62, YetAnotherTechMod.MODID + ":latex_from_old_leaves_extraction");
-		this.addExtractionWithRemainder(writer, new ItemLike[] {YATMItems.RUBBER_LEAVES_LEAVES_FLOWERING_ITEM.get()}, new ItemStack(YATMItems.LEAF_MULCH.get(), 2), new FluidStack(YATMFluids.LATEX.get(), 30), 4, 46, YetAnotherTechMod.MODID + ":latex_from_flowering_leaves_extraction");
-		this.addExtractionWithRemainder(writer, new ItemLike[] {YATMItems.RUBBER_LEAVES_YOUNG_ITEM.get()}, new ItemStack(YATMItems.LEAF_MULCH.get(), 1), new FluidStack(YATMFluids.LATEX.get(), 20), 4, 34, YetAnotherTechMod.MODID + ":latex_from_young_leaves_extraction");
+		this.addExtraction(writer, new ItemLike[] {YATMItems.RUBBER_LOG_ITEM.get(), YATMItems.RUBBER_WOOD_ITEM.get()}, new ItemStack(YATMItems.WOOD_PULP.get(), 6), new FluidStack(YATMFluids.LATEX.get(), 120), 12, 246, YetAnotherTechMod.MODID + ":latex_from_log_extraction");
+		this.addExtraction(writer, new ItemLike[] {YATMItems.RUBBER_LEAVES_OLD_ITEM.get()}, new ItemStack(YATMItems.WOOD_PULP.get(), 1), new FluidStack(YATMFluids.LATEX.get(), 40), 4, 62, YetAnotherTechMod.MODID + ":latex_from_old_leaves_extraction");
+		this.addExtraction(writer, new ItemLike[] {YATMItems.RUBBER_LEAVES_LEAVES_FLOWERING_ITEM.get()}, new ItemStack(YATMItems.LEAF_MULCH.get(), 2), new FluidStack(YATMFluids.LATEX.get(), 30), 4, 46, YetAnotherTechMod.MODID + ":latex_from_flowering_leaves_extraction");
+		this.addExtraction(writer, new ItemLike[] {YATMItems.RUBBER_LEAVES_YOUNG_ITEM.get()}, new ItemStack(YATMItems.LEAF_MULCH.get(), 1), new FluidStack(YATMFluids.LATEX.get(), 20), 4, 34, YetAnotherTechMod.MODID + ":latex_from_young_leaves_extraction");
 		this.addExtraction(writer, new ItemLike[] {YATMItems.RUBBER_MERISTEM_ITEM.get()}, new FluidStack(YATMFluids.LATEX.get(), 2), 1, 12, YetAnotherTechMod.MODID + ":latex_from_meristem_extraction");
 		
-		this.addExtractionWithRemainder(writer, new ItemLike[] {YATMItems.SOUL_AFFLICTED_RUBBER_LOG_ITEM.get(), YATMItems.SOUL_AFFLICTED_RUBBER_WOOD_ITEM.get()}, new ItemStack(YATMItems.WOOD_PULP.get(), 6), new FluidStack(YATMFluids.SOUL_SAP.get(), 120), 12, 246, YetAnotherTechMod.MODID + ":soul_sap_from_log_extraction");
-		this.addExtractionWithRemainder(writer, new ItemLike[] {YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_OLD_ITEM.get()}, new ItemStack(YATMItems.WOOD_PULP.get(), 1), new FluidStack(YATMFluids.SOUL_SAP.get(), 40), 4, 62, YetAnotherTechMod.MODID + ":soul_sap_from_old_leaves_extraction");
-		this.addExtractionWithRemainder(writer, new ItemLike[] {YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_LEAVES_FLOWERING_ITEM.get()}, new ItemStack(YATMItems.LEAF_MULCH.get(), 2), new FluidStack(YATMFluids.SOUL_SAP.get(), 30), 4, 46, YetAnotherTechMod.MODID + ":soul_sap_from_flowering_leaves_extraction");
-		this.addExtractionWithRemainder(writer, new ItemLike[] {YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG_ITEM.get()}, new ItemStack(YATMItems.LEAF_MULCH.get(), 1), new FluidStack(YATMFluids.SOUL_SAP.get(), 20), 4, 34, YetAnotherTechMod.MODID + ":soul_sap_from_young_leaves_extraction");
+		this.addExtraction(writer, new ItemLike[] {YATMItems.SOUL_AFFLICTED_RUBBER_LOG_ITEM.get(), YATMItems.SOUL_AFFLICTED_RUBBER_WOOD_ITEM.get()}, new ItemStack(YATMItems.WOOD_PULP.get(), 6), new FluidStack(YATMFluids.SOUL_SAP.get(), 120), 12, 246, YetAnotherTechMod.MODID + ":soul_sap_from_log_extraction");
+		this.addExtraction(writer, new ItemLike[] {YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_OLD_ITEM.get()}, new ItemStack(YATMItems.WOOD_PULP.get(), 1), new FluidStack(YATMFluids.SOUL_SAP.get(), 40), 4, 62, YetAnotherTechMod.MODID + ":soul_sap_from_old_leaves_extraction");
+		this.addExtraction(writer, new ItemLike[] {YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_LEAVES_FLOWERING_ITEM.get()}, new ItemStack(YATMItems.LEAF_MULCH.get(), 2), new FluidStack(YATMFluids.SOUL_SAP.get(), 30), 4, 46, YetAnotherTechMod.MODID + ":soul_sap_from_flowering_leaves_extraction");
+		this.addExtraction(writer, new ItemLike[] {YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG_ITEM.get()}, new ItemStack(YATMItems.LEAF_MULCH.get(), 1), new FluidStack(YATMFluids.SOUL_SAP.get(), 20), 4, 34, YetAnotherTechMod.MODID + ":soul_sap_from_young_leaves_extraction");
 		this.addExtraction(writer, new ItemLike[] {YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM_ITEM.get()}, new FluidStack(YATMFluids.SOUL_SAP.get(), 2), 1, 12, YetAnotherTechMod.MODID + ":soul_sap_from_meristem_extraction");
 	
 		
 		
-		this.addBoilingRecipe(writer, new FluidStack(YATMFluids.SOUL_SAP.get(), 1), new FluidStack(YATMFluids.SOUL_SYRUP.get(), 1), 722, 3, YetAnotherTechMod.MODID + ":soul_syrup_from_soul_sap_boiling");
+		this.addBoilingRecipe(writer, new FluidStack(YATMFluids.SOUL_SAP.get(), 3), new FluidStack(YATMFluids.SOUL_SYRUP.get(), 1), 722, 3, YetAnotherTechMod.MODID + ":soul_syrup_from_soul_sap_boiling");
 	
 		
 		
@@ -122,6 +123,12 @@ public class YATMRecipeProvider extends RecipeProvider
 		
 		// TODO, create a fluidIngredient, so we can use tags or specifics
 		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ENDER.get(), 250), Tags.Items.SAND, new ItemStack(Items.ENDER_PEARL), false, 0, 300, YetAnotherTechMod.MODID + ":ender_pearl_from_crystallization");
+		
+		
+		
+		this.addGrindingRecipe(writer, Items.STONE, new ItemStack(Items.COBBLESTONE), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_from_stone_grinding");
+		this.addGrindingRecipe(writer, Items.COBBLESTONE, new ItemStack(Items.GRAVEL), 3, 80, YetAnotherTechMod.MODID + ":gravel_from_cobblestone_grinding");
+		this.addGrindingRecipe(writer, Items.GRAVEL, new ItemStack(Items.SAND), 3, 80, YetAnotherTechMod.MODID + ":sand_from_gravel_grinding");
 		
 	} // end buildRecipes()
 	
@@ -396,7 +403,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addExtraction()
 	
-	private void addExtractionWithRemainder(Consumer<FinishedRecipe> writer, ItemLike[] ingredient, ItemStack remainder, FluidStack result, int currentPerTick, int timeInTicks, String key) 
+	private void addExtraction(Consumer<FinishedRecipe> writer, ItemLike[] ingredient, ItemStack remainder, FluidStack result, int currentPerTick, int timeInTicks, String key) 
 	{
 		new ExtractionRecipeBuilder()
 		.input(Ingredient.of(ingredient))
@@ -465,5 +472,18 @@ public class YATMRecipeProvider extends RecipeProvider
 		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(seed).build()))
 		.save(writer, key);
 	} // end addBoilingRecipe()
+	
+	
+	
+	private void addGrindingRecipe(Consumer<FinishedRecipe> writer, Item input, ItemStack result, int currentPerTick, int timeInTicks, String key) 
+	{
+		new GrindingRecipeBuilder()
+		.input(Ingredient.of(input))
+		.result(result)
+		.currentPerTick(currentPerTick)
+		.timeInTicks(timeInTicks)
+		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(input).build()))
+		.save(writer, key);
+	} // end addGrindRecipe()
 	
 } // end class

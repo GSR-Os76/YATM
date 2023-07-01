@@ -15,11 +15,11 @@ public interface ICurrentHandler
 	
 	// info
 	// the maximum amount that's containable
-	public int storageCapacity();
+	public int capacity();
 	
 	// info
 	// the amount currently being contained
-	public int storedCapacity();
+	public int stored();
 
 	// info
 	// gets the total number of virtual ICurrentHandlers in the given device

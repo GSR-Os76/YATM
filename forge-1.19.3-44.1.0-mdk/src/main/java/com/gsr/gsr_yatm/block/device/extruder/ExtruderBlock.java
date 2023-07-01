@@ -7,6 +7,7 @@ import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
@@ -93,6 +94,23 @@ public class ExtruderBlock extends Block implements EntityBlock
 		return blockEntityType == YATMBlockEntityTypes.EXTRUDER.get() ? (l, bp, bs, be) -> ExtruderBlockEntity.tick(l, bp, bs, (ExtruderBlockEntity) be) : null;
 	} // end getTicker()
 
+	
+	
+	@SuppressWarnings("deprecation")
+	@Override
+	public void onRemove(BlockState fromBlockState, Level level, BlockPos blockPos, BlockState toBlockstate, boolean dunno)
+	{
+		if(!fromBlockState.is(toBlockstate.getBlock())) 
+		{
+			BlockEntity be = level.getBlockEntity(blockPos);
+			if(be instanceof ExtruderBlockEntity bbe && level instanceof ServerLevel) 
+			{
+				bbe.blockBroken();
+			}
+		}
+		super.onRemove(fromBlockState, level, blockPos, toBlockstate, dunno);;
+	} // end onRemove()
+	
 } // end class
 
 //RecipeUtilities.getTag("gsr_yatm:dies/wire").forEach((i) -> YetAnotherTechMod.LOGGER.info("die tag has an item: " + i));

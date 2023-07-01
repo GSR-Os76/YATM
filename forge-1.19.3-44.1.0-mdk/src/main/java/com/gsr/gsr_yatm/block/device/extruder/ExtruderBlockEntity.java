@@ -9,6 +9,7 @@ import com.gsr.gsr_yatm.recipe.ExtrusionRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.ConfigurableInventoryWrapper;
+import com.gsr.gsr_yatm.utilities.InventoryUtilities;
 import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 
 import net.minecraft.core.BlockPos;
@@ -194,7 +195,7 @@ public class ExtruderBlockEntity extends BlockEntity
 		this.m_extrudeTime = 0;
 		this.m_extrudeProgress = 0;
 		
-		List<ExtrusionRecipe> recipes = level.getRecipeManager().getAllRecipesFor(YATMRecipeTypes.EXTRUSION_RECIPE_TYPE.get());
+		List<ExtrusionRecipe> recipes = level.getRecipeManager().getAllRecipesFor(YATMRecipeTypes.EXTRUSION.get());
 		for (ExtrusionRecipe r : recipes)
 		{
 			if (r.canBeUsedOn(this.m_rawInventory))
@@ -209,6 +210,13 @@ public class ExtruderBlockEntity extends BlockEntity
 	} // end tryStartNewRecipe()
 	
 
+	
+	public void blockBroken() 
+	{
+		InventoryUtilities.drop(this.level, this.worldPosition, this.m_rawInventory);
+	} // end blockBroken()
+	
+	
 
 	@Override
 	protected void saveAdditional(CompoundTag tag)
@@ -239,7 +247,7 @@ public class ExtruderBlockEntity extends BlockEntity
 		}
 		if (tag.contains(ACTIVE_RECIPE_TAG_NAME))
 		{
-			this.m_activeRecipe = RecipeUtilities.loadRecipe(tag.getString(ACTIVE_RECIPE_TAG_NAME), level, YATMRecipeTypes.EXTRUSION_RECIPE_TYPE.get());
+			this.m_activeRecipe = RecipeUtilities.loadRecipe(tag.getString(ACTIVE_RECIPE_TAG_NAME), level, YATMRecipeTypes.EXTRUSION.get());
 				if(this.m_activeRecipe == null) 
 				{
 					this.m_extrudeProgress = 0;

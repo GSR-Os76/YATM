@@ -155,7 +155,7 @@ public class BoilerMenu extends AbstractContainerMenu
 	@Override
 	public boolean stillValid(Player player)
 	{
-		return AbstractContainerMenu.stillValid(m_access, player, m_openingBlockType);
+		return AbstractContainerMenu.stillValid(this.m_access, player, this.m_openingBlockType);
 	} // end stillValid();
 
 	

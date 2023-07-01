@@ -12,7 +12,6 @@ import com.gsr.gsr_yatm.fluid.item.SoulSapBucketItem;
 import com.gsr.gsr_yatm.item.InsulatingItem;
 import com.gsr.gsr_yatm.item.component.CurrentRegulatorItem;
 import com.gsr.gsr_yatm.item.component.fluid.FluidExchangerItem;
-
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
@@ -94,6 +93,7 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> STEEL_CRYSTALLIZER_ITEM = generalTabEnqueue(ITEMS.register("steel_crystallizer", () -> new BlockItem(YATMBlocks.STEEL_CRYSTALLIZER.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_EXTRACTOR_ITEM = generalTabEnqueue(ITEMS.register("steel_extractor", () -> new BlockItem(YATMBlocks.STEEL_EXTRACTOR.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_EXTRUDER_ITEM = generalTabEnqueue(ITEMS.register("steel_extruder", () -> new BlockItem(YATMBlocks.STEEL_EXTRUDER.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> STEEL_GRINDER_ITEM = generalTabEnqueue(ITEMS.register("steel_grinder", () -> new BlockItem(YATMBlocks.STEEL_GRINDER.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> C_U_F_E_I_ITEM = generalTabEnqueue(ITEMS.register("current_unit_forge_energy_interchanger", () -> new BlockItem(YATMBlocks.C_U_F_E_I.get(), new Item.Properties())));
 
 

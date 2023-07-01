@@ -13,6 +13,17 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BlockShapes
 {
+	public static final VoxelShapeGetter CUBE = new VoxelShapeGetter() 
+	{
+		private static final VoxelShape CUBE = Block.box(0, 0, 0, 16, 16, 16);
+
+		@Override
+		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		{
+			return CUBE;
+		} // end getShape()
+	};
+	
 	public static final VoxelShapeGetter BOILER_SHAPE = new VoxelShapeGetter()
 	{		
 		@Override
