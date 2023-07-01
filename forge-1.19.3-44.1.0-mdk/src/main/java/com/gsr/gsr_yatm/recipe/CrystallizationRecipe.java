@@ -1,8 +1,6 @@
 package com.gsr.gsr_yatm.recipe;
 
-import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlockEntity;
-import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlockEntity;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
@@ -12,7 +10,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
@@ -21,7 +18,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.items.IItemHandler;
 
-public class CrystallizationRecipe implements Recipe<Container>
+public class CrystallizationRecipe implements ITimedRecipe<Container>
 {
 	private final ResourceLocation m_identifier;
 	private final ItemStack m_result;
@@ -49,6 +46,7 @@ public class CrystallizationRecipe implements Recipe<Container>
 		return this.m_currentPerTick;
 	} // end getCurrentPerTick()
 	
+	@Override
 	public int getTimeInTicks()
 	{
 		return this.m_timeInTicks;

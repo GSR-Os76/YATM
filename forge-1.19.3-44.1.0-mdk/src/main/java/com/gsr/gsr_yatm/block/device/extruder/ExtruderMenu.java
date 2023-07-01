@@ -156,7 +156,7 @@ public class ExtruderMenu extends AbstractContainerMenu
 	
 	public float getPowerFillStatus()
 	{
-		return 1f - ((float)this.m_data.get(ExtruderBlockEntity.STORED_POWER_SLOT) / (float)this.m_data.get(ExtruderBlockEntity.POWER_CAPACITY_SLOT));
+		return 1f - ((float)this.m_data.get(ExtruderBlockEntity.CURRENT_STORED_SLOT) / (float)this.m_data.get(ExtruderBlockEntity.CURRENT_CAPACITY_SLOT));
 	} // end getExtrudeProgress()
 	
 } // end class

@@ -1,6 +1,5 @@
 package com.gsr.gsr_yatm.block.device.grinder;
 
-import com.gsr.gsr_yatm.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.block.device.DeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProviderUnitedStatesEnglish;
@@ -9,18 +8,16 @@ import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.VoxelShapeGetter;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
 public class GrinderBlock extends DeviceBlock
 {
-	public static final DirectionProperty FACING = YATMBlockStateProperties.FACING_HORIZONTAL;
+	// public static final DirectionProperty FACING = YATMBlockStateProperties.FACING_HORIZONTAL;
 	
 	private final int m_currentCapacity;
 	private final int m_maxCurrent;
@@ -29,8 +26,8 @@ public class GrinderBlock extends DeviceBlock
 	
 	public GrinderBlock(Properties properties, VoxelShapeGetter shape, int currentCapacity, int maxCurrent)
 	{
-		super(properties, () -> YATMBlockEntityTypes.GRINDER.get(), shape);
-		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
+		super(properties, YATMBlockEntityTypes.GRINDER::get, shape);
+		// this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
 		this.m_currentCapacity = currentCapacity;
 		this.m_maxCurrent = maxCurrent;
 	} // end constructor

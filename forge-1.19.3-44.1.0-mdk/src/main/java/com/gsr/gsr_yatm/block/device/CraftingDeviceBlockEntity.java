@@ -52,6 +52,12 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 		super.onItemWithdrawal(slot, amount);
 		this.m_timeSinceRecheck = RECHECK_PERIOD;
 	} // end onItemWithdrawal()
+	
+	@Override
+	protected void onFluidContentsChanged() 
+	{	
+		this.m_timeSinceRecheck = RECHECK_PERIOD;
+	} // end onFluidContentsChanged()
 
 
 
@@ -61,12 +67,13 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 		
 		if (this.m_craftProgress > 0)
 		{
-			if (this.m_activeRecipe == null) 
-			{
-				this.m_timeSinceRecheck = 0;
-				this.tryStartNewRecipe();
-			}
-			else if (--this.m_craftProgress <= 0)
+//			if (this.m_activeRecipe == null) 
+//			{
+//				this.m_timeSinceRecheck = 0;
+//				this.tryStartNewRecipe();
+//			}
+//			else 
+			if (--this.m_craftProgress <= 0)
 			{
 				this.setRecipeResults(this.m_activeRecipe);
 				this.tryStartNewRecipe();
@@ -96,6 +103,7 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 				this.m_craftTime = r.getTimeInTicks();
 				this.m_craftProgress = this.m_craftTime;
 				this.startRecipe(r);
+				break;
 			}
 		}
 	} // end tryStartNewRecipe()	

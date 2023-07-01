@@ -1,32 +1,26 @@
 package com.gsr.gsr_yatm.block.device.crystallizer;
 
-import java.util.List;
+import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
+import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.CrystallizationRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.ConfigurableInventoryWrapper;
 import com.gsr.gsr_yatm.utilities.ConfigurableTankWrapper;
-import com.gsr.gsr_yatm.utilities.InventoryUtilities;
 import com.gsr.gsr_yatm.utilities.NetworkUtilities;
-import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 import com.gsr.gsr_yatm.utilities.SlotUtilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.Container;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
-import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 
-public class CrystallizerBlockEntity extends BlockEntity
+public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<CrystallizationRecipe, Container>
 {
 	public static final int INVENTORY_SLOT_COUNT = 5;
 	public static final int DATA_SLOT_COUNT = 10;
@@ -53,39 +47,21 @@ public class CrystallizerBlockEntity extends BlockEntity
 	public static final int DRAIN_INPUT_TANK_TRANSFER_PROGRESS = 8;
 	public static final int DRAIN_INPUT_TANK_TRANSFER_INITIAL = 9;
 	
-	
-	
-	public static final String ACTIVE_RECIPE_TAG_NAME = "recipe";
-	public static final String CRYSTALLIZE_PROGRESS_TAG_NAME = "crsytallizeProgress";
-	public static final String CRYSTALLIZE_TIME_TAG_NAME = "crystallizeTime";
+	private static final String TANK_CAPACITY_TAG_NAME = "tankCapacity";
+	private static final String MAX_FLUID_TRANSFER_RATE_TAG_NAME = "maxFluidTransferRate";
+
 	public static final String FILL_INPUT_TRANSFER_BUFFER_TAG_NAME = "fillInputBuffer";
 	public static final String FILL_INPUT_TRANSFER_INITIAL_TAG_NAME = "fillInputInitial";
 	public static final String DRAIN_INPUT_COUNT_DOWN_TAG_NAME = "drainInputCount";
 	public static final String DRAIN_INPUT_TRANSFER_INITIAL_TAG_NAME = "drainInputInitial";
 	public static final String INPUT_TANK_TAG_NAME = "inputTank";
-	public static final String INVENTORY_TAG_NAME = "inventory";
 
 
-	private ItemStackHandler m_rawInventory = new ItemStackHandler(INVENTORY_SLOT_COUNT);
-	private ConfigurableInventoryWrapper m_uncheckedInventory = new ConfigurableInventoryWrapper.Builder(this.m_rawInventory).onInsertion(this::onItemInsertion).onWithdrawal(this::onItemWithdrawal).build();
-	private ConfigurableInventoryWrapper m_inventory = new ConfigurableInventoryWrapper.Builder(this.m_uncheckedInventory).slotValidator(this::validateSlotInsertion).build();
 	
+	private int m_maxFluidTransferRate;
+
 	private FluidTank m_rawInputTank;
 	private ConfigurableTankWrapper m_inputTank;
-	
-	private int m_maxTransferRate;
-	
-	
-
-	
-	private static final int RECHECK_CRAFTING_PERIOD = RecipeUtilities.RECHECK_CRAFTING_PERIOD;
-	private int m_timeSinceRecheck = RECHECK_CRAFTING_PERIOD;
-	private String m_activeRecipeIdentifier = null;
-	private CrystallizationRecipe m_activeRecipe = null;
-	private boolean m_tickWasPowered = false;
-	
-	private int m_crystallizeProgress = 0;
-	private int m_crystallizeTime = 0;
 	private FluidTank m_fillInputTankBuffer;
 	private int m_fillInputTankInitialTransferSize = 0;
 	private int m_drainInputTankCountDown = 0;
@@ -98,8 +74,8 @@ public class CrystallizerBlockEntity extends BlockEntity
 		{
 			return switch(value) 
 				{
-				case CrystallizerBlockEntity.CRYSTALLIZE_PROGRESS_SLOT -> CrystallizerBlockEntity.this.m_crystallizeProgress;
-				case CrystallizerBlockEntity.CRYSTALLIZE_TIME_SLOT -> CrystallizerBlockEntity.this.m_crystallizeTime;
+				case CrystallizerBlockEntity.CRYSTALLIZE_PROGRESS_SLOT -> CrystallizerBlockEntity.this.m_craftProgress;
+				case CrystallizerBlockEntity.CRYSTALLIZE_TIME_SLOT -> CrystallizerBlockEntity.this.m_craftTime;
 				
 				case CrystallizerBlockEntity.FLUID_AMOUNT_SLOT -> CrystallizerBlockEntity.this.m_inputTank.getFluidAmount();
 				case CrystallizerBlockEntity.FLUID_CAPACITY_SLOT -> CrystallizerBlockEntity.this.m_inputTank.getCapacity();
@@ -120,6 +96,7 @@ public class CrystallizerBlockEntity extends BlockEntity
 		public void set(int index, int value)
 		{
 			// client should not be allowed to modify our state through any of the provided data, it should be one way for rendering is all. Theoretically
+			// TODO, learn and consider, what if this is used to sync to the client BlockEntity and back to through the menu?
 			return;
 		} // end set()
 
@@ -134,36 +111,58 @@ public class CrystallizerBlockEntity extends BlockEntity
 	
 	public CrystallizerBlockEntity(BlockPos blockPos, BlockState blockState)
 	{
-		this(blockPos, blockState, DeviceTierConstants.STEEL_TANK_CAPACITY, DeviceTierConstants.STEEL_MAXIMUM_FLUID_TRANSFER_RATE);
+		this(blockPos, blockState, 0, 0);
 	} // end constructor
 	
 	public CrystallizerBlockEntity(BlockPos blockPos, BlockState blockState, int tankCapacities, int maxFluidTransferRate)
 	{
-		super(YATMBlockEntityTypes.CRYSTALLIZER.get(), blockPos, blockState);
-		
-		this.m_maxTransferRate = maxFluidTransferRate;
-		
-		this.m_rawInputTank = new FluidTank(tankCapacities);
-		this.m_fillInputTankBuffer = new FluidTank(tankCapacities);
-		
-		this.m_inputTank = new ConfigurableTankWrapper(this.m_rawInputTank, this::onFluidContentsChanged);
+		super(YATMBlockEntityTypes.CRYSTALLIZER.get(), blockPos, blockState, CrystallizerBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.CRYSTALLIZATION.get());
+		this.setup(tankCapacities, maxFluidTransferRate);
 	} // end constructor
 	
-	
-	
-	public IItemHandler getInventory()
+	@Override
+	protected @NotNull CompoundTag setupToNBT()
 	{
-		return this.m_inventory;
-	} // end getInventory()
+		CompoundTag tag = new CompoundTag();
+		tag.putInt(TANK_CAPACITY_TAG_NAME, this.m_rawInputTank.getCapacity());
+		tag.putInt(MAX_FLUID_TRANSFER_RATE_TAG_NAME, this.m_maxFluidTransferRate);
+		return tag;
+	} // end setupToNBT()
 
+	@Override
+	protected void setupFromNBT(@NotNull CompoundTag tag)
+	{
+		int fluidCapacity = 0;
+		int maxFluidTransferRate = 0;
+		
+		if(tag.contains(TANK_CAPACITY_TAG_NAME)) 
+		{
+			fluidCapacity = tag.getInt(TANK_CAPACITY_TAG_NAME);
+		}
+		if(tag.contains(MAX_FLUID_TRANSFER_RATE_TAG_NAME)) 
+		{
+			maxFluidTransferRate = tag.getInt(MAX_FLUID_TRANSFER_RATE_TAG_NAME);
+		}
+		this.setup(fluidCapacity, maxFluidTransferRate);
+	} // end setupFromNBT()
+	
+	private void setup(int tankCapacities, int maxFluidTransferRate) 
+	{
+		this.m_maxFluidTransferRate = maxFluidTransferRate;		
+		this.m_fillInputTankBuffer = new FluidTank(tankCapacities);		
+		this.m_rawInputTank = new FluidTank(tankCapacities);
+		this.m_inputTank = new ConfigurableTankWrapper(this.m_rawInputTank, this::onFluidContentsChanged);
+	} // end setup()
+	
+	
+	
 	public ContainerData getDataAccessor()
 	{
 		return this.m_data;
 	} // end getDataAccessor()
 	
-	
-	
-	private boolean validateSlotInsertion(int slot, ItemStack itemStack, boolean simulate)
+	@Override
+	protected boolean itemInsertionValidator(int slot, ItemStack itemStack, boolean simulate)
 	{
 		return switch(slot) 
 				{
@@ -174,53 +173,20 @@ public class CrystallizerBlockEntity extends BlockEntity
 				};
 	} // end validateSlotInsertion()
 
-	private void onItemInsertion(int slot, ItemStack itemStack)
-	{
-		this.setChanged();
-	} // end onItemInsertion()
-
-	private void onItemWithdrawal(int slot, int amount)
-	{
-		this.setChanged();
-	} // onItemWithdrawal
-	
-	private void onFluidContentsChanged() 
-	{
-		this.setChanged();
-	} // end onFluidContentsChanged()
 	
 	
-	
-	public static void tick(Level level, BlockPos blockPos, BlockState blockState, CrystallizerBlockEntity blockEntity)
+	@Override
+	public void serverTick(Level level, BlockPos blockPos, BlockState blockState) 
 	{
-		if(!level.isClientSide) 
-		{
-			blockEntity.serverTick(level, blockPos, blockState);
-		}
-	} // end tick()
-
-	private void serverTick(Level level, BlockPos blockPos, BlockState blockState) 
-	{
-		// TODO, fix recipe loading, seems this ticks before the recipes are ever loaded
-		if(this.m_activeRecipe == null && this.m_activeRecipeIdentifier != null) 
-		{
-			this.m_activeRecipe = RecipeUtilities.loadRecipe(this.m_activeRecipeIdentifier, level, YATMRecipeTypes.CRYSTALLIZATION.get());
-			this.m_activeRecipeIdentifier = null;
-//			if(this.m_activeRecipe == null) 
-//			{
-//				YetAnotherTechMod.LOGGER.info("failed to load the recipe");
-//			}
-//			else 
-//			{
-//				YetAnotherTechMod.LOGGER.info("succeed to load the recipe with id: " + this.m_activeRecipe.getId());
-//			}
-			this.m_crystallizeProgress = 0;
-			this.m_crystallizeTime = 0;
-		}
-
+		super.serverTick(level, blockPos, blockState);
+		
 		boolean changed = this.doAcceptPower();
 		changed |= this.doFillInputTank();
-		changed |= this.doCrafting();
+		changed |= this.m_waitingForLoad 
+				? false 
+				: this.m_activeRecipe != null && this.m_currentTransferedThisTick < this.m_activeRecipe.getCurrentPerTick() 
+					? false 
+					: this.doCrafting();
 		changed |= this.doDrainInputTank();
 		
 		if(changed) 
@@ -233,12 +199,9 @@ public class CrystallizerBlockEntity extends BlockEntity
 	{
 		boolean changed = false;
 		
-		this.m_tickWasPowered = false;
 		// if the power slot has an item that can power this, and the recipe needs power
 		// take the needed amount of power from the slot, and if the amount taken's the full required amount, mark this tick as powered
-		int tickRequiredPower = this.m_activeRecipe != null ? this.m_activeRecipe.getCurrentPerTick() : 0;
-		this.m_tickWasPowered = SlotUtilities.tryToPower(this.m_inventory, CrystallizerBlockEntity.POWER_SLOT, tickRequiredPower);
-		
+		// alternatively take as much as possible always, if it's wasting power or it overloads the device, so be it, recording it in to m_currentTransferedThisTick
 		return changed;
 	} // end doAcceptPower()
 	
@@ -247,7 +210,7 @@ public class CrystallizerBlockEntity extends BlockEntity
 		boolean changed = false;
 		if(this.m_fillInputTankBuffer.getFluidAmount() <= 0) 
 		{
-			this.m_fillInputTankInitialTransferSize = SlotUtilities.queueToFillFromSlot(this.level, this.worldPosition, this.m_inventory, CrystallizerBlockEntity.FILL_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_fillInputTankBuffer, this.m_maxTransferRate);
+			this.m_fillInputTankInitialTransferSize = SlotUtilities.queueToFillFromSlot(this.level, this.worldPosition, this.m_inventory, CrystallizerBlockEntity.FILL_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_fillInputTankBuffer, this.m_maxFluidTransferRate);
 			if(this.m_fillInputTankInitialTransferSize > 0) 
 			{
 				changed = true;
@@ -255,7 +218,7 @@ public class CrystallizerBlockEntity extends BlockEntity
 		}
 		if (this.m_fillInputTankBuffer.getFluidAmount() > 0)
 		{
-			this.m_inputTank.fill(this.m_fillInputTankBuffer.drain(this.m_maxTransferRate, FluidAction.EXECUTE), FluidAction.EXECUTE);
+			this.m_inputTank.fill(this.m_fillInputTankBuffer.drain(this.m_maxFluidTransferRate, FluidAction.EXECUTE), FluidAction.EXECUTE);
 			if (this.m_fillInputTankBuffer.getFluidAmount() <= 0)
 			{
 				this.m_fillInputTankInitialTransferSize = 0;
@@ -265,58 +228,12 @@ public class CrystallizerBlockEntity extends BlockEntity
 		return changed;
 	}// end doFillInputTank() 
 
-	private boolean doCrafting() 
-	{
-		boolean changed = false;
-		
-		if (this.m_crystallizeProgress > 0)
-		{
-			if (this.m_activeRecipe == null) 
-			{
-				this.m_timeSinceRecheck = 0;
-				this.tryStartNewRecipe();
-			}
-			else if (this.m_tickWasPowered && --this.m_crystallizeProgress <= 0)
-			{
-				this.m_activeRecipe.setResults(this.m_uncheckedInventory);
-				this.tryStartNewRecipe();
-			}
-			changed = true;
-		}
-		else if (++this.m_timeSinceRecheck > RECHECK_CRAFTING_PERIOD)
-		{
-			this.m_timeSinceRecheck = 0;
-			this.tryStartNewRecipe();
-			changed = true;
-		}		
-		return changed;
-	} // end doCrafting()
-
-	private void tryStartNewRecipe()
-	{
-		this.m_activeRecipe = null;
-		this.m_crystallizeTime = 0;
-		this.m_crystallizeProgress = 0;
-		List<CrystallizationRecipe> recipes = level.getRecipeManager().getAllRecipesFor(YATMRecipeTypes.CRYSTALLIZATION.get());
-		for (CrystallizationRecipe r : recipes)
-		{
-			//YetAnotherTechMod.LOGGER.info("considering a recipe to start: " + r.getId());
-			if (r.canBeUsedOn(this.m_uncheckedInventory, this.m_inputTank))
-			{
-				this.m_activeRecipe = r;
-				this.m_crystallizeTime = r.getTimeInTicks();
-				this.m_crystallizeProgress = this.m_crystallizeTime;
-				r.startRecipe(this.m_inventory, this.m_inputTank);
-			}
-		}
-	} // end tryStartNewRecipe()	
-
 	private boolean doDrainInputTank() 
 	{
 		boolean changed = false;		
 		if (this.m_drainInputTankCountDown > 0)
 		{
-			this.m_drainInputTankCountDown = SlotUtilities.countDownOrDrainToSlot(this.level, this.worldPosition, this.m_inventory, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_drainInputTankInitialTransferSize, this.m_drainInputTankCountDown, this.m_maxTransferRate);
+			this.m_drainInputTankCountDown = SlotUtilities.countDownOrDrainToSlot(this.level, this.worldPosition, this.m_inventory, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_drainInputTankInitialTransferSize, this.m_drainInputTankCountDown, this.m_maxFluidTransferRate);
 			if (this.m_drainInputTankCountDown <= 0)
 			{
 				this.m_drainInputTankInitialTransferSize = 0;
@@ -325,7 +242,7 @@ public class CrystallizerBlockEntity extends BlockEntity
 		}
 		if(m_drainInputTankInitialTransferSize == 0) 
 		{
-			this.m_drainInputTankInitialTransferSize = SlotUtilities.queueToDrainToSlot(this.m_inventory, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_maxTransferRate);
+			this.m_drainInputTankInitialTransferSize = SlotUtilities.queueToDrainToSlot(this.m_inventory, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_maxFluidTransferRate);
 			this.m_drainInputTankCountDown = this.m_drainInputTankInitialTransferSize;
 			
 			changed = true;
@@ -335,10 +252,23 @@ public class CrystallizerBlockEntity extends BlockEntity
 	
 	
 	
-	public void blockBroken() 
+	@Override
+	protected void setRecipeResults(CrystallizationRecipe from)
 	{
-		InventoryUtilities.drop(this.level, this.worldPosition, this.m_rawInventory);
-	} // end blockBroken()
+		from.setResults(this.m_uncheckedInventory);
+	} // end setRecipeResults()
+
+	@Override
+	protected boolean canUseRecipe(CrystallizationRecipe from)
+	{
+		return from.canBeUsedOn(this.m_uncheckedInventory, this.m_inputTank);
+	} // end canUseRecipe()
+
+	@Override
+	protected void startRecipe(CrystallizationRecipe from)
+	{
+		from.startRecipe(this.m_uncheckedInventory, this.m_inputTank);
+	} // end startRecipe()
 	
 	
 
@@ -347,19 +277,9 @@ public class CrystallizerBlockEntity extends BlockEntity
 	{
 		super.saveAdditional(tag);
 		
-		tag.put(INVENTORY_TAG_NAME, this.m_rawInventory.serializeNBT());
 		if(this.m_rawInputTank.getFluidAmount() > 0) 
 		{
 			tag.put(INPUT_TANK_TAG_NAME, this.m_rawInputTank.writeToNBT(new CompoundTag()));
-		}
-		if(this.m_activeRecipe != null) 
-		{
-			tag.putString(ACTIVE_RECIPE_TAG_NAME, this.m_activeRecipe.getId().toString());
-		}
-		if(this.m_crystallizeProgress > 0 && this.m_crystallizeTime > 0) 
-		{
-			tag.putInt(CRYSTALLIZE_PROGRESS_TAG_NAME, this.m_crystallizeProgress);
-			tag.putInt(CRYSTALLIZE_TIME_TAG_NAME, this.m_crystallizeTime);
 		}
 		if(this.m_fillInputTankBuffer.getFluidAmount() > 0 && this.m_fillInputTankInitialTransferSize > 0)
 		{
@@ -377,23 +297,9 @@ public class CrystallizerBlockEntity extends BlockEntity
 	public void load(CompoundTag tag)
 	{
 		super.load(tag);
-		if(tag.contains(INVENTORY_TAG_NAME)) 
-		{
-			this.m_rawInventory.deserializeNBT(tag.getCompound(INVENTORY_TAG_NAME));
-		}
 		if(tag.contains(INPUT_TANK_TAG_NAME)) 
 		{
 			this.m_rawInputTank.readFromNBT(tag.getCompound(INPUT_TANK_TAG_NAME));
-		}
-		if(tag.contains(ACTIVE_RECIPE_TAG_NAME)) 
-		{
-			this.m_activeRecipeIdentifier = tag.getString(ACTIVE_RECIPE_TAG_NAME);
-			YetAnotherTechMod.LOGGER.info("loaded recipe identifier: " + this.m_activeRecipeIdentifier);
-		}
-		if(tag.contains(CRYSTALLIZE_PROGRESS_TAG_NAME) && tag.contains(CRYSTALLIZE_TIME_TAG_NAME)) 
-		{
-			this.m_crystallizeProgress = tag.getInt(CRYSTALLIZE_PROGRESS_TAG_NAME);
-			this.m_crystallizeTime = tag.getInt(CRYSTALLIZE_TIME_TAG_NAME);
 		}
 		if(tag.contains(FILL_INPUT_TRANSFER_BUFFER_TAG_NAME) && tag.contains(FILL_INPUT_TRANSFER_INITIAL_TAG_NAME)) 
 		{
@@ -406,5 +312,5 @@ public class CrystallizerBlockEntity extends BlockEntity
 			this.m_drainInputTankInitialTransferSize = tag.getInt(DRAIN_INPUT_TRANSFER_INITIAL_TAG_NAME);
 		}		
 	} // end load()
-	
+
 } // end class

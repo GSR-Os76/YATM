@@ -1,8 +1,9 @@
 package com.gsr.gsr_yatm.block.device.grinder;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.api.implementation.CurrentUnitHandler;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
-import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
 import com.gsr.gsr_yatm.recipe.GrindingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
@@ -30,7 +31,9 @@ public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe
 	public static final int CURRENT_STORED_INDEX = 2;
 	public static final int CURRENT_CAPACITY_INDEX = 3;
 	
-	public static final String CURRENT_HANDLER_TAG_NAME = "current";
+	private static final String CURRENT_CAPACITY_TAG_NAME = "currentCapacity";
+	private static final String MAX_CURRENT_TAG_NAME = "maxCurrent";
+	
 	
 	
 	private CurrentUnitHandler m_internalCurrentStorer;	
@@ -71,16 +74,49 @@ public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe
 	
 	public GrinderBlockEntity(BlockPos blockPos, BlockState blockState)
 	{
-		this(blockPos, blockState, DeviceTierConstants.STEEL_CURRENT_CAPACITY, DeviceTierConstants.STEEL_MAX_CURRENT);
+		this(blockPos, blockState, 0, 0);
 	} // end constructor
 	
 	public GrinderBlockEntity(BlockPos blockPos, BlockState blockState, int currentCapacity, int maxCurrentTransfer)
 	{
 		super(YATMBlockEntityTypes.GRINDER.get(), blockPos, blockState, GrinderBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.GRINDING.get());
-		this.m_internalCurrentStorer = new CurrentUnitHandler.Builder().capacity(currentCapacity).onCurrentExtracted(this::onCurrentExchanged).onCurrentRecieved(this::onCurrentExchanged).build();
-		this.m_maxCurrentTransfer = maxCurrentTransfer;
+		this.setup(currentCapacity, maxCurrentTransfer);
 	} // end constructor
 
+	protected @NotNull CompoundTag setupToNBT()
+	{
+		CompoundTag tag = new CompoundTag();
+		tag.putInt(CURRENT_CAPACITY_TAG_NAME, this.m_internalCurrentStorer.capacity());
+		tag.putInt(MAX_CURRENT_TAG_NAME, this.m_maxCurrentTransfer);
+		return tag;
+	} // end setupToNBT()
+
+	@Override
+	protected void setupFromNBT(CompoundTag tag)
+	{
+		int currentCapacity = 0;
+		int maxCurrentTransfer = 0;
+		
+		if(tag.contains(CURRENT_CAPACITY_TAG_NAME)) 
+		{
+			currentCapacity = tag.getInt(CURRENT_CAPACITY_TAG_NAME);
+		}
+		if(tag.contains(MAX_CURRENT_TAG_NAME)) 
+		{
+			maxCurrentTransfer = tag.getInt(MAX_CURRENT_TAG_NAME);
+		}
+		this.setup(currentCapacity, maxCurrentTransfer);
+	} // end setupFromNBT()
+	
+	private void setup(int currentCapacity, int maxCurrentTransfer) 
+	{
+		this.m_internalCurrentStorer = new CurrentUnitHandler.Builder().capacity(currentCapacity).onCurrentExtracted(this::onCurrentExchanged).onCurrentRecieved(this::onCurrentExchanged).build();
+		this.m_maxCurrentTransfer = maxCurrentTransfer;		
+	} // end setup()
+	
+	
+	
+	
 	
 	
 	@Override
@@ -107,7 +143,7 @@ public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe
 	@Override
 	public void serverTick(Level level, BlockPos pos, BlockState blockState)
 	{
-		boolean changed = this.m_waitingForLoad ? false : this.doCrafting();
+		boolean changed = /* this.m_activeRecipe != null && */this.m_waitingForLoad ? false : this.doCrafting();
 		
 		if(changed) 
 		{
@@ -132,28 +168,6 @@ public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe
 	{
 		from.startRecipe(this.m_uncheckedInventory);
 	} // end startRecipe()
-	
-	
-	
-	@Override
-	protected void saveAdditional(CompoundTag tag)
-	{
-		super.saveAdditional(tag);
-		
-		if(this.m_internalCurrentStorer.stored() > 0) 
-		{
-			tag.put(CURRENT_HANDLER_TAG_NAME, this.m_internalCurrentStorer.serializeNBT());
-		}
-	} // end saveAdditional()
-	
-	@Override
-	public void load(CompoundTag tag)
-	{
-		super.load(tag);
-		
-		if(tag.contains(CURRENT_HANDLER_TAG_NAME)) 
-		{
-			 this.m_internalCurrentStorer.deserializeNBT(tag.getCompound(CURRENT_HANDLER_TAG_NAME));
-		}		
-	} // end load()
+
+
 } // end class

@@ -1,32 +1,30 @@
 package com.gsr.gsr_yatm.block.device.extruder;
 
-import java.util.List;
-
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.api.implementation.CurrentUnitHandler;
+import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.ExtrusionRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.ConfigurableInventoryWrapper;
-import com.gsr.gsr_yatm.utilities.InventoryUtilities;
-import com.gsr.gsr_yatm.utilities.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.SlotUtilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.Container;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
-import net.minecraftforge.items.ItemStackHandler;
 
-public class ExtruderBlockEntity extends BlockEntity
+public class ExtruderBlockEntity extends CraftingDeviceBlockEntity<ExtrusionRecipe, Container>
 {
 	public static final int INVENTORY_SLOT_COUNT = 5;
 	public static final int DATA_SLOT_COUNT = 4;
@@ -39,79 +37,34 @@ public class ExtruderBlockEntity extends BlockEntity
 
 	public static final int EXTRUDE_PROGRESS_SLOT = 0;
 	public static final int EXTRUDE_TIME_SLOT = 1;
-	public static final int STORED_POWER_SLOT = 2;
-	public static final int POWER_CAPACITY_SLOT = 3;
+	public static final int CURRENT_STORED_SLOT = 2;
+	public static final int CURRENT_CAPACITY_SLOT = 3;
 
-	public static final String ACTIVE_RECIPE_TAG_NAME = "recipe";
-	public static final String EXTRUDE_PROGRESS_TAG_NAME = "extrudeProgress";
-	public static final String EXTRUDE_TIME_TAG_NAME = "extrudeTime";
-	public static final String POWER_TAG_NAME = "power";
-	public static final String INVENTORY_TAG_NAME = "inventory";
-
-
-
-	//private String m_activeRecipeIdentifier = null;
-	private int m_extrudeProgress = 0;
-	private int m_extrudeTime = 0;
-	private int m_storedPower = 0;
-	private int m_powerCapacity = 0;
-
+	private static final String CURRENT_CAPACITY_TAG_NAME = "currentCapacity";
+	private static final String MAX_CURRENT_TAG_NAME = "maxCurrent";
+	
+	
+	
 	private final ContainerData m_data = new ContainerData()
 	{
 		@Override
 		public int get(int index)
 		{
-			switch (index)
+			return switch(index) 
 			{
-				case EXTRUDE_PROGRESS_SLOT:
-				{
-					return m_extrudeProgress;
-				}
-				case EXTRUDE_TIME_SLOT:
-				{
-					return m_extrudeTime;
-				}
-				case STORED_POWER_SLOT:
-				{
-					return m_storedPower;
-				}
-				case POWER_CAPACITY_SLOT:
-				{
-					return m_powerCapacity;
-				}
-				default:
-				{
-					throw new IndexOutOfBoundsException("get index of: " + index + ", is out of the range");
-				}
-			}
+				case EXTRUDE_PROGRESS_SLOT -> ExtruderBlockEntity.this.m_craftProgress;
+				case EXTRUDE_TIME_SLOT -> ExtruderBlockEntity.this.m_craftTime;
+				case CURRENT_STORED_SLOT -> ExtruderBlockEntity.this.m_internalCurrentStorer.stored();
+				case CURRENT_CAPACITY_SLOT ->  ExtruderBlockEntity.this.m_internalCurrentStorer.capacity();
+				default -> throw new IllegalArgumentException("Unexpected value of: " + index);
+			};
+
 		} // end get()
 
 		@Override
 		public void set(int index, int value)
 		{
-			switch (index)
-			{
-				case EXTRUDE_PROGRESS_SLOT:
-				{
-					m_extrudeProgress = value;
-				}
-				case EXTRUDE_TIME_SLOT:
-				{
-					m_extrudeTime = value;
-				}
-				case STORED_POWER_SLOT:
-				{
-					m_storedPower = value;
-				}
-				case POWER_CAPACITY_SLOT:
-				{
-					m_powerCapacity = value;
-				}
-				default:
-				{
-					throw new IndexOutOfBoundsException("get index of: " + index + ", is out of the range");
-				}
-			}
+			return;
 		} // end set()
 
 		@Override
@@ -122,10 +75,6 @@ public class ExtruderBlockEntity extends BlockEntity
 
 	};
 
-	private final ItemStackHandler m_rawInventory = new ItemStackHandler(INVENTORY_SLOT_COUNT);
-	private final ConfigurableInventoryWrapper m_uncheckedInventory = new ConfigurableInventoryWrapper.Builder(this.m_rawInventory).onInsertion(this::onStackInsertion).onWithdrawal(this::onStackWithdrawal).build();
-	private final ConfigurableInventoryWrapper m_inventory = new ConfigurableInventoryWrapper.Builder(m_uncheckedInventory).slotValidator(this::stackInsertionValidator).build();
-	
 	private LazyOptional<IItemHandler> m_inventoryLazyOptional = LazyOptional.of(() -> this.m_inventory);
 
 	private final ConfigurableInventoryWrapper m_inputsSlots = new ConfigurableInventoryWrapper(m_inventory, new int[]
@@ -136,170 +85,102 @@ public class ExtruderBlockEntity extends BlockEntity
 	{ RESULT_SLOT, INPUT_REMAINDER_SLOT });
 	private LazyOptional<IItemHandler> m_resultsSlotsLazyOptional = LazyOptional.of(() -> this.m_resultsSlots);
 
-	private static final int RECHECK_CRAFTING_PERIOD = 20;
-	private int m_timeSinceRecheck = RECHECK_CRAFTING_PERIOD;
-	private ExtrusionRecipe m_activeRecipe = null;
-
-
-
+	
+	
 	public ExtruderBlockEntity(BlockPos blockPos, BlockState blockState)
 	{
-		super(YATMBlockEntityTypes.EXTRUDER.get(), blockPos, blockState);
+		this(blockPos, blockState, 0, 0);
+	} // end constructor
+	
+	public ExtruderBlockEntity(BlockPos blockPos, BlockState blockState, int currentCapacity, int maxCurrentTransfer)
+	{
+		super(YATMBlockEntityTypes.EXTRUDER.get(), blockPos, blockState, ExtruderBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.EXTRUSION.get());
+		this.setup(currentCapacity, maxCurrentTransfer);
 	} // end constructor
 
-
-
-	public IItemHandler getInventory()
+	protected @NotNull CompoundTag setupToNBT()
 	{
-		return this.m_inventory;
-	} // end getInventory()
+		CompoundTag tag = new CompoundTag();
+		tag.putInt(CURRENT_CAPACITY_TAG_NAME, this.m_internalCurrentStorer.capacity());
+		tag.putInt(MAX_CURRENT_TAG_NAME, this.m_maxCurrentTransfer);
+		return tag;
+	} // end setupToNBT()
 
+	@Override
+	protected void setupFromNBT(CompoundTag tag)
+	{
+		int currentCapacity = 0;
+		int maxCurrentTransfer = 0;
+		
+		if(tag.contains(CURRENT_CAPACITY_TAG_NAME)) 
+		{
+			currentCapacity = tag.getInt(CURRENT_CAPACITY_TAG_NAME);
+		}
+		if(tag.contains(MAX_CURRENT_TAG_NAME)) 
+		{
+			maxCurrentTransfer = tag.getInt(MAX_CURRENT_TAG_NAME);
+		}
+		this.setup(currentCapacity, maxCurrentTransfer);
+	} // end setupFromNBT()
+	
+	private void setup(int currentCapacity, int maxCurrentTransfer) 
+	{
+		this.m_internalCurrentStorer = new CurrentUnitHandler.Builder().capacity(currentCapacity).onCurrentExtracted(this::onCurrentExchanged).onCurrentRecieved(this::onCurrentExchanged).build();
+		this.m_maxCurrentTransfer = maxCurrentTransfer;		
+	} // end setup()
+	
+	
+
+	@Override
 	public ContainerData getDataAccessor()
 	{
 		return this.m_data;
 	} // end getDataAccessor()
 
-
-
-	public static void tick(Level level, BlockPos blockPos, BlockState blockState, ExtruderBlockEntity blockEntity)
+		@Override
+	protected boolean itemInsertionValidator(int slot, ItemStack itemStack, boolean simulate)
 	{
-		if (!level.isClientSide)
-		{
-			blockEntity.serverTick(level, blockPos, blockState, blockEntity);
-		}
-	} // end tick()
-
-	private void serverTick(Level level, BlockPos blockPos, BlockState blockState, ExtruderBlockEntity blockEntity)
-	{
-		// accept in power
-		// decrease power according to need. if not possible resverse recipe progress(wait no that doesn't make sense for this
-		if (this.m_extrudeProgress > 0)
-		{
-			if( --this.m_extrudeProgress == 0) 
+			return switch(slot) 
 			{
-				this.m_activeRecipe.setResults(this.m_uncheckedInventory);
-				this.tryStartNewRecipe();
-			}
-		}
-		else if (this.m_timeSinceRecheck++ > RECHECK_CRAFTING_PERIOD)
+				case ExtruderBlockEntity.INPUT_SLOT, ExtruderBlockEntity.DIE_SLOT -> true;
+				case ExtruderBlockEntity.RESULT_SLOT, ExtruderBlockEntity.INPUT_REMAINDER_SLOT -> false;
+				case ExtruderBlockEntity.POWER_SLOT -> SlotUtilities.isValidPowerSlotInsert(itemStack);
+				default -> throw new IllegalArgumentException("Unexpected value of: " + slot);				
+			};
+	} // end itemInsertionValidator()
+
+
+
+	@Override
+	public void serverTick(Level level, BlockPos blockPos, BlockState blockState)
+	{	
+		boolean changed = /* this.m_activeRecipe != null && */this.m_waitingForLoad ? false :this.doCrafting();
+		
+		if(changed) 
 		{
-			this.m_timeSinceRecheck = 0;
-			this.tryStartNewRecipe();
+			this.setChanged();
 		}
 	} // end serverTick()
 
-	private void tryStartNewRecipe() 
+	@Override
+	protected void setRecipeResults(ExtrusionRecipe from)
 	{
-		// this.m_activeRecipeIdentifier = null;
-		this.m_activeRecipe = null;
-		this.m_extrudeTime = 0;
-		this.m_extrudeProgress = 0;
-		
-		List<ExtrusionRecipe> recipes = level.getRecipeManager().getAllRecipesFor(YATMRecipeTypes.EXTRUSION.get());
-		for (ExtrusionRecipe r : recipes)
-		{
-			if (r.canBeUsedOn(this.m_rawInventory))
-			{
-				this.m_activeRecipe = r;
-				this.m_extrudeTime = r.getTimeInTicks();
-				// TODO, change this to use an inventory that will invoke setChanged() on this object
-				this.m_extrudeProgress = this.m_extrudeTime;
-				r.startRecipe(this.m_uncheckedInventory);
-			}
-		}
-	} // end tryStartNewRecipe()
-	
-
-	
-	public void blockBroken() 
-	{
-		InventoryUtilities.drop(this.level, this.worldPosition, this.m_rawInventory);
-	} // end blockBroken()
-	
-	
+		from.setResults(this.m_uncheckedInventory);
+	} // end setRecipeResult()
 
 	@Override
-	protected void saveAdditional(CompoundTag tag)
+	protected boolean canUseRecipe(ExtrusionRecipe from)
 	{
-		super.saveAdditional(tag);
-		if(this.m_activeRecipe != null) 
-		{
-			tag.putString(ACTIVE_RECIPE_TAG_NAME, this.m_activeRecipe.getId().toString());
-		}
-		tag.putInt(EXTRUDE_PROGRESS_TAG_NAME, this.m_extrudeProgress);
-		tag.putInt(EXTRUDE_TIME_TAG_NAME, this.m_extrudeTime);
-		// power tag here
-		tag.put(INVENTORY_TAG_NAME, this.m_rawInventory.serializeNBT());
-	} // end saveAdditional()
+		return from.canBeUsedOn(this.m_uncheckedInventory);
+	} // end canUseRecipe()
 
 	@Override
-	public void load(CompoundTag tag)
+	protected void startRecipe(ExtrusionRecipe from)
 	{
-		super.load(tag);
-		
-		if (tag.contains(EXTRUDE_PROGRESS_TAG_NAME))
-		{
-			this.m_extrudeProgress = tag.getInt(EXTRUDE_PROGRESS_TAG_NAME);
-		}
-		if (tag.contains(EXTRUDE_TIME_TAG_NAME))
-		{
-			this.m_extrudeTime = tag.getInt(EXTRUDE_TIME_TAG_NAME);
-		}
-		if (tag.contains(ACTIVE_RECIPE_TAG_NAME))
-		{
-			this.m_activeRecipe = RecipeUtilities.loadRecipe(tag.getString(ACTIVE_RECIPE_TAG_NAME), level, YATMRecipeTypes.EXTRUSION.get());
-				if(this.m_activeRecipe == null) 
-				{
-					this.m_extrudeProgress = 0;
-					this.m_extrudeTime = 0;
-				}
-		}		
-		// power tag here
-		if (tag.contains(INVENTORY_TAG_NAME))
-		{
-			this.m_rawInventory.deserializeNBT(tag.getCompound(INVENTORY_TAG_NAME));
-		}
-				
-	} // end load()
+		from.startRecipe(this.m_uncheckedInventory);
+	} // end startRecipe()
 
-
-
-	private boolean stackInsertionValidator(int slot, ItemStack itemStack, boolean simulate)
-	{
-		if (slot == INPUT_SLOT || slot == DIE_SLOT)
-		{
-			return true;
-		}
-		if (slot == RESULT_SLOT || slot == INPUT_REMAINDER_SLOT)
-		{
-			return false;
-		}
-		if (slot == POWER_SLOT)
-		{
-			return true;
-		}
-		return false;
-	} // end stackInsertionValidator()
-
-	private void onStackInsertion(int slot, ItemStack itemStack)
-	{
-		if (slot == INPUT_SLOT || slot == DIE_SLOT)
-		{
-			this.m_timeSinceRecheck = RECHECK_CRAFTING_PERIOD;
-		}
-		this.setChanged();
-	} // end onStackInsertion
 	
-	private void onStackWithdrawal(int slot, int amount)
-	{
-		if (slot == DIE_SLOT || slot == RESULT_SLOT || slot == INPUT_REMAINDER_SLOT)
-		{
-			this.m_timeSinceRecheck = RECHECK_CRAFTING_PERIOD;
-		}
-		this.setChanged();
-	} // end onStackInsertion
-
-
 
 	@Override
 	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side)

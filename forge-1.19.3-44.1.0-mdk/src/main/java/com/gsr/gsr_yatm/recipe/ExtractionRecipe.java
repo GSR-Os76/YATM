@@ -11,7 +11,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
@@ -20,7 +19,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.items.IItemHandler;
 
-public class ExtractionRecipe implements Recipe<Container>
+public class ExtractionRecipe implements ITimedRecipe<Container>
 {
 	private final ResourceLocation m_identifier;
 	private final FluidStack m_result;	
@@ -46,6 +45,7 @@ public class ExtractionRecipe implements Recipe<Container>
 		return this.m_currentPerTick;
 	} // end getCurrentPerTick()
 	
+	@Override
 	public int getTimeInTicks()
 	{
 		return this.m_timeInTicks;

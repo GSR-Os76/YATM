@@ -8,7 +8,6 @@ import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
@@ -16,7 +15,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 
-public class BoilingRecipe implements Recipe<Container>
+public class BoilingRecipe implements ITimedRecipe<Container>
 {
 	private ResourceLocation m_identifier;
 	private FluidStack m_result;
@@ -41,6 +40,7 @@ public class BoilingRecipe implements Recipe<Container>
 		return this.m_temperature;
 	} // end getCurrentPerTick()
 	
+	@Override
 	public int getTimeInTicks()
 	{
 		return this.m_timeInTicks;

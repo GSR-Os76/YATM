@@ -12,13 +12,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
-import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.IItemHandler;
 
-public class ExtrusionRecipe implements Recipe<Container>
+public class ExtrusionRecipe implements ITimedRecipe<Container>
 {
 	private final ResourceLocation m_identifier;
 	private final ItemStack m_result;
@@ -50,6 +49,7 @@ public class ExtrusionRecipe implements Recipe<Container>
 		return this.m_currentPerTick;
 	} // end getCurrentPerTick()
 
+	@Override
 	public int getTimeInTicks()
 	{
 		return this.m_timeInTicks;
@@ -141,9 +141,8 @@ public class ExtrusionRecipe implements Recipe<Container>
 	@Override
 	public NonNullList<ItemStack> getRemainingItems(Container container)
 	{
-		// TODO Auto-generated method stub
-		return Recipe.super.getRemainingItems(container);
-	}
+		return ITimedRecipe.super.getRemainingItems(container);
+	} // end getRemainingItems
 
 	@Override
 	public NonNullList<Ingredient> getIngredients()

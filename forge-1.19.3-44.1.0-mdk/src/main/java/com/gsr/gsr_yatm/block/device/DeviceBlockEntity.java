@@ -1,5 +1,8 @@
 package com.gsr.gsr_yatm.block.device;
 
+import org.jetbrains.annotations.NotNull;
+
+import com.gsr.gsr_yatm.api.implementation.CurrentUnitHandler;
 import com.gsr.gsr_yatm.utilities.ConfigurableInventoryWrapper;
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
 
@@ -16,11 +19,15 @@ import net.minecraftforge.items.ItemStackHandler;
 
 public abstract class DeviceBlockEntity extends BlockEntity 
 {	
+	public static final String SETUP_TAG_NAME = "setup";
 	public static final String INVENTORY_TAG_NAME = "inventory";
-
+	public static final String CURRENT_HANDLER_TAG_NAME = "current";
+	
 	protected ItemStackHandler m_rawInventory;
 	protected ConfigurableInventoryWrapper m_uncheckedInventory;
 	protected ConfigurableInventoryWrapper m_inventory;
+	
+	protected CurrentUnitHandler m_internalCurrentStorer;	
 	
 	protected int m_maxCurrentTransfer;
 	protected int m_currentTransferedThisTick = 0;
@@ -34,6 +41,9 @@ public abstract class DeviceBlockEntity extends BlockEntity
 		this.m_uncheckedInventory = new ConfigurableInventoryWrapper.Builder(this.m_rawInventory).onInsertion(this::onItemInsertion).onWithdrawal(this::onItemWithdrawal).build();
 		this.m_inventory = new ConfigurableInventoryWrapper.Builder(this.m_uncheckedInventory).slotValidator(this::itemInsertionValidator).build();
 	} // end constructor
+	
+	protected abstract @NotNull CompoundTag setupToNBT();
+	protected abstract void setupFromNBT(@NotNull CompoundTag tag);
 	
 	
 	
@@ -62,9 +72,14 @@ public abstract class DeviceBlockEntity extends BlockEntity
 		this.setChanged();
 		if(this.m_currentTransferedThisTick > this.m_maxCurrentTransfer) 
 		{
-			// TODO, detonate
+			// TODO, detonate. or rather call a method that can be overriden that by default will detonates this
 		}
 	} // end onCurrentExchanged()
+	
+	protected void onFluidContentsChanged() 
+	{		
+		this.setChanged();
+	} // end onFluidContentsChanged()
 	
 	
 	public static void tick(Level level, BlockPos pos, BlockState blockState, DeviceBlockEntity blockEntity)
@@ -86,7 +101,7 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	
 	public void serverTick(Level level, BlockPos pos, BlockState blockState)
 	{
-		
+		this.m_currentTransferedThisTick = 0;
 	} // end serverTick()
 	
 	
@@ -109,7 +124,12 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	{
 		super.saveAdditional(tag);
 		
+		tag.put(DeviceBlockEntity.SETUP_TAG_NAME, this.setupToNBT());
 		tag.put(DeviceBlockEntity.INVENTORY_TAG_NAME, this.m_rawInventory.serializeNBT());
+		if(this.m_internalCurrentStorer != null && this.m_internalCurrentStorer.stored() > 0) 
+		{
+			tag.put(DeviceBlockEntity.CURRENT_HANDLER_TAG_NAME, this.m_internalCurrentStorer.serializeNBT());
+		}
 	} // end saveAdditional()
 	
 	@Override
@@ -117,9 +137,18 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	{
 		super.load(tag);
 		
+		if(tag.contains(DeviceBlockEntity.SETUP_TAG_NAME)) 
+		{
+			this.setupFromNBT(tag.getCompound(DeviceBlockEntity.SETUP_TAG_NAME));
+		}
 		if(tag.contains(DeviceBlockEntity.INVENTORY_TAG_NAME)) 
 		{
 			this.m_rawInventory.deserializeNBT(tag.getCompound(DeviceBlockEntity.INVENTORY_TAG_NAME));
+		}
+		
+		if(tag.contains(DeviceBlockEntity.CURRENT_HANDLER_TAG_NAME)) 
+		{
+			this.m_internalCurrentStorer.deserializeNBT(tag.getCompound(DeviceBlockEntity.CURRENT_HANDLER_TAG_NAME));
 		}
 	} // end load()
 	
