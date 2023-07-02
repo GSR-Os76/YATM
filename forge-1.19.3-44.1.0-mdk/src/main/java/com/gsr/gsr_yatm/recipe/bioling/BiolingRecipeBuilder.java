@@ -8,7 +8,6 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
@@ -18,7 +17,6 @@ public class BiolingRecipeBuilder implements RecipeBuilder
 	private ResourceLocation m_identifier;
 	private FluidStack m_result;
 	private Ingredient m_input;
-	private ItemStack m_inputRemainder = ItemStack.EMPTY;
 	private int m_currentPerTick = 8;
 	private int m_timeInTicks = 20;
 
@@ -44,12 +42,6 @@ public class BiolingRecipeBuilder implements RecipeBuilder
 		return this;
 	} // end result()
 
-	public BiolingRecipeBuilder inputRemainder(ItemStack inputRemainder)
-	{
-		this.m_inputRemainder = inputRemainder;
-		return this;
-	} // end inputRemainder()
-
 	public BiolingRecipeBuilder currentPerTick(int currentPerTick)
 	{
 		this.m_currentPerTick = currentPerTick;
@@ -67,7 +59,6 @@ public class BiolingRecipeBuilder implements RecipeBuilder
 	public BiolingRecipe build()
 	{
 		BiolingRecipe r = new BiolingRecipe(this.m_identifier, this.m_input, this.m_result);
-		r.m_inputRemainder = this.m_inputRemainder;
 		r.m_currentPerTick = this.m_currentPerTick;
 		r.m_timeInTicks = this.m_timeInTicks;
 		r.m_group = this.m_group;
@@ -100,7 +91,7 @@ public class BiolingRecipeBuilder implements RecipeBuilder
 	public void save(Consumer<FinishedRecipe> writer, ResourceLocation fileName)
 	{
 		this.validate(fileName);
-		writer.accept(new BiolingFinishedRecipe(fileName, this.m_result, this.m_input, this.m_inputRemainder, this.m_currentPerTick, this.m_timeInTicks, this.m_group, fileName.withPrefix("recipes/"), this.m_advancement));
+		writer.accept(new BiolingFinishedRecipe(fileName, this.m_result, this.m_input, this.m_currentPerTick, this.m_timeInTicks, this.m_group, fileName.withPrefix("recipes/"), this.m_advancement));
 	} // end save()
 	
 	

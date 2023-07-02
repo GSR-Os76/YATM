@@ -12,8 +12,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class BiolerScreen extends AbstractContainerScreen<BiolerMenu>
 {
-	// TODO, change or raname
-	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/extractor.png");
+	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/bioler.png");
 
 	private StoredFluidWidget m_resultTankWidget;
 	
@@ -58,21 +57,12 @@ public class BiolerScreen extends AbstractContainerScreen<BiolerMenu>
 			// from 176 0 to 80 63 size 16 8
 			int horizontalWidth = (int)(16f * cP);
 			blit(poseStack, this.leftPos + 80, this.topPos + 63, 176, 0, horizontalWidth, 8);
-			
-			// if past threshold of 6 pixels along, and remainder is to exist, start to draw down arrow
-			if(horizontalWidth > 6 && this.menu.recipeHasRemainder()) 
-			{
-				// from 176 8 to 84 68 size 8 17
-				float startingAtPercentage = .375f;
-				float normalizedLocalPercentage = ((cP - (startingAtPercentage)) / (1f - startingAtPercentage));
-				blit(poseStack, this.leftPos + 84, this.topPos + 68, 176, 8, 8, (int)(17f * normalizedLocalPercentage));
-			}
 		}
 
 		float dP = this.menu.getResultTankDrainProgress();
 		if(dP > 0) 
 		{
-			blit(poseStack, this.leftPos + 102, this.topPos + 79, 176, 25, 8, (int)(6f * dP));
+			blit(poseStack, this.leftPos + 102, this.topPos + 79, 176, 8, 8, (int)(6f * dP));
 		}
 		
 	} // end renderBg()
@@ -98,7 +88,8 @@ public class BiolerScreen extends AbstractContainerScreen<BiolerMenu>
 		{			
 			this.removeWidget(this.m_resultTankWidget);
 		}
-		this.m_resultTankWidget = new StoredFluidWidget(this.leftPos + 7, this.topPos + 20, this.menu.getResultTankCapacity(), this.menu.getResultTankContents().getFluid());
+		// fix draw position
+		this.m_resultTankWidget = new StoredFluidWidget(this.leftPos + 97, this.topPos + 20, this.menu.getResultTankCapacity(), this.menu.getResultTankContents().getFluid());//= new StoredFluidWidget(this.leftPos + 7, this.topPos + 20, this.menu.getResultTankCapacity(), this.menu.getResultTankContents().getFluid());
 		this.addRenderableWidget(this.m_resultTankWidget);
 	} // end setWidget()
 	

@@ -2,6 +2,7 @@ package com.gsr.gsr_yatm.block.device.bioler;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.api.implementation.CurrentUnitHandler;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.bioling.BiolingRecipe;
@@ -10,10 +11,10 @@ import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.ConfigurableTankWrapper;
 import com.gsr.gsr_yatm.utilities.SlotUtilities;
 import com.gsr.gsr_yatm.utilities.network.AccessSpecification;
-import com.gsr.gsr_yatm.utilities.network.BooleanFlagHandler;
 import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
 import com.gsr.gsr_yatm.utilities.network.CurrentHandlerContainerData;
 import com.gsr.gsr_yatm.utilities.network.FluidHandlerContainerData;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Container;
@@ -31,13 +32,11 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 	
 	
 	public static final int INPUT_SLOT = 0;
-	public static final int INPUT_REMAINDER_SLOT = 1;
 	public static final int DRAIN_RESULT_TANK_SLOT = 2;
 	public static final int POWER_SLOT = 3;
 
 	// this is tragic, these are mutable, but should be strictly set, but also they should be defined dynamically by the conainerData creation, but they should also be guaranteed consistent across instances, this contract is something weak 
 	private static AccessSpecification s_craftData;
-	private static AccessSpecification s_flagsData;
 	private static AccessSpecification s_resultTankData;
 	private static AccessSpecification s_currentData;
 	private static AccessSpecification s_drainResultTankData;
@@ -46,10 +45,6 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 	{ 
 		return s_craftData;
 	} // end getCraftData()
-	public static AccessSpecification getFlagsData() 
-	{ 
-		return s_flagsData;
-	} // end getFlagsData()
 	public static AccessSpecification getResultTankData() 
 	{ 
 		return s_resultTankData;
@@ -82,10 +77,8 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 	// TODO, add saving this, nice but not game breaking
 	private int m_resultTankDrainCountDown = 0;
 	private int m_initialDrainResultTankTransferSize = 0;
-	
-	private BooleanFlagHandler m_flagHandler = new BooleanFlagHandler();
-	
-	private final ContainerData m_data;
+		
+	private ContainerData m_data;
 	
 	
 	
@@ -104,6 +97,7 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 	@Override
 	protected @NotNull CompoundTag setupToNBT()
 	{
+		YetAnotherTechMod.LOGGER.info("writing setup to");
 		CompoundTag tag = new CompoundTag();
 		tag.putInt(BiolerBlockEntity.CURRENT_CAPACITY_TAG_NAME, this.m_internalCurrentStorer.capacity());
 		tag.putInt(BiolerBlockEntity.MAX_CURRENT_TAG_NAME, this.m_maxCurrentTransfer);
@@ -115,6 +109,8 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 	@Override
 	protected void setupFromNBT(CompoundTag tag)
 	{
+		YetAnotherTechMod.LOGGER.info("reading setup from");
+		
 		int currentCapacity = 0;
 		int maxCurrentTransfer = 0;
 		int fluidCapacity = 0;
@@ -146,13 +142,13 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 		this.m_internalCurrentStorer = new CurrentUnitHandler.Builder().capacity(currentCapacity).onCurrentExtracted(this::onCurrentExchanged).onCurrentRecieved(this::onCurrentExchanged).build();
 		this.m_maxCurrentTransfer = maxCurrentTransfer;
 		this.m_maxFluidTransferRate = maxFluidTransferRate;
+		this.m_data = this.createContainerData();
 	} // end setup()
 	
 	protected ContainerData createContainerData() 
 	{
 		ContainerDataBuilder builder = new ContainerDataBuilder();
 		BiolerBlockEntity.s_craftData = builder.addContainerData(this.m_craftProgressC);
-		BiolerBlockEntity.s_flagsData = builder.addContainerData(this.m_flagHandler.getData());
 		BiolerBlockEntity.s_resultTankData = builder.addContainerData(new FluidHandlerContainerData(this.m_resultTank, 0));
 		BiolerBlockEntity.s_currentData = builder.addContainerData(new CurrentHandlerContainerData(this.m_internalCurrentStorer));
 		AccessSpecification cd = builder.addPropety(() -> this.m_resultTankDrainCountDown, (i) -> {});
@@ -176,7 +172,6 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 		{
 			case BiolerBlockEntity.INPUT_SLOT -> true;
 			case BiolerBlockEntity.DRAIN_RESULT_TANK_SLOT -> SlotUtilities.isValidTankDrainSlotInsert(itemStack);
-			case BiolerBlockEntity.INPUT_REMAINDER_SLOT -> false;
 			case BiolerBlockEntity.POWER_SLOT -> SlotUtilities.isValidPowerSlotInsert(itemStack);
 			default -> throw new IllegalArgumentException("Unexpected value of: " + slot);
 		};
@@ -187,15 +182,15 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 	@Override
 	public void serverTick(Level level, BlockPos blockPos, BlockState blockState)
 	{
-		boolean changed = this.doCrafting();
-		changed |= /* this.m_activeRecipe != null && */this.m_waitingForLoad ? false :this.doDrainResultTank();
+		boolean changed = this.m_waitingForLoad ? false : this.doCrafting();
+		changed |= this.doDrainResultTank();
 		
 		if(changed) 
 		{
 			this.setChanged();
 		}
 	} // end serverTick()
-	
+
 	private boolean doDrainResultTank() 
 	{
 		boolean changed = false;		
@@ -221,7 +216,6 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 	protected void setRecipeResults(BiolingRecipe from)
 	{
 		from.setResults(this.m_uncheckedInventory, this.m_resultTank);
-		this.setRemainderFlag(false);
 	} // end setRecipeResults()
 
 	@Override
@@ -234,20 +228,9 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 	protected void startRecipe(BiolingRecipe from)
 	{
 		from.startRecipe(this.m_uncheckedInventory);
-		this.setRemainderFlag(from.hasRemainder());
 	} // end startRecipe()
 	
-	@Override
-	protected void onRecipeLoad()
-	{
-		super.onRecipeLoad();
-		this.setRemainderFlag(this.m_activeRecipe != null && this.m_activeRecipe.hasRemainder());
-	} // end onRecipeLoad()
 	
-	protected void setRemainderFlag(boolean value) 
-	{
-		this.m_flagHandler.setValue(BiolerBlockEntity.HAS_REMAINDER_FLAG_INDEX, value);
-	} // end setRemainderFlag()
 	
 	
 
@@ -268,4 +251,4 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 		}
 	} // end load()
 
-} // end class
+} // end class 

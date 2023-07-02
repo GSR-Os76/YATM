@@ -2,7 +2,6 @@ package com.gsr.gsr_yatm.block.device.bioler;
 
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.SlotUtilities;
-import com.gsr.gsr_yatm.utilities.network.BooleanFlagHandler;
 import com.gsr.gsr_yatm.utilities.network.FluidHandlerContainerData;
 import com.gsr.gsr_yatm.utilities.network.NetworkUtilities;
 import com.gsr.gsr_yatm.utilities.network.SubsettingContainerData;
@@ -32,9 +31,10 @@ public class BiolerMenu extends AbstractContainerMenu
 	private final Block m_openingBlockType;
 	private final ContainerData m_data;
 
-	private final BooleanFlagHandler m_flags;
+	// private final BooleanFlagHandler m_flags;
 
 
+	
 	// client side constructor
 	public BiolerMenu(int inventoryId, Inventory playerInventory)
 	{
@@ -51,14 +51,11 @@ public class BiolerMenu extends AbstractContainerMenu
 		this.m_data = data;
 		
 		int newYDownShift = 36;
-		int yPos = 51 + newYDownShift;
-		this.addSlot(new SlotItemHandler(objInventory, BiolerBlockEntity.INPUT_SLOT, 8, yPos));
-		this.addSlot(new SlotItemHandler(objInventory, BiolerBlockEntity.INPUT_REMAINDER_SLOT, 8 + 18, yPos));
-		this.addSlot(new SlotItemHandler(objInventory, BiolerBlockEntity.DRAIN_RESULT_TANK_SLOT, 152, yPos));
+		this.addSlot(new SlotItemHandler(objInventory, BiolerBlockEntity.INPUT_SLOT, 62, 60));
+		this.addSlot(new SlotItemHandler(objInventory, BiolerBlockEntity.DRAIN_RESULT_TANK_SLOT,  98, 87));
 		
-		this.addSlot(new SlotItemHandler(objInventory, BiolerBlockEntity.POWER_SLOT, 80, yPos));
-		
-		// add player inventory. indexing of the slots begins with hotbar, notably
+		this.addSlot(new SlotItemHandler(objInventory, BiolerBlockEntity.POWER_SLOT, 8, 87));
+
 		for (int y = 0; y < 3; ++y)
 		{
 			for (int x = 0; x < 9; ++x)
@@ -73,7 +70,7 @@ public class BiolerMenu extends AbstractContainerMenu
 		}
 		
 		this.addDataSlots(data);
-		this.m_flags = new BooleanFlagHandler(new SubsettingContainerData(BiolerBlockEntity.getFlagsData(), this.m_data));
+		// this.m_flags = new BooleanFlagHandler(new SubsettingContainerData(BiolerBlockEntity.getFlagsData(), this.m_data));
 	} // end server constructor
 
 
@@ -158,11 +155,6 @@ public class BiolerMenu extends AbstractContainerMenu
 		return NetworkUtilities.getProgess(BiolerBlockEntity.getCraftData(), this.m_data);
 	} // end getCraftProgess
 	
-	public boolean recipeHasRemainder()
-	{
-		return this.m_flags.getValue(BiolerBlockEntity.HAS_REMAINDER_FLAG_INDEX);
-	} // end recipeHasRemainder()
-
 	public float getResultTankDrainProgress()
 	{
 		return  NetworkUtilities.getProgess(BiolerBlockEntity.getDrainResultTankData(), this.m_data);

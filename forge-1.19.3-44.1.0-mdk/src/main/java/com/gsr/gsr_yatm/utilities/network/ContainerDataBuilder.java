@@ -1,12 +1,12 @@
 package com.gsr.gsr_yatm.utilities.network;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import org.jetbrains.annotations.NotNull;
 
-import java.util.ArrayList;
 import net.minecraft.world.inventory.ContainerData;
 
 public class ContainerDataBuilder
@@ -24,8 +24,7 @@ public class ContainerDataBuilder
 		
 		int oldCount = count;
 		count += adding.getCount();
-		return new AccessSpecification(oldCount, count - 1);
-		
+		return new AccessSpecification(oldCount, count - 1);		
 	} // end addContainerData()
 
 	public @NotNull AccessSpecification addPropety(@NotNull Supplier<Integer> getter, @NotNull Consumer<Integer> setter) 
@@ -39,6 +38,7 @@ public class ContainerDataBuilder
 	
 	public ContainerData build() 
 	{
+		this.tryPushProperties();
 		return new AggregatedContainerData(this.m_containers);
 	} // end build()
 

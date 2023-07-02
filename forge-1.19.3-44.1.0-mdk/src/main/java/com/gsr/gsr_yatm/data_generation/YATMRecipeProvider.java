@@ -5,6 +5,7 @@ import java.util.function.Consumer;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.recipe.bioling.BiolingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.boiling.BoilingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizationRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.extracting.ExtractionRecipeBuilder;
@@ -104,8 +105,12 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addGrindingRecipe(writer, Items.COBBLESTONE, new ItemStack(Items.GRAVEL), 3, 80, YetAnotherTechMod.MODID + ":gravel_from_cobblestone_grinding");
 		this.addGrindingRecipe(writer, Items.GRAVEL, new ItemStack(Items.SAND), 3, 80, YetAnotherTechMod.MODID + ":sand_from_gravel_grinding");
 		this.addGrindingRecipe(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING_ITEM.get(), new ItemStack(YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get()), 2, 20, YetAnotherTechMod.MODID + ":soul_leaf_mulch_from_flowering_leaf_grinding");
-		this.addGrindingRecipe(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG_ITEM.get(), new ItemStack(YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get()), 1, 20, YetAnotherTechMod.MODID + ":soul_leaf_mulch_from_flowering_leaf_grinding");
-
+		this.addGrindingRecipe(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG_ITEM.get(), new ItemStack(YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get()), 1, 20, YetAnotherTechMod.MODID + ":soul_leaf_mulch_from_young_leaf_grinding");
+		
+		
+		
+		this.addBiolingRecipe(writer, Items.CHORUS_FRUIT, new FluidStack(YATMFluids.CHORUS_BIO.get(), 200), 2, 20, YetAnotherTechMod.MODID + ":chorus_biofluid_from_chorus_fruit");
+		
 	} // end buildRecipes()
 	
 	private void addRubberWoodCoreRecipes(Consumer<FinishedRecipe> writer) 
@@ -495,6 +500,20 @@ public class YATMRecipeProvider extends RecipeProvider
 		.result(result)
 		.currentPerTick(currentPerTick)
 		.timeInTicks(timeInTicks)
+		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(input).build()))
+		.save(writer, key);
+	} // end addGrindRecipe()
+	
+	
+	
+	private void addBiolingRecipe(Consumer<FinishedRecipe> writer, Item input, FluidStack result, int currentPerTick, int timeInTicks, String key) 
+	{
+		new BiolingRecipeBuilder()
+		.input(Ingredient.of(input))
+		.result(result)
+		.currentPerTick(currentPerTick)
+		.timeInTicks(timeInTicks)
+		.unlockedBy("has_device", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.STEEL_BIOLER_ITEM.get()).build()))
 		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(input).build()))
 		.save(writer, key);
 	} // end addGrindRecipe()

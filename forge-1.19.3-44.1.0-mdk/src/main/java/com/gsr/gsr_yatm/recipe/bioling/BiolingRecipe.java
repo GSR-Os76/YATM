@@ -24,7 +24,6 @@ public class BiolingRecipe implements ITimedRecipe<Container>
 	private final ResourceLocation m_identifier;
 	private final FluidStack m_result;	
 	private final Ingredient m_input;
-	ItemStack m_inputRemainder = ItemStack.EMPTY;
 	int m_currentPerTick = 8;
 	int m_timeInTicks = 20;
 	String m_group = "";
@@ -51,18 +50,12 @@ public class BiolingRecipe implements ITimedRecipe<Container>
 		return this.m_timeInTicks;
 	} // end getTimeInTicks()
 
-	public boolean hasRemainder()
-	{
-		return !this.m_inputRemainder.isEmpty();
-	} // end hasRemainder()
-
 	
 	
 	
 	public boolean canBeUsedOn(IItemHandler inventory, IFluidHandler resultTank)
 	{
 		return this.m_input.test(inventory.getStackInSlot(BiolerBlockEntity.INPUT_SLOT)) && 
-				inventory.insertItem(BiolerBlockEntity.INPUT_REMAINDER_SLOT, this.m_inputRemainder, true).isEmpty() &&
 				resultTank.fill(this.m_result, FluidAction.SIMULATE) == this.m_result.getAmount();
 	} // end canBeUsedOn()
 	
@@ -73,7 +66,6 @@ public class BiolingRecipe implements ITimedRecipe<Container>
 	
 	public void setResults(IItemHandler inventory, IFluidHandler resultTank)
 	{
-		inventory.insertItem(BiolerBlockEntity.INPUT_REMAINDER_SLOT, this.m_inputRemainder.copy(), false);
 		resultTank.fill(this.m_result.copy(), FluidAction.EXECUTE);
 	} // end setResults()
 		

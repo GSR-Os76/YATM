@@ -1,0 +1,14 @@
+{
+  "type": "gsr_yatm:grinding",
+  "cost": 1,
+  "input": {
+    "ingedient": {
+      "item": "gsr_yatm:soul_afflicted_rubber_leaves_young"
+    }
+  },
+  "result": {
+    "count": 1,
+    "item": "gsr_yatm:soul_afflicted_leaf_mulch"
+  },
+  "time": 20
+}

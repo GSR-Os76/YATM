@@ -1,5 +1,6 @@
 package com.gsr.gsr_yatm;
 
+import com.gsr.gsr_yatm.block.device.bioler.BiolerScreen;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerScreen;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerScreen;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorScreen;
@@ -75,6 +76,7 @@ public class YATMModEvents
 	
 	private static void clientSetup(FMLClientSetupEvent event)
 	{
+		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BIOLER.get(), BiolerScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BOILER.get(), BoilerScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.CRYSTALLIZER.get(), CrystallizerScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRACTOR.get(), ExtractorScreen::new));

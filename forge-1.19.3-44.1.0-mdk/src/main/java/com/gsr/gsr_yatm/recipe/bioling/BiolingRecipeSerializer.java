@@ -9,7 +9,6 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.common.crafting.CraftingHelper;
 
 public class BiolingRecipeSerializer implements RecipeSerializer<BiolingRecipe>
 {
@@ -23,11 +22,7 @@ public class BiolingRecipeSerializer implements RecipeSerializer<BiolingRecipe>
 		
 		JsonObject inputObj = jsonObject.getAsJsonObject(RecipeUtilities.INPUT_OBJECT_KEY);
 		builder.input(Ingredient.fromJson(inputObj.get(RecipeUtilities.INGREDIENT_KEY)));
-		if(inputObj.has(RecipeUtilities.REMAINDER_STACK_KEY)) 
-		{
-			builder.inputRemainder(CraftingHelper.getItemStack(inputObj.getAsJsonObject(RecipeUtilities.REMAINDER_STACK_KEY), false));
-		}
-		
+	
 		// current
 		if(jsonObject.has(RecipeUtilities.CURRENT_PER_TICK_KEY)) 
 		{

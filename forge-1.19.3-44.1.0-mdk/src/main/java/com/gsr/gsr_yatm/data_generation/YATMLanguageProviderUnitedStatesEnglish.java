@@ -31,12 +31,13 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 	{
 		this.add("item_group.gsr_yatm.yatm_general", "Yet Another Tech Mod General");
 		
+		this.add(YATMMenuTypes.BIOLER.get(), "Bioler");		
 		this.add(YATMMenuTypes.BOILER.get(), "Boiler");		
-		this.add(YATMMenuTypes.GRINDER.get(), "Grinder");		
 		this.add(YATMMenuTypes.CRYSTALLIZER.get(), "Crystallizer");		
 		this.add(YATMMenuTypes.EXTRUDER.get(), "Extruder");		
 		this.add(YATMMenuTypes.EXTRACTOR.get(), "Extractor");		
-
+		this.add(YATMMenuTypes.GRINDER.get(), "Grinder");		
+		
 		
 		this.add("biome.gsr_yatm.old_growth_soul_sand_valley", "Old Growth Soul Sand Valley");
 		
@@ -93,11 +94,13 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		
 		
 		this.add(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), "Large Copper Heat Sink");
-		this.add(YATMBlocks.STEEL_BOILER_TANK.get(), "Steel Boiler Tank");
+		this.add(YATMBlocks.STEEL_BIOLER.get(), "Steel Bioler");
 		this.add(YATMBlocks.STEEL_BOILER.get(), "Steel Boiler");
+		this.add(YATMBlocks.STEEL_BOILER_TANK.get(), "Steel Boiler Tank");
 		this.add(YATMBlocks.STEEL_CRYSTALLIZER.get(), "Steel Crystallizer");
 		this.add(YATMBlocks.STEEL_EXTRACTOR.get(), "Steel Extractor");
 		this.add(YATMBlocks.STEEL_EXTRUDER.get(), "Steel Extruder");
+		this.add(YATMBlocks.STEEL_GRINDER.get(), "Steel Grinder");
 		this.add(YATMBlocks.C_U_F_E_I.get(), "Energy Converter (CU to FE)");
 		
 		
@@ -124,7 +127,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		
 		
 		// ITEMS \\
-		this.add(YATMItems.STEEL_FLUID_EXCHANGER.get(), "Steel Fluid Exchanged");
+		this.add(YATMItems.STEEL_FLUID_EXCHANGER.get(), "Steel Fluid Exchanger");
 		
 		this.add(YATMItems.ONE_CU_CURRENT_REGULATOR.get(), "1cu Current Regulator");
 		this.add(YATMItems.EIGHT_CU_CURRENT_REGULATOR.get(), "8cu Current Regulator");
