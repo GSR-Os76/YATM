@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.recipe.cystallizing;
+package com.gsr.gsr_yatm.recipe.bioling;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -7,29 +7,33 @@ import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.crafting.CraftingHelper;
 
-public class CrystallizationRecipeSerializer implements RecipeSerializer<CrystallizationRecipe>
+public class BiolingRecipeSerializer implements RecipeSerializer<BiolingRecipe>
 {
 	@Override
-	public CrystallizationRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject)
+	public BiolingRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject)
 	{
-		CrystallizationRecipeBuilder builder = new CrystallizationRecipeBuilder();
+		BiolingRecipeBuilder builder = new BiolingRecipeBuilder();
 		
 		builder.identifier(resourceLocation);
-		builder.result(CraftingHelper.getItemStack(jsonObject.getAsJsonObject(RecipeUtilities.RESULT_OBJECT_KEY), false));
-		JsonObject seedObj = jsonObject.getAsJsonObject(RecipeUtilities.SEED_KEY);
-		builder.seed(CraftingHelper.getIngredient(seedObj.getAsJsonObject(RecipeUtilities.INGREDIENT_KEY)));
-		if(seedObj.has(RecipeUtilities.CONSUME_SEED_KEY)) 
+		builder.result(RecipeUtilities.fluidStackFromJson(jsonObject.getAsJsonObject(RecipeUtilities.RESULT_OBJECT_KEY)));
+		
+		JsonObject inputObj = jsonObject.getAsJsonObject(RecipeUtilities.INPUT_OBJECT_KEY);
+		builder.input(Ingredient.fromJson(inputObj.get(RecipeUtilities.INGREDIENT_KEY)));
+		if(inputObj.has(RecipeUtilities.REMAINDER_STACK_KEY)) 
 		{
-			builder.consumeSeed(seedObj.get(RecipeUtilities.CONSUME_SEED_KEY).getAsBoolean());
+			builder.inputRemainder(CraftingHelper.getItemStack(inputObj.getAsJsonObject(RecipeUtilities.REMAINDER_STACK_KEY), false));
 		}
-		builder.input(RecipeUtilities.fluidStackFromJson(jsonObject.getAsJsonObject(RecipeUtilities.INPUT_OBJECT_KEY)));
+		
+		// current
 		if(jsonObject.has(RecipeUtilities.CURRENT_PER_TICK_KEY)) 
 		{
 			builder.currentPerTick(jsonObject.get(RecipeUtilities.CURRENT_PER_TICK_KEY).getAsInt());
 		}
+		// time
 		if(jsonObject.has(RecipeUtilities.TIME_IN_TICKS_KEY)) 
 		{
 			builder.timeInTicks(jsonObject.get(RecipeUtilities.TIME_IN_TICKS_KEY).getAsInt());
@@ -42,14 +46,14 @@ public class CrystallizationRecipeSerializer implements RecipeSerializer<Crystal
 	} // end fromJson()
 
 	@Override
-	public @Nullable CrystallizationRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf)
+	public @Nullable BiolingRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf)
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void toNetwork(FriendlyByteBuf friendlyByteBuf, CrystallizationRecipe recipe)
+	public void toNetwork(FriendlyByteBuf friendlyByteBuf, BiolingRecipe recipe)
 	{
 		// TODO Auto-generated method stub
 		

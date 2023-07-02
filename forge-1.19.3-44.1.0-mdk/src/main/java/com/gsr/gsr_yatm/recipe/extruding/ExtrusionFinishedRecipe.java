@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.recipe;
+package com.gsr.gsr_yatm.recipe.extruding;
 
 import com.google.gson.JsonObject;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;

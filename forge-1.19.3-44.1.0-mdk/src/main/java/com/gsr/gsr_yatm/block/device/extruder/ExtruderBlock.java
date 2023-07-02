@@ -35,7 +35,7 @@ public class ExtruderBlock extends DeviceBlock
 	public MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos)
 	{
 		ExtruderBlockEntity blockEntity = (ExtruderBlockEntity) level.getBlockEntity(blockPos);
-		return new SimpleMenuProvider((containerId, playerInventory, player) -> new ExtruderMenu(containerId, playerInventory, ContainerLevelAccess.create(level, blockPos), blockState.getBlock(), blockEntity.getInventory(), blockEntity.getDataAccessor()), Component.translatable(YATMLanguageProviderUnitedStatesEnglish.getTitleNameFor(YATMMenuTypes.EXTRUDER_MENU.get())));
+		return new SimpleMenuProvider((containerId, playerInventory, player) -> new ExtruderMenu(containerId, playerInventory, ContainerLevelAccess.create(level, blockPos), blockState.getBlock(), blockEntity.getInventory(), blockEntity.getDataAccessor()), Component.translatable(YATMLanguageProviderUnitedStatesEnglish.getTitleNameFor(YATMMenuTypes.EXTRUDER.get())));
 	} // end getMenuProvider()
 
 	@Override

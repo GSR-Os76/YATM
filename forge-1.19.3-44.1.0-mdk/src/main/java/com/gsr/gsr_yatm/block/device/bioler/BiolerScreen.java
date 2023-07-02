@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.device.extractor;
+package com.gsr.gsr_yatm.block.device.bioler;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.gui.StoredFluidWidget;
@@ -10,18 +10,18 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class ExtractorScreen extends AbstractContainerScreen<ExtractorMenu>
+public class BiolerScreen extends AbstractContainerScreen<BiolerMenu>
 {
+	// TODO, change or raname
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/extractor.png");
+
+	private StoredFluidWidget m_resultTankWidget;
 	
-	private StoredFluidWidget m_fluidTankWidget;
 	
-	
-	
-	public ExtractorScreen(ExtractorMenu menu, Inventory inventory, Component title)
+
+	public BiolerScreen(BiolerMenu menu, Inventory inventory, Component title)
 	{
 		super(menu, inventory, title);
-		
 		int yDownShift = 36;
 		this.imageHeight = 166 + yDownShift;
 		this.inventoryLabelY = this.inventoryLabelY + yDownShift;
@@ -52,7 +52,7 @@ public class ExtractorScreen extends AbstractContainerScreen<ExtractorMenu>
 		RenderSystem._setShaderTexture(0, BACKGROUND);
 		blit(poseStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 		
-		float cP = this.menu.getExtractProgress();
+		float cP = this.menu.getCraftProgress();
 		if(cP > 0f) 
 		{
 			// from 176 0 to 80 63 size 16 8
@@ -81,26 +81,25 @@ public class ExtractorScreen extends AbstractContainerScreen<ExtractorMenu>
 	
 	public void updateResultTankWidget() 
 	{
-		// TODO, ideally we could have the menu tell us when that value has changed, rather than constantly having to recheck it to see if it's been set. see if this is possible.
-		if(this.m_fluidTankWidget == null || this.menu.getFluidCapacity() != this.m_fluidTankWidget.getCapacity()) 
+		if(this.m_resultTankWidget == null || this.menu.getResultTankCapacity() != this.m_resultTankWidget.getCapacity()) 
 		{
 			this.setResultTankWidget();
 		}
-		if(this.m_fluidTankWidget.getFluid() != this.menu.getFluid()) 
+		if(this.m_resultTankWidget.getFluid() != this.menu.getResultTankContents().getFluid()) 
 		{
-			this.m_fluidTankWidget.setStoredFluid(this.menu.getFluid());
+			this.m_resultTankWidget.setStoredFluid(this.menu.getResultTankContents().getFluid());
 		}
-		this.m_fluidTankWidget.setStoredAmount(this.menu.getFluidAmount());
+		this.m_resultTankWidget.setStoredAmount(this.menu.getResultTankContents().getAmount());
 	} // end updateResultTankWidget()
 	
 	public void setResultTankWidget() 
 	{
-		if(this.m_fluidTankWidget != null) 
+		if(this.m_resultTankWidget != null) 
 		{			
-			this.removeWidget(this.m_fluidTankWidget);
+			this.removeWidget(this.m_resultTankWidget);
 		}
-		this.m_fluidTankWidget = new StoredFluidWidget(this.leftPos + 97, this.topPos + 20, this.menu.getFluidCapacity(), this.menu.getFluid());
-		this.addRenderableWidget(this.m_fluidTankWidget);
+		this.m_resultTankWidget = new StoredFluidWidget(this.leftPos + 7, this.topPos + 20, this.menu.getResultTankCapacity(), this.menu.getResultTankContents().getFluid());
+		this.addRenderableWidget(this.m_resultTankWidget);
 	} // end setWidget()
 	
 } // end class

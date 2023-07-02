@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.api.implementation.CurrentUnitHandler;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
-import com.gsr.gsr_yatm.recipe.GrindingRecipe;
+import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.SlotUtilities;
@@ -30,6 +30,8 @@ public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe
 	public static final int GRIND_TIME_INDEX = 1;
 	public static final int CURRENT_STORED_INDEX = 2;
 	public static final int CURRENT_CAPACITY_INDEX = 3;
+	//public static final int TEST = 4;
+	
 	
 	private static final String CURRENT_CAPACITY_TAG_NAME = "currentCapacity";
 	private static final String MAX_CURRENT_TAG_NAME = "maxCurrent";
@@ -53,9 +55,11 @@ public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe
 				case CURRENT_STORED_INDEX -> GrinderBlockEntity.this.m_internalCurrentStorer.stored();
 				case CURRENT_CAPACITY_INDEX -> GrinderBlockEntity.this.m_internalCurrentStorer.capacity();
 				// maybe end again
+				// TODO, note, this value was transmitted entirely, not low sixteen, the preported effective short limitation might not be accurate, or might only happen for dedicated server? more tests needed
+				//case TEST -> 0b0111_1111_1111_1111_1111_1111_1111_1111;
 				default -> throw new IllegalArgumentException("Unexpected value of: " + index);
 			};
-		}
+		} // end get()
 
 		@Override
 		public void set(int index, int value)

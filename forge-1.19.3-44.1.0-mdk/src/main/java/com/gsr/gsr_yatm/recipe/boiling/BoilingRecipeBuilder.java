@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.recipe;
+package com.gsr.gsr_yatm.recipe.boiling;
 
 import java.util.function.Consumer;
 

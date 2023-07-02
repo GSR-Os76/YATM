@@ -1,12 +1,13 @@
 package com.gsr.gsr_yatm.registry;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.recipe.BoilingRecipe;
-import com.gsr.gsr_yatm.recipe.CrystallizationRecipe;
-import com.gsr.gsr_yatm.recipe.ExtractionRecipe;
-import com.gsr.gsr_yatm.recipe.ExtrusionRecipe;
 import com.gsr.gsr_yatm.recipe.FluidInjectionRecipe;
-import com.gsr.gsr_yatm.recipe.GrindingRecipe;
+import com.gsr.gsr_yatm.recipe.bioling.BiolingRecipe;
+import com.gsr.gsr_yatm.recipe.boiling.BoilingRecipe;
+import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizationRecipe;
+import com.gsr.gsr_yatm.recipe.extracting.ExtractionRecipe;
+import com.gsr.gsr_yatm.recipe.extruding.ExtrusionRecipe;
+import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipe;
 
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -19,6 +20,7 @@ public class YATMRecipeTypes
 	
 	
 	
+	public static final RegistryObject<RecipeType<BiolingRecipe>> BIOLING = RECIPE_TYPES.register("bioling", () -> new RecipeType<BiolingRecipe>(){});
 	public static final RegistryObject<RecipeType<BoilingRecipe>> BOILING = RECIPE_TYPES.register("boiling", () -> new RecipeType<BoilingRecipe>(){});
 	// TODO, for consistency make this "crystallizing"
 	public static final RegistryObject<RecipeType<CrystallizationRecipe>> CRYSTALLIZATION = RECIPE_TYPES.register("crystallization", () -> new RecipeType<CrystallizationRecipe>(){});

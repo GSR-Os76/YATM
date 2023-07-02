@@ -4,10 +4,13 @@ import java.util.List;
 
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.utilities.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.network.Property;
+import com.gsr.gsr_yatm.utilities.network.PropertyContainerData;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Container;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
@@ -28,6 +31,8 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 	protected int m_craftTime = 0;
 	protected int m_timeSinceRecheck = 0;
 	protected boolean m_waitingForLoad = false;
+	
+	protected final ContainerData m_craftProgressC = new PropertyContainerData(List.of(new Property<>(() -> this.m_craftProgress, (i) -> {}), new Property<>(() -> this.m_craftTime, (i) -> {})));
 	
 	
 	

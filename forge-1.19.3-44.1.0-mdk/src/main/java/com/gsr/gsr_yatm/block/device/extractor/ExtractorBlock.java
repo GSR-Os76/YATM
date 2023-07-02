@@ -47,7 +47,7 @@ public class ExtractorBlock extends DeviceBlock
 		ExtractorBlockEntity ebe = (ExtractorBlockEntity)level.getBlockEntity(blockPos);
 		return new SimpleMenuProvider((containerId, playerInv, player) -> new ExtractorMenu(containerId, playerInv, ContainerLevelAccess.create(level, blockPos), blockState.getBlock(), ebe.getInventory(), ebe.getDataAccessor())
 				,
-				Component.translatable(YATMLanguageProviderUnitedStatesEnglish.getTitleNameFor(YATMMenuTypes.EXTRACTOR_MENU.get()))
+				Component.translatable(YATMLanguageProviderUnitedStatesEnglish.getTitleNameFor(YATMMenuTypes.EXTRACTOR.get()))
 				);
 	} // end getMenuProvider()
 	

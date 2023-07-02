@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.recipe;
+package com.gsr.gsr_yatm.recipe.extracting;
 
 import java.util.function.Consumer;
 

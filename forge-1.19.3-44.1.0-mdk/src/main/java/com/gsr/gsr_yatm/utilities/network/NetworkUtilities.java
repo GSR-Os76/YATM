@@ -1,8 +1,9 @@
-package com.gsr.gsr_yatm.utilities;
+package com.gsr.gsr_yatm.utilities.network;
 
 import java.util.Map.Entry;
 
 import net.minecraft.resources.ResourceKey;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -52,5 +53,12 @@ public class NetworkUtilities
 	{
 		return (lowHalf | (highHalf << 16));
 	} // end composeInt()
+
+	
+	
+	public static float getProgess(AccessSpecification progressAccessSpecification, ContainerData data)
+	{
+		return 1f - (((float) data.get(progressAccessSpecification.startIndex()) / ((float) data.get(progressAccessSpecification.endIndex()))));
+	} // end getProgess()
 	
 } // end class

@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.recipe.extracting;
+package com.gsr.gsr_yatm.recipe.bioling;
 
 import com.google.gson.JsonObject;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
@@ -12,7 +12,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.fluids.FluidStack;
 
-public class ExtractionFinishedRecipe implements FinishedRecipe
+public class BiolingFinishedRecipe implements FinishedRecipe
 {
 	private ResourceLocation m_identifier;
 	private FluidStack m_result;	
@@ -27,7 +27,7 @@ public class ExtractionFinishedRecipe implements FinishedRecipe
 	
 	
 	
-	public ExtractionFinishedRecipe(ResourceLocation identifier, FluidStack result, Ingredient input, ItemStack inputRemainder, int currentPerTick, int timeInTicks, String group, ResourceLocation advancementIdentifier, Advancement.Builder advancement) 
+	public BiolingFinishedRecipe(ResourceLocation identifier, FluidStack result, Ingredient input, ItemStack inputRemainder, int currentPerTick, int timeInTicks, String group, ResourceLocation advancementIdentifier, Advancement.Builder advancement) 
 	{
 		this.m_identifier = identifier;
 		this.m_result = result;
@@ -50,9 +50,8 @@ public class ExtractionFinishedRecipe implements FinishedRecipe
 		}
 		
 		jsonObject.add(RecipeUtilities.RESULT_OBJECT_KEY, RecipeUtilities.fluidStackToJson(this.m_result));
-		JsonObject inputObject = new JsonObject(); // ).getAsJsonObject(); //
+		JsonObject inputObject = new JsonObject();
 		inputObject.add(RecipeUtilities.INGREDIENT_KEY, this.m_input.toJson());
-		//inputObject.add(RecipeUtilities.INPUT_OBJECT_KEY, );
 		if(this.m_inputRemainder != null && !this.m_inputRemainder.isEmpty()) 
 		{
 			inputObject.add(RecipeUtilities.REMAINDER_STACK_KEY, RecipeUtilities.itemStackToJson(this.m_inputRemainder));
@@ -69,9 +68,9 @@ public class ExtractionFinishedRecipe implements FinishedRecipe
 	} // end getId()
 
 	@Override
-	public RecipeSerializer<ExtractionRecipe> getType()
+	public RecipeSerializer<BiolingRecipe> getType()
 	{
-		return YATMRecipeSerializers.EXTRACTION.get();
+		return YATMRecipeSerializers.BIOLING.get();
 	} // end getType()
 
 	@Override

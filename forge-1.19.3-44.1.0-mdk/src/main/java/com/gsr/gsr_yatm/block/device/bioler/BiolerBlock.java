@@ -1,7 +1,8 @@
-package com.gsr.gsr_yatm.block.device.crystallizer;
+package com.gsr.gsr_yatm.block.device.bioler;
 
 import com.gsr.gsr_yatm.block.device.DeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
+import com.gsr.gsr_yatm.block.device.boiler.BoilerMenu;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProviderUnitedStatesEnglish;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
@@ -15,41 +16,35 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class CrystallizerBlock extends DeviceBlock
+public class BiolerBlock extends DeviceBlock
 {
-	private final int m_tankCapacities;
-	private final int m_maximumFluidTransferRate;
-	
-	
-	
-	public CrystallizerBlock(Properties properties, VoxelShapeGetter shape, int tankCapacities, int maximumFluidTransferRate)
+
+	public BiolerBlock(Properties properties, VoxelShapeGetter shape)
 	{
-		super(properties, YATMBlockEntityTypes.CRYSTALLIZER::get, shape);
-		this.m_tankCapacities = tankCapacities;
-		this.m_maximumFluidTransferRate = maximumFluidTransferRate;
-	} // end constructor
-
-
+		super(properties, YATMBlockEntityTypes.BIOLER::get, shape);
+	}
 
 	@Override
 	public DeviceBlockEntity newDeviceBlockEntity(BlockPos blockPos, BlockState blockState)
 	{
-		return new CrystallizerBlockEntity(blockPos, blockState, this.m_tankCapacities, this.m_maximumFluidTransferRate);
-	} // end newBlockEntity()
-	
+		// TODO Auto-generated method stub
+		return new BiolerBlockEntity(blockPos, blockState);
+	} // end newDeviceBlockEntity()
+
 	@Override
 	public MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos)
 	{
-		CrystallizerBlockEntity blockEntity = (CrystallizerBlockEntity) level.getBlockEntity(blockPos);
-		return new SimpleMenuProvider((containerId, playerInventory, player) -> 
-		new CrystallizerMenu(
+		BiolerBlockEntity blockEntity = (BiolerBlockEntity)level.getBlockEntity(blockPos);
+		return new SimpleMenuProvider((containerId, playerInventory, player) -> new BoilerMenu(
 				containerId, 
 				playerInventory, 
 				ContainerLevelAccess.create(level, blockPos), 
-				blockState.getBlock(), 
+				blockState.getBlock(),
 				blockEntity.getInventory(), 
-				blockEntity.getDataAccessor()), 
-		Component.translatable(YATMLanguageProviderUnitedStatesEnglish.getTitleNameFor(YATMMenuTypes.CRYSTALLIZER.get())));
+				blockEntity.getDataAccessor())
+				, 
+				Component.translatable(YATMLanguageProviderUnitedStatesEnglish.getTitleNameFor(YATMMenuTypes.BIOLER.get()))
+				);
 	} // end getMenuProvider()
-	
+
 } // end class

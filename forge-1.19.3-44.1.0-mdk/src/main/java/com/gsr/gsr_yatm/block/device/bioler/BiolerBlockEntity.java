@@ -1,32 +1,30 @@
-package com.gsr.gsr_yatm.block.device.extractor;
+package com.gsr.gsr_yatm.block.device.bioler;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.api.implementation.CurrentUnitHandler;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
-import com.gsr.gsr_yatm.recipe.extracting.ExtractionRecipe;
+import com.gsr.gsr_yatm.recipe.bioling.BiolingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.ConfigurableTankWrapper;
 import com.gsr.gsr_yatm.utilities.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.network.AccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.BooleanFlagHandler;
-import com.gsr.gsr_yatm.utilities.network.NetworkUtilities;
-
+import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
+import com.gsr.gsr_yatm.utilities.network.CurrentHandlerContainerData;
+import com.gsr.gsr_yatm.utilities.network.FluidHandlerContainerData;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
-public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractionRecipe, Container>
+public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, Container>
 {
 	public static final int DATA_SLOT_COUNT = 11;
 	public static final int INVENTORY_SLOT_COUNT = 4;
@@ -37,17 +35,33 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractionRe
 	public static final int DRAIN_RESULT_TANK_SLOT = 2;
 	public static final int POWER_SLOT = 3;
 
-	public static final int EXTRACT_PROGRESS_SLOT = 0;
-	public static final int EXTRACT_TIME_SLOT = 1;
-	public static final int STORED_FlUID_AMOUNT_SLOT = 2;
-	public static final int FLUID_CAPACITY_SLOT = 3;
-	public static final int FLUID_TRANSFER_COUNT_DOWN_SLOT = 4;
-	public static final int FLUID_TRANSFER_SIZE_SLOT = 5;
-	public static final int STORED_POWER_SLOT = 6;
-	public static final int POWER_CAPACITY_SLOT = 7;
-	public static final int DATA_FLAGS_SLOT = 8;
-	public static final int FLUID_INDEX_LOW_SLOT = 9;
-	public static final int FLUID_INDEX_HIGH_SLOT = 10;
+	// this is tragic, these are mutable, but should be strictly set, but also they should be defined dynamically by the conainerData creation, but they should also be guaranteed consistent across instances, this contract is something weak 
+	private static AccessSpecification s_craftData;
+	private static AccessSpecification s_flagsData;
+	private static AccessSpecification s_resultTankData;
+	private static AccessSpecification s_currentData;
+	private static AccessSpecification s_drainResultTankData;
+	
+	public static AccessSpecification getCraftData() 
+	{ 
+		return s_craftData;
+	} // end getCraftData()
+	public static AccessSpecification getFlagsData() 
+	{ 
+		return s_flagsData;
+	} // end getFlagsData()
+	public static AccessSpecification getResultTankData() 
+	{ 
+		return s_resultTankData;
+	} // end getResultTankData()
+	public static AccessSpecification getCurrentData() 
+	{ 
+		return s_currentData;
+	} // end getCurrenData()
+	public static AccessSpecification getDrainResultTankData() 
+	{ 
+		return s_drainResultTankData;
+	} // end getDrainResultTankData()
 	
 	public static final int HAS_REMAINDER_FLAG_INDEX = 1;
 
@@ -71,66 +85,30 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractionRe
 	
 	private BooleanFlagHandler m_flagHandler = new BooleanFlagHandler();
 	
-	// TODO, allegedly can transfer at most the lowest 16 bits, to show reasonable amounts of power somewheres maybe use two then and merge on client, confirm this detail
-	private ContainerData m_data = new ContainerData()
-	{
-		@Override
-		public int get(int index)
-		{
-			return switch(index) 
-			{
-				case ExtractorBlockEntity.EXTRACT_PROGRESS_SLOT -> ExtractorBlockEntity.this.m_craftProgress;
-				case ExtractorBlockEntity.EXTRACT_TIME_SLOT -> ExtractorBlockEntity.this.m_craftTime;
-				case ExtractorBlockEntity.STORED_FlUID_AMOUNT_SLOT -> ExtractorBlockEntity.this.m_rawResultTank.getFluidAmount();
-				case ExtractorBlockEntity.FLUID_CAPACITY_SLOT -> ExtractorBlockEntity.this.m_rawResultTank.getCapacity();
-				case ExtractorBlockEntity.FLUID_TRANSFER_COUNT_DOWN_SLOT -> ExtractorBlockEntity.this.m_resultTankDrainCountDown;
-				case ExtractorBlockEntity.FLUID_TRANSFER_SIZE_SLOT -> ExtractorBlockEntity.this.m_initialDrainResultTankTransferSize;
-				case ExtractorBlockEntity.STORED_POWER_SLOT -> ExtractorBlockEntity.this.m_internalCurrentStorer.stored();
-				case ExtractorBlockEntity.POWER_CAPACITY_SLOT -> ExtractorBlockEntity.this.m_internalCurrentStorer.capacity();
-				
-				case ExtractorBlockEntity.DATA_FLAGS_SLOT -> ExtractorBlockEntity.this.m_flagHandler.getValue();//m_flags;
-				
-				case ExtractorBlockEntity.FLUID_INDEX_LOW_SLOT -> NetworkUtilities.splitInt(NetworkUtilities.getFluidIndex(ExtractorBlockEntity.this.m_rawResultTank.getFluid().getFluid()), false);
-				case ExtractorBlockEntity.FLUID_INDEX_HIGH_SLOT -> NetworkUtilities.splitInt(NetworkUtilities.getFluidIndex(ExtractorBlockEntity.this.m_rawResultTank.getFluid().getFluid()), true);
-				
-				default -> throw new IllegalArgumentException("Unexpected value of: " + index);
-			};
-		} // end get()
-
-		@Override
-		public void set(int index, int value)
-		{
-			return;
-		} // end set()
-
-		@Override
-		public int getCount()
-		{
-			return ExtractorBlockEntity.DATA_SLOT_COUNT;
-		} // end getCount()
-	};
+	private final ContainerData m_data;
 	
 	
 	
-	public ExtractorBlockEntity(BlockPos blockPos, BlockState blockState)
+	public BiolerBlockEntity(BlockPos blockPos, BlockState blockState)
 	{
 		this(blockPos, blockState, 0, 0, 0, 0);
 	} // end constructor
 	
-	public ExtractorBlockEntity(BlockPos blockPos, BlockState blockState, int currentCapacity, int maxCurrentTransfer, int fluidCapacity, int maxFluidTransferRate)
+	public BiolerBlockEntity(BlockPos blockPos, BlockState blockState, int currentCapacity, int maxCurrentTransfer, int fluidCapacity, int maxFluidTransferRate)
 	{
-		super(YATMBlockEntityTypes.EXTRACTOR.get(), blockPos, blockState, ExtractorBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.EXTRACTION.get());
+		super(YATMBlockEntityTypes.BIOLER.get(), blockPos, blockState, BiolerBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.BIOLING.get());
 		this.setup(currentCapacity, maxCurrentTransfer, fluidCapacity, maxFluidTransferRate);
+		this.m_data = this.createContainerData();
 	} // end constructor
 
 	@Override
 	protected @NotNull CompoundTag setupToNBT()
 	{
 		CompoundTag tag = new CompoundTag();
-		tag.putInt(CURRENT_CAPACITY_TAG_NAME, this.m_internalCurrentStorer.capacity());
-		tag.putInt(MAX_CURRENT_TAG_NAME, this.m_maxCurrentTransfer);
-		tag.putInt(TANK_CAPACITY_TAG_NAME, this.m_rawResultTank.getCapacity());
-		tag.putInt(MAX_FLUID_TRANSFER_RATE_TAG_NAME, this.m_maxFluidTransferRate);
+		tag.putInt(BiolerBlockEntity.CURRENT_CAPACITY_TAG_NAME, this.m_internalCurrentStorer.capacity());
+		tag.putInt(BiolerBlockEntity.MAX_CURRENT_TAG_NAME, this.m_maxCurrentTransfer);
+		tag.putInt(BiolerBlockEntity.TANK_CAPACITY_TAG_NAME, this.m_rawResultTank.getCapacity());
+		tag.putInt(BiolerBlockEntity.MAX_FLUID_TRANSFER_RATE_TAG_NAME, this.m_maxFluidTransferRate);
 		return tag;
 	} // end setupToNBT()
 
@@ -142,21 +120,21 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractionRe
 		int fluidCapacity = 0;
 		int maxFluidTransferRate = 0;
 		
-		if(tag.contains(CURRENT_CAPACITY_TAG_NAME)) 
+		if(tag.contains(BiolerBlockEntity.CURRENT_CAPACITY_TAG_NAME)) 
 		{
-			currentCapacity = tag.getInt(CURRENT_CAPACITY_TAG_NAME);
+			currentCapacity = tag.getInt(BiolerBlockEntity.CURRENT_CAPACITY_TAG_NAME);
 		}
-		if(tag.contains(MAX_CURRENT_TAG_NAME)) 
+		if(tag.contains(BiolerBlockEntity.MAX_CURRENT_TAG_NAME)) 
 		{
-			maxCurrentTransfer = tag.getInt(MAX_CURRENT_TAG_NAME);
+			maxCurrentTransfer = tag.getInt(BiolerBlockEntity.MAX_CURRENT_TAG_NAME);
 		}
-		if(tag.contains(TANK_CAPACITY_TAG_NAME)) 
+		if(tag.contains(BiolerBlockEntity.TANK_CAPACITY_TAG_NAME)) 
 		{
-			fluidCapacity = tag.getInt(TANK_CAPACITY_TAG_NAME);
+			fluidCapacity = tag.getInt(BiolerBlockEntity.TANK_CAPACITY_TAG_NAME);
 		}
-		if(tag.contains(MAX_FLUID_TRANSFER_RATE_TAG_NAME)) 
+		if(tag.contains(BiolerBlockEntity.MAX_FLUID_TRANSFER_RATE_TAG_NAME)) 
 		{
-			maxFluidTransferRate = tag.getInt(MAX_FLUID_TRANSFER_RATE_TAG_NAME);
+			maxFluidTransferRate = tag.getInt(BiolerBlockEntity.MAX_FLUID_TRANSFER_RATE_TAG_NAME);
 		}
 		this.setup(currentCapacity, maxCurrentTransfer, fluidCapacity, maxFluidTransferRate);
 	} // end setupFromNBT()
@@ -169,6 +147,19 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractionRe
 		this.m_maxCurrentTransfer = maxCurrentTransfer;
 		this.m_maxFluidTransferRate = maxFluidTransferRate;
 	} // end setup()
+	
+	protected ContainerData createContainerData() 
+	{
+		ContainerDataBuilder builder = new ContainerDataBuilder();
+		BiolerBlockEntity.s_craftData = builder.addContainerData(this.m_craftProgressC);
+		BiolerBlockEntity.s_flagsData = builder.addContainerData(this.m_flagHandler.getData());
+		BiolerBlockEntity.s_resultTankData = builder.addContainerData(new FluidHandlerContainerData(this.m_resultTank, 0));
+		BiolerBlockEntity.s_currentData = builder.addContainerData(new CurrentHandlerContainerData(this.m_internalCurrentStorer));
+		AccessSpecification cd = builder.addPropety(() -> this.m_resultTankDrainCountDown, (i) -> {});
+		AccessSpecification ts = builder.addPropety(() -> this.m_initialDrainResultTankTransferSize, (i) -> {});
+		BiolerBlockEntity.s_drainResultTankData = new AccessSpecification(cd.startIndex(), ts.endIndex());
+		return builder.build();
+	} // end createContainerData()
 	
 	
 	
@@ -183,10 +174,10 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractionRe
 	{
 		return switch(slot) 
 		{
-			case ExtractorBlockEntity.INPUT_SLOT -> true;
-			case ExtractorBlockEntity.DRAIN_RESULT_TANK_SLOT -> SlotUtilities.isValidTankDrainSlotInsert(itemStack);
-			case ExtractorBlockEntity.INPUT_REMAINDER_SLOT -> false;
-			case ExtractorBlockEntity.POWER_SLOT -> SlotUtilities.isValidPowerSlotInsert(itemStack);
+			case BiolerBlockEntity.INPUT_SLOT -> true;
+			case BiolerBlockEntity.DRAIN_RESULT_TANK_SLOT -> SlotUtilities.isValidTankDrainSlotInsert(itemStack);
+			case BiolerBlockEntity.INPUT_REMAINDER_SLOT -> false;
+			case BiolerBlockEntity.POWER_SLOT -> SlotUtilities.isValidPowerSlotInsert(itemStack);
 			default -> throw new IllegalArgumentException("Unexpected value of: " + slot);
 		};
 	} // end itemInsertionValidator()
@@ -227,20 +218,20 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractionRe
 	} // end doDrainResultTank()
 	
 	@Override
-	protected void setRecipeResults(ExtractionRecipe from)
+	protected void setRecipeResults(BiolingRecipe from)
 	{
 		from.setResults(this.m_uncheckedInventory, this.m_resultTank);
 		this.setRemainderFlag(false);
 	} // end setRecipeResults()
 
 	@Override
-	protected boolean canUseRecipe(ExtractionRecipe from)
+	protected boolean canUseRecipe(BiolingRecipe from)
 	{
 		return from.canBeUsedOn(this.m_uncheckedInventory, this.m_resultTank);
 	} // end canUseRecipe()
 	
 	@Override
-	protected void startRecipe(ExtractionRecipe from)
+	protected void startRecipe(BiolingRecipe from)
 	{
 		from.startRecipe(this.m_uncheckedInventory);
 		this.setRemainderFlag(from.hasRemainder());
@@ -255,7 +246,7 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractionRe
 	
 	protected void setRemainderFlag(boolean value) 
 	{
-		this.m_flagHandler.setValue(ExtractorBlockEntity.HAS_REMAINDER_FLAG_INDEX, value);
+		this.m_flagHandler.setValue(BiolerBlockEntity.HAS_REMAINDER_FLAG_INDEX, value);
 	} // end setRemainderFlag()
 	
 	
@@ -264,45 +255,17 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractionRe
 	protected void saveAdditional(CompoundTag tag)
 	{
 		super.saveAdditional(tag);
-		tag.put(ExtractorBlockEntity.TANK_TAG_NAME, this.m_rawResultTank.writeToNBT(new CompoundTag()));
+		tag.put(BiolerBlockEntity.TANK_TAG_NAME, this.m_rawResultTank.writeToNBT(new CompoundTag()));
 	} // end saveAdditional()
 	
 	@Override
 	public void load(CompoundTag tag)
 	{
 		super.load(tag);
-		if(tag.contains(ExtractorBlockEntity.TANK_TAG_NAME)) 
+		if(tag.contains(BiolerBlockEntity.TANK_TAG_NAME)) 
 		{
-			this.m_rawResultTank.readFromNBT(tag.getCompound(ExtractorBlockEntity.TANK_TAG_NAME));
+			this.m_rawResultTank.readFromNBT(tag.getCompound(BiolerBlockEntity.TANK_TAG_NAME));
 		}
 	} // end load()
 
-
-
-	@Override
-	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side)
-	{
-		// front face or right go into drain
-		// top or left go into input slot
-		// bottom remainder output
-		// back go current
-		// add configuration soon
-		
-		// TODO Auto-generated method stub
-		return super.getCapability(cap, side);
-	}
-
-	@Override
-	public void invalidateCaps()
-	{
-		// TODO Auto-generated method stub
-		super.invalidateCaps();
-	}
-
-		@Override
-	public void reviveCaps()
-	{
-		// TODO Auto-generated method stub
-		super.reviveCaps();
-	}
 } // end class

@@ -3,6 +3,7 @@ package com.gsr.gsr_yatm.registry;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.conduit.CurrentConduitBlockEntity;
 import com.gsr.gsr_yatm.block.conduit.FluidConduitBlockEntity;
+import com.gsr.gsr_yatm.block.device.bioler.BiolerBlockEntity;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlockEntity;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlockEntity;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlockEntity;
@@ -21,7 +22,7 @@ public class YATMBlockEntityTypes
 	public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, YetAnotherTechMod.MODID);
 	
 	
-	
+	public static final RegistryObject<BlockEntityType<BiolerBlockEntity>> BIOLER = BLOCK_ENTITY_TYPES.register("bioler_block_entity", () -> BlockEntityType.Builder.of(BiolerBlockEntity::new, YATMBlocks.STEEL_BIOLER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<BoilerTankBlockEntity>> BOILER_TANK = BLOCK_ENTITY_TYPES.register("boiler_tank_block_entity", () -> BlockEntityType.Builder.of(BoilerTankBlockEntity::new, YATMBlocks.STEEL_BOILER_TANK.get()).build(null));
 	public static final RegistryObject<BlockEntityType<BoilerBlockEntity>> BOILER = BLOCK_ENTITY_TYPES.register("boiler_block_entity", () -> BlockEntityType.Builder.of(BoilerBlockEntity::new, YATMBlocks.STEEL_BOILER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<CrystallizerBlockEntity>> CRYSTALLIZER = BLOCK_ENTITY_TYPES.register("crystallizer_block_entity", () -> BlockEntityType.Builder.of(CrystallizerBlockEntity::new, YATMBlocks.STEEL_CRYSTALLIZER.get()).build(null));
@@ -37,6 +38,10 @@ public class YATMBlockEntityTypes
 			YATMBlocks.INSULATED_ONE_CU_WIRE.get(), YATMBlocks.INSULATED_EIGHT_CU_WIRE.get(), YATMBlocks.INSULATED_SIXTYFOUR_CU_WIRE.get(), YATMBlocks.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE.get(), YATMBlocks.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE.get()
 			).build(null));
 	public static final RegistryObject<BlockEntityType<FluidConduitBlockEntity>> FLUID_CONDUIT = BLOCK_ENTITY_TYPES.register("fluid_conduit_block_entity", () -> BlockEntityType.Builder.of(FluidConduitBlockEntity::new, YATMBlocks.STEEL_FLUID_CONDUIT.get()).build(null));
+
+
+
+	
 
 
 	

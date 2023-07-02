@@ -38,7 +38,7 @@ public class ExtruderMenu extends AbstractContainerMenu
 	// server side constructor
 	public ExtruderMenu(int inventoryId, Inventory playerInventory, ContainerLevelAccess access, Block openingBlockType, IItemHandler objInventory, ContainerData data)
 	{
-		super(YATMMenuTypes.EXTRUDER_MENU.get(), inventoryId);
+		super(YATMMenuTypes.EXTRUDER.get(), inventoryId);
 
 		this.m_access = access;
 		this.m_openingBlockType = openingBlockType;

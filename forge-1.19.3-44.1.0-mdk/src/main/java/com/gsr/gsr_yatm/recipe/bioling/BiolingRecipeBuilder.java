@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.recipe.cystallizing;
+package com.gsr.gsr_yatm.recipe.bioling;
 
 import java.util.function.Consumer;
 
@@ -9,60 +9,54 @@ import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
 
-public class CrystallizationRecipeBuilder implements RecipeBuilder
+public class BiolingRecipeBuilder implements RecipeBuilder
 {
 	private ResourceLocation m_identifier;
-	private ItemStack m_result;
-	private Ingredient m_seed;	
-	private FluidStack m_input;
-	boolean m_consumeSeed = false;
+	private FluidStack m_result;
+	private Ingredient m_input;
+	private ItemStack m_inputRemainder = ItemStack.EMPTY;
 	private int m_currentPerTick = 8;
 	private int m_timeInTicks = 20;
+
 	private String m_group = "";
 	private Advancement.Builder m_advancement = Advancement.Builder.advancement();
 
 
-	
-	public CrystallizationRecipeBuilder identifier(ResourceLocation identifier)
+	public BiolingRecipeBuilder identifier(ResourceLocation identifier)
 	{
 		this.m_identifier = identifier;
 		return this;
 	} // end identifier()
 
-	public CrystallizationRecipeBuilder input(FluidStack input)
+	public BiolingRecipeBuilder input(Ingredient input)
 	{
 		this.m_input = input;
 		return this;
 	} // end input()
-	
-	public CrystallizationRecipeBuilder seed(Ingredient seed)
-	{
-		this.m_seed = seed;
-		return this;
-	} // end seed()
 
-	public CrystallizationRecipeBuilder result(ItemStack result)
+	public BiolingRecipeBuilder result(FluidStack result)
 	{
 		this.m_result = result;
 		return this;
 	} // end result()
 
-	public CrystallizationRecipeBuilder consumeSeed(boolean consumeSeed) 
+	public BiolingRecipeBuilder inputRemainder(ItemStack inputRemainder)
 	{
-		this.m_consumeSeed = consumeSeed;
+		this.m_inputRemainder = inputRemainder;
 		return this;
-	} // end consumeSeed()
-	
-	public CrystallizationRecipeBuilder currentPerTick(int currentPerTick)
+	} // end inputRemainder()
+
+	public BiolingRecipeBuilder currentPerTick(int currentPerTick)
 	{
 		this.m_currentPerTick = currentPerTick;
 		return this;
 	} // end currentPerTick()
-	
-	public CrystallizationRecipeBuilder timeInTicks(int timeInTicks)
+
+	public BiolingRecipeBuilder timeInTicks(int timeInTicks)
 	{
 		this.m_timeInTicks = timeInTicks;
 		return this;
@@ -70,10 +64,10 @@ public class CrystallizationRecipeBuilder implements RecipeBuilder
 
 
 
-	public CrystallizationRecipe build()
+	public BiolingRecipe build()
 	{
-		CrystallizationRecipe r = new CrystallizationRecipe(this.m_identifier, this.m_input, this.m_seed, this.m_result);
-		r.m_consumeSeed = this.m_consumeSeed;
+		BiolingRecipe r = new BiolingRecipe(this.m_identifier, this.m_input, this.m_result);
+		r.m_inputRemainder = this.m_inputRemainder;
 		r.m_currentPerTick = this.m_currentPerTick;
 		r.m_timeInTicks = this.m_timeInTicks;
 		r.m_group = this.m_group;
@@ -99,14 +93,14 @@ public class CrystallizationRecipeBuilder implements RecipeBuilder
 	@Override
 	public Item getResult()
 	{
-		return this.m_result.getItem();
+		return Items.AIR;
 	} // end getResult()
 
 	@Override
 	public void save(Consumer<FinishedRecipe> writer, ResourceLocation fileName)
 	{
 		this.validate(fileName);
-		writer.accept(new CrystallizationFinishedRecipe(fileName, this.m_result, this.m_input, this.m_seed, this.m_consumeSeed, this.m_currentPerTick, this.m_timeInTicks, this.m_group, fileName.withPrefix("recipes/"), this.m_advancement));
+		writer.accept(new BiolingFinishedRecipe(fileName, this.m_result, this.m_input, this.m_inputRemainder, this.m_currentPerTick, this.m_timeInTicks, this.m_group, fileName.withPrefix("recipes/"), this.m_advancement));
 	} // end save()
 	
 	

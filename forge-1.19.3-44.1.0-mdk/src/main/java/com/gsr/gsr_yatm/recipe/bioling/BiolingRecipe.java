@@ -1,13 +1,11 @@
-package com.gsr.gsr_yatm.recipe.grinding;
+package com.gsr.gsr_yatm.recipe.bioling;
 
-import com.gsr.gsr_yatm.block.device.grinder.GrinderBlockEntity;
+import com.gsr.gsr_yatm.block.device.bioler.BiolerBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 
-import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
@@ -16,71 +14,82 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.fluids.FluidStack;
+import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.items.IItemHandler;
 
-public class GrindingRecipe implements ITimedRecipe<Container>
+public class BiolingRecipe implements ITimedRecipe<Container>
 {
 	private final ResourceLocation m_identifier;
-	private final ItemStack m_result;
+	private final FluidStack m_result;	
 	private final Ingredient m_input;
+	ItemStack m_inputRemainder = ItemStack.EMPTY;
 	int m_currentPerTick = 8;
 	int m_timeInTicks = 20;
-	
 	String m_group = "";
-
-
-
-	public GrindingRecipe(ResourceLocation identifier, Ingredient input, ItemStack result)
+	
+	
+	
+	public BiolingRecipe(ResourceLocation identifier, Ingredient input, FluidStack result) 
 	{
 		this.m_identifier = identifier;
 		this.m_input = input;
-		this.m_result = result.copy();
+		this.m_result = result;
 	} // end constructor
-
-
-
+	
+	
+	
 	public int getCurrentPerTick()
 	{
 		return this.m_currentPerTick;
 	} // end getCurrentPerTick()
-
+	
 	@Override
 	public int getTimeInTicks()
 	{
 		return this.m_timeInTicks;
 	} // end getTimeInTicks()
 
-	
-	
-	public boolean canBeUsedOn(IItemHandler inventory)
+	public boolean hasRemainder()
 	{
-		return RecipeUtilities.testIngredientAgainst(inventory.getStackInSlot(GrinderBlockEntity.INPUT_SLOT), this.m_input) && 
-				inventory.insertItem(GrinderBlockEntity.RESULT_SLOT, this.m_result.copy(), true).isEmpty();
-	} // end canBeUsedOn()
+		return !this.m_inputRemainder.isEmpty();
+	} // end hasRemainder()
 
+	
+	
+	
+	public boolean canBeUsedOn(IItemHandler inventory, IFluidHandler resultTank)
+	{
+		return this.m_input.test(inventory.getStackInSlot(BiolerBlockEntity.INPUT_SLOT)) && 
+				inventory.insertItem(BiolerBlockEntity.INPUT_REMAINDER_SLOT, this.m_inputRemainder, true).isEmpty() &&
+				resultTank.fill(this.m_result, FluidAction.SIMULATE) == this.m_result.getAmount();
+	} // end canBeUsedOn()
+	
 	public void startRecipe(IItemHandler inventory)
 	{
-		inventory.extractItem(GrinderBlockEntity.INPUT_SLOT, 
-				RecipeUtilities.getReqiuredCountFor(inventory.getStackInSlot(GrinderBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
+		inventory.extractItem(BiolerBlockEntity.INPUT_SLOT, 1, false);
 	} // end startRecipe()
-
-	public void setResults(IItemHandler inventory)
+	
+	public void setResults(IItemHandler inventory, IFluidHandler resultTank)
 	{
-		inventory.insertItem(GrinderBlockEntity.RESULT_SLOT, this.m_result.copy(), false);
+		inventory.insertItem(BiolerBlockEntity.INPUT_REMAINDER_SLOT, this.m_inputRemainder.copy(), false);
+		resultTank.fill(this.m_result.copy(), FluidAction.EXECUTE);
 	} // end setResults()
-
-
-
+		
+	
+		
+	// use canBeUsedOn() instead
 	@Override
 	public boolean matches(Container container, Level level)
 	{
-		return RecipeUtilities.testIngredientAgainst(container.getItem(GrinderBlockEntity.INPUT_SLOT), this.m_input);
+		return false;
 	} // end matches()
 
 	@Override
 	public ItemStack assemble(Container container, RegistryAccess registryAccess)
 	{
-		return this.m_result.copy();
+		return ItemStack.EMPTY;
 	} // end assemble()
 
 	@Override
@@ -92,8 +101,8 @@ public class GrindingRecipe implements ITimedRecipe<Container>
 	@Override
 	public ItemStack getResultItem(RegistryAccess registryAccess)
 	{
-		return this.m_result.copy();
-	} // end getResultItem
+		return ItemStack.EMPTY;
+	} // end getResultItem()
 
 	@Override
 	public ResourceLocation getId()
@@ -102,41 +111,27 @@ public class GrindingRecipe implements ITimedRecipe<Container>
 	} // end getId()
 
 	@Override
-	public RecipeSerializer<GrindingRecipe> getSerializer()
+	public RecipeSerializer<BiolingRecipe> getSerializer()
 	{
-		return YATMRecipeSerializers.GRINDING.get();
+		return YATMRecipeSerializers.BIOLING.get();
 	} // end getSerializer()
 
 	@Override
-	public RecipeType<GrindingRecipe> getType()
+	public RecipeType<BiolingRecipe> getType()
 	{
-		return YATMRecipeTypes.GRINDING.get();
+		return YATMRecipeTypes.BIOLING.get();
 	} // end getType()
-
-
 
 	@Override
 	public ItemStack getToastSymbol()
 	{
-		return new ItemStack(YATMItems.STEEL_GRINDER_ITEM.get());
-	} // end getToastSymbol()	
+		return new ItemStack(YATMItems.STEEL_BIOLER_ITEM.get());
+	} // end getToastSymbol()
 	
-	@Override
-	public NonNullList<ItemStack> getRemainingItems(Container container)
-	{
-		return ITimedRecipe.super.getRemainingItems(container);
-	} // end getRemainingItems
-
-	@Override
-	public NonNullList<Ingredient> getIngredients()
-	{
-		return NonNullList.of(null, this.m_input);
-	} // end getIngredients()
-
 	@Override
 	public String getGroup()
 	{
 		return this.m_group;
 	} // end getGroup()
-
-} // end outer class
+	
+} // end class

@@ -1,8 +1,9 @@
 package com.gsr.gsr_yatm.block.device.extractor;
 
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.NetworkUtilities;
 import com.gsr.gsr_yatm.utilities.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.network.BooleanFlagHandler;
+import com.gsr.gsr_yatm.utilities.network.NetworkUtilities;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -41,7 +42,7 @@ public class ExtractorMenu extends AbstractContainerMenu
 	// server side constructor
 	public ExtractorMenu(int inventoryId, Inventory playerInventory, ContainerLevelAccess access, Block openingBlockType, IItemHandler objInventory, ContainerData data)
 	{
-		super(YATMMenuTypes.EXTRACTOR_MENU.get(), inventoryId);
+		super(YATMMenuTypes.EXTRACTOR.get(), inventoryId);
 
 		this.m_access = access;
 		this.m_openingBlockType = openingBlockType;
@@ -148,8 +149,7 @@ public class ExtractorMenu extends AbstractContainerMenu
 	
 	public boolean recipeHasRemainder()
 	{
-		return (this.m_data.get(ExtractorBlockEntity.DATA_FLAGS_SLOT) & ExtractorBlockEntity.Flags.CURRENT_RECIPE_HAS_REMAINDER.FLAG) 
-				== ExtractorBlockEntity.Flags.CURRENT_RECIPE_HAS_REMAINDER.FLAG;
+		return new BooleanFlagHandler(this.m_data.get(ExtractorBlockEntity.DATA_FLAGS_SLOT)).getValue(ExtractorBlockEntity.HAS_REMAINDER_FLAG_INDEX);
 	} // end recipeHasRemainder()
 	
 	public float getExtractProgress() 
@@ -174,22 +174,9 @@ public class ExtractorMenu extends AbstractContainerMenu
 
 	public Fluid getFluid()
 	{
-//		int fIndex = this.m_data.get(ExtractorBlockEntity.FLUID_INDEX_SLOT);
-//		int i = 0;
-//		for (Entry<ResourceKey<Fluid>, Fluid> enty : ForgeRegistries.FLUIDS.getEntries())
-//		{
-//			if (i++ == fIndex)
-//			{
-//				return enty.getValue();
-//			}
-//		}
 		int index = NetworkUtilities.composeInt(this.m_data.get(ExtractorBlockEntity.FLUID_INDEX_LOW_SLOT), this.m_data.get(ExtractorBlockEntity.FLUID_INDEX_HIGH_SLOT));
 		return NetworkUtilities.getFluid(index);//Fluids.EMPTY;
 	} // end getFluid()
-
-	
-
-	// fluid tank things
 	
 	// current held things	
 

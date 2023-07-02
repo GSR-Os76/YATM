@@ -5,11 +5,11 @@ import java.util.function.Consumer;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.recipe.BoilingRecipeBuilder;
-import com.gsr.gsr_yatm.recipe.CrystallizationRecipeBuilder;
-import com.gsr.gsr_yatm.recipe.ExtractionRecipeBuilder;
-import com.gsr.gsr_yatm.recipe.ExtrusionRecipeBuilder;
-import com.gsr.gsr_yatm.recipe.GrindingRecipeBuilder;
+import com.gsr.gsr_yatm.recipe.boiling.BoilingRecipeBuilder;
+import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizationRecipeBuilder;
+import com.gsr.gsr_yatm.recipe.extracting.ExtractionRecipeBuilder;
+import com.gsr.gsr_yatm.recipe.extruding.ExtrusionRecipeBuilder;
+import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipeBuilder;
 import com.gsr.gsr_yatm.registry.YATMFluids;
 import com.gsr.gsr_yatm.registry.YATMItems;
 

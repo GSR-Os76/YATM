@@ -1,8 +1,8 @@
 package com.gsr.gsr_yatm.block.device.boiler;
 
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.NetworkUtilities;
 import com.gsr.gsr_yatm.utilities.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.network.NetworkUtilities;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -40,7 +40,7 @@ public class BoilerMenu extends AbstractContainerMenu
 	// server side constructor
 	public BoilerMenu(int inventoryId, Inventory playerInventory, ContainerLevelAccess access, Block openingBlockType, IItemHandler objInventory, ContainerData data)//, ContainerData container)
 	{
-		super(YATMMenuTypes.BOILER_MENU.get(), inventoryId);
+		super(YATMMenuTypes.BOILER.get(), inventoryId);
 
 		this.m_access = access;
 		this.m_openingBlockType = openingBlockType;

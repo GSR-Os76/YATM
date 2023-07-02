@@ -1,8 +1,8 @@
 package com.gsr.gsr_yatm.block.device.crystallizer;
 
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.NetworkUtilities;
 import com.gsr.gsr_yatm.utilities.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.network.NetworkUtilities;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -41,7 +41,7 @@ public class CrystallizerMenu extends AbstractContainerMenu
 	// server side constructor
 	public CrystallizerMenu(int inventoryId, Inventory playerInventory, ContainerLevelAccess access, Block openingBlockType, IItemHandler objInventory, ContainerData data)
 	{
-		super(YATMMenuTypes.CRYSTALLIZER_MENU.get(), inventoryId);
+		super(YATMMenuTypes.CRYSTALLIZER.get(), inventoryId);
 
 		this.m_access = access;
 		this.m_openingBlockType = openingBlockType;

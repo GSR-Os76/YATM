@@ -3,12 +3,12 @@ package com.gsr.gsr_yatm.block.device.crystallizer;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
-import com.gsr.gsr_yatm.recipe.CrystallizationRecipe;
+import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizationRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.ConfigurableTankWrapper;
-import com.gsr.gsr_yatm.utilities.NetworkUtilities;
 import com.gsr.gsr_yatm.utilities.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.network.NetworkUtilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

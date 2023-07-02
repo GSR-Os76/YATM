@@ -31,11 +31,11 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 	{
 		this.add("item_group.gsr_yatm.yatm_general", "Yet Another Tech Mod General");
 		
-		this.add(YATMMenuTypes.BOILER_MENU.get(), "Boiler");		
-		this.add(YATMMenuTypes.GRINDER_MENU.get(), "Grinder");		
-		this.add(YATMMenuTypes.CRYSTALLIZER_MENU.get(), "Crystallizer");		
-		this.add(YATMMenuTypes.EXTRUDER_MENU.get(), "Extruder");		
-		this.add(YATMMenuTypes.EXTRACTOR_MENU.get(), "Extractor");		
+		this.add(YATMMenuTypes.BOILER.get(), "Boiler");		
+		this.add(YATMMenuTypes.GRINDER.get(), "Grinder");		
+		this.add(YATMMenuTypes.CRYSTALLIZER.get(), "Crystallizer");		
+		this.add(YATMMenuTypes.EXTRUDER.get(), "Extruder");		
+		this.add(YATMMenuTypes.EXTRACTOR.get(), "Extractor");		
 
 		
 		this.add("biome.gsr_yatm.old_growth_soul_sand_valley", "Old Growth Soul Sand Valley");

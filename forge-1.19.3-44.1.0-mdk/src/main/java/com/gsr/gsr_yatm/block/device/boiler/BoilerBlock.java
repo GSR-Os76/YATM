@@ -93,7 +93,7 @@ public class BoilerBlock extends DeviceBlock
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor())
 				, 
-				Component.translatable(YATMLanguageProviderUnitedStatesEnglish.getTitleNameFor(YATMMenuTypes.BOILER_MENU.get()))
+				Component.translatable(YATMLanguageProviderUnitedStatesEnglish.getTitleNameFor(YATMMenuTypes.BOILER.get()))
 				// Component.translatable("menu.title." + YetAnotherTechMod.MODID + "." + YATMMenuTypes.BOILER_MENU.getId().getPath())
 				);
 	} // end getMenuProvider()

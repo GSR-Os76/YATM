@@ -75,11 +75,11 @@ public class YATMModEvents
 	
 	private static void clientSetup(FMLClientSetupEvent event)
 	{
-		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BOILER_MENU.get(), BoilerScreen::new));
-		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.CRYSTALLIZER_MENU.get(), CrystallizerScreen::new));
-		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRACTOR_MENU.get(), ExtractorScreen::new));
-		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRUDER_MENU.get(), ExtruderScreen::new));
-		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.GRINDER_MENU.get(), GrinderScreen::new));
+		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BOILER.get(), BoilerScreen::new));
+		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.CRYSTALLIZER.get(), CrystallizerScreen::new));
+		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRACTOR.get(), ExtractorScreen::new));
+		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRUDER.get(), ExtruderScreen::new));
+		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.GRINDER.get(), GrinderScreen::new));
 		
 	} // end clientSetup()
 

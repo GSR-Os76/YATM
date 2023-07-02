@@ -46,7 +46,7 @@ public class GrinderBlock extends DeviceBlock
 		GrinderBlockEntity ebe = (GrinderBlockEntity)level.getBlockEntity(blockPos);
 		return new SimpleMenuProvider((containerId, playerInv, player) -> new GrinderMenu(containerId, playerInv, ContainerLevelAccess.create(level, blockPos), blockState.getBlock(), ebe.getInventory(), ebe.getDataAccessor())
 				,
-				Component.translatable(YATMLanguageProviderUnitedStatesEnglish.getTitleNameFor(YATMMenuTypes.GRINDER_MENU.get()))
+				Component.translatable(YATMLanguageProviderUnitedStatesEnglish.getTitleNameFor(YATMMenuTypes.GRINDER.get()))
 				// Component.translatable("menu.title." + YetAnotherTechMod.MODID + "." + YATMMenuTypes.EXTRACTOR_MENU.getId().getPath())
 				);
 	} // end getMenuProvider()
