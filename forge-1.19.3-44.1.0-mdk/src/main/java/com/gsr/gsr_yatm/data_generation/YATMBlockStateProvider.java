@@ -10,6 +10,7 @@ import org.joml.Vector2i;
 import com.google.common.collect.ImmutableList;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
+import com.gsr.gsr_yatm.block.device.bioler.BiolerBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
@@ -61,6 +62,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 
 	public static final ModelFile LARGE_HEAT_SINK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/large_heat_sink"));
 	
+	public static final ModelFile BIOLER_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/bioler"));
+	
 	public static final ModelFile BOILER_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/boiler"));
 	public static final ModelFile BOILER_WHEN_HAS_TANK_PART_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/boiler_has_tank_multipart"));
 	public static final ModelFile BOILER_TANK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/boiler_tank"));
@@ -97,6 +100,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 		
 		this.addHeatSinks();
+		this.addBiolers();
 		this.addBoilers();
 		this.addBoilerTanks();
 		this.createAllBlock(YATMBlocks.C_U_F_E_I.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/energy_converter/energy_converter"));
@@ -193,6 +197,17 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/large_copper_heat_sink_two"));
 
 	} // end addHeatSinks()
+	
+	private void addBiolers() 
+	{
+		this.createBioler(YATMBlocks.STEEL_BIOLER.get(), YATMItems.STEEL_BIOLER_ITEM.get(),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/steel_bioler_side_ports"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_port_sides"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_bottom"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_top"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_inside"));
+		
+	} // end addBioler()
 	
 	private void addBoilers() 
 	{
@@ -442,6 +457,25 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
 	} // end createHeatSink()
+	
+	private void createBioler(BiolerBlock block, Item item, ResourceLocation portTexture, ResourceLocation sideTexture, ResourceLocation bottomTexture, ResourceLocation topTexture, ResourceLocation insideTexture) 
+	{
+		String name = getModelLocationNameFor(block);
+		this.models().getBuilder(name).parent(BIOLER_MODEL)
+		.texture("0", portTexture)
+		.texture("1", sideTexture)
+		.texture("2", bottomTexture)
+		.texture("3", topTexture)
+		.texture("4", insideTexture);
+		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
+		
+		this.getVariantBuilder(block).forAllStates((bs) -> 
+		{
+			return new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(BiolerBlock.FACING)).x, rotationForDirectionFromNorth(bs.getValue(BiolerBlock.FACING)).y, false) };
+		});
+		
+		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
+	} // end createBioler()
 	
 	private void createBoiler(BoilerBlock block, Item item, ResourceLocation facePlateAndPortsTexture, ResourceLocation topTexture, ResourceLocation sidesTexture, ResourceLocation faceTexture, ResourceLocation litFaceTexture, ResourceLocation hasTankTopTexture, ResourceLocation hasTankPartSideTexture)
 	{
