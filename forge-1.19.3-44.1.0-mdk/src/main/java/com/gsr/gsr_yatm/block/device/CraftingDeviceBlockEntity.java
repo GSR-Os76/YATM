@@ -1,5 +1,6 @@
 package com.gsr.gsr_yatm.block.device;
 
+import java.util.Enumeration;
 import java.util.List;
 
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
@@ -72,12 +73,6 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 		
 		if (this.m_craftProgress > 0)
 		{
-//			if (this.m_activeRecipe == null) 
-//			{
-//				this.m_timeSinceRecheck = 0;
-//				this.tryStartNewRecipe();
-//			}
-//			else 
 			if (--this.m_craftProgress <= 0)
 			{
 				this.setRecipeResults(this.m_activeRecipe);
@@ -99,9 +94,14 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 		this.m_activeRecipe = null;
 		this.m_craftTime = 0;
 		this.m_craftProgress = 0;
-		List<T> recipes = level.getRecipeManager().getAllRecipesFor(this.m_recipeType);
-		for (T r : recipes)
+		
+		Enumeration<T> recipes = RecipeUtilities.getRecipes(this.level, this.m_recipeType);
+		while (recipes.hasMoreElements())//for (T r : recipes)
 		{
+			T r = recipes.nextElement();
+		//List<T> recipes = level.getRecipeManager().getAllRecipesFor(this.m_recipeType);
+		//for (T r : recipes)
+		//{
 			if (this.canUseRecipe(r))
 			{
 				this.m_activeRecipe = r;

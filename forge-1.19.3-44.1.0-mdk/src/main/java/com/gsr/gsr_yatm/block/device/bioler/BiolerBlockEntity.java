@@ -1,5 +1,7 @@
 package com.gsr.gsr_yatm.block.device.bioler;
 
+import java.util.Enumeration;
+
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
@@ -9,6 +11,7 @@ import com.gsr.gsr_yatm.recipe.bioling.BiolingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.ConfigurableTankWrapper;
+import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 import com.gsr.gsr_yatm.utilities.SlotUtilities;
 import com.gsr.gsr_yatm.utilities.network.AccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
@@ -28,12 +31,11 @@ import net.minecraftforge.fluids.capability.templates.FluidTank;
 public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, Container>
 {
 	public static final int DATA_SLOT_COUNT = 11;
-	public static final int INVENTORY_SLOT_COUNT = 4;
-	
+	public static final int INVENTORY_SLOT_COUNT = 3;	
 	
 	public static final int INPUT_SLOT = 0;
-	public static final int DRAIN_RESULT_TANK_SLOT = 2;
-	public static final int POWER_SLOT = 3;
+	public static final int DRAIN_RESULT_TANK_SLOT = 1;
+	public static final int POWER_SLOT = 2;
 
 	// this is tragic, these are mutable, but should be strictly set, but also they should be defined dynamically by the conainerData creation, but they should also be guaranteed consistent across instances, this contract is something weak 
 	private static AccessSpecification s_craftData;
@@ -80,7 +82,7 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 		
 	private ContainerData m_data;
 	
-	
+
 	
 	public BiolerBlockEntity(BlockPos blockPos, BlockState blockState)
 	{
@@ -211,6 +213,30 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 		}
 		return changed;
 	} // end doDrainResultTank()
+	
+	
+	
+	@Override
+	protected void tryStartNewRecipe()
+	{
+		this.m_activeRecipe = null;
+		this.m_craftTime = 0;
+		this.m_craftProgress = 0;
+		// List<T> recipes = level.getRecipeManager().getAllRecipesFor(this.m_recipeType);
+		Enumeration<BiolingRecipe> recipes = RecipeUtilities.getRecipes(this.level, this.m_recipeType);
+		while (recipes.hasMoreElements())//for (T r : recipes)
+		{
+			BiolingRecipe r = recipes.nextElement();
+			if (this.canUseRecipe(r))
+			{
+				this.m_activeRecipe = r;
+				this.m_craftTime = r.getTimeInTicks();
+				this.m_craftProgress = this.m_craftTime;
+				this.startRecipe(r);
+				break;
+			}
+		}
+	} // end tryStartNewRecipe();
 	
 	@Override
 	protected void setRecipeResults(BiolingRecipe from)

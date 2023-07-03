@@ -21,9 +21,9 @@ import net.minecraftforge.items.IItemHandler;
 
 public class BiolingRecipe implements ITimedRecipe<Container>
 {
-	private final ResourceLocation m_identifier;
-	private final FluidStack m_result;	
-	private final Ingredient m_input;
+	protected final ResourceLocation m_identifier;
+	protected final FluidStack m_result;	
+	protected final Ingredient m_input;
 	int m_currentPerTick = 8;
 	int m_timeInTicks = 20;
 	String m_group = "";

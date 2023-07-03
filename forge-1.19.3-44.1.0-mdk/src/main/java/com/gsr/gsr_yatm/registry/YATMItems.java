@@ -16,6 +16,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -29,7 +30,7 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> RUBBER_MERISTEM_ITEM = generalTabEnqueue(ITEMS.register("rubber_meristem", () -> new BlockItem(YATMBlocks.RUBBER_MERISTEM.get(), new Item.Properties())));
 	// public static final RegistryObject<BlockItem> POTTED_RUBBER_MERISTEM_ITEM = generalTabEnqueue(ITEMS.register("potted_rubber_meristem", () -> new BlockItem(YATMBlocks.POTTED_RUBBER_MERISTEM.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_LEAVES_YOUNG_ITEM = generalTabEnqueue(ITEMS.register("rubber_leaves_young", () -> new BlockItem(YATMBlocks.RUBBER_LEAVES_YOUNG.get(), new Item.Properties())));
-	public static final RegistryObject<BlockItem> RUBBER_LEAVES_LEAVES_FLOWERING_ITEM = generalTabEnqueue(ITEMS.register("rubber_leaves_flowering", () -> new BlockItem(YATMBlocks.RUBBER_LEAVES_FLOWERING.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> RUBBER_LEAVES_FLOWERING_ITEM = generalTabEnqueue(ITEMS.register("rubber_leaves_flowering", () -> new BlockItem(YATMBlocks.RUBBER_LEAVES_FLOWERING.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_LEAVES_OLD_ITEM = generalTabEnqueue(ITEMS.register("rubber_leaves_old", () -> new BlockItem(YATMBlocks.RUBBER_LEAVES_OLD.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_LOG_ITEM = generalTabEnqueue(ITEMS.register("rubber_log", () -> new BlockItem(YATMBlocks.RUBBER_LOG.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_WOOD_ITEM = generalTabEnqueue(ITEMS.register("rubber_wood", () -> new BlockItem(YATMBlocks.RUBBER_WOOD.get(), new Item.Properties())));
@@ -295,6 +296,24 @@ public class YATMItems
 //		
 //		return inv;
 //	} // end alternativeSortingMode()
+	
+	
+	public static void addCompostables() 
+	{	
+		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_MERISTEM_ITEM.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_LEAVES_YOUNG_ITEM.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_LEAVES_FLOWERING_ITEM.get(), 0.3F);
+		
+		// TODO, possibly add thses magically ones, here or elsewhere
+		/*
+		 * ComposterBlock.COMPOSTABLES.put(YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM_ITEM.get(), 0.3F); 
+		 * ComposterBlock.COMPOSTABLES.put(YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG_ITEM.get(), 0.3F);
+		 * ComposterBlock.COMPOSTABLES.put(YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING_ITEM.get(), 0.3F);
+		 * 
+		 * ComposterBlock.COMPOSTABLES.put(YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get(), 0.85F);
+		 */
+	} // end addCompostables
+	
 	
 	
 	public static <T extends Item> RegistryObject<T> generalTabEnqueue(RegistryObject<T> item) 

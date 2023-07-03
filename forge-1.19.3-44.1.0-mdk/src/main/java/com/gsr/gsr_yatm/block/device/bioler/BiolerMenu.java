@@ -96,19 +96,23 @@ public class BiolerMenu extends AbstractContainerMenu
 				boolean moved = false;
 				if(this.moveItemStackTo(slotsStack, BiolerBlockEntity.INPUT_SLOT, BiolerBlockEntity.INPUT_SLOT + 1, false)) 
 				{						
-					moved = true; //return ItemStack.EMPTY;					
+					moved = true;				
+				}
+				else if(SlotUtilities.isValidTankDrainSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, BiolerBlockEntity.DRAIN_RESULT_TANK_SLOT, BiolerBlockEntity.DRAIN_RESULT_TANK_SLOT + 1, false)) 
+				{					
+					moved = true;
 				}
 				else if(SlotUtilities.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, BiolerBlockEntity.POWER_SLOT, BiolerBlockEntity.POWER_SLOT + 1, false)) 
 				{					
-					moved = true; //return ItemStack.EMPTY;
+					moved = true;
 				}
 				else if((quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_INVENTORY_END) && this.moveItemStackTo(slotsStack, PLAYER_HOTBAR_START, PLAYER_HOTBAR_END + 1, false)) 
 				{											
-					moved = true; //return ItemStack.EMPTY;
+					moved = true;
 				}
 				else if ((quickMovedSlotIndex >= PLAYER_HOTBAR_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END) && this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_INVENTORY_END + 1, false))
 				{
-					moved = true; //return ItemStack.EMPTY;
+					moved = true;
 				}	
 				if(!moved) 
 				{

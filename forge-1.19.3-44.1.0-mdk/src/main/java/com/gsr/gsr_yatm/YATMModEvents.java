@@ -14,6 +14,7 @@ import com.gsr.gsr_yatm.data_generation.YATMItemModelProvider;
 import com.gsr.gsr_yatm.data_generation.YATMItemTags;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProviderUnitedStatesEnglish;
 import com.gsr.gsr_yatm.data_generation.YATMRecipeProvider;
+import com.gsr.gsr_yatm.recipe.bioling.CompostableBiolingRecipeProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMFluidTypes;
@@ -27,14 +28,11 @@ import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.registry.YATMRootPlacerTypes;
 import com.gsr.gsr_yatm.registry.YATMTreeDecoratorTypes;
 import com.gsr.gsr_yatm.registry.YATMTrunkPlacerTypes;
+import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
-import net.minecraft.data.worldgen.DimensionTypes;
-import net.minecraft.data.worldgen.biome.NetherBiomes;
-import net.minecraft.world.level.biome.BiomeGenerationSettings;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
@@ -61,6 +59,7 @@ public class YATMModEvents
 		YATMBlocks.addFlowersToPots();
 		
 		YATMCreativeModTabs.register(modEventBus);
+		modEventBus.addListener(YATMModEvents::commonSetup);
 		modEventBus.addListener(YATMModEvents::clientSetup);
 		modEventBus.addListener(YATMModEvents::gatherData);
 	} // end register()
@@ -69,10 +68,12 @@ public class YATMModEvents
 	
 	private static void commonSetup(FMLCommonSetupEvent event) 
 	{
+		YATMItems.addCompostables();
+		RecipeUtilities.addDynamicRecipeProvider(new CompostableBiolingRecipeProvider());
 		// TODO, add biome to the nether, biome manager seems to only support the overworld currently, and I wish to not break compatibility
 		// NetherBiomes l
 		// event.enqueueWork(() -> ; BiomeManager.addAdditionalOverworldBiomes(null))
-	}
+	} // end commonSetup()
 	
 	private static void clientSetup(FMLClientSetupEvent event)
 	{

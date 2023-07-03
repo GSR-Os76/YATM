@@ -1,0 +1,14 @@
+{
+  "type": "gsr_yatm:bioling",
+  "cost": 2,
+  "input": {
+    "ingedient": {
+      "item": "minecraft:poisonous_potato"
+    }
+  },
+  "result": {
+    "count": 200,
+    "fluid": "gsr_yatm:bio"
+  },
+  "time": 20
+}

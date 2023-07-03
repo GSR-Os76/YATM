@@ -57,14 +57,7 @@ public class YATMGameEvents
 
 	private static void recipesUpdated(RecipesUpdatedEvent event) 
 	{
-//		YetAnotherTechMod.LOGGER.info("=");
-//		YetAnotherTechMod.LOGGER.info("=");
-//		YetAnotherTechMod.LOGGER.info("=");
-//		YetAnotherTechMod.LOGGER.info("recipes were updated");
-//		YetAnotherTechMod.LOGGER.info("=");
-//		YetAnotherTechMod.LOGGER.info("=");
-//		YetAnotherTechMod.LOGGER.info("=");
-		RecipeUtilities.recipesUpdated();
+RecipeUtilities.recipesUpdated();
 	} // end recipesUpdated()
 	
 	private static void attachItemStackCapabilities(AttachCapabilitiesEvent<ItemStack> event) 

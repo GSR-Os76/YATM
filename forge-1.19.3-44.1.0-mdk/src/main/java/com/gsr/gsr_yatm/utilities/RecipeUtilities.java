@@ -1,11 +1,17 @@
 package com.gsr.gsr_yatm.utilities;
 
 import java.util.ArrayList;
+import java.util.Enumeration;
+import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.jetbrains.annotations.NotNull;
 
 import com.google.gson.JsonObject;
+import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.recipe.dynamic.IDynamicRecipeProvider;
 
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -22,6 +28,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITag;
 import net.minecraftforge.registries.tags.ITagManager;
 
+@SuppressWarnings("unused")
 public class RecipeUtilities
 {	
 	public static final int RECHECK_CRAFTING_PERIOD = 20;
@@ -50,7 +57,8 @@ public class RecipeUtilities
 	// NOTE: it's in kelvin
 	public static final String TEMPERATURE_KEY = "temperature";
 	
-	private static List<Runnable> s_reloadListeners = new ArrayList<>();
+	private static final List<Runnable> RELOAD_LISTENERS = new ArrayList<>();
+	private static final Map<RecipeType<?>, List<IDynamicRecipeProvider<?>>> DYNAMIC_RECIPE_PROVIDERS = new HashMap<>();
 	
 	
 	
@@ -124,28 +132,121 @@ public class RecipeUtilities
 	
 	public static void recipesUpdated() 
 	{
-		for(int i = 0; i < RecipeUtilities.s_reloadListeners.size(); i++) 
+		for(int i = 0; i < RecipeUtilities.RELOAD_LISTENERS.size(); i++) 
 		{
-			RecipeUtilities.s_reloadListeners.remove(0).run();
+			RecipeUtilities.RELOAD_LISTENERS.remove(0).run();
 		}
 	} // end recipesUpdated()
 	
 	public static void addRecipeLoadListener(Runnable handler) 
 	{
-		RecipeUtilities.s_reloadListeners.add(handler);
+		RecipeUtilities.RELOAD_LISTENERS.add(handler);
 	} // end addRecipeLoadListener()
 	
+	@SuppressWarnings("unchecked")
 	public static <C extends Container, T extends Recipe<C>> T loadRecipe(String recipeIdentifierToMatch, Level level, RecipeType<T> type)
 	{
-		List<T> recipes = level.getRecipeManager().getAllRecipesFor(type);
-		for (T r : recipes)
+		for (T r : level.getRecipeManager().getAllRecipesFor(type))
 		{
 			if (r.getId().toString().equals(recipeIdentifierToMatch))
 			{
 				return r;
 			}
 		}
+		YetAnotherTechMod.LOGGER.info("about to try dynamic loop");
+		if(RecipeUtilities.DYNAMIC_RECIPE_PROVIDERS.containsKey(type)) 
+		{
+			YetAnotherTechMod.LOGGER.info("found key of recipe type");
+			for(IDynamicRecipeProvider<?> dpl : RecipeUtilities.DYNAMIC_RECIPE_PROVIDERS.get(type)) 
+			{
+				YetAnotherTechMod.LOGGER.info("looking at dynamic recipe providers for type");
+				Enumeration<? extends Recipe<? extends Container>> e = dpl.getEnumerator();
+				while(e.hasMoreElements()) 
+				{
+					YetAnotherTechMod.LOGGER.info("has more elements");
+					var ei = e.nextElement();
+					if (ei.getId().toString().equals(recipeIdentifierToMatch))
+					{
+						return (T) ei;
+					}
+				}
+			}
+		}
 		return null;
 	} // end loadRecipe()
+
+	
+	
+	public static <C extends Container, T extends Recipe<C>> Enumeration<T> getRecipes(Level level, RecipeType<T> type)
+	{
+		return new Enumeration<T>() 
+		{
+			Iterator<T> levelRManager = level.getRecipeManager().getAllRecipesFor(type).iterator();
+			Iterator<IDynamicRecipeProvider<?>> drp = RecipeUtilities.DYNAMIC_RECIPE_PROVIDERS.containsKey(type) 
+					? RecipeUtilities.DYNAMIC_RECIPE_PROVIDERS.get(type).iterator() 
+							: null;
+			Enumeration<? extends Recipe<? extends Container>> drprs = null;
+			
+			@Override
+			public boolean hasMoreElements()
+			{
+				if(levelRManager.hasNext()) 
+				{
+					return true;
+				}
+				else 
+				{
+					if(drprs != null && drprs.hasMoreElements()) 
+					{
+						return true;
+					}
+					while((drprs == null || !drprs.hasMoreElements()) && drp != null && drp.hasNext()) 
+					{
+						drprs = drp.next().getEnumerator();
+						if(drprs.hasMoreElements()) 
+						{
+							return true;
+						}
+					}
+				}
+				return false;
+			} // end hasMoreElements()
+
+			@SuppressWarnings("unchecked")
+			@Override
+			public T nextElement()
+			{
+				if(levelRManager.hasNext()) 
+				{
+					return levelRManager.next();
+				}
+				else 
+				{
+					if(drprs != null && drprs.hasMoreElements()) 
+					{
+						return (T) drprs.nextElement();
+					}
+					while((drprs == null || !drprs.hasMoreElements()) && drp != null && drp.hasNext()) 
+					{
+						drprs = drp.next().getEnumerator();
+						if(drprs.hasMoreElements()) 
+						{
+							return (T) drprs.nextElement();
+						}
+					}
+				}
+				return null;
+			} // end nextElement()
+		};
+	} // end getRecipes()
+	
+	public static void addDynamicRecipeProvider(IDynamicRecipeProvider<?> provider)
+	{
+		if(!RecipeUtilities.DYNAMIC_RECIPE_PROVIDERS.containsKey(provider.recipeType())) 
+		{
+			RecipeUtilities.DYNAMIC_RECIPE_PROVIDERS.put(provider.recipeType(), new ArrayList<IDynamicRecipeProvider<?>>());
+		}
+		RecipeUtilities.DYNAMIC_RECIPE_PROVIDERS.get(provider.recipeType()).add(provider);
+	} // end addDynamicRecipeProvider()
 
 } // end class
