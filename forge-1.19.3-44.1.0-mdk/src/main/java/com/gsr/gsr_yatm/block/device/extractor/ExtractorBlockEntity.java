@@ -128,7 +128,7 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractionRe
 	{
 		CompoundTag tag = new CompoundTag();
 		tag.putInt(CURRENT_CAPACITY_TAG_NAME, this.m_internalCurrentStorer.capacity());
-		tag.putInt(MAX_CURRENT_TAG_NAME, this.m_maxCurrentTransfer);
+		tag.putInt(MAX_CURRENT_TAG_NAME, this.m_maxSafeCurrentTransfer);
 		tag.putInt(TANK_CAPACITY_TAG_NAME, this.m_rawResultTank.getCapacity());
 		tag.putInt(MAX_FLUID_TRANSFER_RATE_TAG_NAME, this.m_maxFluidTransferRate);
 		return tag;
@@ -166,7 +166,7 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractionRe
 		this.m_rawResultTank = new FluidTank(fluidCapacity);
 		this.m_resultTank = new ConfigurableTankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);
 		this.m_internalCurrentStorer = new CurrentUnitHandler.Builder().capacity(currentCapacity).onCurrentExtracted(this::onCurrentExchanged).onCurrentRecieved(this::onCurrentExchanged).build();
-		this.m_maxCurrentTransfer = maxCurrentTransfer;
+		this.m_maxSafeCurrentTransfer = maxCurrentTransfer;
 		this.m_maxFluidTransferRate = maxFluidTransferRate;
 	} // end setup()
 	

@@ -11,7 +11,7 @@ import net.minecraft.world.inventory.ContainerData;
 
 public class ContainerDataBuilder
 {
-	private int count = 0;
+	private int m_count = 0;
 	private final List<ContainerData> m_containers = new ArrayList<>();
 	private List<Property<Integer>> m_properties = new ArrayList<>();
 	
@@ -22,19 +22,28 @@ public class ContainerDataBuilder
 		this.tryPushProperties();
 		this.m_containers.add(adding);
 		
-		int oldCount = count;
-		count += adding.getCount();
-		return new AccessSpecification(oldCount, count - 1);		
+		int oldCount = m_count;
+		m_count += adding.getCount();
+		return new AccessSpecification(oldCount, m_count - 1);		
 	} // end addContainerData()
 
 	public @NotNull AccessSpecification addPropety(@NotNull Supplier<Integer> getter, @NotNull Consumer<Integer> setter) 
 	{
 		this.m_properties.add(new Property<>(getter, setter));
 		
-		int oldCount = count;
-		count += 1;
-		return new AccessSpecification(oldCount, count - 1);
+		int oldCount = m_count;
+		m_count += 1;
+		return new AccessSpecification(oldCount, m_count - 1);
 	} // and addProperty()
+	
+	
+	
+	public int getCount()
+	{
+		return this.m_count;
+	} // end getCount()
+	
+	
 	
 	public ContainerData build() 
 	{
@@ -42,6 +51,8 @@ public class ContainerDataBuilder
 		return new AggregatedContainerData(this.m_containers);
 	} // end build()
 
+	
+	
 	
 
 	private void tryPushProperties()
@@ -52,5 +63,5 @@ public class ContainerDataBuilder
 			this.m_properties = new ArrayList<>();
 		}
 	} // end tryPushProperties()
-	
+
 } // end class

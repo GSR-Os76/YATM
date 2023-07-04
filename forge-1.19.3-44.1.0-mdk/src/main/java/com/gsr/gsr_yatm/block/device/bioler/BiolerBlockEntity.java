@@ -1,17 +1,13 @@
 package com.gsr.gsr_yatm.block.device.bioler;
 
-import java.util.Enumeration;
-
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.api.implementation.CurrentUnitHandler;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.bioling.BiolingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.ConfigurableTankWrapper;
-import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 import com.gsr.gsr_yatm.utilities.SlotUtilities;
 import com.gsr.gsr_yatm.utilities.network.AccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
@@ -93,16 +89,16 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 	{
 		super(YATMBlockEntityTypes.BIOLER.get(), blockPos, blockState, BiolerBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.BIOLING.get());
 		this.setup(currentCapacity, maxCurrentTransfer, fluidCapacity, maxFluidTransferRate);
+		// TODO, theoretically remove this
 		this.m_data = this.createContainerData();
 	} // end constructor
 
 	@Override
 	protected @NotNull CompoundTag setupToNBT()
 	{
-		YetAnotherTechMod.LOGGER.info("writing setup to");
 		CompoundTag tag = new CompoundTag();
 		tag.putInt(BiolerBlockEntity.CURRENT_CAPACITY_TAG_NAME, this.m_internalCurrentStorer.capacity());
-		tag.putInt(BiolerBlockEntity.MAX_CURRENT_TAG_NAME, this.m_maxCurrentTransfer);
+		tag.putInt(BiolerBlockEntity.MAX_CURRENT_TAG_NAME, this.m_maxSafeCurrentTransfer);
 		tag.putInt(BiolerBlockEntity.TANK_CAPACITY_TAG_NAME, this.m_rawResultTank.getCapacity());
 		tag.putInt(BiolerBlockEntity.MAX_FLUID_TRANSFER_RATE_TAG_NAME, this.m_maxFluidTransferRate);
 		return tag;
@@ -111,8 +107,6 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 	@Override
 	protected void setupFromNBT(CompoundTag tag)
 	{
-		YetAnotherTechMod.LOGGER.info("reading setup from");
-		
 		int currentCapacity = 0;
 		int maxCurrentTransfer = 0;
 		int fluidCapacity = 0;
@@ -142,7 +136,7 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 		this.m_rawResultTank = new FluidTank(fluidCapacity);
 		this.m_resultTank = new ConfigurableTankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);
 		this.m_internalCurrentStorer = new CurrentUnitHandler.Builder().capacity(currentCapacity).onCurrentExtracted(this::onCurrentExchanged).onCurrentRecieved(this::onCurrentExchanged).build();
-		this.m_maxCurrentTransfer = maxCurrentTransfer;
+		this.m_maxSafeCurrentTransfer = maxCurrentTransfer;
 		this.m_maxFluidTransferRate = maxFluidTransferRate;
 		this.m_data = this.createContainerData();
 	} // end setup()
@@ -215,28 +209,6 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 	} // end doDrainResultTank()
 	
 	
-	
-	@Override
-	protected void tryStartNewRecipe()
-	{
-		this.m_activeRecipe = null;
-		this.m_craftTime = 0;
-		this.m_craftProgress = 0;
-		// List<T> recipes = level.getRecipeManager().getAllRecipesFor(this.m_recipeType);
-		Enumeration<BiolingRecipe> recipes = RecipeUtilities.getRecipes(this.level, this.m_recipeType);
-		while (recipes.hasMoreElements())//for (T r : recipes)
-		{
-			BiolingRecipe r = recipes.nextElement();
-			if (this.canUseRecipe(r))
-			{
-				this.m_activeRecipe = r;
-				this.m_craftTime = r.getTimeInTicks();
-				this.m_craftProgress = this.m_craftTime;
-				this.startRecipe(r);
-				break;
-			}
-		}
-	} // end tryStartNewRecipe();
 	
 	@Override
 	protected void setRecipeResults(BiolingRecipe from)

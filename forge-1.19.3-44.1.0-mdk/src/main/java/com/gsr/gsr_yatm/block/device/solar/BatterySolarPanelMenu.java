@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.device.extruder;
+package com.gsr.gsr_yatm.block.device.solar;
 
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.SlotUtilities;
@@ -16,9 +16,9 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class ExtruderMenu extends AbstractContainerMenu
+public class BatterySolarPanelMenu extends AbstractContainerMenu
 {
-	public static final int PLAYER_INVENTORY_START = (ExtruderBlockEntity.INVENTORY_SLOT_COUNT - 1) + 1;
+	public static final int PLAYER_INVENTORY_START = (BatterySolarPanelBlockEntity.INVENTORY_SLOT_COUNT - 1) + 1;
 	public static final int PLAYER_INVENTORY_END = PLAYER_INVENTORY_START + 26;
 	public static final int PLAYER_HOTBAR_START = PLAYER_INVENTORY_END + 1;
 	public static final int PLAYER_HOTBAR_END = PLAYER_HOTBAR_START + 8;
@@ -30,25 +30,20 @@ public class ExtruderMenu extends AbstractContainerMenu
 	
 	
 	// client side constructor
-	public ExtruderMenu(int inventoryId, Inventory playerInventory)
+	public BatterySolarPanelMenu(int inventoryId, Inventory playerInventory)
 	{
-		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(ExtruderBlockEntity.INVENTORY_SLOT_COUNT), new SimpleContainerData(ExtruderBlockEntity.DATA_SLOT_COUNT));
+		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(BatterySolarPanelBlockEntity.INVENTORY_SLOT_COUNT), new SimpleContainerData(BatterySolarPanelBlockEntity.getDataSlotCount()));
 	} // end client constructor
 
 	// server side constructor
-	public ExtruderMenu(int inventoryId, Inventory playerInventory, ContainerLevelAccess access, Block openingBlockType, IItemHandler objInventory, ContainerData data)
+	public BatterySolarPanelMenu(int inventoryId, Inventory playerInventory, ContainerLevelAccess access, Block openingBlockType, IItemHandler objInventory, ContainerData data)
 	{
-		super(YATMMenuTypes.EXTRUDER.get(), inventoryId);
+		super(YATMMenuTypes.BATTERY_SOLAR_PANEL.get(), inventoryId);
 
 		this.m_access = access;
 		this.m_openingBlockType = openingBlockType;
 		this.m_data = data;
-		this.addSlot(new SlotItemHandler(objInventory, ExtruderBlockEntity.INPUT_SLOT, 35, 29));
-		this.addSlot(new SlotItemHandler(objInventory, ExtruderBlockEntity.DIE_SLOT, 53, 29));
-		this.addSlot(new SlotItemHandler(objInventory, ExtruderBlockEntity.RESULT_SLOT, 107, 29));
-		this.addSlot(new SlotItemHandler(objInventory, ExtruderBlockEntity.INPUT_REMAINDER_SLOT, 125, 29));
-		
-		this.addSlot(new SlotItemHandler(objInventory, ExtruderBlockEntity.POWER_SLOT, 8, 51));
+		this.addSlot(new SlotItemHandler(objInventory, BatterySolarPanelBlockEntity.POWER_SLOT, 79, 51));
 
 		for (int y = 0; y < 3; ++y)
 		{
@@ -76,26 +71,10 @@ public class ExtruderMenu extends AbstractContainerMenu
 		if (quickMovedSlot != null && quickMovedSlot.hasItem())
 		{
 			ItemStack slotsStack = quickMovedSlot.getItem();
-			if (quickMovedSlotIndex == ExtruderBlockEntity.RESULT_SLOT)
-			{				
-				if (!this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_HOTBAR_END + 1, true))
-				{					
-					return ItemStack.EMPTY;
-				}
-				quickMovedSlot.onQuickCraft(slotsStack, quickMovedStack);
-			}
-			else if (quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END)
+			if (quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END)
 			{	
 				boolean moved = false;
-				if(this.moveItemStackTo(slotsStack, ExtruderBlockEntity.INPUT_SLOT, ExtruderBlockEntity.INPUT_SLOT + 1, false)) 
-				{						
-					moved = true;
-				}
-				else if(this.moveItemStackTo(slotsStack, ExtruderBlockEntity.DIE_SLOT, ExtruderBlockEntity.DIE_SLOT + 1, false)) 
-				{											
-					moved = true;
-				}
-				else if(SlotUtilities.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, ExtruderBlockEntity.POWER_SLOT, ExtruderBlockEntity.POWER_SLOT + 1, false)) 
+				if(SlotUtilities.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, BatterySolarPanelBlockEntity.POWER_SLOT, BatterySolarPanelBlockEntity.POWER_SLOT + 1, false)) 
 				{					
 					moved = true;
 				}
@@ -147,17 +126,14 @@ public class ExtruderMenu extends AbstractContainerMenu
 
 	
 	
-	public float getExtrudeProgress()
+	public int currentStored() 
 	{
-		return this.m_data.get(ExtruderBlockEntity.EXTRUDE_TIME_SLOT) == 0 
-				? 0 
-				: 1f - ((float)this.m_data.get(ExtruderBlockEntity.EXTRUDE_PROGRESS_SLOT) / (float)this.m_data.get(ExtruderBlockEntity.EXTRUDE_TIME_SLOT));
-	} // end getExtrudeProgress()
+		return this.m_data.get(BatterySolarPanelBlockEntity.getCurrentData().startIndex());
+	} // end currentStored()
 	
-	// TODO, this is weird and should be changed, shouldn't be percent, should be capacity and stored
-	public float getPowerFillStatus()
+	public int currentCapacity() 
 	{
-		return 1f - ((float)this.m_data.get(ExtruderBlockEntity.CURRENT_STORED_SLOT) / (float)this.m_data.get(ExtruderBlockEntity.CURRENT_CAPACITY_SLOT));
-	} // end getExtrudeProgress()
+		return this.m_data.get(BatterySolarPanelBlockEntity.getCurrentData().endIndex());
+	} // end currentCapacity()
 	
 } // end class

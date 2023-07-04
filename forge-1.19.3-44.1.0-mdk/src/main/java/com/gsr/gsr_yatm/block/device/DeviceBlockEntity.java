@@ -29,7 +29,7 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	
 	protected CurrentUnitHandler m_internalCurrentStorer;	
 	
-	protected int m_maxCurrentTransfer;
+	protected int m_maxSafeCurrentTransfer;
 	protected int m_currentTransferedThisTick = 0;
 	
 	
@@ -70,7 +70,7 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	{
 		this.m_currentTransferedThisTick += amount;
 		this.setChanged();
-		if(this.m_currentTransferedThisTick > this.m_maxCurrentTransfer) 
+		if(this.m_currentTransferedThisTick > this.m_maxSafeCurrentTransfer) 
 		{
 			// TODO, detonate. or rather call a method that can be overriden that by default will detonates this
 		}

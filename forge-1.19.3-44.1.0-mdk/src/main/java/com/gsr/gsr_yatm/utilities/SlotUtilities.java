@@ -1,6 +1,10 @@
 package com.gsr.gsr_yatm.utilities;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.api.IComponent;
+import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
+import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
@@ -157,7 +161,7 @@ public class SlotUtilities
 	
 	private static IFluidHandlerItem getFluidHandlerCapability(ItemStack itemStack) 
 	{
-		return itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM, null).orElse(null);
+		return itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).orElse(null);
 	}
 
 	
@@ -180,17 +184,13 @@ public class SlotUtilities
 	
 	
 	// returns the relevant capability for the slot considering the component system
-	public static <T> LazyOptional<T> getSlotsCapability(LazyOptional<IItemHandler> slotCapability, Capability<T> capabilityType)
+	public static <T> @NotNull LazyOptional<T> getSlotsCapability(@NotNull LazyOptional<IItemHandler> slotCapability, @NotNull Capability<T> capabilityType)
 	{
-		if(slotCapability == null || capabilityType == null) 
-		{
-			return null;
-		}
 		IItemHandler unwrapped = slotCapability.orElse(null);
 		
 		if(unwrapped == null) 
 		{
-			return null;
+			return LazyOptional.empty();
 		}
 		ItemStack i = unwrapped.getStackInSlot(0);
 		if(i.getItem() instanceof IComponent) 
@@ -202,7 +202,7 @@ public class SlotUtilities
 		{					
 			return slotCapability.cast();
 		}
-		return null;
+		return LazyOptional.empty();
 	} // end getSlotCapability()
 	
 	
@@ -255,15 +255,20 @@ public class SlotUtilities
 	
 	
 	
-	public static boolean tryToPower(IItemHandler inventory, int powerSlot, int tickRequiredPower)
+	public static int tryPowerSlot(IItemHandler inventory, int slot, ICurrentHandler from, int maxTransfer)
 	{
-		if(tickRequiredPower <= 0) 
+		ItemStack stackInSlot = inventory.getStackInSlot(slot);
+		if(stackInSlot.isEmpty() || maxTransfer <= 0) 
 		{
-			return true;
+			return 0;
+		}
+		ICurrentHandler c = stackInSlot.getCapability(YATMCapabilities.CURRENT).orElse(null);
+		if(c != null) 
+		{
+			return c.recieveCurrent(from.extractCurrent(c.recieveCurrent(from.extractCurrent(maxTransfer, true), true), false), false);
 		}
 		
-		return true;
+		return 0;
 	} // end tryToPower()
-	
 	
 } // end class

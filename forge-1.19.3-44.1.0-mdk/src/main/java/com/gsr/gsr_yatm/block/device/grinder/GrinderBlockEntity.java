@@ -91,7 +91,7 @@ public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe
 	{
 		CompoundTag tag = new CompoundTag();
 		tag.putInt(CURRENT_CAPACITY_TAG_NAME, this.m_internalCurrentStorer.capacity());
-		tag.putInt(MAX_CURRENT_TAG_NAME, this.m_maxCurrentTransfer);
+		tag.putInt(MAX_CURRENT_TAG_NAME, this.m_maxSafeCurrentTransfer);
 		return tag;
 	} // end setupToNBT()
 
@@ -115,7 +115,7 @@ public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe
 	private void setup(int currentCapacity, int maxCurrentTransfer) 
 	{
 		this.m_internalCurrentStorer = new CurrentUnitHandler.Builder().capacity(currentCapacity).onCurrentExtracted(this::onCurrentExchanged).onCurrentRecieved(this::onCurrentExchanged).build();
-		this.m_maxCurrentTransfer = maxCurrentTransfer;		
+		this.m_maxSafeCurrentTransfer = maxCurrentTransfer;		
 	} // end setup()
 	
 	

@@ -9,10 +9,15 @@ import net.minecraftforge.common.util.INBTSerializable;
 
 public class CurrentUnitHandler implements ICurrentHandler, INBTSerializable<CompoundTag>
 {
+	private static final String STORED_AMOUNT_TAG_NAME = "stored";
+	private static final String CAPACITY_TAG_NAME = "capacity";
+	
 	private int m_storedUnits = 0;
 	private int m_capacity;
 	private Consumer<Integer> m_onCurrentRecieved;
 	private Consumer<Integer> m_onCurrentExtracted;
+	private boolean m_canRecieve = true;
+	private boolean m_canExtract = true;
 	
 	
 	
@@ -26,6 +31,11 @@ public class CurrentUnitHandler implements ICurrentHandler, INBTSerializable<Com
 	@Override
 	public int recieveCurrent(int amount, boolean simulate)
 	{
+		if(!this.m_canRecieve) 
+		{
+			return 0;
+		}
+		
 		int recieveable = Math.min(amount, this.m_capacity - this.m_storedUnits);
 		if(!simulate) 
 		{
@@ -41,6 +51,11 @@ public class CurrentUnitHandler implements ICurrentHandler, INBTSerializable<Com
 	@Override
 	public int extractCurrent(int amount, boolean simulate)
 	{
+		if(!this.m_canExtract) 
+		{
+			return 0;
+		}
+		
 		int extractable = Math.min(amount, this.m_storedUnits);
 		if(!simulate) 
 		{
@@ -67,11 +82,32 @@ public class CurrentUnitHandler implements ICurrentHandler, INBTSerializable<Com
 
 	
 	
+	@Override
+	public CompoundTag serializeNBT()
+	{
+		CompoundTag tag = new CompoundTag();
+		tag.putInt(CurrentUnitHandler.STORED_AMOUNT_TAG_NAME, this.m_storedUnits);
+		tag.putInt(CurrentUnitHandler.CAPACITY_TAG_NAME, this.m_capacity);
+		return tag;
+	} // end serializeNBT()
+
+	@Override
+	public void deserializeNBT(CompoundTag nbt)
+	{
+		this.m_storedUnits = nbt.getInt(CurrentUnitHandler.STORED_AMOUNT_TAG_NAME);
+		this.m_capacity = nbt.getInt(CurrentUnitHandler.CAPACITY_TAG_NAME);
+	} // end deserializeNBT()
+	
+	
+	
+	
 	public static class Builder 
 	{
 		private int m_capacity = 0;
 		private Consumer<Integer> m_onCurrentRecieved;
 		private Consumer<Integer> m_onCurrentExtracted;
+		private boolean m_canRecieve = true;
+		private boolean m_canExtract = true;
 		
 		
 		
@@ -93,34 +129,30 @@ public class CurrentUnitHandler implements ICurrentHandler, INBTSerializable<Com
 			return this;
 		} // end onCurrentExtracted()
 		
+		public Builder canRecieve(boolean can) 
+		{
+			this.m_canRecieve = can;
+			return this;
+		} // end canRecieve()
+		
+		public Builder canExtract(boolean can) 
+		{
+			this.m_canExtract = can;
+			return this;
+		} // end canExtract()
+		
 		
 		
 		public CurrentUnitHandler build() 
 		{
 			CurrentUnitHandler temp = new CurrentUnitHandler(this.m_capacity);
 			temp.m_onCurrentRecieved = this.m_onCurrentRecieved;
-			temp.m_onCurrentExtracted = m_onCurrentExtracted;
+			temp.m_onCurrentExtracted = this.m_onCurrentExtracted;
+			temp.m_canRecieve = this.m_canRecieve;
+			temp.m_canExtract = this.m_canExtract;
 			return temp;
 		} // end build()
 		
 	} // end inner class
-
-
-
-	@Override
-	public CompoundTag serializeNBT()
-	{
-		CompoundTag tag = new CompoundTag();
-		tag.putInt("stored", this.m_storedUnits);
-		tag.putInt("capacity", this.m_capacity);
-		return tag;
-	} // end serializeNBT()
-
-	@Override
-	public void deserializeNBT(CompoundTag nbt)
-	{
-		this.m_storedUnits = nbt.getInt("stored");
-		this.m_capacity = nbt.getInt("capacity");
-	} // end deserializeNBT()
 	
 } // end class

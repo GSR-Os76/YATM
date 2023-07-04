@@ -512,7 +512,7 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 		if(releventSlot != null) 
 		{
 			LazyOptional<T> c = SlotUtilities.getSlotsCapability(releventSlot, cap);
-			if(c != null) 
+			if(c.isPresent()) 
 			{
 				return c;
 			}

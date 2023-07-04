@@ -96,7 +96,12 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> STEEL_EXTRACTOR_ITEM = generalTabEnqueue(ITEMS.register("steel_extractor", () -> new BlockItem(YATMBlocks.STEEL_EXTRACTOR.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_EXTRUDER_ITEM = generalTabEnqueue(ITEMS.register("steel_extruder", () -> new BlockItem(YATMBlocks.STEEL_EXTRUDER.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_GRINDER_ITEM = generalTabEnqueue(ITEMS.register("steel_grinder", () -> new BlockItem(YATMBlocks.STEEL_GRINDER.get(), new Item.Properties())));
+	
 	public static final RegistryObject<BlockItem> C_U_F_E_I_ITEM = generalTabEnqueue(ITEMS.register("current_unit_forge_energy_interchanger", () -> new BlockItem(YATMBlocks.C_U_F_E_I.get(), new Item.Properties())));
+
+	public static final RegistryObject<BlockItem> CRUDE_SOLAR_PANEL_ITEM = generalTabEnqueue(ITEMS.register("crude_solar_panel", () -> new BlockItem(YATMBlocks.CRUDE_BATTERY_SOLAR_PANEL.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> ADVANCED_SOLAR_PANEL_ITEM = generalTabEnqueue(ITEMS.register("advanced_crude_solar_panel", () -> new BlockItem(YATMBlocks.ADVANCED_BATTERY_SOLAR_PANEL.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> SUNS_COMPLEMENT_SOLAR_PANEL_ITEM = generalTabEnqueue(ITEMS.register("suns_complement_solar_panel", () -> new BlockItem(YATMBlocks.SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL.get(), new Item.Properties())));
 
 
 	
