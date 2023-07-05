@@ -43,7 +43,18 @@ public class BlockShapes
 		} // end getShape()
 
 	};
-	
+
+	public static final VoxelShapeGetter SOLAR_PANEL = new VoxelShapeGetter() 
+	{
+		private static final VoxelShape SOLAR_PANEL = Block.box(0, 0, 0, 16, 2, 16);
+
+		@Override
+		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		{
+			return SOLAR_PANEL;
+		} // end getShape()
+	};
+		
 	// maybe refine shape further
 	public static final VoxelShapeGetter STEEL_FLUID_CONDUIT_SHAPE = new VoxelShapeGetter()
 	{		

@@ -8,6 +8,7 @@ import com.gsr.gsr_yatm.block.device.extractor.ExtractorMenu;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderMenu;
 import com.gsr.gsr_yatm.block.device.grinder.GrinderMenu;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelMenu;
+import com.gsr.gsr_yatm.block.device.solar.SolarPanelMenu;
 
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.inventory.MenuType;
@@ -29,5 +30,6 @@ public class YATMMenuTypes
 	public static final RegistryObject<MenuType<ExtruderMenu>> EXTRUDER = MENU_TYPES.register("extruder_menu", () -> new MenuType<>(ExtruderMenu::new, FeatureFlagSet.of()));
 	
 	public static final RegistryObject<MenuType<BatterySolarPanelMenu>> BATTERY_SOLAR_PANEL = MENU_TYPES.register("battery_solar_panel", () -> new MenuType<>(BatterySolarPanelMenu::new, FeatureFlagSet.of()));
+	public static final RegistryObject<MenuType<SolarPanelMenu>> SOLAR_PANEL = MENU_TYPES.register("solar_panel", () -> new MenuType<>(SolarPanelMenu::new, FeatureFlagSet.of()));
 	
 } // end class

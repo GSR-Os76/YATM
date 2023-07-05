@@ -17,6 +17,7 @@ import com.gsr.gsr_yatm.block.device.extruder.ExtruderBlock;
 import com.gsr.gsr_yatm.block.device.grinder.GrinderBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlock;
+import com.gsr.gsr_yatm.block.device.solar.SolarPanelBlock;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelSettings;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.tree.AerialRootsBlock;
@@ -139,7 +140,10 @@ public class YATMBlocks
 	
 	public static final RegistryObject<BatterySolarPanelBlock> CRUDE_BATTERY_SOLAR_PANEL = BLOCKS.register("crude_battery_solar_panel", () -> new BatterySolarPanelBlock(BlockBehaviour.Properties.of(Material.STONE), BlockShapes.CUBE, 1024, 8, 64, SolarPanelSettings.CRUDE));
 	public static final RegistryObject<BatterySolarPanelBlock> ADVANCED_BATTERY_SOLAR_PANEL = BLOCKS.register("advanced_battery_solar_panel", () -> new BatterySolarPanelBlock(BlockBehaviour.Properties.of(Material.STONE), BlockShapes.CUBE, 65536, 64, 512, SolarPanelSettings.ADVANCED));
-	public static final RegistryObject<BatterySolarPanelBlock> SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL = BLOCKS.register("suns_complement_batter_solar_panel", () -> new BatterySolarPanelBlock(BlockBehaviour.Properties.of(Material.STONE), BlockShapes.CUBE, 524288, 512, 4096, SolarPanelSettings.SUNS_COMPLEMENT));
+	public static final RegistryObject<BatterySolarPanelBlock> SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL = BLOCKS.register("suns_complement_battery_solar_panel", () -> new BatterySolarPanelBlock(BlockBehaviour.Properties.of(Material.STONE), BlockShapes.CUBE, 524288, 512, 4096, SolarPanelSettings.SUNS_COMPLEMENT));
+	public static final RegistryObject<SolarPanelBlock> CRUDE_SOLAR_PANEL = BLOCKS.register("crude_solar_panel", () -> new SolarPanelBlock(BlockBehaviour.Properties.of(Material.STONE), BlockShapes.SOLAR_PANEL, 8, 8, 64, SolarPanelSettings.CRUDE));
+	public static final RegistryObject<SolarPanelBlock> ADVANCED_SOLAR_PANEL = BLOCKS.register("advanced_solar_panel", () -> new SolarPanelBlock(BlockBehaviour.Properties.of(Material.STONE), BlockShapes.SOLAR_PANEL, 64, 64, 512, SolarPanelSettings.ADVANCED));
+	public static final RegistryObject<SolarPanelBlock> SUNS_COMPLEMENT_SOLAR_PANEL = BLOCKS.register("suns_complement_solar_panel", () -> new SolarPanelBlock(BlockBehaviour.Properties.of(Material.STONE), BlockShapes.SOLAR_PANEL, 512, 512, 4096, SolarPanelSettings.SUNS_COMPLEMENT));
 	
 	
 	

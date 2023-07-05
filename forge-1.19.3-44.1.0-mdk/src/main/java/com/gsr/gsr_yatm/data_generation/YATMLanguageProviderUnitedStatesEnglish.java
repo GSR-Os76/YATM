@@ -39,7 +39,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add(YATMMenuTypes.GRINDER.get(), "Grinder");		
 		
 		this.add(YATMMenuTypes.BATTERY_SOLAR_PANEL.get(), "Solar Panel");		
-	
+		this.add(YATMMenuTypes.SOLAR_PANEL.get(), "Solar Panel");		
+		
 		
 		
 		this.add("biome.gsr_yatm.old_growth_soul_sand_valley", "Old Growth Soul Sand Valley");
@@ -107,9 +108,12 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		
 		this.add(YATMBlocks.C_U_F_E_I.get(), "Energy Converter (CU to FE)");
 		
-		this.add(YATMBlocks.CRUDE_BATTERY_SOLAR_PANEL.get(), "Crude Solar Panel");
-		this.add(YATMBlocks.ADVANCED_BATTERY_SOLAR_PANEL.get(), "Advanced Solar Panel");
-		this.add(YATMBlocks.SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL.get(), "Sun's Complement Solar Panel");
+		this.add(YATMBlocks.CRUDE_BATTERY_SOLAR_PANEL.get(), "Crude Battery Solar Panel");
+		this.add(YATMBlocks.ADVANCED_BATTERY_SOLAR_PANEL.get(), "Advanced Battery Solar Panel");
+		this.add(YATMBlocks.SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL.get(), "Sun's Complement Battery Solar Panel");
+		this.add(YATMBlocks.CRUDE_SOLAR_PANEL.get(), "Crude Solar Panel");
+		this.add(YATMBlocks.ADVANCED_SOLAR_PANEL.get(), "Advanced Solar Panel");
+		this.add(YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get(), "Sun's Complement Solar Panel");
 		
 		
 		

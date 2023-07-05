@@ -12,7 +12,7 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class BatterySolarPanelScreen extends AbstractContainerScreen<BatterySolarPanelMenu>
 {
-	public static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/solar_panel.png");
+	public static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/battery_solar_panel.png");
 	
 	private CurrentWidget m_currentWidget;
 	

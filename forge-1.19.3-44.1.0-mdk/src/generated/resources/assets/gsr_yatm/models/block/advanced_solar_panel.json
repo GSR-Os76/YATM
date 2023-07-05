@@ -1,0 +1,7 @@
+{
+  "parent": "gsr_yatm:block/solar_panel",
+  "textures": {
+    "side": "gsr_yatm:block/device/solar_panel/advanced_solar_panel_sides",
+    "top": "gsr_yatm:block/device/solar_panel/advanced_solar_panel_top"
+  }
+}
