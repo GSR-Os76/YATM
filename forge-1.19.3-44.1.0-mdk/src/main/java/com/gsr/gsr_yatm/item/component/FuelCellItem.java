@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.item.storage.energy;
+package com.gsr.gsr_yatm.item.component;
 
 import org.jetbrains.annotations.NotNull;
 

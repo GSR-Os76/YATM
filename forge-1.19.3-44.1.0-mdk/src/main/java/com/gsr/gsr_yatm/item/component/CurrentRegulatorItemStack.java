@@ -4,8 +4,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
-import com.gsr.gsr_yatm.api.capability.IDamageableRepairableItemStack;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
+import com.gsr.gsr_yatm.item.DamagableItemStack;
 
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -14,37 +14,24 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 
-public class CurrentRegulatorItemStack implements ICurrentHandler, IDamageableRepairableItemStack, ICapabilityProvider
+public class CurrentRegulatorItemStack extends DamagableItemStack implements ICurrentHandler, ICapabilityProvider//, IDamageableRepairableItemStack
 {
 	private static final String FORWARDING_BUFFER_TAG_NAME = "fBuffer";
 
-	private ItemStack m_container;
 	private int m_targetCurrent;
-	// that current which if exceeded will damage the component
 	private int m_overloadThreshold;
 
-	private boolean m_damaged;
 
 	private LazyOptional<ICurrentHandler> m_currentHolder = LazyOptional.of(() -> this);
-	private LazyOptional<ICurrentHandler> m_damageableRepairableHolder = LazyOptional.of(() -> this);
-
 
 
 	public CurrentRegulatorItemStack(ItemStack container, int targetCurrent, int overloadThreshold)
 	{
-		this.m_container = container;
-
+		super(container);
+		
 		this.m_targetCurrent = targetCurrent;
 		this.m_overloadThreshold = overloadThreshold;
 	} // end constructor
-
-
-
-	private void damageComponent()
-	{
-		this.m_damaged = true;
-		
-	} // end damageComponent()
 
 
 
@@ -66,13 +53,15 @@ public class CurrentRegulatorItemStack implements ICurrentHandler, IDamageableRe
 		}
 		this.m_container.getTag().putInt(FORWARDING_BUFFER_TAG_NAME, value);
 	} // end setForwardingBuffer()
+	
+	
 
 
 
 	@Override
 	public int recieveCurrent(int amount, boolean simulate)
 	{
-		if (m_damaged)
+		if (this.isDamaged())
 		{
 			return 0;
 		}
@@ -89,7 +78,7 @@ public class CurrentRegulatorItemStack implements ICurrentHandler, IDamageableRe
 	@Override
 	public int extractCurrent(int amount, boolean simulate)
 	{
-		int returnAmount = Math.min(amount, this.getForwardingBuffer()); // amount >= m_forwardingBuffer ? m_forwardingBuffer : amount;
+		int returnAmount = Math.min(amount, this.getForwardingBuffer());
 		if (!simulate)
 		{
 			this.setForwardingBuffer(this.getForwardingBuffer() - returnAmount);
@@ -122,18 +111,14 @@ public class CurrentRegulatorItemStack implements ICurrentHandler, IDamageableRe
 	@Override
 	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side)
 	{
-		if (!this.m_damaged)
+		if (!this.isDamaged())
 		{
 			if (cap == YATMCapabilities.CURRENT)
 			{
 				return this.m_currentHolder.cast();
 			}
-			else if (cap == YATMCapabilities.DAMAGEABLE_REPAIRABLE)
-			{
-				return this.m_damageableRepairableHolder.cast();
-			}
 		}
 		return LazyOptional.empty();
 	} // end getCapability()
 
-}
+} // end class
