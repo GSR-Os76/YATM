@@ -13,11 +13,10 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 
-public class CurrentRegulatorItemStack extends DamagableItemStack implements ICurrentHandler, ICapabilityProvider//, IDamageableRepairableItemStack
+public class FuseItemStack extends DamagableItemStack implements ICurrentHandler, ICapabilityProvider//, IDamageableRepairableItemStack
 {
 	private static final String FORWARDING_BUFFER_TAG_NAME = "fBuffer";
 
-	private int m_targetCurrent;
 	private int m_overloadThreshold;
 
 
@@ -25,11 +24,10 @@ public class CurrentRegulatorItemStack extends DamagableItemStack implements ICu
 	private LazyOptional<ICurrentHandler> m_currentHolder = LazyOptional.of(() -> this);
 
 
-	public CurrentRegulatorItemStack(ItemStack container, int targetCurrent, int overloadThreshold)
+	public FuseItemStack(ItemStack container, int overloadThreshold)
 	{
 		super(container);
 		
-		this.m_targetCurrent = targetCurrent;
 		this.m_overloadThreshold = overloadThreshold;
 	} // end constructor
 
@@ -45,6 +43,13 @@ public class CurrentRegulatorItemStack extends DamagableItemStack implements ICu
 		return tag.getInt(FORWARDING_BUFFER_TAG_NAME);
 	} // end getForwardingBuffer()
 
+	private int peakForwardingBuffer()
+	{
+		int has = this.getForwardingBuffer();
+		this.setForwardingBuffer(has);
+		return has;
+	} // end peakForwardingBuffer()
+	
 	private void setForwardingBuffer(int value)
 	{
 		if (!m_container.hasTag())
@@ -54,6 +59,16 @@ public class CurrentRegulatorItemStack extends DamagableItemStack implements ICu
 		this.m_container.getTag().putInt(FORWARDING_BUFFER_TAG_NAME, value);
 	} // end setForwardingBuffer()
 	
+	private int setBuffGetDifference(int value, boolean simulated)
+	{
+		int initial = this.peakForwardingBuffer();
+		if(!simulated) 
+		{
+			this.setForwardingBuffer(value);
+		}
+
+		return value - initial;
+	} // end setForwardingBuffer()
 	
 
 
@@ -65,14 +80,9 @@ public class CurrentRegulatorItemStack extends DamagableItemStack implements ICu
 		{
 			return 0;
 		}
-
-		int recieveAmount = amount > m_overloadThreshold ? amount : Math.min(amount, this.m_targetCurrent);
-		if (!simulate)
-		{
-			this.setForwardingBuffer(recieveAmount);
-		}
-
-		return recieveAmount;
+		int amountRecieved = 0;
+		amountRecieved = this.setBuffGetDifference(amount, simulate);
+		return Math.max(0, amountRecieved);
 	} // end recieveCurrent()
 
 	@Override

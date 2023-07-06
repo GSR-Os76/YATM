@@ -10,7 +10,9 @@ import com.gsr.gsr_yatm.fluid.item.DrinkableFluidBottleItem;
 import com.gsr.gsr_yatm.fluid.item.FluidBottleItem;
 import com.gsr.gsr_yatm.fluid.item.SoulSapBucketItem;
 import com.gsr.gsr_yatm.item.InsulatingItem;
+import com.gsr.gsr_yatm.item.component.CurrentBreakerItem;
 import com.gsr.gsr_yatm.item.component.CurrentRegulatorItem;
+import com.gsr.gsr_yatm.item.component.CurrentFuseItem;
 import com.gsr.gsr_yatm.item.component.fluid.FluidExchangerItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
@@ -136,6 +138,20 @@ public class YATMItems
 	public static final RegistryObject<CurrentRegulatorItem> FIVEHUNDREDTWELVE_CU_CURRENT_REGULATOR = generalTabEnqueue(ITEMS.register("fivehundredtwelve_cu_current_regulator_component", () -> new CurrentRegulatorItem(new Item.Properties().durability(1), 512, 4096)));
 	public static final RegistryObject<CurrentRegulatorItem> FOURTHOUSANDNINTYSIX_CU_CURRENT_REGULATOR = generalTabEnqueue(ITEMS.register("fourthousandnintysix_cu_current_regulator_component", () -> new CurrentRegulatorItem(new Item.Properties().durability(1), 4096,  32768)));
 
+	public static final RegistryObject<CurrentFuseItem> ONE_CU_CURRENT_FUSE = generalTabEnqueue(ITEMS.register("one_cu_current_fuse_component", () -> new CurrentFuseItem(new Item.Properties().durability(1), 1)));
+	public static final RegistryObject<CurrentFuseItem> EIGHT_CU_CURRENT_FUSE = generalTabEnqueue(ITEMS.register("eight_cu_current_fuse_component", () -> new CurrentFuseItem(new Item.Properties().durability(1), 8)));
+	public static final RegistryObject<CurrentFuseItem> SIXTYFOUR_CU_CURRENT_FUSE = generalTabEnqueue(ITEMS.register("sixtyfour_cu_current_fuse_component", () -> new CurrentFuseItem(new Item.Properties().durability(1), 64)));
+	public static final RegistryObject<CurrentFuseItem> FIVEHUNDREDTWELVE_CU_CURRENT_FUSE = generalTabEnqueue(ITEMS.register("fivehundredtwelve_cu_current_fuse_component", () -> new CurrentFuseItem(new Item.Properties().durability(1), 512)));
+	public static final RegistryObject<CurrentFuseItem> FOURTHOUSANDNINTYSIX_CU_CURRENT_FUSE = generalTabEnqueue(ITEMS.register("fourthousandnintysix_cu_current_fuse_component", () -> new CurrentFuseItem(new Item.Properties().durability(1), 4096)));
+
+	public static final RegistryObject<CurrentBreakerItem> ONE_CU_CURRENT_BREAKER = generalTabEnqueue(ITEMS.register("one_cu_current_breaker_component", () -> new CurrentBreakerItem(new Item.Properties().durability(1), 1)));
+	public static final RegistryObject<CurrentBreakerItem> EIGHT_CU_CURRENT_BREAKER = generalTabEnqueue(ITEMS.register("eight_cu_current_breaker_component", () -> new CurrentBreakerItem(new Item.Properties().durability(1), 8)));
+	public static final RegistryObject<CurrentBreakerItem> SIXTYFOUR_CU_CURRENT_BREAKER = generalTabEnqueue(ITEMS.register("sixtyfour_cu_current_breaker_component", () -> new CurrentBreakerItem(new Item.Properties().durability(1), 64)));
+	public static final RegistryObject<CurrentBreakerItem> FIVEHUNDREDTWELVE_CU_CURRENT_BREAKER = generalTabEnqueue(ITEMS.register("fivehundredtwelve_cu_current_breaker_component", () -> new CurrentBreakerItem(new Item.Properties().durability(1), 512)));
+	public static final RegistryObject<CurrentBreakerItem> FOURTHOUSANDNINTYSIX_CU_CURRENT_BREAKER = generalTabEnqueue(ITEMS.register("fourthousandnintysix_cu_current_breaker_component", () -> new CurrentBreakerItem(new Item.Properties().durability(1), 4096)));
+
+	
+	
 	// liquid latex that burns you if you're in the sun light
 	public static final RegistryObject<BucketItem> BIO_BUCKET = generalTabEnqueue(ITEMS.register("bio_bucket", () -> new BucketItem(YATMFluids.BIO, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
 	public static final RegistryObject<BucketItem> CHORUS_BUCKET = generalTabEnqueue(ITEMS.register("chorus_bucket", () -> new BucketItem(YATMFluids.CHORUS, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));

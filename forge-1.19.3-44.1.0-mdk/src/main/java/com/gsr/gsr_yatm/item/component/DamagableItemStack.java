@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.item;
+package com.gsr.gsr_yatm.item.component;
 
 import net.minecraft.world.item.ItemStack;
 

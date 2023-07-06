@@ -28,6 +28,18 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_REGULATOR.get());
 		this.basicItem(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_REGULATOR.get());
 
+		this.basicItem(YATMItems.ONE_CU_CURRENT_FUSE.get());
+		this.basicItem(YATMItems.EIGHT_CU_CURRENT_FUSE.get());
+		this.basicItem(YATMItems.SIXTYFOUR_CU_CURRENT_FUSE.get());
+		this.basicItem(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_FUSE.get());
+		this.basicItem(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_FUSE.get());
+
+		this.basicItem(YATMItems.ONE_CU_CURRENT_BREAKER.get());
+		this.basicItem(YATMItems.EIGHT_CU_CURRENT_BREAKER.get());
+		this.basicItem(YATMItems.SIXTYFOUR_CU_CURRENT_BREAKER.get());
+		this.basicItem(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_BREAKER.get());
+		this.basicItem(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_BREAKER.get());
+
 		
 		
 		this.basicItem(YATMItems.BIO_BUCKET.get());

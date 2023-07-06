@@ -46,8 +46,9 @@ public class BooleanFlagHandler
 	
 	public BooleanFlagHandler(ContainerData data) 
 	{
+		// TODO, implement
 		this.m_data = data;
-		this.m_value = 
+		//this.m_value = 
 		this.m_containerDataSettingMask = 0b1111_1111_1111_1111_1111_1111_1111_1111;
 	} // end constructor
 	

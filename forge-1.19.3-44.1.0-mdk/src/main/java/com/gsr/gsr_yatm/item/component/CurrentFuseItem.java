@@ -9,18 +9,15 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
-public class CurrentRegulatorItem extends Item implements IComponent
+public class CurrentFuseItem extends Item implements IComponent
 {
-	private int m_targetCurrent;
-	private int m_overloadThreshold;
+	private final int m_overloadThreshold;
 	
 	
 		
-	public CurrentRegulatorItem(Properties properties, int targetCurrent, int overloadThreshold)
+	public CurrentFuseItem(Properties properties, int overloadThreshold)
 	{
-		super(properties);
-		
-		this.m_targetCurrent = targetCurrent;
+		super(properties);		
 		this.m_overloadThreshold = overloadThreshold;
 	} // end constructor
 
@@ -29,7 +26,7 @@ public class CurrentRegulatorItem extends Item implements IComponent
 	@Override
 	public @Nullable ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt)
 	{
-		return new CurrentRegulatorItemStack(stack, this.m_targetCurrent, this.m_overloadThreshold);
+		return new FuseItemStack(stack, this.m_overloadThreshold);
 	} // end initCapabilities()
 	
 } // end class

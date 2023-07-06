@@ -147,6 +147,18 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_REGULATOR.get(), "512cu Current Regulator");
 		this.add(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_REGULATOR.get(), "4096cu Current Regulator");
 		
+		this.add(YATMItems.ONE_CU_CURRENT_FUSE.get(), "1cu Current Fuse");
+		this.add(YATMItems.EIGHT_CU_CURRENT_FUSE.get(), "8cu Current Fuse");
+		this.add(YATMItems.SIXTYFOUR_CU_CURRENT_FUSE.get(), "64cu Current Fuse");
+		this.add(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_FUSE.get(), "512cu Current Fuse");
+		this.add(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_FUSE.get(), "4096cu Current Fuse");
+		
+		this.add(YATMItems.ONE_CU_CURRENT_BREAKER.get(), "1cu Current Breaker");
+		this.add(YATMItems.EIGHT_CU_CURRENT_BREAKER.get(), "8cu Current Breaker");
+		this.add(YATMItems.SIXTYFOUR_CU_CURRENT_BREAKER.get(), "64cu Current Breaker");
+		this.add(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_BREAKER.get(), "512cu Current Breaker");
+		this.add(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_BREAKER.get(), "4096cu Current Breaker");
+		
 		
 		
 		this.add(YATMItems.BIO_BUCKET.get(), "Biofluid Bucket");

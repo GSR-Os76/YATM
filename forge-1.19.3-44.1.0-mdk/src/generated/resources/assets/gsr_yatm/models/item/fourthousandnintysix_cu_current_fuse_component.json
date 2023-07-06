@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gsr_yatm:item/fourthousandnintysix_cu_current_fuse_component"
+  }
+}

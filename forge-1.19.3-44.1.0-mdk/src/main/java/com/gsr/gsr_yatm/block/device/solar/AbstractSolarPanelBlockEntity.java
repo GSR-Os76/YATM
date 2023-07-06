@@ -210,7 +210,12 @@ public abstract class AbstractSolarPanelBlockEntity extends DeviceBlockEntity
 	
 	private boolean doPowerSlot(Level level, BlockPos pos) 
 	{
-		return SlotUtilities.tryPowerSlot(this.m_uncheckedInventory, POWER_SLOT, this.m_internalCurrentStorer, this.m_maxCurrentTransfer) > 0;
+		if(this.m_slotHandler != null) 
+		{
+			return this.m_slotHandler.recieveCurrent(this.m_internalCurrentStorer.extractCurrent(this.m_slotHandler.recieveCurrent(this.m_internalCurrentStorer.extractCurrent(this.m_maxCurrentTransfer, true), true), false), false) > 0;
+			// return SlotUtilities.tryPowerSlot(this.m_uncheckedInventory, POWER_SLOT, this.m_internalCurrentStorer, this.m_maxCurrentTransfer) > 0;
+		}
+		return false;
 	} // end doGenerateTick()
 	
 	private boolean doPowerSides(Level level, BlockPos pos) 
@@ -274,7 +279,7 @@ public abstract class AbstractSolarPanelBlockEntity extends DeviceBlockEntity
 			this.m_slotCap = LazyOptional.of(() -> new ExtractOnlyCurrentHandler(slotRawCap.orElse(null)));
 			slotRawCap.addListener((s) -> this.m_slotCap.invalidate());
 		}
-		this.m_slotHandler = m_slotCap.orElse(null);
+		this.m_slotHandler = slotRawCap.orElse(null);
 		return this.m_slotHandler != null;
 	} // end tryClaimSlotCap()
 	
