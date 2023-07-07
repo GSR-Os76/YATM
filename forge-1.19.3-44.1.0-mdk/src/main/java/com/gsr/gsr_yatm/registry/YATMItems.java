@@ -30,10 +30,10 @@ public class YATMItems
 	
 	
 	public static final RegistryObject<BlockItem> RUBBER_MERISTEM_ITEM = generalTabEnqueue(ITEMS.register("rubber_meristem", () -> new BlockItem(YATMBlocks.RUBBER_MERISTEM.get(), new Item.Properties())));
-	// public static final RegistryObject<BlockItem> POTTED_RUBBER_MERISTEM_ITEM = generalTabEnqueue(ITEMS.register("potted_rubber_meristem", () -> new BlockItem(YATMBlocks.POTTED_RUBBER_MERISTEM.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_LEAVES_YOUNG_ITEM = generalTabEnqueue(ITEMS.register("rubber_leaves_young", () -> new BlockItem(YATMBlocks.RUBBER_LEAVES_YOUNG.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_LEAVES_FLOWERING_ITEM = generalTabEnqueue(ITEMS.register("rubber_leaves_flowering", () -> new BlockItem(YATMBlocks.RUBBER_LEAVES_FLOWERING.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_LEAVES_OLD_ITEM = generalTabEnqueue(ITEMS.register("rubber_leaves_old", () -> new BlockItem(YATMBlocks.RUBBER_LEAVES_OLD.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> RUBBER_ROOTS_ITEM = generalTabEnqueue(ITEMS.register("rubber_roots", () -> new BlockItem(YATMBlocks.RUBBER_ROOTS.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_LOG_ITEM = generalTabEnqueue(ITEMS.register("rubber_log", () -> new BlockItem(YATMBlocks.RUBBER_LOG.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_WOOD_ITEM = generalTabEnqueue(ITEMS.register("rubber_wood", () -> new BlockItem(YATMBlocks.RUBBER_WOOD.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STRIPPED_RUBBER_LOG_ITEM = generalTabEnqueue(ITEMS.register("stripped_rubber_log", () -> new BlockItem(YATMBlocks.STRIPPED_RUBBER_LOG.get(), new Item.Properties())));
@@ -49,11 +49,11 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> RUBBER_TRAPDOOR_ITEM = generalTabEnqueue(ITEMS.register("rubber_trapdoor", () -> new BlockItem(YATMBlocks.RUBBER_TRAPDOOR.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_PRESSURE_PLATE_ITEM = generalTabEnqueue(ITEMS.register("rubber_pressure_plate", () -> new BlockItem(YATMBlocks.RUBBER_PRESSURE_PLATE.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_BUTTON_ITEM = generalTabEnqueue(ITEMS.register("rubber_button", () -> new BlockItem(YATMBlocks.RUBBER_BUTTON.get(), new Item.Properties())));
-	
+	public static final RegistryObject<BlockItem> LEAF_MULCH_ITEM = generalTabEnqueue(ITEMS.register("leaf_mulch", () -> new BlockItem(YATMBlocks.LEAF_MULCH.get(),new Item.Properties())));
+
 
 	
 	public static final RegistryObject<BlockItem> SOUL_AFFLICTED_RUBBER_MERISTEM_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_meristem", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), new Item.Properties())));
-	// public static final RegistryObject<BlockItem> POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM_ITEM = generalTabEnqueue(ITEMS.register("potted_soul_afflicted_rubber_meristem", () -> new BlockItem(YATMBlocks.POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_leaves_young", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_leaves_flowering", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> SOUL_AFFLICTED_RUBBER_LEAVES_OLD_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_leaves_old", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_OLD.get(), new Item.Properties())));
@@ -78,7 +78,9 @@ public class YATMItems
 	
 	public static final RegistryObject<BlockItem> PHANTASMAL_SHELF_FUNGUS_ITEM = generalTabEnqueue(ITEMS.register("phantasmal_shelf_fungus", () -> new BlockItem(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), new Item.Properties())));
 		
-	
+	// Cotton
+	// Creeping eye plant
+	// Prismarine crystal moss
 	
 	public static final RegistryObject<BlockItem> RUBBER_BLOCK_ITEM = generalTabEnqueue(ITEMS.register("rubber_block", () -> new BlockItem(YATMBlocks.RUBBER_BLOCK.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> ROOTED_SOUL_SOIL_ITEM = generalTabEnqueue(ITEMS.register("rooted_soul_soil", () -> new BlockItem(YATMBlocks.ROOTED_SOUL_SOIL.get(), new Item.Properties())));
@@ -95,6 +97,7 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> STEEL_BOILER_TANK_ITEM = generalTabEnqueue(ITEMS.register("steel_boiler_tank", () -> new BlockItem(YATMBlocks.STEEL_BOILER_TANK.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_BOILER_ITEM = generalTabEnqueue(ITEMS.register("steel_boiler", () -> new BlockItem(YATMBlocks.STEEL_BOILER.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_CRYSTALLIZER_ITEM = generalTabEnqueue(ITEMS.register("steel_crystallizer", () -> new BlockItem(YATMBlocks.STEEL_CRYSTALLIZER.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> SSTEEL_FURNACE_PLUS_ITEM = generalTabEnqueue(ITEMS.register("steel_furnace_plus", () -> new BlockItem(YATMBlocks.STEEL_FURNACE_PLUS.get(), new Item.Properties())));	
 	public static final RegistryObject<BlockItem> STEEL_EXTRACTOR_ITEM = generalTabEnqueue(ITEMS.register("steel_extractor", () -> new BlockItem(YATMBlocks.STEEL_EXTRACTOR.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_EXTRUDER_ITEM = generalTabEnqueue(ITEMS.register("steel_extruder", () -> new BlockItem(YATMBlocks.STEEL_EXTRUDER.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_GRINDER_ITEM = generalTabEnqueue(ITEMS.register("steel_grinder", () -> new BlockItem(YATMBlocks.STEEL_GRINDER.get(), new Item.Properties())));
@@ -129,6 +132,8 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> STEEL_FLUID_CONDUIT_ITEM = generalTabEnqueue(ITEMS.register("steel_fluid_conduit", () -> new BlockItem(YATMBlocks.STEEL_FLUID_CONDUIT.get(), new Item.Properties())));
 		
 	
+	
+	// loom, gin
 	
 	public static final RegistryObject<FluidExchangerItem> STEEL_FLUID_EXCHANGER = generalTabEnqueue(ITEMS.register("steel_fluid_exchanger_component", () -> new FluidExchangerItem(new Item.Properties().stacksTo(1), 128)));
 	
@@ -174,6 +179,10 @@ public class YATMItems
 	public static final RegistryObject<DrinkableFluidBottleItem> SOUL_SYRUP_BOTTLE = generalTabEnqueue(ITEMS.register("soul_syrup_bottle", () -> new DrinkableFluidBottleItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(YATMFoods.SOUL_SYRUP), YATMFluids.SOUL_SYRUP, 60)));
 	//Item.Properties()).craftRemainder(GLASS_BOTTLE).food(YATMFoods.).stacksTo(16)
 	
+	// TODO, add biofuel from wood or sugar or such thigns.
+	// TODO, add silicon oxide as liquid, for growing out amethyst and nether quart
+	// TODO, add silicon for making advanced solar panels
+	// TODO, add solar panel recipes in
 
 	public static final RegistryObject<Item> IRON_WIRE_DIE = generalTabEnqueue(ITEMS.register("iron_wire_die", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> STEEL_WIRE_DIE = generalTabEnqueue(ITEMS.register("steel_wire_die", () -> new Item(new Item.Properties())));
@@ -188,13 +197,16 @@ public class YATMItems
 	public static final RegistryObject<Item> SILVER_NUGGET = generalTabEnqueue(ITEMS.register("silver_nugget", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> COPPER_NUGGET = generalTabEnqueue(ITEMS.register("copper_nugget", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> NETHERITE_NUGGET = generalTabEnqueue(ITEMS.register("netherite_nugget", () -> new Item(new Item.Properties())));
-	
 	public static final RegistryObject<InsulatingItem> WAX_BIT_ITEM = generalTabEnqueue(ITEMS.register("wax_bit", () -> new InsulatingItem(new Item.Properties(), InsulatingItem.WAX_BIT_WAXING_TABLE)));
 	public static final RegistryObject<InsulatingItem> RUBBER_SCRAP = generalTabEnqueue(ITEMS.register("rubber_scrap", () -> new InsulatingItem(new Item.Properties(), InsulatingItem.RUBBER_SCRAP_WAXING_TABLE)));
 	
 	public static final RegistryObject<Item> WOOD_PULP = generalTabEnqueue(ITEMS.register("wood_pulp", () -> new Item(new Item.Properties())));
-	public static final RegistryObject<Item> LEAF_MULCH = generalTabEnqueue(ITEMS.register("leaf_mulch", () -> new Item(new Item.Properties())));
 	
+	public static final RegistryObject<Item> STAR_SEED = generalTabEnqueue(ITEMS.register("star_seed", () -> new Item(new Item.Properties())));
+	public static final RegistryObject<Item> STAR_GERMLING = generalTabEnqueue(ITEMS.register("star_germling", () -> new Item(new Item.Properties())));
+	public static final RegistryObject<Item> STAR_SPROUT = generalTabEnqueue(ITEMS.register("star_sprout", () -> new Item(new Item.Properties())));
+	public static final RegistryObject<Item> STAR_ADOLESCENT = generalTabEnqueue(ITEMS.register("star_adolescent", () -> new Item(new Item.Properties())));
+		
 	public static final RegistryObject<CreativeFluidVoidItem> CREATIVE_FLUID_VOID = generalTabEnqueue(ITEMS.register("creative_fluid_void", () -> new CreativeFluidVoidItem(new Item.Properties().stacksTo(1))));
 	public static final RegistryObject<CreativeFluidStorerItem> CREATIVE_FLUID_STORER = generalTabEnqueue(ITEMS.register("creative_fluid_storer", () -> new CreativeFluidStorerItem(new Item.Properties().stacksTo(1))));
 	public static final RegistryObject<CreativeFluidSourceItem> CREATIVE_FLUID_SOURCE = generalTabEnqueue(ITEMS.register("creative_fluid_source", () -> new CreativeFluidSourceItem(new Item.Properties().stacksTo(1))));
@@ -327,6 +339,7 @@ public class YATMItems
 		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_MERISTEM_ITEM.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_LEAVES_YOUNG_ITEM.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_LEAVES_FLOWERING_ITEM.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.LEAF_MULCH_ITEM.get(), 0.65F);
 		
 		// TODO, possibly add thses magically ones, here or elsewhere
 		/*

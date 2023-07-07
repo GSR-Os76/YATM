@@ -120,7 +120,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createAllBlock(YATMBlocks.RUBBER_LEAVES_YOUNG.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_leaves_young"));
 		this.createAllBlock(YATMBlocks.RUBBER_LEAVES_FLOWERING.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_leaves_flowering"));
 		this.createAllBlock(YATMBlocks.RUBBER_LEAVES_OLD.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_leaves_old"));
-		
+		this.createRootsBlock(YATMBlocks.RUBBER_ROOTS.get(), YATMItems.RUBBER_ROOTS_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_roots_side"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_roots_ends"), true);
 		ResourceLocation rubberLogSideTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_log_side");
 		ResourceLocation rubberLogTopTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_log_top");
 		ResourceLocation strippedRubberLogSideTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_log_side_stripped");
@@ -149,6 +149,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createTrapDoor(YATMBlocks.RUBBER_TRAPDOOR.get(), "item/rubber_trapdoor", new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_trapdoor_top"));
 		this.createPressurePlate(YATMBlocks.RUBBER_PRESSURE_PLATE.get(), "item/rubber_pressure_plate", rubberPlanksTexture);
 		this.createButton(YATMBlocks.RUBBER_BUTTON.get(),"item/rubber_button", rubberPlanksTexture);
+		this.createCarpet(YATMBlocks.LEAF_MULCH.get(), YATMItems.LEAF_MULCH_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/leaf_mulch"));
 		// sign
 		// the newer and fancier sign
 	} // end addRubberSet()

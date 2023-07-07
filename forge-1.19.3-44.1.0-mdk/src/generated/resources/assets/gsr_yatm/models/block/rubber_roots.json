@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/mangrove_roots",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "side": "gsr_yatm:block/plant/rubber/rubber_roots_side",
+    "top": "gsr_yatm:block/plant/rubber/rubber_roots_ends"
+  }
+}

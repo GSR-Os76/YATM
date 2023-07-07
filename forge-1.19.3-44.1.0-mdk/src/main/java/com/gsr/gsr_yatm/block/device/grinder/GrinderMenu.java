@@ -86,19 +86,19 @@ public class GrinderMenu extends AbstractContainerMenu
 				boolean moved = false;
 				if(this.moveItemStackTo(slotsStack, GrinderBlockEntity.INPUT_SLOT, GrinderBlockEntity.INPUT_SLOT + 1, false)) 
 				{						
-					moved = true; //return ItemStack.EMPTY;					
+					moved = true;					
 				}
 				else if(SlotUtilities.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, GrinderBlockEntity.POWER_SLOT, GrinderBlockEntity.POWER_SLOT + 1, false)) 
 				{					
-					moved = true; //return ItemStack.EMPTY;
+					moved = true;
 				}
 				else if((quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_INVENTORY_END) && this.moveItemStackTo(slotsStack, PLAYER_HOTBAR_START, PLAYER_HOTBAR_END + 1, false)) 
 				{											
-					moved = true; //return ItemStack.EMPTY;
+					moved = true;
 				}
 				else if ((quickMovedSlotIndex >= PLAYER_HOTBAR_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END) && this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_INVENTORY_END + 1, false))
 				{
-					moved = true; //return ItemStack.EMPTY;
+					moved = true;
 				}
 				if(!moved) 
 				{
@@ -144,10 +144,5 @@ public class GrinderMenu extends AbstractContainerMenu
 	{
 		return 1f - (((float)this.m_data.get(GrinderBlockEntity.GRIND_PROGESS_INDEX)) / ((float)this.m_data.get(GrinderBlockEntity.GRIND_TIME_INDEX)));
 	} // end getGrindProgress()
-
-//	public void showTestNumber()
-//	{
-//		YetAnotherTechMod.LOGGER.info("test: " + this.m_data.get(GrinderBlockEntity.TEST));
-//	} // end showTestNumber()
 
 } // end class

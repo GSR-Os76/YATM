@@ -1,4 +1,4 @@
-// 1.19.4	2023-06-28T17:36:40.6744438	Tags for minecraft:item mod id gsr_yatm
+// 1.19.4	2023-07-07T16:25:32.4506909	Tags for minecraft:item mod id gsr_yatm
 bade3c9b0ab674f2efd3dc51c76e3652a9021029 data/forge/tags/items/ingots/rubber.json
 072803c35014f6741a231cc30a732fe900812905 data/forge/tags/items/ingots/silver.json
 7c408df731c23a13c46254c2cc5fe7e60ec904bd data/forge/tags/items/ingots/steel.json
@@ -19,7 +19,7 @@ cabad7018263250a65993dc1bfafd32b2163b2f7 data/gsr_yatm/tags/items/unoxidized_cop
 ae88bd8aabf02699bb3fdbf65bd64fc377fbc780 data/minecraft/tags/items/flowers.json
 205d34972c106978555918bdbb34363a9a669d3e data/minecraft/tags/items/logs.json
 1502e7352c79e987a23ba14a77d87817c5e89ff2 data/minecraft/tags/items/logs_that_burn.json
-9a220dbaa0bde7b059d584e2bfa1741f106831e0 data/minecraft/tags/items/piglin_loved.json
+fedd7a768f821187b28218193713ea058b82ec2a data/minecraft/tags/items/piglin_loved.json
 861ac450b90a900a8dbe9dc301248cd0b5ca2f52 data/minecraft/tags/items/planks.json
 59d8edfe056f15f3cff621f10b35fa3ba99c9baf data/minecraft/tags/items/saplings.json
 5ca3cdc1e343a1a21ba16f2d2cd526125069fb64 data/minecraft/tags/items/wooden_buttons.json

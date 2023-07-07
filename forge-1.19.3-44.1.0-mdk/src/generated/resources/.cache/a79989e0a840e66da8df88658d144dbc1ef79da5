@@ -1,4 +1,4 @@
-// 1.19.4	2023-07-05T17:29:42.2652871	Item Models: gsr_yatm
+// 1.19.4	2023-07-07T16:25:32.4476476	Item Models: gsr_yatm
 e7540048ebe593ee6ab6323cc2f5a0bd0d8ae1cb assets/gsr_yatm/models/item/bio_bottle.json
 7c74b3cad82baaaba12c4ebb84f0b7ef417239e6 assets/gsr_yatm/models/item/bio_bucket.json
 938d8b0ab1223b09a189deb829870c72c34a472c assets/gsr_yatm/models/item/chorus_bio_bottle.json
@@ -43,6 +43,11 @@ fe2f712e21220f14c82dcabe11c5dbd656aa5cd3 assets/gsr_yatm/models/item/sixtyfour_c
 0cc7b42a714aa8622b56bead2b47197c35c3453e assets/gsr_yatm/models/item/soul_sap_bucket.json
 f32efdc0dc70938bfaee67081dba1ac58f296262 assets/gsr_yatm/models/item/soul_syrup_bottle.json
 c1d7a49d254a35fc37edf6d4a137b6f78ec04ba9 assets/gsr_yatm/models/item/soul_syrup_bucket.json
+8757ab83fab4645d6fc3f6c3481094de90eec8e6 assets/gsr_yatm/models/item/star_adolescent.json
+131b31c7b1a9d9a2c01a1e680e141d2b08dee756 assets/gsr_yatm/models/item/star_germling.json
+0a8e075b8b19dcf12c8c2fc3a2f4f9ef2001989e assets/gsr_yatm/models/item/star_seed.json
+45642c152e1ddd3e92774129538f19cf2c8a612d assets/gsr_yatm/models/item/star_sprout.json
 3040841c7e1449e5f147a6e29b3e1cd0ddb20d4e assets/gsr_yatm/models/item/steel_ingot.json
 72078e11d2d3ac5311d542edd519b32e110404c9 assets/gsr_yatm/models/item/steel_wire_die.json
 710d7c8e7fa55c51471fd15ea29de80eb9fad2ae assets/gsr_yatm/models/item/wax_bit.json
+09cdc82ec961c1b2f251415a781994dfe62a0a86 assets/gsr_yatm/models/item/wood_pulp.json

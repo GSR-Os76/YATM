@@ -8,6 +8,7 @@ import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizationRecipe;
 import com.gsr.gsr_yatm.recipe.extracting.ExtractionRecipe;
 import com.gsr.gsr_yatm.recipe.extruding.ExtrusionRecipe;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipe;
+import com.gsr.gsr_yatm.recipe.smelting.WrappedSmeltingRecipe;
 
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -29,4 +30,7 @@ public class YATMRecipeTypes
 	public static final RegistryObject<RecipeType<GrindingRecipe>> GRINDING = RECIPE_TYPES.register("grinding", () -> new RecipeType<GrindingRecipe>(){});
 	
 	public static final RegistryObject<RecipeType<FluidInjectionRecipe>> FLUID_INJECTION = RECIPE_TYPES.register("fluid_injecting", () -> new RecipeType<FluidInjectionRecipe>(){});
+
+	public static final RegistryObject<RecipeType<WrappedSmeltingRecipe>> SMELTING_PLUS = RECIPE_TYPES.register("smelting_plus", () -> new RecipeType<WrappedSmeltingRecipe>(){});
+
 } // end class

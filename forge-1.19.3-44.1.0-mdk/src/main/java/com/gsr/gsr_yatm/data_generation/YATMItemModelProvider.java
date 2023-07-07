@@ -81,7 +81,16 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.WAX_BIT_ITEM.get());
 		this.basicItem(YATMItems.RUBBER_SCRAP.get());
 		
-		// WOOD_PULP
+		this.basicItem(YATMItems.STAR_SEED.get());
+		this.basicItem(YATMItems.STAR_GERMLING.get());
+		this.basicItem(YATMItems.STAR_SPROUT.get());
+		this.basicItem(YATMItems.STAR_ADOLESCENT.get());
+		
+		
+		
+		this.basicItem(YATMItems.WOOD_PULP.get());
+		
+		// 
 		// LEAF_MULCH
 		
 

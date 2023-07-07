@@ -1,0 +1,19 @@
+{
+  "type": "gsr_yatm:crystallization",
+  "cost": 0,
+  "input": {
+    "count": 1000,
+    "fluid": "gsr_yatm:essence_of_decay"
+  },
+  "result": {
+    "count": 1,
+    "item": "gsr_yatm:star_seed"
+  },
+  "seed": {
+    "consume": true,
+    "ingedient": {
+      "tag": "forge:nuggets/netherite"
+    }
+  },
+  "time": 300
+}

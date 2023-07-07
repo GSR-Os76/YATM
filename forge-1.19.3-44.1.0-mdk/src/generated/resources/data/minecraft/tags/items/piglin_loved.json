@@ -1,6 +1,8 @@
 {
   "values": [
     "gsr_yatm:sixtyfour_cu_current_regulator_component",
+    "gsr_yatm:sixtyfour_cu_current_fuse_component",
+    "gsr_yatm:sixtyfour_cu_current_breaker_component",
     "#gsr_yatm:conduits/sixtyfour_cu"
   ]
 }

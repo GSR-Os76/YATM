@@ -66,7 +66,7 @@ public class YATMItemTags extends ItemTagsProvider
 	public static final TagKey<Item> RUBBER_TREE_LOGS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "rubber_tree_logs"));
 	public static final TagKey<Item> RUBBER_TREE_PLANKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "rubber_planks"));
 	public static final TagKey<Item> UNOXIDIXED_COPPER_BLOCKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "unoxidized_copper_blocks"));
-	public static final TagKey<Item> SIXTYFOUR_CU_WIRE_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "conduits/sixtyfour_cu"));
+	public static final TagKey<Item> SIXTYFOUR_CU_WIRES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "conduits/sixtyfour_cu"));
 	public static final TagKey<Item> SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "soul_afflicted_rubber_tree_logs"));
 	public static final TagKey<Item> SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "soul_afflicted_rubber_planks"));
 	public static final TagKey<Item> SPREADS_PHANTASMAL_SHELF_FUNGI_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "spreads_phantasmal_shelf_fungi"));
@@ -93,7 +93,7 @@ public class YATMItemTags extends ItemTagsProvider
 		this.tag(MINECRAFT_BEACON_PAYMENT_KEY).add(YATMItems.STEEL_INGOT.get()).add(YATMItems.SILVER_INGOT.get());
 		this.copy(YATMBlockTags.MINECRAFT_LOGS_KEY, MINECRAFT_LOGS_KEY);
 		this.copy(YATMBlockTags.MINECRAFT_LOGS_THAT_BURN_KEY, MINECRAFT_LOGS_THAT_BURN_KEY);
-		this.tag(MINECRAFT_PIGLIN_LOVED_KEY).add(YATMItems.SIXTYFOUR_CU_CURRENT_REGULATOR.get()).addTag(SIXTYFOUR_CU_WIRE_KEY);
+		this.tag(MINECRAFT_PIGLIN_LOVED_KEY).add(YATMItems.SIXTYFOUR_CU_CURRENT_REGULATOR.get()).add(YATMItems.SIXTYFOUR_CU_CURRENT_FUSE.get()).add(YATMItems.SIXTYFOUR_CU_CURRENT_BREAKER.get()).addTag(SIXTYFOUR_CU_WIRES_KEY);
 		this.copy(YATMBlockTags.MINECRAFT_PLANKS_KEY, MINECRAFT_PLANKS_KEY);
 		this.copy(YATMBlockTags.MINECRAFT_SAPLINGS_KEY, MINECRAFT_SAPLINGS_KEY);
 		this.copy(YATMBlockTags.MINECRAFT_WOODEN_BUTTONS_KEY, MINECRAFT_WOODEN_BUTTONS_KEY);
@@ -120,7 +120,7 @@ public class YATMItemTags extends ItemTagsProvider
 		this.copy(YATMBlockTags.RUBBER_TREE_LOGS_KEY, RUBBER_TREE_LOGS_KEY);
 		this.copy(YATMBlockTags.RUBBER_TREE_PLANKS_KEY, RUBBER_TREE_PLANKS_KEY);
 		this.copy(YATMBlockTags.UNOXIDIXED_COPPER_BLOCKS_KEY, UNOXIDIXED_COPPER_BLOCKS_KEY);
-		this.copy(YATMBlockTags.SIXTYFOUR_CU_WIRE_KEY, SIXTYFOUR_CU_WIRE_KEY);
+		this.copy(YATMBlockTags.SIXTYFOUR_CU_WIRE_KEY, SIXTYFOUR_CU_WIRES_KEY);
 		this.copy(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY, SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);
 		this.copy(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY);
 		this.tag(SPREADS_PHANTASMAL_SHELF_FUNGI_KEY).add(YATMItems.SOUL_SYRUP_BOTTLE.get());

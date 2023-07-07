@@ -1,0 +1,99 @@
+package com.gsr.gsr_yatm.block.device.current_furnace;
+
+import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.gui.TemperatureWidget;
+import com.mojang.blaze3d.systems.RenderSystem;
+import com.mojang.blaze3d.vertex.PoseStack;
+
+import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
+import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Inventory;
+
+public class FurnacePlusScreen extends AbstractContainerScreen<FurnacePlusMenu>
+{
+	// TODO, this
+	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/boiler.png");
+
+	private TemperatureWidget m_temperatureWidget;
+
+	
+	
+	public FurnacePlusScreen(FurnacePlusMenu menu, Inventory inventory, Component titleComponentMaybe)
+	{
+		super(menu, inventory, titleComponentMaybe);
+
+		int newYDownShift = 36;
+		this.imageHeight = 166 + newYDownShift;
+		this.inventoryLabelY = this.inventoryLabelY + newYDownShift;
+	} // end constructor
+	
+	
+	
+	@Override
+	protected void init()
+	{
+		super.init();
+		this.setTemperatureWidget();		
+	} // end init()
+
+	@Override
+	public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTick)
+	{
+		super.renderBackground(poseStack);
+		this.renderBg(poseStack, partialTick, mouseX, mouseY);
+		this.updateTemperatureWidget();
+		super.render(poseStack, mouseX, mouseY, partialTick);
+		this.renderTooltip(poseStack, mouseX, mouseY);
+		;
+	} // end render()
+
+	@Override
+	protected void renderBg(PoseStack poseStack, float partialTick, int mouseX, int mouseY)
+	{
+		RenderSystem.setShaderTexture(0, BACKGROUND);
+		blit(poseStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+		
+		
+		float bP = this.menu.craftProgress();
+		if(bP > 0) 
+		{
+			blit(poseStack, this.leftPos + 37, this.topPos + 23, 0, 202, (int)(102f * bP), 16);
+		}
+		
+		
+		// burn square is 14x14, at 177 0
+		// draw it to 80 70
+		float burnFractionRemaining = this.menu.burnRemaining();
+		if (burnFractionRemaining > 0f)
+		{
+			int renderDownSet = 14 - ((int) (14 * burnFractionRemaining));
+			blit(poseStack, this.leftPos + 80, (this.topPos + 70) + renderDownSet, 176, 0 + renderDownSet, 14, 14 - renderDownSet);
+		}
+
+	} // end renderBg
+	
+	
+	
+	public void updateTemperatureWidget() 
+	{
+		// TODO, ideally we could have the menu tell us when that value has changed, rather than constantly having to recheck it to see if it's been set. see if this is possible.
+		if(this.m_temperatureWidget == null || this.menu.getMaxTemperature() != this.m_temperatureWidget.getMaxTemperature()) 
+		{
+			this.setTemperatureWidget();
+		}
+
+		this.m_temperatureWidget.setTemperature(this.menu.getTemperature());
+	} // end updateResultTankWidget()
+	
+	public void setTemperatureWidget() 
+	{
+		if(this.m_temperatureWidget != null) 
+		{			
+			this.removeWidget(this.m_temperatureWidget);
+		}
+		
+		this.m_temperatureWidget = new TemperatureWidget(this.leftPos + 37, this.topPos + 43, this.menu.getMaxTemperature());
+		this.addRenderableWidget(this.m_temperatureWidget);
+	} // end setWidget()
+} // end class

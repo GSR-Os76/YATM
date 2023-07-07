@@ -58,7 +58,14 @@ public class NetworkUtilities
 	
 	public static float getProgess(AccessSpecification progressAccessSpecification, ContainerData data)
 	{
-		return 1f - (((float) data.get(progressAccessSpecification.startIndex()) / ((float) data.get(progressAccessSpecification.endIndex()))));
+		return 1f - NetworkUtilities.getRemaining(progressAccessSpecification, data);
+	} // end getProgess()
+	
+	public static float getRemaining(AccessSpecification progressAccessSpecification, ContainerData data)
+	{
+		int numerator = data.get(progressAccessSpecification.startIndex());
+		int denominator = data.get(progressAccessSpecification.endIndex());
+		return denominator == 0 ? 0f : (((float) numerator / ((float) denominator)));
 	} // end getProgess()
 	
 } // end class

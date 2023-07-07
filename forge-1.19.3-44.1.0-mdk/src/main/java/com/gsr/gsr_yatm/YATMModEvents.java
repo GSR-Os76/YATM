@@ -3,6 +3,7 @@ package com.gsr.gsr_yatm;
 import com.gsr.gsr_yatm.block.device.bioler.BiolerScreen;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerScreen;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerScreen;
+import com.gsr.gsr_yatm.block.device.current_furnace.FurnacePlusScreen;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorScreen;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderScreen;
 import com.gsr.gsr_yatm.block.device.grinder.GrinderScreen;
@@ -17,6 +18,7 @@ import com.gsr.gsr_yatm.data_generation.YATMItemTags;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProviderUnitedStatesEnglish;
 import com.gsr.gsr_yatm.data_generation.YATMRecipeProvider;
 import com.gsr.gsr_yatm.recipe.bioling.CompostableBiolingRecipeProvider;
+import com.gsr.gsr_yatm.recipe.smelting.WrappedSmeltingRecipeProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMFluidTypes;
@@ -35,10 +37,14 @@ import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceKey;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class YATMModEvents
 {
@@ -72,9 +78,11 @@ public class YATMModEvents
 	{
 		YATMItems.addCompostables();
 		RecipeUtilities.addDynamicRecipeProvider(new CompostableBiolingRecipeProvider());
+		RecipeUtilities.addDynamicRecipeProvider(new WrappedSmeltingRecipeProvider());
 		// TODO, add biome to the nether, biome manager seems to only support the overworld currently, and I wish to not break compatibility
 		// NetherBiomes l
 		// event.enqueueWork(() -> ; BiomeManager.addAdditionalOverworldBiomes(null))
+		event.enqueueWork(() -> BiomeManager.addAdditionalOverworldBiomes(ResourceKey.create(ForgeRegistries.BIOMES.getRegistryKey(), new ResourceLocation(YetAnotherTechMod.MODID, "rubber_forest"))));
 	} // end commonSetup()
 	
 	private static void clientSetup(FMLClientSetupEvent event)
@@ -84,6 +92,7 @@ public class YATMModEvents
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.CRYSTALLIZER.get(), CrystallizerScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRACTOR.get(), ExtractorScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRUDER.get(), ExtruderScreen::new));
+		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.FURNACE_PLUS.get(), FurnacePlusScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.GRINDER.get(), GrinderScreen::new));
 		
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BATTERY_SOLAR_PANEL.get(), BatterySolarPanelScreen::new));

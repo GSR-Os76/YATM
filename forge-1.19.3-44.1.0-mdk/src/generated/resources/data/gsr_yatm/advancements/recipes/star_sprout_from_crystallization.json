@@ -1,0 +1,36 @@
+{
+  "criteria": {
+    "has_device": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gsr_yatm:steel_crystallizer"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_ingredient": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "gsr_yatm:star_germling"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_device"
+    ],
+    [
+      "has_ingredient"
+    ]
+  ]
+}

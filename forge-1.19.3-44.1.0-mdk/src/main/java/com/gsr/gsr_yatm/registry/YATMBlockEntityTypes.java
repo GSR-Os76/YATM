@@ -7,6 +7,7 @@ import com.gsr.gsr_yatm.block.device.bioler.BiolerBlockEntity;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlockEntity;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlockEntity;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlockEntity;
+import com.gsr.gsr_yatm.block.device.current_furnace.FurnacePlusBlockEntity;
 import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInterchangerBlockEntity;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlockEntity;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderBlockEntity;
@@ -31,8 +32,14 @@ public class YATMBlockEntityTypes
 	public static final RegistryObject<BlockEntityType<CrystallizerBlockEntity>> CRYSTALLIZER = BLOCK_ENTITY_TYPES.register("crystallizer_block_entity", () -> BlockEntityType.Builder.of(CrystallizerBlockEntity::new, YATMBlocks.STEEL_CRYSTALLIZER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<ExtruderBlockEntity>> EXTRUDER = BLOCK_ENTITY_TYPES.register("extruder_block_entity", () -> BlockEntityType.Builder.of(ExtruderBlockEntity::new, YATMBlocks.STEEL_EXTRUDER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<ExtractorBlockEntity>> EXTRACTOR = BLOCK_ENTITY_TYPES.register("extractor_block_entity", () -> BlockEntityType.Builder.of(ExtractorBlockEntity::new, YATMBlocks.STEEL_EXTRACTOR.get()).build(null));
+	public static final RegistryObject<BlockEntityType<FurnacePlusBlockEntity>> FURNACE_PLUS = BLOCK_ENTITY_TYPES.register("furnace_plus", () -> BlockEntityType.Builder.of(FurnacePlusBlockEntity::new, YATMBlocks.STEEL_CRYSTALLIZER.get()).build(null));
+	
 	public static final RegistryObject<BlockEntityType<GrinderBlockEntity>> GRINDER = BLOCK_ENTITY_TYPES.register("grinder_block_entity", () -> BlockEntityType.Builder.of(GrinderBlockEntity::new, YATMBlocks.STEEL_GRINDER.get()).build(null));
 
+	
+	
+	
+	
 	public static final RegistryObject<BlockEntityType<CurrentUnitForgeEnergyInterchangerBlockEntity>> C_U_F_E_I = BLOCK_ENTITY_TYPES.register("current_unit_forge_energy_interchanger_block_entity", () -> BlockEntityType.Builder.of(CurrentUnitForgeEnergyInterchangerBlockEntity::new, YATMBlocks.C_U_F_E_I.get()).build(null));
 	
 	public static final RegistryObject<BlockEntityType<BatterySolarPanelBlockEntity>> BATTERY_SOLAR_PANEL = BLOCK_ENTITY_TYPES.register("battery_solar_panel", () -> BlockEntityType.Builder.of(BatterySolarPanelBlockEntity::new, YATMBlocks.CRUDE_BATTERY_SOLAR_PANEL.get(), YATMBlocks.ADVANCED_BATTERY_SOLAR_PANEL.get(), YATMBlocks.SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL.get()).build(null));

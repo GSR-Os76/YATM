@@ -44,12 +44,16 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		
 		
 		this.add("biome.gsr_yatm.old_growth_soul_sand_valley", "Old Growth Soul Sand Valley");
+		this.add("biome.gsr_yatm.rubber_forest", "Rubber Forest");
+		
+		
 		
 		this.add(YATMBlocks.RUBBER_MERISTEM.get(), "Rubber Meristem");
 		this.add(YATMBlocks.POTTED_RUBBER_MERISTEM.get(), "Potted Rubber Meristem");
 		this.add(YATMBlocks.RUBBER_LEAVES_YOUNG.get(), "Rubber Leaves Young");
 		this.add(YATMBlocks.RUBBER_LEAVES_FLOWERING.get(), "Rubber Leaves Flowering");
 		this.add(YATMBlocks.RUBBER_LEAVES_OLD.get(), "Rubber Leaves Old");	
+		this.add(YATMBlocks.RUBBER_ROOTS.get(), "Rubber Roots");
 		this.add(YATMBlocks.RUBBER_LOG.get(), "Rubber Log");
 		this.add(YATMBlocks.RUBBER_WOOD.get(), "Rubber Wood");
 		this.add(YATMBlocks.PARTIALLY_STRIPPED_RUBBER_LOG.get(), "Partially Stripped Rubber Log");
@@ -65,7 +69,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add(YATMBlocks.RUBBER_TRAPDOOR.get(), "Rubber Trapdoor");
 		this.add(YATMBlocks.RUBBER_PRESSURE_PLATE.get(), "Rubber Pressure Plate");
 		this.add(YATMBlocks.RUBBER_BUTTON.get(), "Rubber Button");
-		
+		this.add(YATMBlocks.LEAF_MULCH.get(), "Leaf Mulch");
+
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), "Soul Afflicted Rubber Meristem");
 		this.add(YATMBlocks.POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM.get(), "Potted Soul Afflicted Rubber Meristem");
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG.get(), "Soul Afflicted Rubber Leaves Young");
@@ -196,6 +201,13 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add(YATMItems.NETHERITE_NUGGET.get(), "Netherite Nugget");
 		this.add(YATMItems.WAX_BIT_ITEM.get(), "Wax Bit");
 		this.add(YATMItems.RUBBER_SCRAP.get(), "Rubber Scraps");
+		
+		this.add(YATMItems.STAR_SEED.get(), "Star Seed");
+		this.add(YATMItems.STAR_GERMLING.get(), "Start Germling");
+		this.add(YATMItems.STAR_SPROUT.get(), "Star Sprout");
+		this.add(YATMItems.STAR_ADOLESCENT.get(), "Star Adolescent");
+		
+		this.add(YATMItems.WOOD_PULP.get(), "Wood Pulp");
 		
 		this.add(YATMItems.CREATIVE_FLUID_SOURCE.get(), "Creative Fluid Source");
 		this.add(YATMItems.CREATIVE_FLUID_STORER.get(), "Creative Fluid Storer");

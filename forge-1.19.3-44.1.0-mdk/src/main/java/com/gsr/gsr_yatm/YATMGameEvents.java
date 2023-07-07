@@ -57,7 +57,7 @@ public class YATMGameEvents
 
 	private static void recipesUpdated(RecipesUpdatedEvent event) 
 	{
-RecipeUtilities.recipesUpdated();
+		RecipeUtilities.recipesUpdated();
 	} // end recipesUpdated()
 	
 	private static void attachItemStackCapabilities(AttachCapabilitiesEvent<ItemStack> event) 

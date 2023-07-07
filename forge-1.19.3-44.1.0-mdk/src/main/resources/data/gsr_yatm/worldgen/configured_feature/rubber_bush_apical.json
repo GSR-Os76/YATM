@@ -1,51 +1,130 @@
 {
-  "type": "minecraft:tree",
-  "config": {
-    "decorators": [],
-    "dirt_provider": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "minecraft:dirt"
-      }
-    },
-    "foliage_placer": {
-      "type": "minecraft:acacia_foliage_placer",
-      "offset": 0,
-      "radius": 2
-    },
-    "foliage_provider": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "gsr_yatm:rubber_leaves_old",
-        "Properties": {
-          "distance": "7",
-          "persistent": "false",
-          "waterlogged": "false"
-        }
-      }
-    },
-    "force_dirt": false,
-    "ignore_vines": true,
-    "minimum_size": {
-      "type": "minecraft:two_layers_feature_size",
-      "limit": 1,
-      "lower_size": 0,
-      "upper_size": 2
-    },
-    "trunk_placer": {
-      "type": "minecraft:forking_trunk_placer",
-      "base_height": 1,
-      "height_rand_a": 1,
-      "height_rand_b": 1
-    },
-    "trunk_provider": {
-      "type": "minecraft:simple_state_provider",
-      "state": {
-        "Name": "gsr_yatm:rubber_log",
-        "Properties": {
-          "axis": "y"
-        }
-      }
-    }
-  }
+	"type": "minecraft:tree",
+	"config": {
+		"decorators": [
+			{
+				"type": "gsr_yatm:leaf_litter_tree_decorator",
+				"can_litter_on": "#gsr_yatm:leaves_litter_on",
+				"litter_provider": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+						"Name": "gsr_yatm:leaf_mulch"
+					}
+				},
+				"radius": 6,
+				"vertical_scan_range": 2,
+				"litter_placement_attempts": 96
+			}
+		],
+		"force_dirt": false,
+		"ignore_vines": true,
+		"minimum_size": {
+			"type": "minecraft:two_layers_feature_size",
+			"limit": 1,
+			"lower_size": 0,
+			"upper_size": 2
+		},
+		"foliage_placer": {
+			"type": "gsr_yatm:rubber_foliage_placer",
+			"old_leaves_provider": {
+				"type": "minecraft:simple_state_provider",
+				"state": {
+					"Name": "gsr_yatm:rubber_leaves_old",
+					"Properties": {
+						"distance": "7",
+						"persistent": "false",
+						"waterlogged": "false"
+					}
+				}
+			},
+			"aerial_root_provider": {
+				"type": "minecraft:simple_state_provider",
+				"state": {
+					"Name": "gsr_yatm:rubber_roots"
+				}
+			},
+			"roots_grow_from": "#gsr_yatm:mediums/aerial_rubber_roots_can_grow_on",
+			"roots_grow_through": "#gsr_yatm:mediums/aerial_rubber_roots_can_grow_through",
+			"foliage_height": 2,
+			"leaf_placement_attempts": 256,
+			"offset": 0,
+			"radius": 5
+		},
+		"foliage_provider": {
+			"type": "minecraft:weighted_state_provider",
+			"entries": [
+				{
+					"data": {
+						"Name": "gsr_yatm:rubber_leaves_young",
+						"Properties": {
+							"distance": "7",
+							"persistent": "false",
+							"waterlogged": "false"
+						}
+					},
+					"weight": 6
+				},
+				{
+					"data": {
+						"Name": "gsr_yatm:rubber_leaves_flowering",
+						"Properties": {
+							"distance": "7",
+							"persistent": "false",
+							"waterlogged": "false"
+						}
+					},
+					"weight": 1
+				}
+			]
+		},
+		"trunk_placer": {
+			"type": "gsr_yatm:canopy_trunk_placer",
+			"base_height": 5,
+			"height_rand_a": 1,
+			"height_rand_b": 1,
+			"should_make_grown_on_block_dirt": false,
+			"max_curve": 0.5,
+			"branching_trunk_length": 3,
+			"branch_likelyhood": 0.5,
+			"branch_length": 5
+		},
+		"trunk_provider": {
+			"type": "minecraft:simple_state_provider",
+			"state": {
+				"Name": "gsr_yatm:rubber_log",
+				"Properties": {
+					"axis": "y"
+				}
+			}
+		},
+		"dirt_provider": {
+			"type": "minecraft:simple_state_provider",
+			"state": {
+				"Name": "minecraft:dirt"
+			}
+		},
+		"root_placer": {
+			"type": "gsr_yatm:layered_random_spread_root_placer",
+			"trunk_offset_y": 0,
+			"root_provider": {
+				"type": "minecraft:simple_state_provider",
+				"state": {
+					"Name": "minecraft:rooted_dirt"
+				}
+			},
+			"above_root_placement": {
+				"above_root_placement_chance": 0.0,
+				"above_root_provider": {
+					"type": "minecraft:simple_state_provider",
+					"state": {
+						"Name": "minecraft:dirt"
+					}
+				}
+			},
+			"can_root_into": "#gsr_yatm:mediums/rubber_roots_can_grow_in",
+			"radius": 3,
+			"depth": 8,
+			"attempts_per_layer": 16
+		}
+	}
 }

@@ -75,14 +75,14 @@ public class YATMRecipeProvider extends RecipeProvider
 		
 		this.addExtraction(writer, new ItemLike[] {YATMItems.RUBBER_LOG_ITEM.get(), YATMItems.RUBBER_WOOD_ITEM.get()}, new ItemStack(YATMItems.WOOD_PULP.get(), 6), new FluidStack(YATMFluids.LATEX.get(), 120), 12, 246, YetAnotherTechMod.MODID + ":latex_from_log_extraction");
 		this.addExtraction(writer, new ItemLike[] {YATMItems.RUBBER_LEAVES_OLD_ITEM.get()}, new ItemStack(YATMItems.WOOD_PULP.get(), 1), new FluidStack(YATMFluids.LATEX.get(), 40), 4, 62, YetAnotherTechMod.MODID + ":latex_from_old_leaves_extraction");
-		this.addExtraction(writer, new ItemLike[] {YATMItems.RUBBER_LEAVES_FLOWERING_ITEM.get()}, new ItemStack(YATMItems.LEAF_MULCH.get(), 2), new FluidStack(YATMFluids.LATEX.get(), 30), 4, 46, YetAnotherTechMod.MODID + ":latex_from_flowering_leaves_extraction");
-		this.addExtraction(writer, new ItemLike[] {YATMItems.RUBBER_LEAVES_YOUNG_ITEM.get()}, new ItemStack(YATMItems.LEAF_MULCH.get(), 1), new FluidStack(YATMFluids.LATEX.get(), 20), 4, 34, YetAnotherTechMod.MODID + ":latex_from_young_leaves_extraction");
+		this.addExtraction(writer, new ItemLike[] {YATMItems.RUBBER_LEAVES_FLOWERING_ITEM.get()}, new ItemStack(YATMItems.LEAF_MULCH_ITEM.get(), 2), new FluidStack(YATMFluids.LATEX.get(), 30), 4, 46, YetAnotherTechMod.MODID + ":latex_from_flowering_leaves_extraction");
+		this.addExtraction(writer, new ItemLike[] {YATMItems.RUBBER_LEAVES_YOUNG_ITEM.get()}, new ItemStack(YATMItems.LEAF_MULCH_ITEM.get(), 1), new FluidStack(YATMFluids.LATEX.get(), 20), 4, 34, YetAnotherTechMod.MODID + ":latex_from_young_leaves_extraction");
 		this.addExtraction(writer, new ItemLike[] {YATMItems.RUBBER_MERISTEM_ITEM.get()}, new FluidStack(YATMFluids.LATEX.get(), 2), 1, 12, YetAnotherTechMod.MODID + ":latex_from_meristem_extraction");
 		
 		this.addExtraction(writer, new ItemLike[] {YATMItems.SOUL_AFFLICTED_RUBBER_LOG_ITEM.get(), YATMItems.SOUL_AFFLICTED_RUBBER_WOOD_ITEM.get()}, new ItemStack(YATMItems.WOOD_PULP.get(), 6), new FluidStack(YATMFluids.SOUL_SAP.get(), 120), 12, 246, YetAnotherTechMod.MODID + ":soul_sap_from_log_extraction");
 		this.addExtraction(writer, new ItemLike[] {YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_OLD_ITEM.get()}, new ItemStack(YATMItems.WOOD_PULP.get(), 1), new FluidStack(YATMFluids.SOUL_SAP.get(), 40), 4, 62, YetAnotherTechMod.MODID + ":soul_sap_from_old_leaves_extraction");
-		this.addExtraction(writer, new ItemLike[] {YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING_ITEM.get()}, new ItemStack(YATMItems.LEAF_MULCH.get(), 2), new FluidStack(YATMFluids.SOUL_SAP.get(), 40), 4, 46, YetAnotherTechMod.MODID + ":soul_sap_from_flowering_leaves_extraction");
-		this.addExtraction(writer, new ItemLike[] {YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG_ITEM.get()}, new ItemStack(YATMItems.LEAF_MULCH.get(), 1), new FluidStack(YATMFluids.SOUL_SAP.get(), 20), 4, 34, YetAnotherTechMod.MODID + ":soul_sap_from_young_leaves_extraction");
+		this.addExtraction(writer, new ItemLike[] {YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING_ITEM.get()}, new ItemStack(YATMItems.LEAF_MULCH_ITEM.get(), 2), new FluidStack(YATMFluids.SOUL_SAP.get(), 40), 4, 46, YetAnotherTechMod.MODID + ":soul_sap_from_flowering_leaves_extraction");
+		this.addExtraction(writer, new ItemLike[] {YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG_ITEM.get()}, new ItemStack(YATMItems.LEAF_MULCH_ITEM.get(), 1), new FluidStack(YATMFluids.SOUL_SAP.get(), 20), 4, 34, YetAnotherTechMod.MODID + ":soul_sap_from_young_leaves_extraction");
 		this.addExtraction(writer, new ItemLike[] {YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM_ITEM.get()}, new FluidStack(YATMFluids.SOUL_SAP.get(), 2), 1, 12, YetAnotherTechMod.MODID + ":soul_sap_from_meristem_extraction");
 	
 		
@@ -98,6 +98,11 @@ public class YATMRecipeProvider extends RecipeProvider
 		
 		// TODO, create a fluidIngredient, so we can use tags or specifics
 		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ENDER.get(), 250), Tags.Items.SAND, new ItemStack(Items.ENDER_PEARL), false, 0, 300, YetAnotherTechMod.MODID + ":ender_pearl_from_crystallization");
+		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_DECAY.get(), 1000), YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY, new ItemStack(YATMItems.STAR_SEED.get()), true, 0, 300, YetAnotherTechMod.MODID + ":star_seed_from_crystallization");
+		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 1000), YATMItems.STAR_SEED.get(), new ItemStack(YATMItems.STAR_GERMLING.get()), true, 0, 200, YetAnotherTechMod.MODID + ":star_germling_from_crystallization");
+		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 2000), YATMItems.STAR_GERMLING.get(), new ItemStack(YATMItems.STAR_SPROUT.get()), true, 0, 400, YetAnotherTechMod.MODID + ":star_sprout_from_crystallization");
+		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 4000), YATMItems.STAR_SPROUT.get(), new ItemStack(YATMItems.STAR_ADOLESCENT.get()), true, 0, 800, YetAnotherTechMod.MODID + ":star_adolescent_from_crystallization");
+		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 8000), YATMItems.STAR_ADOLESCENT.get(), new ItemStack(Items.NETHER_STAR), true, 0, 1600, YetAnotherTechMod.MODID + ":nether_star_from_crystallization");
 		
 		
 		
@@ -480,6 +485,21 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	
 	private void addCrystallizationRecipe(Consumer<FinishedRecipe> writer, FluidStack input, TagKey<Item> seed, ItemStack result, boolean consumeSeed, int currentPerTick, int timeInTicks, String key) 
+	{
+		new CrystallizationRecipeBuilder()
+		.input(input)
+		.seed(Ingredient.of(seed))
+		.result(result)
+		.consumeSeed(consumeSeed)
+		.currentPerTick(currentPerTick)
+		.timeInTicks(timeInTicks)
+		// TODO, make use tag containing all the crystallizers
+		.unlockedBy("has_device", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.STEEL_CRYSTALLIZER_ITEM.get()).build()))
+		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(seed).build()))
+		.save(writer, key);
+	} // end addBoilingRecipe()
+	
+	private void addCrystallizationRecipe(Consumer<FinishedRecipe> writer, FluidStack input, Item seed, ItemStack result, boolean consumeSeed, int currentPerTick, int timeInTicks, String key) 
 	{
 		new CrystallizationRecipeBuilder()
 		.input(input)

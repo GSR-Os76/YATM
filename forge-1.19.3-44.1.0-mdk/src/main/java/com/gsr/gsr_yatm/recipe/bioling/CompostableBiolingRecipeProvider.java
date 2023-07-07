@@ -7,12 +7,14 @@ import java.util.Map;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.recipe.dynamic.IDynamicRecipeProvider;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
+import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 
 import it.unimi.dsi.fastutil.objects.Object2FloatMap.Entry;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -22,8 +24,15 @@ public class CompostableBiolingRecipeProvider implements IDynamicRecipeProvider<
 	
 
 	
+	public CompostableBiolingRecipeProvider() 
+	{
+		RecipeUtilities.addPersistentRecipeLoadListener(() -> CompostableBiolingRecipeProvider.this.m_cache = new HashMap<>());
+	}
+	
+	
+	
 	@Override
-	public Enumeration<BiolingRecipe> getEnumerator()
+	public Enumeration<BiolingRecipe> getEnumerator(Level level)
 	{
 		return new Enumeration<BiolingRecipe>() 
 		{

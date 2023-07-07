@@ -1,0 +1,19 @@
+{
+  "type": "gsr_yatm:crystallization",
+  "cost": 0,
+  "input": {
+    "count": 8000,
+    "fluid": "gsr_yatm:essence_of_souls"
+  },
+  "result": {
+    "count": 1,
+    "item": "minecraft:nether_star"
+  },
+  "seed": {
+    "consume": true,
+    "ingedient": {
+      "item": "gsr_yatm:star_adolescent"
+    }
+  },
+  "time": 1600
+}

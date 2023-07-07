@@ -57,6 +57,8 @@ public class RecipeUtilities
 	// NOTE: it's in kelvin
 	public static final String TEMPERATURE_KEY = "temperature";
 	
+	
+	private static final List<Runnable> PERSISTENT_RELOAD_LISTENERS = new ArrayList<>();
 	private static final List<Runnable> RELOAD_LISTENERS = new ArrayList<>();
 	private static final Map<RecipeType<?>, List<IDynamicRecipeProvider<?>>> DYNAMIC_RECIPE_PROVIDERS = new HashMap<>();
 	
@@ -136,7 +138,13 @@ public class RecipeUtilities
 		{
 			RecipeUtilities.RELOAD_LISTENERS.remove(0).run();
 		}
+		RecipeUtilities.PERSISTENT_RELOAD_LISTENERS.forEach((r) -> r.run());
 	} // end recipesUpdated()
+	
+	public static void addPersistentRecipeLoadListener(Runnable handler) 
+	{
+		RecipeUtilities.PERSISTENT_RELOAD_LISTENERS.add(handler);
+	} // end addRecipeLoadListener()
 	
 	public static void addRecipeLoadListener(Runnable handler) 
 	{
@@ -153,17 +161,13 @@ public class RecipeUtilities
 				return r;
 			}
 		}
-		YetAnotherTechMod.LOGGER.info("about to try dynamic loop");
 		if(RecipeUtilities.DYNAMIC_RECIPE_PROVIDERS.containsKey(type)) 
 		{
-			YetAnotherTechMod.LOGGER.info("found key of recipe type");
 			for(IDynamicRecipeProvider<?> dpl : RecipeUtilities.DYNAMIC_RECIPE_PROVIDERS.get(type)) 
 			{
-				YetAnotherTechMod.LOGGER.info("looking at dynamic recipe providers for type");
-				Enumeration<? extends Recipe<? extends Container>> e = dpl.getEnumerator();
+				Enumeration<? extends Recipe<? extends Container>> e = dpl.getEnumerator(level);
 				while(e.hasMoreElements()) 
 				{
-					YetAnotherTechMod.LOGGER.info("has more elements");
 					var ei = e.nextElement();
 					if (ei.getId().toString().equals(recipeIdentifierToMatch))
 					{
@@ -202,7 +206,7 @@ public class RecipeUtilities
 					}
 					while((drprs == null || !drprs.hasMoreElements()) && drp != null && drp.hasNext()) 
 					{
-						drprs = drp.next().getEnumerator();
+						drprs = drp.next().getEnumerator(level);
 						if(drprs.hasMoreElements()) 
 						{
 							return true;
@@ -228,7 +232,7 @@ public class RecipeUtilities
 					}
 					while((drprs == null || !drprs.hasMoreElements()) && drp != null && drp.hasNext()) 
 					{
-						drprs = drp.next().getEnumerator();
+						drprs = drp.next().getEnumerator(level);
 						if(drprs.hasMoreElements()) 
 						{
 							return (T) drprs.nextElement();

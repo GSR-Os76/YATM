@@ -1,0 +1,21 @@
+{
+	"feature": "gsr_yatm:rubber_bush_apical",
+	"placement": [
+		{
+			"type": "minecraft:count_on_every_layer",
+			"count": 8
+		},
+		{
+			"type": "minecraft:block_predicate_filter",
+			"predicate": {
+				"type": "minecraft:matching_block_tag",
+				"offset": [
+					0,
+					-1,
+					0
+				],
+				"tag": "gsr_yatm:mediums/rubber_trees_naturally_grow_on"
+			}
+		}
+	]
+}
