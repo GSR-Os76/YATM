@@ -33,7 +33,7 @@ public class InstantTeleportationMobEffect extends MobEffect
 	public void applyEffectTick(LivingEntity entity, int amplifier)
 	{
 		YetAnotherTechMod.LOGGER.info("applyEffectTick");
-		Level level = entity.getLevel();
+		Level level = entity.level();
 		if (!level.isClientSide)
 		{
 			YetAnotherTechMod.LOGGER.info("was not client");

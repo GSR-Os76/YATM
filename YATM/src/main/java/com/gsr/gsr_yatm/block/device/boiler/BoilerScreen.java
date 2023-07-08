@@ -3,9 +3,8 @@ package com.gsr.gsr_yatm.block.device.boiler;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.gui.StoredFluidWidget;
 import com.gsr.gsr_yatm.gui.TemperatureWidget;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -60,30 +59,27 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 	} // end init()
 
 	@Override
-	public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTick)
+	public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick)
 	{
-		super.renderBackground(poseStack);
-		this.renderBg(poseStack, partialTick, mouseX, mouseY);
+		super.renderBackground(graphics);
+		this.renderBg(graphics, partialTick, mouseX, mouseY);
 		this.updateInputTankWidget();
 		this.updateResultTankWidget();
 		this.updateTemperatureWidget();
-		super.render(poseStack, mouseX, mouseY, partialTick);
-		this.renderTooltip(poseStack, mouseX, mouseY);
+		super.render(graphics, mouseX, mouseY, partialTick);
+		this.renderTooltip(graphics, mouseX, mouseY);
 		;
 	} // end render()
 
 	@Override
-	protected void renderBg(PoseStack poseStack, float partialTick, int mouseX, int mouseY)
+	protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY)
 	{
-		RenderSystem.setShaderTexture(0, BACKGROUND);
-
-		blit(poseStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
-		
+		graphics.blit(BACKGROUND, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 		
 		float bP = this.menu.boilProgress();
 		if(bP > 0) 
 		{
-			blit(poseStack, this.leftPos + 37, this.topPos + 23, 0, 202, (int)(102f * bP), 16);
+			graphics.blit(BACKGROUND, this.leftPos + 37, this.topPos + 23, 0, 202, (int)(102f * bP), 16);
 		}
 		
 		
@@ -93,7 +89,7 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 		if (burnFractionRemaining > 0f)
 		{
 			int renderDownSet = 14 - ((int) (14 * burnFractionRemaining));
-			blit(poseStack, this.leftPos + 80, (this.topPos + 70) + renderDownSet, 176, 0 + renderDownSet, 14, 14 - renderDownSet);
+			graphics.blit(BACKGROUND, this.leftPos + 80, (this.topPos + 70) + renderDownSet, 176, 0 + renderDownSet, 14, 14 - renderDownSet);
 		}
 
 
@@ -104,7 +100,7 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 		{
 			// 176, 14. 9x8 to 11, 78
 			int renderDownSet = 8 - ((int) (8f * iFP));
-			blit(poseStack, this.leftPos + 11, (this.topPos + 78) + renderDownSet, 176, 14 + renderDownSet, 9, 8 - renderDownSet);
+			graphics.blit(BACKGROUND, this.leftPos + 11, (this.topPos + 78) + renderDownSet, 176, 14 + renderDownSet, 9, 8 - renderDownSet);
 		}
 
 		// draw input tank drain progress
@@ -117,9 +113,9 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 			float hP = iDP >= .36f ? 1f : (iDP / .36f);
 			float vP = iDP < .36f ? 0f : (iDP - .36f) / .64f;
 			int renderRightSet = 9 - ((int) (9f * hP));
-			blit(poseStack, (this.leftPos + 27), this.topPos + 65, 185, 14, 9 - renderRightSet, 4);
+			graphics.blit(BACKGROUND, (this.leftPos + 27), this.topPos + 65, 185, 14, 9 - renderRightSet, 4);
 			int renderDownSet = 16 - ((int) (16f * vP));
-			blit(poseStack, this.leftPos + 29, this.topPos + 69, 188, 18, 9, 16 - renderDownSet);
+			graphics.blit(BACKGROUND, this.leftPos + 29, this.topPos + 69, 188, 18, 9, 16 - renderDownSet);
 		}
 
 		// draw result tank drain progress
@@ -128,7 +124,7 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 		{
 			// 197, 14. 9x8 to 155, 78
 			int renderDownSet = 8 - ((int) (8f * rDP));
-			blit(poseStack, this.leftPos + 155, this.topPos + 78, 197, 14, 9, 8 - renderDownSet);
+			graphics.blit(BACKGROUND, this.leftPos + 155, this.topPos + 78, 197, 14, 9, 8 - renderDownSet);
 		}
 
 	} // end renderBg

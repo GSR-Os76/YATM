@@ -2,9 +2,7 @@ package com.gsr.gsr_yatm.block.device.bioler;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.gui.StoredFluidWidget;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -35,34 +33,34 @@ public class BiolerScreen extends AbstractContainerScreen<BiolerMenu>
 		this.setResultTankWidget();
 	} // end init()
 
+	
 	@Override
-	public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTick)
+	public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick)
 	{
-		super.renderBackground(poseStack);
-		this.renderBg(poseStack, partialTick, mouseX, mouseY);
+		super.renderBackground(graphics);
+		this.renderBg(graphics, partialTick, mouseX, mouseY);
 		this.updateResultTankWidget();
-		super.render(poseStack, mouseX, mouseY, partialTick);
-		this.renderTooltip(poseStack, mouseX, mouseY);
+		super.render(graphics, mouseX, mouseY, partialTick);
+		this.renderTooltip(graphics, mouseX, mouseY);
 	} // end render()
 
 	@Override
-	protected void renderBg(PoseStack poseStack, float partialTick, int mouseX, int mouseY)
+	protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY)
 	{
-		RenderSystem._setShaderTexture(0, BACKGROUND);
-		blit(poseStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
-		
+		//RenderSystem._setShaderTexture(0, BACKGROUND);
+		graphics.blit(BACKGROUND, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 		float cP = this.menu.getCraftProgress();
 		if(cP > 0f) 
 		{
 			// from 176 0 to 80 63 size 16 8
 			int horizontalWidth = (int)(16f * cP);
-			blit(poseStack, this.leftPos + 80, this.topPos + 63, 176, 0, horizontalWidth, 8);
+			graphics.blit(BACKGROUND, this.leftPos + 80, this.topPos + 63, 176, 0, horizontalWidth, 8);
 		}
 
 		float dP = this.menu.getResultTankDrainProgress();
 		if(dP > 0) 
 		{
-			blit(poseStack, this.leftPos + 102, this.topPos + 79, 176, 8, 8, (int)(6f * dP));
+			graphics.blit(BACKGROUND,  this.leftPos + 102, this.topPos + 79, 176, 8, 8, (int)(6f * dP));
 		}
 		
 	} // end renderBg()

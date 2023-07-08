@@ -1,6 +1,5 @@
 package com.gsr.gsr_yatm.registry;
 
-import com.gsr.gsr_yatm.YATMCreativeModTabs;
 import com.gsr.gsr_yatm.YATMFoods;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.creative.CreativeFluidSourceItem;
@@ -28,7 +27,7 @@ public class YATMItems
 	public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, YetAnotherTechMod.MODID);
 
 	
-	
+	// possibly generate similar sets through a method, providing greater resilience to changes to creation.
 	public static final RegistryObject<BlockItem> RUBBER_MERISTEM_ITEM = generalTabEnqueue(ITEMS.register("rubber_meristem", () -> new BlockItem(YATMBlocks.RUBBER_MERISTEM.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_LEAVES_YOUNG_ITEM = generalTabEnqueue(ITEMS.register("rubber_leaves_young", () -> new BlockItem(YATMBlocks.RUBBER_LEAVES_YOUNG.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_LEAVES_FLOWERING_ITEM = generalTabEnqueue(ITEMS.register("rubber_leaves_flowering", () -> new BlockItem(YATMBlocks.RUBBER_LEAVES_FLOWERING.get(), new Item.Properties())));
@@ -49,7 +48,7 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> RUBBER_TRAPDOOR_ITEM = generalTabEnqueue(ITEMS.register("rubber_trapdoor", () -> new BlockItem(YATMBlocks.RUBBER_TRAPDOOR.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_PRESSURE_PLATE_ITEM = generalTabEnqueue(ITEMS.register("rubber_pressure_plate", () -> new BlockItem(YATMBlocks.RUBBER_PRESSURE_PLATE.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_BUTTON_ITEM = generalTabEnqueue(ITEMS.register("rubber_button", () -> new BlockItem(YATMBlocks.RUBBER_BUTTON.get(), new Item.Properties())));
-	public static final RegistryObject<BlockItem> LEAF_MULCH_ITEM = generalTabEnqueue(ITEMS.register("leaf_mulch", () -> new BlockItem(YATMBlocks.LEAF_MULCH.get(),new Item.Properties())));
+	public static final RegistryObject<BlockItem> LEAF_MULCH_ITEM = generalTabEnqueue(ITEMS.register("leaf_mulch", () -> new BlockItem(YATMBlocks.LEAF_MULCH.get(), new Item.Properties())));
 
 
 	
@@ -355,7 +354,7 @@ public class YATMItems
 	
 	public static <T extends Item> RegistryObject<T> generalTabEnqueue(RegistryObject<T> item) 
 	{
-		return YATMCreativeModTabs.queueForGeneralCreativeTab(item);
+		return YATMCreativeModTabs.generalTabEnqueue(item);
 	} // end generalTabEnqueue()
 	
 } // end class

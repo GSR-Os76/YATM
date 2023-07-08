@@ -20,7 +20,7 @@ public class CrystallizationRecipeSerializer implements RecipeSerializer<Crystal
 		builder.identifier(resourceLocation);
 		builder.result(CraftingHelper.getItemStack(jsonObject.getAsJsonObject(RecipeUtilities.RESULT_OBJECT_KEY), false));
 		JsonObject seedObj = jsonObject.getAsJsonObject(RecipeUtilities.SEED_KEY);
-		builder.seed(CraftingHelper.getIngredient(seedObj.getAsJsonObject(RecipeUtilities.INGREDIENT_KEY)));
+		builder.seed(CraftingHelper.getIngredient(seedObj.getAsJsonObject(RecipeUtilities.INGREDIENT_KEY), false));
 		if(seedObj.has(RecipeUtilities.CONSUME_SEED_KEY)) 
 		{
 			builder.consumeSeed(seedObj.get(RecipeUtilities.CONSUME_SEED_KEY).getAsBoolean());

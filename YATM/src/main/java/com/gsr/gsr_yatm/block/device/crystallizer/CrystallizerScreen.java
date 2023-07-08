@@ -2,9 +2,7 @@ package com.gsr.gsr_yatm.block.device.crystallizer;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.gui.StoredFluidWidget;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -38,20 +36,19 @@ public class CrystallizerScreen extends AbstractContainerScreen<CrystallizerMenu
 	}
 
 	@Override
-	public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTick)
+	public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick)
 	{
-		super.renderBackground(poseStack);
-		this.renderBg(poseStack, partialTick, mouseX, mouseY);
+		super.renderBackground(graphics);
+		this.renderBg(graphics, partialTick, mouseX, mouseY);
 		this.updateInputTankWidget();		
-		super.render(poseStack, mouseX, mouseY, partialTick);
-		this.renderTooltip(poseStack, mouseX, mouseY);
+		super.render(graphics, mouseX, mouseY, partialTick);
+		this.renderTooltip(graphics, mouseX, mouseY);
 	} // end render()
 
 	@Override
-	protected void renderBg(PoseStack poseStack, float partialTick, int mouseX, int mouseY)
+	protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY)
 	{
-		RenderSystem._setShaderTexture(0, BACKGROUND);
-		blit(poseStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+		graphics.blit(BACKGROUND, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 		
 		float cP = this.menu.getCrystallizationProgress();
 		if(cP > 0) 
@@ -78,15 +75,15 @@ public class CrystallizerScreen extends AbstractContainerScreen<CrystallizerMenu
 //			
 			if(pixelsToDraw > 0) 
 			{
-				blit(poseStack, this.leftPos + (86 + (firstStagePixelsEnd - firstStagePixelsToDraw)), this.topPos + 38, 176 + (firstStagePixelsEnd - firstStagePixelsToDraw), 26, firstStagePixelsToDraw, 4);
+				graphics.blit(BACKGROUND, this.leftPos + (86 + (firstStagePixelsEnd - firstStagePixelsToDraw)), this.topPos + 38, 176 + (firstStagePixelsEnd - firstStagePixelsToDraw), 26, firstStagePixelsToDraw, 4);
 			}
 			if (pixelsToDraw > firstStagePixelsEnd) 
 			{
-				blit(poseStack, this.leftPos + 84, this.topPos + 42, 176, 30, 8, secondStagePixelsToDraw);
+				graphics.blit(BACKGROUND, this.leftPos + 84, this.topPos + 42, 176, 30, 8, secondStagePixelsToDraw);
 			}
 			if(pixelsToDraw > secondStagePixelsEnd)
 			{
-				blit(poseStack, this.leftPos + 84, this.topPos + 70, 176, 37, 8, pixelsToDraw - secondStagePixelsEnd);
+				graphics.blit(BACKGROUND, this.leftPos + 84, this.topPos + 70, 176, 37, 8, pixelsToDraw - secondStagePixelsEnd);
 			}			
 		}
 		
@@ -95,7 +92,7 @@ public class CrystallizerScreen extends AbstractContainerScreen<CrystallizerMenu
 		{
 			// 176, 14. 9x8 to 11, 78
 			int pixelsToDraw = ((int) (6f * iFP));
-			blit(poseStack, this.leftPos + 119, this.topPos + (79 + (6 - pixelsToDraw)), 176, 0 + (6 - pixelsToDraw), 9, pixelsToDraw);
+			graphics.blit(BACKGROUND, this.leftPos + 119, this.topPos + (79 + (6 - pixelsToDraw)), 176, 0 + (6 - pixelsToDraw), 9, pixelsToDraw);
 		}
 
 		float iDP = this.menu.inputTankDrainProgress();
@@ -103,8 +100,8 @@ public class CrystallizerScreen extends AbstractContainerScreen<CrystallizerMenu
 		{
 			float hP = iDP >= .36f ? 1f : (iDP / .36f);
 			float vP = iDP < .36f ? 0f : (iDP - .36f) / .64f;
-			blit(poseStack, this.leftPos + 135, this.topPos + 65, 176, 6, ((int) (9f * hP)), 4);
-			blit(poseStack, this.leftPos + 138, this.topPos + 69, 176, 10, 8, ((int) (16f * vP)));
+			graphics.blit(BACKGROUND, this.leftPos + 135, this.topPos + 65, 176, 6, ((int) (9f * hP)), 4);
+			graphics.blit(BACKGROUND, this.leftPos + 138, this.topPos + 69, 176, 10, 8, ((int) (16f * vP)));
 		}
 	} // end renderBg
 	

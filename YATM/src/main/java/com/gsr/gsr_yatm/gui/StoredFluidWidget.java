@@ -3,11 +3,9 @@ package com.gsr.gsr_yatm.gui;
 import org.lwjgl.opengl.GL11;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-
 import net.minecraft.Util;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageWidget;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.client.renderer.texture.TextureManager;
@@ -109,21 +107,19 @@ public class StoredFluidWidget extends ImageWidget
 	
 	
 	@Override
-	public void renderWidget(PoseStack poseStack, int mouseX, int mouseY, float partialTick)
+	public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTick)
 	{
-		RenderSystem.setShaderTexture(0, WIDGET_THINGS);
-		blit(poseStack, this.getX(), this.getY(), 0, 0, 18, 57);
+		graphics.blit(WIDGET_THINGS, this.getX(), this.getY(), 0, 0, 18, 57);
 		if(this.m_desiredHeight > 0 && this.m_fluidTextureWidth > 0) 
 		{
-			this.renderFluidLayer(poseStack);
+			this.renderFluidLayer(graphics);
 			
 			// render the level markers over top the fluid display
-			RenderSystem.setShaderTexture(0, WIDGET_THINGS);
-			blit(poseStack, this.getX() + 9, this.getY() + 15, 0, 57, 6, 27);
+			graphics.blit(WIDGET_THINGS, this.getX() + 9, this.getY() + 15, 0, 57, 6, 27);
 		}		
 	} // end renderWidget()
 	
-	private void renderFluidLayer(PoseStack poseStack)
+	private void renderFluidLayer(GuiGraphics graphics)
 	{
 		if(this.m_desiredHeight <= 0 && this.m_fluidTextureWidth <= 0) 
 		{
@@ -134,7 +130,7 @@ public class StoredFluidWidget extends ImageWidget
 		// TODO, animation
 				
 		// inner tank pos is at 3 3, is 12 by 51 area
-		RenderSystem.setShaderTexture(0, this.m_fluidStillTexture);
+		// RenderSystem.setShaderTexture(0, this.m_fluidStillTexture);
 		
 		int finalFraction = this.m_desiredHeight % this.m_fluidTextureWidth;
 		int fullTiles = this.m_desiredHeight / this.m_fluidTextureWidth;
@@ -148,7 +144,7 @@ public class StoredFluidWidget extends ImageWidget
 						? finalFraction 
 						: this.m_fluidTextureWidth;
 			steppedHeight += thisStepsHeight; 
-			blit(poseStack, 
+			graphics.blit(this.m_fluidStillTexture, 
 				this.getX() + 3, this.getY() + 3 + (51 - steppedHeight),//this.m_desiredHeight), 
 				0,
 				this.m_toCenterTileDeviation, this.m_fluidTextureWidth - thisStepsHeight, 

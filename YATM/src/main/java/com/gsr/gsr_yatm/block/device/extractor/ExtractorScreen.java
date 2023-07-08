@@ -2,9 +2,7 @@ package com.gsr.gsr_yatm.block.device.extractor;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.gui.StoredFluidWidget;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -37,27 +35,26 @@ public class ExtractorScreen extends AbstractContainerScreen<ExtractorMenu>
 	} // end init()
 
 	@Override
-	public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTick)
+	public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick)
 	{
-		super.renderBackground(poseStack);
-		this.renderBg(poseStack, partialTick, mouseX, mouseY);
+		super.renderBackground(graphics);
+		this.renderBg(graphics, partialTick, mouseX, mouseY);
 		this.updateResultTankWidget();
-		super.render(poseStack, mouseX, mouseY, partialTick);
-		this.renderTooltip(poseStack, mouseX, mouseY);
+		super.render(graphics, mouseX, mouseY, partialTick);
+		this.renderTooltip(graphics, mouseX, mouseY);
 	} // end render()
 
 	@Override
-	protected void renderBg(PoseStack poseStack, float partialTick, int mouseX, int mouseY)
+	protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY)
 	{
-		RenderSystem._setShaderTexture(0, BACKGROUND);
-		blit(poseStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+		graphics.blit(BACKGROUND, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 		
 		float cP = this.menu.getExtractProgress();
 		if(cP > 0f) 
 		{
 			// from 176 0 to 80 63 size 16 8
 			int horizontalWidth = (int)(16f * cP);
-			blit(poseStack, this.leftPos + 80, this.topPos + 63, 176, 0, horizontalWidth, 8);
+			graphics.blit(BACKGROUND, this.leftPos + 80, this.topPos + 63, 176, 0, horizontalWidth, 8);
 			
 			// if past threshold of 6 pixels along, and remainder is to exist, start to draw down arrow
 			if(horizontalWidth > 6 && this.menu.recipeHasRemainder()) 
@@ -65,14 +62,14 @@ public class ExtractorScreen extends AbstractContainerScreen<ExtractorMenu>
 				// from 176 8 to 84 68 size 8 17
 				float startingAtPercentage = .375f;
 				float normalizedLocalPercentage = ((cP - (startingAtPercentage)) / (1f - startingAtPercentage));
-				blit(poseStack, this.leftPos + 84, this.topPos + 68, 176, 8, 8, (int)(17f * normalizedLocalPercentage));
+				graphics.blit(BACKGROUND, this.leftPos + 84, this.topPos + 68, 176, 8, 8, (int)(17f * normalizedLocalPercentage));
 			}
 		}
 
 		float dP = this.menu.getResultTankDrainProgress();
 		if(dP > 0) 
 		{
-			blit(poseStack, this.leftPos + 102, this.topPos + 79, 176, 25, 8, (int)(6f * dP));
+			graphics.blit(BACKGROUND, this.leftPos + 102, this.topPos + 79, 176, 25, 8, (int)(6f * dP));
 		}
 		
 	} // end renderBg()

@@ -1,9 +1,7 @@
 package com.gsr.gsr_yatm.gui;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
-
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageWidget;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
@@ -54,13 +52,12 @@ public class TemperatureWidget extends ImageWidget
 
 	
 	@Override
-	public void renderWidget(PoseStack poseStack, int mouseX, int mouseY, float partialTick)
+	public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTick)
 	{
-		RenderSystem.setShaderTexture(0, WIDGET_THINGS);
-		blit(poseStack, this.getX(), this.getY(), 0, 84, WIDTH, HEIGHT);
+		graphics.blit(WIDGET_THINGS, this.getX(), this.getY(), 0, 84, WIDTH, HEIGHT);
 		if(this.m_temperature > 0) 
 		{			
-			blit(poseStack, this.getX(), this.getY(), 0, 95, this.m_pixelsToDrawOverCount, HEIGHT);
+			graphics.blit(WIDGET_THINGS, this.getX(), this.getY(), 0, 95, this.m_pixelsToDrawOverCount, HEIGHT);
 		}		
 	} // end renderWidget()
 	

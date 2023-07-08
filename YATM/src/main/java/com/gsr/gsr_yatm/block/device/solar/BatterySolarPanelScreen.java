@@ -3,8 +3,8 @@ package com.gsr.gsr_yatm.block.device.solar;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.gui.CurrentWidget;
 import com.mojang.blaze3d.systems.RenderSystem;
-import com.mojang.blaze3d.vertex.PoseStack;
 
+import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -33,20 +33,20 @@ public class BatterySolarPanelScreen extends AbstractContainerScreen<BatterySola
 	} // end init()
 	
 	@Override
-	public void render(PoseStack poseStack, int mouseX, int mouseY, float partialTick)
+	public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick)
 	{
-		super.renderBackground(poseStack);
-		this.renderBg(poseStack, partialTick, mouseX, mouseY);
+		super.renderBackground(graphics);
+		this.renderBg(graphics, partialTick, mouseX, mouseY);
 		this.updateCurrentWidget();
-		super.render(poseStack, mouseX, mouseY, partialTick);
-		this.renderTooltip(poseStack, mouseX, mouseY);
+		super.render(graphics, mouseX, mouseY, partialTick);
+		this.renderTooltip(graphics, mouseX, mouseY);
 	} // end render()
 
 	@Override
-	protected void renderBg(PoseStack poseStack, float partialTick, int mouseX, int mouseY)
+	protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY)
 	{
 		RenderSystem.setShaderTexture(0, BACKGROUND);
-		blit(poseStack, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+		graphics.blit(BACKGROUND, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 	} // end renderBg()
 
 	

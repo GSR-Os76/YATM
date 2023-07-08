@@ -21,6 +21,7 @@ import com.gsr.gsr_yatm.recipe.bioling.CompostableBiolingRecipeProvider;
 import com.gsr.gsr_yatm.recipe.smelting.WrappedSmeltingRecipeProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
+import com.gsr.gsr_yatm.registry.YATMCreativeModTabs;
 import com.gsr.gsr_yatm.registry.YATMFluidTypes;
 import com.gsr.gsr_yatm.registry.YATMFluids;
 import com.gsr.gsr_yatm.registry.YATMFoliagePlacerTypes;
