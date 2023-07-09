@@ -2,8 +2,6 @@ package com.gsr.gsr_yatm.block.plant.tree;
 
 import java.util.function.Predicate;
 
-import com.gsr.gsr_yatm.block.StrippableRotatedPillarBlock;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
@@ -12,13 +10,13 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraftforge.common.util.NonNullSupplier;
 
-public class StrippedSapLogBlock extends StrippableRotatedPillarBlock
+public class StrippedSapLogBlock extends RotatedPillarBlock
 {
 	public static final BooleanProperty FLOWING = BooleanProperty.create("flowing");
 	public static final DirectionProperty FACING = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL.or(new Predicate<Direction>()
@@ -32,10 +30,10 @@ public class StrippedSapLogBlock extends StrippableRotatedPillarBlock
 	
 	
 	
-	public StrippedSapLogBlock(Properties properties, NonNullSupplier<Block> whenStripped)
+	public StrippedSapLogBlock(Properties properties)
 	{
-		super(properties, whenStripped);
-		//this.registerDefaultState(this.defaultBlockState().setValue(FLOWING, true).setValue(FACING, Direction.NORTH));
+		super(properties);
+		this.registerDefaultState(this.defaultBlockState().setValue(FLOWING, true).setValue(FACING, Direction.NORTH));
 	} // end constructor
 
 

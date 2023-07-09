@@ -1,7 +1,6 @@
 package com.gsr.gsr_yatm.registry;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.block.StrippableRotatedPillarBlock;
 import com.gsr.gsr_yatm.block.conduit.ConductorProperties;
 import com.gsr.gsr_yatm.block.conduit.CurrentConduitBlock;
 import com.gsr.gsr_yatm.block.conduit.FluidConduitBlock;
@@ -43,8 +42,8 @@ import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.LeavesBlock;
 import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
-import net.minecraft.world.level.block.RootedDirtBlock;
 import net.minecraft.world.level.block.PressurePlateBlock.Sensitivity;
+import net.minecraft.world.level.block.RootedDirtBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
 import net.minecraft.world.level.block.SoundType;
@@ -129,9 +128,9 @@ public class YATMBlocks
 	// TODO, maybe make persistent?
 	public static final RegistryObject<LeavesBlock> RUBBER_LEAVES_OLD = BLOCKS.register("rubber_leaves_old", () ->  new LeavesBlock(LEAVES_PROPERTIES));
 	public static final RegistryObject<AerialRootsBlock> RUBBER_ROOTS = BLOCKS.register("rubber_roots", () ->  new AerialRootsBlock(AERIAL_ROOTS_PROPERTIES));
-	public static final RegistryObject<StrippableRotatedPillarBlock> RUBBER_LOG = BLOCKS.register("rubber_log", () -> new StrippableRotatedPillarBlock(RUBBER_WOOD_PROPERTIES, YATMBlocks::getPartiallyStrippedRubberLog));
-	public static final RegistryObject<StrippableRotatedPillarBlock> RUBBER_WOOD = BLOCKS.register("rubber_wood", () -> new StrippableRotatedPillarBlock(RUBBER_WOOD_PROPERTIES, YATMBlocks::getStrippedRubberWood));
-	public static final RegistryObject<StrippedSapLogBlock> PARTIALLY_STRIPPED_RUBBER_LOG = BLOCKS.register("partially_stripped_rubber_log", () -> new StrippedSapLogBlock(RUBBER_WOOD_PROPERTIES /*TODO, add random ticks*/, YATMBlocks::getStrippedRubberLog));
+	public static final RegistryObject<RotatedPillarBlock> RUBBER_LOG = BLOCKS.register("rubber_log", () -> new RotatedPillarBlock(RUBBER_WOOD_PROPERTIES));
+	public static final RegistryObject<RotatedPillarBlock> RUBBER_WOOD = BLOCKS.register("rubber_wood", () -> new RotatedPillarBlock(RUBBER_WOOD_PROPERTIES));
+	public static final RegistryObject<StrippedSapLogBlock> PARTIALLY_STRIPPED_RUBBER_LOG = BLOCKS.register("partially_stripped_rubber_log", () -> new StrippedSapLogBlock(RUBBER_WOOD_PROPERTIES /*TODO, add random ticks*/));
 	public static final RegistryObject<RotatedPillarBlock> STRIPPED_RUBBER_LOG = BLOCKS.register("stripped_rubber_log", () -> new RotatedPillarBlock(RUBBER_WOOD_PROPERTIES));
 	public static final RegistryObject<RotatedPillarBlock> STRIPPED_RUBBER_WOOD = BLOCKS.register("stripped_rubber_wood", () -> new RotatedPillarBlock(RUBBER_WOOD_PROPERTIES));
 	public static final RegistryObject<Block> RUBBER_PLANKS = BLOCKS.register("rubber_planks", () -> new Block(RUBBER_WOOD_PROPERTIES));
@@ -156,9 +155,9 @@ public class YATMBlocks
 	public static final RegistryObject<LeavesBlock> SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING = BLOCKS.register("soul_afflicted_rubber_leaves_flowering", () ->  new LeavesBlock(LEAVES_PROPERTIES));
 	public static final RegistryObject<LeavesBlock> SOUL_AFFLICTED_RUBBER_LEAVES_OLD = BLOCKS.register("soul_afflicted_rubber_leaves_old", () ->  new LeavesBlock(LEAVES_PROPERTIES));
 	public static final RegistryObject<AerialRootsBlock> SOUL_AFFLICTED_RUBBER_ROOTS = BLOCKS.register("soul_afflicted_rubber_roots", () ->  new AerialRootsBlock(AERIAL_ROOTS_PROPERTIES));
-	public static final RegistryObject<StrippableRotatedPillarBlock> SOUL_AFFLICTED_RUBBER_LOG = BLOCKS.register("soul_afflicted_rubber_log", () -> new StrippableRotatedPillarBlock(SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES, YATMBlocks::getSoulAfflictedPartiallyStrippedRubberLog));
-	public static final RegistryObject<StrippableRotatedPillarBlock> SOUL_AFFLICTED_RUBBER_WOOD = BLOCKS.register("soul_afflicted_rubber_wood", () -> new StrippableRotatedPillarBlock(SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES, YATMBlocks::getSoulAfflictedStrippedRubberWood));
-	public static final RegistryObject<StrippedSapLogBlock> SOUL_AFFLICTED_PARTIALLY_STRIPPED_RUBBER_LOG = BLOCKS.register("soul_afflicted_partially_stripped_rubber_log", () -> new StrippedSapLogBlock(SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES /*TODO, .randomTicks()*/, YATMBlocks::getSoulAfflictedStrippedRubberLog));
+	public static final RegistryObject<RotatedPillarBlock> SOUL_AFFLICTED_RUBBER_LOG = BLOCKS.register("soul_afflicted_rubber_log", () -> new RotatedPillarBlock(SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES));
+	public static final RegistryObject<RotatedPillarBlock> SOUL_AFFLICTED_RUBBER_WOOD = BLOCKS.register("soul_afflicted_rubber_wood", () -> new RotatedPillarBlock(SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES));
+	public static final RegistryObject<StrippedSapLogBlock> SOUL_AFFLICTED_PARTIALLY_STRIPPED_RUBBER_LOG = BLOCKS.register("soul_afflicted_partially_stripped_rubber_log", () -> new StrippedSapLogBlock(SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES /*TODO, .randomTicks()*/));
 	public static final RegistryObject<RotatedPillarBlock> SOUL_AFFLICTED_STRIPPED_RUBBER_LOG = BLOCKS.register("soul_afflicted_stripped_rubber_log", () -> new RotatedPillarBlock(SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES));
 	public static final RegistryObject<RotatedPillarBlock> SOUL_AFFLICTED_STRIPPED_RUBBER_WOOD = BLOCKS.register("soul_afflicted_stripped_rubber_wood", () -> new RotatedPillarBlock(SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES));
 	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_PLANKS = BLOCKS.register("soul_afflicted_rubber_planks", () -> new Block(SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES));
@@ -215,17 +214,17 @@ public class YATMBlocks
 	public static final RegistryObject<CurrentConduitBlock> FIVEHUNDREDTWELVE_CU_WIRE = BLOCKS.register("fivehundredtwelve_cu_wire", () -> new CurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.WIRE_SHAPE, ConductorProperties.FIVEHUNDREDTWELVE_CU_WIRE_CONDUCTOR_PROPERTIES));
 	public static final RegistryObject<CurrentConduitBlock> FOURTHOUSANDNINTYSIX_CU_WIRE = BLOCKS.register("fourthousandnintysix_cu_wire", () -> new CurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.WIRE_SHAPE, ConductorProperties.FOURTHOUSANDNINTYSIX_CU_WIRE_CONDUCTOR_PROPERTIES));
 	
-	public static final RegistryObject<InsulatedCurrentConduitBlock> ENAMELED_ONE_CU_WIRE = BLOCKS.register("enameled_one_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.WIRE_SHAPE, ConductorProperties.ONE_CU_WIRE_CONDUCTOR_PROPERTIES, () -> ONE_CU_WIRE.get(), () -> YATMItems.WAX_BIT_ITEM.get()));
-	public static final RegistryObject<InsulatedCurrentConduitBlock> ENAMELED_EIGHT_CU_WIRE = BLOCKS.register("enameled_eight_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.WIRE_SHAPE, ConductorProperties.EIGHT_CU_WIRE_CONDUCTOR_PROPERTIES, () -> EIGHT_CU_WIRE.get(), () -> YATMItems.WAX_BIT_ITEM.get()));
-	public static final RegistryObject<InsulatedCurrentConduitBlock> ENAMELED_SIXTYFOUR_CU_WIRE = BLOCKS.register("enameled_sixtyfour_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.WIRE_SHAPE, ConductorProperties.SIXTYFOUR_CU_WIRE_CONDUCTOR_PROPERTIES, () -> SIXTYFOUR_CU_WIRE.get(), () -> YATMItems.WAX_BIT_ITEM.get()));
-	public static final RegistryObject<InsulatedCurrentConduitBlock> ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE = BLOCKS.register("enameled_fivehundredtwelve_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.WIRE_SHAPE, ConductorProperties.FIVEHUNDREDTWELVE_CU_WIRE_CONDUCTOR_PROPERTIES, () -> FIVEHUNDREDTWELVE_CU_WIRE.get(), () -> YATMItems.WAX_BIT_ITEM.get()));
-	public static final RegistryObject<InsulatedCurrentConduitBlock> ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE = BLOCKS.register("enameled_fourthousandnintysix_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.WIRE_SHAPE, ConductorProperties.FOURTHOUSANDNINTYSIX_CU_WIRE_CONDUCTOR_PROPERTIES, () -> FOURTHOUSANDNINTYSIX_CU_WIRE.get(), () -> YATMItems.WAX_BIT_ITEM.get()));
+	public static final RegistryObject<InsulatedCurrentConduitBlock> ENAMELED_ONE_CU_WIRE = BLOCKS.register("enameled_one_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.WIRE_SHAPE, ConductorProperties.ONE_CU_WIRE_CONDUCTOR_PROPERTIES));
+	public static final RegistryObject<InsulatedCurrentConduitBlock> ENAMELED_EIGHT_CU_WIRE = BLOCKS.register("enameled_eight_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.WIRE_SHAPE, ConductorProperties.EIGHT_CU_WIRE_CONDUCTOR_PROPERTIES));
+	public static final RegistryObject<InsulatedCurrentConduitBlock> ENAMELED_SIXTYFOUR_CU_WIRE = BLOCKS.register("enameled_sixtyfour_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.WIRE_SHAPE, ConductorProperties.SIXTYFOUR_CU_WIRE_CONDUCTOR_PROPERTIES));
+	public static final RegistryObject<InsulatedCurrentConduitBlock> ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE = BLOCKS.register("enameled_fivehundredtwelve_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.WIRE_SHAPE, ConductorProperties.FIVEHUNDREDTWELVE_CU_WIRE_CONDUCTOR_PROPERTIES));
+	public static final RegistryObject<InsulatedCurrentConduitBlock> ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE = BLOCKS.register("enameled_fourthousandnintysix_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.WIRE_SHAPE, ConductorProperties.FOURTHOUSANDNINTYSIX_CU_WIRE_CONDUCTOR_PROPERTIES));
 	
-	public static final RegistryObject<InsulatedCurrentConduitBlock> INSULATED_ONE_CU_WIRE = BLOCKS.register("insulated_one_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.INSULATED_WIRE_SHAPE, ConductorProperties.ONE_CU_WIRE_CONDUCTOR_PROPERTIES, () -> ONE_CU_WIRE.get(), () -> YATMItems.RUBBER_SCRAP.get()));
-	public static final RegistryObject<InsulatedCurrentConduitBlock> INSULATED_EIGHT_CU_WIRE = BLOCKS.register("insulated_eight_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.INSULATED_WIRE_SHAPE, ConductorProperties.EIGHT_CU_WIRE_CONDUCTOR_PROPERTIES, () -> EIGHT_CU_WIRE.get(), () -> YATMItems.RUBBER_SCRAP.get()));
-	public static final RegistryObject<InsulatedCurrentConduitBlock> INSULATED_SIXTYFOUR_CU_WIRE = BLOCKS.register("insulated_sixtyfour_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.INSULATED_WIRE_SHAPE, ConductorProperties.SIXTYFOUR_CU_WIRE_CONDUCTOR_PROPERTIES, () -> SIXTYFOUR_CU_WIRE.get(), () -> YATMItems.RUBBER_SCRAP.get()));
-	public static final RegistryObject<InsulatedCurrentConduitBlock> INSULATED_FIVEHUNDREDTWELVE_CU_WIRE = BLOCKS.register("insulated_fivehundredtwelve_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.INSULATED_WIRE_SHAPE, ConductorProperties.FIVEHUNDREDTWELVE_CU_WIRE_CONDUCTOR_PROPERTIES, () -> FIVEHUNDREDTWELVE_CU_WIRE.get(), () -> YATMItems.RUBBER_SCRAP.get()));
-	public static final RegistryObject<InsulatedCurrentConduitBlock> INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE = BLOCKS.register("insulated_fourthousandnintysix_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.INSULATED_WIRE_SHAPE, ConductorProperties.FOURTHOUSANDNINTYSIX_CU_WIRE_CONDUCTOR_PROPERTIES, () -> FOURTHOUSANDNINTYSIX_CU_WIRE.get(), () -> YATMItems.RUBBER_SCRAP.get()));
+	public static final RegistryObject<InsulatedCurrentConduitBlock> INSULATED_ONE_CU_WIRE = BLOCKS.register("insulated_one_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.INSULATED_WIRE_SHAPE, ConductorProperties.ONE_CU_WIRE_CONDUCTOR_PROPERTIES));
+	public static final RegistryObject<InsulatedCurrentConduitBlock> INSULATED_EIGHT_CU_WIRE = BLOCKS.register("insulated_eight_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.INSULATED_WIRE_SHAPE, ConductorProperties.EIGHT_CU_WIRE_CONDUCTOR_PROPERTIES));
+	public static final RegistryObject<InsulatedCurrentConduitBlock> INSULATED_SIXTYFOUR_CU_WIRE = BLOCKS.register("insulated_sixtyfour_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.INSULATED_WIRE_SHAPE, ConductorProperties.SIXTYFOUR_CU_WIRE_CONDUCTOR_PROPERTIES));
+	public static final RegistryObject<InsulatedCurrentConduitBlock> INSULATED_FIVEHUNDREDTWELVE_CU_WIRE = BLOCKS.register("insulated_fivehundredtwelve_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.INSULATED_WIRE_SHAPE, ConductorProperties.FIVEHUNDREDTWELVE_CU_WIRE_CONDUCTOR_PROPERTIES));
+	public static final RegistryObject<InsulatedCurrentConduitBlock> INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE = BLOCKS.register("insulated_fourthousandnintysix_cu_wire", () -> new InsulatedCurrentConduitBlock(WIRE_PROPERTIES, BlockShapes.INSULATED_WIRE_SHAPE, ConductorProperties.FOURTHOUSANDNINTYSIX_CU_WIRE_CONDUCTOR_PROPERTIES));
 
 	public static final RegistryObject<FluidConduitBlock> STEEL_FLUID_CONDUIT = BLOCKS.register("steel_fluid_conduit", () -> new FluidConduitBlock(STEEL_PIPE_PROPERTIES, BlockShapes.STEEL_FLUID_CONDUIT_SHAPE));
 	
@@ -243,42 +242,7 @@ public class YATMBlocks
 
 	public static final RegistryObject<LiquidBlock> CELESTIAL_LIGHT_LIQUID_BLOCK = BLOCKS.register("celestial_light", () -> new LiquidBlock(YATMFluids.CELESTIAL_LIGHT, LIQUID_PROPERTIES));
 	public static final RegistryObject<LiquidBlock> LUNAR_LIGHT_LIQUID_BLOCK = BLOCKS.register("lunar_light", () -> new LiquidBlock(YATMFluids.LUNAR_LIGHT, LIQUID_PROPERTIES));
-	public static final RegistryObject<LiquidBlock> SOLAR_LIGHT_LIQUID_BLOCK = BLOCKS.register("solar_light", () -> new LiquidBlock(YATMFluids.SOLAR_LIGHT, LIQUID_PROPERTIES));
-
-	// TODO, investigate, at net.minecraftforge.client.ForgeHooksClient.getFluidSprites(ForgeHooksClient.java:505) ~[forge-1.19.4-45.1.0_mapped_official_1.19.4-recomp.jar%23188%23195!/:?] {re:classloading}
-	//LiquidBlockRenderer l;
-	
-	private static Block getPartiallyStrippedRubberLog() 
-	{
-		return PARTIALLY_STRIPPED_RUBBER_LOG.get();
-	} // end getPartiallyStrippedRubberLog()
-	
-	private static Block getStrippedRubberLog() 
-	{
-		return STRIPPED_RUBBER_LOG.get();
-	} // end getStrippedRubberLog()
-	
-	private static Block getStrippedRubberWood() 
-	{
-		return STRIPPED_RUBBER_WOOD.get();
-	} // end getStrippedRubberWood()
-
-	
-	
-	private static Block getSoulAfflictedPartiallyStrippedRubberLog() 
-	{
-		return SOUL_AFFLICTED_PARTIALLY_STRIPPED_RUBBER_LOG.get();
-	} // end getPartiallyStrippedRubberLog()
-	
-	private static Block getSoulAfflictedStrippedRubberLog() 
-	{
-		return SOUL_AFFLICTED_STRIPPED_RUBBER_LOG.get();
-	} // end getStrippedRubberLog()
-	
-	private static Block getSoulAfflictedStrippedRubberWood() 
-	{
-		return SOUL_AFFLICTED_STRIPPED_RUBBER_WOOD.get();
-	} // end getStrippedRubberWood()
+	public static final RegistryObject<LiquidBlock> SOLAR_LIGHT_LIQUID_BLOCK = BLOCKS.register("solar_light", () -> new LiquidBlock(YATMFluids.SOLAR_LIGHT, LIQUID_PROPERTIES));	
 
 	
 	
