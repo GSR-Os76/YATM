@@ -1,27 +1,21 @@
 package com.gsr.gsr_yatm.data_generation;
 
-import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
+import com.gsr.gsr_yatm.registry.YATMCreativeModTabs;
 import com.gsr.gsr_yatm.registry.YATMFluids;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.registry.YATMMobEffects;
 
-import net.minecraft.Util;
 import net.minecraft.data.PackOutput;
-import net.minecraft.world.inventory.AbstractContainerMenu;
-import net.minecraft.world.inventory.MenuType;
-import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraftforge.common.data.LanguageProvider;
-import net.minecraftforge.registries.ForgeRegistries;
 
-public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
+public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvider
 {
 
 	public YATMLanguageProviderUnitedStatesEnglish(PackOutput output)
 	{
-		super(output, YetAnotherTechMod.MODID, "en_us");
+		super(output, "en_us");
 	} // end constructor
 
 	
@@ -29,7 +23,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 	@Override
 	protected void addTranslations()
 	{
-		this.add("item_group.gsr_yatm.yatm_general", "Yet Another Tech Mod General");
+		this.add(YATMCreativeModTabs.YATM_GENERAL, "Yet Another Tech Mod General");
 		
 		this.add(YATMMenuTypes.BIOLER.get(), "Bioler");		
 		this.add(YATMMenuTypes.BOILER.get(), "Boiler");		
@@ -249,26 +243,5 @@ public class YATMLanguageProviderUnitedStatesEnglish extends LanguageProvider
 		this.add(Fluids.FLOWING_WATER, "Water");
 		this.add(Fluids.WATER, "Water");
 	} // end addMinecraftTranslations()
-	
-	
-	
-	// TODO \\ separate what's below out into another file, as it isn't language specific
-	
-	public void add(Fluid fluid, String name)
-	{
-		this.add(Util.makeDescriptionId("fluid", ForgeRegistries.FLUIDS.getKey(fluid)), name);
-	} // end add()
-	
-	public <T extends AbstractContainerMenu> void add(MenuType<T> menu, String name) 
-	{
-		this.add(getTitleNameFor(menu), name);
-	} // end add()
-	
-	
-	
-	public static <T extends AbstractContainerMenu> String getTitleNameFor(MenuType<T> menu) 
-	{
-		return Util.makeDescriptionId("menu.title", ForgeRegistries.MENU_TYPES.getKey(menu));//Component.translatable("menu.title." + YetAnotherTechMod.MODID + "." + menu.getId().getPath());
-	} // end getTitleNameFor()
 	
 } // end class

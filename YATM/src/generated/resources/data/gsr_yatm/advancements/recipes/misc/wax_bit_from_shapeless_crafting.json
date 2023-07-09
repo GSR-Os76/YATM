@@ -30,5 +30,6 @@
     "recipes": [
       "gsr_yatm:wax_bit_from_shapeless_crafting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

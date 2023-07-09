@@ -28,5 +28,6 @@
     "recipes": [
       "gsr_yatm:rubber_block_from_bar_shapeless_crafting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

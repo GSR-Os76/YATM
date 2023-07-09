@@ -30,5 +30,6 @@
     "recipes": [
       "gsr_yatm:rubber_scrap_from_ingot_shapeless_crafting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

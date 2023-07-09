@@ -30,5 +30,6 @@
     "recipes": [
       "gsr_yatm:rubber_bar_from_scrap_ball_smelting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

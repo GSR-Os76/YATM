@@ -2,13 +2,12 @@ package com.gsr.gsr_yatm.block.device.crystallizer;
 
 import com.gsr.gsr_yatm.block.device.DeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
-import com.gsr.gsr_yatm.data_generation.YATMLanguageProviderUnitedStatesEnglish;
+import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.VoxelShapeGetter;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.inventory.ContainerLevelAccess;
@@ -41,15 +40,14 @@ public class CrystallizerBlock extends DeviceBlock
 	public MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos)
 	{
 		CrystallizerBlockEntity blockEntity = (CrystallizerBlockEntity) level.getBlockEntity(blockPos);
-		return new SimpleMenuProvider((containerId, playerInventory, player) -> 
-		new CrystallizerMenu(
+		return new SimpleMenuProvider((containerId, playerInventory, player) -> new CrystallizerMenu(
 				containerId, 
 				playerInventory, 
 				ContainerLevelAccess.create(level, blockPos), 
 				blockState.getBlock(), 
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
-		Component.translatable(YATMLanguageProviderUnitedStatesEnglish.getTitleNameFor(YATMMenuTypes.CRYSTALLIZER.get())));
+		YATMLanguageProvider.getTranslatableTitleNameFor(YATMMenuTypes.CRYSTALLIZER.get()));
 	} // end getMenuProvider()
 	
 } // end class

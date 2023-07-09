@@ -28,5 +28,6 @@
     "recipes": [
       "gsr_yatm:copper_ingot_from_shapeless_crafting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

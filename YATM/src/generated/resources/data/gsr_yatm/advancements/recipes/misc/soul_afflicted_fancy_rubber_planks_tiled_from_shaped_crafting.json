@@ -35,5 +35,6 @@
     "recipes": [
       "gsr_yatm:soul_afflicted_fancy_rubber_planks_tiled_from_shaped_crafting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

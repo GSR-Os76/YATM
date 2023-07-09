@@ -2,13 +2,12 @@ package com.gsr.gsr_yatm.block.device.solar;
 
 import com.gsr.gsr_yatm.block.device.DeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
-import com.gsr.gsr_yatm.data_generation.YATMLanguageProviderUnitedStatesEnglish;
+import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.VoxelShapeGetter;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.inventory.ContainerLevelAccess;
@@ -50,10 +49,8 @@ public class SolarPanelBlock extends DeviceBlock
 				ContainerLevelAccess.create(level, blockPos), 
 				blockState.getBlock(),
 				blockEntity.getInventory(), 
-				blockEntity.getDataAccessor())
-				, 
-				Component.translatable(YATMLanguageProviderUnitedStatesEnglish.getTitleNameFor(YATMMenuTypes.SOLAR_PANEL.get()))
-				);
+				blockEntity.getDataAccessor()), 
+		YATMLanguageProvider.getTranslatableTitleNameFor(YATMMenuTypes.SOLAR_PANEL.get()));
 	} // end getMenuProvider()
 	
 } // end class

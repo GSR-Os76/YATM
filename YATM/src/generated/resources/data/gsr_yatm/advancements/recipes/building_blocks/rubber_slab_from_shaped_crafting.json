@@ -28,5 +28,6 @@
     "recipes": [
       "gsr_yatm:rubber_slab_from_shaped_crafting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

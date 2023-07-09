@@ -30,5 +30,6 @@
     "recipes": [
       "gsr_yatm:rubber_block_from_latex_smelting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

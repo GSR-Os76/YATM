@@ -31,5 +31,6 @@
     "recipes": [
       "gsr_yatm:large_copper_heat_sink_from_shape_crafting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -30,5 +30,6 @@
     "recipes": [
       "gsr_yatm:honeycomb_from_shapeless_crafting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

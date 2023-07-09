@@ -17,5 +17,6 @@
     [
       "has_device"
     ]
-  ]
+  ],
+  "sends_telemetry_event": true
 }

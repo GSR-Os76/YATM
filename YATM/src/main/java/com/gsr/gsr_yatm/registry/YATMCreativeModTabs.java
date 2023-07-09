@@ -4,9 +4,10 @@ import java.util.ArrayList;
 import java.util.function.Supplier;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 
 import net.minecraft.core.registries.Registries;
-import net.minecraft.network.chat.Component;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.CreativeModeTab;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -21,8 +22,9 @@ public class YATMCreativeModTabs
 	
 	
 	
-	// TODO, get name component dynamically and from a dedicated area
-	private static final RegistryObject<CreativeModeTab> YATM_GENERAL = CREATIVE_MOD_TABS.register("yatm_general", () -> CreativeModeTab.builder().title(Component.translatable("item_group." + YetAnotherTechMod.MODID + ".yatm_general")).icon(() -> new ItemStack(YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM_ITEM.get())).build());
+	private static final String YATM_GENERAL_ID_PATH = "yatm_general";
+	private static final ResourceLocation YATM_GENERAL_LOCATION = new ResourceLocation(YetAnotherTechMod.MODID, YATM_GENERAL_ID_PATH);
+	public static final RegistryObject<CreativeModeTab> YATM_GENERAL = CREATIVE_MOD_TABS.register(YATM_GENERAL_ID_PATH, () -> CreativeModeTab.builder().title(YATMLanguageProvider.getTranslatableTitleNameFor(YATM_GENERAL_LOCATION)).icon(() -> new ItemStack(YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM_ITEM.get())).build());
 	private static final ArrayList<Supplier<Item>> YATM_GENERAL_CREATIVE_TAB_QUEUE = new ArrayList<>();
 	
 	

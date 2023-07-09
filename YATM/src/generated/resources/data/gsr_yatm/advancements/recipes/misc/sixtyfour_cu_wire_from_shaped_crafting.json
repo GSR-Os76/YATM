@@ -28,5 +28,6 @@
     "recipes": [
       "gsr_yatm:sixtyfour_cu_wire_from_shaped_crafting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

@@ -35,5 +35,6 @@
     "recipes": [
       "gsr_yatm:fancy_rubber_planks_from_shaped_crafting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

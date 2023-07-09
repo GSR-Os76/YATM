@@ -30,5 +30,6 @@
     "recipes": [
       "gsr_yatm:stripped_rubber_wood_from_shaped_crafting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

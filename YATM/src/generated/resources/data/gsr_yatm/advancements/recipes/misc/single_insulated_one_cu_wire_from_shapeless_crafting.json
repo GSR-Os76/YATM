@@ -35,5 +35,6 @@
     "recipes": [
       "gsr_yatm:single_insulated_one_cu_wire_from_shapeless_crafting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }

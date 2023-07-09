@@ -2,13 +2,12 @@ package com.gsr.gsr_yatm.block.device.grinder;
 
 import com.gsr.gsr_yatm.block.device.DeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
-import com.gsr.gsr_yatm.data_generation.YATMLanguageProviderUnitedStatesEnglish;
+import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.VoxelShapeGetter;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.chat.Component;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.inventory.ContainerLevelAccess;
@@ -44,11 +43,14 @@ public class GrinderBlock extends DeviceBlock
 	public MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos)
 	{
 		GrinderBlockEntity ebe = (GrinderBlockEntity)level.getBlockEntity(blockPos);
-		return new SimpleMenuProvider((containerId, playerInv, player) -> new GrinderMenu(containerId, playerInv, ContainerLevelAccess.create(level, blockPos), blockState.getBlock(), ebe.getInventory(), ebe.getDataAccessor())
-				,
-				Component.translatable(YATMLanguageProviderUnitedStatesEnglish.getTitleNameFor(YATMMenuTypes.GRINDER.get()))
-				// Component.translatable("menu.title." + YetAnotherTechMod.MODID + "." + YATMMenuTypes.EXTRACTOR_MENU.getId().getPath())
-				);
+		return new SimpleMenuProvider((containerId, playerInv, player) -> new GrinderMenu(
+				containerId,
+				playerInv, 
+				ContainerLevelAccess.create(level, blockPos), 
+				blockState.getBlock(), 
+				ebe.getInventory(), 
+				ebe.getDataAccessor()),
+		YATMLanguageProvider.getTranslatableTitleNameFor(YATMMenuTypes.GRINDER.get()));
 	} // end getMenuProvider()
 	
 } // end class

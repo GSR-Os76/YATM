@@ -28,5 +28,6 @@
     "recipes": [
       "gsr_yatm:soul_afflicted_rubber_pressure_plate_from_shaped_crafting"
     ]
-  }
+  },
+  "sends_telemetry_event": false
 }
