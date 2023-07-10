@@ -2,6 +2,7 @@ package com.gsr.gsr_yatm.utilities;
 
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
+import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
@@ -13,7 +14,10 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class BlockShapes
 {
-	public static final VoxelShapeGetter CUBE = new VoxelShapeGetter() 
+	
+	
+	
+	public static final VoxelShapeProvider CUBE = new VoxelShapeProvider() 
 	{
 		private static final VoxelShape CUBE = Block.box(0, 0, 0, 16, 16, 16);
 
@@ -24,7 +28,7 @@ public class BlockShapes
 		} // end getShape()
 	};
 	
-	public static final VoxelShapeGetter BOILER_SHAPE = new VoxelShapeGetter()
+	public static final VoxelShapeProvider BOILER_SHAPE = new VoxelShapeProvider()
 	{		
 		@Override
 		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
@@ -44,7 +48,7 @@ public class BlockShapes
 
 	};
 
-	public static final VoxelShapeGetter SOLAR_PANEL = new VoxelShapeGetter() 
+	public static final VoxelShapeProvider SOLAR_PANEL = new VoxelShapeProvider() 
 	{
 		private static final VoxelShape SOLAR_PANEL = Block.box(0, 0, 0, 16, 2, 16);
 
@@ -54,10 +58,41 @@ public class BlockShapes
 			return SOLAR_PANEL;
 		} // end getShape()
 	};
+	
+	public static final VoxelShapeProvider SPINNING_WHEEL = new VoxelShapeProvider() 
+	{
+		private static final VoxelShape BODY_NORTH = Block.box(3, 0, 0, 10, 15, 15);
+		private static final VoxelShape HANDLE_NORTH = Block.box(10, 8, 11, 14, 12, 12);
+		
+		private static final VoxelShape BODY_EAST = Block.box(1, 0, 3, 16, 15, 10);
+		private static final VoxelShape HANDLE_EAST = Block.box(4, 8, 10, 5, 12, 14);
+		
+		private static final VoxelShape BODY_SOUTH = Block.box(6, 0, 1, 13, 15, 16);
+		private static final VoxelShape HANDLE_SOUTH = Block.box(2, 8, 4, 6, 12, 5);
+		
+		private static final VoxelShape BODY_WEST = Block.box(0, 0, 6, 15, 15, 13);
+		private static final VoxelShape HANDLE_WEST = Block.box(11, 8, 2, 12, 12, 6);
+		
+		@Override
+		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		{
+			VoxelShape ret = switch(blockState.getValue(SpinningWheelBlock.FACING)) 
+					{
+				case NORTH -> Shapes.or(BODY_NORTH, HANDLE_NORTH);
+				case EAST -> Shapes.or(BODY_EAST, HANDLE_EAST);
+				case SOUTH -> Shapes.or(BODY_SOUTH, HANDLE_SOUTH);
+				case WEST -> Shapes.or(BODY_WEST, HANDLE_WEST);
+				default -> throw new IllegalArgumentException("Unexpected value of: " + blockState.getValue(SpinningWheelBlock.FACING));
+					};
+			return ret;
+		} // end getShape()
+	};
 		
 	// maybe refine shape further
-	public static final VoxelShapeGetter STEEL_FLUID_CONDUIT_SHAPE = new VoxelShapeGetter()
+	public static final VoxelShapeProvider STEEL_FLUID_CONDUIT_SHAPE = new VoxelShapeProvider()
 	{		
+		
+		
 		@Override
 		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
 		{
@@ -73,7 +108,7 @@ public class BlockShapes
 
 			if (blockState.getValue(IConduit.NORTH))
 			{
-				shape = Shapes.or(shape, branchShapeNorth);// HopperBlock h;
+				shape = Shapes.or(shape, branchShapeNorth);
 			}
 			if (blockState.getValue(IConduit.SOUTH))
 			{
@@ -101,7 +136,7 @@ public class BlockShapes
 
 	};
 
-	public static final VoxelShapeGetter WIRE_SHAPE = new VoxelShapeGetter()
+	public static final VoxelShapeProvider WIRE_SHAPE = new VoxelShapeProvider()
 	{
 		@Override
 		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
@@ -147,7 +182,7 @@ public class BlockShapes
 
 	};
 
-	public static final VoxelShapeGetter INSULATED_WIRE_SHAPE = new VoxelShapeGetter()
+	public static final VoxelShapeProvider INSULATED_WIRE_SHAPE = new VoxelShapeProvider()
 	{
 		@Override
 		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
@@ -192,4 +227,16 @@ public class BlockShapes
 
 	};
 
+	
+	// nevermind unless i'm missing getting the vertices
+//	public static VoxelShape clockwiseRotationAboutYLookingDown(VoxelShape shape) 
+//	{
+//		return clockwiseRotationAboutYLookingDown(shape, new Vec3(8d, 8d, 8d));
+//	} // end clockwiseRotationAboutYLookingDown()
+//	
+//	public static VoxelShape clockwiseRotationAboutYLookingDown(VoxelShape shape, Vec3 pivot) 
+//	{
+//		shape.forAllBoxes(null);
+//	} // end clockwiseRotationAboutYLookingDown()
+	
 } // end class

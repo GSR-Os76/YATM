@@ -1,4 +1,4 @@
-// 1.20.1	2023-07-09T13:03:20.0564706	Item Models: gsr_yatm
+// 1.20.1	2023-07-09T17:02:33.2025593	Item Models: gsr_yatm
 e7540048ebe593ee6ab6323cc2f5a0bd0d8ae1cb assets/gsr_yatm/models/item/bio_bottle.json
 7c74b3cad82baaaba12c4ebb84f0b7ef417239e6 assets/gsr_yatm/models/item/bio_bucket.json
 938d8b0ab1223b09a189deb829870c72c34a472c assets/gsr_yatm/models/item/chorus_bio_bottle.json
@@ -6,6 +6,8 @@ f6a30b3a697de15d3500b70b6ba416fac0af2251 assets/gsr_yatm/models/item/chorus_bio_
 0d66ba15a4235713326dcbcd57771aa5626f31a0 assets/gsr_yatm/models/item/chorus_bottle.json
 93359bca785e8d185d474a22e759f219afad6d63 assets/gsr_yatm/models/item/chorus_bucket.json
 810dbbc752675676f0c7ecb9c2404ce607c708c0 assets/gsr_yatm/models/item/copper_nugget.json
+1bd450dd2572b9b2d59dc14a6b3093238ee8e9d1 assets/gsr_yatm/models/item/cotton_bolls.json
+10d337aee40eaacc52c6bd739483e850a80876ec assets/gsr_yatm/models/item/cotton_seeds.json
 91eead2815d19e357eab933d2fa5e7723b918850 assets/gsr_yatm/models/item/creative_fluid_source.json
 921585145831110f3e82cabd5136c114439da91f assets/gsr_yatm/models/item/creative_fluid_storer.json
 7a0fe11fc88a632fc358b9370641588c1416d4dc assets/gsr_yatm/models/item/creative_fluid_void.json
@@ -31,6 +33,7 @@ a2a001a07e39d290aa114078362ced25ff7f5fdb assets/gsr_yatm/models/item/netherite_n
 b4d1cdb7c5d30ced158338cd1db4a1e2ba09a926 assets/gsr_yatm/models/item/one_cu_current_breaker_component.json
 ddd16583f6e4670f633335bd33566939894562d8 assets/gsr_yatm/models/item/one_cu_current_fuse_component.json
 bdb5d7d4b546adf948735489ecee23f9ce5bb90d assets/gsr_yatm/models/item/one_cu_current_regulator_component.json
+355d4eb859be03cc27e5f02ee9d4dddce2c8a8fc assets/gsr_yatm/models/item/raw_cotton_fiber.json
 065ad354f79e8893e9513e443714d64c374c9536 assets/gsr_yatm/models/item/rubber_bar.json
 a9340f96d51672a0b77fb4bda40219f126356727 assets/gsr_yatm/models/item/rubber_scrap.json
 f9bc330e7a9a7a93ae7a2f87d0a7d37c47bbd604 assets/gsr_yatm/models/item/rubber_scrap_ball.json

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "w": {
+      "item": "gsr_yatm:raw_cotton_fiber"
+    }
+  },
+  "pattern": [
+    "   ",
+    "www",
+    "   "
+  ],
+  "result": {
+    "count": 3,
+    "item": "minecraft:string"
+  },
+  "show_notification": true
+}

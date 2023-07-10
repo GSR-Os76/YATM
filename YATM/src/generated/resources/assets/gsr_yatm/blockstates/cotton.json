@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "gsr_yatm:block/cotton_one"
+    },
+    "age=1": {
+      "model": "gsr_yatm:block/cotton_one"
+    },
+    "age=2": {
+      "model": "gsr_yatm:block/cotton_two"
+    },
+    "age=3": {
+      "model": "gsr_yatm:block/cotton_two"
+    },
+    "age=4": {
+      "model": "gsr_yatm:block/cotton_three"
+    },
+    "age=5": {
+      "model": "gsr_yatm:block/cotton_three"
+    },
+    "age=6": {
+      "model": "gsr_yatm:block/cotton_four"
+    },
+    "age=7": {
+      "model": "gsr_yatm:block/cotton_four"
+    }
+  }
+}

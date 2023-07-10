@@ -1,0 +1,12 @@
+{
+  "type": "gsr_yatm:spinning",
+  "input": {
+    "ingedient": {
+      "tag": "minecraft:wool_carpets"
+    }
+  },
+  "result": {
+    "count": 2,
+    "item": "minecraft:string"
+  }
+}

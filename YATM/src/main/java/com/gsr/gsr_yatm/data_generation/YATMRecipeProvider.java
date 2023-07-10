@@ -11,6 +11,7 @@ import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizationRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.extracting.ExtractionRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.extruding.ExtrusionRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipeBuilder;
+import com.gsr.gsr_yatm.recipe.spinning.SpinningRecipeBuilder;
 import com.gsr.gsr_yatm.registry.YATMFluids;
 import com.gsr.gsr_yatm.registry.YATMItems;
 
@@ -22,6 +23,7 @@ import net.minecraft.data.recipes.RecipeProvider;
 import net.minecraft.data.recipes.ShapedRecipeBuilder;
 import net.minecraft.data.recipes.ShapelessRecipeBuilder;
 import net.minecraft.data.recipes.SimpleCookingRecipeBuilder;
+import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -114,10 +116,13 @@ public class YATMRecipeProvider extends RecipeProvider
 		
 		
 		
+		// TODO, add other chorus plant parts in too.
 		this.addBiolingRecipe(writer, Items.CHORUS_FRUIT, new FluidStack(YATMFluids.CHORUS_BIO.get(), 200), 2, 20, YetAnotherTechMod.MODID + ":chorus_biofluid_from_chorus_fruit_bioling");
 		this.addBiolingRecipe(writer, Items.POISONOUS_POTATO, new FluidStack(YATMFluids.BIO.get(), 200), 2, 20, YetAnotherTechMod.MODID + ":biofluid_from_poisonous_potato_bioling");
-		// this is a silly way to accomplish this effect, and doesn't accomplish this effect
-		// ComposterBlock.COMPOSTABLES.forEach((item, level) -> this.addBiolingRecipe(writer, item.asItem(), new FluidStack(YATMFluids.BIO.get(), (int)(level * 100f)), 2, (int)(level * 10f), YetAnotherTechMod.MODID + ":biofluid_from_" + ForgeRegistries.ITEMS.getKey(item.asItem()).getNamespace() + "_" + ForgeRegistries.ITEMS.getKey(item.asItem()).getPath() + "_bioling"));
+		
+		
+		
+		this.addCottonRecipes(writer);
 		
 	} // end buildRecipes()
 	
@@ -210,7 +215,33 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addExtrusion(writer, YATMItems.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":fourthousandnintysix_cu_wire_from_insulated_wire_extrusion");
 	} // end addWireRecipes()
 
-	
+	private void addCottonRecipes(Consumer<FinishedRecipe> writer) 
+	{
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.SPINNING_WHEEL_ITEM.get(), 1)
+		.pattern(" sw")
+		.pattern("www")
+		.pattern("w w")
+		.define('w', ItemTags.PLANKS)
+		.define('s', Items.STRING)
+		.unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(ItemTags.PLANKS).build()))
+		.save(writer, YetAnotherTechMod.MODID + ":spinning_wheel_shaped_crafting");
+		
+		
+		this.addOneToX(writer, YATMItems.COTTON_BOLLS.get(), YATMItems.RAW_COTTON_FIBER.get(), 1, YetAnotherTechMod.MODID + ":raw_cotton_fiber_from_cotton_bolls_shapeless_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.STRING, 3)
+		.pattern("   ")
+		.pattern("www")
+		.pattern("   ")
+		.define('w', YATMItems.RAW_COTTON_FIBER.get())
+		.unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(Items.STRING).build()))
+		.save(writer, YetAnotherTechMod.MODID + ":string_from_raw_cotton_fiber_shaped_crafting");
+		
+		this.addSpinningRecipe(writer, YATMItems.RAW_COTTON_FIBER.get(), new ItemStack(Items.STRING, 2), YetAnotherTechMod.MODID + ":string_from_raw_cotton_fiber_spinning");
+		this.addSpinningRecipe(writer, ItemTags.WOOL, new ItemStack(Items.STRING, 4), YetAnotherTechMod.MODID + ":string_from_wool_spinning");
+		/*TODO, perhaps make this better proportional to the input cost, or perhaps make a cheap way to make carpets so we can pretend giving two string is appropriate and not just because 8 doesn't divide without remainder into 3*/
+		this.addSpinningRecipe(writer, ItemTags.WOOL_CARPETS, new ItemStack(Items.STRING, 2), YetAnotherTechMod.MODID + ":string_from_wool_carpet_spinning");
+
+	}
 	
 
 
@@ -540,5 +571,26 @@ public class YATMRecipeProvider extends RecipeProvider
 		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(input).build()))
 		.save(writer, key);
 	} // end addGrindRecipe()
+	
+	
+	
+	private void addSpinningRecipe(Consumer<FinishedRecipe> writer, Item input, ItemStack result, String key) 
+	{
+		new SpinningRecipeBuilder()
+		.input(Ingredient.of(input))
+		.result(result)
+		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(input).build()))
+		.save(writer, key);
+	} // end addGrindRecipe()
+	
+	private void addSpinningRecipe(Consumer<FinishedRecipe> writer, TagKey<Item> input, ItemStack result, String key) 
+	{
+		new SpinningRecipeBuilder()
+		.input(Ingredient.of(input))
+		.result(result)
+		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(input).build()))
+		.save(writer, key);
+	} // end addGrindRecipe()
+	
 	
 } // end class

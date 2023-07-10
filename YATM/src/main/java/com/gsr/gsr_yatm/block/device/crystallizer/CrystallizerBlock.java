@@ -5,7 +5,7 @@ import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.VoxelShapeGetter;
+import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.MenuProvider;
@@ -21,7 +21,7 @@ public class CrystallizerBlock extends DeviceBlock
 	
 	
 	
-	public CrystallizerBlock(Properties properties, VoxelShapeGetter shape, int tankCapacities, int maximumFluidTransferRate)
+	public CrystallizerBlock(Properties properties, VoxelShapeProvider shape, int tankCapacities, int maximumFluidTransferRate)
 	{
 		super(properties, YATMBlockEntityTypes.CRYSTALLIZER::get, shape);
 		this.m_tankCapacities = tankCapacities;

@@ -14,6 +14,8 @@ import com.gsr.gsr_yatm.recipe.extruding.ExtrusionRecipe;
 import com.gsr.gsr_yatm.recipe.extruding.ExtrusionRecipeSerializer;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipe;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipeSerializer;
+import com.gsr.gsr_yatm.recipe.spinning.SpinningRecipe;
+import com.gsr.gsr_yatm.recipe.spinning.SpinningRecipeSerializer;
 
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.registries.DeferredRegister;
@@ -25,6 +27,8 @@ public class YATMRecipeSerializers
 	public static final DeferredRegister<RecipeSerializer<?>> RECIPE_SERIALIZERS = DeferredRegister.create(ForgeRegistries.RECIPE_SERIALIZERS, YetAnotherTechMod.MODID);
 	
 	
+	
+	public static final RegistryObject<RecipeSerializer<SpinningRecipe>> SPINNING = RECIPE_SERIALIZERS.register("spinning", () -> new SpinningRecipeSerializer());
 	
 	public static final RegistryObject<RecipeSerializer<BiolingRecipe>> BIOLING = RECIPE_SERIALIZERS.register("bioling", () -> new BiolingRecipeSerializer());
 	public static final RegistryObject<RecipeSerializer<BoilingRecipe>> BOILING = RECIPE_SERIALIZERS.register("boiling", () -> new BoilingRecipeSerializer());

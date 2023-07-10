@@ -67,7 +67,7 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.STEEL_WIRE_DIE.get());
 		this.basicItem(YATMItems.IRON_WIRE_DIE.get());
 		
-		
+		// wheel goes here
 		
 		this.basicItem(YATMItems.SILVER_INGOT.get());
 		this.basicItem(YATMItems.STEEL_INGOT.get());
@@ -90,9 +90,10 @@ public class YATMItemModelProvider extends ItemModelProvider
 		
 		this.basicItem(YATMItems.WOOD_PULP.get());
 		
-		// 
-		// LEAF_MULCH
-		
+		this.basicItem(YATMItems.COTTON_BOLLS.get());
+		this.basicItem(YATMItems.RAW_COTTON_FIBER.get());
+		this.basicItem(YATMItems.COTTON_SEEDS.get());
+
 
 		
 		this.basicItem(YATMItems.CREATIVE_FLUID_VOID.get());

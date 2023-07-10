@@ -5,7 +5,7 @@ import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.VoxelShapeGetter;
+import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.MenuProvider;
@@ -23,7 +23,7 @@ public class GrinderBlock extends DeviceBlock
 	
 	
 	
-	public GrinderBlock(Properties properties, VoxelShapeGetter shape, int currentCapacity, int maxCurrent)
+	public GrinderBlock(Properties properties, VoxelShapeProvider shape, int currentCapacity, int maxCurrent)
 	{
 		super(properties, YATMBlockEntityTypes.GRINDER::get, shape);
 		// this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));

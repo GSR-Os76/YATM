@@ -15,6 +15,7 @@ import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlock;
+import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.tree.SelfLayeringSaplingBlock;
 import com.gsr.gsr_yatm.block.plant.tree.StrippedSapLogBlock;
@@ -27,6 +28,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.ButtonBlock;
+import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
@@ -53,14 +55,18 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile DEFAULT_ITEM_MODEL_PARENT = new ModelFile.UncheckedModelFile("minecraft:item/generated");
 	
 	public static final ModelFile CARPET = new ModelFile.UncheckedModelFile("minecraft:block/carpet");
+	public static final ModelFile CROP_MODEL = new ModelFile.UncheckedModelFile("minecraft:block/crop");
 	public static final ModelFile FLOWER_POT_CROSS = new ModelFile.UncheckedModelFile("minecraft:block/flower_pot_cross");
 	public static final ModelFile MANGROVE_ROOTS = new ModelFile.UncheckedModelFile("minecraft:block/mangrove_roots");
+	
 	
 	
 	public static final ModelFile SMALL_SHELF_FUNGUS = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/shelf_fungi_small"));
 	public static final ModelFile MEDIUM_SHELF_FUNGUS = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/shelf_fungi_medium"));
 	public static final ModelFile LARGE_SHELF_FUNGUS = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/shelf_fungi_large"));
-
+	
+	public static final ModelFile SPINNING_WHEEL_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/spinning_wheel"));
+	
 	public static final ModelFile LARGE_HEAT_SINK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/large_heat_sink"));
 	
 	public static final ModelFile BIOLER_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/bioler"));
@@ -97,11 +103,12 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addRubberSet();
 		this.addSoulAfflictedRubberSet();
 		this.createShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get());
+		this.createFourStageCrop(YATMBlocks.COTTON.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_germinating"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_flowering"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_maturing"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_mature"));
 		
 		this.createAllBlock(YATMBlocks.RUBBER_BLOCK.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rubber_block"));
 		this.createAllBlock(YATMBlocks.ROOTED_SOUL_SOIL.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rooted_soul_soil"));
 		
-		
+		this.createSpinningWheel(YATMBlocks.SPINNING_WHEEL.get(), YATMItems.SPINNING_WHEEL_ITEM.get());
 		this.addHeatSinks();
 		this.addBiolers();
 		this.addBoilers();
@@ -112,6 +119,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addConduits();
 	} // end registerStatesAndModels
 
+	
+	
 	private void addRubberSet() 
 	{
 		ResourceLocation meristemTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_meristem");
@@ -235,6 +244,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	private void addSolarPanels() 
 	{
+		// TODO, update face textures
 		this.createHorizontalFacingTopBlock(YATMBlocks.CRUDE_BATTERY_SOLAR_PANEL.get(), YATMItems.CRUDE_BATTERY_SOLAR_PANEL_ITEM.get(),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/crude_solar_panel_sides"),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/crude_solar_panel_top"));
@@ -330,6 +340,37 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.getVariantBuilder(block).forAllStates((bs) -> 
 		{
 			return new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(BatterySolarPanelBlock.FACING)).x, rotationForDirectionFromNorth(bs.getValue(BatterySolarPanelBlock.FACING)).y, false) };
+		});
+	} // end createSolarPanel()
+	
+	private void createFourStageCrop(CropBlock block, ResourceLocation textureOne, ResourceLocation textureTwo, ResourceLocation textureThree, ResourceLocation textureFour) 
+	{
+		String name = getModelLocationNameFor(block);
+		String nameOne = name + "_one";
+		String nameTwo = name + "_two";
+		String nameThree = name + "_three";
+		String nameFour = name + "_four";
+		this.models().getBuilder(nameOne).parent(CROP_MODEL).texture("crop", textureOne).renderType(CUTOUT_RENDER_TYPE);
+		this.models().getBuilder(nameTwo).parent(CROP_MODEL).texture("crop", textureTwo).renderType(CUTOUT_RENDER_TYPE);
+		this.models().getBuilder(nameThree).parent(CROP_MODEL).texture("crop", textureThree).renderType(CUTOUT_RENDER_TYPE);
+		this.models().getBuilder(nameFour).parent(CROP_MODEL).texture("crop", textureFour).renderType(CUTOUT_RENDER_TYPE);
+		ModelFile modelOne = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameOne));
+		ModelFile modelTwo = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameTwo));
+		ModelFile modelThree = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameThree));
+		ModelFile modelFour = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameFour));
+		
+		this.getVariantBuilder(block).forAllStates((bs) -> forCrop(bs, modelOne, modelOne, modelTwo, modelTwo, modelThree, modelThree, modelFour, modelFour));
+	} // end createCrop()
+	
+	private void createSpinningWheel(SpinningWheelBlock block, Item item) 
+	{
+		// String name = getModelLocationNameFor(block);
+		//this.models().getBuilder(name).parent(SPINNING_WHEEL_MODEL);//.texture("top", topTexture).texture("side", sideTexture);
+		//ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
+		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(SPINNING_WHEEL_MODEL);
+		this.getVariantBuilder(block).forAllStates((bs) -> 
+		{
+			return new ConfiguredModel[] { new ConfiguredModel(SPINNING_WHEEL_MODEL, rotationForDirectionFromNorth(bs.getValue(SpinningWheelBlock.FACING)).x, rotationForDirectionFromNorth(bs.getValue(SpinningWheelBlock.FACING)).y, false) };
 		});
 	} // end createSolarPanel()
 	
@@ -640,6 +681,25 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	} // end addConduit()
 
 	
+	
+	
+	
+	private static ConfiguredModel[] forCrop(BlockState bs, ModelFile ageZeroModel, ModelFile ageOneModel, ModelFile ageTwoModel, ModelFile ageThreeModel, ModelFile ageFourModel, ModelFile ageFiveModel, ModelFile ageSixModel, ModelFile ageSevenModel)
+	{
+		ModelFile model = switch(bs.getValue(CropBlock.AGE)) 
+		{
+			case 0 -> ageZeroModel;
+			case 1 -> ageOneModel;
+			case 2 -> ageTwoModel;
+			case 3 -> ageThreeModel;
+			case 4 -> ageFourModel;
+			case 5 -> ageFiveModel;
+			case 6 -> ageSixModel;
+			case 7 -> ageSevenModel;
+			default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(PhantasmalShelfFungiBlock.GROWTH_STAGE));
+		};
+		return new ConfiguredModel[] {new ConfiguredModel(model)};
+	} // end forCrop()
 	
 	private static ConfiguredModel[] forShelfFungi(BlockState bs, ModelFile smallModel, ModelFile mediumModel, ModelFile largeModel)
 	{

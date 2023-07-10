@@ -7,7 +7,7 @@ import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.VoxelShapeGetter;
+import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.MenuProvider;
@@ -29,7 +29,7 @@ public class FurnacePlusBlock extends DeviceBlock
 	
 
 	
-	public FurnacePlusBlock(Properties properties, VoxelShapeGetter shape, DeviceTierConstants constants)
+	public FurnacePlusBlock(Properties properties, VoxelShapeProvider shape, DeviceTierConstants constants)
 	{
 		super(properties, YATMBlockEntityTypes.FURNACE_PLUS::get, shape);
 		

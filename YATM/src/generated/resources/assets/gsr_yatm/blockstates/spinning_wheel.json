@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "gsr_yatm:block/spinning_wheel",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "gsr_yatm:block/spinning_wheel"
+    },
+    "facing=south": {
+      "model": "gsr_yatm:block/spinning_wheel",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "gsr_yatm:block/spinning_wheel",
+      "y": 270
+    }
+  }
+}

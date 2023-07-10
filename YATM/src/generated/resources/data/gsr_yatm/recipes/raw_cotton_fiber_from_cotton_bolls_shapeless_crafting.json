@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gsr_yatm:cotton_bolls"
+    }
+  ],
+  "result": {
+    "item": "gsr_yatm:raw_cotton_fiber"
+  }
+}

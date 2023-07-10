@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "s": {
+      "item": "minecraft:string"
+    },
+    "w": {
+      "tag": "minecraft:planks"
+    }
+  },
+  "pattern": [
+    " sw",
+    "www",
+    "w w"
+  ],
+  "result": {
+    "item": "gsr_yatm:spinning_wheel"
+  },
+  "show_notification": true
+}

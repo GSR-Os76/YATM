@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Function;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -154,6 +155,7 @@ public class RecipeUtilities
 	@SuppressWarnings("unchecked")
 	public static <C extends Container, T extends Recipe<C>> T loadRecipe(String recipeIdentifierToMatch, Level level, RecipeType<T> type)
 	{
+		// TODO, make more like, or possible just call to, firstRecipeMatching
 		for (T r : level.getRecipeManager().getAllRecipesFor(type))
 		{
 			if (r.getId().toString().equals(recipeIdentifierToMatch))
@@ -179,6 +181,21 @@ public class RecipeUtilities
 		return null;
 	} // end loadRecipe()
 
+	public static <C extends Container, T extends Recipe<C>> T firstRecipeMatching(Level level, RecipeType<T> type, Function<T, Boolean> predicate)
+	{
+		Enumeration<T> recipes = getRecipes(level, type);
+		while(recipes.hasMoreElements()) 
+		{
+			T r = recipes.nextElement();
+			if(predicate.apply(r)) 
+			{
+				return r;
+			}
+		}
+		
+		return null;
+	} // end firstRecipeMatching()
+	
 	
 	
 	public static <C extends Container, T extends Recipe<C>> Enumeration<T> getRecipes(Level level, RecipeType<T> type)

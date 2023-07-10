@@ -16,6 +16,7 @@ import com.gsr.gsr_yatm.item.component.fluid.FluidExchangerItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.registries.DeferredRegister;
@@ -89,6 +90,9 @@ public class YATMItems
 	// add their ingots from alloying them with molten netherite
 	// for these at least tools I feel are worthy to make
 	
+	// TODO, possibly add spools of colored thread for trimming leather armor all different ways
+	// TODO, check if leather armor's trimmable in vanilla at all
+	public static final RegistryObject<BlockItem> SPINNING_WHEEL_ITEM = generalTabEnqueue(ITEMS.register("spinning_wheel", () -> new BlockItem(YATMBlocks.SPINNING_WHEEL.get(), new Item.Properties())));
 	
 	public static final RegistryObject<BlockItem> LARGE_COPPER_HEAT_SINK_ITEM = generalTabEnqueue(ITEMS.register("large_copper_heat_sink", () -> new BlockItem(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), new Item.Properties())));
 
@@ -185,9 +189,7 @@ public class YATMItems
 
 	public static final RegistryObject<Item> IRON_WIRE_DIE = generalTabEnqueue(ITEMS.register("iron_wire_die", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> STEEL_WIRE_DIE = generalTabEnqueue(ITEMS.register("steel_wire_die", () -> new Item(new Item.Properties())));
-	
-	
-	
+		
 	public static final RegistryObject<Item> SILVER_INGOT = generalTabEnqueue(ITEMS.register("silver_ingot", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> STEEL_INGOT = generalTabEnqueue(ITEMS.register("steel_ingot", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> RUBBER_BAR = generalTabEnqueue(ITEMS.register("rubber_bar", () -> new Item(new Item.Properties())));
@@ -201,6 +203,10 @@ public class YATMItems
 	
 	public static final RegistryObject<Item> WOOD_PULP = generalTabEnqueue(ITEMS.register("wood_pulp", () -> new Item(new Item.Properties())));
 	
+	public static final RegistryObject<ItemNameBlockItem> COTTON_SEEDS = generalTabEnqueue(ITEMS.register("cotton_seeds", () -> new ItemNameBlockItem(YATMBlocks.COTTON.get(), new Item.Properties())));
+	public static final RegistryObject<Item> COTTON_BOLLS = generalTabEnqueue(ITEMS.register("cotton_bolls", () -> new Item(new Item.Properties().craftRemainder(YATMItems.COTTON_SEEDS.get()))));
+	public static final RegistryObject<Item> RAW_COTTON_FIBER = generalTabEnqueue(ITEMS.register("raw_cotton_fiber", () -> new Item(new Item.Properties())));
+		
 	public static final RegistryObject<Item> STAR_SEED = generalTabEnqueue(ITEMS.register("star_seed", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> STAR_GERMLING = generalTabEnqueue(ITEMS.register("star_germling", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> STAR_SPROUT = generalTabEnqueue(ITEMS.register("star_sprout", () -> new Item(new Item.Properties())));

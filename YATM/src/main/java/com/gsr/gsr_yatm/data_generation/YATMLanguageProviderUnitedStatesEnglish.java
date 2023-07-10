@@ -91,12 +91,19 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), "Phantasmal Shelf Fungi");
 		
+		this.add(YATMBlocks.COTTON.get(), "Cotton");
+		
+		
+		
+		
 		this.add(YATMBlocks.RUBBER_BLOCK.get(), "Rubber Block");
 		this.add(YATMBlocks.ROOTED_SOUL_SOIL.get(), "Rooted Soul Soil");
 		
 		
+		this.add(YATMBlocks.SPINNING_WHEEL.get(), "Spinning Wheel");
 		
 		this.add(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), "Large Copper Heat Sink");
+		
 		this.add(YATMBlocks.STEEL_BIOLER.get(), "Steel Bioler");
 		this.add(YATMBlocks.STEEL_BOILER.get(), "Steel Boiler");
 		this.add(YATMBlocks.STEEL_BOILER_TANK.get(), "Steel Boiler Tank");
@@ -196,12 +203,16 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.WAX_BIT_ITEM.get(), "Wax Bit");
 		this.add(YATMItems.RUBBER_SCRAP.get(), "Rubber Scraps");
 		
+		this.add(YATMItems.WOOD_PULP.get(), "Wood Pulp");
+		
+		this.add(YATMItems.COTTON_SEEDS.get(), "Cotton Seeds");
+		this.add(YATMItems.COTTON_BOLLS.get(), "Cotton Bolls");
+		this.add(YATMItems.RAW_COTTON_FIBER.get(), "Raw Cotton Fiber");
+		
 		this.add(YATMItems.STAR_SEED.get(), "Star Seed");
 		this.add(YATMItems.STAR_GERMLING.get(), "Start Germling");
 		this.add(YATMItems.STAR_SPROUT.get(), "Star Sprout");
 		this.add(YATMItems.STAR_ADOLESCENT.get(), "Star Adolescent");
-		
-		this.add(YATMItems.WOOD_PULP.get(), "Wood Pulp");
 		
 		this.add(YATMItems.CREATIVE_FLUID_SOURCE.get(), "Creative Fluid Source");
 		this.add(YATMItems.CREATIVE_FLUID_STORER.get(), "Creative Fluid Storer");

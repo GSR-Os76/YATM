@@ -2,7 +2,7 @@ package com.gsr.gsr_yatm.block.conduit;
 
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
-import com.gsr.gsr_yatm.utilities.VoxelShapeGetter;
+import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -21,12 +21,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class CurrentConduitBlock extends Block implements EntityBlock, IConduitBlock<ICurrentHandler>
 {
 
-	private final VoxelShapeGetter m_shape;
+	private final VoxelShapeProvider m_shape;
 	
 	private final ConductorProperties m_conductorProperties;
 
 
-	public CurrentConduitBlock(Properties properties, VoxelShapeGetter shape, ConductorProperties conductorProperties)
+	public CurrentConduitBlock(Properties properties, VoxelShapeProvider shape, ConductorProperties conductorProperties)
 	{
 		super(properties);
 		this.m_shape = shape;

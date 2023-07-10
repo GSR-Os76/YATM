@@ -1,0 +1,12 @@
+{
+  "type": "gsr_yatm:spinning",
+  "input": {
+    "ingedient": {
+      "item": "gsr_yatm:raw_cotton_fiber"
+    }
+  },
+  "result": {
+    "count": 2,
+    "item": "minecraft:string"
+  }
+}

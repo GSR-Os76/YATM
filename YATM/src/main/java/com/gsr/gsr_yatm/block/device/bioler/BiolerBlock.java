@@ -5,7 +5,7 @@ import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.VoxelShapeGetter;
+import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.MenuProvider;
@@ -23,7 +23,7 @@ public class BiolerBlock extends DeviceBlock
 	
 	
 	
-	public BiolerBlock(Properties properties, VoxelShapeGetter shape, int currentCapacity, int maxCurrent, int fluidCapacity, int maxFluidTransferRate)
+	public BiolerBlock(Properties properties, VoxelShapeProvider shape, int currentCapacity, int maxCurrent, int fluidCapacity, int maxFluidTransferRate)
 	{
 		super(properties, YATMBlockEntityTypes.BIOLER::get, shape);
 		this.m_currentCapacity = currentCapacity;

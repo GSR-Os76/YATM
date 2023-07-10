@@ -9,6 +9,7 @@ import com.gsr.gsr_yatm.recipe.extracting.ExtractionRecipe;
 import com.gsr.gsr_yatm.recipe.extruding.ExtrusionRecipe;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipe;
 import com.gsr.gsr_yatm.recipe.smelting.WrappedSmeltingRecipe;
+import com.gsr.gsr_yatm.recipe.spinning.SpinningRecipe;
 
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -20,6 +21,8 @@ public class YATMRecipeTypes
 	public static final DeferredRegister<RecipeType<?>> RECIPE_TYPES = DeferredRegister.create(ForgeRegistries.RECIPE_TYPES, YetAnotherTechMod.MODID);
 	
 	
+	
+	public static final RegistryObject<RecipeType<SpinningRecipe>> SPINNING = RECIPE_TYPES.register("spinning", () -> new RecipeType<SpinningRecipe>(){});
 	
 	public static final RegistryObject<RecipeType<BiolingRecipe>> BIOLING = RECIPE_TYPES.register("bioling", () -> new RecipeType<BiolingRecipe>(){});
 	public static final RegistryObject<RecipeType<BoilingRecipe>> BOILING = RECIPE_TYPES.register("boiling", () -> new RecipeType<BoilingRecipe>(){});
