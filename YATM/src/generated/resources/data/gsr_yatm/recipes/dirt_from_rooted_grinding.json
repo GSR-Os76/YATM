@@ -1,0 +1,14 @@
+{
+  "type": "gsr_yatm:grinding",
+  "cost": 2,
+  "input": {
+    "ingedient": {
+      "item": "minecraft:rooted_dirt"
+    }
+  },
+  "result": {
+    "count": 1,
+    "item": "minecraft:dirt"
+  },
+  "time": 40
+}

@@ -16,8 +16,9 @@ import net.minecraftforge.common.util.LazyOptional;
 public class FuseItemStack extends DamagableItemStack implements ICurrentHandler, ICapabilityProvider//, IDamageableRepairableItemStack
 {
 	private static final String FORWARDING_BUFFER_TAG_NAME = "fBuffer";
+	private static final String RECIEVE_MEMORY_TAG_NAME = "memory";
 
-	private int m_overloadThreshold;
+	private final int m_overloadThreshold;
 
 
 	
@@ -42,6 +43,16 @@ public class FuseItemStack extends DamagableItemStack implements ICurrentHandler
 		}
 		return tag.getInt(FORWARDING_BUFFER_TAG_NAME);
 	} // end getForwardingBuffer()
+	
+	private int getMemory()
+	{
+		CompoundTag tag = this.m_container.getTag();
+		if (tag == null || !tag.contains(RECIEVE_MEMORY_TAG_NAME))
+		{
+			return 0;
+		}
+		return tag.getInt(RECIEVE_MEMORY_TAG_NAME);
+	} // end getMemory()
 
 	private int peakForwardingBuffer()
 	{
@@ -59,15 +70,28 @@ public class FuseItemStack extends DamagableItemStack implements ICurrentHandler
 		this.m_container.getTag().putInt(FORWARDING_BUFFER_TAG_NAME, value);
 	} // end setForwardingBuffer()
 	
+	private void setMemory(int value)
+	{
+		if (!m_container.hasTag())
+		{
+			m_container.setTag(new CompoundTag());
+		}
+		this.m_container.getTag().putInt(RECIEVE_MEMORY_TAG_NAME, value);
+	} // end setMemory()
+	
+	
+	
 	private int setBuffGetDifference(int value, boolean simulated)
 	{
 		int initial = this.peakForwardingBuffer();
+		int bufferAcceptable = Math.min(value, this.m_overloadThreshold);
 		if(!simulated) 
 		{
-			this.setForwardingBuffer(value);
+			this.setForwardingBuffer(bufferAcceptable);
+			this.setMemory(value);
 		}
 
-		return value - initial;
+		return bufferAcceptable - initial;
 	} // end setForwardingBuffer()
 	
 
@@ -92,7 +116,7 @@ public class FuseItemStack extends DamagableItemStack implements ICurrentHandler
 		if (!simulate)
 		{
 			this.setForwardingBuffer(this.getForwardingBuffer() - returnAmount);
-			if (returnAmount > this.m_overloadThreshold)
+			if (amount > this.m_overloadThreshold && this.getMemory() > this.m_overloadThreshold)
 			{
 				this.damageComponent();
 			}

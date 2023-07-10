@@ -1,0 +1,14 @@
+{
+  "type": "gsr_yatm:grinding",
+  "cost": 2,
+  "input": {
+    "ingedient": {
+      "item": "gsr_yatm:rooted_soul_soil"
+    }
+  },
+  "result": {
+    "count": 1,
+    "item": "minecraft:soul_soil"
+  },
+  "time": 40
+}

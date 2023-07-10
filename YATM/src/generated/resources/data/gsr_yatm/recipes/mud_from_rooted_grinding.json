@@ -1,0 +1,14 @@
+{
+  "type": "gsr_yatm:grinding",
+  "cost": 2,
+  "input": {
+    "ingedient": {
+      "item": "minecraft:muddy_mangrove_roots"
+    }
+  },
+  "result": {
+    "count": 1,
+    "item": "minecraft:mud"
+  },
+  "time": 52
+}

@@ -47,6 +47,7 @@ public class YATMGameEvents
 	
 	private static void blockToolModification(BlockToolModificationEvent event) 
 	{
+		// TODO, might wanna add the harvesting of phantasmal shelf fungus here too.
 		if(event.getToolAction() == ToolActions.AXE_STRIP) 
 		{
 			BlockState on = event.getState();

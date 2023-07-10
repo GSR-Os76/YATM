@@ -15,8 +15,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public class BlockShapes
 {
 	
-	
-	
 	public static final VoxelShapeProvider CUBE = new VoxelShapeProvider() 
 	{
 		private static final VoxelShape CUBE = Block.box(0, 0, 0, 16, 16, 16);
@@ -30,17 +28,18 @@ public class BlockShapes
 	
 	public static final VoxelShapeProvider BOILER_SHAPE = new VoxelShapeProvider()
 	{		
+		private static final VoxelShape BASE_SHAPE = Block.box(0, 0, 0, 16, 14, 16);
+		private static final VoxelShape HAS_TANK_SHAPE = Block.box(1, 14, 1, 15, 16, 15);
+
 		@Override
 		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
 		{
-			VoxelShape baseShape = Block.box(0, 0, 0, 16, 14, 16);
-			VoxelShape hasTankShape = Block.box(1, 14, 1, 15, 16, 15);
-
-			VoxelShape shape = baseShape;
+			
+			VoxelShape shape = BASE_SHAPE;
 			
 			if (blockState.getValue(BoilerBlock.HAS_TANK))
 			{
-				shape = Shapes.or(shape, hasTankShape);
+				shape = Shapes.or(shape, HAS_TANK_SHAPE);
 			}
 
 			return shape;
@@ -88,155 +87,136 @@ public class BlockShapes
 		} // end getShape()
 	};
 		
-	// maybe refine shape further
 	public static final VoxelShapeProvider STEEL_FLUID_CONDUIT_SHAPE = new VoxelShapeProvider()
 	{		
-		
+		private static final VoxelShape CENTER_SHAPE = Block.box(6d, 6d, 6d, 10d, 10d, 10d);
+		private static final VoxelShape BRANCH_SHAPE_NORTH = Block.box(5d, 5d, 0d, 11d, 11d, 6d);
+		private static final VoxelShape BRANCH_SHAPE_SOUTH = Block.box(5d, 5d, 10d, 11d, 11d, 16d);
+		private static final VoxelShape BRANCH_SHAPE_EAST = Block.box(10d, 5d, 5d, 16d, 11d, 11d);
+		private static final VoxelShape BRANCH_SHAPE_WEST = Block.box(0d, 5d, 5d, 6d, 11d, 11d);
+		private static final VoxelShape BRANCH_SHAPE_UP = Block.box(5d, 10d, 5d, 11d, 16d, 11d);
+		private static final VoxelShape BRANCH_SHAPE_DOWN = Block.box(5d, 0d, 5d, 11d, 6d, 11d);
 		
 		@Override
 		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
 		{
-			VoxelShape centerShape = Block.box(6d, 6d, 6d, 10d, 10d, 10d);
-			VoxelShape branchShapeNorth = Block.box(5d, 5d, 0d, 11d, 11d, 6d);
-			VoxelShape branchShapeSouth = Block.box(5d, 5d, 10d, 11d, 11d, 16d);
-			VoxelShape branchShapeEast = Block.box(10d, 5d, 5d, 16d, 11d, 11d);
-			VoxelShape branchShapeWest = Block.box(0d, 5d, 5d, 6d, 11d, 11d);
-			VoxelShape branchShapeUp = Block.box(5d, 10d, 5d, 11d, 16d, 11d);
-			VoxelShape branchShapeDown = Block.box(5d, 0d, 5d, 11d, 6d, 11d);
-
-			VoxelShape shape = centerShape;
+			VoxelShape shape = CENTER_SHAPE;
 
 			if (blockState.getValue(IConduit.NORTH))
 			{
-				shape = Shapes.or(shape, branchShapeNorth);
+				shape = Shapes.or(shape, BRANCH_SHAPE_NORTH);
 			}
 			if (blockState.getValue(IConduit.SOUTH))
 			{
-				shape = Shapes.or(shape, branchShapeSouth);
+				shape = Shapes.or(shape, BRANCH_SHAPE_SOUTH);
 			}
 			if (blockState.getValue(IConduit.EAST))
 			{
-				shape = Shapes.or(shape, branchShapeEast);
+				shape = Shapes.or(shape, BRANCH_SHAPE_EAST);
 			}
 			if (blockState.getValue(IConduit.WEST))
 			{
-				shape = Shapes.or(shape, branchShapeWest);
+				shape = Shapes.or(shape, BRANCH_SHAPE_WEST);
 			}
 			if (blockState.getValue(IConduit.UP))
 			{
-				shape = Shapes.or(shape, branchShapeUp);
+				shape = Shapes.or(shape, BRANCH_SHAPE_UP);
 			}
 			if (blockState.getValue(IConduit.DOWN))
 			{
-				shape = Shapes.or(shape, branchShapeDown);
+				shape = Shapes.or(shape, BRANCH_SHAPE_DOWN);
 			}
 
 			return shape;
 		} // end getShape()
-
 	};
 
 	public static final VoxelShapeProvider WIRE_SHAPE = new VoxelShapeProvider()
 	{
-		@Override
-		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
-		{
-			VoxelShape centerShape = Block.box(7d, 7d, 7d, 9d, 9d, 9d);
-			//make shapes correctly, not done typing, half copied half reasoned garbaged
-			VoxelShape branchShapeNorth = Block.box(7d, 7d, 0d, 9d, 9d, 7d);
-			VoxelShape branchShapeSouth = Block.box(7d, 7d, 9d, 9d, 9d, 16d);
-			VoxelShape branchShapeEast = Block.box(9d, 7d, 7d, 16d, 9d, 9d);
-			VoxelShape branchShapeWest = Block.box(0d, 7d, 7d, 7d, 9d, 9d);
-			VoxelShape branchShapeUp = Block.box(7d, 9d, 7d, 9d, 16d, 9d);
-			VoxelShape branchShapeDown = Block.box(7d, 0d, 7d, 9d, 7d, 9d);
+			private static final VoxelShape CENTER_SHAPE =  Block.box(7d, 7d, 7d, 9d, 9d, 9d);
+			private static final VoxelShape BRANCH_SHAPE_NORTH = Block.box(7d, 7d, 0d, 9d, 9d, 7d);
+			private static final VoxelShape BRANCH_SHAPE_SOUTH = Block.box(7d, 7d, 9d, 9d, 9d, 16d);
+			private static final VoxelShape BRANCH_SHAPE_EAST = Block.box(9d, 7d, 7d, 16d, 9d, 9d);
+			private static final VoxelShape BRANCH_SHAPE_WEST = Block.box(0d, 7d, 7d, 7d, 9d, 9d);
+			private static final VoxelShape BRANCH_SHAPE_UP = Block.box(7d, 9d, 7d, 9d, 16d, 9d);
+			private static final VoxelShape BRANCH_SHAPE_DOWN = Block.box(7d, 0d, 7d, 9d, 7d, 9d);
+			
+			@Override
+			public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+			{
+				VoxelShape shape = CENTER_SHAPE;
 
-			VoxelShape shape = centerShape;
+				if (blockState.getValue(IConduit.NORTH))
+				{
+					shape = Shapes.or(shape, BRANCH_SHAPE_NORTH);
+				}
+				if (blockState.getValue(IConduit.SOUTH))
+				{
+					shape = Shapes.or(shape, BRANCH_SHAPE_SOUTH);
+				}
+				if (blockState.getValue(IConduit.EAST))
+				{
+					shape = Shapes.or(shape, BRANCH_SHAPE_EAST);
+				}
+				if (blockState.getValue(IConduit.WEST))
+				{
+					shape = Shapes.or(shape, BRANCH_SHAPE_WEST);
+				}
+				if (blockState.getValue(IConduit.UP))
+				{
+					shape = Shapes.or(shape, BRANCH_SHAPE_UP);
+				}
+				if (blockState.getValue(IConduit.DOWN))
+				{
+					shape = Shapes.or(shape, BRANCH_SHAPE_DOWN);
+				}
 
-			if (blockState.getValue(IConduit.NORTH))
-			{
-				shape = Shapes.or(shape, branchShapeNorth);// HopperBlock h;
-			}
-			if (blockState.getValue(IConduit.SOUTH))
-			{
-				shape = Shapes.or(shape, branchShapeSouth);
-			}
-			if (blockState.getValue(IConduit.EAST))
-			{
-				shape = Shapes.or(shape, branchShapeEast);
-			}
-			if (blockState.getValue(IConduit.WEST))
-			{
-				shape = Shapes.or(shape, branchShapeWest);
-			}
-			if (blockState.getValue(IConduit.UP))
-			{
-				shape = Shapes.or(shape, branchShapeUp);
-			}
-			if (blockState.getValue(IConduit.DOWN))
-			{
-				shape = Shapes.or(shape, branchShapeDown);
-			}
-
-			return shape;
-		} // end getShape
-
+				return shape;
+			} // end getShape()
 	};
 
 	public static final VoxelShapeProvider INSULATED_WIRE_SHAPE = new VoxelShapeProvider()
 	{
-		@Override
-		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
-		{
-			VoxelShape centerShape = Block.box(6d, 6d, 6d, 10d, 10d, 10d);
-			VoxelShape branchShapeNorth = Block.box(6d, 6d, 0d, 10d, 10d, 6d);
-			VoxelShape branchShapeSouth = Block.box(6d, 6d, 10d, 10d, 10d, 16d);
-			VoxelShape branchShapeEast = Block.box(10d, 6d, 6d, 16d, 10d, 10d);
-			VoxelShape branchShapeWest = Block.box(0d, 6d, 6d, 6d, 10d, 10d);
-			VoxelShape branchShapeUp = Block.box(6d, 10d, 6d, 10d, 16d, 10d);
-			VoxelShape branchShapeDown = Block.box(6d, 0d, 6d, 10d, 6d, 10d);
+			private static final VoxelShape CENTER_SHAPE =  Block.box(6d, 6d, 6d, 10d, 10d, 10d);
+			private static final VoxelShape BRANCH_SHAPE_NORTH = Block.box(6d, 6d, 0d, 10d, 10d, 6d);
+			private static final VoxelShape BRANCH_SHAPE_SOUTH = Block.box(6d, 6d, 10d, 10d, 10d, 16d);
+			private static final VoxelShape BRANCH_SHAPE_EAST = Block.box(10d, 6d, 6d, 16d, 10d, 10d);
+			private static final VoxelShape BRANCH_SHAPE_WEST = Block.box(0d, 6d, 6d, 6d, 10d, 10d);
+			private static final VoxelShape BRANCH_SHAPE_UP = Block.box(6d, 10d, 6d, 10d, 16d, 10d);
+			private static final VoxelShape BRANCH_SHAPE_DOWN = Block.box(6d, 0d, 6d, 10d, 6d, 10d);
+			
+			@Override
+			public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+			{
+				VoxelShape shape = CENTER_SHAPE;
 
-			VoxelShape shape = centerShape;
+				if (blockState.getValue(IConduit.NORTH))
+				{
+					shape = Shapes.or(shape, BRANCH_SHAPE_NORTH);
+				}
+				if (blockState.getValue(IConduit.SOUTH))
+				{
+					shape = Shapes.or(shape, BRANCH_SHAPE_SOUTH);
+				}
+				if (blockState.getValue(IConduit.EAST))
+				{
+					shape = Shapes.or(shape, BRANCH_SHAPE_EAST);
+				}
+				if (blockState.getValue(IConduit.WEST))
+				{
+					shape = Shapes.or(shape, BRANCH_SHAPE_WEST);
+				}
+				if (blockState.getValue(IConduit.UP))
+				{
+					shape = Shapes.or(shape, BRANCH_SHAPE_UP);
+				}
+				if (blockState.getValue(IConduit.DOWN))
+				{
+					shape = Shapes.or(shape, BRANCH_SHAPE_DOWN);
+				}
 
-			if (blockState.getValue(IConduit.NORTH))
-			{
-				shape = Shapes.or(shape, branchShapeNorth);// HopperBlock h;
-			}
-			if (blockState.getValue(IConduit.SOUTH))
-			{
-				shape = Shapes.or(shape, branchShapeSouth);
-			}
-			if (blockState.getValue(IConduit.EAST))
-			{
-				shape = Shapes.or(shape, branchShapeEast);
-			}
-			if (blockState.getValue(IConduit.WEST))
-			{
-				shape = Shapes.or(shape, branchShapeWest);
-			}
-			if (blockState.getValue(IConduit.UP))
-			{
-				shape = Shapes.or(shape, branchShapeUp);
-			}
-			if (blockState.getValue(IConduit.DOWN))
-			{
-				shape = Shapes.or(shape, branchShapeDown);
-			}
-
-			return shape;
-		} // end getShape
-
+				return shape;
+			} // end getShape()
 	};
 
-	
-	// nevermind unless i'm missing getting the vertices
-//	public static VoxelShape clockwiseRotationAboutYLookingDown(VoxelShape shape) 
-//	{
-//		return clockwiseRotationAboutYLookingDown(shape, new Vec3(8d, 8d, 8d));
-//	} // end clockwiseRotationAboutYLookingDown()
-//	
-//	public static VoxelShape clockwiseRotationAboutYLookingDown(VoxelShape shape, Vec3 pivot) 
-//	{
-//		shape.forAllBoxes(null);
-//	} // end clockwiseRotationAboutYLookingDown()
-	
 } // end class
