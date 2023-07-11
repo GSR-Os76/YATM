@@ -93,6 +93,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMBlocks.COTTON.get(), "Cotton");
 		
+		this.add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), "Prismarine Crystal Moss");
 		
 		
 		
@@ -208,6 +209,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.COTTON_SEEDS.get(), "Cotton Seeds");
 		this.add(YATMItems.COTTON_BOLLS.get(), "Cotton Bolls");
 		this.add(YATMItems.RAW_COTTON_FIBER.get(), "Raw Cotton Fiber");
+		
+		this.add(YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get(), "Prismarine Crystal Moss Spores");
 		
 		this.add(YATMItems.STAR_SEED.get(), "Star Seed");
 		this.add(YATMItems.STAR_GERMLING.get(), "Start Germling");

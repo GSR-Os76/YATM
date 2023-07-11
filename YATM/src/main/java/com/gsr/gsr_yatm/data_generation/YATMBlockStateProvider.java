@@ -17,6 +17,7 @@ import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
+import com.gsr.gsr_yatm.block.plant.moss.PrismarineCrystalMossBlock;
 import com.gsr.gsr_yatm.block.plant.tree.SelfLayeringSaplingBlock;
 import com.gsr.gsr_yatm.block.plant.tree.StrippedSapLogBlock;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
@@ -39,6 +40,7 @@ import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
@@ -57,6 +59,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile CARPET = new ModelFile.UncheckedModelFile("minecraft:block/carpet");
 	public static final ModelFile CROP_MODEL = new ModelFile.UncheckedModelFile("minecraft:block/crop");
 	public static final ModelFile FLOWER_POT_CROSS = new ModelFile.UncheckedModelFile("minecraft:block/flower_pot_cross");
+	public static final ModelFile GLOW_LICHEN = new ModelFile.UncheckedModelFile("minecraft:block/glow_lichen");
 	public static final ModelFile MANGROVE_ROOTS = new ModelFile.UncheckedModelFile("minecraft:block/mangrove_roots");
 	
 	
@@ -104,6 +107,12 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addSoulAfflictedRubberSet();
 		this.createShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get());
 		this.createFourStageCrop(YATMBlocks.COTTON.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_germinating"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_flowering"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_maturing"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_mature"));
+		this.createPrismarineCrystalMossLike(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), 
+				//new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_germinating"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_young"), 
+				//new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_maturing"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_mature"));
+		
 		
 		this.createAllBlock(YATMBlocks.RUBBER_BLOCK.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rubber_block"));
 		this.createAllBlock(YATMBlocks.ROOTED_SOUL_SOIL.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rooted_soul_soil"));
@@ -361,6 +370,27 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 		this.getVariantBuilder(block).forAllStates((bs) -> forCrop(bs, modelOne, modelOne, modelTwo, modelTwo, modelThree, modelThree, modelFour, modelFour));
 	} // end createCrop()
+	
+	private void createPrismarineCrystalMossLike(PrismarineCrystalMossBlock block, ResourceLocation textureOne, ResourceLocation textureTwo)//, ResourceLocation textureThree, ResourceLocation textureFour) 
+	{
+		String name = getModelLocationNameFor(block);
+		String nameOne = name + "_one";
+		String nameTwo = name + "_two";
+		//String nameThree = name + "_three";
+		//String nameFour = name + "_four";
+		this.models().getBuilder(nameOne).parent(GLOW_LICHEN).texture("glow_lichen", textureOne).renderType(CUTOUT_RENDER_TYPE);
+		this.models().getBuilder(nameTwo).parent(GLOW_LICHEN).texture("glow_lichen", textureTwo).renderType(CUTOUT_RENDER_TYPE);
+		//this.models().getBuilder(nameThree).parent(GLOW_LICHEN).texture("glow_lichen", textureThree).renderType(CUTOUT_RENDER_TYPE);
+		//this.models().getBuilder(nameFour).parent(GLOW_LICHEN).texture("glow_lichen", textureFour).renderType(CUTOUT_RENDER_TYPE);
+		ModelFile modelOne = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameOne));
+		ModelFile modelTwo = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameTwo));
+		//ModelFile modelThree = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameThree));
+		//ModelFile modelFour = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameFour));
+		
+		MultiPartBlockStateBuilder builder = this.getMultipartBuilder(block);
+		PrismarineCrystalMossBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.forEach((d, p) -> forPrismarineCrystalMossLikeFace(d, builder, modelOne, modelTwo));//, modelThree, modelFour));
+	} // end createCrop()
+	
 	
 	private void createSpinningWheel(SpinningWheelBlock block, Item item) 
 	{
@@ -701,6 +731,46 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		return new ConfiguredModel[] {new ConfiguredModel(model)};
 	} // end forCrop()
 	
+	
+	
+	private static void forPrismarineCrystalMossLikeFace(Direction face, MultiPartBlockStateBuilder builder, ModelFile ageZeroModel, ModelFile ageOneModel)//, ModelFile ageTwoModel)//, ModelFile ageThreeModel)
+	{
+		IntegerProperty faceAge = PrismarineCrystalMossBlock.AGE_PROPERTIES_BY_DIRECTION.get(face);
+		for(int i = 0; i <= PrismarineCrystalMossBlock.MAX_AGE; i++) 
+		{
+			YetAnotherTechMod.LOGGER.info("building prism sta, age: " + i + ", face: " + face);
+			Vector2i rot = YATMBlockStateProvider.rotationForDirectionFromNorth(face);
+			builder.part()
+			.modelFile(getModelForPrismarineCrystalMossLikeAge(i, ageZeroModel, ageOneModel))//, ageTwoModel, ageThreeModel))
+			.rotationX(rot.x)
+			.rotationY(rot.y)
+			.uvLock(false)
+			.addModel()
+			.condition(faceAge, i)
+			.condition(PrismarineCrystalMossBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(face), true);
+		
+		}
+		
+	} // end forPrismarineCrystalMossLike()
+	
+	private static ModelFile getModelForPrismarineCrystalMossLikeAge(int age, ModelFile ageZeroModel, ModelFile ageOneModel)//, ModelFile ageTwoModel, ModelFile ageThreeModel)
+	{
+		return switch(age) 
+		{
+			case 0 -> ageZeroModel;
+			case 1 -> ageOneModel;//ageZeroModel;
+			//case 2 -> ageOneModel;
+			//case 3 -> ageOneModel;
+			//case 4 -> ageTwoModel;
+			//case 5 -> ageTwoModel;
+			//case 6 -> ageThreeModel;
+			//case 7 -> ageThreeModel;
+			default -> throw new IllegalArgumentException("Unexpected value of: " + age);
+		};
+		
+		
+	} // end forPrismarineCrystalMossLike()
+	
 	private static ConfiguredModel[] forShelfFungi(BlockState bs, ModelFile smallModel, ModelFile mediumModel, ModelFile largeModel)
 	{
 		ModelFile model = switch(bs.getValue(PhantasmalShelfFungiBlock.GROWTH_STAGE)) 
@@ -754,6 +824,22 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		{ new ConfiguredModel(f, xRot, yRot, false) };
 	} // end forPillarAxis()
 	
+	
+	
+	public static Vector2i rotationForDirectionFromDown(Direction dir) 
+	{
+		return switch(dir) 
+		{
+			case UP -> new Vector2i(180, 0);
+			case DOWN -> new Vector2i(0, 0);
+			case NORTH -> new Vector2i(270, 0);
+			case EAST -> new Vector2i(270, 90);		
+			case SOUTH -> new Vector2i(270, 180);
+			case WEST -> new Vector2i(270, 270);		
+			default -> throw new IllegalArgumentException("the provied direction: " + dir + ", was not expected.");			
+		};
+	} // end rotationForDirectionFromUp()
+	
 	public static Vector2i rotationForDirectionFromUp(Direction dir) 
 	{
 		switch(dir) 
@@ -773,7 +859,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 			default:
 				throw new IllegalArgumentException("the provied direction: " + dir + ", was not expected.");			
 		}
-	} // end rotationForDirectionFromNorth()
+	} // end rotationForDirectionFromUp()
 	
 	public static Vector2i rotationForDirectionFromNorth(Direction dir) 
 	{

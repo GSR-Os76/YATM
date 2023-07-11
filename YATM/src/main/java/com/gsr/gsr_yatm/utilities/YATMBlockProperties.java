@@ -7,6 +7,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SoundType;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.BlockBehaviour.Properties;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
@@ -28,7 +29,11 @@ public class YATMBlockProperties
 	
 	public static final BlockBehaviour.Properties PHANTASMAL_SHELF_FUNGUS_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(0.5F).sound(SoundType.FUNGUS).pushReaction(PushReaction.DESTROY).randomTicks();
 	
-	public static final BlockBehaviour.Properties CROP = BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.CROP).pushReaction(PushReaction.DESTROY);
+	public static final BlockBehaviour.Properties CROP = BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();
+	
+	public static final Properties PRISMARINE_CRYSTAL_MOSS = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_CYAN).sound(SoundType.MOSS).pushReaction(PushReaction.DESTROY).replaceable().requiresCorrectToolForDrops().strength(1.5F, 6.0F).noCollission().randomTicks();
+	
+	
 	
 	public static final BlockBehaviour.Properties RUBBER_BLOCK_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2f).sound(SoundType.CANDLE);
 	public static final BlockBehaviour.Properties ROOTED_SOUL_SOIL_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).strength(0.5F).sound(SoundType.ROOTED_DIRT);

@@ -81,11 +81,6 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.WAX_BIT_ITEM.get());
 		this.basicItem(YATMItems.RUBBER_SCRAP.get());
 		
-		this.basicItem(YATMItems.STAR_SEED.get());
-		this.basicItem(YATMItems.STAR_GERMLING.get());
-		this.basicItem(YATMItems.STAR_SPROUT.get());
-		this.basicItem(YATMItems.STAR_ADOLESCENT.get());
-		
 		
 		
 		this.basicItem(YATMItems.WOOD_PULP.get());
@@ -94,7 +89,14 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.RAW_COTTON_FIBER.get());
 		this.basicItem(YATMItems.COTTON_SEEDS.get());
 
-
+		this.basicItem(YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get());
+		
+		
+		
+		this.basicItem(YATMItems.STAR_SEED.get());
+		this.basicItem(YATMItems.STAR_GERMLING.get());
+		this.basicItem(YATMItems.STAR_SPROUT.get());
+		this.basicItem(YATMItems.STAR_ADOLESCENT.get());
 		
 		this.basicItem(YATMItems.CREATIVE_FLUID_VOID.get());
 		this.basicItem(YATMItems.CREATIVE_FLUID_STORER.get());

@@ -29,6 +29,7 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 
+// TODO, probably make extend the CropBlock, for extra compatibility, potentially
 public class PhantasmalShelfFungiBlock extends Block
 {
 	// so 3 stages
