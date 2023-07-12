@@ -89,12 +89,11 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_BUTTON.get(), "Soul Afflicted Rubber Button");
 		this.add(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), "Soul Afflicted Leaf Mulch");
 		
-		this.add(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), "Phantasmal Shelf Fungi");
-		
-		this.add(YATMBlocks.COTTON.get(), "Cotton");
-		
-		this.add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), "Prismarine Crystal Moss");
-		
+		this.add(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), "Phantasmal Shelf Fungi");		
+		this.add(YATMBlocks.COTTON.get(), "Cotton");		
+		this.add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), "Prismarine Crystal Moss");		
+		this.add(YATMBlocks.SPIDER_VINE.get(), "Spider Vine");		
+		this.add(YATMBlocks.SPIDER_VINE_MERISTEM.get(), "Spider Vine Meristem");		
 		
 		
 		this.add(YATMBlocks.RUBBER_BLOCK.get(), "Rubber Block");
@@ -211,6 +210,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.RAW_COTTON_FIBER.get(), "Raw Cotton Fiber");
 		
 		this.add(YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get(), "Prismarine Crystal Moss Spores");
+		
+		this.add(YATMItems.SPIDER_VINE_FRUITS.get(), "Branch Of Glaring Fruit");
 		
 		this.add(YATMItems.STAR_SEED.get(), "Star Seed");
 		this.add(YATMItems.STAR_GERMLING.get(), "Start Germling");

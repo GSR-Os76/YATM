@@ -26,10 +26,14 @@ import com.gsr.gsr_yatm.block.plant.tree.AerialRootsBlock;
 import com.gsr.gsr_yatm.block.plant.tree.StrippedSapLogBlock;
 import com.gsr.gsr_yatm.block.plant.tree.rubber_bush.RubberBushSaplingBlock;
 import com.gsr.gsr_yatm.block.plant.tree.soul_afflicted_rubber_bush.SoulAfflictedRubberBushSaplingBlock;
+import com.gsr.gsr_yatm.block.plant.vine.OnceFruitVineBodyBlock;
+import com.gsr.gsr_yatm.block.plant.vine.VineMeristemBlock;
 import com.gsr.gsr_yatm.utilities.YATMBlockShapes;
 import com.gsr.gsr_yatm.utilities.YATMBlockProperties;
 
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ButtonBlock;
@@ -56,6 +60,7 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class YATMBlocks
 {
+	private static final RandomSource RANDOM = RandomSource.create();
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, YetAnotherTechMod.MODID);
 	//this.registerDefaultState(this.defaultBlockState().setValue(AXIS, Direction.Axis.Y));
 	
@@ -128,6 +133,18 @@ public class YATMBlocks
 	public static final RegistryObject<CropBlock> COTTON = BLOCKS.register("cotton", () -> new CropBlock(YATMBlockProperties.CROP));
 	
 	public static final RegistryObject<PrismarineCrystalMossBlock> PRISMARINE_CRYSTAL_MOSS = BLOCKS.register("prismarine_crystal_moss", () -> new PrismarineCrystalMossBlock(YATMBlockProperties.PRISMARINE_CRYSTAL_MOSS, YATMBlockShapes.PRISMARINE_CRYSTAL_MOSS));
+	
+	public static final RegistryObject<OnceFruitVineBodyBlock> SPIDER_VINE = BLOCKS.register("spider_vine", () -> new OnceFruitVineBodyBlock(YATMBlockProperties.SPIDER_VINE, YATMBlocks::getSpiderVineMeristem, () -> new ItemStack(YATMItems.SPIDER_VINE_FRUITS.get(), RANDOM.nextIntBetweenInclusive(1, 3))));
+	public static final RegistryObject<VineMeristemBlock> SPIDER_VINE_MERISTEM = BLOCKS.register("spider_vine_meristem", () -> new VineMeristemBlock(YATMBlockProperties.SPIDER_VINE, YATMBlocks::getSpiderVine));
+	
+	private static final OnceFruitVineBodyBlock getSpiderVine()
+	{
+		return YATMBlocks.SPIDER_VINE.get();
+	} // end getSpiderVine()
+	private static final VineMeristemBlock getSpiderVineMeristem()
+	{
+		return YATMBlocks.SPIDER_VINE_MERISTEM.get();
+	} // end getSpiderVine()
 	
 	//TODO, maybe add some sort of soul stone 
 	

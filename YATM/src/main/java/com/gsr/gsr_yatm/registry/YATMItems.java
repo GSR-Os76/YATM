@@ -208,6 +208,7 @@ public class YATMItems
 	public static final RegistryObject<Item> RAW_COTTON_FIBER = generalTabEnqueue(ITEMS.register("raw_cotton_fiber", () -> new Item(new Item.Properties())));
 		
 	public static final RegistryObject<ItemNameBlockItem> PRISMARINE_CRYSTAL_MOSS_SPORES = generalTabEnqueue(ITEMS.register("prismarine_crystal_moss_spores", () -> new ItemNameBlockItem(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), new Item.Properties())));
+	public static final RegistryObject<ItemNameBlockItem> SPIDER_VINE_FRUITS = generalTabEnqueue(ITEMS.register("spider_vine_fruits", () -> new ItemNameBlockItem(YATMBlocks.SPIDER_VINE_MERISTEM.get(), new Item.Properties())));
 	
 	public static final RegistryObject<Item> STAR_SEED = generalTabEnqueue(ITEMS.register("star_seed", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> STAR_GERMLING = generalTabEnqueue(ITEMS.register("star_germling", () -> new Item(new Item.Properties())));

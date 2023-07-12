@@ -91,6 +91,8 @@ public class YATMItemModelProvider extends ItemModelProvider
 
 		this.basicItem(YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get());
 		
+		this.basicItem(YATMItems.SPIDER_VINE_FRUITS.get());
+		
 		
 		
 		this.basicItem(YATMItems.STAR_SEED.get());

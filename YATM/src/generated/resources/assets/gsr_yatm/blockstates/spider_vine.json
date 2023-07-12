@@ -1,0 +1,13 @@
+{
+  "variants": {
+    "stage=fruiting": {
+      "model": "gsr_yatm:block/spider_vine_fruiting"
+    },
+    "stage=harvested": {
+      "model": "gsr_yatm:block/spider_vine_harvested"
+    },
+    "stage=immature": {
+      "model": "gsr_yatm:block/spider_vine_immature"
+    }
+  }
+}

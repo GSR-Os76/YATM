@@ -11,7 +11,6 @@ import org.jetbrains.annotations.NotNull;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
-import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
 
 import net.minecraft.Util;
@@ -287,17 +286,13 @@ public class PrismarineCrystalMossBlock extends CropBlock implements SimpleWater
 		{
 			BlockPos toCheck = pos.offset(SPREADABLE_RELATIVE_POSITIONS.get(random.nextIntBetweenInclusive(0, SPREADABLE_RELATIVE_POSITIONS.size() - 1)));
 			BlockState toReplace = level.getBlockState(toCheck);
-			YetAnotherTechMod.LOGGER.info("checking at pos: " + toCheck);		
 			if(toReplace.canBeReplaced()) 
 			{
 				for(Direction simulatedClickedFace : Direction.allShuffled(random))
-				{
-					YetAnotherTechMod.LOGGER.info("was replaceable and picked face: " + simulatedClickedFace);
-					
+				{					
 					BlockState setRes = this.getStateForPlacement(level, toCheck, toReplace, simulatedClickedFace);
 					if(setRes != null) 
 					{
-						YetAnotherTechMod.LOGGER.info("got nonnull back");
 						level.setBlock(toCheck, setRes.setValue(CAN_SPREAD, false), 3);
 						return;
 					}

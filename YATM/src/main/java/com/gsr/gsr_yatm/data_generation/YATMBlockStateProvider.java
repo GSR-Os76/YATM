@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.joml.Vector2i;
 
 import com.google.common.collect.ImmutableList;
+import com.gsr.gsr_yatm.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.device.bioler.BiolerBlock;
@@ -112,7 +113,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_young"), 
 				//new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_maturing"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_mature"));
-		
+		this.addSpiderVine();
 		
 		this.createAllBlock(YATMBlocks.RUBBER_BLOCK.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rubber_block"));
 		this.createAllBlock(YATMBlocks.ROOTED_SOUL_SOIL.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rooted_soul_soil"));
@@ -211,6 +212,14 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createCarpet(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_leaf_mulch"));
 	} // end addSoulAfflictedRubberSet()
 
+	private void addSpiderVine() 
+	{
+		this.createOnceFruitingCross(YATMBlocks.SPIDER_VINE.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_vine/spider_vine"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_vine/spider_vine_fruiting"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_vine/spider_vine_harvested"));
+		this.createCross(YATMBlocks.SPIDER_VINE_MERISTEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_vine/spider_vine_meristem"));
+	} // end addSpiderVine()
+	
+	
+	
 	private void addHeatSinks() 
 	{
 		this.createLargeHeatSink(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), YATMItems.LARGE_COPPER_HEAT_SINK_ITEM.get(), 
@@ -275,6 +284,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/suns_complement_solar_panel_top"));
 		
 	} // end addSolarPanels()
+	
+	
 	
 	private void addConduits() 
 	{
@@ -391,6 +402,29 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		PrismarineCrystalMossBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.forEach((d, p) -> forPrismarineCrystalMossLikeFace(d, builder, modelOne, modelTwo));//, modelThree, modelFour));
 	} // end createCrop()
 	
+	private void createOnceFruitingCross(Block block, ResourceLocation textureImmature, ResourceLocation textureFruiting, ResourceLocation textureHarvested) 
+	{
+		String name = getModelLocationNameFor(block);
+		String nameIm = name + "_immature";
+		String nameFr = name + "_fruiting";
+		String nameHa = name + "_harvested";
+		this.models().cross(nameIm, textureImmature).renderType(CUTOUT_RENDER_TYPE);
+		this.models().cross(nameFr, textureFruiting).renderType(CUTOUT_RENDER_TYPE);
+		this.models().cross(nameHa, textureHarvested).renderType(CUTOUT_RENDER_TYPE);
+		ModelFile modelIm = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameIm));
+		ModelFile modelFr = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameFr));
+		ModelFile modelHa = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameHa));
+		this.getVariantBuilder(block).forAllStates((bs) -> forOnceFruiting(bs, modelIm, modelFr, modelHa));
+		//YATMBlockStateProperties.ONCE_FRUITING_STAGE
+	}
+	
+	private void createCross(Block block, ResourceLocation texture) 
+	{
+		String name = getModelLocationNameFor(block);
+		this.models().cross(name, texture).renderType(CUTOUT_RENDER_TYPE);
+		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
+		this.getVariantBuilder(block).forAllStates((bs) -> new ConfiguredModel[] {new ConfiguredModel(model)});
+	} // end createCross
 	
 	private void createSpinningWheel(SpinningWheelBlock block, Item item) 
 	{
@@ -731,8 +765,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		return new ConfiguredModel[] {new ConfiguredModel(model)};
 	} // end forCrop()
 	
-	
-	
 	private static void forPrismarineCrystalMossLikeFace(Direction face, MultiPartBlockStateBuilder builder, ModelFile ageZeroModel, ModelFile ageOneModel)//, ModelFile ageTwoModel)//, ModelFile ageThreeModel)
 	{
 		IntegerProperty faceAge = PrismarineCrystalMossBlock.AGE_PROPERTIES_BY_DIRECTION.get(face);
@@ -752,6 +784,18 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		}
 		
 	} // end forPrismarineCrystalMossLike()
+	
+	private static ConfiguredModel[] forOnceFruiting(BlockState bs, ModelFile modelImmature, ModelFile modelFruiting, ModelFile modelHarvested) 
+	{
+		ModelFile model = switch(bs.getValue(YATMBlockStateProperties.ONCE_FRUITING_STAGE)) 
+		{
+			case IMMATURE -> modelImmature;
+			case FRUITING -> modelFruiting;
+			case HARVESTED -> modelHarvested;
+			default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(YATMBlockStateProperties.ONCE_FRUITING_STAGE));	
+		};
+		return new ConfiguredModel[] {new ConfiguredModel(model)};
+	} // end forOnceFruiting()
 	
 	private static ModelFile getModelForPrismarineCrystalMossLikeAge(int age, ModelFile ageZeroModel, ModelFile ageOneModel)//, ModelFile ageTwoModel, ModelFile ageThreeModel)
 	{

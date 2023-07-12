@@ -126,6 +126,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		
 		
 		this.addCottonRecipes(writer);
+		this.addOneToX(writer, YATMItems.SPIDER_VINE_FRUITS.get(), Items.SPIDER_EYE, 3, YetAnotherTechMod.MODID + ":spider_eyes_from_spider_vine_fruits_shapeless_crafting");
 		
 	} // end buildRecipes()
 	

@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gsr_yatm:spider_vine_fruits"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "minecraft:spider_eye"
+  }
+}
