@@ -4,13 +4,13 @@
   "input": {
     "ingedient": {
       "type": "gsr_yatm:item_stack_ingredient",
-      "count": 1,
-      "item": "minecraft:mossy_stone_brick_slab"
+      "count": 4,
+      "item": "minecraft:stone_brick_stairs"
     }
   },
   "result": {
-    "count": 1,
-    "item": "minecraft:mossy_cobblestone_slab"
+    "count": 3,
+    "item": "minecraft:cobblestone"
   },
   "time": 80
 }

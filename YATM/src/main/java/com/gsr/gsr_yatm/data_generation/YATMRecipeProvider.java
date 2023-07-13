@@ -101,23 +101,19 @@ public class YATMRecipeProvider extends RecipeProvider
 		
 		// TODO, create a fluidIngredient, so we can use tags or specifics
 		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ENDER.get(), 250), Tags.Items.SAND, new ItemStack(Items.ENDER_PEARL), false, 0, 300, YetAnotherTechMod.MODID + ":ender_pearl_from_crystallization");
-		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_DECAY.get(), 1000), YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY, new ItemStack(YATMItems.STAR_SEED.get()), true, 0, 300, YetAnotherTechMod.MODID + ":star_seed_from_crystallization");
-		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 1000), YATMItems.STAR_SEED.get(), new ItemStack(YATMItems.STAR_GERMLING.get()), true, 0, 200, YetAnotherTechMod.MODID + ":star_germling_from_crystallization");
-		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 2000), YATMItems.STAR_GERMLING.get(), new ItemStack(YATMItems.STAR_SPROUT.get()), true, 0, 400, YetAnotherTechMod.MODID + ":star_sprout_from_crystallization");
-		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 4000), YATMItems.STAR_SPROUT.get(), new ItemStack(YATMItems.STAR_ADOLESCENT.get()), true, 0, 800, YetAnotherTechMod.MODID + ":star_adolescent_from_crystallization");
-		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 8000), YATMItems.STAR_ADOLESCENT.get(), new ItemStack(Items.NETHER_STAR), true, 0, 1600, YetAnotherTechMod.MODID + ":nether_star_from_crystallization");
+		this.addNetherStarCrystallizationProgression(writer);
 		
-		
-		
+		// TODO, make grinding recipes time proportional to hardness, and current proportional to the tool required.
+		this.addRootedSoilReversions(writer);
+		this.addGrinderBrickCrackings(writer);
 		this.addGrinderStoneTowardsCobblestone(writer);
 		this.addGrindingRecipe(writer, Items.COBBLESTONE, new ItemStack(Items.GRAVEL), 3, 80, YetAnotherTechMod.MODID + ":gravel_from_cobblestone_grinding");
 		this.addGrindToSand(writer);
+		this.addGrindPurpur(writer);
 		
 		this.addGrindingRecipe(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING_ITEM.get(), new ItemStack(YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get()), 2, 20, YetAnotherTechMod.MODID + ":soul_leaf_mulch_from_flowering_leaf_grinding");
 		this.addGrindingRecipe(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG_ITEM.get(), new ItemStack(YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get()), 1, 20, YetAnotherTechMod.MODID + ":soul_leaf_mulch_from_young_leaf_grinding");
 		
-		this.addRootedSoilReversions(writer);
-		this.addGrinderBrickCrackings(writer);
 		
 		
 		
@@ -247,6 +243,15 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addSpinningRecipe(writer, ItemTags.WOOL_CARPETS, new ItemStack(Items.STRING, 2), YetAnotherTechMod.MODID + ":string_from_wool_carpet_spinning");
 
 	}
+
+	private void addNetherStarCrystallizationProgression(Consumer<FinishedRecipe> writer) 
+	{
+		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_DECAY.get(), 1000), YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY, new ItemStack(YATMItems.STAR_SEED.get()), true, 0, 300, YetAnotherTechMod.MODID + ":star_seed_from_crystallization");
+		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 1000), YATMItems.STAR_SEED.get(), new ItemStack(YATMItems.STAR_GERMLING.get()), true, 0, 200, YetAnotherTechMod.MODID + ":star_germling_from_crystallization");
+		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 2000), YATMItems.STAR_GERMLING.get(), new ItemStack(YATMItems.STAR_SPROUT.get()), true, 0, 400, YetAnotherTechMod.MODID + ":star_sprout_from_crystallization");
+		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 4000), YATMItems.STAR_SPROUT.get(), new ItemStack(YATMItems.STAR_ADOLESCENT.get()), true, 0, 800, YetAnotherTechMod.MODID + ":star_adolescent_from_crystallization");
+		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 8000), YATMItems.STAR_ADOLESCENT.get(), new ItemStack(Items.NETHER_STAR), true, 0, 1600, YetAnotherTechMod.MODID + ":nether_star_from_crystallization");
+	} // end addNetherStarCrystallizationProgression()
 	
 	private void addRootedSoilReversions(Consumer<FinishedRecipe> writer) 
 	{
@@ -277,17 +282,17 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addGrindingRecipe(writer, Items.INFESTED_MOSSY_STONE_BRICKS, new ItemStack(Items./* INFESTED_ */MOSSY_COBBLESTONE), 3, 80, YetAnotherTechMod.MODID + ":mossy_cobblestone_from_infested_mossy_stone_bricks_grinding");
 		this.addGrindingRecipe(writer, Items.SMOOTH_STONE, new ItemStack(Items.COBBLESTONE), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_from_smooth_stone_grinding");
 
-		this.addGrindingRecipe(writer, Items.STONE_STAIRS, new ItemStack(Items.COBBLESTONE_STAIRS), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_stairs_from_stone_stairs_grinding");
-		this.addGrindingRecipe(writer, Items.STONE_BRICK_STAIRS, new ItemStack(Items.COBBLESTONE_STAIRS), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_stairs_from_stone_brick_stairs_grinding");
-		this.addGrindingRecipe(writer, Items.MOSSY_STONE_BRICK_STAIRS, new ItemStack(Items.MOSSY_COBBLESTONE_STAIRS), 3, 80, YetAnotherTechMod.MODID + ":mossy_cobblestone_stairs_from_mossy_stone_brick_stairs_grinding");
+		this.addGrindingRecipe(writer, Items.STONE_STAIRS, 4, new ItemStack(Items.COBBLESTONE, 3), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_from_stone_stairs_grinding");
+		this.addGrindingRecipe(writer, Items.STONE_BRICK_STAIRS, 4, new ItemStack(Items.COBBLESTONE, 3), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_from_stone_brick_stairs_grinding");
+		this.addGrindingRecipe(writer, Items.MOSSY_STONE_BRICK_STAIRS, 4, new ItemStack(Items.MOSSY_COBBLESTONE, 3), 3, 80, YetAnotherTechMod.MODID + ":mossy_cobblestone_from_mossy_stone_brick_stairs_grinding");
 		
-		this.addGrindingRecipe(writer, Items.STONE_SLAB, new ItemStack(Items.COBBLESTONE_SLAB), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_slab_from_stone_slab_grinding");
-		this.addGrindingRecipe(writer, Items.STONE_BRICK_SLAB, new ItemStack(Items.COBBLESTONE_SLAB), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_slab_from_stone_brick_slab_grinding");
-		this.addGrindingRecipe(writer, Items.MOSSY_STONE_BRICK_SLAB, new ItemStack(Items.MOSSY_COBBLESTONE_SLAB), 3, 80, YetAnotherTechMod.MODID + ":mossy_cobblestone_slab_from_mossy_stone_brick_slab_grinding");
-		this.addGrindingRecipe(writer, Items.SMOOTH_STONE_SLAB, new ItemStack(Items.COBBLESTONE_SLAB), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_slab_from_smooth_stone_slab_grinding");
+		this.addGrindingRecipe(writer, Items.STONE_SLAB, 2, new ItemStack(Items.COBBLESTONE), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_from_stone_slab_grinding");
+		this.addGrindingRecipe(writer, Items.STONE_BRICK_SLAB, 2, new ItemStack(Items.COBBLESTONE), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_from_stone_brick_slab_grinding");
+		this.addGrindingRecipe(writer, Items.MOSSY_STONE_BRICK_SLAB, 2, new ItemStack(Items.MOSSY_COBBLESTONE), 3, 80, YetAnotherTechMod.MODID + ":mossy_cobblestone_from_mossy_stone_brick_slab_grinding");
+		this.addGrindingRecipe(writer, Items.SMOOTH_STONE_SLAB, 2, new ItemStack(Items.COBBLESTONE), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_from_smooth_stone_slab_grinding");
 		
-		this.addGrindingRecipe(writer, Items.STONE_BRICK_WALL, new ItemStack(Items.COBBLESTONE_WALL), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_wall_from_stone_brick_wall_grinding");
-		this.addGrindingRecipe(writer, Items.MOSSY_STONE_BRICK_WALL, new ItemStack(Items.MOSSY_COBBLESTONE_WALL), 3, 80, YetAnotherTechMod.MODID + ":mossy_cobblestone_wall_from_mossy_stone_brick_wall_grinding");
+		this.addGrindingRecipe(writer, Items.STONE_BRICK_WALL, new ItemStack(Items.COBBLESTONE), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_from_stone_brick_wall_grinding");
+		this.addGrindingRecipe(writer, Items.MOSSY_STONE_BRICK_WALL, new ItemStack(Items.MOSSY_COBBLESTONE), 3, 80, YetAnotherTechMod.MODID + ":mossy_cobblestone_from_mossy_stone_brick_wall_grinding");
 		
 	} // end addGrinderBrickCrackings()
 	
@@ -333,6 +338,18 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addGrindingRecipe(writer, Items.RED_SANDSTONE_WALL, new ItemStack(Items.RED_SAND), 1, 20, YetAnotherTechMod.MODID + ":red_sand_from_red_sandstone_wall_grinding");
 		
 	} // end addGrinderBrickCrackings()
+	
+	private void addGrindPurpur(Consumer<FinishedRecipe> writer) 
+	{
+		
+		this.addGrindingRecipe(writer, Items.PURPUR_BLOCK, new ItemStack(Items.POPPED_CHORUS_FRUIT, 4), 4, 80, YetAnotherTechMod.MODID + ":popped_chorus_fruit_from_purpur_block_grinding");
+		this.addGrindingRecipe(writer, Items.PURPUR_PILLAR, new ItemStack(Items.POPPED_CHORUS_FRUIT, 4), 4, 80, YetAnotherTechMod.MODID + ":popped_chorus_fruit_from_purpur_pillar_grinding");
+
+		this.addGrindingRecipe(writer, Items.PURPUR_SLAB, 2, new ItemStack(Items.POPPED_CHORUS_FRUIT, 4), 4, 80, YetAnotherTechMod.MODID + ":popped_chorus_fruit_from_purpur_slab_grinding");
+		this.addGrindingRecipe(writer, Items.PURPUR_STAIRS, new ItemStack(Items.POPPED_CHORUS_FRUIT, 3), 4, 80, YetAnotherTechMod.MODID + ":popped_chorus_fruit_from_purpur_stairs_grinding");
+
+	} // end addGrinderBrickCrackings()
+	
 	
 	
 	

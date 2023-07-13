@@ -1,0 +1,16 @@
+{
+  "type": "gsr_yatm:grinding",
+  "cost": 4,
+  "input": {
+    "ingedient": {
+      "type": "gsr_yatm:item_stack_ingredient",
+      "count": 2,
+      "item": "minecraft:purpur_slab"
+    }
+  },
+  "result": {
+    "count": 4,
+    "item": "minecraft:popped_chorus_fruit"
+  },
+  "time": 80
+}

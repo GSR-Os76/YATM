@@ -5,12 +5,12 @@
     "ingedient": {
       "type": "gsr_yatm:item_stack_ingredient",
       "count": 1,
-      "item": "minecraft:stone_brick_stairs"
+      "item": "minecraft:stone_brick_wall"
     }
   },
   "result": {
     "count": 1,
-    "item": "minecraft:cobblestone_stairs"
+    "item": "minecraft:cobblestone"
   },
   "time": 80
 }
