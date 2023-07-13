@@ -1,0 +1,16 @@
+{
+  "type": "gsr_yatm:grinding",
+  "cost": 3,
+  "input": {
+    "ingedient": {
+      "type": "gsr_yatm:item_stack_ingredient",
+      "count": 1,
+      "item": "minecraft:chiseled_stone_bricks"
+    }
+  },
+  "result": {
+    "count": 1,
+    "item": "minecraft:cobblestone"
+  },
+  "time": 80
+}

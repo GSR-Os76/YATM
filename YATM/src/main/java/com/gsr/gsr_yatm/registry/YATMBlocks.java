@@ -62,7 +62,7 @@ public class YATMBlocks
 {
 	private static final RandomSource RANDOM = RandomSource.create();
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, YetAnotherTechMod.MODID);
-	//this.registerDefaultState(this.defaultBlockState().setValue(AXIS, Direction.Axis.Y));
+	
 	
 	
 	// TODO, maybe, add unique rooted dirt block and rooted soul sand.

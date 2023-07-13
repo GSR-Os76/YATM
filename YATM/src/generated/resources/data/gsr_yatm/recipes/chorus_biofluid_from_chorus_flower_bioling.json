@@ -1,0 +1,14 @@
+{
+  "type": "gsr_yatm:bioling",
+  "cost": 4,
+  "input": {
+    "ingedient": {
+      "item": "minecraft:chorus_flower"
+    }
+  },
+  "result": {
+    "count": 1000,
+    "fluid": "gsr_yatm:chorus_bio"
+  },
+  "time": 60
+}

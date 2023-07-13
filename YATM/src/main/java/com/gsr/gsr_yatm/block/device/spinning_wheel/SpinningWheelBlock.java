@@ -4,8 +4,8 @@ import com.gsr.gsr_yatm.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.recipe.spinning.SpinningRecipe;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
-import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
+import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

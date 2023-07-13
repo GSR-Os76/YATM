@@ -9,7 +9,7 @@ import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMMobEffects;
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
-import com.gsr.gsr_yatm.utilities.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
 
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;

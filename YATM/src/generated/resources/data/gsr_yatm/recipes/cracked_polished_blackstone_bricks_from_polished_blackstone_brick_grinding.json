@@ -1,0 +1,16 @@
+{
+  "type": "gsr_yatm:grinding",
+  "cost": 1,
+  "input": {
+    "ingedient": {
+      "type": "gsr_yatm:item_stack_ingredient",
+      "count": 1,
+      "item": "minecraft:polished_blackstone_bricks"
+    }
+  },
+  "result": {
+    "count": 1,
+    "item": "minecraft:cracked_polished_blackstone_bricks"
+  },
+  "time": 20
+}

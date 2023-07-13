@@ -4,9 +4,9 @@ import java.util.Enumeration;
 import java.util.List;
 
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
-import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 import com.gsr.gsr_yatm.utilities.network.Property;
 import com.gsr.gsr_yatm.utilities.network.PropertyContainerData;
+import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

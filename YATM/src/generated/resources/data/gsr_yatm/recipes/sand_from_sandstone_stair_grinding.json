@@ -1,0 +1,16 @@
+{
+  "type": "gsr_yatm:grinding",
+  "cost": 1,
+  "input": {
+    "ingedient": {
+      "type": "gsr_yatm:item_stack_ingredient",
+      "count": 4,
+      "item": "minecraft:sandstone_stairs"
+    }
+  },
+  "result": {
+    "count": 3,
+    "item": "minecraft:sand"
+  },
+  "time": 20
+}

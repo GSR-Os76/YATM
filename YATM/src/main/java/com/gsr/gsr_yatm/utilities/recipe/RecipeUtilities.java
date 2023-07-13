@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.utilities;
+package com.gsr.gsr_yatm.utilities.recipe;
 
 import java.util.ArrayList;
 import java.util.Enumeration;
@@ -7,9 +7,12 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.function.Function;
+import java.util.stream.Stream;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.recipe.dynamic.IDynamicRecipeProvider;
@@ -24,6 +27,8 @@ import net.minecraft.world.item.crafting.Recipe;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.common.crafting.CompoundIngredient;
+import net.minecraftforge.common.crafting.CraftingHelper;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITag;
@@ -131,6 +136,75 @@ public class RecipeUtilities
 		return false;
 	} // end testIngredientAgainst()
 
+	
+	
+	@Deprecated
+	public static Ingredient ingredientFromJson(JsonObject jsonObject)
+	{
+		if(!jsonObject.isJsonArray()) 
+		{
+			if(matchesCountTagSignature(jsonObject))
+			{
+				return Ingredient.fromValues(Stream.of(getCountTagValue(jsonObject)));
+			}
+			else 
+			{
+				return CraftingHelper.getIngredient(jsonObject, false);
+			}
+		}
+		else
+		{
+			JsonArray nonCountTagResults = new JsonArray();
+			List<Ingredient.Value> tCValues = new ArrayList<>();
+			for(JsonElement member : jsonObject.getAsJsonArray()) 
+			{
+				if(member.isJsonObject()) 
+				{
+					if(matchesCountTagSignature(jsonObject)) 
+					{
+						tCValues.add(getCountTagValue(jsonObject));
+					}
+					else 
+					{
+						nonCountTagResults.add(member);
+					}
+				}
+				else 
+				{
+					nonCountTagResults.add(member);
+				}
+			}
+			
+			List<Ingredient> ing = new ArrayList<>();
+			if(!tCValues.isEmpty()) 
+			{
+				ing.add(Ingredient.fromValues(tCValues.stream()));
+			}
+			if(!nonCountTagResults.isEmpty()) 
+			{
+				ing.add(CraftingHelper.getIngredient(nonCountTagResults, true));
+			}
+			return CompoundIngredient.of(ing.toArray(new Ingredient[ing.size()]));
+		}
+		
+	} // end ingredientFromJson()
+
+	@Deprecated
+	private static boolean matchesCountTagSignature(JsonObject jsonObject) 
+	{
+		return jsonObject.has(TAG_KEY) && jsonObject.has(COUNT_KEY);
+	} // end matchesCountTagSignature()
+	
+	@Deprecated
+	private static IngredientCountTagValue getCountTagValue(JsonObject jsonObject) 
+	{
+		TagKey<Item> tag = getTag(jsonObject.get(TAG_KEY).getAsString()).getKey();
+		int count = jsonObject.get(COUNT_KEY).getAsInt();
+		return new IngredientCountTagValue(tag, count);
+	} // end getCountTagValue()
+	
+	
+	
 	
 	
 	public static void recipesUpdated() 
@@ -269,5 +343,5 @@ public class RecipeUtilities
 		}
 		RecipeUtilities.DYNAMIC_RECIPE_PROVIDERS.get(provider.recipeType()).add(provider);
 	} // end addDynamicRecipeProvider()
-
+	
 } // end class

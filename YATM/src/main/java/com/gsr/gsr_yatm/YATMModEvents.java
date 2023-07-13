@@ -33,7 +33,9 @@ import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.registry.YATMRootPlacerTypes;
 import com.gsr.gsr_yatm.registry.YATMTreeDecoratorTypes;
 import com.gsr.gsr_yatm.registry.YATMTrunkPlacerTypes;
-import com.gsr.gsr_yatm.utilities.RecipeUtilities;
+import com.gsr.gsr_yatm.registry.custom.YATMIngredientDeserializers;
+import com.gsr.gsr_yatm.registry.custom.YATMRegistries;
+import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
 
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.data.DataProvider;
@@ -64,6 +66,9 @@ public class YATMModEvents
 		YATMTrunkPlacerTypes.TRUNK_PLACER_TYPES.register(modEventBus);
 		YATMRootPlacerTypes.ROOT_PLACER_TYPES.register(modEventBus);
 		YATMTreeDecoratorTypes.TREE_DECORATOR_TYPES.register(modEventBus);
+		
+		YATMRegistries.classInitializer();
+		YATMIngredientDeserializers.INGREDIENT_DESERIALIZERS.register(modEventBus);
 		
 		YATMBlocks.addFlowersToPots();
 		

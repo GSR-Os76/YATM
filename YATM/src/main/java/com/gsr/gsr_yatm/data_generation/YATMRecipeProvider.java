@@ -1,7 +1,6 @@
 package com.gsr.gsr_yatm.data_generation;
 
 import java.util.function.Consumer;
-
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
@@ -11,6 +10,8 @@ import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizationRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.extracting.ExtractionRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.extruding.ExtrusionRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipeBuilder;
+import com.gsr.gsr_yatm.recipe.ingredient.ItemStackIngredient;
+import com.gsr.gsr_yatm.recipe.ingredient.ItemTagIngredient;
 import com.gsr.gsr_yatm.recipe.spinning.SpinningRecipeBuilder;
 import com.gsr.gsr_yatm.registry.YATMFluids;
 import com.gsr.gsr_yatm.registry.YATMItems;
@@ -108,18 +109,20 @@ public class YATMRecipeProvider extends RecipeProvider
 		
 		
 		
-		this.addGrindingRecipe(writer, Items.STONE, new ItemStack(Items.COBBLESTONE), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_from_stone_grinding");
+		this.addGrinderStoneTowardsCobblestone(writer);
 		this.addGrindingRecipe(writer, Items.COBBLESTONE, new ItemStack(Items.GRAVEL), 3, 80, YetAnotherTechMod.MODID + ":gravel_from_cobblestone_grinding");
-		this.addGrindingRecipe(writer, Items.GRAVEL, new ItemStack(Items.SAND), 3, 80, YetAnotherTechMod.MODID + ":sand_from_gravel_grinding");
+		this.addGrindToSand(writer);
+		
 		this.addGrindingRecipe(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING_ITEM.get(), new ItemStack(YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get()), 2, 20, YetAnotherTechMod.MODID + ":soul_leaf_mulch_from_flowering_leaf_grinding");
 		this.addGrindingRecipe(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG_ITEM.get(), new ItemStack(YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get()), 1, 20, YetAnotherTechMod.MODID + ":soul_leaf_mulch_from_young_leaf_grinding");
-		this.addGrindingRecipe(writer, Items.ROOTED_DIRT, new ItemStack(Items.DIRT), 2, 40, YetAnotherTechMod.MODID + ":dirt_from_rooted_grinding");
-		this.addGrindingRecipe(writer, Items.MUDDY_MANGROVE_ROOTS, new ItemStack(Items.MUD), 2, 52, YetAnotherTechMod.MODID + ":mud_from_rooted_grinding");
-		this.addGrindingRecipe(writer, YATMItems.ROOTED_SOUL_SOIL_ITEM.get(), new ItemStack(Items.SOUL_SOIL), 2, 40, YetAnotherTechMod.MODID + ":soul_soil_from_rooted_grinding");
+		
+		this.addRootedSoilReversions(writer);
+		this.addGrinderBrickCrackings(writer);
 		
 		
 		
-		// TODO, add other chorus plant parts in too.
+		this.addBiolingRecipe(writer, Items.CHORUS_FLOWER, new FluidStack(YATMFluids.CHORUS_BIO.get(), 120), 6, 120, YetAnotherTechMod.MODID + ":chorus_biofluid_from_chorus_stem_bioling");
+		this.addBiolingRecipe(writer, Items.CHORUS_FLOWER, new FluidStack(YATMFluids.CHORUS_BIO.get(), 1000), 4, 60, YetAnotherTechMod.MODID + ":chorus_biofluid_from_chorus_flower_bioling");
 		this.addBiolingRecipe(writer, Items.CHORUS_FRUIT, new FluidStack(YATMFluids.CHORUS_BIO.get(), 200), 2, 20, YetAnotherTechMod.MODID + ":chorus_biofluid_from_chorus_fruit_bioling");
 		this.addBiolingRecipe(writer, Items.POISONOUS_POTATO, new FluidStack(YATMFluids.BIO.get(), 200), 2, 20, YetAnotherTechMod.MODID + ":biofluid_from_poisonous_potato_bioling");
 		
@@ -247,8 +250,99 @@ public class YATMRecipeProvider extends RecipeProvider
 
 	}
 	
+	private void addRootedSoilReversions(Consumer<FinishedRecipe> writer) 
+	{
+		this.addGrindingRecipe(writer, Items.ROOTED_DIRT, new ItemStack(Items.DIRT), 2, 40, YetAnotherTechMod.MODID + ":dirt_from_rooted_grinding");
+		this.addGrindingRecipe(writer, Items.MUDDY_MANGROVE_ROOTS, new ItemStack(Items.MUD), 2, 52, YetAnotherTechMod.MODID + ":mud_from_rooted_grinding");
+		this.addGrindingRecipe(writer, YATMItems.ROOTED_SOUL_SOIL_ITEM.get(), new ItemStack(Items.SOUL_SOIL), 2, 40, YetAnotherTechMod.MODID + ":soul_soil_from_rooted_grinding");
+	} // end addRootedSoilReversions()
+	
+	private void addGrinderBrickCrackings(Consumer<FinishedRecipe> writer) 
+	{
+		this.addGrindingRecipe(writer, Items.STONE_BRICKS, new ItemStack(Items.CRACKED_STONE_BRICKS), 1, 20, YetAnotherTechMod.MODID + ":cracked_stone_bricks_from_stone_bricks_grinding");
+		this.addGrindingRecipe(writer, Items.DEEPSLATE_BRICKS, new ItemStack(Items.CRACKED_DEEPSLATE_BRICKS), 1, 20, YetAnotherTechMod.MODID + ":cracked_deepslate_bricks_from_deepslate_bricks_grinding");
+		this.addGrindingRecipe(writer, Items.DEEPSLATE_TILES, new ItemStack(Items.CRACKED_DEEPSLATE_TILES), 1, 20, YetAnotherTechMod.MODID + ":cracked_deepslate_tiles_from_deepslate_tiles_grinding");
+		this.addGrindingRecipe(writer, Items.NETHER_BRICKS, new ItemStack(Items.CRACKED_NETHER_BRICKS), 1, 20, YetAnotherTechMod.MODID + ":cracked_nether_bricks_from_nether_brick_grinding");
+		this.addGrindingRecipe(writer, Items.POLISHED_BLACKSTONE_BRICKS, new ItemStack(Items.CRACKED_POLISHED_BLACKSTONE_BRICKS), 1, 20, YetAnotherTechMod.MODID + ":cracked_polished_blackstone_bricks_from_polished_blackstone_brick_grinding");
+		this.addGrindingRecipe(writer, Items.INFESTED_STONE_BRICKS, new ItemStack(Items.INFESTED_CRACKED_STONE_BRICKS), 1, 20, YetAnotherTechMod.MODID + ":infested_cracked_stone_bricks_from_infested_stone_bricks_grinding");
+	} // end addGrinderBrickCrackings()
+	
+	private void addGrinderStoneTowardsCobblestone(Consumer<FinishedRecipe> writer) 
+	{
+		this.addGrindingRecipe(writer, Items.STONE, new ItemStack(Items.COBBLESTONE), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_from_stone_grinding");
+		this.addGrindingRecipe(writer, Items.INFESTED_STONE, new ItemStack(Items.INFESTED_COBBLESTONE), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_from_infested_stone_grinding");
+		this.addGrindingRecipe(writer, Items.CRACKED_STONE_BRICKS, new ItemStack(Items.COBBLESTONE), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_from_cracked_stone_bricks_grinding");
+		this.addGrindingRecipe(writer, Items.INFESTED_CRACKED_STONE_BRICKS, new ItemStack(Items.INFESTED_COBBLESTONE), 1, 20, YetAnotherTechMod.MODID + ":infested_cobblestone_from_infested_cracked_stone_bricks_grinding");
+		this.addGrindingRecipe(writer, Items.CHISELED_STONE_BRICKS, new ItemStack(Items.COBBLESTONE), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_from_chiseled_stone_bricks_grinding");
+		this.addGrindingRecipe(writer, Items.INFESTED_CHISELED_STONE_BRICKS, new ItemStack(Items.INFESTED_COBBLESTONE), 3, 80, YetAnotherTechMod.MODID + ":infested_cobblestone_from_infested_chiseled_stone_bricks_grinding");
+		this.addGrindingRecipe(writer, Items.MOSSY_STONE_BRICKS, new ItemStack(Items.MOSSY_COBBLESTONE), 3, 80, YetAnotherTechMod.MODID + ":mossy_cobblestone_from_mossy_stone_bricks_grinding");
+		this.addGrindingRecipe(writer, Items.INFESTED_MOSSY_STONE_BRICKS, new ItemStack(Items./* INFESTED_ */MOSSY_COBBLESTONE), 3, 80, YetAnotherTechMod.MODID + ":mossy_cobblestone_from_infested_mossy_stone_bricks_grinding");
+		this.addGrindingRecipe(writer, Items.SMOOTH_STONE, new ItemStack(Items.COBBLESTONE), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_from_smooth_stone_grinding");
 
+		this.addGrindingRecipe(writer, Items.STONE_STAIRS, new ItemStack(Items.COBBLESTONE_STAIRS), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_stairs_from_stone_stairs_grinding");
+		this.addGrindingRecipe(writer, Items.STONE_BRICK_STAIRS, new ItemStack(Items.COBBLESTONE_STAIRS), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_stairs_from_stone_brick_stairs_grinding");
+		this.addGrindingRecipe(writer, Items.MOSSY_STONE_BRICK_STAIRS, new ItemStack(Items.MOSSY_COBBLESTONE_STAIRS), 3, 80, YetAnotherTechMod.MODID + ":mossy_cobblestone_stairs_from_mossy_stone_brick_stairs_grinding");
+		
+		this.addGrindingRecipe(writer, Items.STONE_SLAB, new ItemStack(Items.COBBLESTONE_SLAB), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_slab_from_stone_slab_grinding");
+		this.addGrindingRecipe(writer, Items.STONE_BRICK_SLAB, new ItemStack(Items.COBBLESTONE_SLAB), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_slab_from_stone_brick_slab_grinding");
+		this.addGrindingRecipe(writer, Items.MOSSY_STONE_BRICK_SLAB, new ItemStack(Items.MOSSY_COBBLESTONE_SLAB), 3, 80, YetAnotherTechMod.MODID + ":mossy_cobblestone_slab_from_mossy_stone_brick_slab_grinding");
+		this.addGrindingRecipe(writer, Items.SMOOTH_STONE_SLAB, new ItemStack(Items.COBBLESTONE_SLAB), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_slab_from_smooth_stone_slab_grinding");
+		
+		this.addGrindingRecipe(writer, Items.STONE_BRICK_WALL, new ItemStack(Items.COBBLESTONE_WALL), 3, 80, YetAnotherTechMod.MODID + ":cobblestone_wall_from_stone_brick_wall_grinding");
+		this.addGrindingRecipe(writer, Items.MOSSY_STONE_BRICK_WALL, new ItemStack(Items.MOSSY_COBBLESTONE_WALL), 3, 80, YetAnotherTechMod.MODID + ":mossy_cobblestone_wall_from_mossy_stone_brick_wall_grinding");
+		
+	} // end addGrinderBrickCrackings()
+	
+	private void addGrindToSand(Consumer<FinishedRecipe> writer) 
+	{
+		this.addGrindingRecipe(writer, Items.GRAVEL, new ItemStack(Items.SAND), 3, 80, YetAnotherTechMod.MODID + ":sand_from_gravel_grinding");
 
+		this.addGrindingRecipe(writer, Tags.Items.GLASS, new ItemStack(Items.SAND), 1, 20, YetAnotherTechMod.MODID + ":sand_from_glass_grinding");
+		this.addGrindingRecipe(writer, Tags.Items.GLASS_PANES, 16, new ItemStack(Items.SAND, 6), 1, 20, YetAnotherTechMod.MODID + ":sand_from_glass_pane_grinding");
+		this.addGrindingRecipe(writer, Items.GLASS_BOTTLE, new ItemStack(Items.SAND), 1, 20, YetAnotherTechMod.MODID + ":sand_from_glass_bottle_grinding");
+		
+
+		
+		this.addGrindingRecipe(writer, Items.SANDSTONE, new ItemStack(Items.SAND), 1, 20, YetAnotherTechMod.MODID + ":sand_from_sandstone_grinding");
+		this.addGrindingRecipe(writer, Items.CHISELED_SANDSTONE, new ItemStack(Items.SAND), 1, 20, YetAnotherTechMod.MODID + ":sand_from_chiseled_sandstone_grinding");
+		this.addGrindingRecipe(writer, Items.CUT_SANDSTONE, new ItemStack(Items.SAND), 1, 20, YetAnotherTechMod.MODID + ":sand_from_cut_sandstone_grinding");
+		this.addGrindingRecipe(writer, Items.SMOOTH_SANDSTONE, new ItemStack(Items.SAND), 1, 20, YetAnotherTechMod.MODID + ":sand_from_smooth_sandstone_grinding");
+
+		this.addGrindingRecipe(writer, Items.SANDSTONE_STAIRS, 4, new ItemStack(Items.SAND, 3), 1, 20, YetAnotherTechMod.MODID + ":sand_from_sandstone_stair_grinding");
+		this.addGrindingRecipe(writer, Items.SMOOTH_SANDSTONE_STAIRS, 4, new ItemStack(Items.SAND, 3), 1, 20, YetAnotherTechMod.MODID + ":sand_from_smooth_sandstone_stair_grinding");
+
+		this.addGrindingRecipe(writer, Items.SANDSTONE_SLAB, 2, new ItemStack(Items.SAND, 1), 1, 20, YetAnotherTechMod.MODID + ":sand_from_sandstone_slab_grinding");
+		this.addGrindingRecipe(writer, Items.CUT_STANDSTONE_SLAB, 2, new ItemStack(Items.SAND, 1), 1, 20, YetAnotherTechMod.MODID + ":sand_from_cut_sandstone_slab_grinding");
+		this.addGrindingRecipe(writer, Items.SMOOTH_SANDSTONE_SLAB, 2, new ItemStack(Items.SAND, 1), 1, 20, YetAnotherTechMod.MODID + ":sand_from_smooth_sandstone_slab_grinding");
+
+		this.addGrindingRecipe(writer, Items.SANDSTONE_WALL, new ItemStack(Items.SAND), 1, 20, YetAnotherTechMod.MODID + ":sand_from_sandstone_wall_grinding");
+
+		
+		
+		
+		this.addGrindingRecipe(writer, Items.RED_SANDSTONE, new ItemStack(Items.RED_SAND), 1, 20, YetAnotherTechMod.MODID + ":red_sand_from_sandstone_grinding");
+		this.addGrindingRecipe(writer, Items.CHISELED_RED_SANDSTONE, new ItemStack(Items.RED_SAND), 1, 20, YetAnotherTechMod.MODID + ":red_sand_from_chiseled_sandstone_grinding");
+		this.addGrindingRecipe(writer, Items.CUT_RED_SANDSTONE, new ItemStack(Items.RED_SAND), 1, 20, YetAnotherTechMod.MODID + ":red_sand_from_cut_sandstone_grinding");
+		this.addGrindingRecipe(writer, Items.SMOOTH_RED_SANDSTONE, new ItemStack(Items.RED_SAND), 1, 20, YetAnotherTechMod.MODID + ":red_sand_from_smooth_sandstone_grinding");
+
+		this.addGrindingRecipe(writer, Items.RED_SANDSTONE_STAIRS, 4, new ItemStack(Items.RED_SAND, 3), 1, 20, YetAnotherTechMod.MODID + ":red_sand_from_red_sandstone_stair_grinding");
+		this.addGrindingRecipe(writer, Items.SMOOTH_RED_SANDSTONE_STAIRS, 4, new ItemStack(Items.RED_SAND, 3), 1, 20, YetAnotherTechMod.MODID + ":red_sand_from_smooth_red_sandstone_stair_grinding");
+
+		this.addGrindingRecipe(writer, Items.RED_SANDSTONE_SLAB, 2, new ItemStack(Items.RED_SAND, 1), 1, 20, YetAnotherTechMod.MODID + ":red_sand_from_red_sandstone_slab_grinding");
+		this.addGrindingRecipe(writer, Items.CUT_RED_SANDSTONE_SLAB, 2, new ItemStack(Items.RED_SAND, 1), 1, 20, YetAnotherTechMod.MODID + ":sand_from_cut_red_sandstone_slab_grinding");
+		this.addGrindingRecipe(writer, Items.SMOOTH_RED_SANDSTONE_SLAB, 2, new ItemStack(Items.RED_SAND, 1), 1, 20, YetAnotherTechMod.MODID + ":sred_and_from_smooth_red_sandstone_slab_grinding");
+
+		this.addGrindingRecipe(writer, Items.RED_SANDSTONE_WALL, new ItemStack(Items.RED_SAND), 1, 20, YetAnotherTechMod.MODID + ":red_sand_from_red_sandstone_wall_grinding");
+		
+	} // end addGrinderBrickCrackings()
+	
+	
+	
+	
+	
+	// TODO, add in silt, for clay making and reverting
+	
+	
 	private void addNineToOne(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemLike result, String key) 
 	{
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
@@ -554,13 +648,46 @@ public class YATMRecipeProvider extends RecipeProvider
 	private void addGrindingRecipe(Consumer<FinishedRecipe> writer, Item input, ItemStack result, int currentPerTick, int timeInTicks, String key) 
 	{
 		new GrindingRecipeBuilder()
-		.input(Ingredient.of(input))
+		.input(new ItemStackIngredient(input))
 		.result(result)
 		.currentPerTick(currentPerTick)
 		.timeInTicks(timeInTicks)
 		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(input).build()))
 		.save(writer, key);
-	} // end addGrindRecipe()
+	} // end addGrindingRecipe()
+	
+	private void addGrindingRecipe(Consumer<FinishedRecipe> writer, Item input, int inputCount, ItemStack result, int currentPerTick, int timeInTicks, String key) 
+	{
+		new GrindingRecipeBuilder()
+		.input(new ItemStackIngredient(new ItemStack(input, inputCount)))
+		.result(result)
+		.currentPerTick(currentPerTick)
+		.timeInTicks(timeInTicks)
+		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(input).build()))
+		.save(writer, key);
+	} // end addGrindingRecipe()
+	
+	private void addGrindingRecipe(Consumer<FinishedRecipe> writer, TagKey<Item> input, ItemStack result, int currentPerTick, int timeInTicks, String key) 
+	{
+		new GrindingRecipeBuilder()
+		.input(new ItemTagIngredient(input))
+		.result(result)
+		.currentPerTick(currentPerTick)
+		.timeInTicks(timeInTicks)
+		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(input).build()))
+		.save(writer, key);
+	} // end addGrindingRecipe()
+	
+	private void addGrindingRecipe(Consumer<FinishedRecipe> writer, TagKey<Item> input, int inputCount, ItemStack result, int currentPerTick, int timeInTicks, String key) 
+	{
+		new GrindingRecipeBuilder()
+		.input(new ItemTagIngredient(input, inputCount))
+		.result(result)
+		.currentPerTick(currentPerTick)
+		.timeInTicks(timeInTicks)
+		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(input).build()))
+		.save(writer, key);
+	} // end addGrindingRecipe()
 	
 	
 	

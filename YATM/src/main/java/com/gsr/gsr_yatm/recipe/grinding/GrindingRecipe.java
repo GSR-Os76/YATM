@@ -2,17 +2,16 @@ package com.gsr.gsr_yatm.recipe.grinding;
 
 import com.gsr.gsr_yatm.block.device.grinder.GrinderBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
+import com.gsr.gsr_yatm.recipe.ingredient.IYATMIngredient;
+import com.gsr.gsr_yatm.recipe.ingredient.IngredientUtilities;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.RecipeUtilities;
 
-import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
@@ -22,7 +21,7 @@ public class GrindingRecipe implements ITimedRecipe<Container>
 {
 	private final ResourceLocation m_identifier;
 	private final ItemStack m_result;
-	private final Ingredient m_input;
+	private final IYATMIngredient<ItemStack> m_input;
 	int m_currentPerTick = 8;
 	int m_timeInTicks = 20;
 	
@@ -30,7 +29,7 @@ public class GrindingRecipe implements ITimedRecipe<Container>
 
 
 
-	public GrindingRecipe(ResourceLocation identifier, Ingredient input, ItemStack result)
+	public GrindingRecipe(ResourceLocation identifier, IYATMIngredient<ItemStack> input, ItemStack result)
 	{
 		this.m_identifier = identifier;
 		this.m_input = input;
@@ -54,14 +53,14 @@ public class GrindingRecipe implements ITimedRecipe<Container>
 	
 	public boolean canBeUsedOn(IItemHandler inventory)
 	{
-		return RecipeUtilities.testIngredientAgainst(inventory.getStackInSlot(GrinderBlockEntity.INPUT_SLOT), this.m_input) && 
+		return this.m_input.apply(inventory.getStackInSlot(GrinderBlockEntity.INPUT_SLOT)) && //RecipeUtilities.testIngredientAgainst(inventory.getStackInSlot(GrinderBlockEntity.INPUT_SLOT), this.m_input) && 
 				inventory.insertItem(GrinderBlockEntity.RESULT_SLOT, this.m_result.copy(), true).isEmpty();
 	} // end canBeUsedOn()
 
 	public void startRecipe(IItemHandler inventory)
 	{
 		inventory.extractItem(GrinderBlockEntity.INPUT_SLOT, 
-				RecipeUtilities.getReqiuredCountFor(inventory.getStackInSlot(GrinderBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
+				IngredientUtilities.getReqiuredCountFor(inventory.getStackInSlot(GrinderBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
 	} // end startRecipe()
 
 	public void setResults(IItemHandler inventory)
@@ -74,7 +73,7 @@ public class GrindingRecipe implements ITimedRecipe<Container>
 	@Override
 	public boolean matches(Container container, Level level)
 	{
-		return RecipeUtilities.testIngredientAgainst(container.getItem(GrinderBlockEntity.INPUT_SLOT), this.m_input);
+		return this.m_input.apply(container.getItem(GrinderBlockEntity.INPUT_SLOT));
 	} // end matches()
 
 	@Override
@@ -120,18 +119,6 @@ public class GrindingRecipe implements ITimedRecipe<Container>
 	{
 		return new ItemStack(YATMItems.STEEL_GRINDER_ITEM.get());
 	} // end getToastSymbol()	
-	
-	@Override
-	public NonNullList<ItemStack> getRemainingItems(Container container)
-	{
-		return ITimedRecipe.super.getRemainingItems(container);
-	} // end getRemainingItems
-
-	@Override
-	public NonNullList<Ingredient> getIngredients()
-	{
-		return NonNullList.of(null, this.m_input);
-	} // end getIngredients()
 
 	@Override
 	public String getGroup()

@@ -3,6 +3,8 @@
   "cost": 3,
   "input": {
     "ingedient": {
+      "type": "gsr_yatm:item_stack_ingredient",
+      "count": 1,
       "item": "minecraft:gravel"
     }
   },

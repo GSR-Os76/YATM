@@ -3,7 +3,7 @@ package com.gsr.gsr_yatm.recipe.extruding;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonObject;
-import com.gsr.gsr_yatm.utilities.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;

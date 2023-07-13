@@ -7,7 +7,7 @@ import java.util.Map;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.recipe.dynamic.IDynamicRecipeProvider;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
 
 import it.unimi.dsi.fastutil.objects.Object2FloatMap.Entry;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;

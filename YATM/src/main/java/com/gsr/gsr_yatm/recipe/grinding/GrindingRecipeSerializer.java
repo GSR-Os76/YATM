@@ -3,11 +3,11 @@ package com.gsr.gsr_yatm.recipe.grinding;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonObject;
-import com.gsr.gsr_yatm.utilities.RecipeUtilities;
+import com.gsr.gsr_yatm.recipe.ingredient.IngredientUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.crafting.CraftingHelper;
 
@@ -23,7 +23,7 @@ public class GrindingRecipeSerializer implements RecipeSerializer<GrindingRecipe
 		builder.result(CraftingHelper.getItemStack(jsonObject.getAsJsonObject(RecipeUtilities.RESULT_OBJECT_KEY), false));
 		
 		JsonObject inputObj = jsonObject.getAsJsonObject(RecipeUtilities.INPUT_OBJECT_KEY);
-		builder.input(Ingredient.fromJson(inputObj.get(RecipeUtilities.INGREDIENT_KEY)));
+		builder.input(IngredientUtilities.readIngredient(inputObj.getAsJsonObject(RecipeUtilities.INGREDIENT_KEY)));//RecipeUtilities.ingredientFromJson(inputObj.getAsJsonObject(RecipeUtilities.INGREDIENT_KEY)));
 		
 		
 		if(jsonObject.has(RecipeUtilities.CURRENT_PER_TICK_KEY)) 

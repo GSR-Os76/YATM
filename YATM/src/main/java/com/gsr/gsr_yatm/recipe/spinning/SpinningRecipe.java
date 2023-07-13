@@ -3,7 +3,7 @@ package com.gsr.gsr_yatm.recipe.spinning;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;

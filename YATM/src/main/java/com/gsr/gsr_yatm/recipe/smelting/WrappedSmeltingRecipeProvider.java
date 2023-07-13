@@ -7,7 +7,7 @@ import java.util.Map;
 
 import com.gsr.gsr_yatm.recipe.dynamic.IDynamicRecipeProvider;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
 
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SmeltingRecipe;

@@ -1,21 +1,22 @@
 package com.gsr.gsr_yatm.recipe.grinding;
 
 import com.google.gson.JsonObject;
+import com.gsr.gsr_yatm.recipe.ingredient.IYATMIngredient;
+import com.gsr.gsr_yatm.recipe.ingredient.IngredientUtilities;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
-import com.gsr.gsr_yatm.utilities.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
 public class GrindingFinishedRecipe implements FinishedRecipe
 {
 	private final ResourceLocation m_identifier;
 	private final ItemStack m_result;
-	private final Ingredient m_input;
+	private final IYATMIngredient<ItemStack> m_input;
 	int m_currentPerTick = 8;
 	int m_timeInTicks = 20;
 	
@@ -25,7 +26,7 @@ public class GrindingFinishedRecipe implements FinishedRecipe
 	
 	
 	
-	public GrindingFinishedRecipe(ResourceLocation identifier, ItemStack result, Ingredient input, int currentPerTick, int timeInTicks, String group, ResourceLocation advancementIdentifier, Advancement.Builder advancement) 
+	public GrindingFinishedRecipe(ResourceLocation identifier, ItemStack result, IYATMIngredient<ItemStack> input, int currentPerTick, int timeInTicks, String group, ResourceLocation advancementIdentifier, Advancement.Builder advancement) 
 	{
 		this.m_identifier = identifier;
 		this.m_result = result;		
@@ -51,7 +52,7 @@ public class GrindingFinishedRecipe implements FinishedRecipe
 		
 		jsonObject.add(RecipeUtilities.RESULT_OBJECT_KEY, RecipeUtilities.itemStackToJson(this.m_result));
 		JsonObject inputObject = new JsonObject();
-		inputObject.add(RecipeUtilities.INGREDIENT_KEY, this.m_input.toJson());
+		inputObject.add(RecipeUtilities.INGREDIENT_KEY, IngredientUtilities.writeIngredient(this.m_input));
 		jsonObject.add(RecipeUtilities.INPUT_OBJECT_KEY, inputObject);
 		jsonObject.addProperty(RecipeUtilities.CURRENT_PER_TICK_KEY, this.m_currentPerTick);
 		jsonObject.addProperty(RecipeUtilities.TIME_IN_TICKS_KEY, this.m_timeInTicks);
