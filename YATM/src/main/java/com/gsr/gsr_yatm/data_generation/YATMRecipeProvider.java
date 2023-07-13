@@ -121,9 +121,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		
 		
 		
-		this.addBiolingRecipe(writer, Items.CHORUS_FLOWER, new FluidStack(YATMFluids.CHORUS_BIO.get(), 120), 6, 120, YetAnotherTechMod.MODID + ":chorus_biofluid_from_chorus_stem_bioling");
-		this.addBiolingRecipe(writer, Items.CHORUS_FLOWER, new FluidStack(YATMFluids.CHORUS_BIO.get(), 1000), 4, 60, YetAnotherTechMod.MODID + ":chorus_biofluid_from_chorus_flower_bioling");
-		this.addBiolingRecipe(writer, Items.CHORUS_FRUIT, new FluidStack(YATMFluids.CHORUS_BIO.get(), 200), 2, 20, YetAnotherTechMod.MODID + ":chorus_biofluid_from_chorus_fruit_bioling");
+		this.addChorusBiolings(writer);
 		this.addBiolingRecipe(writer, Items.POISONOUS_POTATO, new FluidStack(YATMFluids.BIO.get(), 200), 2, 20, YetAnotherTechMod.MODID + ":biofluid_from_poisonous_potato_bioling");
 		
 		
@@ -337,6 +335,20 @@ public class YATMRecipeProvider extends RecipeProvider
 	} // end addGrinderBrickCrackings()
 	
 	
+	
+	private void addChorusBiolings(Consumer<FinishedRecipe> writer) 
+	{
+		this.addBiolingRecipe(writer, Items.CHORUS_PLANT, new FluidStack(YATMFluids.CHORUS_BIO.get(), 120), 6, 120, YetAnotherTechMod.MODID + ":chorus_biofluid_from_chorus_stem_bioling");
+		this.addBiolingRecipe(writer, Items.CHORUS_FLOWER, new FluidStack(YATMFluids.CHORUS_BIO.get(), 1000), 4, 60, YetAnotherTechMod.MODID + ":chorus_biofluid_from_chorus_flower_bioling");
+		this.addBiolingRecipe(writer, Items.CHORUS_FRUIT, new FluidStack(YATMFluids.CHORUS_BIO.get(), 200), 2, 20, YetAnotherTechMod.MODID + ":chorus_biofluid_from_chorus_fruit_bioling");
+		
+		this.addBiolingRecipe(writer, Items.POPPED_CHORUS_FRUIT, new FluidStack(YATMFluids.CHORUS_BIO.get(), 240), 6, 48, YetAnotherTechMod.MODID + ":chorus_biofluid_from_popped_chorus_fruit_bioling");
+		this.addBiolingRecipe(writer, Items.PURPUR_BLOCK, new FluidStack(YATMFluids.CHORUS_BIO.get(), 960), 6, 192, YetAnotherTechMod.MODID + ":chorus_biofluid_from_purpur_block_bioling");
+		this.addBiolingRecipe(writer, Items.PURPUR_PILLAR, new FluidStack(YATMFluids.CHORUS_BIO.get(), 960), 6, 192, YetAnotherTechMod.MODID + ":chorus_biofluid_from_purpur_pillar_bioling");
+		this.addBiolingRecipe(writer, Items.PURPUR_SLAB, new FluidStack(YATMFluids.CHORUS_BIO.get(), 480), 6, 96, YetAnotherTechMod.MODID + ":chorus_biofluid_from_purpur_slab_bioling");
+		this.addBiolingRecipe(writer, Items.PURPUR_STAIRS, new FluidStack(YATMFluids.CHORUS_BIO.get(), 720), 6, 144, YetAnotherTechMod.MODID + ":chorus_biofluid_from_purpur_stairs_bioling");
+
+	} // end addChorusBiolings()
 	
 	
 	

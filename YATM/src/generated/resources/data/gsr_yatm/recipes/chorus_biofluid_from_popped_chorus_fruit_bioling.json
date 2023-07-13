@@ -3,12 +3,12 @@
   "cost": 6,
   "input": {
     "ingedient": {
-      "item": "minecraft:chorus_plant"
+      "item": "minecraft:popped_chorus_fruit"
     }
   },
   "result": {
-    "count": 120,
+    "count": 240,
     "fluid": "gsr_yatm:chorus_bio"
   },
-  "time": 120
+  "time": 48
 }
