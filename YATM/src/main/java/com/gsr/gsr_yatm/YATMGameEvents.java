@@ -18,6 +18,7 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
@@ -85,6 +86,32 @@ public class YATMGameEvents
 					break;
 				}
 			}
+			if(entity instanceof Player player) 
+			{
+				for(ItemStack i : player.getArmorSlots()) 
+				{
+					if(i.getItem() == YATMItems.SOUL_ADORNED_NETHERITE_HELMET.get()) 
+					{
+						// 3 is slot
+						player.getInventory().setItem(36 + 3, copyDurabilityByProportion(i, new ItemStack(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_HELMET.get())));
+					}
+					else if(i.getItem() == YATMItems.SOUL_ADORNED_NETHERITE_CHESTPLATE.get()) 
+					{
+						// 2?
+						player.getInventory().setItem(36 + 2, copyDurabilityByProportion(i, new ItemStack(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_CHESTPLATE.get())));
+					}
+					else if(i.getItem() == YATMItems.SOUL_ADORNED_NETHERITE_LEGGINGS.get()) 
+					{
+						// 1?
+						player.getInventory().setItem(36 + 1, copyDurabilityByProportion(i, new ItemStack(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_LEGGINGS.get())));
+					}
+					else if(i.getItem() == YATMItems.SOUL_ADORNED_NETHERITE_BOOTS.get()) 
+					{
+						// 0?
+						player.getInventory().setItem(36 + 0, copyDurabilityByProportion(i, new ItemStack(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_BOOTS.get())));
+					}
+				}
+			}
 		}
 	} // end onEntityDamaged()
 
@@ -102,6 +129,23 @@ public class YATMGameEvents
 	} // end attachItemStackCapabilities()
 	
 	
+	
+	private static ItemStack copyDurabilityByProportion(ItemStack from, ItemStack to) 
+	{
+		// TODO, investigate this's not working issues
+		if(!to.isDamageableItem()) 
+		{
+			return to;
+		}
+		if(!from.isDamaged()) 
+		{
+			to.setDamageValue(0);
+			return to;
+		}
+		float prop = ((float)to.getDamageValue()) / ((float)to.getMaxDamage());
+		to.setDamageValue((int)(((float)to.getMaxDamage()) * (prop)));
+		return to;
+	} // end copyDurabilityByProportion()
 	
 	private static BlockState stripLogs(BlockState toolUsedOn, UseOnContext context) 
 	{

@@ -1,0 +1,11 @@
+{
+  "parent": "minecraft:block/cube",
+  "textures": {
+    "down": "gsr_yatm:block/device/compute/data_scan_collector/data_scan_collector_side",
+    "east": "gsr_yatm:block/device/compute/data_scan_collector/data_scan_collector_side",
+    "north": "gsr_yatm:block/device/compute/data_scan_collector/data_scan_collector_face",
+    "south": "gsr_yatm:block/device/compute/data_scan_collector/data_scan_collector_side",
+    "up": "gsr_yatm:block/device/compute/data_scan_collector/data_scan_collector_side",
+    "west": "gsr_yatm:block/device/compute/data_scan_collector/data_scan_collector_side"
+  }
+}

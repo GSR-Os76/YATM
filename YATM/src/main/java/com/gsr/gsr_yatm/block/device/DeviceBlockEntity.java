@@ -17,6 +17,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
+// TODO, subclass BasicBlockEntity probably, also probably rename that class
 public abstract class DeviceBlockEntity extends BlockEntity 
 {	
 	public static final String SETUP_TAG_NAME = "setup";

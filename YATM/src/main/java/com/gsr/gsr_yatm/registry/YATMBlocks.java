@@ -9,6 +9,10 @@ import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
 import com.gsr.gsr_yatm.block.device.bioler.BiolerBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlock;
+import com.gsr.gsr_yatm.block.device.compute.DataProcessorBlock;
+import com.gsr.gsr_yatm.block.device.compute.DestructiveDataScannerBlock;
+import com.gsr.gsr_yatm.block.device.compute.scan_collector.DataCollectorBlock;
+import com.gsr.gsr_yatm.block.device.compute.storage.DataStorageBlock;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlock;
 import com.gsr.gsr_yatm.block.device.current_furnace.FurnacePlusBlock;
 import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInterchangerBlock;
@@ -155,6 +159,15 @@ public class YATMBlocks
 	public static final RegistryObject<SpinningWheelBlock> SPINNING_WHEEL = BLOCKS.register("spinning_wheel", () -> new SpinningWheelBlock(BlockBehaviour.Properties.of(), YATMBlockShapes.SPINNING_WHEEL));
 	
 	public static final RegistryObject<HeatSinkBlock> LARGE_COPPER_HEAT_SINK = BLOCKS.register("large_copper_heat_sink", () -> new HeatSinkBlock(BlockBehaviour.Properties.of()));
+	
+	
+	
+	public static final RegistryObject<DataStorageBlock> DATA_STORAGE_BLOCK = BLOCKS.register("data_storage_block", () -> new DataStorageBlock(YATMBlockProperties.DATA_DEVICE_PROPERTIES));
+	public static final RegistryObject<DataCollectorBlock> DATA_SCAN_COLLECTOR = BLOCKS.register("data_scan_collector", () -> new DataCollectorBlock(YATMBlockProperties.DATA_DEVICE_PROPERTIES));
+	public static final RegistryObject<DestructiveDataScannerBlock> DESTRUCTIVE_DATA_SCANNER = BLOCKS.register("destructive_data_scanner", () -> new DestructiveDataScannerBlock(YATMBlockProperties.DATA_DEVICE_PROPERTIES));
+	public static final RegistryObject<DataProcessorBlock> DATA_PROCESSOR = BLOCKS.register("data_processor", () -> new DataProcessorBlock(YATMBlockProperties.DATA_DEVICE_PROPERTIES));
+
+	
 	
 	public static final RegistryObject<BiolerBlock> STEEL_BIOLER = BLOCKS.register("steel_bioler", () -> new BiolerBlock(YATMBlockProperties.STEEL_MACHINE_PROPERTIES, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_CURRENT_CAPACITY, DeviceTierConstants.STEEL_MAX_CURRENT, DeviceTierConstants.STEEL_TANK_CAPACITY, DeviceTierConstants.STEEL_MAXIMUM_FLUID_TRANSFER_RATE));
 	public static final RegistryObject<BoilerBlock> STEEL_BOILER = BLOCKS.register("steel_boiler", () -> new BoilerBlock(YATMBlockProperties.STEEL_MACHINE_PROPERTIES, YATMBlockShapes.BOILER_SHAPE, DeviceTierConstants.STEEL_MAXIMUM_TEMPERATURE, DeviceTierConstants.STEEL_TANK_CAPACITY, DeviceTierConstants.STEEL_MAXIMUM_FLUID_TRANSFER_RATE));

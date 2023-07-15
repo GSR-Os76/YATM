@@ -2,6 +2,7 @@ package com.gsr.gsr_yatm.registry;
 
 import com.gsr.gsr_yatm.YATMFoods;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.armor.YATMArmorMaterials;
 import com.gsr.gsr_yatm.creative.CreativeFluidSourceItem;
 import com.gsr.gsr_yatm.creative.CreativeFluidStorerItem;
 import com.gsr.gsr_yatm.creative.CreativeFluidVoidItem;
@@ -13,6 +14,8 @@ import com.gsr.gsr_yatm.item.component.CurrentBreakerItem;
 import com.gsr.gsr_yatm.item.component.CurrentRegulatorItem;
 import com.gsr.gsr_yatm.item.component.CurrentFuseItem;
 import com.gsr.gsr_yatm.item.component.fluid.FluidExchangerItem;
+
+import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.Item;
@@ -96,6 +99,15 @@ public class YATMItems
 	
 	public static final RegistryObject<BlockItem> LARGE_COPPER_HEAT_SINK_ITEM = generalTabEnqueue(ITEMS.register("large_copper_heat_sink", () -> new BlockItem(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), new Item.Properties())));
 
+	
+	
+	public static final RegistryObject<BlockItem> DATA_STORAGE_BLOCK_ITEM = generalTabEnqueue(ITEMS.register("data_storage_block", () -> new BlockItem(YATMBlocks.DATA_STORAGE_BLOCK.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> DATA_SCAN_COLLECTOR_ITEM = generalTabEnqueue(ITEMS.register("data_scan_collector", () -> new BlockItem(YATMBlocks.DATA_SCAN_COLLECTOR.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> DESTRUCTIVE_DATA_SCANNER_ITEM = generalTabEnqueue(ITEMS.register("destructive_data_scanner", () -> new BlockItem(YATMBlocks.DESTRUCTIVE_DATA_SCANNER.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> DATA_PROCESSOR_ITEM = generalTabEnqueue(ITEMS.register("data_processor", () -> new BlockItem(YATMBlocks.DATA_PROCESSOR.get(), new Item.Properties())));
+	
+	
+	
 	public static final RegistryObject<BlockItem> STEEL_BIOLER_ITEM = generalTabEnqueue(ITEMS.register("steel_bioler", () -> new BlockItem(YATMBlocks.STEEL_BIOLER.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_BOILER_TANK_ITEM = generalTabEnqueue(ITEMS.register("steel_boiler_tank", () -> new BlockItem(YATMBlocks.STEEL_BOILER_TANK.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_BOILER_ITEM = generalTabEnqueue(ITEMS.register("steel_boiler", () -> new BlockItem(YATMBlocks.STEEL_BOILER.get(), new Item.Properties())));
@@ -215,6 +227,18 @@ public class YATMItems
 	public static final RegistryObject<Item> STAR_SPROUT = generalTabEnqueue(ITEMS.register("star_sprout", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> STAR_ADOLESCENT = generalTabEnqueue(ITEMS.register("star_adolescent", () -> new Item(new Item.Properties())));
 		
+	Items l;
+	public static final RegistryObject<Item> SOUL_ADORNED_NETHERITE_HELMET = generalTabEnqueue(ITEMS.register("soul_adorned_netherite_helmet", () -> new ArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.HELMET, new Item.Properties().fireResistant())));
+	public static final RegistryObject<Item> SOUL_ADORNED_NETHERITE_CHESTPLATE = generalTabEnqueue(ITEMS.register("soul_adorned_netherite_chestplate", () -> new ArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant())));
+	public static final RegistryObject<Item> SOUL_ADORNED_NETHERITE_LEGGINGS = generalTabEnqueue(ITEMS.register("soul_adorned_netherite_leggings", () -> new ArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant())));
+	public static final RegistryObject<Item> SOUL_ADORNED_NETHERITE_BOOTS = generalTabEnqueue(ITEMS.register("soul_adorned_netherite_boots", () -> new ArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant())));
+	
+	public static final RegistryObject<Item> DECAYING_SOUL_ADORNED_NETHERITE_HELMET = generalTabEnqueue(ITEMS.register("decaying_soul_adorned_netherite_helmet", () -> new ArmorItem(YATMArmorMaterials.DECAYING_SOUL_ADORNED_NETHERITE, ArmorItem.Type.HELMET, new Item.Properties().fireResistant())));
+	public static final RegistryObject<Item> DECAYING_SOUL_ADORNED_NETHERITE_CHESTPLATE = generalTabEnqueue(ITEMS.register("decaying_soul_adorned_netherite_chestplate", () -> new ArmorItem(YATMArmorMaterials.DECAYING_SOUL_ADORNED_NETHERITE, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant())));
+	public static final RegistryObject<Item> DECAYING_SOUL_ADORNED_NETHERITE_LEGGINGS = generalTabEnqueue(ITEMS.register("decaying_soul_adorned_netherite_leggings", () -> new ArmorItem(YATMArmorMaterials.DECAYING_SOUL_ADORNED_NETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant())));
+	public static final RegistryObject<Item> DECAYING_SOUL_ADORNED_NETHERITE_BOOTS = generalTabEnqueue(ITEMS.register("decaying_soul_adorned_netherite_boots", () -> new ArmorItem(YATMArmorMaterials.DECAYING_SOUL_ADORNED_NETHERITE, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant())));
+	
+	
 	public static final RegistryObject<CreativeFluidVoidItem> CREATIVE_FLUID_VOID = generalTabEnqueue(ITEMS.register("creative_fluid_void", () -> new CreativeFluidVoidItem(new Item.Properties().stacksTo(1))));
 	public static final RegistryObject<CreativeFluidStorerItem> CREATIVE_FLUID_STORER = generalTabEnqueue(ITEMS.register("creative_fluid_storer", () -> new CreativeFluidStorerItem(new Item.Properties().stacksTo(1))));
 	public static final RegistryObject<CreativeFluidSourceItem> CREATIVE_FLUID_SOURCE = generalTabEnqueue(ITEMS.register("creative_fluid_source", () -> new CreativeFluidSourceItem(new Item.Properties().stacksTo(1))));

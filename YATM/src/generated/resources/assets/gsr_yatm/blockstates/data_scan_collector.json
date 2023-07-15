@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "gsr_yatm:block/data_scan_collector",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "gsr_yatm:block/data_scan_collector"
+    },
+    "facing=south": {
+      "model": "gsr_yatm:block/data_scan_collector",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "gsr_yatm:block/data_scan_collector",
+      "y": 270
+    }
+  }
+}

@@ -39,6 +39,9 @@ public class YATMBlockProperties
 	public static final BlockBehaviour.Properties RUBBER_BLOCK_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2f).sound(SoundType.CANDLE);
 	public static final BlockBehaviour.Properties ROOTED_SOUL_SOIL_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).strength(0.5F).sound(SoundType.ROOTED_DIRT);
 	
+	// TODO, actually design these
+	public static final BlockBehaviour.Properties DATA_DEVICE_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.METAL).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2.0F, 3.0F).sound(SoundType.FROGLIGHT);
+	
 	public static final BlockBehaviour.Properties STEEL_MACHINE_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.METAL).instrument(NoteBlockInstrument.IRON_XYLOPHONE).requiresCorrectToolForDrops().strength(6.0F, 8.0F).sound(SoundType.METAL);
 	public static final BlockBehaviour.Properties SOLAR_PANEL_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.METAL).instrument(NoteBlockInstrument.PLING).requiresCorrectToolForDrops().strength(3.0f).sound(SoundType.METAL);
 	public static final BlockBehaviour.Properties WIRE_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(2.0f).sound(SoundType.METAL);

@@ -6,6 +6,8 @@ import com.gsr.gsr_yatm.block.conduit.FluidConduitBlockEntity;
 import com.gsr.gsr_yatm.block.device.bioler.BiolerBlockEntity;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlockEntity;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlockEntity;
+import com.gsr.gsr_yatm.block.device.compute.scan_collector.DataScanCollectorBlockEntity;
+import com.gsr.gsr_yatm.block.device.compute.storage.DataStorageBlockEntity;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlockEntity;
 import com.gsr.gsr_yatm.block.device.current_furnace.FurnacePlusBlockEntity;
 import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInterchangerBlockEntity;
@@ -37,7 +39,10 @@ public class YATMBlockEntityTypes
 	public static final RegistryObject<BlockEntityType<GrinderBlockEntity>> GRINDER = BLOCK_ENTITY_TYPES.register("grinder_block_entity", () -> BlockEntityType.Builder.of(GrinderBlockEntity::new, YATMBlocks.STEEL_GRINDER.get()).build(null));
 
 	
-	
+	public static final RegistryObject<BlockEntityType<DataScanCollectorBlockEntity>> DATA_SCAN_COLLECTOR = BLOCK_ENTITY_TYPES.register("data_scan_collector", () -> BlockEntityType.Builder.of(DataScanCollectorBlockEntity::new, YATMBlocks.DATA_SCAN_COLLECTOR.get()).build(null));
+	// public static final RegistryObject<BlockEntityType<DestructiveScannerBlockEntity>> DESTRUCTIVE_SCANNER = BLOCK_ENTITY_TYPES.register("destructive_scanner", () -> BlockEntityType.Builder.of(DestructiveScannerBlockEntity::new, YATMBlocks..get()).build(null));
+	public static final RegistryObject<BlockEntityType<DataStorageBlockEntity>> DATA_STORAGE = BLOCK_ENTITY_TYPES.register("data_storage", () -> BlockEntityType.Builder.of(DataStorageBlockEntity::new, YATMBlocks.DATA_STORAGE_BLOCK.get()).build(null));
+	// public static final RegistryObject<BlockEntityType<DataProcessorBlockEntity>> DATA_PROCESSOR = BLOCK_ENTITY_TYPES.register("data_processor", () -> BlockEntityType.Builder.of(DataProcessorBlockEntity::new, YATMBlocks..get()).build(null));
 	
 	
 	public static final RegistryObject<BlockEntityType<CurrentUnitForgeEnergyInterchangerBlockEntity>> C_U_F_E_I = BLOCK_ENTITY_TYPES.register("current_unit_forge_energy_interchanger_block_entity", () -> BlockEntityType.Builder.of(CurrentUnitForgeEnergyInterchangerBlockEntity::new, YATMBlocks.C_U_F_E_I.get()).build(null));

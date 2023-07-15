@@ -100,6 +100,16 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.STAR_SPROUT.get());
 		this.basicItem(YATMItems.STAR_ADOLESCENT.get());
 		
+		this.basicItem(YATMItems.SOUL_ADORNED_NETHERITE_HELMET.get());
+		this.basicItem(YATMItems.SOUL_ADORNED_NETHERITE_CHESTPLATE.get());
+		this.basicItem(YATMItems.SOUL_ADORNED_NETHERITE_LEGGINGS.get());
+		this.basicItem(YATMItems.SOUL_ADORNED_NETHERITE_BOOTS.get());
+		
+		this.basicItem(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_HELMET.get());
+		this.basicItem(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_CHESTPLATE.get());
+		this.basicItem(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_LEGGINGS.get());
+		this.basicItem(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_BOOTS.get());
+		
 		this.basicItem(YATMItems.CREATIVE_FLUID_VOID.get());
 		this.basicItem(YATMItems.CREATIVE_FLUID_STORER.get());
 		this.basicItem(YATMItems.CREATIVE_FLUID_SOURCE.get());

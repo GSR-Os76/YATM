@@ -120,6 +120,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 		this.createSpinningWheel(YATMBlocks.SPINNING_WHEEL.get(), YATMItems.SPINNING_WHEEL_ITEM.get());
 		this.addHeatSinks();
+		this.addComputeBlocks();
 		this.addBiolers();
 		this.addBoilers();
 		this.addBoilerTanks();
@@ -227,6 +228,13 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/large_copper_heat_sink_two"));
 
 	} // end addHeatSinks()
+	
+	private void addComputeBlocks() 
+	{
+		this.createFaceFacingBlock(YATMBlocks.DATA_SCAN_COLLECTOR.get(), YATMItems.DATA_SCAN_COLLECTOR_ITEM.get(), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/compute/data_scan_collector/data_scan_collector_face"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/compute/data_scan_collector/data_scan_collector_side"));
+	} // end addComputeBlocks()
 	
 	private void addBiolers() 
 	{
@@ -613,6 +621,23 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
 	} // end createHeatSink()
+	
+	
+	
+	private void createFaceFacingBlock(Block block, Item item, ResourceLocation faceTexture, ResourceLocation sideTexture)
+	{
+		String name = getModelLocationNameFor(block);
+		this.models().cube(name, sideTexture, sideTexture, faceTexture, sideTexture, sideTexture, sideTexture);
+		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
+		
+		this.getVariantBuilder(block).forAllStates((bs) -> 
+		{
+			return new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(BiolerBlock.FACING)).x, rotationForDirectionFromNorth(bs.getValue(BiolerBlock.FACING)).y, false) };
+		});
+		
+		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
+	} // end createFaceFacingBlock()
+	
 	
 	private void createBioler(BiolerBlock block, Item item, ResourceLocation portTexture, ResourceLocation sideTexture, ResourceLocation bottomTexture, ResourceLocation topTexture, ResourceLocation insideTexture) 
 	{
