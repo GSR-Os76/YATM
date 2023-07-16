@@ -4,6 +4,7 @@ import java.util.Collection;
 
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.plant.tree.StrippedSapLogBlock;
+import com.gsr.gsr_yatm.data_generation.YATMItemTags;
 import com.gsr.gsr_yatm.fluid.item.GlassBottleItemStack;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
@@ -14,6 +15,7 @@ import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -29,22 +31,22 @@ import net.minecraftforge.client.event.RecipesUpdatedEvent;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
+import net.minecraftforge.event.entity.living.LivingEvent.LivingTickEvent;
 import net.minecraftforge.event.level.BlockEvent.BlockToolModificationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 
 public class YATMGameEvents
 {
-//	private static final Map<Block, Pair<BlockState, Item>> 
-	
 	public static void register(IEventBus eventBus) 
 	{
 		eventBus.addListener(YATMGameEvents::blockToolModification);
 		eventBus.addListener(YATMGameEvents::entityDamaged);
+		eventBus.addListener(YATMGameEvents::livingTick);
 		eventBus.addListener(YATMGameEvents::recipesUpdated);
 		eventBus.addGenericListener(ItemStack.class, YATMGameEvents::attachItemStackCapabilities);
 	} // end register()
 	
-	
+
 	
 	private static void blockToolModification(BlockToolModificationEvent event) 
 	{
@@ -67,54 +69,23 @@ public class YATMGameEvents
 	
 	private static void entityDamaged(LivingDamageEvent event) 
 	{
-		if(event.getSource().is(DamageTypes.WITHER)) 
+		tryWitherSoulAffliction(event);
+		boolean absorbed = tryWitherWitherArmor(event);
+		if(absorbed) 
 		{
-			LivingEntity entity = event.getEntity();
-			Collection<MobEffectInstance> effects = entity.getActiveEffects();
-			for(MobEffectInstance effect : effects) 
-			{
-				if(effect.getEffect() == YATMMobEffects.SOUL_AFFLICTION.get()) 
-				{
-					entity.removeEffect(YATMMobEffects.SOUL_AFFLICTION.get());
-					entity.addEffect(new MobEffectInstance(
-							MobEffects.WITHER, 
-							effect.getDuration(), 
-							effect.getAmplifier(), 
-							effect.isAmbient(), 
-							effect.isVisible(),
-							effect.showIcon()));
-					break;
-				}
-			}
-			if(entity instanceof Player player) 
-			{
-				for(ItemStack i : player.getArmorSlots()) 
-				{
-					if(i.getItem() == YATMItems.SOUL_ADORNED_NETHERITE_HELMET.get()) 
-					{
-						// 3 is slot
-						player.getInventory().setItem(36 + 3, copyDurabilityByProportion(i, new ItemStack(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_HELMET.get())));
-					}
-					else if(i.getItem() == YATMItems.SOUL_ADORNED_NETHERITE_CHESTPLATE.get()) 
-					{
-						// 2?
-						player.getInventory().setItem(36 + 2, copyDurabilityByProportion(i, new ItemStack(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_CHESTPLATE.get())));
-					}
-					else if(i.getItem() == YATMItems.SOUL_ADORNED_NETHERITE_LEGGINGS.get()) 
-					{
-						// 1?
-						player.getInventory().setItem(36 + 1, copyDurabilityByProportion(i, new ItemStack(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_LEGGINGS.get())));
-					}
-					else if(i.getItem() == YATMItems.SOUL_ADORNED_NETHERITE_BOOTS.get()) 
-					{
-						// 0?
-						player.getInventory().setItem(36 + 0, copyDurabilityByProportion(i, new ItemStack(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_BOOTS.get())));
-					}
-				}
-			}
+			event.setCanceled(true);
+		}
+		else 
+		{
+			tryWitherSoulArmor(event);
 		}
 	} // end onEntityDamaged()
 
+	private static void livingTick(LivingTickEvent event)
+	{
+		soulArmorTick(event);
+	} // end livingTick()
+	
 	private static void recipesUpdated(RecipesUpdatedEvent event) 
 	{
 		RecipeUtilities.recipesUpdated();
@@ -129,23 +100,6 @@ public class YATMGameEvents
 	} // end attachItemStackCapabilities()
 	
 	
-	
-	private static ItemStack copyDurabilityByProportion(ItemStack from, ItemStack to) 
-	{
-		// TODO, investigate this's not working issues
-		if(!to.isDamageableItem()) 
-		{
-			return to;
-		}
-		if(!from.isDamaged()) 
-		{
-			to.setDamageValue(0);
-			return to;
-		}
-		float prop = ((float)to.getDamageValue()) / ((float)to.getMaxDamage());
-		to.setDamageValue((int)(((float)to.getMaxDamage()) * (prop)));
-		return to;
-	} // end copyDurabilityByProportion()
 	
 	private static BlockState stripLogs(BlockState toolUsedOn, UseOnContext context) 
 	{
@@ -255,4 +209,250 @@ public class YATMGameEvents
 				.setValue(IConduit.WEST, from.getValue(IConduit.WEST));
 	} // end copyWireInfo()
 	
+	
+	
+	private static void tryWitherSoulAffliction(LivingDamageEvent event) 
+	{
+		if(event.getSource().is(DamageTypes.WITHER)) 
+		{
+			LivingEntity entity = event.getEntity();
+			Collection<MobEffectInstance> effects = entity.getActiveEffects();
+			for(MobEffectInstance effect : effects) 
+			{
+				if(effect.getEffect() == YATMMobEffects.SOUL_AFFLICTION.get()) 
+				{
+					entity.removeEffect(YATMMobEffects.SOUL_AFFLICTION.get());
+					entity.addEffect(new MobEffectInstance(
+							MobEffects.WITHER, 
+							effect.getDuration(), 
+							effect.getAmplifier(), 
+							effect.isAmbient(), 
+							effect.isVisible(),
+							effect.showIcon()));
+					break;
+				}
+			}
+		}
+	} // end tryWitherSoulAffliction()
+	
+	private static boolean tryWitherWitherArmor(LivingDamageEvent event) 
+	{
+		if (event.getSource().is(DamageTypes.WITHER) && event.getEntity() instanceof Player player)
+		{
+			int witherAbsorbingPiece = RandomSource.createNewThreadLocalInstance().nextInt(3);
+			boolean witherAbsorbed = false;
+			int amountToHeal = (int)(event.getAmount() * 6f);
+			for(ItemStack i : player.getArmorSlots()) 
+			{
+				if(i.getItem() == YATMItems.DECAY_NETHERITE_HELMET.get()) 
+				{
+					i.setDamageValue(Math.max(0, i.getDamageValue() - amountToHeal));
+					player.getInventory().setItem(36 + 3, i);
+					if(witherAbsorbingPiece == 3) 
+					{
+						event.setAmount(0);
+						witherAbsorbed = true;
+						player.removeEffect(MobEffects.WITHER);
+					}
+				}
+				else if(i.getItem() == YATMItems.DECAY_NETHERITE_CHESTPLATE.get()) 
+				{
+					i.setDamageValue(Math.max(0, i.getDamageValue() - amountToHeal));
+					player.getInventory().setItem(36 + 2, i);
+					if(witherAbsorbingPiece == 2) 
+					{
+						event.setAmount(0);
+						witherAbsorbed = true;
+						player.removeEffect(MobEffects.WITHER);
+					}
+				}
+				else if(i.getItem() == YATMItems.DECAY_NETHERITE_LEGGINGS.get()) 
+				{
+					i.setDamageValue(Math.max(0, i.getDamageValue() - amountToHeal));
+					player.getInventory().setItem(36 + 1, i);
+					if(witherAbsorbingPiece == 1) 
+					{
+						event.setAmount(0);
+						witherAbsorbed = true;
+						player.removeEffect(MobEffects.WITHER);
+					}	
+				}
+				else if(i.getItem() == YATMItems.DECAY_NETHERITE_BOOTS.get()) 
+				{
+					i.setDamageValue(Math.max(0, i.getDamageValue() - amountToHeal));
+					player.getInventory().setItem(36 + 0, i);
+					if(witherAbsorbingPiece == 0) 
+					{
+						event.setAmount(0);
+						witherAbsorbed = true;
+						player.removeEffect(MobEffects.WITHER);
+						// TODO, prefer to change damage type, seems not possible, maybe
+					}
+				}
+			}
+			return witherAbsorbed;
+		}
+		return false;
+	} // end tryWitherWitherArmor()
+	
+	private static void tryWitherSoulArmor(LivingDamageEvent event) 
+	{
+		if (event.getSource().is(DamageTypes.WITHER) && RandomSource.createNewThreadLocalInstance().nextInt(32) == 0 && event.getEntity() instanceof Player player)
+		{
+			for (ItemStack i : player.getArmorSlots())
+			{
+				if (i.getItem() == YATMItems.SOUL_ADORNED_NETHERITE_HELMET.get())
+				{
+					player.getInventory().setItem(36 + 3, copyDurabilityByProportion(i, new ItemStack(YATMItems.SOUL_ADORNED_NETHERITE_HELMET.get())));
+				}
+				else if (i.getItem() == YATMItems.SOUL_ADORNED_NETHERITE_CHESTPLATE.get())
+				{
+					player.getInventory().setItem(36 + 2, copyDurabilityByProportion(i, new ItemStack(YATMItems.DECAY_NETHERITE_CHESTPLATE.get())));
+				}
+				else if (i.getItem() == YATMItems.SOUL_ADORNED_NETHERITE_LEGGINGS.get())
+				{
+					player.getInventory().setItem(36 + 1, copyDurabilityByProportion(i, new ItemStack(YATMItems.DECAY_NETHERITE_LEGGINGS.get())));
+				}
+				else if (i.getItem() == YATMItems.SOUL_ADORNED_NETHERITE_BOOTS.get())
+				{
+					player.getInventory().setItem(36 + 0, copyDurabilityByProportion(i, new ItemStack(YATMItems.DECAY_NETHERITE_BOOTS.get())));
+				}
+			}
+
+		}
+	} // end tryWitherSoulArmor()
+	
+	private static ItemStack copyDurabilityByProportion(ItemStack from, ItemStack to) 
+	{
+		// TODO, investigate this's not working issues
+		if(!to.isDamageableItem()) 
+		{
+			return to;
+		}
+		if(!from.isDamaged()) 
+		{
+			to.setDamageValue(0);
+			return to;
+		}
+		float prop = ((float)to.getDamageValue()) / ((float)to.getMaxDamage());
+		to.setDamageValue((int)(((float)to.getMaxDamage()) * (prop)));
+		return to;
+	} // end copyDurabilityByProportion()
+
+	
+	
+	private static void soulArmorTick(LivingTickEvent event) 
+	{
+		RandomSource random = RandomSource.createNewThreadLocalInstance();
+		for (ItemStack i : event.getEntity().getArmorSlots())
+		{
+			if(YATMItemTags.SOUL_ARMOR.contains(i.getItem())) 
+			{
+				if(random.nextInt(20) == 0) 
+				{
+					i.setDamageValue(Math.max(0, (i.getDamageValue() - 1)));
+				}
+				if(random.nextInt(60) == 0) 
+				{
+					event.getEntity().heal(1.0f);
+				}
+			}
+		}
+	} // end soulArmorTick()
+	
 } // end class
+
+//if(event.getSource().is(DamageTypes.WITHER)) 
+//{
+//	LivingEntity entity = event.getEntity();
+//	Collection<MobEffectInstance> effects = entity.getActiveEffects();
+//	for(MobEffectInstance effect : effects) 
+//	{
+//		if(effect.getEffect() == YATMMobEffects.SOUL_AFFLICTION.get()) 
+//		{
+//			entity.removeEffect(YATMMobEffects.SOUL_AFFLICTION.get());
+//			entity.addEffect(new MobEffectInstance(
+//					MobEffects.WITHER, 
+//					effect.getDuration(), 
+//					effect.getAmplifier(), 
+//					effect.isAmbient(), 
+//					effect.isVisible(),
+//					effect.showIcon()));
+//			break;
+//		}
+//	}
+//	if(event.getEntity() instanceof Player player) 
+//	{
+//		int witherAbsorbingPiece = RANDOM.nextInt(3);
+//		boolean witherAbsorbed = false;
+//		int amountToHeal = (int)(event.getAmount() * 2f);
+//		for(ItemStack i : player.getArmorSlots()) 
+//		{
+//			if(i.getItem() == YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_HELMET.get()) 
+//			{
+//				i.setDamageValue(Math.max(0, i.getDamageValue() - amountToHeal));
+//				player.getInventory().setItem(36 + 3, i);
+//				if(witherAbsorbingPiece == 3) 
+//				{
+//					event.setAmount(0);
+//					witherAbsorbed = true;
+//					player.removeEffect(MobEffects.WITHER);
+//				}
+//			}
+//			else if(i.getItem() == YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_CHESTPLATE.get()) 
+//			{
+//				i.setDamageValue(Math.max(0, i.getDamageValue() - amountToHeal));
+//				player.getInventory().setItem(36 + 2, i);
+//				if(witherAbsorbingPiece == 2) 
+//				{
+//					event.setAmount(0);
+//					witherAbsorbed = true;
+//					player.removeEffect(MobEffects.WITHER);
+//				}
+//			}
+//			else if(i.getItem() == YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_LEGGINGS.get()) 
+//			{
+//				i.setDamageValue(Math.max(0, i.getDamageValue() - amountToHeal));
+//				player.getInventory().setItem(36 + 1, i);
+//				if(witherAbsorbingPiece == 1) 
+//				{
+//					event.setAmount(0);
+//					witherAbsorbed = true;
+//					player.removeEffect(MobEffects.WITHER);
+//				}	
+//			}
+//			else if(i.getItem() == YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_BOOTS.get()) 
+//			{
+//				i.setDamageValue(Math.max(0, i.getDamageValue() - amountToHeal));
+//				player.getInventory().setItem(36 + 0, i);
+//				if(witherAbsorbingPiece == 0) 
+//				{
+//					event.setAmount(0);
+//					witherAbsorbed = true;
+//					player.removeEffect(MobEffects.WITHER);
+//					// TODO, prefer to change damage type, seems not possible, maybe
+//				}
+//			}
+//			
+//			if(!witherAbsorbed && RANDOM.nextInt(32) == 0) 
+//			{
+//				if(i.getItem() == YATMItems.SOUL_ADORNED_NETHERITE_HELMET.get()) 
+//				{
+//					player.getInventory().setItem(36 + 3, copyDurabilityByProportion(i, new ItemStack(YATMItems.SOUL_ADORNED_NETHERITE_HELMET.get())));
+//				}
+//				else if(i.getItem() == YATMItems.SOUL_ADORNED_NETHERITE_CHESTPLATE.get()) 
+//				{
+//					player.getInventory().setItem(36 + 2, copyDurabilityByProportion(i, new ItemStack(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_CHESTPLATE.get())));
+//				}
+//				else if(i.getItem() == YATMItems.SOUL_ADORNED_NETHERITE_LEGGINGS.get()) 
+//				{
+//					player.getInventory().setItem(36 + 1, copyDurabilityByProportion(i, new ItemStack(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_LEGGINGS.get())));
+//				}
+//				else if(i.getItem() == YATMItems.SOUL_ADORNED_NETHERITE_BOOTS.get()) 
+//				{
+//					player.getInventory().setItem(36 + 0, copyDurabilityByProportion(i, new ItemStack(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_BOOTS.get())));
+//				}
+//			}
+//		}
+//	}
+//}

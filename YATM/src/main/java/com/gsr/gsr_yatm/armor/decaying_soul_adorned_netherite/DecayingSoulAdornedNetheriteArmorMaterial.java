@@ -8,10 +8,10 @@ import net.minecraft.world.item.crafting.Ingredient;
 
 public class DecayingSoulAdornedNetheriteArmorMaterial implements ArmorMaterial
 {
-	public static final float NETHERITE_RELATIVE_DURABILITY_FACTOR = 1.6f;
-	public static final float NETHERITE_RELATIVE_DEFENSE_FACTOR = 0.625f;
-	public static final float NETHERITE_RELATIVE_ENCHANTMENT_FACTOR = 2.0f;
-	public static final float NETHERITE_RELATIVE_TOUGHNESS_FACTOR = 1.33f;
+	public static final float NETHERITE_RELATIVE_DURABILITY_FACTOR = 0.5f;
+	public static final float NETHERITE_RELATIVE_DEFENSE_FACTOR = 0.89f;
+	public static final float NETHERITE_RELATIVE_ENCHANTMENT_FACTOR = 1.0f;
+	public static final float NETHERITE_RELATIVE_TOUGHNESS_FACTOR = 0.72f;
 	
 	
 	

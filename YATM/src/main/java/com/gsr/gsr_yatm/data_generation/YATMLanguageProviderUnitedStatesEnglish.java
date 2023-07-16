@@ -223,10 +223,10 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.SOUL_ADORNED_NETHERITE_LEGGINGS.get(), "Soul Adored Netherite Leggings");
 		this.add(YATMItems.SOUL_ADORNED_NETHERITE_BOOTS.get(), "Soul Adored Netherite Boots");
 		
-		this.add(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_HELMET.get(), "Decaying Soul Adored Netherite Helmet");
-		this.add(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_CHESTPLATE.get(), "Decaying Soul Adored Netherite Chest Plate");
-		this.add(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_LEGGINGS.get(), "Decaying Soul Adored Netherite Leggings");
-		this.add(YATMItems.DECAYING_SOUL_ADORNED_NETHERITE_BOOTS.get(), "Decaying Soul Adored Netherite Boots");
+		this.add(YATMItems.DECAY_NETHERITE_HELMET.get(), "Decay Netherite Helmet");
+		this.add(YATMItems.DECAY_NETHERITE_CHESTPLATE.get(), "Decay Netherite Chest Plate");
+		this.add(YATMItems.DECAY_NETHERITE_LEGGINGS.get(), "Decay Netherite Leggings");
+		this.add(YATMItems.DECAY_NETHERITE_BOOTS.get(), "Decay Netherite Boots");
 		
 		this.add(YATMItems.CREATIVE_FLUID_SOURCE.get(), "Creative Fluid Source");
 		this.add(YATMItems.CREATIVE_FLUID_STORER.get(), "Creative Fluid Storer");
