@@ -91,6 +91,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), "Phantasmal Shelf Fungi");		
 		this.add(YATMBlocks.COTTON.get(), "Cotton");		
 		this.add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), "Prismarine Crystal Moss");		
+		this.add(YATMBlocks.SHULKWART.get(), "Shulkwart");		
 		this.add(YATMBlocks.WHITE_SHULKWART.get(), "White Shulkwart");		
 		this.add(YATMBlocks.ORANGE_SHULKWART.get(), "Orange Shulkwart");		
 		this.add(YATMBlocks.MAGENTA_SHULKWART.get(), "Magenta Shulkwart");		
@@ -225,6 +226,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.RAW_COTTON_FIBER.get(), "Raw Cotton Fiber");		
 		this.add(YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get(), "Prismarine Crystal Moss Spores");
 		this.add(YATMItems.SHULKWART_SPORES.get(), "Shulkwart Spores");		
+		this.add(YATMItems.SHULKWART_HORN.get(), "Shulkwart Horn");		
 		this.add(YATMItems.WHITE_SHULKWART_HORN.get(), "White Shulkwart Horn");		
 		this.add(YATMItems.ORANGE_SHULKWART_HORN.get(), "Orange Shulkwart Horn");		
 		this.add(YATMItems.MAGENTA_SHULKWART_HORN.get(), "Magenta Shulkwart Horn");		

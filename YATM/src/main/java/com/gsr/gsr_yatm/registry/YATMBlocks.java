@@ -143,6 +143,7 @@ public class YATMBlocks
 	public static final RegistryObject<OnceFruitVineBodyBlock> SPIDER_VINE = BLOCKS.register("spider_vine", () -> new OnceFruitVineBodyBlock(YATMBlockProperties.SPIDER_VINE, YATMBlocks::getSpiderVineMeristem, () -> new ItemStack(YATMItems.SPIDER_VINE_FRUITS.get(), RANDOM.nextIntBetweenInclusive(1, 3))));
 	public static final RegistryObject<VineMeristemBlock> SPIDER_VINE_MERISTEM = BLOCKS.register("spider_vine_meristem", () -> new VineMeristemBlock(YATMBlockProperties.SPIDER_VINE, YATMBlocks::getSpiderVine));
 	
+	public static final RegistryObject<ShulkWartBlock> SHULKWART = BLOCKS.register("shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart((DyeColor)null), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get()));
 	public static final RegistryObject<ShulkWartBlock> WHITE_SHULKWART = BLOCKS.register("white_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get()));
 	public static final RegistryObject<ShulkWartBlock> ORANGE_SHULKWART = BLOCKS.register("orange_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get()));
 	public static final RegistryObject<ShulkWartBlock> MAGENTA_SHULKWART = BLOCKS.register("magenta_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get()));

@@ -53,7 +53,15 @@ public class YATMBlockProperties
 	
 	public static Properties shulkwart(DyeColor color)
 	{
-		return BlockBehaviour.Properties.of().mapColor(color).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().randomTicks();
+		if(color != null) 
+		{
+			return BlockBehaviour.Properties.of().mapColor(color).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().randomTicks();
+		}
+		else
+		{
+			return BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().randomTicks();
+
+		}
 	} // end shulkwart()
 	
 	

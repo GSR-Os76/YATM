@@ -226,6 +226,7 @@ public class YATMItems
 	public static final RegistryObject<ItemNameBlockItem> PRISMARINE_CRYSTAL_MOSS_SPORES = generalTabEnqueue(ITEMS.register("prismarine_crystal_moss_spores", () -> new ItemNameBlockItem(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), new Item.Properties())));
 	
 	public static final RegistryObject<ShulkwartSporesBlockItem> SHULKWART_SPORES = generalTabEnqueue(ITEMS.register("shulkwart_spores", () -> new ShulkwartSporesBlockItem(new Item.Properties()
+			, YATMBlocks.SHULKWART.get()
 			, YATMBlocks.WHITE_SHULKWART.get()
 			, YATMBlocks.ORANGE_SHULKWART.get()
 			, YATMBlocks.MAGENTA_SHULKWART.get()
@@ -243,6 +244,7 @@ public class YATMItems
 			, YATMBlocks.RED_SHULKWART.get()
 			, YATMBlocks.BLACK_SHULKWART.get())));
 	
+	public static final RegistryObject<ShulkwartHornItem> SHULKWART_HORN = generalTabEnqueue(ITEMS.register("shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), (DyeColor)null)));
 	public static final RegistryObject<ShulkwartHornItem> WHITE_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("white_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.WHITE)));
 	public static final RegistryObject<ShulkwartHornItem> ORANGE_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("orange_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.ORANGE)));
 	public static final RegistryObject<ShulkwartHornItem> MAGENTA_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("magenta_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.MAGENTA)));
