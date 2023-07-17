@@ -6,18 +6,21 @@ import com.gsr.gsr_yatm.armor.YATMArmorMaterials;
 import com.gsr.gsr_yatm.creative.CreativeFluidSourceItem;
 import com.gsr.gsr_yatm.creative.CreativeFluidStorerItem;
 import com.gsr.gsr_yatm.creative.CreativeFluidVoidItem;
-import com.gsr.gsr_yatm.fluid.item.DrinkableFluidBottleItem;
-import com.gsr.gsr_yatm.fluid.item.FluidBottleItem;
-import com.gsr.gsr_yatm.fluid.item.SoulSapBucketItem;
 import com.gsr.gsr_yatm.item.InsulatingItem;
+import com.gsr.gsr_yatm.item.ShulkwartHornItem;
+import com.gsr.gsr_yatm.item.ShulkwartSporesBlockItem;
 import com.gsr.gsr_yatm.item.component.CurrentBreakerItem;
 import com.gsr.gsr_yatm.item.component.CurrentRegulatorItem;
 import com.gsr.gsr_yatm.item.component.CurrentFuseItem;
 import com.gsr.gsr_yatm.item.component.fluid.FluidExchangerItem;
+import com.gsr.gsr_yatm.item.fluid.DrinkableFluidBottleItem;
+import com.gsr.gsr_yatm.item.fluid.FluidBottleItem;
+import com.gsr.gsr_yatm.item.fluid.SoulSapBucketItem;
 
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
+import net.minecraft.world.item.DyeColor;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.Items;
@@ -180,6 +183,7 @@ public class YATMItems
 	public static final RegistryObject<BucketItem> ESSENCE_OF_DECAY_BUCKET = generalTabEnqueue(ITEMS.register("essence_of_decay_bucket", () -> new BucketItem(YATMFluids.ESSENCE_OF_DECAY, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
 	public static final RegistryObject<BucketItem> ESSENCE_OF_SOULS_BUCKET = generalTabEnqueue(ITEMS.register("essence_of_souls_bucket", () -> new BucketItem(YATMFluids.ESSENCE_OF_SOULS, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
 	public static final RegistryObject<BucketItem> LATEX_BUCKET = generalTabEnqueue(ITEMS.register("latex_bucket", () -> new BucketItem(YATMFluids.LATEX, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
+	// TODO, move custom bucket and conversion logic to be with essence of souls instead not this
 	public static final RegistryObject<SoulSapBucketItem> SOUL_SAP_BUCKET = generalTabEnqueue(ITEMS.register("soul_sap_bucket", () -> new SoulSapBucketItem(YATMFluids.SOUL_SAP, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
 	public static final RegistryObject<BucketItem> SOUL_SYRUP_BUCKET = generalTabEnqueue(ITEMS.register("soul_syrup_bucket", () -> new BucketItem(YATMFluids.SOUL_SYRUP, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1))));
 	
@@ -220,6 +224,42 @@ public class YATMItems
 	public static final RegistryObject<Item> RAW_COTTON_FIBER = generalTabEnqueue(ITEMS.register("raw_cotton_fiber", () -> new Item(new Item.Properties())));
 		
 	public static final RegistryObject<ItemNameBlockItem> PRISMARINE_CRYSTAL_MOSS_SPORES = generalTabEnqueue(ITEMS.register("prismarine_crystal_moss_spores", () -> new ItemNameBlockItem(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), new Item.Properties())));
+	
+	public static final RegistryObject<ShulkwartSporesBlockItem> SHULKWART_SPORES = generalTabEnqueue(ITEMS.register("shulkwart_spores", () -> new ShulkwartSporesBlockItem(new Item.Properties()
+			, YATMBlocks.WHITE_SHULKWART.get()
+			, YATMBlocks.ORANGE_SHULKWART.get()
+			, YATMBlocks.MAGENTA_SHULKWART.get()
+			, YATMBlocks.LIGHT_BLUE_SHULKWART.get()
+			, YATMBlocks.YELLOW_SHULKWART.get()
+			, YATMBlocks.LIME_SHULKWART.get()
+			, YATMBlocks.PINK_SHULKWART.get()
+			, YATMBlocks.GRAY_SHULKWART.get()
+			, YATMBlocks.LIGHT_GRAY_SHULKWART.get()
+			, YATMBlocks.CYAN_SHULKWART.get()
+			, YATMBlocks.PURPLE_SHULKWART.get()
+			, YATMBlocks.BLUE_SHULKWART.get()
+			, YATMBlocks.BROWN_SHULKWART.get()
+			, YATMBlocks.GREEN_SHULKWART.get()
+			, YATMBlocks.RED_SHULKWART.get()
+			, YATMBlocks.BLACK_SHULKWART.get())));
+	
+	public static final RegistryObject<ShulkwartHornItem> WHITE_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("white_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.WHITE)));
+	public static final RegistryObject<ShulkwartHornItem> ORANGE_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("orange_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.ORANGE)));
+	public static final RegistryObject<ShulkwartHornItem> MAGENTA_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("magenta_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.MAGENTA)));
+	public static final RegistryObject<ShulkwartHornItem> LIGHT_BLUE_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("light_blue_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.LIGHT_BLUE)));
+	public static final RegistryObject<ShulkwartHornItem> YELLOW_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("yellow_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.YELLOW)));
+	public static final RegistryObject<ShulkwartHornItem> LIME_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("lime_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.LIME)));
+	public static final RegistryObject<ShulkwartHornItem> PINK_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("pink_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.PINK)));
+	public static final RegistryObject<ShulkwartHornItem> GRAY_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("gray_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.GRAY)));
+	public static final RegistryObject<ShulkwartHornItem> LIGHT_GRAY_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("light_gray_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.LIGHT_GRAY)));
+	public static final RegistryObject<ShulkwartHornItem> CYAN_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("cyan_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.CYAN)));
+	public static final RegistryObject<ShulkwartHornItem> PURPLE_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("purple_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.PURPLE)));
+	public static final RegistryObject<ShulkwartHornItem> BLUE_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("blue_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.BLUE)));
+	public static final RegistryObject<ShulkwartHornItem> BROWN_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("brown_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.BROWN)));
+	public static final RegistryObject<ShulkwartHornItem> GREEN_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("green_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.GREEN)));
+	public static final RegistryObject<ShulkwartHornItem> RED_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("red_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.RED)));
+	public static final RegistryObject<ShulkwartHornItem> BLACK_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("black_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.BLACK)));
+	
 	public static final RegistryObject<ItemNameBlockItem> SPIDER_VINE_FRUITS = generalTabEnqueue(ITEMS.register("spider_vine_fruits", () -> new ItemNameBlockItem(YATMBlocks.SPIDER_VINE_MERISTEM.get(), new Item.Properties())));
 	
 	public static final RegistryObject<Item> STAR_SEED = generalTabEnqueue(ITEMS.register("star_seed", () -> new Item(new Item.Properties())));

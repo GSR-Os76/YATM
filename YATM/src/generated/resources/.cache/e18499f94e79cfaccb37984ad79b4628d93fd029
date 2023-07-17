@@ -1,4 +1,4 @@
-// 1.20.1	2023-07-09T13:03:20.0486092	Tags for minecraft:block mod id gsr_yatm
+// 1.20.1	2023-07-16T18:19:47.8816332	Tags for minecraft:block mod id gsr_yatm
 5cde157d29986a1af6fac3eed0972c55ed684ae6 data/forge/tags/blocks/storage_blocks/rubber.json
 ae03c7f5a14f674a125f762d1f54c5fc58535fe0 data/gsr_yatm/tags/blocks/conduits/sixtyfour_cu.json
 66ac8055416086c9939359092bb9e6f99b9399d6 data/gsr_yatm/tags/blocks/leaves_litter_on.json
@@ -7,6 +7,7 @@ eaf726d0ca999b963fa5b018a13e9c7f4b2e50cf data/gsr_yatm/tags/blocks/mediums/aeria
 92ab23be742ef46aea48f9552ff5b96817532ec9 data/gsr_yatm/tags/blocks/mediums/rubber_meristem_can_grow_on.json
 5040076889bd282df7819422d9e990b9415bbb7f data/gsr_yatm/tags/blocks/mediums/rubber_roots_can_grow_in.json
 a211ef41389ec483dc846f2c181f509c5bd2aff3 data/gsr_yatm/tags/blocks/mediums/rubber_trees_naturally_grow_on.json
+52798cc4a1f5aa2b146f297b335ce7f7dca3ed89 data/gsr_yatm/tags/blocks/mediums/shulkwart_grow_on.json
 511d1f627f3a185dd2f417b231ab14a74d06dc1f data/gsr_yatm/tags/blocks/mediums/soul_afflicted_rubber_trees_naturally_grow_on.json
 c651bb8413acd409c2a842454cce61e44e4517a2 data/gsr_yatm/tags/blocks/mediums/soul_afflicting_blocks.json
 dbc7ff55315393ed7b1d401f282d24be3c0e6096 data/gsr_yatm/tags/blocks/rubber_planks.json

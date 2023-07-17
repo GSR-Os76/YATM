@@ -5,7 +5,7 @@ import java.util.Collection;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.plant.tree.StrippedSapLogBlock;
 import com.gsr.gsr_yatm.data_generation.YATMItemTags;
-import com.gsr.gsr_yatm.fluid.item.GlassBottleItemStack;
+import com.gsr.gsr_yatm.item.fluid.GlassBottleItemStack;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMMobEffects;

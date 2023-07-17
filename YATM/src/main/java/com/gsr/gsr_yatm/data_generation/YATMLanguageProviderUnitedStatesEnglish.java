@@ -6,7 +6,6 @@ import com.gsr.gsr_yatm.registry.YATMFluids;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.registry.YATMMobEffects;
-
 import net.minecraft.data.PackOutput;
 import net.minecraft.world.level.material.Fluids;
 
@@ -92,6 +91,22 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), "Phantasmal Shelf Fungi");		
 		this.add(YATMBlocks.COTTON.get(), "Cotton");		
 		this.add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), "Prismarine Crystal Moss");		
+		this.add(YATMBlocks.WHITE_SHULKWART.get(), "White Shulkwart");		
+		this.add(YATMBlocks.ORANGE_SHULKWART.get(), "Orange Shulkwart");		
+		this.add(YATMBlocks.MAGENTA_SHULKWART.get(), "Magenta Shulkwart");		
+		this.add(YATMBlocks.LIGHT_BLUE_SHULKWART.get(), "Light Blue Shulkwart");		
+		this.add(YATMBlocks.YELLOW_SHULKWART.get(), "Yellow Shulkwart");		
+		this.add(YATMBlocks.LIME_SHULKWART.get(), "Lime Shulkwart");		
+		this.add(YATMBlocks.PINK_SHULKWART.get(), "Pink Shulkwart");		
+		this.add(YATMBlocks.GRAY_SHULKWART.get(), "Gray Shulkwart");		
+		this.add(YATMBlocks.LIGHT_GRAY_SHULKWART.get(), "Light Gray Shulkwart");		
+		this.add(YATMBlocks.CYAN_SHULKWART.get(), "Cyan Shulkwart");		
+		this.add(YATMBlocks.PURPLE_SHULKWART.get(), "Purple Shulkwart");		
+		this.add(YATMBlocks.BLUE_SHULKWART.get(), "Blue Shulkwart");		
+		this.add(YATMBlocks.BROWN_SHULKWART.get(), "Brown Shulkwart");		
+		this.add(YATMBlocks.GREEN_SHULKWART.get(), "Green Shulkwart");		
+		this.add(YATMBlocks.RED_SHULKWART.get(), "Red Shulkwart");		
+		this.add(YATMBlocks.BLACK_SHULKWART.get(), "Black Shulkwart");		
 		this.add(YATMBlocks.SPIDER_VINE.get(), "Spider Vine");		
 		this.add(YATMBlocks.SPIDER_VINE_MERISTEM.get(), "Spider Vine Meristem");		
 		
@@ -207,10 +222,25 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMItems.COTTON_SEEDS.get(), "Cotton Seeds");
 		this.add(YATMItems.COTTON_BOLLS.get(), "Cotton Bolls");
-		this.add(YATMItems.RAW_COTTON_FIBER.get(), "Raw Cotton Fiber");
-		
+		this.add(YATMItems.RAW_COTTON_FIBER.get(), "Raw Cotton Fiber");		
 		this.add(YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get(), "Prismarine Crystal Moss Spores");
-		
+		this.add(YATMItems.SHULKWART_SPORES.get(), "Shulkwart Spores");		
+		this.add(YATMItems.WHITE_SHULKWART_HORN.get(), "White Shulkwart Horn");		
+		this.add(YATMItems.ORANGE_SHULKWART_HORN.get(), "Orange Shulkwart Horn");		
+		this.add(YATMItems.MAGENTA_SHULKWART_HORN.get(), "Magenta Shulkwart Horn");		
+		this.add(YATMItems.LIGHT_BLUE_SHULKWART_HORN.get(), "Light Blue Shulkwart Horn");		
+		this.add(YATMItems.YELLOW_SHULKWART_HORN.get(), "Yellow Shulkwart Horn");		
+		this.add(YATMItems.LIME_SHULKWART_HORN.get(), "Lime Shulkwart Horn");		
+		this.add(YATMItems.PINK_SHULKWART_HORN.get(), "Pink Shulkwart Horn");		
+		this.add(YATMItems.GRAY_SHULKWART_HORN.get(), "Gray Shulkwart Horn");		
+		this.add(YATMItems.LIGHT_GRAY_SHULKWART_HORN.get(), "Light Gray Shulkwart Horn");		
+		this.add(YATMItems.CYAN_SHULKWART_HORN.get(), "Cyan Shulkwart Horn");		
+		this.add(YATMItems.PURPLE_SHULKWART_HORN.get(), "Purple Shulkwart Horn");		
+		this.add(YATMItems.BLUE_SHULKWART_HORN.get(), "Blue Shulkwart Horn");		
+		this.add(YATMItems.BROWN_SHULKWART_HORN.get(), "Brown Shulkwart Horn");		
+		this.add(YATMItems.GREEN_SHULKWART_HORN.get(), "Green Shulkwart Horn");		
+		this.add(YATMItems.RED_SHULKWART_HORN.get(), "Red Shulkwar Hornt");		
+		this.add(YATMItems.BLACK_SHULKWART_HORN.get(), "Black Shulkwart Horn");		
 		this.add(YATMItems.SPIDER_VINE_FRUITS.get(), "Branch Of Glaring Fruit");
 		
 		this.add(YATMItems.STAR_SEED.get(), "Star Seed");
@@ -233,13 +263,14 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.CREATIVE_FLUID_VOID.get(), "Creative Fluid Void");
 		
 		
-		
+		// MOB EFFECTS \\
 		this.add(YATMMobEffects.CHORUS_INSTANT_TELEPORTATION.get(), "Instant Teleportation");
 		this.add(YATMMobEffects.ENDER_INSTANT_TELEPORTATION.get(), "Instant Teleportation");		
 		this.add(YATMMobEffects.SOUL_AFFLICTION.get(), "Soul Affliction");
 		
 		
 		
+		// FLUIDS\\
 		this.add(YATMFluids.BIO.get(), "Biofluid");
 		this.add(YATMFluids.CHORUS.get(), "Chorus");
 		this.add(YATMFluids.CHORUS_BIO.get(), "Chorus Biofluid");

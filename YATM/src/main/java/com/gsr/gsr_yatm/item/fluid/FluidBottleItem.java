@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.fluid.item;
+package com.gsr.gsr_yatm.item.fluid;
 
 import java.util.function.Supplier;
 

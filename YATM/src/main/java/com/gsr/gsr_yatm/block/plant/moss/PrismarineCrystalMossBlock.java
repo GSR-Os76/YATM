@@ -3,6 +3,7 @@ package com.gsr.gsr_yatm.block.plant.moss;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.function.Supplier;
 
 import javax.annotation.Nullable;
 
@@ -11,6 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import com.gsr.gsr_yatm.block.plant.CustomSeedCropBlock;
 import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
 
 import net.minecraft.Util;
@@ -20,11 +22,11 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.PipeBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -37,7 +39,7 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class PrismarineCrystalMossBlock extends CropBlock implements SimpleWaterloggedBlock 
+public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements SimpleWaterloggedBlock 
 {
 	public static final int MAX_AGE = 1;
 	
@@ -68,9 +70,9 @@ public class PrismarineCrystalMossBlock extends CropBlock implements SimpleWater
 	
 	   
 	
-	public PrismarineCrystalMossBlock(Properties properties, VoxelShapeProvider shape)
+	public PrismarineCrystalMossBlock(Properties properties, VoxelShapeProvider shape, Supplier<ItemLike> seed)
 	{
-		super(properties);
+		super(properties, seed);
 		
 		this.m_shape = shape;
 		

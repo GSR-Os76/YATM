@@ -114,8 +114,9 @@ public class ConfigurableInventoryWrapper implements IItemHandler, IItemHandlerM
 	} // end setStackInSlot()
 	
 	
-	
-	private static int[] createDefaultTranslationTable(int slotCount) 
+	/** To be moved. */
+	@Deprecated
+	public static int[] createDefaultTranslationTable(int slotCount) 
 	{
 		int[] t = new int[slotCount];
 		for(int i = 0; i < slotCount; i++) 

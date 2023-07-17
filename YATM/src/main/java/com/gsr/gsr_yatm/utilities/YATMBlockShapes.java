@@ -71,6 +71,22 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 	
+	public static final VoxelShapeProvider SHULKWART = new VoxelShapeProvider() 
+	{
+		// TODO, do
+		private static final VoxelShape SHAPE_ZERO = Block.box(0, 15, 0, 16, 16, 16);
+		private static final VoxelShape SHAPE_ONE = Block.box(0, 0, 0, 16, 1, 16);
+		private static final VoxelShape SHAPE_TWO = Block.box(0, 0, 0, 16, 16, 1);
+		private static final VoxelShape SHAPE_THREE = Block.box(0, 0, 0, 16, 16, 1);
+
+		@Override
+		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		{
+			return YATMBlockShapes.CUBE.getShape(blockState, blockGetter, blockPos, collisionContext);
+		}
+	};
+
+	
 	
 	
 	public static final VoxelShapeProvider SPINNING_WHEEL = new VoxelShapeProvider() 
