@@ -4,12 +4,14 @@ import java.util.Optional;
 
 import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.registry.YATMMobEffects;
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.monster.Shulker;
 import net.minecraft.world.entity.player.Player;
@@ -44,12 +46,15 @@ public class ShulkwartHornItem extends Item
 	@Override
 	public InteractionResult interactLivingEntity(ItemStack held, Player player, LivingEntity e, InteractionHand hand)
 	{
-		if(e instanceof Shulker shulker) 
+		if(e instanceof Shulker shulker && (shulker.getEffect(YATMMobEffects.MOLT_FATIGUE.get()) == null)) 
 		{
 			shulker.setVariant(this.m_color == null ? Optional.empty() : Optional.of(this.m_color));
+			shulker.addEffect(new MobEffectInstance(YATMMobEffects.MOLT_FATIGUE.get(), 720, 4));
+			
 			Level level = e.level();
 			level.playSound(player, shulker.blockPosition(), SoundEvents.SHULKER_BOX_OPEN, SoundSource.PLAYERS, 1.0f, 1.0f);
 			level.playSound(player, shulker.blockPosition(), SoundEvents.SHULKER_BOX_CLOSE, SoundSource.PLAYERS, 1.0f, 1.0f);
+			
 			InventoryUtilities.drop(level, shulker.blockPosition(), new ItemStack(Items.SHULKER_SHELL, 2));
 			held.shrink(1);
 			return InteractionResult.sidedSuccess(level.isClientSide);

@@ -266,6 +266,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		// MOB EFFECTS \\
 		this.add(YATMMobEffects.CHORUS_INSTANT_TELEPORTATION.get(), "Instant Teleportation");
 		this.add(YATMMobEffects.ENDER_INSTANT_TELEPORTATION.get(), "Instant Teleportation");		
+		this.add(YATMMobEffects.MOLT_FATIGUE.get(), "Molt Fatigue");
 		this.add(YATMMobEffects.SOUL_AFFLICTION.get(), "Soul Affliction");
 		
 		

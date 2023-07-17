@@ -11,6 +11,7 @@ import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.ItemTagsProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -106,23 +107,23 @@ public class YATMItemTags extends ItemTagsProvider
 	@Override
 	protected void addTags(Provider provider)
 	{
-		this.copy(YATMBlockTags.MINECRAFT_FLOWERS_KEY, ItemTags.FLOWERS);
+		this.copy(BlockTags.FLOWERS, ItemTags.FLOWERS);
 		this.tag(ItemTags.BEACON_PAYMENT_ITEMS).add(YATMItems.STEEL_INGOT.get()).add(YATMItems.SILVER_INGOT.get());
-		this.copy(YATMBlockTags.MINECRAFT_LOGS_KEY, ItemTags.LOGS);
-		this.copy(YATMBlockTags.MINECRAFT_LOGS_THAT_BURN_KEY, ItemTags.LOGS_THAT_BURN);
+		this.copy(BlockTags.LOGS, ItemTags.LOGS);
+		this.copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
 		this.tag(ItemTags.PIGLIN_LOVED).add(YATMItems.SIXTYFOUR_CU_CURRENT_REGULATOR.get()).add(YATMItems.SIXTYFOUR_CU_CURRENT_FUSE.get()).add(YATMItems.SIXTYFOUR_CU_CURRENT_BREAKER.get()).addTag(YATMItemTags.SIXTYFOUR_CU_WIRES_KEY);
-		this.copy(YATMBlockTags.MINECRAFT_PLANKS_KEY, ItemTags.PLANKS);
-		this.copy(YATMBlockTags.MINECRAFT_SAPLINGS_KEY, ItemTags.SAPLINGS);
+		this.copy(BlockTags.PLANKS, ItemTags.PLANKS);
+		this.copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
 		this.tag(ItemTags.TRIMMABLE_ARMOR)
 		.add(YATMItems.SOUL_ADORNED_NETHERITE_HELMET.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_CHESTPLATE.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_LEGGINGS.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_BOOTS.get())
 		.add(YATMItems.DECAY_NETHERITE_HELMET.get()).add(YATMItems.DECAY_NETHERITE_CHESTPLATE.get()).add(YATMItems.DECAY_NETHERITE_LEGGINGS.get()).add(YATMItems.DECAY_NETHERITE_BOOTS.get());
-		this.copy(YATMBlockTags.MINECRAFT_WOODEN_BUTTONS_KEY, ItemTags.WOODEN_DOORS);
-		this.copy(YATMBlockTags.MINECRAFT_WOODEN_DOORS_KEY, ItemTags.WOODEN_DOORS);
-		this.copy(YATMBlockTags.MINECRAFT_WOODEN_FENCES_KEY, ItemTags.WOODEN_FENCES);
-		this.copy(YATMBlockTags.MINECRAFT_WOODEN_PRESSURE_PLATES_KEY, ItemTags.WOODEN_PRESSURE_PLATES);
-		this.copy(YATMBlockTags.MINECRAFT_WOODEN_SLABS_KEY, ItemTags.WOODEN_SLABS);
-		this.copy(YATMBlockTags.MINECRAFT_WOODEN_STAIRS_KEY, ItemTags.WOODEN_STAIRS);
-		this.copy(YATMBlockTags.MINECRAFT_WOODEN_TRAPDOORS_KEY, ItemTags.WOODEN_TRAPDOORS);
+		this.copy(BlockTags.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
+		this.copy(BlockTags.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
+		this.copy(BlockTags.WOODEN_FENCES, ItemTags.WOODEN_FENCES);
+		this.copy(BlockTags.WOODEN_PRESSURE_PLATES, ItemTags.WOODEN_PRESSURE_PLATES);
+		this.copy(BlockTags.WOODEN_SLABS, ItemTags.WOODEN_SLABS);
+		this.copy(BlockTags.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
+		this.copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
 		
 		
 		this.copy(YATMBlockTags.FORGE_RUBBER_STORAGE_BLOCK_KEY,YATMItemTags. FORGE_RUBBER_STORAGE_BLOCK_KEY);

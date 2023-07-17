@@ -1,8 +1,6 @@
 {
   "values": [
     "gsr_yatm:rubber_door",
-    "gsr_yatm:soul_afflicted_rubber_door",
-    "gsr_yatm:rubber_button",
-    "gsr_yatm:soul_afflicted_rubber_button"
+    "gsr_yatm:soul_afflicted_rubber_door"
   ]
 }

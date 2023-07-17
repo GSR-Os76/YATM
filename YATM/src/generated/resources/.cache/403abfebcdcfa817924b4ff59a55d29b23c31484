@@ -1,4 +1,4 @@
-// 1.20.1	2023-07-16T18:19:47.8869439	Tags for minecraft:item mod id gsr_yatm
+// 1.20.1	2023-07-17T13:31:45.695201	Tags for minecraft:item mod id gsr_yatm
 bade3c9b0ab674f2efd3dc51c76e3652a9021029 data/forge/tags/items/ingots/rubber.json
 072803c35014f6741a231cc30a732fe900812905 data/forge/tags/items/ingots/silver.json
 7c408df731c23a13c46254c2cc5fe7e60ec904bd data/forge/tags/items/ingots/steel.json
@@ -24,7 +24,8 @@ fedd7a768f821187b28218193713ea058b82ec2a data/minecraft/tags/items/piglin_loved.
 861ac450b90a900a8dbe9dc301248cd0b5ca2f52 data/minecraft/tags/items/planks.json
 59d8edfe056f15f3cff621f10b35fa3ba99c9baf data/minecraft/tags/items/saplings.json
 7069182640b2d07eec3a743ff97740577378e458 data/minecraft/tags/items/trimmable_armor.json
-05d0653f0aa03bd02a41ea2689a0af9121ea2b4c data/minecraft/tags/items/wooden_doors.json
+5ca3cdc1e343a1a21ba16f2d2cd526125069fb64 data/minecraft/tags/items/wooden_buttons.json
+7cd0aa6d815501ef6e1b8331aaa504f2ee3d9509 data/minecraft/tags/items/wooden_doors.json
 4f805c86291b5f9990b1e9974956cc6fe91e3262 data/minecraft/tags/items/wooden_fences.json
 5e91e2a69f79ae85f0d92db954b806077dd8e4dd data/minecraft/tags/items/wooden_pressure_plates.json
 9a0c4c88dc2cc6fdc135b49d261a10ee393ffe42 data/minecraft/tags/items/wooden_slabs.json
