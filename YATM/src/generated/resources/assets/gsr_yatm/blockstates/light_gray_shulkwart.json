@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "gsr_yatm:block/shulkwart_spore"
+    },
+    "age=1": {
+      "model": "gsr_yatm:block/shulkwart_cryptic"
+    },
+    "age=2": {
+      "model": "gsr_yatm:block/shulkwart_cryptic"
+    },
+    "age=3": {
+      "model": "gsr_yatm:block/shulkwart_cryptic"
+    },
+    "age=4": {
+      "model": "gsr_yatm:block/plant/shulkwart/shulkwart_fruit_one"
+    },
+    "age=5": {
+      "model": "gsr_yatm:block/plant/shulkwart/shulkwart_fruit_two"
+    },
+    "age=6": {
+      "model": "gsr_yatm:block/plant/shulkwart/shulkwart_fruit_three"
+    },
+    "age=7": {
+      "model": "gsr_yatm:block/light_gray_shulkwart_grown"
+    }
+  }
+}

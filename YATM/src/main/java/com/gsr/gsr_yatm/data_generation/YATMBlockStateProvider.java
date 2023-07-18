@@ -23,7 +23,6 @@ import com.gsr.gsr_yatm.block.plant.tree.SelfLayeringSaplingBlock;
 import com.gsr.gsr_yatm.block.plant.tree.StrippedSapLogBlock;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
-
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -69,6 +68,12 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile MEDIUM_SHELF_FUNGUS = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/shelf_fungi_medium"));
 	public static final ModelFile LARGE_SHELF_FUNGUS = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/shelf_fungi_large"));
 	
+	public static final ModelFile SHULKWART_SPORE_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/shulkwart_spore"));
+	public static final ModelFile SHULKWARK_CRYPTIC_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/shulkwart_cryptic"));
+	private ModelFile m_shulkwartFruitOneModel;
+	private ModelFile m_shulkwartFruitTwoModel;
+	private ModelFile m_shulkwartFruitThreeModel;
+	
 	public static final ModelFile SPINNING_WHEEL_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/spinning_wheel"));
 	
 	public static final ModelFile LARGE_HEAT_SINK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/large_heat_sink"));
@@ -113,6 +118,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_young"), 
 				//new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_maturing"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_mature"));
+		this.addShulkwarts();
 		this.addSpiderVine();
 		
 		this.createAllBlock(YATMBlocks.RUBBER_BLOCK.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rubber_block"));
@@ -213,6 +219,28 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createCarpet(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_leaf_mulch"));
 	} // end addSoulAfflictedRubberSet()
 
+	private void addShulkwarts()
+	{
+		this.initializeShulkwartCommonModels();
+		this.createShulkwart(YATMBlocks.SHULKWART.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/shulkwart_fruit"));
+		this.createShulkwart(YATMBlocks.WHITE_SHULKWART.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/white_shulkwart_fruit"));
+		this.createShulkwart(YATMBlocks.ORANGE_SHULKWART.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/orange_shulkwart_fruit"));
+		this.createShulkwart(YATMBlocks.MAGENTA_SHULKWART.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/magenta_shulkwart_fruit"));
+		this.createShulkwart(YATMBlocks.LIGHT_BLUE_SHULKWART.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/light_blue_shulkwart_fruit"));
+		this.createShulkwart(YATMBlocks.YELLOW_SHULKWART.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/yellow_shulkwart_fruit"));
+		this.createShulkwart(YATMBlocks.LIME_SHULKWART.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/lime_shulkwart_fruit"));
+		this.createShulkwart(YATMBlocks.PINK_SHULKWART.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/pink_shulkwart_fruit"));
+		this.createShulkwart(YATMBlocks.GRAY_SHULKWART.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/gray_shulkwart_fruit"));
+		this.createShulkwart(YATMBlocks.LIGHT_GRAY_SHULKWART.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/light_gray_shulkwart_fruit"));
+		this.createShulkwart(YATMBlocks.CYAN_SHULKWART.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/cyan_shulkwart_fruit"));
+		this.createShulkwart(YATMBlocks.PURPLE_SHULKWART.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/purple_shulkwart_fruit"));
+		this.createShulkwart(YATMBlocks.BLUE_SHULKWART.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/blue_shulkwart_fruit"));
+		this.createShulkwart(YATMBlocks.BROWN_SHULKWART.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/brown_shulkwart_fruit"));
+		this.createShulkwart(YATMBlocks.GREEN_SHULKWART.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/green_shulkwart_fruit"));
+		this.createShulkwart(YATMBlocks.RED_SHULKWART.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/red_shulkwart_fruit"));
+		this.createShulkwart(YATMBlocks.BLACK_SHULKWART.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/black_shulkwart_fruit"));
+	} // end addShulkWarts()
+	
 	private void addSpiderVine() 
 	{
 		this.createOnceFruitingCross(YATMBlocks.SPIDER_VINE.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_vine/spider_vine"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_vine/spider_vine_fruiting"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_vine/spider_vine_harvested"));
@@ -409,6 +437,32 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		MultiPartBlockStateBuilder builder = this.getMultipartBuilder(block);
 		PrismarineCrystalMossBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.forEach((d, p) -> forPrismarineCrystalMossLikeFace(d, builder, modelOne, modelTwo));//, modelThree, modelFour));
 	} // end createCrop()
+	
+	private void initializeShulkwartCommonModels() 
+	{
+		String name = "block/plant/shulkwart/shulkwart_fruit";
+		String nameOne = name + "_one";
+		String nameTwo = name + "_two";
+		String nameThree = name + "_three";
+		ResourceLocation locationOne = new ResourceLocation(YetAnotherTechMod.MODID, nameOne);
+		ResourceLocation locationTwo = new ResourceLocation(YetAnotherTechMod.MODID, nameTwo);
+		ResourceLocation locationThree = new ResourceLocation(YetAnotherTechMod.MODID, nameThree);
+		this.models().cross(nameOne, locationOne).renderType(CUTOUT_RENDER_TYPE);
+		this.models().cross(nameTwo, locationTwo).renderType(CUTOUT_RENDER_TYPE);
+		this.models().cross(nameThree, locationThree).renderType(CUTOUT_RENDER_TYPE);
+		this.m_shulkwartFruitOneModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameOne));
+		this.m_shulkwartFruitTwoModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameTwo));
+		this.m_shulkwartFruitThreeModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameThree));
+	} // end initializeShulkwartCommonModels()
+	
+	private void createShulkwart(Block block, ResourceLocation finalTexture) 
+	{
+		String name = getModelLocationNameFor(block) + "_grown";
+		this.models().cross(name, finalTexture).renderType(CUTOUT_RENDER_TYPE);
+		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
+		this.getVariantBuilder(block).forAllStates((bs) -> forCrop(bs, SHULKWART_SPORE_MODEL, SHULKWARK_CRYPTIC_MODEL, SHULKWARK_CRYPTIC_MODEL, SHULKWARK_CRYPTIC_MODEL, this.m_shulkwartFruitOneModel, this.m_shulkwartFruitTwoModel, this.m_shulkwartFruitThreeModel, model));
+		
+	} // end createShulkwart()
 	
 	private void createOnceFruitingCross(Block block, ResourceLocation textureImmature, ResourceLocation textureFruiting, ResourceLocation textureHarvested) 
 	{

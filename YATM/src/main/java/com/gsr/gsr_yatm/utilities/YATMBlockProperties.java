@@ -55,11 +55,11 @@ public class YATMBlockProperties
 	{
 		if(color != null) 
 		{
-			return BlockBehaviour.Properties.of().mapColor(color).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().randomTicks();
+			return BlockBehaviour.Properties.of().mapColor(color).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();
 		}
 		else
 		{
-			return BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().randomTicks();
+			return BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_PURPLE).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();
 
 		}
 	} // end shulkwart()

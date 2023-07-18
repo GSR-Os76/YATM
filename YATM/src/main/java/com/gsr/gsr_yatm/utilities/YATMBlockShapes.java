@@ -3,6 +3,7 @@ package com.gsr.gsr_yatm.utilities;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
+import com.gsr.gsr_yatm.block.plant.parasite.ShulkWartBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
@@ -74,16 +75,23 @@ public class YATMBlockShapes
 	public static final VoxelShapeProvider SHULKWART = new VoxelShapeProvider() 
 	{
 		// TODO, do
-		private static final VoxelShape SHAPE_ZERO = Block.box(0, 15, 0, 16, 16, 16);
-		private static final VoxelShape SHAPE_ONE = Block.box(0, 0, 0, 16, 1, 16);
-		private static final VoxelShape SHAPE_TWO = Block.box(0, 0, 0, 16, 16, 1);
-		private static final VoxelShape SHAPE_THREE = Block.box(0, 0, 0, 16, 16, 1);
+		private static final VoxelShape SHAPE_ZERO = Block.box(6, 15, 6, 10, 16, 10);
+		private static final VoxelShape SHAPE_ONE = Block.box(7, 8, 7, 9, 16, 9);
+		private static final VoxelShape SHAPE_TWO = Block.box(4, 3, 4, 12, 16, 12);
+		private static final VoxelShape SHAPE_THREE = Block.box(1, 0, 1, 15, 16, 15);
 
 		@Override
 		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
 		{
-			return YATMBlockShapes.CUBE.getShape(blockState, blockGetter, blockPos, collisionContext);
-		}
+			return switch(blockState.getValue(ShulkWartBlock.AGE)) 
+			{
+				case 0, 1, 2, 3 -> SHAPE_ZERO;
+				case 4 -> SHAPE_ONE;
+				case 5 -> SHAPE_TWO;
+				case 6, 7 -> SHAPE_THREE;
+				default -> throw new IllegalArgumentException("Unexpected value of: " + blockState.getValue(ShulkWartBlock.AGE));
+			};
+		} // end getShape()
 	};
 
 	
