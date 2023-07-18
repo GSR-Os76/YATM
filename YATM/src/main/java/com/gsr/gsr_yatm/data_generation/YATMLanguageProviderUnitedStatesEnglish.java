@@ -91,6 +91,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), "Phantasmal Shelf Fungi");		
 		this.add(YATMBlocks.COTTON.get(), "Cotton");		
 		this.add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), "Prismarine Crystal Moss");		
+		this.add(YATMBlocks.FALLEN_SHULKWART_SPORES.get(), "Fallen Shulkwart Spores");		
 		this.add(YATMBlocks.SHULKWART.get(), "Shulkwart");		
 		this.add(YATMBlocks.WHITE_SHULKWART.get(), "White Shulkwart");		
 		this.add(YATMBlocks.ORANGE_SHULKWART.get(), "Orange Shulkwart");		

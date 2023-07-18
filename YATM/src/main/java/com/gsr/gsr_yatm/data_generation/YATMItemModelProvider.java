@@ -88,9 +88,8 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.COTTON_BOLLS.get());
 		this.basicItem(YATMItems.RAW_COTTON_FIBER.get());
 		this.basicItem(YATMItems.COTTON_SEEDS.get());
-
 		this.basicItem(YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get());
-		
+		this.basicItem(YATMItems.SHULKWART_SPORES.get());
 		this.basicItem(YATMItems.SPIDER_VINE_FRUITS.get());
 		
 		

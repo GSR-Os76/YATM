@@ -29,6 +29,17 @@ public class YATMBlockShapes
 	
 	
 	
+	public static final VoxelShapeProvider DOWNWARD_LICHEN_LIKE = new VoxelShapeProvider() 
+	{
+		private static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 1, 16);
+
+		@Override
+		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		{
+			return SHAPE;
+		} // end getShape()
+	};
+	
 	public static final VoxelShapeProvider PRISMARINE_CRYSTAL_MOSS = new VoxelShapeProvider() 
 	{
 		private static final VoxelShape HAS_UP = Block.box(0, 15, 0, 16, 16, 16);

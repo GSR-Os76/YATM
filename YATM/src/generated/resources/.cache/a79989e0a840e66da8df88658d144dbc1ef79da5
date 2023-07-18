@@ -1,4 +1,4 @@
-// 1.20.1	2023-07-14T20:02:33.2648744	Item Models: gsr_yatm
+// 1.20.1	2023-07-18T09:34:19.3277818	Item Models: gsr_yatm
 e7540048ebe593ee6ab6323cc2f5a0bd0d8ae1cb assets/gsr_yatm/models/item/bio_bottle.json
 7c74b3cad82baaaba12c4ebb84f0b7ef417239e6 assets/gsr_yatm/models/item/bio_bucket.json
 938d8b0ab1223b09a189deb829870c72c34a472c assets/gsr_yatm/models/item/chorus_bio_bottle.json
@@ -42,6 +42,7 @@ bdb5d7d4b546adf948735489ecee23f9ce5bb90d assets/gsr_yatm/models/item/one_cu_curr
 065ad354f79e8893e9513e443714d64c374c9536 assets/gsr_yatm/models/item/rubber_bar.json
 a9340f96d51672a0b77fb4bda40219f126356727 assets/gsr_yatm/models/item/rubber_scrap.json
 f9bc330e7a9a7a93ae7a2f87d0a7d37c47bbd604 assets/gsr_yatm/models/item/rubber_scrap_ball.json
+04cbe77a5d5c6767e44563cf23654dff80a577ca assets/gsr_yatm/models/item/shulkwart_spores.json
 d5b3b917bffb32f75b30e7051fe38a2206a3affd assets/gsr_yatm/models/item/silver_ingot.json
 feae542257bcb8b9bf05c739a1c458db9ee1768a assets/gsr_yatm/models/item/silver_nugget.json
 eceae271d8183ca0c03733eb86b0a1df0cd9c62a assets/gsr_yatm/models/item/sixtyfour_cu_current_breaker_component.json
