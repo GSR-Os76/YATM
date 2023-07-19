@@ -3,7 +3,7 @@ package com.gsr.gsr_yatm.utilities;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
-import com.gsr.gsr_yatm.block.plant.parasite.ShulkWartBlock;
+import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
@@ -94,13 +94,13 @@ public class YATMBlockShapes
 		@Override
 		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
 		{
-			return switch(blockState.getValue(ShulkWartBlock.AGE)) 
+			return switch(blockState.getValue(ShulkwartBlock.AGE)) 
 			{
 				case 0, 1, 2, 3 -> SHAPE_ZERO;
 				case 4 -> SHAPE_ONE;
 				case 5 -> SHAPE_TWO;
 				case 6, 7 -> SHAPE_THREE;
-				default -> throw new IllegalArgumentException("Unexpected value of: " + blockState.getValue(ShulkWartBlock.AGE));
+				default -> throw new IllegalArgumentException("Unexpected value of: " + blockState.getValue(ShulkwartBlock.AGE));
 			};
 		} // end getShape()
 	};

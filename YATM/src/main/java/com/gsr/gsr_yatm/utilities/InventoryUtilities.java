@@ -9,10 +9,15 @@ import net.minecraftforge.items.IItemHandler;
 
 public class InventoryUtilities
 {
-	public static void drop(Level level, BlockPos position, ItemStack i)
+	public static void drop(Level level, BlockPos position, NonNullList<ItemStack> drops)
 	{
-		Containers.dropContents(level, position, NonNullList.of(null, i));
-	} // end drop
+		Containers.dropContents(level, position, drops);
+	} // end drop()
+	
+	public static void drop(Level level, BlockPos position, ItemStack drop)
+	{
+		Containers.dropContents(level, position, NonNullList.of(ItemStack.EMPTY, drop));
+	} // end drop()
 	
 	public static void drop(Level level, BlockPos position, IItemHandler inventory)
 	{
@@ -20,7 +25,7 @@ public class InventoryUtilities
 		{
 			drop(level, position, inventory.extractItem(i, inventory.getSlotLimit(i), false));
 		}
-	} // end drop
+	} // end drop()
 
 	public static void insertItemOrDrop(Level level, BlockPos position, IItemHandler inventory, int slot, ItemStack stack)
 	{

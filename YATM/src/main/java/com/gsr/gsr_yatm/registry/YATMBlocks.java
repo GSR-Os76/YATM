@@ -1,5 +1,7 @@
 package com.gsr.gsr_yatm.registry;
 
+import java.util.function.Supplier;
+
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.DecayingBlock;
 import com.gsr.gsr_yatm.block.conduit.ConductorProperties;
@@ -28,7 +30,7 @@ import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.plant.CustomSeedCropBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.moss.PrismarineCrystalMossBlock;
-import com.gsr.gsr_yatm.block.plant.parasite.ShulkWartBlock;
+import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
 import com.gsr.gsr_yatm.block.plant.tree.AerialRootsBlock;
 import com.gsr.gsr_yatm.block.plant.tree.StrippedSapLogBlock;
 import com.gsr.gsr_yatm.block.plant.tree.rubber_bush.RubberBushSaplingBlock;
@@ -37,10 +39,12 @@ import com.gsr.gsr_yatm.block.plant.vine.OnceFruitVineBodyBlock;
 import com.gsr.gsr_yatm.block.plant.vine.VineMeristemBlock;
 import com.gsr.gsr_yatm.utilities.YATMBlockProperties;
 import com.gsr.gsr_yatm.utilities.YATMBlockShapes;
+import com.gsr.gsr_yatm.utilities.itemstack.RandomCountItemStackSupplier;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
@@ -145,23 +149,23 @@ public class YATMBlocks
 	public static final RegistryObject<VineMeristemBlock> SPIDER_VINE_MERISTEM = BLOCKS.register("spider_vine_meristem", () -> new VineMeristemBlock(YATMBlockProperties.SPIDER_VINE, YATMBlocks::getSpiderVine));
 	
 	public static final RegistryObject<DecayingBlock> FALLEN_SHULKWART_SPORES = BLOCKS.register("fallen_shulkwart_spores", () -> new DecayingBlock(YATMBlockProperties.FALLEN_SHULKWART_SPORES, YATMBlockShapes.DOWNWARD_LICHEN_LIKE, 64));
-	public static final RegistryObject<ShulkWartBlock> SHULKWART = BLOCKS.register("shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart((DyeColor)null), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
-	public static final RegistryObject<ShulkWartBlock> WHITE_SHULKWART = BLOCKS.register("white_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
-	public static final RegistryObject<ShulkWartBlock> ORANGE_SHULKWART = BLOCKS.register("orange_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
-	public static final RegistryObject<ShulkWartBlock> MAGENTA_SHULKWART = BLOCKS.register("magenta_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
-	public static final RegistryObject<ShulkWartBlock> LIGHT_BLUE_SHULKWART = BLOCKS.register("light_blue_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
-	public static final RegistryObject<ShulkWartBlock> YELLOW_SHULKWART = BLOCKS.register("yellow_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
-	public static final RegistryObject<ShulkWartBlock> LIME_SHULKWART = BLOCKS.register("lime_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
-	public static final RegistryObject<ShulkWartBlock> PINK_SHULKWART = BLOCKS.register("pink_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
-	public static final RegistryObject<ShulkWartBlock> GRAY_SHULKWART = BLOCKS.register("gray_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
-	public static final RegistryObject<ShulkWartBlock> LIGHT_GRAY_SHULKWART = BLOCKS.register("light_gray_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
-	public static final RegistryObject<ShulkWartBlock> CYAN_SHULKWART = BLOCKS.register("cyan_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
-	public static final RegistryObject<ShulkWartBlock> PURPLE_SHULKWART = BLOCKS.register("purple_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
-	public static final RegistryObject<ShulkWartBlock> BLUE_SHULKWART = BLOCKS.register("blue_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
-	public static final RegistryObject<ShulkWartBlock> BROWN_SHULKWART = BLOCKS.register("brown_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
-	public static final RegistryObject<ShulkWartBlock> GREEN_SHULKWART = BLOCKS.register("green_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
-	public static final RegistryObject<ShulkWartBlock> RED_SHULKWART = BLOCKS.register("red_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
-	public static final RegistryObject<ShulkWartBlock> BLACK_SHULKWART = BLOCKS.register("black_shulkwart", () -> new ShulkWartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
+	public static final RegistryObject<ShulkwartBlock> SHULKWART = shulkwart("shulkwart", (DyeColor)null, () -> YATMItems.SHULKWART_HORN.get());//BLOCKS.register("shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart((DyeColor)null), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
+	public static final RegistryObject<ShulkwartBlock> WHITE_SHULKWART = shulkwart("white_shulkwart", DyeColor.WHITE, () -> YATMItems.WHITE_SHULKWART_HORN.get());//BLOCKS.register("white_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
+	public static final RegistryObject<ShulkwartBlock> ORANGE_SHULKWART = shulkwart("orange_shulkwart", DyeColor.ORANGE, () -> YATMItems.ORANGE_SHULKWART_HORN.get());//BLOCKS.register("orange_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.ORANGE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
+	public static final RegistryObject<ShulkwartBlock> MAGENTA_SHULKWART = shulkwart("magenta_shulkwart", DyeColor.MAGENTA, () -> YATMItems.MAGENTA_SHULKWART_HORN.get());//BLOCKS.register("magenta_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
+	public static final RegistryObject<ShulkwartBlock> LIGHT_BLUE_SHULKWART = shulkwart("light_blue_shulkwart", DyeColor.LIGHT_BLUE, () -> YATMItems.LIGHT_BLUE_SHULKWART_HORN.get());//BLOCKS.register("light_blue_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
+	public static final RegistryObject<ShulkwartBlock> YELLOW_SHULKWART = shulkwart("yellow_shulkwart", DyeColor.YELLOW, () -> YATMItems.YELLOW_SHULKWART_HORN.get());//BLOCKS.register("yellow_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
+	public static final RegistryObject<ShulkwartBlock> LIME_SHULKWART = shulkwart("lime_shulkwart", DyeColor.LIME, () -> YATMItems.LIME_SHULKWART_HORN.get());//BLOCKS.register("lime_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
+	public static final RegistryObject<ShulkwartBlock> PINK_SHULKWART = shulkwart("pink_shulkwart", DyeColor.PINK, () -> YATMItems.PINK_SHULKWART_HORN.get());//BLOCKS.register("pink_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
+	public static final RegistryObject<ShulkwartBlock> GRAY_SHULKWART = shulkwart("gray_shulkwart", DyeColor.GRAY, () -> YATMItems.GRAY_SHULKWART_HORN.get());//BLOCKS.register("gray_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
+	public static final RegistryObject<ShulkwartBlock> LIGHT_GRAY_SHULKWART = shulkwart("light_gray_shulkwart", DyeColor.LIGHT_GRAY, () -> YATMItems.LIGHT_GRAY_SHULKWART_HORN.get());//BLOCKS.register("light_gray_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
+	public static final RegistryObject<ShulkwartBlock> CYAN_SHULKWART = shulkwart("cyan_shulkwart", DyeColor.CYAN, () -> YATMItems.CYAN_SHULKWART_HORN.get());//BLOCKS.register("cyan_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
+	public static final RegistryObject<ShulkwartBlock> PURPLE_SHULKWART = shulkwart("purple_shulkwart", DyeColor.PURPLE, () -> YATMItems.PURPLE_SHULKWART_HORN.get());//BLOCKS.register("purple_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
+	public static final RegistryObject<ShulkwartBlock> BLUE_SHULKWART = shulkwart("blue_shulkwart", DyeColor.BLUE, () -> YATMItems.BLUE_SHULKWART_HORN.get());//BLOCKS.register("blue_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
+	public static final RegistryObject<ShulkwartBlock> BROWN_SHULKWART = shulkwart("brown_shulkwart", DyeColor.BROWN, () -> YATMItems.BROWN_SHULKWART_HORN.get());//BLOCKS.register("brown_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
+	public static final RegistryObject<ShulkwartBlock> GREEN_SHULKWART = shulkwart("green_shulkwart", DyeColor.GREEN, () -> YATMItems.GREEN_SHULKWART_HORN.get());//BLOCKS.register("green_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
+	public static final RegistryObject<ShulkwartBlock> RED_SHULKWART = shulkwart("red_shulkwart", DyeColor.RED, () -> YATMItems.RED_SHULKWART_HORN.get());//BLOCKS.register("red_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
+	public static final RegistryObject<ShulkwartBlock> BLACK_SHULKWART = shulkwart("black_shulkwart", DyeColor.BLACK, () -> YATMItems.BLACK_SHULKWART_HORN.get());//BLOCKS.register("black_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
 	
 	
 	
@@ -250,6 +254,13 @@ public class YATMBlocks
 	public static final RegistryObject<LiquidBlock> LUNAR_LIGHT_LIQUID_BLOCK = BLOCKS.register("lunar_light", () -> new LiquidBlock(YATMFluids.LUNAR_LIGHT, YATMBlockProperties.LIQUID_PROPERTIES));
 	public static final RegistryObject<LiquidBlock> SOLAR_LIGHT_LIQUID_BLOCK = BLOCKS.register("solar_light", () -> new LiquidBlock(YATMFluids.SOLAR_LIGHT, YATMBlockProperties.LIQUID_PROPERTIES));	
 
+	
+	
+	private static RegistryObject<ShulkwartBlock> shulkwart(String identifier, DyeColor color, Supplier<Item> horn)
+	{
+		return BLOCKS.register(identifier, () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(color), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get(), new RandomCountItemStackSupplier(horn, 1, 3, RandomSource.createNewThreadLocalInstance())));
+	} // end createShulkwart
+	
 	
 	
 	public static void addFlowersToPots()

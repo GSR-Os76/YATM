@@ -2,6 +2,7 @@ package com.gsr.gsr_yatm;
 
 import java.util.Collection;
 
+import com.gsr.gsr_yatm.block.IHarvestable;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.plant.tree.StrippedSapLogBlock;
 import com.gsr.gsr_yatm.data_generation.YATMItemTags;
@@ -12,6 +13,7 @@ import com.gsr.gsr_yatm.registry.YATMMobEffects;
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
 
+import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.resources.ResourceLocation;
@@ -24,10 +26,12 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.event.RecipesUpdatedEvent;
+import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
@@ -50,7 +54,6 @@ public class YATMGameEvents
 	
 	private static void blockToolModification(BlockToolModificationEvent event) 
 	{
-		// TODO, might wanna add the harvesting of phantasmal shelf fungus here too.
 		if(event.getToolAction() == ToolActions.AXE_STRIP) 
 		{
 			BlockState on = event.getState();
@@ -65,6 +68,8 @@ public class YATMGameEvents
 			
 			event.setFinalState(resSta);
 		}
+		// TODO, do wanna add the harvesting of phantasmal shelf fungus here too.
+		YATMGameEvents.tryHarvest(event);
 	} // end blockToolModification
 	
 	private static void entityDamaged(LivingDamageEvent event) 
@@ -209,7 +214,23 @@ public class YATMGameEvents
 				.setValue(IConduit.WEST, from.getValue(IConduit.WEST));
 	} // end copyWireInfo()
 	
-	
+	private static boolean tryHarvest(BlockToolModificationEvent event)
+	{
+		BlockState state = event.getState();
+		if(state.getBlock() instanceof IHarvestable harvestable && harvestable.allowEventHandling()) 
+		{
+			Level level = event.getContext().getLevel();
+			BlockPos positiion = event.getPos();
+			ToolAction action = event.getToolAction();
+			if(harvestable.isHarvestable(level, state, positiion, action)) 
+			{
+				event.setFinalState(harvestable.getResultingState(level, state, positiion, action));
+				InventoryUtilities.drop(level, positiion, harvestable.getResults(level, state, positiion, action));
+				return true;
+			}
+		}
+		return false;
+	} // end tryHarvest()
 	
 	private static void tryWitherSoulAffliction(LivingDamageEvent event) 
 	{
