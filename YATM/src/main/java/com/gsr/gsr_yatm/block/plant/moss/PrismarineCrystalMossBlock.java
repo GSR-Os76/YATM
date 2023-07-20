@@ -19,7 +19,9 @@ import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
@@ -27,6 +29,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.PipeBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -38,6 +41,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.common.ForgeHooks;
 
 public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements SimpleWaterloggedBlock 
 {
@@ -101,7 +105,6 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 	@Override
 	public int getMaxAge()
 	{
-		// TODO Auto-generated method stub
 		return PrismarineCrystalMossBlock.MAX_AGE;
 	} // end getMaxAge()
 
@@ -128,7 +131,50 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 		return true;
 	} // end canSurvive()
 	
-	
+	@SuppressWarnings("deprecation")
+	@Override
+	public void neighborChanged(BlockState state, Level level, BlockPos position, Block changedFrom, BlockPos changedPosition, boolean dunno)
+	{
+		int difX = changedPosition.getX() - position.getX();
+		int difY = changedPosition.getY() - position.getY();
+		int difZ = changedPosition.getZ() - position.getZ();
+		Direction twrdsChang = (Direction)null;
+		if(difX != 0) 
+		{
+			twrdsChang = difX > 0 ? Direction.EAST : Direction.WEST;
+		}
+		else if(difY != 0) 
+		{
+			twrdsChang = difY > 0 ? Direction.UP : Direction.DOWN;
+		}
+		else if(difZ != 0) 
+		{
+			twrdsChang = difZ > 0 ? Direction.SOUTH : Direction.NORTH;
+		}
+		
+		BlockState changedTo = level.getBlockState(changedPosition);
+		BooleanProperty faceProp = HAS_FACE_PROPERTIES_BY_DIRECTION.get(twrdsChang);
+		if(state.getValue(faceProp) && !Block.isFaceFull(changedTo.getBlockSupportShape(level, changedPosition), twrdsChang.getOpposite())) 
+		{
+			BlockState updState = state.setValue(faceProp, false).setValue(AGE_PROPERTIES_BY_DIRECTION.get(twrdsChang), 0);
+			if(!level.isClientSide) 
+			{
+				if(!Direction.stream().anyMatch((d) -> updState.getValue(HAS_FACE_PROPERTIES_BY_DIRECTION.get(d))))
+				{
+					level.setBlock(position, Blocks.AIR.defaultBlockState(), 3);
+				}
+				else 
+				{
+					level.setBlock(position, updState, 2);				
+				}
+			}
+			level.playSound((Player)null, position, this.soundType.getBreakSound(), SoundSource.BLOCKS, 1.0f, 1.0f);
+			// TODO, add the block breaking particle
+//			level.addParticle(new BlockParticleOption(ParticleTypes.BLOCK, state), (double) position.getX() + 0.5d, (double) position.getY() + 0.5d, (double) position.getZ() + 0.5D, 0.0d, 0.0d, 0.0d);
+				
+		}		
+		super.neighborChanged(state, level, position, changedFrom, changedPosition, dunno);
+	} // end neighborChanged()
 
 
 
@@ -147,36 +193,15 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 		Level level = context.getLevel();
 		BlockPos pos = context.getClickedPos();
 		BlockState bs = level.getBlockState(pos);
-		
-//		BlockState res = bs.is(this) ? bs : this.defaultBlockState();
-//		res = res.setValue(PrismarineCrystalMossBlock.WATERLOGGED, level.getFluidState(pos).getType() == Fluids.WATER);
-//		
 		Direction d = context.getClickedFace().getOpposite();
-//		BlockPos willBeOnPos = pos.relative(d);
-//		if(this.canPlaceOn(level, willBeOnPos, level.getBlockState(willBeOnPos), d.getOpposite())) 
-//		{
-//			BooleanProperty prop = PrismarineCrystalMossBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(d);
-//			if(!res.getValue(prop)) 
-//			{
-//				res = res.setValue(prop, true);
-//			}
-//			else 
-//			{
-//				return null;
-//			}
-//		}
-//		else 
-//		{
-//			return null;
-//		}
-//		return res;
+
 		return this.getStateForPlacement(level, pos, bs, d);
 	} // end getStateForPlacement()
 	
 	public @Nullable BlockState getStateForPlacement(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState replacing, @NotNull Direction clickedFace) 
 	{
 		BlockState res = replacing.is(this) ? replacing : this.defaultBlockState();
-		res = res.setValue(PrismarineCrystalMossBlock.WATERLOGGED, level.getFluidState(position).getType() == Fluids.WATER);
+		res = res.setValue(PrismarineCrystalMossBlock.WATERLOGGED, level.getFluidState(position).is(Fluids.WATER));
 		
 		BlockPos willBeOnPos = position.relative(clickedFace);
 		if(this.canPlaceOn(level, willBeOnPos, level.getBlockState(willBeOnPos), clickedFace.getOpposite())) 
@@ -215,8 +240,6 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 		return updateShape.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(updateShape);
 	} // end getFluidState
 
-	
-	
 
 	
 	@Override
@@ -225,13 +248,13 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 		return this.m_shape.getShape(blockState, blockGetter, blockPos, context);
 	} // end getShape()
 
-	
-	
-	
-	
-	
-	
-	
+
+
+	@Override
+	public boolean isRandomlyTicking(BlockState state)
+	{
+		return this.getGrowingFacesFor(state).size() != 0;
+	} // end isRandomlyTicking()
 
 	@SuppressWarnings("deprecation")
 	@Override
@@ -245,19 +268,20 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 		{
 			for(Direction face : this.getGrowingFacesFor(startState)) 
 			{
-				int startVal = startState.getValue(PrismarineCrystalMossBlock.AGE_PROPERTIES_BY_DIRECTION.get(face));
+				IntegerProperty ageProp = PrismarineCrystalMossBlock.AGE_PROPERTIES_BY_DIRECTION.get(face);
+				int startVal = startState.getValue(ageProp);
 				if(startVal < this.getMaxAge()) 
 				{
-					if(random.nextInt(12) == 0)
+					if(ForgeHooks.onCropsGrowPre(level, pos, startState, random.nextInt(12) == 0))
 					{
-						level.setBlock(pos, startState.cycle(PrismarineCrystalMossBlock.AGE_PROPERTIES_BY_DIRECTION.get(face)), 3);
+						level.setBlock(pos, startState.setValue(ageProp, startVal + 1), 2);
+						ForgeHooks.onCropsGrowPost(level, pos, startState);
 					}
 				}
 				else if(random.nextInt(12) == 0)
 				{
 					this.tryPropagate(startState, level, pos, random);
 				}
-				
 			}
 		}
 	} // end randomTick()
@@ -284,24 +308,31 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 	
 	protected void tryPropagate(BlockState startState, ServerLevel level, BlockPos pos, RandomSource random) 
 	{
+		if(!startState.getValue(CAN_SPREAD) || !startState.getFluidState().is(Fluids.WATER)) 
+		{
+			return;
+		}
+		// attempt multiple times.
 		for(int i = 0; i < 6; i++) 
 		{
 			BlockPos toCheck = pos.offset(SPREADABLE_RELATIVE_POSITIONS.get(random.nextIntBetweenInclusive(0, SPREADABLE_RELATIVE_POSITIONS.size() - 1)));
-			BlockState toReplace = level.getBlockState(toCheck);
-			if(toReplace.canBeReplaced()) 
+			if(level.isLoaded(toCheck)); 
 			{
-				for(Direction simulatedClickedFace : Direction.allShuffled(random))
-				{					
-					BlockState setRes = this.getStateForPlacement(level, toCheck, toReplace, simulatedClickedFace);
-					if(setRes != null) 
-					{
-						level.setBlock(toCheck, setRes.setValue(CAN_SPREAD, false), 3);
-						return;
+				BlockState toReplace = level.getBlockState(toCheck);
+				if(toReplace.canBeReplaced() && toReplace.getFluidState().is(Fluids.WATER)) 
+				{
+					for(Direction simulatedClickedFace : Direction.allShuffled(random))
+					{					
+						BlockState setRes = this.getStateForPlacement(level, toCheck, toReplace, simulatedClickedFace);
+						if(setRes != null) 
+						{
+							level.setBlock(toCheck, setRes.setValue(CAN_SPREAD, false), 3);
+							return;
+						}
 					}
 				}
 			}
-		}
-		
+		}		
 	} // end tryPropagate()
 	
 } // end class
