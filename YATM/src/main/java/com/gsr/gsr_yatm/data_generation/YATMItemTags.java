@@ -91,8 +91,8 @@ public class YATMItemTags extends ItemTagsProvider
 	
 	
 	
-	public static final ITag<Item> GROWS_PHANTASMAL_SHELF_FUNGI = TM.getTag(GROWS_PHANTASMAL_SHELF_FUNGI_KEY);
-	public static final ITag<Item> SPREADS_PHANTASMAL_SHELF_FUNGI = TM.getTag(SPREADS_PHANTASMAL_SHELF_FUNGI_KEY);
+	// public static final ITag<Item> GROWS_PHANTASMAL_SHELF_FUNGI = TM.getTag(GROWS_PHANTASMAL_SHELF_FUNGI_KEY);
+	// public static final ITag<Item> SPREADS_PHANTASMAL_SHELF_FUNGI = TM.getTag(SPREADS_PHANTASMAL_SHELF_FUNGI_KEY);
 	public static final ITag<Item> SOUL_ARMOR = TM.getTag(SOUL_ARMOR_KEY);
 	
 

@@ -1,47 +1,122 @@
 {
   "variants": {
-    "facing=east,growth_stage=0": {
+    "age=0,facing=east": {
       "model": "gsr_yatm:block/phantasmal_shelf_fungus_small",
       "y": 90
     },
-    "facing=east,growth_stage=1": {
-      "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium",
-      "y": 90
-    },
-    "facing=east,growth_stage=2": {
-      "model": "gsr_yatm:block/phantasmal_shelf_fungus_large",
-      "y": 90
-    },
-    "facing=north,growth_stage=0": {
+    "age=0,facing=north": {
       "model": "gsr_yatm:block/phantasmal_shelf_fungus_small"
     },
-    "facing=north,growth_stage=1": {
-      "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium"
-    },
-    "facing=north,growth_stage=2": {
-      "model": "gsr_yatm:block/phantasmal_shelf_fungus_large"
-    },
-    "facing=south,growth_stage=0": {
+    "age=0,facing=south": {
       "model": "gsr_yatm:block/phantasmal_shelf_fungus_small",
       "y": 180
     },
-    "facing=south,growth_stage=1": {
+    "age=0,facing=west": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_small",
+      "y": 270
+    },
+    "age=1,facing=east": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_small",
+      "y": 90
+    },
+    "age=1,facing=north": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_small"
+    },
+    "age=1,facing=south": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_small",
+      "y": 180
+    },
+    "age=1,facing=west": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_small",
+      "y": 270
+    },
+    "age=2,facing=east": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_small",
+      "y": 90
+    },
+    "age=2,facing=north": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_small"
+    },
+    "age=2,facing=south": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_small",
+      "y": 180
+    },
+    "age=2,facing=west": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_small",
+      "y": 270
+    },
+    "age=3,facing=east": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium",
+      "y": 90
+    },
+    "age=3,facing=north": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium"
+    },
+    "age=3,facing=south": {
       "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium",
       "y": 180
     },
-    "facing=south,growth_stage=2": {
+    "age=3,facing=west": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium",
+      "y": 270
+    },
+    "age=4,facing=east": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium",
+      "y": 90
+    },
+    "age=4,facing=north": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium"
+    },
+    "age=4,facing=south": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium",
+      "y": 180
+    },
+    "age=4,facing=west": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium",
+      "y": 270
+    },
+    "age=5,facing=east": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium",
+      "y": 90
+    },
+    "age=5,facing=north": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium"
+    },
+    "age=5,facing=south": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium",
+      "y": 180
+    },
+    "age=5,facing=west": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium",
+      "y": 270
+    },
+    "age=6,facing=east": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium",
+      "y": 90
+    },
+    "age=6,facing=north": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium"
+    },
+    "age=6,facing=south": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium",
+      "y": 180
+    },
+    "age=6,facing=west": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium",
+      "y": 270
+    },
+    "age=7,facing=east": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_large",
+      "y": 90
+    },
+    "age=7,facing=north": {
+      "model": "gsr_yatm:block/phantasmal_shelf_fungus_large"
+    },
+    "age=7,facing=south": {
       "model": "gsr_yatm:block/phantasmal_shelf_fungus_large",
       "y": 180
     },
-    "facing=west,growth_stage=0": {
-      "model": "gsr_yatm:block/phantasmal_shelf_fungus_small",
-      "y": 270
-    },
-    "facing=west,growth_stage=1": {
-      "model": "gsr_yatm:block/phantasmal_shelf_fungus_medium",
-      "y": 270
-    },
-    "facing=west,growth_stage=2": {
+    "age=7,facing=west": {
       "model": "gsr_yatm:block/phantasmal_shelf_fungus_large",
       "y": 270
     }

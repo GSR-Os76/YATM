@@ -1,4 +1,4 @@
-// 1.20.1	2023-07-18T10:52:04.6445921	Block States: gsr_yatm
+// 1.20.1	2023-07-20T11:38:09.8484389	Block States: gsr_yatm
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 a2a385d05e4f86cda9dd2c5a246077dac4e32579 assets/gsr_yatm/blockstates/advanced_solar_panel.json
 1f93f54e475a6f61472c9d40b8c785bb409c6917 assets/gsr_yatm/blockstates/black_shulkwart.json
@@ -36,7 +36,7 @@ d52550383a5cde59474ea8618127ed8731d4530d assets/gsr_yatm/blockstates/light_gray_
 02d72a441d8fb1fe97d1b33b785d7aac2215e8a0 assets/gsr_yatm/blockstates/one_cu_wire.json
 0f690035fa64262a20a9a500cbf4d1c9092d59aa assets/gsr_yatm/blockstates/orange_shulkwart.json
 8c712e2a9da24f9b5752cb653bf2b614a429a556 assets/gsr_yatm/blockstates/partially_stripped_rubber_log.json
-c74e7cc4c577ffdc9e4c0f121b78af95192c9fa9 assets/gsr_yatm/blockstates/phantasmal_shelf_fungus.json
+acf34d97b7f8ca971bb84c481f6b7675767f209e assets/gsr_yatm/blockstates/phantasmal_shelf_fungus.json
 07b6653d1e584d44f50cf66e3b73d8b59985e6f7 assets/gsr_yatm/blockstates/pink_shulkwart.json
 2854e1ff95ab18613a7a8c3da00376d566892708 assets/gsr_yatm/blockstates/potted_rubber_meristem.json
 ba91ec51631826a37de406b552fc75fa31baf453 assets/gsr_yatm/blockstates/potted_soul_afflicted_rubber_meristem.json

@@ -40,7 +40,7 @@ public class ShulkwartBlock extends CustomSeedCropBlock implements IHarvestable
 	private static final int SPORE_DISPERSION_DISTANCE = 8;
 	private final VoxelShapeProvider m_shape;
 	private final Supplier<Block> m_fallenSpores;
-	private final Supplier<ItemStack> m_harvestResults;
+	/*TODO, probably unhardcode this, make into a data driven loottable if is possible*/private final Supplier<ItemStack> m_harvestResults;
 	
 	
 	public ShulkwartBlock(Properties properties, VoxelShapeProvider shape, Supplier<ItemLike> seed, Supplier<Block> fallenSpores, Supplier<ItemStack> harvestResults)
@@ -184,11 +184,10 @@ public class ShulkwartBlock extends CustomSeedCropBlock implements IHarvestable
 	
 
 
-
 	@Override
 	public @NotNull List<@Nullable ToolAction> validActions(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position)
 	{
-		return List.of(ToolActions.SHEARS_HARVEST);
+		return state.getValue(this.getAgeProperty()) == this.getMaxAge() ? List.of(ToolActions.SHEARS_HARVEST) : List.of();
 	} // end validAction()
 
 	@Override

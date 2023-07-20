@@ -850,7 +850,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 			case 5 -> ageFiveModel;
 			case 6 -> ageSixModel;
 			case 7 -> ageSevenModel;
-			default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(PhantasmalShelfFungiBlock.GROWTH_STAGE));
+			default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(CropBlock.AGE));
 		};
 		return new ConfiguredModel[] {new ConfiguredModel(model)};
 	} // end forCrop()
@@ -860,10 +860,9 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		IntegerProperty faceAge = PrismarineCrystalMossBlock.AGE_PROPERTIES_BY_DIRECTION.get(face);
 		for(int i = 0; i <= PrismarineCrystalMossBlock.MAX_AGE; i++) 
 		{
-			YetAnotherTechMod.LOGGER.info("building prism sta, age: " + i + ", face: " + face);
 			Vector2i rot = YATMBlockStateProvider.rotationForDirectionFromNorth(face);
 			builder.part()
-			.modelFile(getModelForPrismarineCrystalMossLikeAge(i, ageZeroModel, ageOneModel))//, ageTwoModel, ageThreeModel))
+			.modelFile(getModelForPrismarineCrystalMossLikeAge(i, ageZeroModel, ageOneModel))
 			.rotationX(rot.x)
 			.rotationY(rot.y)
 			.uvLock(false)
@@ -892,13 +891,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		return switch(age) 
 		{
 			case 0 -> ageZeroModel;
-			case 1 -> ageOneModel;//ageZeroModel;
-			//case 2 -> ageOneModel;
-			//case 3 -> ageOneModel;
-			//case 4 -> ageTwoModel;
-			//case 5 -> ageTwoModel;
-			//case 6 -> ageThreeModel;
-			//case 7 -> ageThreeModel;
+			case 1 -> ageOneModel;
 			default -> throw new IllegalArgumentException("Unexpected value of: " + age);
 		};
 		
@@ -907,12 +900,12 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	private static ConfiguredModel[] forShelfFungi(BlockState bs, ModelFile smallModel, ModelFile mediumModel, ModelFile largeModel)
 	{
-		ModelFile model = switch(bs.getValue(PhantasmalShelfFungiBlock.GROWTH_STAGE)) 
+		ModelFile model = switch(bs.getValue(CropBlock.AGE)) 
 		{
-			case 0 -> smallModel;
-			case 1 -> mediumModel;
-			case 2 -> largeModel;
-			default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(PhantasmalShelfFungiBlock.GROWTH_STAGE));
+			case 0, 1, 2 -> smallModel;
+			case 3, 4, 5, 6 -> mediumModel;
+			case 7 -> largeModel;
+			default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(CropBlock.AGE));
 		};
 		Vector2i rot = rotationForDirectionFromNorth(bs.getValue(PhantasmalShelfFungiBlock.FACING));
 		return new ConfiguredModel[] {new ConfiguredModel(model, rot.x, rot.y, false)};
