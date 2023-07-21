@@ -1,6 +1,8 @@
-// 1.20.1	2023-07-20T22:10:55.037868	Tags for minecraft:block mod id gsr_yatm
+// 1.20.1	2023-07-21T14:39:34.1611502	Tags for minecraft:block mod id gsr_yatm
 5cde157d29986a1af6fac3eed0972c55ed684ae6 data/forge/tags/blocks/storage_blocks/rubber.json
 ae03c7f5a14f674a125f762d1f54c5fc58535fe0 data/gsr_yatm/tags/blocks/conduits/sixtyfour_cu.json
+6f65945173b470070cc3ffbceeb8614d256b81f3 data/gsr_yatm/tags/blocks/form/aurum_deminutus_higher.json
+6ef566e8d366f5028e9f398a20bead05865d2de4 data/gsr_yatm/tags/blocks/form/aurum_deminutus_lower.json
 66ac8055416086c9939359092bb9e6f99b9399d6 data/gsr_yatm/tags/blocks/leaves_litter_on.json
 1a28f00eb34b3c96b745b740247a6eddad28fe15 data/gsr_yatm/tags/blocks/mediums/aerial_rubber_roots_can_grow_on.json
 eaf726d0ca999b963fa5b018a13e9c7f4b2e50cf data/gsr_yatm/tags/blocks/mediums/aerial_rubber_roots_can_grow_through.json

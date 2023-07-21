@@ -14,6 +14,7 @@ import com.gsr.gsr_yatm.item.component.CurrentRegulatorItem;
 import com.gsr.gsr_yatm.item.component.CurrentFuseItem;
 import com.gsr.gsr_yatm.item.component.fluid.FluidExchangerItem;
 import com.gsr.gsr_yatm.item.fluid.DrinkableFluidBottleItem;
+import com.gsr.gsr_yatm.item.fluid.EssenceOfSoulsBottleItem;
 import com.gsr.gsr_yatm.item.fluid.FluidBottleItem;
 import com.gsr.gsr_yatm.item.fluid.SoulSapBucketItem;
 
@@ -192,7 +193,7 @@ public class YATMItems
 	public static final RegistryObject<DrinkableFluidBottleItem> CHORUS_BIO_BOTTLE = generalTabEnqueue(ITEMS.register("chorus_bio_bottle", () -> new DrinkableFluidBottleItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(YATMFoods.CHORUS_BIOFLUID), YATMFluids.CHORUS_BIO, 20)));
 	public static final RegistryObject<DrinkableFluidBottleItem> ENDER_BOTTLE = generalTabEnqueue(ITEMS.register("ender_bottle", () -> new DrinkableFluidBottleItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(YATMFoods.ENDER), YATMFluids.ENDER, 20)));
 	public static final RegistryObject<DrinkableFluidBottleItem> ESSENCE_OF_DECAY_BOTTLE = generalTabEnqueue(ITEMS.register("essence_of_decay_bottle", () -> new DrinkableFluidBottleItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(YATMFoods.ESSENCE_OF_DECAY), YATMFluids.ESSENCE_OF_DECAY, 20)));
-	public static final RegistryObject<DrinkableFluidBottleItem> ESSENCE_OF_SOULS_BOTTLE = generalTabEnqueue(ITEMS.register("essence_of_souls_bottle", () -> new DrinkableFluidBottleItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(YATMFoods.ESSENCE_OF_SOULS), YATMFluids.ESSENCE_OF_SOULS, 20)));
+	public static final RegistryObject<EssenceOfSoulsBottleItem> ESSENCE_OF_SOULS_BOTTLE = generalTabEnqueue(ITEMS.register("essence_of_souls_bottle", () -> new EssenceOfSoulsBottleItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(YATMFoods.ESSENCE_OF_SOULS), YATMFluids.ESSENCE_OF_SOULS, 20)));
 	public static final RegistryObject<FluidBottleItem> LATEX_BOTTLE = generalTabEnqueue(ITEMS.register("latex_bottle", () -> new FluidBottleItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16), YATMFluids.LATEX)));
 	public static final RegistryObject<DrinkableFluidBottleItem> SOUL_SAP_BOTTLE = generalTabEnqueue(ITEMS.register("soul_sap_bottle", () -> new DrinkableFluidBottleItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(YATMFoods.SOUL_SAP), YATMFluids.SOUL_SAP, 40)));
 	public static final RegistryObject<DrinkableFluidBottleItem> SOUL_SYRUP_BOTTLE = generalTabEnqueue(ITEMS.register("soul_syrup_bottle", () -> new DrinkableFluidBottleItem(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE).stacksTo(16).food(YATMFoods.SOUL_SYRUP), YATMFluids.SOUL_SYRUP, 60)));

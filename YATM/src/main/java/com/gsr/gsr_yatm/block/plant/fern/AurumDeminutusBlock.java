@@ -15,7 +15,11 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.ItemLike;
@@ -29,6 +33,7 @@ import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -36,9 +41,6 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 
-// TODO, create by using bottled soul essence on a block of gilded blackstone with a gold block on top it, doesn't not naturally reproduce
-// TODO, fix lower not break when upper's broken
-// TODO, make damaging contacting entities work
 public class AurumDeminutusBlock extends CropBlock implements IHarvestable
 {
 	public static final int DOUBLES_PAST_THRESHOLD = 2;
@@ -95,14 +97,37 @@ public class AurumDeminutusBlock extends CropBlock implements IHarvestable
 	@Override
 	public void entityInside(BlockState state, Level level, BlockPos position, Entity entity)
 	{
-		double vector = entity.getDeltaMovement().distanceTo(Vec3.ZERO);
-		if(vector > 0.1d) 
+		if (entity instanceof LivingEntity)
 		{
-			entity.hurt(level.damageSources().thorns((Entity)null), (((float)vector) * 4.0f));
+			if (!level.isClientSide)
+			{
+				Vec3 vector = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld));
+				double vecLength = vector.length();
+				int age = this.getAge(state);
+				
+				float damage = (((float) vecLength) * (6.0f * age));
+				if (vecLength > 0.1d)
+				{
+					entity.hurt(level.damageSources().thorns((Entity) null), damage);
+				}
+			}
 		}
 	} // end entityInside()
+
+	@Override
+	public InteractionResult use(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
+	{
+		if(level instanceof ServerLevel sl) 
+		{
+			this.randomTick(state, sl, position, sl.random);
+		}
+		return IHarvestable.use(this, level, state, position, player, hand, hitResult);
+	} // end use()
 	
 	
+	
+
+
 
 	@Override
 	public boolean isRandomlyTicking(BlockState state)
@@ -149,8 +174,9 @@ public class AurumDeminutusBlock extends CropBlock implements IHarvestable
 	{
 		BlockPos check = position.below();
 		BlockState below = level.getBlockState(check);
+//		BlockState above = level.getBlockState(check);
 		return state.getValue(AurumDeminutusBlock.HALF) == DoubleBlockHalf.LOWER 
-				? this.mayPlaceOn(below, level, check)
+				? this.mayPlaceOn(below, level, check) //&& this.hasAppropriateTop(level, above, position.above()))
 				: this.isTopSupport(below);
 	} // end canSurvive()
 
@@ -201,8 +227,25 @@ public class AurumDeminutusBlock extends CropBlock implements IHarvestable
 		return this.isPastDoubleBlockThreshold(state.setValue(this.getAgeProperty(), nextAgeUp)) && !(abvState.canBeReplaced() || abvState.is(this)); 
 	} // end isGrowthBlocked()
 	
+//	protected boolean hasAppropriateTop(LevelReader level, BlockState state, BlockPos position) 
+//	{
+//		return state.is(this) 
+//				&& ((state.getValue(AurumDeminutusBlock.HALF) == DoubleBlockHalf.LOWER) 
+//				== (this.isPastDoubleBlockThreshold(state) == 
+//				((level.getBlockState(position.above()).getValue(AurumDeminutusBlock.HALF) == DoubleBlockHalf.UPPER) && this.getAge(state) == this.getAge(level.getBlockState(position.above())))));
+//	} // end hasAppropriateTop()
+	
 
 	
+	@Override
+	public boolean allowEventHandling()
+	{
+		return false;
+	} // end allowEventHandling()
+	
+
+
+
 	@Override
  	public void onHarvest(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
 	{

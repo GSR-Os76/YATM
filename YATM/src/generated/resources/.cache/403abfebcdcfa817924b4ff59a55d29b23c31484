@@ -1,4 +1,4 @@
-// 1.20.1	2023-07-17T13:31:45.695201	Tags for minecraft:item mod id gsr_yatm
+// 1.20.1	2023-07-21T14:39:34.1693319	Tags for minecraft:item mod id gsr_yatm
 bade3c9b0ab674f2efd3dc51c76e3652a9021029 data/forge/tags/items/ingots/rubber.json
 072803c35014f6741a231cc30a732fe900812905 data/forge/tags/items/ingots/silver.json
 7c408df731c23a13c46254c2cc5fe7e60ec904bd data/forge/tags/items/ingots/steel.json
@@ -9,6 +9,7 @@ bade3c9b0ab674f2efd3dc51c76e3652a9021029 data/forge/tags/items/ingots/rubber.jso
 ec857824c3fbff4388d79661bc800d1e9c6b97bf data/gsr_yatm/tags/items/armors/soul.json
 ae03c7f5a14f674a125f762d1f54c5fc58535fe0 data/gsr_yatm/tags/items/conduits/sixtyfour_cu.json
 6d71a9b29224c88790686a6d26a6f4d262b0d804 data/gsr_yatm/tags/items/dies/wire.json
+081674171279d64d71a1aa4cbf4c2e3fd9fc2de4 data/gsr_yatm/tags/items/golem_like_plant_formers.json
 205d34972c106978555918bdbb34363a9a669d3e data/gsr_yatm/tags/items/grows_phantasmal_shelf_fungi.json
 dbc7ff55315393ed7b1d401f282d24be3c0e6096 data/gsr_yatm/tags/items/rubber_planks.json
 fdecd6c72772c252a2b8dcc095c7aa6e1685f4d7 data/gsr_yatm/tags/items/rubber_tree_logs.json
