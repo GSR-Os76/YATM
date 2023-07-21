@@ -27,6 +27,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -40,7 +41,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 
-// TODO, probably make extend the CropBlock, for extra compatibility, potentially
 public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestable
 {
 	private static final int MIN_SPREAD_ATTEMPT_COUNT = 12;
@@ -52,15 +52,17 @@ public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestable
 	public static final DirectionProperty FACING = YATMBlockStateProperties.FACING_HORIZONTAL;
 	
 	private final VoxelShapeProvider m_shape;
+	private final Supplier<ItemLike> m_seed;
 	/*TODO, probably unhardcode this*/private final Supplier<ItemStack> m_harvestResults = new RandomCountItemStackSupplier(() -> Items.PHANTOM_MEMBRANE, 0, 3, RandomSource.createNewThreadLocalInstance());
-
+	
 
 	
-	public PhantasmalShelfFungiBlock(Properties properties, VoxelShapeProvider shape)
+	public PhantasmalShelfFungiBlock(Properties properties, VoxelShapeProvider shape, Supplier<ItemLike> seed)
 	{
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
 		this.m_shape = shape;
+		this.m_seed = seed;
 	} // end constructor
 
 
@@ -123,6 +125,12 @@ public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestable
 
 		
 
+	@Override
+	protected ItemLike getBaseSeedId()
+	{
+		return this.m_seed.get();
+	} // end getBaseSeedId()
+	
 	@Override
 	public boolean isValidBonemealTarget(LevelReader p_255715_, BlockPos p_52259_, BlockState p_52260_, boolean p_52261_)
 	{

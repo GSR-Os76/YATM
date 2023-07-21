@@ -17,6 +17,7 @@ import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
+import com.gsr.gsr_yatm.block.plant.fern.AurumDeminutusBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.moss.PrismarineCrystalMossBlock;
 import com.gsr.gsr_yatm.block.plant.tree.SelfLayeringSaplingBlock;
@@ -40,6 +41,7 @@ import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -57,7 +59,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile DEFAULT_ITEM_MODEL_PARENT = new ModelFile.UncheckedModelFile("minecraft:item/generated");
 	
 	public static final ModelFile CARPET = new ModelFile.UncheckedModelFile("minecraft:block/carpet");
-	public static final ModelFile CROP_MODEL = new ModelFile.UncheckedModelFile("minecraft:block/crop");
+	public static final ModelFile CROP = new ModelFile.UncheckedModelFile("minecraft:block/crop");
+	public static final ModelFile CROSS = new ModelFile.UncheckedModelFile("minecraft:block/cross");
 	public static final ModelFile FLOWER_POT_CROSS = new ModelFile.UncheckedModelFile("minecraft:block/flower_pot_cross");
 	public static final ModelFile GLOW_LICHEN = new ModelFile.UncheckedModelFile("minecraft:block/glow_lichen");
 	public static final ModelFile MANGROVE_ROOTS = new ModelFile.UncheckedModelFile("minecraft:block/mangrove_roots");
@@ -112,6 +115,15 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	{
 		this.addRubberSet();
 		this.addSoulAfflictedRubberSet();
+		
+		this.createAurumDeminutus(YATMBlocks.AURUM_DEMINUTUS.get(), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/fiddle_heads"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/young"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/adolescent"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/adolescent_double_lower"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/adolescent_double_higher"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/mature_double_lower"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/mature_double_higher"));
 		this.createShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get());
 		this.createFourStageCrop(YATMBlocks.COTTON.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_germinating"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_flowering"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_maturing"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_mature"));
 		this.createPrismarineCrystalMossLike(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), 
@@ -408,10 +420,10 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		String nameTwo = name + "_two";
 		String nameThree = name + "_three";
 		String nameFour = name + "_four";
-		this.models().getBuilder(nameOne).parent(CROP_MODEL).texture("crop", textureOne).renderType(CUTOUT_RENDER_TYPE);
-		this.models().getBuilder(nameTwo).parent(CROP_MODEL).texture("crop", textureTwo).renderType(CUTOUT_RENDER_TYPE);
-		this.models().getBuilder(nameThree).parent(CROP_MODEL).texture("crop", textureThree).renderType(CUTOUT_RENDER_TYPE);
-		this.models().getBuilder(nameFour).parent(CROP_MODEL).texture("crop", textureFour).renderType(CUTOUT_RENDER_TYPE);
+		this.models().getBuilder(nameOne).parent(CROP).texture("crop", textureOne).renderType(CUTOUT_RENDER_TYPE);
+		this.models().getBuilder(nameTwo).parent(CROP).texture("crop", textureTwo).renderType(CUTOUT_RENDER_TYPE);
+		this.models().getBuilder(nameThree).parent(CROP).texture("crop", textureThree).renderType(CUTOUT_RENDER_TYPE);
+		this.models().getBuilder(nameFour).parent(CROP).texture("crop", textureFour).renderType(CUTOUT_RENDER_TYPE);
 		ModelFile modelOne = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameOne));
 		ModelFile modelTwo = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameTwo));
 		ModelFile modelThree = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameThree));
@@ -575,6 +587,33 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		{ new ConfiguredModel(model) });
 	} // end addPottedPlant()
 	
+	public void createAurumDeminutus(AurumDeminutusBlock block, ResourceLocation fiddleHeadTexture, ResourceLocation youngTexture, ResourceLocation adolescentTexture, ResourceLocation adolescentDoubleLowerTexture, ResourceLocation adolescentDoubleHigherTexture, ResourceLocation matureDoubleLowerTexture, ResourceLocation matureDoubleHigherTexture)
+	{
+		String name = getModelLocationNameFor(block);			
+		String fName = name + "_fiddle_head";
+		String yName = name + "_young";
+		String aName = name + "_adolescent";
+		String aDLName = name + "_adolescent_double_lower";
+		String aDHName = name + "_adolescent_double_higher";
+		String mDLName = name + "_mature_double_lower";
+		String mDHName = name + "_mature_double_higher";
+		this.models().getBuilder(fName).parent(CROSS).texture("cross", fiddleHeadTexture).renderType(CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(yName).parent(CROSS).texture("cross", youngTexture).renderType(CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(aName).parent(CROSS).texture("cross", adolescentTexture).renderType(CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(aDLName).parent(CROSS).texture("cross", adolescentDoubleLowerTexture).renderType(CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(aDHName).parent(CROSS).texture("cross", adolescentDoubleHigherTexture).renderType(CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(mDLName).parent(CROSS).texture("cross", matureDoubleLowerTexture).renderType(CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(mDHName).parent(CROSS).texture("cross", matureDoubleHigherTexture).renderType(CUTOUT_RENDER_TYPE);		
+		ModelFile fModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, fName));
+		ModelFile yModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, yName));
+		ModelFile aModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, aName));
+		ModelFile aDLModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, aDLName));
+		ModelFile aDHModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, aDHName));
+		ModelFile mDLModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, mDLName));
+		ModelFile mDHModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, mDHName));
+		this.getVariantBuilder(block).forAllStates((bs) -> forAurumDeminutus(bs, fModel, yModel, aModel, aDLModel, aDHModel, mDLModel, mDHModel));
+	} // end createAurumDeminutus()
+	
 	private void createShelfFungus(PhantasmalShelfFungiBlock block, Item item) 
 	{
 		// TODO, likely change model reducing vertex density significantly
@@ -591,7 +630,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		ModelFile largeModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, largeName));
 		this.getVariantBuilder(block).forAllStates((bs) -> forShelfFungi(bs, smallModel, mediumModel, largeModel));
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(largeModel);
-	}
+	} // end createShelfFungus()
 	
 	private void createStair(StairBlock block, String name, ResourceLocation texture) 
 	{ 
@@ -897,6 +936,21 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 		
 	} // end forPrismarineCrystalMossLike()
+	
+	public static ConfiguredModel[] forAurumDeminutus(BlockState bs, ModelFile fiddleHeadModel, ModelFile youngModel, ModelFile adolescentModel, ModelFile adolescentDoubleLowerModel, ModelFile adolescentDoubleHigherModel, ModelFile matureDoubleLowerModel, ModelFile matureDoubleHigherModel) 
+	{
+		boolean isLower = bs.getValue(AurumDeminutusBlock.HALF) == DoubleBlockHalf.LOWER;
+		ModelFile model = switch(bs.getValue(AurumDeminutusBlock.AGE)) 
+		{
+			case 0 -> fiddleHeadModel;
+			case 1 -> youngModel;
+			case 2 -> adolescentModel;
+			case 3 -> isLower ? adolescentDoubleLowerModel : adolescentDoubleHigherModel;
+			case 4 -> isLower ? matureDoubleLowerModel : matureDoubleHigherModel;
+			default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(AurumDeminutusBlock.AGE));
+		};
+		return new ConfiguredModel[] {new ConfiguredModel(model)};
+	} // end forAurumDeminutus()
 	
 	private static ConfiguredModel[] forShelfFungi(BlockState bs, ModelFile smallModel, ModelFile mediumModel, ModelFile largeModel)
 	{

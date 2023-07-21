@@ -25,6 +25,12 @@ public interface IHarvestable
 		return true;
 	} // end expectsEventHandling()
 	
+	// should be called by harvesters after all other logic is completed.
+	public default void onHarvest(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action) 
+	{
+		
+	} // end onHarvest()	
+	
 	// should return a list of all the ToolActions that're able to be used on the provided state and situation
 	public @NotNull List<@Nullable ToolAction> validActions(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position);
 	
@@ -54,10 +60,12 @@ public interface IHarvestable
 					InventoryUtilities.drop(level, position, harvestable.getResults(level, state, position, usable));
 					level.setBlock(position, harvestable.getResultingState(level, state, position, usable), 3);
 				}
+				harvestable.onHarvest(level, state, position, usable);
 				return InteractionResult.sidedSuccess(level.isClientSide);
 			}			
 		}
 		return InteractionResult.PASS;
 	} // end use()
+
 	
 } // end interface

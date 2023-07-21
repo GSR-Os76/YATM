@@ -225,7 +225,11 @@ public class YATMGameEvents
 			if(harvestable.isHarvestable(level, state, positiion, action)) 
 			{
 				event.setFinalState(harvestable.getResultingState(level, state, positiion, action));
-				InventoryUtilities.drop(level, positiion, harvestable.getResults(level, state, positiion, action));
+				if(!event.isSimulated()) 
+				{
+					InventoryUtilities.drop(level, positiion, harvestable.getResults(level, state, positiion, action));
+					harvestable.onHarvest(level, state, positiion, action);
+				}
 				return true;
 			}
 		}
