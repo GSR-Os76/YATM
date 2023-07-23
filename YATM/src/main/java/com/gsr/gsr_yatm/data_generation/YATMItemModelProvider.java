@@ -101,6 +101,10 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.STAR_SPROUT.get());
 		this.basicItem(YATMItems.STAR_ADOLESCENT.get());
 		
+		
+		
+		this.basicItem(YATMItems.AURUM_FAN.get());
+		
 		this.basicItem(YATMItems.SOUL_ADORNED_NETHERITE_HELMET.get());
 		this.basicItem(YATMItems.SOUL_ADORNED_NETHERITE_CHESTPLATE.get());
 		this.basicItem(YATMItems.SOUL_ADORNED_NETHERITE_LEGGINGS.get());

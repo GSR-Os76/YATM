@@ -2,7 +2,7 @@ package com.gsr.gsr_yatm.recipe.grinding;
 
 import java.util.function.Consumer;
 
-import com.gsr.gsr_yatm.recipe.ingredient.IYATMIngredient;
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.CriterionTriggerInstance;
@@ -16,7 +16,7 @@ public class GrindingRecipeBuilder implements RecipeBuilder
 {
 	private ResourceLocation m_identifier;
 	private ItemStack m_result;
-	private IYATMIngredient<ItemStack> m_input;
+	private IIngredient<ItemStack> m_input;
 	private int m_currentPerTick = 8;
 	private int m_timeInTicks = 20;
 	
@@ -31,7 +31,7 @@ public class GrindingRecipeBuilder implements RecipeBuilder
 		return this;
 	} // end identifier()
 
-	public GrindingRecipeBuilder input(IYATMIngredient<ItemStack> input)
+	public GrindingRecipeBuilder input(IIngredient<ItemStack> input)
 	{
 		this.m_input = input;
 		return this;

@@ -33,6 +33,7 @@ import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.registry.YATMRootPlacerTypes;
 import com.gsr.gsr_yatm.registry.YATMTreeDecoratorTypes;
 import com.gsr.gsr_yatm.registry.YATMTrunkPlacerTypes;
+import com.gsr.gsr_yatm.registry.custom.YATMArmorSets;
 import com.gsr.gsr_yatm.registry.custom.YATMIngredientDeserializers;
 import com.gsr.gsr_yatm.registry.custom.YATMRegistries;
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
@@ -68,6 +69,7 @@ public class YATMModEvents
 		YATMTreeDecoratorTypes.TREE_DECORATOR_TYPES.register(modEventBus);
 		
 		YATMRegistries.classInitializer();
+		YATMArmorSets.ARMOR_SETS.register(modEventBus);
 		YATMIngredientDeserializers.INGREDIENT_DESERIALIZERS.register(modEventBus);
 		
 		YATMBlocks.addFlowersToPots();

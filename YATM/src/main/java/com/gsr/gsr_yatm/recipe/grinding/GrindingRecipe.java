@@ -2,7 +2,7 @@ package com.gsr.gsr_yatm.recipe.grinding;
 
 import com.gsr.gsr_yatm.block.device.grinder.GrinderBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
-import com.gsr.gsr_yatm.recipe.ingredient.IYATMIngredient;
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.recipe.ingredient.IngredientUtilities;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
@@ -21,7 +21,7 @@ public class GrindingRecipe implements ITimedRecipe<Container>
 {
 	private final ResourceLocation m_identifier;
 	private final ItemStack m_result;
-	private final IYATMIngredient<ItemStack> m_input;
+	private final IIngredient<ItemStack> m_input;
 	int m_currentPerTick = 8;
 	int m_timeInTicks = 20;
 	
@@ -29,7 +29,7 @@ public class GrindingRecipe implements ITimedRecipe<Container>
 
 
 
-	public GrindingRecipe(ResourceLocation identifier, IYATMIngredient<ItemStack> input, ItemStack result)
+	public GrindingRecipe(ResourceLocation identifier, IIngredient<ItemStack> input, ItemStack result)
 	{
 		this.m_identifier = identifier;
 		this.m_input = input;

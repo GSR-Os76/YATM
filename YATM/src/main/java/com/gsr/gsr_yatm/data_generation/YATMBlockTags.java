@@ -22,47 +22,14 @@ import net.minecraftforge.registries.tags.ITagManager;
 
 public class YATMBlockTags extends BlockTagsProvider
 {
-	private static final String MINECRAFT_ID = "minecraft";
 	private static final String FORGE_ID = "forge";
 	
 	private static final ITagManager<Block> TM = ForgeRegistries.BLOCKS.tags();
 	
 	
-	// reference BlockTags constants
-	@Deprecated
-	public static final TagKey<Block> MINECRAFT_DIRT_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "dirt"));
-	@Deprecated
-	public static final TagKey<Block> MINECRAFT_SAND_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "sand"));	
-	@Deprecated
-	public static final TagKey<Block> MINECRAFT_FLOWERS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "flowers"));
-	@Deprecated
-	public static final TagKey<Block> MINECRAFT_LOGS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "logs"));
-	@Deprecated
-	public static final TagKey<Block> MINECRAFT_LOGS_THAT_BURN_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "logs_that_burn"));
-	@Deprecated
-	public static final TagKey<Block> MINECRAFT_PLANKS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "planks"));
-	@Deprecated
-	public static final TagKey<Block> MINECRAFT_SAPLINGS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "saplings"));
-	@Deprecated
-	public static final TagKey<Block> MINECRAFT_SOUL_FIRE_BASE_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "soul_fire_base_blocks"));
-	@Deprecated
-	public static final TagKey<Block> MINECRAFT_WOODEN_BUTTONS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_buttons"));
-	@Deprecated
-	public static final TagKey<Block> MINECRAFT_WOODEN_DOORS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_doors"));
-	@Deprecated
-	public static final TagKey<Block> MINECRAFT_WOODEN_FENCES_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_fences"));
-	@Deprecated
-	public static final TagKey<Block> MINECRAFT_WOODEN_PRESSURE_PLATES_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_pressure_plates"));
-	@Deprecated
-	public static final TagKey<Block> MINECRAFT_WOODEN_SLABS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_slabs"));
-	@Deprecated
-	public static final TagKey<Block> MINECRAFT_WOODEN_STAIRS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_stairs"));
-	@Deprecated
-	public static final TagKey<Block> MINECRAFT_WOODEN_TRAPDOORS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_trapdoors"));
-
-	
 	
 	public static final TagKey<Block> FORGE_RUBBER_STORAGE_BLOCK_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "storage_blocks/rubber"));
+	
 	
 	
 	public static final TagKey<Block> AURUM_GROWS_ON = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/aurum_grows_on"));

@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.recipe.grinding;
 
 import com.google.gson.JsonObject;
-import com.gsr.gsr_yatm.recipe.ingredient.IYATMIngredient;
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.recipe.ingredient.IngredientUtilities;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
@@ -16,7 +16,7 @@ public class GrindingFinishedRecipe implements FinishedRecipe
 {
 	private final ResourceLocation m_identifier;
 	private final ItemStack m_result;
-	private final IYATMIngredient<ItemStack> m_input;
+	private final IIngredient<ItemStack> m_input;
 	int m_currentPerTick = 8;
 	int m_timeInTicks = 20;
 	
@@ -26,7 +26,7 @@ public class GrindingFinishedRecipe implements FinishedRecipe
 	
 	
 	
-	public GrindingFinishedRecipe(ResourceLocation identifier, ItemStack result, IYATMIngredient<ItemStack> input, int currentPerTick, int timeInTicks, String group, ResourceLocation advancementIdentifier, Advancement.Builder advancement) 
+	public GrindingFinishedRecipe(ResourceLocation identifier, ItemStack result, IIngredient<ItemStack> input, int currentPerTick, int timeInTicks, String group, ResourceLocation advancementIdentifier, Advancement.Builder advancement) 
 	{
 		this.m_identifier = identifier;
 		this.m_result = result;		

@@ -1,6 +1,7 @@
-// 1.20.1	2023-07-21T13:27:48.4815122	Item Models: gsr_yatm
+// 1.20.1	2023-07-21T21:21:29.5963485	Item Models: gsr_yatm
 39dc65663f22bc3413323e63119c165dc4f51c76 assets/gsr_yatm/models/item/aurum_deminutus_fiddle_head.json
 4bab78a47a4fc45a258b74c9012f61de899aee93 assets/gsr_yatm/models/item/aurum_deminutus_frond.json
+b860c72785d969dab4933b80dd6652fa794539bf assets/gsr_yatm/models/item/aurum_fan.json
 e7540048ebe593ee6ab6323cc2f5a0bd0d8ae1cb assets/gsr_yatm/models/item/bio_bottle.json
 7c74b3cad82baaaba12c4ebb84f0b7ef417239e6 assets/gsr_yatm/models/item/bio_bucket.json
 938d8b0ab1223b09a189deb829870c72c34a472c assets/gsr_yatm/models/item/chorus_bio_bottle.json

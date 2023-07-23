@@ -1,4 +1,4 @@
-// 1.20.1	2023-07-21T14:39:34.1693319	Tags for minecraft:item mod id gsr_yatm
+// 1.20.1	2023-07-21T23:32:50.5926114	Tags for minecraft:item mod id gsr_yatm
 bade3c9b0ab674f2efd3dc51c76e3652a9021029 data/forge/tags/items/ingots/rubber.json
 072803c35014f6741a231cc30a732fe900812905 data/forge/tags/items/ingots/silver.json
 7c408df731c23a13c46254c2cc5fe7e60ec904bd data/forge/tags/items/ingots/steel.json
@@ -6,7 +6,8 @@ bade3c9b0ab674f2efd3dc51c76e3652a9021029 data/forge/tags/items/ingots/rubber.jso
 18795a8c0bcbdd7d7450b4a7ba2b97df86e0d87a data/forge/tags/items/nuggets/netherite.json
 96cbda48628a6f92541b4b85ce1fad0369930ffc data/forge/tags/items/nuggets/silver.json
 5cde157d29986a1af6fac3eed0972c55ed684ae6 data/forge/tags/items/storage_blocks/rubber.json
-ec857824c3fbff4388d79661bc800d1e9c6b97bf data/gsr_yatm/tags/items/armors/soul.json
+af5a440f5c712d3904c6b50819f04f2a58d71861 data/gsr_yatm/tags/items/armor_pieces/decay_netherite.json
+ec857824c3fbff4388d79661bc800d1e9c6b97bf data/gsr_yatm/tags/items/armor_pieces/soul_adorned_netherite.json
 ae03c7f5a14f674a125f762d1f54c5fc58535fe0 data/gsr_yatm/tags/items/conduits/sixtyfour_cu.json
 6d71a9b29224c88790686a6d26a6f4d262b0d804 data/gsr_yatm/tags/items/dies/wire.json
 081674171279d64d71a1aa4cbf4c2e3fd9fc2de4 data/gsr_yatm/tags/items/golem_like_plant_formers.json
@@ -21,10 +22,10 @@ cabad7018263250a65993dc1bfafd32b2163b2f7 data/gsr_yatm/tags/items/unoxidized_cop
 ae88bd8aabf02699bb3fdbf65bd64fc377fbc780 data/minecraft/tags/items/flowers.json
 205d34972c106978555918bdbb34363a9a669d3e data/minecraft/tags/items/logs.json
 1502e7352c79e987a23ba14a77d87817c5e89ff2 data/minecraft/tags/items/logs_that_burn.json
-fedd7a768f821187b28218193713ea058b82ec2a data/minecraft/tags/items/piglin_loved.json
+cdbcaec2f99df5b012e85fb4b50e513357f8e129 data/minecraft/tags/items/piglin_loved.json
 861ac450b90a900a8dbe9dc301248cd0b5ca2f52 data/minecraft/tags/items/planks.json
 59d8edfe056f15f3cff621f10b35fa3ba99c9baf data/minecraft/tags/items/saplings.json
-7069182640b2d07eec3a743ff97740577378e458 data/minecraft/tags/items/trimmable_armor.json
+dc7fb039cbc764f0bf3d6557392efa3f773c3fc3 data/minecraft/tags/items/trimmable_armor.json
 5ca3cdc1e343a1a21ba16f2d2cd526125069fb64 data/minecraft/tags/items/wooden_buttons.json
 7cd0aa6d815501ef6e1b8331aaa504f2ee3d9509 data/minecraft/tags/items/wooden_doors.json
 4f805c86291b5f9990b1e9974956cc6fe91e3262 data/minecraft/tags/items/wooden_fences.json

@@ -23,61 +23,23 @@ import net.minecraftforge.registries.tags.ITagManager;
 
 public class YATMItemTags extends ItemTagsProvider
 {
-	private static final String MINECRAFT_ID = "minecraft";
 	private static final String FORGE_ID = "forge";
 	
 	private static final ITagManager<Item> TM = ForgeRegistries.ITEMS.tags();
 	
 	
-	// reference ItemTags constants
-	@Deprecated
-	public static final TagKey<Item> MINECRAFT_BEACON_PAYMENT_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "beacon_payment_items"));
-	@Deprecated
-	public static final TagKey<Item> MINECRAFT_FLOWER_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "flowers"));
-	@Deprecated
-	public static final TagKey<Item> MINECRAFT_LOGS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "logs"));
-	@Deprecated
-	public static final TagKey<Item> MINECRAFT_LOGS_THAT_BURN_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "logs_that_burn"));
-	@Deprecated
-	public static final TagKey<Item> MINECRAFT_PIGLIN_LOVED_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "piglin_loved"));
-	@Deprecated
-	public static final TagKey<Item> MINECRAFT_PLANKS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "planks"));
-	@Deprecated
-	public static final TagKey<Item> MINECRAFT_SAPLINGS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "saplings"));
-	@Deprecated
-	public static final TagKey<Item> MINECRAFT_WOODEN_BUTTONS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_buttons"));
-	@Deprecated
-	public static final TagKey<Item> MINECRAFT_WOODEN_DOORS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_doors"));
-	@Deprecated
-	public static final TagKey<Item> MINECRAFT_WOODEN_FENCES_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_fences"));
-	@Deprecated
-	public static final TagKey<Item> MINECRAFT_WOODEN_PRESSURE_PLATES_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_pressure_plates"));
-	@Deprecated
-	public static final TagKey<Item> MINECRAFT_WOODEN_SLABS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_slabs"));
-	@Deprecated
-	public static final TagKey<Item> MINECRAFT_WOODEN_STAIRS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_stairs"));
-	@Deprecated
-	public static final TagKey<Item> MINECRAFT_WOODEN_TRAPDOORS_KEY = TM.createTagKey(new ResourceLocation(MINECRAFT_ID, "wooden_trapdoors"));
-
-	
-	
-	
-	public static final TagKey<Item> FORGE_RUBBER_STORAGE_BLOCK_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "storage_blocks/rubber"));
-	
-	// public static final TagKey<Item> FORGE_COPPER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/copper"));
-	// public static final TagKey<Item> FORGE_GOLD_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/gold"));;
-	// public static final TagKey<Item> FORGE_IRON_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/iron"));;
-	// public static final TagKey<Item> FORGE_NETHERITE_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/netherite"));
-	public static final TagKey<Item> FORGE_RUBBER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/rubber"));
-	public static final TagKey<Item> FORGE_SILVER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/silver"));
-	public static final TagKey<Item> FORGE_STEEL_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/steel"));
 	
 	public static final TagKey<Item> FORGE_COPPER_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "nuggets/copper"));
 	public static final TagKey<Item> FORGE_NETHERITE_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "nuggets/netherite"));
+	public static final TagKey<Item> FORGE_RUBBER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/rubber"));
+	public static final TagKey<Item> FORGE_RUBBER_STORAGE_BLOCK_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "storage_blocks/rubber"));
+	public static final TagKey<Item> FORGE_SILVER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/silver"));
 	public static final TagKey<Item> FORGE_SILVER_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "nuggets/silver"));
+	public static final TagKey<Item> FORGE_STEEL_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/steel"));
+
 	
 	
-	
+	public static final TagKey<Item> DECAY_NETHERITE_ARMOR_PIECES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "armor_pieces/decay_netherite"));
 	public static final TagKey<Item> GOLEM_LIKE_PLANT_FORMERS = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "golem_like_plant_formers"));
 	public static final TagKey<Item> GROWS_PHANTASMAL_SHELF_FUNGI_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "grows_phantasmal_shelf_fungi"));
 	public static final TagKey<Item> RUBBER_TREE_LOGS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "rubber_tree_logs"));
@@ -86,15 +48,13 @@ public class YATMItemTags extends ItemTagsProvider
 	public static final TagKey<Item> SIXTYFOUR_CU_WIRES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "conduits/sixtyfour_cu"));
 	public static final TagKey<Item> SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "soul_afflicted_rubber_tree_logs"));
 	public static final TagKey<Item> SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "soul_afflicted_rubber_planks"));
-	public static final TagKey<Item> SOUL_ARMOR_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "armors/soul"));
+	public static final TagKey<Item> SOUL_ADORNED_NETHERITE_ARMOR_PIECES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "armor_pieces/soul_adorned_netherite"));
 	public static final TagKey<Item> SPREADS_PHANTASMAL_SHELF_FUNGI_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "spreads_phantasmal_shelf_fungi"));
 	public static final TagKey<Item> WIRE_DIES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "dies/wire"));
 	
 	
-	
-	// public static final ITag<Item> GROWS_PHANTASMAL_SHELF_FUNGI = TM.getTag(GROWS_PHANTASMAL_SHELF_FUNGI_KEY);
-	// public static final ITag<Item> SPREADS_PHANTASMAL_SHELF_FUNGI = TM.getTag(SPREADS_PHANTASMAL_SHELF_FUNGI_KEY);
-	public static final ITag<Item> SOUL_ARMOR = TM.getTag(SOUL_ARMOR_KEY);
+	public static final ITag<Item> DECAY_NETHERITE_ARMOR_PIECES = TM.getTag(DECAY_NETHERITE_ARMOR_PIECES_KEY);
+	public static final ITag<Item> SOUL_ADORNED_NETHERITE_ARMOR_PIECES = TM.getTag(SOUL_ADORNED_NETHERITE_ARMOR_PIECES_KEY);
 	
 
 	
@@ -112,12 +72,10 @@ public class YATMItemTags extends ItemTagsProvider
 		this.tag(ItemTags.BEACON_PAYMENT_ITEMS).add(YATMItems.STEEL_INGOT.get()).add(YATMItems.SILVER_INGOT.get());
 		this.copy(BlockTags.LOGS, ItemTags.LOGS);
 		this.copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
-		this.tag(ItemTags.PIGLIN_LOVED).add(YATMItems.SIXTYFOUR_CU_CURRENT_REGULATOR.get()).add(YATMItems.SIXTYFOUR_CU_CURRENT_FUSE.get()).add(YATMItems.SIXTYFOUR_CU_CURRENT_BREAKER.get()).addTag(YATMItemTags.SIXTYFOUR_CU_WIRES_KEY);
+		this.tag(ItemTags.PIGLIN_LOVED).add(YATMItems.SIXTYFOUR_CU_CURRENT_REGULATOR.get()).add(YATMItems.SIXTYFOUR_CU_CURRENT_FUSE.get()).add(YATMItems.SIXTYFOUR_CU_CURRENT_BREAKER.get()).addTag(YATMItemTags.SIXTYFOUR_CU_WIRES_KEY).add(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get()).add(YATMItems.AURUM_DEMINUTUS_FROND.get());
 		this.copy(BlockTags.PLANKS, ItemTags.PLANKS);
 		this.copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
-		this.tag(ItemTags.TRIMMABLE_ARMOR)
-		.add(YATMItems.SOUL_ADORNED_NETHERITE_HELMET.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_CHESTPLATE.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_LEGGINGS.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_BOOTS.get())
-		.add(YATMItems.DECAY_NETHERITE_HELMET.get()).add(YATMItems.DECAY_NETHERITE_CHESTPLATE.get()).add(YATMItems.DECAY_NETHERITE_LEGGINGS.get()).add(YATMItems.DECAY_NETHERITE_BOOTS.get());
+		this.tag(ItemTags.TRIMMABLE_ARMOR).addTag(DECAY_NETHERITE_ARMOR_PIECES_KEY).addTag(SOUL_ADORNED_NETHERITE_ARMOR_PIECES_KEY);
 		this.copy(BlockTags.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
 		this.copy(BlockTags.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
 		this.copy(BlockTags.WOODEN_FENCES, ItemTags.WOODEN_FENCES);
@@ -125,6 +83,7 @@ public class YATMItemTags extends ItemTagsProvider
 		this.copy(BlockTags.WOODEN_SLABS, ItemTags.WOODEN_SLABS);
 		this.copy(BlockTags.WOODEN_STAIRS, ItemTags.WOODEN_STAIRS);
 		this.copy(BlockTags.WOODEN_TRAPDOORS, ItemTags.WOODEN_TRAPDOORS);
+		
 		
 		
 		this.copy(YATMBlockTags.FORGE_RUBBER_STORAGE_BLOCK_KEY,YATMItemTags. FORGE_RUBBER_STORAGE_BLOCK_KEY);
@@ -138,6 +97,7 @@ public class YATMItemTags extends ItemTagsProvider
 		
 		
 		
+		this.tag(YATMItemTags.DECAY_NETHERITE_ARMOR_PIECES_KEY).add(YATMItems.DECAY_NETHERITE_HELMET.get()).add(YATMItems.DECAY_NETHERITE_CHESTPLATE.get()).add(YATMItems.DECAY_NETHERITE_LEGGINGS.get()).add(YATMItems.DECAY_NETHERITE_BOOTS.get());
 		this.tag(YATMItemTags.GOLEM_LIKE_PLANT_FORMERS).add(YATMItems.ESSENCE_OF_SOULS_BOTTLE.get());
 		this.tag(YATMItemTags.GROWS_PHANTASMAL_SHELF_FUNGI_KEY).addTag(YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);
 		this.copy(YATMBlockTags.RUBBER_TREE_LOGS_KEY, YATMItemTags.RUBBER_TREE_LOGS_KEY);
@@ -146,7 +106,7 @@ public class YATMItemTags extends ItemTagsProvider
 		this.copy(YATMBlockTags.SIXTYFOUR_CU_WIRE_KEY, YATMItemTags.SIXTYFOUR_CU_WIRES_KEY);
 		this.copy(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);
 		this.copy(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY);
-		this.tag(YATMItemTags.SOUL_ARMOR_KEY).add(YATMItems.SOUL_ADORNED_NETHERITE_HELMET.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_CHESTPLATE.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_LEGGINGS.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_BOOTS.get());
+		this.tag(YATMItemTags.SOUL_ADORNED_NETHERITE_ARMOR_PIECES_KEY).add(YATMItems.SOUL_ADORNED_NETHERITE_HELMET.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_CHESTPLATE.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_LEGGINGS.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_BOOTS.get());
 		this.tag(YATMItemTags.SPREADS_PHANTASMAL_SHELF_FUNGI_KEY).add(YATMItems.SOUL_SYRUP_BOTTLE.get());
 		this.tag(YATMItemTags.WIRE_DIES_KEY).add(YATMItems.IRON_WIRE_DIE.get()).add(YATMItems.STEEL_WIRE_DIE.get());		
 	} // end addTags

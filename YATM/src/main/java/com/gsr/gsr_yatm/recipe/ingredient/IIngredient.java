@@ -5,9 +5,9 @@ import java.util.List;
 import com.google.common.base.Predicate;
 import com.google.gson.JsonObject;
 
-public interface IYATMIngredient<T> extends Predicate<T>
+public interface IIngredient<T> extends Predicate<T>
 {
-	public YATMIngredientDeserializer<?> deserializer();
+	public IIngredientDeserializer<?> deserializer();
 	
 	public JsonObject serialize();
 

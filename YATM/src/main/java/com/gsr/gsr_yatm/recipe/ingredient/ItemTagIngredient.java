@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITag;
 
-public class ItemTagIngredient implements IYATMIngredient<ItemStack>
+public class ItemTagIngredient implements IIngredient<ItemStack>
 {
 	private final TagKey<Item> m_tagKey;
 	private final ITag<Item> m_tag;
@@ -62,7 +62,7 @@ public class ItemTagIngredient implements IYATMIngredient<ItemStack>
 	
 
 	@Override
-	public YATMIngredientDeserializer<?> deserializer()
+	public IIngredientDeserializer<?> deserializer()
 	{
 		return YATMIngredientDeserializers.ITEM_TAG_INGREDIENT.get();
 	} // end deserializer()

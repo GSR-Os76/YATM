@@ -9,7 +9,7 @@ import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-public class ItemStackIngredient implements IYATMIngredient<ItemStack>
+public class ItemStackIngredient implements IIngredient<ItemStack>
 {
 	private final ItemStack m_itemStack;
 
@@ -48,7 +48,7 @@ public class ItemStackIngredient implements IYATMIngredient<ItemStack>
 
 
 	@Override
-	public YATMIngredientDeserializer<?> deserializer()
+	public IIngredientDeserializer<?> deserializer()
 	{
 		return YATMIngredientDeserializers.ITEM_STACK_INGREDIENT.get();
 	} // end deserializer()

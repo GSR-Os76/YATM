@@ -14,13 +14,13 @@ public class IngredientUtilities
 	
 	
 	@SuppressWarnings("unchecked")
-	public static <T> IYATMIngredient<T> readIngredient(JsonObject object)
+	public static <T> IIngredient<T> readIngredient(JsonObject object)
 	{
-		YATMIngredientDeserializer<?> deserializer = YATMRegistries.INGREDIENT_DESERIALIZERS.get().getValue(new ResourceLocation(object.get(TYPE_KEY).getAsString()));
-		return (IYATMIngredient<T>) deserializer.deserialize(object);
+		IIngredientDeserializer<?> deserializer = YATMRegistries.INGREDIENT_DESERIALIZERS.get().getValue(new ResourceLocation(object.get(TYPE_KEY).getAsString()));
+		return (IIngredient<T>) deserializer.deserialize(object);
 	} // end readIngredient()
 	
-	public static JsonObject writeIngredient(IYATMIngredient<?> ingredient)
+	public static JsonObject writeIngredient(IIngredient<?> ingredient)
 	{
 		JsonObject jsObj = ingredient.serialize();
 		jsObj.addProperty(TYPE_KEY, YATMRegistries.INGREDIENT_DESERIALIZERS.get().getKey(ingredient.deserializer()).toString());
@@ -29,7 +29,7 @@ public class IngredientUtilities
 
 	
 	
-	public static int getReqiuredCountFor(Item forI, IYATMIngredient<ItemStack> in)
+	public static int getReqiuredCountFor(Item forI, IIngredient<ItemStack> in)
 	{
 		for(ItemStack i : in.getValues()) 
 		{

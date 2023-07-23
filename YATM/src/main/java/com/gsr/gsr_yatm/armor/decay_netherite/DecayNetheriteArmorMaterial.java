@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.armor.decaying_soul_adorned_netherite;
+package com.gsr.gsr_yatm.armor.decay_netherite;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.item.ArmorMaterial;
@@ -6,7 +6,7 @@ import net.minecraft.world.item.ArmorMaterials;
 import net.minecraft.world.item.ArmorItem.Type;
 import net.minecraft.world.item.crafting.Ingredient;
 
-public class DecayingSoulAdornedNetheriteArmorMaterial implements ArmorMaterial
+public class DecayNetheriteArmorMaterial implements ArmorMaterial
 {
 	public static final float NETHERITE_RELATIVE_DURABILITY_FACTOR = 0.5f;
 	public static final float NETHERITE_RELATIVE_DEFENSE_FACTOR = 0.89f;

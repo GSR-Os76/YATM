@@ -100,6 +100,8 @@ public class YATMItems
 	// TODO, possibly add spools of colored thread for trimming leather armor all different ways
 	// TODO, check if leather armor's trimmable in vanilla at all
 	public static final RegistryObject<BlockItem> SPINNING_WHEEL_ITEM = generalTabEnqueue(ITEMS.register("spinning_wheel", () -> new BlockItem(YATMBlocks.SPINNING_WHEEL.get(), new Item.Properties())));
+
+	// TODO, possibly move away from wires and current and GUIs, they bore me and are kinda tedious, make machines not inventory based, don't break immersion
 	
 	public static final RegistryObject<BlockItem> LARGE_COPPER_HEAT_SINK_ITEM = generalTabEnqueue(ITEMS.register("large_copper_heat_sink", () -> new BlockItem(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), new Item.Properties())));
 
@@ -272,17 +274,24 @@ public class YATMItems
 	public static final RegistryObject<Item> STAR_GERMLING = generalTabEnqueue(ITEMS.register("star_germling", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> STAR_SPROUT = generalTabEnqueue(ITEMS.register("star_sprout", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> STAR_ADOLESCENT = generalTabEnqueue(ITEMS.register("star_adolescent", () -> new Item(new Item.Properties())));
-		
-	public static final RegistryObject<Item> SOUL_ADORNED_NETHERITE_HELMET = generalTabEnqueue(ITEMS.register("soul_adorned_netherite_helmet", () -> new ArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.HELMET, new Item.Properties().fireResistant())));
-	public static final RegistryObject<Item> SOUL_ADORNED_NETHERITE_CHESTPLATE = generalTabEnqueue(ITEMS.register("soul_adorned_netherite_chestplate", () -> new ArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant())));
-	public static final RegistryObject<Item> SOUL_ADORNED_NETHERITE_LEGGINGS = generalTabEnqueue(ITEMS.register("soul_adorned_netherite_leggings", () -> new ArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant())));
-	public static final RegistryObject<Item> SOUL_ADORNED_NETHERITE_BOOTS = generalTabEnqueue(ITEMS.register("soul_adorned_netherite_boots", () -> new ArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant())));
+	
+	// TODO, carcass root plant, pretty standard plant above ground, roots ground underneat, roots grow nodules which can drop mundane animal parts
+	
+	// TODO, netherite like thorns, grow in height but only from a very specifc growing block, growing points can't reproduce naturally.
+	// TODO, netherite thorns as arrow styled like scraps, and like a great arrow which damages terrain and such styled like the ingot netherite
+	// possible just make aurum fronds throwable and recoverable weapon
+	public static final RegistryObject<Item> AURUM_FAN = /* generalTabEnqueue( */ITEMS.register("aurum_fan", () -> new Item(new Item.Properties().fireResistant()))/* ) */;
+	
+	public static final RegistryObject<ArmorItem> SOUL_ADORNED_NETHERITE_HELMET = generalTabEnqueue(ITEMS.register("soul_adorned_netherite_helmet", () -> new ArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.HELMET, new Item.Properties().fireResistant())));
+	public static final RegistryObject<ArmorItem> SOUL_ADORNED_NETHERITE_CHESTPLATE = generalTabEnqueue(ITEMS.register("soul_adorned_netherite_chestplate", () -> new ArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant())));
+	public static final RegistryObject<ArmorItem> SOUL_ADORNED_NETHERITE_LEGGINGS = generalTabEnqueue(ITEMS.register("soul_adorned_netherite_leggings", () -> new ArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant())));
+	public static final RegistryObject<ArmorItem> SOUL_ADORNED_NETHERITE_BOOTS = generalTabEnqueue(ITEMS.register("soul_adorned_netherite_boots", () -> new ArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant())));
 	
 	// TODO, update item id, i just don't want to remove all current instances from my test world so waiting
-	public static final RegistryObject<Item> DECAY_NETHERITE_HELMET = generalTabEnqueue(ITEMS.register("decaying_soul_adorned_netherite_helmet", () -> new ArmorItem(YATMArmorMaterials.DECAYING_SOUL_ADORNED_NETHERITE, ArmorItem.Type.HELMET, new Item.Properties().fireResistant())));
-	public static final RegistryObject<Item> DECAY_NETHERITE_CHESTPLATE = generalTabEnqueue(ITEMS.register("decaying_soul_adorned_netherite_chestplate", () -> new ArmorItem(YATMArmorMaterials.DECAYING_SOUL_ADORNED_NETHERITE, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant())));
-	public static final RegistryObject<Item> DECAY_NETHERITE_LEGGINGS = generalTabEnqueue(ITEMS.register("decaying_soul_adorned_netherite_leggings", () -> new ArmorItem(YATMArmorMaterials.DECAYING_SOUL_ADORNED_NETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant())));
-	public static final RegistryObject<Item> DECAY_NETHERITE_BOOTS = generalTabEnqueue(ITEMS.register("decaying_soul_adorned_netherite_boots", () -> new ArmorItem(YATMArmorMaterials.DECAYING_SOUL_ADORNED_NETHERITE, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant())));
+	public static final RegistryObject<ArmorItem> DECAY_NETHERITE_HELMET = generalTabEnqueue(ITEMS.register("decaying_soul_adorned_netherite_helmet", () -> new ArmorItem(YATMArmorMaterials.DECAYING_SOUL_ADORNED_NETHERITE, ArmorItem.Type.HELMET, new Item.Properties().fireResistant())));
+	public static final RegistryObject<ArmorItem> DECAY_NETHERITE_CHESTPLATE = generalTabEnqueue(ITEMS.register("decaying_soul_adorned_netherite_chestplate", () -> new ArmorItem(YATMArmorMaterials.DECAYING_SOUL_ADORNED_NETHERITE, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant())));
+	public static final RegistryObject<ArmorItem> DECAY_NETHERITE_LEGGINGS = generalTabEnqueue(ITEMS.register("decaying_soul_adorned_netherite_leggings", () -> new ArmorItem(YATMArmorMaterials.DECAYING_SOUL_ADORNED_NETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant())));
+	public static final RegistryObject<ArmorItem> DECAY_NETHERITE_BOOTS = generalTabEnqueue(ITEMS.register("decaying_soul_adorned_netherite_boots", () -> new ArmorItem(YATMArmorMaterials.DECAYING_SOUL_ADORNED_NETHERITE, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant())));
 	
 	public static final RegistryObject<CreativeFluidVoidItem> CREATIVE_FLUID_VOID = generalTabEnqueue(ITEMS.register("creative_fluid_void", () -> new CreativeFluidVoidItem(new Item.Properties().stacksTo(1))));
 	public static final RegistryObject<CreativeFluidStorerItem> CREATIVE_FLUID_STORER = generalTabEnqueue(ITEMS.register("creative_fluid_storer", () -> new CreativeFluidStorerItem(new Item.Properties().stacksTo(1))));

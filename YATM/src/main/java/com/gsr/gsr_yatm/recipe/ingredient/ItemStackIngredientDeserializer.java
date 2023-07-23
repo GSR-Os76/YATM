@@ -5,10 +5,10 @@ import com.google.gson.JsonObject;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.crafting.CraftingHelper;
 
-public class ItemStackIngredientDeserializer implements YATMIngredientDeserializer<ItemStackIngredient>
+public class ItemStackIngredientDeserializer implements IIngredientDeserializer<ItemStackIngredient>
 {
 	@Override
-	public IYATMIngredient<ItemStack> deserialize(JsonObject jsonObject)
+	public IIngredient<ItemStack> deserialize(JsonObject jsonObject)
 	{
 		// TODO Auto-generated method stub
 		return new ItemStackIngredient(CraftingHelper.getItemStack(jsonObject, false, false));
