@@ -4,9 +4,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "minecraft:rooted_dirt"
-            ]
+            "tag": "forge:rooted_dirt"
           }
         ]
       },

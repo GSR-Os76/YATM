@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0,can_spread=false": {
+      "model": "gsr_yatm:block/carcass_root_rooted_netherrack_young"
+    },
+    "age=0,can_spread=true": {
+      "model": "gsr_yatm:block/carcass_root_rooted_netherrack_young"
+    },
+    "age=1,can_spread=false": {
+      "model": "gsr_yatm:block/carcass_root_rooted_netherrack_old"
+    },
+    "age=1,can_spread=true": {
+      "model": "gsr_yatm:block/carcass_root_rooted_netherrack_old"
+    }
+  }
+}

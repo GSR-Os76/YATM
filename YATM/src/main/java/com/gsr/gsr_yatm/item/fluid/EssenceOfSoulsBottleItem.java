@@ -58,10 +58,10 @@ public class EssenceOfSoulsBottleItem extends DrinkableFluidBottleItem
 		boolean succeeded = false;
 		
 		// TODO, could make these less repetitive
-		if(state.is(YATMBlockTags.FORMS_AURUM_DEMINUTUS_HIGHER)) 
+		if(state.is(YATMBlockTags.FORMS_AURUM_DEMINUTUS_HIGHER_KEY)) 
 		{
 			BlockState below = level.getBlockState(position.below());
-			if(below.is(YATMBlockTags.FORMS_AURUM_DEMINUTUS_LOWER)) 
+			if(below.is(YATMBlockTags.FORMS_AURUM_DEMINUTUS_LOWER_KEY)) 
 			{
 				succeeded = true;
 				if(!level.isClientSide) 
@@ -72,10 +72,10 @@ public class EssenceOfSoulsBottleItem extends DrinkableFluidBottleItem
 				}
 			}
 		}
-		if(!succeeded && state.is(YATMBlockTags.FORMS_AURUM_DEMINUTUS_LOWER)) 
+		if(!succeeded && state.is(YATMBlockTags.FORMS_AURUM_DEMINUTUS_LOWER_KEY)) 
 		{
 			BlockState above = level.getBlockState(position.above());
-			if(above.is(YATMBlockTags.FORMS_AURUM_DEMINUTUS_HIGHER)) 
+			if(above.is(YATMBlockTags.FORMS_AURUM_DEMINUTUS_HIGHER_KEY)) 
 			{
 				succeeded = true;
 				if(!level.isClientSide) 

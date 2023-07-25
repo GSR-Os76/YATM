@@ -1,10 +1,11 @@
-// 1.20.1	2023-07-21T23:32:50.5926114	Tags for minecraft:item mod id gsr_yatm
+// 1.20.1	2023-07-25T13:54:00.715061	Tags for minecraft:item mod id gsr_yatm
 bade3c9b0ab674f2efd3dc51c76e3652a9021029 data/forge/tags/items/ingots/rubber.json
 072803c35014f6741a231cc30a732fe900812905 data/forge/tags/items/ingots/silver.json
 7c408df731c23a13c46254c2cc5fe7e60ec904bd data/forge/tags/items/ingots/steel.json
 8089a15aac56d928ea6e3e7044cdf9cbd03997aa data/forge/tags/items/nuggets/copper.json
 18795a8c0bcbdd7d7450b4a7ba2b97df86e0d87a data/forge/tags/items/nuggets/netherite.json
 96cbda48628a6f92541b4b85ce1fad0369930ffc data/forge/tags/items/nuggets/silver.json
+22817fc3a29127b1c1278ea16d671d7c02dbdeb9 data/forge/tags/items/rooted_dirt.json
 5cde157d29986a1af6fac3eed0972c55ed684ae6 data/forge/tags/items/storage_blocks/rubber.json
 af5a440f5c712d3904c6b50819f04f2a58d71861 data/gsr_yatm/tags/items/armor_pieces/decay_netherite.json
 ec857824c3fbff4388d79661bc800d1e9c6b97bf data/gsr_yatm/tags/items/armor_pieces/soul_adorned_netherite.json

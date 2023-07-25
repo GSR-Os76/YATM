@@ -28,6 +28,11 @@ public class YATMBlockProperties
 	public static final BlockBehaviour.Properties LEAF_MULCH_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.PODZOL).strength(0.1F).sound(SoundType.MOSS_CARPET).pushReaction(PushReaction.DESTROY);
 
 	public static final BlockBehaviour.Properties AURUM_SP = BlockBehaviour.Properties.of().mapColor(MapColor.GOLD).sound(SoundType.NETHER_GOLD_ORE).pushReaction(PushReaction.BLOCK).requiresCorrectToolForDrops().strength(3.0F, 6.0F).noCollission().randomTicks();
+	
+	public static final BlockBehaviour.Properties CARCASS_ROOT_FOLIAGE = BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).replaceable().noCollission().instabreak().sound(SoundType.GRASS).ignitedByLava().pushReaction(PushReaction.DESTROY);
+	public static final BlockBehaviour.Properties CARCASS_ROOT_ROOTED_DIRT = BlockBehaviour.Properties.of().mapColor(MapColor.DIRT).strength(1F).sound(SoundType.GRAVEL).randomTicks();
+	public static final BlockBehaviour.Properties CARCASS_ROOT_ROOTED_NETHERRACK = BlockBehaviour.Properties.of().mapColor(MapColor.NETHER).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.9F).sound(SoundType.NETHERRACK);
+	
 	public static final BlockBehaviour.Properties PHANTASMAL_SHELF_FUNGUS_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(0.5F).sound(SoundType.FUNGUS).pushReaction(PushReaction.DESTROY).noCollission().randomTicks();
 	public static final BlockBehaviour.Properties CROP = BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();
 	public static final BlockBehaviour.Properties PRISMARINE_CRYSTAL_MOSS = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_CYAN).sound(SoundType.MOSS).pushReaction(PushReaction.DESTROY).replaceable().requiresCorrectToolForDrops().strength(1.5F, 6.0F).noCollission().randomTicks();

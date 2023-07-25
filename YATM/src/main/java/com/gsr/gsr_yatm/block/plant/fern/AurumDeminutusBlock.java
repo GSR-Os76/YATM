@@ -166,7 +166,7 @@ public class AurumDeminutusBlock extends CropBlock implements IHarvestable
 	@Override
 	protected boolean mayPlaceOn(BlockState state, BlockGetter blockGetter, BlockPos position)
 	{
-		return state.is(YATMBlockTags.AURUM_GROWS_ON);
+		return state.is(YATMBlockTags.AURUM_GROWS_ON_KEY);
 	} // end mayPlaceOn()
 
 	@Override
@@ -174,9 +174,8 @@ public class AurumDeminutusBlock extends CropBlock implements IHarvestable
 	{
 		BlockPos check = position.below();
 		BlockState below = level.getBlockState(check);
-//		BlockState above = level.getBlockState(check);
 		return state.getValue(AurumDeminutusBlock.HALF) == DoubleBlockHalf.LOWER 
-				? this.mayPlaceOn(below, level, check) //&& this.hasAppropriateTop(level, above, position.above()))
+				? this.mayPlaceOn(below, level, check)
 				: this.isTopSupport(below);
 	} // end canSurvive()
 
@@ -226,14 +225,6 @@ public class AurumDeminutusBlock extends CropBlock implements IHarvestable
 		BlockState abvState = level.getBlockState(position.above());
 		return this.isPastDoubleBlockThreshold(state.setValue(this.getAgeProperty(), nextAgeUp)) && !(abvState.canBeReplaced() || abvState.is(this)); 
 	} // end isGrowthBlocked()
-	
-//	protected boolean hasAppropriateTop(LevelReader level, BlockState state, BlockPos position) 
-//	{
-//		return state.is(this) 
-//				&& ((state.getValue(AurumDeminutusBlock.HALF) == DoubleBlockHalf.LOWER) 
-//				== (this.isPastDoubleBlockThreshold(state) == 
-//				((level.getBlockState(position.above()).getValue(AurumDeminutusBlock.HALF) == DoubleBlockHalf.UPPER) && this.getAge(state) == this.getAge(level.getBlockState(position.above())))));
-//	} // end hasAppropriateTop()
 	
 
 	

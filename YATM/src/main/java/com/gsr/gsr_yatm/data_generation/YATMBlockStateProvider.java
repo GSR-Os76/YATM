@@ -17,6 +17,8 @@ import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
+import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootFoliageBlock;
+import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootBlock;
 import com.gsr.gsr_yatm.block.plant.fern.AurumDeminutusBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.moss.PrismarineCrystalMossBlock;
@@ -124,7 +126,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/adolescent_double_higher"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/mature_double_lower"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/mature_double_higher"));
-		this.createShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get());
+		this.addCarcassRoot();
 		this.createFourStageCrop(YATMBlocks.COTTON.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_germinating"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_flowering"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_maturing"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_mature"));
 		this.createPrismarineCrystalMossLike(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), 
 				//new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_germinating"), 
@@ -132,6 +134,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				//new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_maturing"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_mature"));
 		this.addShulkwarts();
+		this.createShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get());
 		this.addSpiderVine();
 		
 		this.createAllBlock(YATMBlocks.RUBBER_BLOCK.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rubber_block"));
@@ -232,6 +235,14 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createCarpet(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_leaf_mulch"));
 	} // end addSoulAfflictedRubberSet()
 
+	private void addCarcassRoot() 
+	{
+		this.createCarcassRootFoliage(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/young"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/old_lower"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/old_higher"));
+		
+		this.createCarcassRootRooted(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get(), YATMItems.CARCASS_ROOT_ROOTED_DIRT_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_dirt_young"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_dirt_old"));
+		this.createCarcassRootRooted(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get(), YATMItems.CARCASS_ROOT_ROOTED_NETHERRACK_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_netherrack_young"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_netherrack_old"));
+	} // end addCarcassRoot()
+	
 	private void addShulkwarts()
 	{
 		this.initializeShulkwartCommonModels();
@@ -451,6 +462,35 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		MultiPartBlockStateBuilder builder = this.getMultipartBuilder(block);
 		PrismarineCrystalMossBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.forEach((d, p) -> forPrismarineCrystalMossLikeFace(d, builder, modelOne, modelTwo));//, modelThree, modelFour));
 	} // end createCrop()
+	
+	private void createCarcassRootFoliage(CarcassRootFoliageBlock block, ResourceLocation youngTexture, ResourceLocation oldLowerTexture, ResourceLocation oldHigherTexture) 
+	{
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
+		String nameY = name + "_young";
+		String nameOL = name + "_old_lower";
+		String nameOH = name + "_old_higher";
+		this.models().cross(nameY, youngTexture).renderType(CUTOUT_RENDER_TYPE);
+		this.models().cross(nameOL, oldLowerTexture).renderType(CUTOUT_RENDER_TYPE);
+		this.models().cross(nameOH, oldHigherTexture).renderType(CUTOUT_RENDER_TYPE);
+		ModelFile modelY = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameY));
+		ModelFile modelOL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameOL));
+		ModelFile modelOH = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameOH));
+		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forCarcassRootFoliage(bs, modelY, modelOL, modelOH));
+		
+	} // end createCarcassRootFoliage()
+	
+	private void createCarcassRootRooted(CarcassRootRootBlock block, Item item, ResourceLocation youngTexture, ResourceLocation oldTexture) 
+	{
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
+		String nameY = name + "_young";
+		String nameO = name + "_old";
+		this.models().cubeAll(nameY, youngTexture);
+		this.models().cubeAll(nameO, oldTexture);
+		ModelFile modelY = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameY));
+		ModelFile modelO = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameO));
+		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forCarcassRootRooted(bs, modelY, modelO));
+		this.simpleBlockItem(block, modelY);
+	} // end createCarcassRootRooted()
 	
 	private void initializeShulkwartCommonModels() 
 	{
@@ -951,6 +991,30 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		};
 		return new ConfiguredModel[] {new ConfiguredModel(model)};
 	} // end forAurumDeminutus()
+	
+	public static ConfiguredModel[] forCarcassRootFoliage(BlockState bs, ModelFile youngModel, ModelFile oldLowerModel, ModelFile oldHigherModel) 
+	{
+		boolean isLower = bs.getValue(CarcassRootFoliageBlock.HALF) == DoubleBlockHalf.LOWER;
+		ModelFile model = switch(bs.getValue(CarcassRootFoliageBlock.AGE)) 
+		{
+			case 0 -> youngModel;
+			case 1 -> isLower ? oldLowerModel : oldHigherModel;
+			default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(CarcassRootFoliageBlock.AGE));
+		};
+		return new ConfiguredModel[] {new ConfiguredModel(model)};
+	} // end forCarcassRootFoliage()
+	
+	public static ConfiguredModel[] forCarcassRootRooted(BlockState bs, ModelFile youngModel, ModelFile oldModel) 
+	{
+		ModelFile model = switch(bs.getValue(CarcassRootRootBlock.AGE)) 
+		{
+			case 0 -> youngModel;
+			case 1 -> oldModel;
+			default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(CarcassRootRootBlock.AGE));
+		};
+		return new ConfiguredModel[] {new ConfiguredModel(model)};
+	} // end forCarcassRootRooted()
+	
 	
 	private static ConfiguredModel[] forShelfFungi(BlockState bs, ModelFile smallModel, ModelFile mediumModel, ModelFile largeModel)
 	{

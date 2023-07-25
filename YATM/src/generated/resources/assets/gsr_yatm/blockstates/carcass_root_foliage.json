@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0,can_spread=false,half=lower": {
+      "model": "gsr_yatm:block/carcass_root_foliage_young"
+    },
+    "age=0,can_spread=false,half=upper": {
+      "model": "gsr_yatm:block/carcass_root_foliage_young"
+    },
+    "age=0,can_spread=true,half=lower": {
+      "model": "gsr_yatm:block/carcass_root_foliage_young"
+    },
+    "age=0,can_spread=true,half=upper": {
+      "model": "gsr_yatm:block/carcass_root_foliage_young"
+    },
+    "age=1,can_spread=false,half=lower": {
+      "model": "gsr_yatm:block/carcass_root_foliage_old_lower"
+    },
+    "age=1,can_spread=false,half=upper": {
+      "model": "gsr_yatm:block/carcass_root_foliage_old_higher"
+    },
+    "age=1,can_spread=true,half=lower": {
+      "model": "gsr_yatm:block/carcass_root_foliage_old_lower"
+    },
+    "age=1,can_spread=true,half=upper": {
+      "model": "gsr_yatm:block/carcass_root_foliage_old_higher"
+    }
+  }
+}

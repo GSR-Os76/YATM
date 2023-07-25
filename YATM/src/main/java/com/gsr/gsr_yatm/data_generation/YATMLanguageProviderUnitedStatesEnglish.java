@@ -88,7 +88,10 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_BUTTON.get(), "Soul Afflicted Rubber Button");
 		this.add(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), "Soul Afflicted Leaf Mulch");
 		
-		this.add(YATMBlocks.AURUM_DEMINUTUS.get(), "Aurum Deminutus");		
+		this.add(YATMBlocks.AURUM_DEMINUTUS.get(), "Carcass Root");		
+		this.add(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), "Aurum Deminutus");		
+		this.add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get(), "Carcass Root Rooted Dirt");		
+		this.add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get(), "Carcass Root Rooted Netherrack");		
 		this.add(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), "Phantasmal Shelf Fungi");		
 		this.add(YATMBlocks.COTTON.get(), "Cotton");		
 		this.add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), "Prismarine Crystal Moss");		
@@ -225,6 +228,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get(), "Aurum Deminutus Fiddle Head");
 		this.add(YATMItems.AURUM_DEMINUTUS_FROND.get(), "Aurum Deminutus Frond");
+		this.add(YATMItems.CARCASS_ROOT_CUTTING.get(), "Carcass Root Cutting");
 		this.add(YATMItems.COTTON_SEEDS.get(), "Cotton Seeds");
 		this.add(YATMItems.COTTON_BOLLS.get(), "Cotton Bolls");
 		this.add(YATMItems.RAW_COTTON_FIBER.get(), "Raw Cotton Fiber");		

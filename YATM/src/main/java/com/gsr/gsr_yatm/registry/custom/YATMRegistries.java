@@ -23,9 +23,9 @@ public class YATMRegistries
 		
 	} // end classInitializer()
 
-	public static void register(IEventBus eventBus)
+	public static void register(IEventBus gameEventBus)
 	{
-		YATMRegistries.GAME_EVENT_BUS = eventBus;
+		YATMRegistries.GAME_EVENT_BUS = gameEventBus;
 	} // end register()
 	
 } // end class

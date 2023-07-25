@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "gsr_yatm:block/plant/carcass_root/rooted_dirt_old"
+  }
+}

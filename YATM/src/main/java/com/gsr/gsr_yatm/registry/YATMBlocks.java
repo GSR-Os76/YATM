@@ -28,6 +28,9 @@ import com.gsr.gsr_yatm.block.device.solar.SolarPanelBlock;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelSettings;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.plant.CustomSeedCropBlock;
+import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootFoliageBlock;
+import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootBlock;
+import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootSupplier;
 import com.gsr.gsr_yatm.block.plant.fern.AurumDeminutusBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.moss.PrismarineCrystalMossBlock;
@@ -141,15 +144,24 @@ public class YATMBlocks
 
 	public static final RegistryObject<AurumDeminutusBlock> AURUM_DEMINUTUS = BLOCKS.register("aurum_deminutus", () -> new AurumDeminutusBlock(YATMBlockProperties.AURUM_SP, YATMBlockShapes.CUBE, () -> YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get(), () -> new ItemStack(YATMItems.AURUM_DEMINUTUS_FROND.get())));
 
-	public static final RegistryObject<PhantasmalShelfFungiBlock> PHANTASMAL_SHELF_FUNGUS = BLOCKS.register("phantasmal_shelf_fungus", () -> new PhantasmalShelfFungiBlock(YATMBlockProperties.PHANTASMAL_SHELF_FUNGUS_PROPERTIES, YATMBlockShapes.CUBE, () -> YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get()));
+	// TODO, basin of tears, nether based plant, starts growing upward entirely vegitatively.
+	// eventually mature destroying all vegitation and leaving a clutter of "flower" buds, the titular basins
+	// bud clutter can be broken to get a proportional number of individual buds, buds when cluster grow small and stressed to a varying degree
+	// when place alone grow to encompass whole block with a basin, from which tears can be acquired from.
+	// possibly if no neighboring buds are present grow to encompass multiple blocks, be much much more lucrative.
+	// tear extraction could limit production of seeds, or extenuate it
+	// extract by bottle as diluted, and boil into a tear, or maybe just smelt bottle.
+	
+	public static final RegistryObject<CarcassRootFoliageBlock> CARCASS_ROOT_FOLIAGE = BLOCKS.register("carcass_root_foliage", () -> new CarcassRootFoliageBlock(YATMBlockProperties.CARCASS_ROOT_FOLIAGE, YATMBlockShapes.CUBE, () -> YATMItems.CARCASS_ROOT_CUTTING.get(), () -> new ItemStack(YATMItems.CARCASS_ROOT_CUTTING.get()), new CarcassRootRootSupplier()));
+	public static final RegistryObject<CarcassRootRootBlock> CARCASS_ROOT_ROOTED_DIRT = BLOCKS.register("carcass_root_rooted_dirt", () -> new CarcassRootRootBlock(YATMBlockProperties.CARCASS_ROOT_ROOTED_DIRT, YATMBlockShapes.CUBE, () -> YATMBlocks.CARCASS_ROOT_FOLIAGE.get().defaultBlockState()));
+	public static final RegistryObject<CarcassRootRootBlock> CARCASS_ROOT_ROOTED_NETHERRACK = BLOCKS.register("carcass_root_rooted_netherrack", () -> new CarcassRootRootBlock(YATMBlockProperties.CARCASS_ROOT_ROOTED_NETHERRACK, YATMBlockShapes.CUBE, () -> YATMBlocks.CARCASS_ROOT_FOLIAGE.get().defaultBlockState()));
 	
 	// TODO, perhaps adjust hitbox to match stages closer
 	public static final RegistryObject<CustomSeedCropBlock> COTTON = BLOCKS.register("cotton", () -> new CustomSeedCropBlock(YATMBlockProperties.CROP, () -> YATMItems.COTTON_SEEDS.get()));
+
+	public static final RegistryObject<PhantasmalShelfFungiBlock> PHANTASMAL_SHELF_FUNGUS = BLOCKS.register("phantasmal_shelf_fungus", () -> new PhantasmalShelfFungiBlock(YATMBlockProperties.PHANTASMAL_SHELF_FUNGUS_PROPERTIES, YATMBlockShapes.CUBE, () -> YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get()));
 	
 	public static final RegistryObject<PrismarineCrystalMossBlock> PRISMARINE_CRYSTAL_MOSS = BLOCKS.register("prismarine_crystal_moss", () -> new PrismarineCrystalMossBlock(YATMBlockProperties.PRISMARINE_CRYSTAL_MOSS, YATMBlockShapes.PRISMARINE_CRYSTAL_MOSS, () -> YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get()));
-	
-	public static final RegistryObject<OnceFruitVineBodyBlock> SPIDER_VINE = BLOCKS.register("spider_vine", () -> new OnceFruitVineBodyBlock(YATMBlockProperties.SPIDER_VINE, YATMBlocks::getSpiderVineMeristem, () -> new ItemStack(YATMItems.SPIDER_VINE_FRUITS.get(), RANDOM.nextIntBetweenInclusive(1, 3))));
-	public static final RegistryObject<VineMeristemBlock> SPIDER_VINE_MERISTEM = BLOCKS.register("spider_vine_meristem", () -> new VineMeristemBlock(YATMBlockProperties.SPIDER_VINE, YATMBlocks::getSpiderVine));
 	
 	public static final RegistryObject<DecayingBlock> FALLEN_SHULKWART_SPORES = BLOCKS.register("fallen_shulkwart_spores", () -> new DecayingBlock(YATMBlockProperties.FALLEN_SHULKWART_SPORES, YATMBlockShapes.DOWNWARD_LICHEN_LIKE, 64));
 	public static final RegistryObject<ShulkwartBlock> SHULKWART = shulkwart("shulkwart", (DyeColor)null, () -> YATMItems.SHULKWART_HORN.get());//BLOCKS.register("shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart((DyeColor)null), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
@@ -169,6 +181,9 @@ public class YATMBlocks
 	public static final RegistryObject<ShulkwartBlock> GREEN_SHULKWART = shulkwart("green_shulkwart", DyeColor.GREEN, () -> YATMItems.GREEN_SHULKWART_HORN.get());//BLOCKS.register("green_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
 	public static final RegistryObject<ShulkwartBlock> RED_SHULKWART = shulkwart("red_shulkwart", DyeColor.RED, () -> YATMItems.RED_SHULKWART_HORN.get());//BLOCKS.register("red_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
 	public static final RegistryObject<ShulkwartBlock> BLACK_SHULKWART = shulkwart("black_shulkwart", DyeColor.BLACK, () -> YATMItems.BLACK_SHULKWART_HORN.get());//BLOCKS.register("black_shulkwart", () -> new ShulkwartBlock(YATMBlockProperties.shulkwart(DyeColor.WHITE), YATMBlockShapes.SHULKWART, () -> YATMItems.SHULKWART_SPORES.get(), () -> YATMBlocks.FALLEN_SHULKWART_SPORES.get()));
+	
+	public static final RegistryObject<OnceFruitVineBodyBlock> SPIDER_VINE = BLOCKS.register("spider_vine", () -> new OnceFruitVineBodyBlock(YATMBlockProperties.SPIDER_VINE, YATMBlocks::getSpiderVineMeristem, () -> new ItemStack(YATMItems.SPIDER_VINE_FRUITS.get(), RANDOM.nextIntBetweenInclusive(1, 3))));
+	public static final RegistryObject<VineMeristemBlock> SPIDER_VINE_MERISTEM = BLOCKS.register("spider_vine_meristem", () -> new VineMeristemBlock(YATMBlockProperties.SPIDER_VINE, YATMBlocks::getSpiderVine));
 	
 	
 	
