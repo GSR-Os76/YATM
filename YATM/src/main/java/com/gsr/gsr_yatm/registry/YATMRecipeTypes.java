@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.registry;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.recipe.FluidInjectionRecipe;
+import com.gsr.gsr_yatm.recipe.FluidInjectingRecipe;
 import com.gsr.gsr_yatm.recipe.bioling.BiolingRecipe;
 import com.gsr.gsr_yatm.recipe.boiling.BoilingRecipe;
 import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizingRecipe;
@@ -26,13 +26,12 @@ public class YATMRecipeTypes
 	
 	public static final RegistryObject<RecipeType<BiolingRecipe>> BIOLING = RECIPE_TYPES.register("bioling", () -> new RecipeType<BiolingRecipe>(){});
 	public static final RegistryObject<RecipeType<BoilingRecipe>> BOILING = RECIPE_TYPES.register("boiling", () -> new RecipeType<BoilingRecipe>(){});
-	// TODO, for consistency make this "crystallizing"
-	public static final RegistryObject<RecipeType<CrystallizingRecipe>> CRYSTALLIZATION = RECIPE_TYPES.register("crystallization", () -> new RecipeType<CrystallizingRecipe>(){});
-	public static final RegistryObject<RecipeType<ExtractingRecipe>> EXTRACTION = RECIPE_TYPES.register("extracting", () -> new RecipeType<ExtractingRecipe>(){});
-	public static final RegistryObject<RecipeType<ExtrudingRecipe>> EXTRUSION = RECIPE_TYPES.register("extruding", () -> new RecipeType<ExtrudingRecipe>(){});
+	public static final RegistryObject<RecipeType<CrystallizingRecipe>> CRYSTALLIZING = RECIPE_TYPES.register("crystallizating", () -> new RecipeType<CrystallizingRecipe>(){});
+	public static final RegistryObject<RecipeType<ExtractingRecipe>> EXTRACTING = RECIPE_TYPES.register("extracting", () -> new RecipeType<ExtractingRecipe>(){});
+	public static final RegistryObject<RecipeType<ExtrudingRecipe>> EXTRUDING = RECIPE_TYPES.register("extruding", () -> new RecipeType<ExtrudingRecipe>(){});
 	public static final RegistryObject<RecipeType<GrindingRecipe>> GRINDING = RECIPE_TYPES.register("grinding", () -> new RecipeType<GrindingRecipe>(){});
 	
-	public static final RegistryObject<RecipeType<FluidInjectionRecipe>> FLUID_INJECTION = RECIPE_TYPES.register("fluid_injecting", () -> new RecipeType<FluidInjectionRecipe>(){});
+	public static final RegistryObject<RecipeType<FluidInjectingRecipe>> FLUID_INJECTING = RECIPE_TYPES.register("fluid_injecting", () -> new RecipeType<FluidInjectingRecipe>(){});
 
 	public static final RegistryObject<RecipeType<WrappedSmeltingRecipe>> SMELTING_PLUS = RECIPE_TYPES.register("smelting_plus", () -> new RecipeType<WrappedSmeltingRecipe>(){});
 

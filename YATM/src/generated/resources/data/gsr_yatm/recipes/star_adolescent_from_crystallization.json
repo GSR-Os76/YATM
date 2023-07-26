@@ -1,9 +1,12 @@
 {
-  "type": "gsr_yatm:crystallization",
+  "type": "gsr_yatm:crystallizing",
   "cost": 0,
   "input": {
-    "count": 4000,
-    "fluid": "gsr_yatm:essence_of_souls"
+    "ingedient": {
+      "type": "gsr_yatm:fluid_stack_ingredient",
+      "count": 4000,
+      "fluid": "gsr_yatm:essence_of_souls"
+    }
   },
   "result": {
     "count": 1,
@@ -12,6 +15,8 @@
   "seed": {
     "consume": true,
     "ingedient": {
+      "type": "gsr_yatm:item_stack_ingredient",
+      "count": 1,
       "item": "gsr_yatm:star_sprout"
     }
   },

@@ -1,9 +1,12 @@
 {
-  "type": "gsr_yatm:crystallization",
+  "type": "gsr_yatm:crystallizing",
   "cost": 0,
   "input": {
-    "count": 1000,
-    "fluid": "gsr_yatm:essence_of_decay"
+    "ingedient": {
+      "type": "gsr_yatm:fluid_stack_ingredient",
+      "count": 1000,
+      "fluid": "gsr_yatm:essence_of_decay"
+    }
   },
   "result": {
     "count": 1,
@@ -12,6 +15,8 @@
   "seed": {
     "consume": true,
     "ingedient": {
+      "type": "gsr_yatm:item_tag_ingredient",
+      "count": 1,
       "tag": "forge:nuggets/netherite"
     }
   },

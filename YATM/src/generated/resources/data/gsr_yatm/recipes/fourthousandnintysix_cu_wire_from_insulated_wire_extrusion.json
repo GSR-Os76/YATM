@@ -3,11 +3,15 @@
   "cost": 1,
   "die": {
     "ingedient": {
+      "type": "gsr_yatm:item_tag_ingredient",
+      "count": 1,
       "tag": "gsr_yatm:dies/wire"
     }
   },
   "input": {
     "ingedient": {
+      "type": "gsr_yatm:item_stack_ingredient",
+      "count": 1,
       "item": "gsr_yatm:insulated_fourthousandnintysix_cu_wire"
     },
     "remainder": {

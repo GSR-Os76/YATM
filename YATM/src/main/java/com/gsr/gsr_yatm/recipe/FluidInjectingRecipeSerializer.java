@@ -8,11 +8,11 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
-public class FluidInjectionRecipeSerializer implements RecipeSerializer<FluidInjectionRecipe>
+public class FluidInjectingRecipeSerializer implements RecipeSerializer<FluidInjectingRecipe>
 {
 
 	@Override
-	public FluidInjectionRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject)
+	public FluidInjectingRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject)
 	{
 		// should take in as ingredients a fluid and an item always, returning an item
 		// a crafting time
@@ -22,14 +22,14 @@ public class FluidInjectionRecipeSerializer implements RecipeSerializer<FluidInj
 	}
 
 	@Override
-	public @Nullable FluidInjectionRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf)
+	public @Nullable FluidInjectingRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf)
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void toNetwork(FriendlyByteBuf resourceLocation, FluidInjectionRecipe recipe)
+	public void toNetwork(FriendlyByteBuf resourceLocation, FluidInjectingRecipe recipe)
 	{
 		// TODO Auto-generated method stub
 		

@@ -119,7 +119,7 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractingRe
 	
 	public ExtractorBlockEntity(BlockPos blockPos, BlockState blockState, int currentCapacity, int maxCurrentTransfer, int fluidCapacity, int maxFluidTransferRate)
 	{
-		super(YATMBlockEntityTypes.EXTRACTOR.get(), blockPos, blockState, ExtractorBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.EXTRACTION.get());
+		super(YATMBlockEntityTypes.EXTRACTOR.get(), blockPos, blockState, ExtractorBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.EXTRACTING.get());
 		this.setup(currentCapacity, maxCurrentTransfer, fluidCapacity, maxFluidTransferRate);
 	} // end constructor
 

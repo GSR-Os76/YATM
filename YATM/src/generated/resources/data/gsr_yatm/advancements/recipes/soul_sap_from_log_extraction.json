@@ -4,10 +4,7 @@
       "conditions": {
         "items": [
           {
-            "items": [
-              "gsr_yatm:soul_afflicted_rubber_log",
-              "gsr_yatm:soul_afflicted_rubber_wood"
-            ]
+            "tag": "gsr_yatm:soul_sap_extractable_logs"
           }
         ]
       },

@@ -2,14 +2,11 @@
   "type": "gsr_yatm:extracting",
   "cost": 12,
   "input": {
-    "ingedient": [
-      {
-        "item": "gsr_yatm:rubber_log"
-      },
-      {
-        "item": "gsr_yatm:rubber_wood"
-      }
-    ],
+    "ingedient": {
+      "type": "gsr_yatm:item_tag_ingredient",
+      "count": 1,
+      "tag": "gsr_yatm:latex_extractable_logs"
+    },
     "remainder": {
       "count": 6,
       "item": "gsr_yatm:wood_pulp"

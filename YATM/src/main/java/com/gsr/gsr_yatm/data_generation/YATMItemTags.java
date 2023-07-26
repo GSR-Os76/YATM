@@ -45,6 +45,7 @@ public class YATMItemTags extends ItemTagsProvider
 	public static final TagKey<Item> DECAY_NETHERITE_ARMOR_PIECES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "armor_pieces/decay_netherite"));
 	public static final TagKey<Item> GOLEM_LIKE_PLANT_FORMERS = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "golem_like_plant_formers"));
 	public static final TagKey<Item> GROWS_PHANTASMAL_SHELF_FUNGI_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "grows_phantasmal_shelf_fungi"));
+	public static final TagKey<Item> LATEX_EXTRACTABLE_LOGS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "latex_extractable_logs"));
 	public static final TagKey<Item> RUBBER_TREE_LOGS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "rubber_tree_logs"));
 	public static final TagKey<Item> RUBBER_TREE_PLANKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "rubber_planks"));
 	public static final TagKey<Item> UNOXIDIXED_COPPER_BLOCKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "unoxidized_copper_blocks"));
@@ -52,6 +53,7 @@ public class YATMItemTags extends ItemTagsProvider
 	public static final TagKey<Item> SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "soul_afflicted_rubber_tree_logs"));
 	public static final TagKey<Item> SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "soul_afflicted_rubber_planks"));
 	public static final TagKey<Item> SOUL_ADORNED_NETHERITE_ARMOR_PIECES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "armor_pieces/soul_adorned_netherite"));
+	public static final TagKey<Item> SOUL_SAP_EXTRACTABLE_LOGS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "soul_sap_extractable_logs"));
 	public static final TagKey<Item> SPREADS_PHANTASMAL_SHELF_FUNGI_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "spreads_phantasmal_shelf_fungi"));
 	public static final TagKey<Item> WIRE_DIES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "dies/wire"));
 	
@@ -103,7 +105,8 @@ public class YATMItemTags extends ItemTagsProvider
 		
 		this.tag(YATMItemTags.DECAY_NETHERITE_ARMOR_PIECES_KEY).add(YATMItems.DECAY_NETHERITE_HELMET.get()).add(YATMItems.DECAY_NETHERITE_CHESTPLATE.get()).add(YATMItems.DECAY_NETHERITE_LEGGINGS.get()).add(YATMItems.DECAY_NETHERITE_BOOTS.get());
 		this.tag(YATMItemTags.GOLEM_LIKE_PLANT_FORMERS).add(YATMItems.ESSENCE_OF_SOULS_BOTTLE.get());
-		this.tag(YATMItemTags.GROWS_PHANTASMAL_SHELF_FUNGI_KEY).addTag(YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);
+		this.tag(YATMItemTags.GROWS_PHANTASMAL_SHELF_FUNGI_KEY).addTag(YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);		
+		this.tag(YATMItemTags.LATEX_EXTRACTABLE_LOGS_KEY).add(YATMItems.RUBBER_LOG_ITEM.get()).add(YATMItems.RUBBER_WOOD_ITEM.get());
 		this.copy(YATMBlockTags.RUBBER_TREE_LOGS_KEY, YATMItemTags.RUBBER_TREE_LOGS_KEY);
 		this.copy(YATMBlockTags.RUBBER_TREE_PLANKS_KEY, YATMItemTags.RUBBER_TREE_PLANKS_KEY);
 		this.copy(YATMBlockTags.UNOXIDIXED_COPPER_BLOCKS_KEY, YATMItemTags.UNOXIDIXED_COPPER_BLOCKS_KEY);
@@ -111,6 +114,8 @@ public class YATMItemTags extends ItemTagsProvider
 		this.copy(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);
 		this.copy(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY);
 		this.tag(YATMItemTags.SOUL_ADORNED_NETHERITE_ARMOR_PIECES_KEY).add(YATMItems.SOUL_ADORNED_NETHERITE_HELMET.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_CHESTPLATE.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_LEGGINGS.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_BOOTS.get());
+		this.tag(YATMItemTags.SOUL_SAP_EXTRACTABLE_LOGS_KEY).add(YATMItems.SOUL_AFFLICTED_RUBBER_LOG_ITEM.get()).add(YATMItems.SOUL_AFFLICTED_RUBBER_WOOD_ITEM.get());
+
 		this.tag(YATMItemTags.SPREADS_PHANTASMAL_SHELF_FUNGI_KEY).add(YATMItems.SOUL_SYRUP_BOTTLE.get());
 		this.tag(YATMItemTags.WIRE_DIES_KEY).add(YATMItems.IRON_WIRE_DIE.get()).add(YATMItems.STEEL_WIRE_DIE.get());		
 	} // end addTags

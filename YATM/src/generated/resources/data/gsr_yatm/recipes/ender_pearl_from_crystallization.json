@@ -1,9 +1,12 @@
 {
-  "type": "gsr_yatm:crystallization",
+  "type": "gsr_yatm:crystallizing",
   "cost": 0,
   "input": {
-    "count": 250,
-    "fluid": "gsr_yatm:ender"
+    "ingedient": {
+      "type": "gsr_yatm:fluid_stack_ingredient",
+      "count": 250,
+      "fluid": "gsr_yatm:ender"
+    }
   },
   "result": {
     "count": 1,
@@ -12,6 +15,8 @@
   "seed": {
     "consume": false,
     "ingedient": {
+      "type": "gsr_yatm:item_tag_ingredient",
+      "count": 1,
       "tag": "forge:sand"
     }
   },

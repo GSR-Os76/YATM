@@ -130,13 +130,13 @@ public class CrystallizingRecipe implements ITimedRecipe<Container>
 	@Override
 	public RecipeSerializer<CrystallizingRecipe> getSerializer()
 	{
-		return YATMRecipeSerializers.CRYSTALLIZATION.get();
+		return YATMRecipeSerializers.CRYSTALLIZING.get();
 	} // end getSerializer()
 
 	@Override
 	public RecipeType<CrystallizingRecipe> getType()
 	{
-		return YATMRecipeTypes.CRYSTALLIZATION.get();
+		return YATMRecipeTypes.CRYSTALLIZING.get();
 	} // end getType()
 
 	@Override

@@ -83,7 +83,7 @@ public class CrystallizingFinishedRecipe implements FinishedRecipe
 	@Override
 	public RecipeSerializer<CrystallizingRecipe> getType()
 	{
-		return YATMRecipeSerializers.CRYSTALLIZATION.get();
+		return YATMRecipeSerializers.CRYSTALLIZING.get();
 	} // end getType()
 
 	@Override

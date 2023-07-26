@@ -10,7 +10,7 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
-public class FluidInjectionRecipe implements Recipe<Container>
+public class FluidInjectingRecipe implements Recipe<Container>
 {
 
 	@Override
@@ -61,14 +61,14 @@ public class FluidInjectionRecipe implements Recipe<Container>
 	}
 	
 	@Override
-	public RecipeSerializer<FluidInjectionRecipe> getSerializer()
+	public RecipeSerializer<FluidInjectingRecipe> getSerializer()
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public RecipeType<FluidInjectionRecipe> getType()
+	public RecipeType<FluidInjectingRecipe> getType()
 	{
 		// TODO Auto-generated method stub
 		return null;

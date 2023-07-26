@@ -116,7 +116,7 @@ public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<Crystalli
 	
 	public CrystallizerBlockEntity(BlockPos blockPos, BlockState blockState, int tankCapacities, int maxFluidTransferRate)
 	{
-		super(YATMBlockEntityTypes.CRYSTALLIZER.get(), blockPos, blockState, CrystallizerBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.CRYSTALLIZATION.get());
+		super(YATMBlockEntityTypes.CRYSTALLIZER.get(), blockPos, blockState, CrystallizerBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.CRYSTALLIZING.get());
 		this.setup(tankCapacities, maxFluidTransferRate);
 	} // end constructor
 	

@@ -102,7 +102,7 @@ public class ExtrudingFinishedRecipe implements FinishedRecipe
 	@Override
 	public RecipeSerializer<ExtrudingRecipe> getType()
 	{
-		return YATMRecipeSerializers.EXTRUSION.get();
+		return YATMRecipeSerializers.EXTRUDING.get();
 	} // end getType()
 
 	@Override

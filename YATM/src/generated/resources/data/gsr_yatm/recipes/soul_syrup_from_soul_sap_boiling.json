@@ -1,8 +1,11 @@
 {
   "type": "gsr_yatm:boiling",
   "input": {
-    "count": 3,
-    "fluid": "gsr_yatm:soul_sap"
+    "ingedient": {
+      "type": "gsr_yatm:fluid_stack_ingredient",
+      "count": 3,
+      "fluid": "gsr_yatm:soul_sap"
+    }
   },
   "result": {
     "count": 1,

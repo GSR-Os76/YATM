@@ -94,7 +94,7 @@ public class ExtruderBlockEntity extends CraftingDeviceBlockEntity<ExtrudingReci
 	
 	public ExtruderBlockEntity(BlockPos blockPos, BlockState blockState, int currentCapacity, int maxCurrentTransfer)
 	{
-		super(YATMBlockEntityTypes.EXTRUDER.get(), blockPos, blockState, ExtruderBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.EXTRUSION.get());
+		super(YATMBlockEntityTypes.EXTRUDER.get(), blockPos, blockState, ExtruderBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.EXTRUDING.get());
 		this.setup(currentCapacity, maxCurrentTransfer);
 	} // end constructor
 

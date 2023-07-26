@@ -122,13 +122,13 @@ public class ExtractingRecipe implements ITimedRecipe<Container>
 	@Override
 	public RecipeSerializer<ExtractingRecipe> getSerializer()
 	{
-		return YATMRecipeSerializers.EXTRACTION.get();
+		return YATMRecipeSerializers.EXTRACTING.get();
 	} // end getSerializer()
 
 	@Override
 	public RecipeType<ExtractingRecipe> getType()
 	{
-		return YATMRecipeTypes.EXTRACTION.get();
+		return YATMRecipeTypes.EXTRACTING.get();
 	} // end getType()
 
 	@Override

@@ -126,13 +126,13 @@ public class ExtrudingRecipe implements ITimedRecipe<Container>
 	@Override
 	public RecipeSerializer<ExtrudingRecipe> getSerializer()
 	{
-		return YATMRecipeSerializers.EXTRUSION.get();
+		return YATMRecipeSerializers.EXTRUDING.get();
 	} // end getSerializer()
 
 	@Override
 	public RecipeType<ExtrudingRecipe> getType()
 	{
-		return YATMRecipeTypes.EXTRUSION.get();
+		return YATMRecipeTypes.EXTRUDING.get();
 	} // end getType()
 
 
