@@ -3,8 +3,7 @@ package com.gsr.gsr_yatm.recipe.grinding;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonObject;
-import com.gsr.gsr_yatm.recipe.ingredient.IngredientUtilities;
-import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -20,23 +19,23 @@ public class GrindingRecipeSerializer implements RecipeSerializer<GrindingRecipe
 		GrindingRecipeBuilder builder = new GrindingRecipeBuilder();
 		
 		builder.identifier(resourceLocation);
-		builder.result(CraftingHelper.getItemStack(jsonObject.getAsJsonObject(RecipeUtilities.RESULT_OBJECT_KEY), false));
+		builder.result(CraftingHelper.getItemStack(jsonObject.getAsJsonObject(IngredientUtilities.RESULT_OBJECT_KEY), false));
 		
-		JsonObject inputObj = jsonObject.getAsJsonObject(RecipeUtilities.INPUT_OBJECT_KEY);
-		builder.input(IngredientUtilities.readIngredient(inputObj.getAsJsonObject(RecipeUtilities.INGREDIENT_KEY)));//RecipeUtilities.ingredientFromJson(inputObj.getAsJsonObject(RecipeUtilities.INGREDIENT_KEY)));
+		JsonObject inputObj = jsonObject.getAsJsonObject(IngredientUtilities.INPUT_OBJECT_KEY);
+		builder.input(IngredientUtilities.readIngredient(inputObj.getAsJsonObject(IngredientUtilities.INGREDIENT_KEY)));//RecipeUtilities.ingredientFromJson(inputObj.getAsJsonObject(RecipeUtilities.INGREDIENT_KEY)));
 		
 		
-		if(jsonObject.has(RecipeUtilities.CURRENT_PER_TICK_KEY)) 
+		if(jsonObject.has(IngredientUtilities.CURRENT_PER_TICK_KEY)) 
 		{
-			builder.currentPerTick(jsonObject.get(RecipeUtilities.CURRENT_PER_TICK_KEY).getAsInt());
+			builder.currentPerTick(jsonObject.get(IngredientUtilities.CURRENT_PER_TICK_KEY).getAsInt());
 		}
-		if(jsonObject.has(RecipeUtilities.TIME_IN_TICKS_KEY)) 
+		if(jsonObject.has(IngredientUtilities.TIME_IN_TICKS_KEY)) 
 		{
-			builder.timeInTicks(jsonObject.get(RecipeUtilities.TIME_IN_TICKS_KEY).getAsInt());
+			builder.timeInTicks(jsonObject.get(IngredientUtilities.TIME_IN_TICKS_KEY).getAsInt());
 		}
-		if(jsonObject.has(RecipeUtilities.GROUP_KEY)) 
+		if(jsonObject.has(IngredientUtilities.GROUP_KEY)) 
 		{
-			builder.group(jsonObject.get(RecipeUtilities.GROUP_KEY).getAsString());
+			builder.group(jsonObject.get(IngredientUtilities.GROUP_KEY).getAsString());
 		}
 		
 		return builder.build();		

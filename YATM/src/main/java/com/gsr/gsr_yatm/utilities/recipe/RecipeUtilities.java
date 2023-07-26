@@ -17,6 +17,7 @@ import com.google.gson.JsonObject;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.recipe.dynamic.IDynamicRecipeProvider;
 
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.Container;
@@ -40,27 +41,58 @@ public class RecipeUtilities
 	public static final int RECHECK_CRAFTING_PERIOD = 20;
 	
 	
-	
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static final String GROUP_KEY = "group";
-
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static final String INPUT_OBJECT_KEY = "input";
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static final String RESULT_OBJECT_KEY = "result";
 	
 	// unique secondary keys
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static final String DIE_OBJECT_KEY = "die";
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static final String SEED_KEY = "seed";
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static final String CONSUME_SEED_KEY = "consume";
 	
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static final String CURRENT_PER_TICK_KEY = "cost";
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static final String TIME_IN_TICKS_KEY = "time";
 			
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static final String COUNT_KEY = "count";
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static final String FLUID_KEY = "fluid";
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static final String INGREDIENT_KEY = "ingedient";
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static final String ITEM_KEY = "item";
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static final String REMAINDER_STACK_KEY = "remainder";
-	public static final String TAG_KEY = "tag";
+	/**use IngredientUtilities instead*/
+	@Deprecated
+	public static final String TAG_KEY = "tag";	
+	/**use IngredientUtilities instead*/
+	@Deprecated
+	public static final String NBT_KEY = "nbt";
 	// NOTE: it's in kelvin
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static final String TEMPERATURE_KEY = "temperature";
 	
 	
@@ -70,6 +102,8 @@ public class RecipeUtilities
 	
 	
 	
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static ITag<Item> getTag(String location)
 	{
 		ITagManager<Item> i = ForgeRegistries.ITEMS.tags();
@@ -77,6 +111,8 @@ public class RecipeUtilities
 		return i.getTag(tk);
 	} // end getTag()
 
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static FluidStack fluidStackFromJson(JsonObject jsonObject)
 	{
 		ResourceLocation fluidKey = new ResourceLocation(jsonObject.get(FLUID_KEY).getAsString());
@@ -90,27 +126,47 @@ public class RecipeUtilities
         {
         	amount = jsonObject.get(COUNT_KEY).getAsInt();
         }
+        if(jsonObject.has(NBT_KEY)) 
+        {
+        	return new FluidStack(fluid, amount, CraftingHelper.getNBT(jsonObject.get(NBT_KEY)));
+        }
 		return new FluidStack(fluid, amount);
 	} // end fluidStackFromJson()
 	
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static JsonObject fluidStackToJson(FluidStack fluidStack) 
 	{
 		JsonObject result = new JsonObject();
 		result.addProperty(FLUID_KEY, ForgeRegistries.FLUIDS.getKey(fluidStack.getFluid()).toString());
 		result.addProperty(COUNT_KEY, fluidStack.getAmount());
+		CompoundTag t = fluidStack.getTag();
+		if(t != null) 
+		{
+			result.addProperty(NBT_KEY, t.toString());
+		}
 		return result;
 	} // end fluidStackToJson()
 
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static JsonObject itemStackToJson(ItemStack itemStack)
 	{
 		JsonObject result = new JsonObject();
 		result.addProperty(ITEM_KEY, ForgeRegistries.ITEMS.getKey(itemStack.getItem()).toString());
 		result.addProperty(COUNT_KEY, itemStack.getCount());
+		CompoundTag t = itemStack.getTag();
+		if(t != null) 
+		{
+			result.addProperty(NBT_KEY, t.toString());
+		}
 		return result;
 	} // end itemStackToJson()
 
 	
 	
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static int getReqiuredCountFor(@NotNull Item countFor, @NotNull Ingredient in)
 	{
 		for(ItemStack i : in.getItems()) 
@@ -124,6 +180,8 @@ public class RecipeUtilities
 	} // end getReqiuredCountFor()
 
 	// respects item and count but not nbt
+	/**use IngredientUtilities instead*/
+	@Deprecated
 	public static boolean testIngredientAgainst(ItemStack against, Ingredient ingredient)
 	{
 		for(ItemStack i : ingredient.getItems()) 
@@ -135,75 +193,6 @@ public class RecipeUtilities
 		}
 		return false;
 	} // end testIngredientAgainst()
-
-	
-	
-	@Deprecated
-	public static Ingredient ingredientFromJson(JsonObject jsonObject)
-	{
-		if(!jsonObject.isJsonArray()) 
-		{
-			if(matchesCountTagSignature(jsonObject))
-			{
-				return Ingredient.fromValues(Stream.of(getCountTagValue(jsonObject)));
-			}
-			else 
-			{
-				return CraftingHelper.getIngredient(jsonObject, false);
-			}
-		}
-		else
-		{
-			JsonArray nonCountTagResults = new JsonArray();
-			List<Ingredient.Value> tCValues = new ArrayList<>();
-			for(JsonElement member : jsonObject.getAsJsonArray()) 
-			{
-				if(member.isJsonObject()) 
-				{
-					if(matchesCountTagSignature(jsonObject)) 
-					{
-						tCValues.add(getCountTagValue(jsonObject));
-					}
-					else 
-					{
-						nonCountTagResults.add(member);
-					}
-				}
-				else 
-				{
-					nonCountTagResults.add(member);
-				}
-			}
-			
-			List<Ingredient> ing = new ArrayList<>();
-			if(!tCValues.isEmpty()) 
-			{
-				ing.add(Ingredient.fromValues(tCValues.stream()));
-			}
-			if(!nonCountTagResults.isEmpty()) 
-			{
-				ing.add(CraftingHelper.getIngredient(nonCountTagResults, true));
-			}
-			return CompoundIngredient.of(ing.toArray(new Ingredient[ing.size()]));
-		}
-		
-	} // end ingredientFromJson()
-
-	@Deprecated
-	private static boolean matchesCountTagSignature(JsonObject jsonObject) 
-	{
-		return jsonObject.has(TAG_KEY) && jsonObject.has(COUNT_KEY);
-	} // end matchesCountTagSignature()
-	
-	@Deprecated
-	private static IngredientCountTagValue getCountTagValue(JsonObject jsonObject) 
-	{
-		TagKey<Item> tag = getTag(jsonObject.get(TAG_KEY).getAsString()).getKey();
-		int count = jsonObject.get(COUNT_KEY).getAsInt();
-		return new IngredientCountTagValue(tag, count);
-	} // end getCountTagValue()
-	
-	
 	
 	
 	

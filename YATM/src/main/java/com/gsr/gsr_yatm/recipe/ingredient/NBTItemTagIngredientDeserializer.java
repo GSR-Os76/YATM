@@ -7,16 +7,17 @@ import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
 
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.common.crafting.CraftingHelper;
 
-public class ItemTagIngredientDeserializer implements IIngredientDeserializer<ItemTagIngredient>
+public class NBTItemTagIngredientDeserializer implements IIngredientDeserializer<NBTItemTagIngredient>
 {
 
 	@Override
-	public @NotNull ItemTagIngredient deserialize(@NotNull JsonObject jsonObject)
+	public @NotNull NBTItemTagIngredient deserialize(@NotNull JsonObject jsonObject)
 	{
 		TagKey<Item> tag = IngredientUtilities.getItemTagKey(jsonObject.get(IngredientUtilities.TAG_KEY).getAsString());
 		int count = jsonObject.get(IngredientUtilities.COUNT_KEY).getAsInt();
-		return new ItemTagIngredient(tag, count);
+		return new NBTItemTagIngredient(tag, count,  jsonObject.has(IngredientUtilities.NBT_KEY) ? CraftingHelper.getNBT(jsonObject.get(IngredientUtilities.NBT_KEY)) : null);
 	} // end deserialize()
 	
 } // end class

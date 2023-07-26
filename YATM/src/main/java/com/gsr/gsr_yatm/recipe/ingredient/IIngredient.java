@@ -1,16 +1,23 @@
 package com.gsr.gsr_yatm.recipe.ingredient;
 
 import java.util.List;
+import java.util.function.Predicate;
 
-import com.google.common.base.Predicate;
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import com.google.gson.JsonObject;
 
 public interface IIngredient<T> extends Predicate<T>
 {
-	public IIngredientDeserializer<?> deserializer();
+	@Override
+	public boolean test(@Nullable T t);
 	
-	public JsonObject serialize();
 
-	public List<T> getValues();
+	public @NotNull IIngredientDeserializer<?> deserializer();
 	
-} // end outer class
+	public @NotNull JsonObject serialize();
+
+	public @NotNull List<T> getValues();
+	
+} // end interface
