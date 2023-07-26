@@ -44,8 +44,9 @@ public class ItemTagIngredient implements IIngredient<ItemStack>
 	@Override
 	public boolean test(@Nullable ItemStack input)
 	{
-		return this.m_tag.contains(input.getItem()) && 
-				this.m_count <= input.getCount();
+		return input != null 
+				&& this.m_tag.contains(input.getItem()) 
+				&& this.m_count <= input.getCount();
 	} // end apply()
 
 	@Override

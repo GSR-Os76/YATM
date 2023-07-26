@@ -71,7 +71,7 @@ public class CrystallizingRecipe implements ITimedRecipe<Container>
 	{
 		Fluid f = inputTank.getFluidInTank(0).getFluid();
 		int am = IngredientUtilities.getRequiredAmountFor(f, this.m_input);
-		FluidStack inputDrainSimulated = inputTank.drain(new FluidStack(f, am), FluidAction.EXECUTE);
+		FluidStack inputDrainSimulated = inputTank.drain(new FluidStack(f, am), FluidAction.SIMULATE);
 		
 		return am != -1 
 				&& inputDrainSimulated.getAmount() == am 

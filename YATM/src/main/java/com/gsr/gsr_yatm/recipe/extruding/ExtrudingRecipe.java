@@ -64,8 +64,8 @@ public class ExtrudingRecipe implements ITimedRecipe<Container>
 	
 	public boolean canBeUsedOn(@NotNull IItemHandler inventory)
 	{
-		return  this.m_input.test(inventory.getStackInSlot(ExtruderBlockEntity.INPUT_SLOT)) 
-				&& this.m_input.test(inventory.getStackInSlot(ExtruderBlockEntity.DIE_SLOT)) 
+		return this.m_input.test(inventory.getStackInSlot(ExtruderBlockEntity.INPUT_SLOT)) 
+				&& this.m_die.test(inventory.getStackInSlot(ExtruderBlockEntity.DIE_SLOT)) 
 				&& inventory.insertItem(ExtruderBlockEntity.RESULT_SLOT, this.m_result.copy(), true).isEmpty() 
 				&& inventory.insertItem(ExtruderBlockEntity.INPUT_REMAINDER_SLOT, this.m_inputRemainder.copy(), true).isEmpty();
 	} // end canBeUsedOn()
