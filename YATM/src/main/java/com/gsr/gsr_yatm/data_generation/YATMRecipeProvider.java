@@ -6,9 +6,9 @@ import org.jetbrains.annotations.NotNull;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.recipe.bioling.BiolingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.boiling.BoilingRecipeBuilder;
-import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizationRecipeBuilder;
-import com.gsr.gsr_yatm.recipe.extracting.ExtractionRecipeBuilder;
-import com.gsr.gsr_yatm.recipe.extruding.ExtrusionRecipeBuilder;
+import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizingRecipeBuilder;
+import com.gsr.gsr_yatm.recipe.extracting.ExtractingRecipeBuilder;
+import com.gsr.gsr_yatm.recipe.extruding.ExtrudingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.ingredient.ItemStackIngredient;
 import com.gsr.gsr_yatm.recipe.ingredient.ItemTagIngredient;
@@ -577,7 +577,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	private void addExtraction(Consumer<FinishedRecipe> writer, ItemLike[] ingredient, FluidStack result, int currentPerTick, int timeInTicks, String key) 
 	{
-		new ExtractionRecipeBuilder()
+		new ExtractingRecipeBuilder()
 		.input(Ingredient.of(ingredient))
 		.result(result)
 		.currentPerTick(currentPerTick)
@@ -588,7 +588,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	private void addExtraction(Consumer<FinishedRecipe> writer, ItemLike[] ingredient, ItemStack remainder, FluidStack result, int currentPerTick, int timeInTicks, String key) 
 	{
-		new ExtractionRecipeBuilder()
+		new ExtractingRecipeBuilder()
 		.input(Ingredient.of(ingredient))
 		.inputRemainder(remainder)
 		.result(result)
@@ -602,7 +602,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	private void addExtrusion(Consumer<FinishedRecipe> writer, TagKey<Item> input, TagKey<Item> die, ItemStack result, int currentPerTick, int timeInTicks, String key) 
 	{
-		new ExtrusionRecipeBuilder()
+		new ExtrudingRecipeBuilder()
 		.input(Ingredient.of(input))
 		.die(Ingredient.of(die))
 		.result(result)
@@ -614,7 +614,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	private void addExtrusion(Consumer<FinishedRecipe> writer, ItemLike input, ItemLike inputRemainder, TagKey<Item> die, ItemStack result, int currentPerTick, int timeInTicks, String key) 
 	{
-		new ExtrusionRecipeBuilder()
+		new ExtrudingRecipeBuilder()
 		.input(Ingredient.of(input))
 		.inputRemainder(new ItemStack(inputRemainder))
 		.die(Ingredient.of(die))
@@ -643,7 +643,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	private void addCrystallizationRecipe(Consumer<FinishedRecipe> writer, FluidStack input, TagKey<Item> seed, ItemStack result, boolean consumeSeed, int currentPerTick, int timeInTicks, String key) 
 	{
-		new CrystallizationRecipeBuilder()
+		new CrystallizingRecipeBuilder()
 		.input(input)
 		.seed(Ingredient.of(seed))
 		.result(result)
@@ -658,7 +658,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	private void addCrystallizationRecipe(Consumer<FinishedRecipe> writer, FluidStack input, Item seed, ItemStack result, boolean consumeSeed, int currentPerTick, int timeInTicks, String key) 
 	{
-		new CrystallizationRecipeBuilder()
+		new CrystallizingRecipeBuilder()
 		.input(input)
 		.seed(Ingredient.of(seed))
 		.result(result)

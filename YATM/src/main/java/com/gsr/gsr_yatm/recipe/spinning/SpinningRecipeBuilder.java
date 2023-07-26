@@ -1,6 +1,12 @@
 package com.gsr.gsr_yatm.recipe.spinning;
 
+import java.util.Objects;
 import java.util.function.Consumer;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.CriterionTriggerInstance;
@@ -9,33 +15,32 @@ import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 
 public class SpinningRecipeBuilder implements RecipeBuilder
 {
-	private ResourceLocation m_identifier;
-	private ItemStack m_result;
+	private @Nullable ResourceLocation m_identifier;
+	private @Nullable ItemStack m_result;
 
-	private Ingredient m_input;
+	private @Nullable IIngredient<ItemStack> m_input;
 	
-	private String m_group = "";
-	private Advancement.Builder m_advancement = Advancement.Builder.advancement();
+	private @NotNull String m_group = "";
+	private @NotNull Advancement.Builder m_advancement = Advancement.Builder.advancement();
 	
 	
 	
-	public SpinningRecipeBuilder identifier(ResourceLocation identifier) 
+	public @NotNull SpinningRecipeBuilder identifier(@Nullable ResourceLocation identifier) 
 	{
 		this.m_identifier = identifier;
 		return this;
 	} // end identifier()
 
-	public SpinningRecipeBuilder input(Ingredient input)
+	public @NotNull SpinningRecipeBuilder input(@Nullable IIngredient<ItemStack> input)
 	{
 		this.m_input = input;
 		return this;
 	} // end input()
 
-	public SpinningRecipeBuilder result(ItemStack result) 
+	public @NotNull SpinningRecipeBuilder result(@Nullable ItemStack result) 
 	{
 		this.m_result = result;
 		return this;
@@ -43,7 +48,7 @@ public class SpinningRecipeBuilder implements RecipeBuilder
 
 	
 
-	public SpinningRecipe build()
+	public @NotNull SpinningRecipe build()
 	{
 		SpinningRecipe temp = new SpinningRecipe(this.m_identifier, this.m_input, this.m_result);
 		temp.m_group = this.m_group;
@@ -62,7 +67,8 @@ public class SpinningRecipeBuilder implements RecipeBuilder
 	@Override
 	public RecipeBuilder group(String group)
 	{
-		this.m_group = group == null ? "" : group;
+		Objects.requireNonNull(group);
+		this.m_group = group;// == null ? "" : group;
 		return this;
 	} // end group()
 
@@ -81,7 +87,7 @@ public class SpinningRecipeBuilder implements RecipeBuilder
 	
 	
 	
-	private void validate(ResourceLocation wouldBeFileName)
+	private void validate(@NotNull ResourceLocation wouldBeFileName)
 	{
 		if (this.m_advancement.getCriteria().isEmpty())
 		{
@@ -89,4 +95,4 @@ public class SpinningRecipeBuilder implements RecipeBuilder
 		}
 	} // end validate()
 
-} // end Builder
+} // end class

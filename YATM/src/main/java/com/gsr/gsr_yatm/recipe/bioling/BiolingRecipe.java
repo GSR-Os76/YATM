@@ -1,10 +1,16 @@
 package com.gsr.gsr_yatm.recipe.bioling;
 
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.block.device.bioler.BiolerBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
 
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
@@ -21,20 +27,24 @@ import net.minecraftforge.items.IItemHandler;
 
 public class BiolingRecipe implements ITimedRecipe<Container>
 {
-	protected final ResourceLocation m_identifier;
-	protected final FluidStack m_result;	
-	protected final Ingredient m_input;
+	protected final @NotNull ResourceLocation m_identifier;
+	protected final @NotNull FluidStack m_result;	
+	protected final @NotNull IIngredient<ItemStack> m_input;
 	int m_currentPerTick = 8;
 	int m_timeInTicks = 20;
-	String m_group = "";
+	@NotNull String m_group = "";
 	
 	
 	
-	public BiolingRecipe(ResourceLocation identifier, Ingredient input, FluidStack result) 
+	public BiolingRecipe(@NotNull ResourceLocation identifier, @NotNull IIngredient<ItemStack> input, @NotNull FluidStack result) 
 	{
+		Objects.requireNonNull(identifier);
+		Objects.requireNonNull(input);
+		Objects.requireNonNull(result);
+		
 		this.m_identifier = identifier;
 		this.m_input = input;
-		this.m_result = result;
+		this.m_result = result.copy();
 	} // end constructor
 	
 	
@@ -61,7 +71,7 @@ public class BiolingRecipe implements ITimedRecipe<Container>
 	
 	public void startRecipe(IItemHandler inventory)
 	{
-		inventory.extractItem(BiolerBlockEntity.INPUT_SLOT, 1, false);
+		inventory.extractItem(BiolerBlockEntity.INPUT_SLOT, IngredientUtilities.getReqiuredCountFor(inventory.getStackInSlot(BiolerBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
 	} // end startRecipe()
 	
 	public void setResults(IItemHandler inventory, IFluidHandler resultTank)

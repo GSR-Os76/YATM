@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.recipe.grinding;
+package com.gsr.gsr_yatm.recipe.extruding;
 
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -16,46 +16,70 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-public class GrindingRecipeBuilder implements RecipeBuilder
+public class ExtrudingRecipeBuilder implements RecipeBuilder
 {
 	private @Nullable ResourceLocation m_identifier;
 	private @Nullable ItemStack m_result;
+
 	private @Nullable IIngredient<ItemStack> m_input;
+	private @Nullable IIngredient<ItemStack> m_die;
+
+	private @NotNull ItemStack m_inputRemainder = ItemStack.EMPTY;
+	private @Nullable ItemStack m_dieRemainder;
 	private int m_currentPerTick = 8;
 	private int m_timeInTicks = 20;
 	
-	@NotNull String m_group = "";
+	private @NotNull String m_group = "";
 	private final @NotNull Advancement.Builder m_advancement = Advancement.Builder.advancement();
 	
 	
 	
-	public @NotNull GrindingRecipeBuilder identifier(@Nullable ResourceLocation identifier) 
+	public @NotNull ExtrudingRecipeBuilder identifier(@Nullable ResourceLocation identifier) 
 	{
 		this.m_identifier = identifier;
 		return this;
 	} // end identifier()
 
-	public @NotNull GrindingRecipeBuilder input(@Nullable IIngredient<ItemStack> input)
+	public @NotNull ExtrudingRecipeBuilder input(@Nullable IIngredient<ItemStack> input)
 	{
 		this.m_input = input;
 		return this;
 	} // end input()
-	
-	public @NotNull GrindingRecipeBuilder result(@Nullable ItemStack result) 
+
+	public @NotNull ExtrudingRecipeBuilder die(@Nullable IIngredient<ItemStack> die)
 	{
-		this.m_result = result;
+		this.m_die = die;
+		return this;
+	} // end die()
+	
+	public @NotNull ExtrudingRecipeBuilder result(@Nullable ItemStack result) 
+	{
+		this.m_result = result == null ? null : result.copy();
 		return this;
 	} // end result()
 
 
 
-	public @NotNull GrindingRecipeBuilder currentPerTick(int currentPerTick)
+	public @NotNull ExtrudingRecipeBuilder inputRemainder(@NotNull ItemStack remainder)
+	{
+		Objects.requireNonNull(remainder);
+		this.m_inputRemainder = remainder.copy();
+		return this;
+	} // end inputRemainder()
+
+	public @NotNull ExtrudingRecipeBuilder dieRemainder(@Nullable ItemStack remainder)
+	{
+		this.m_dieRemainder = remainder == null ? null :remainder.copy();
+		return this;
+	} // end dieRemainder()
+
+	public @NotNull ExtrudingRecipeBuilder currentPerTick(int currentPerTick)
 	{
 		this.m_currentPerTick = currentPerTick;
 		return this;
 	} // end currentPerTick()
 
-	public @NotNull GrindingRecipeBuilder timeInTicks(int timeInTicks)
+	public @NotNull ExtrudingRecipeBuilder timeInTicks(int timeInTicks)
 	{
 		this.m_timeInTicks = timeInTicks;
 		return this;
@@ -63,9 +87,11 @@ public class GrindingRecipeBuilder implements RecipeBuilder
 
 
 
-	public @NotNull GrindingRecipe build()
+	public @NotNull ExtrudingRecipe build()
 	{
-		GrindingRecipe temp = new GrindingRecipe(this.m_identifier, this.m_input, this.m_result);
+		ExtrudingRecipe temp = new ExtrudingRecipe(this.m_identifier, this.m_input, this.m_die, this.m_result);
+		temp.m_inputRemainder = this.m_inputRemainder.copy();
+		temp.m_dieRemainder =  this.m_dieRemainder == null ? null : this.m_dieRemainder.copy();
 		temp.m_currentPerTick = this.m_currentPerTick;
 		temp.m_timeInTicks = this.m_timeInTicks;
 		temp.m_group = this.m_group;
@@ -98,9 +124,8 @@ public class GrindingRecipeBuilder implements RecipeBuilder
 	@Override
 	public void save(Consumer<FinishedRecipe> writer, ResourceLocation fileName)
 	{
-		// pull validate out into a utility class as to ensure consistency of messages is maintained, and code is more reusable.
 		this.validate(fileName);
-		writer.accept(new GrindingFinishedRecipe(fileName, this.m_result, this.m_input, this.m_currentPerTick, this.m_timeInTicks, this.m_group, fileName.withPrefix("recipes/"), this.m_advancement));
+		writer.accept(new ExtrudingFinishedRecipe(fileName, this.m_result, this.m_input, this.m_die, this.m_inputRemainder, this.m_dieRemainder, this.m_currentPerTick, this.m_timeInTicks, this.m_group, fileName.withPrefix("recipes/"), this.m_advancement));
 	} // end save()
 	
 	

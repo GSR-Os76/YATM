@@ -1,12 +1,14 @@
 package com.gsr.gsr_yatm.recipe.grinding;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.block.device.grinder.GrinderBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
-import com.gsr.gsr_yatm.recipe.ingredient.IngredientUtilities;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
 
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
@@ -19,17 +21,17 @@ import net.minecraftforge.items.IItemHandler;
 
 public class GrindingRecipe implements ITimedRecipe<Container>
 {
-	private final ResourceLocation m_identifier;
-	private final ItemStack m_result;
-	private final IIngredient<ItemStack> m_input;
+	private final @NotNull ResourceLocation m_identifier;
+	private final @NotNull ItemStack m_result;
+	private final @NotNull IIngredient<ItemStack> m_input;
 	int m_currentPerTick = 8;
 	int m_timeInTicks = 20;
 	
-	String m_group = "";
+	@NotNull String m_group = "";
 
 
 
-	public GrindingRecipe(ResourceLocation identifier, IIngredient<ItemStack> input, ItemStack result)
+	public GrindingRecipe(@NotNull ResourceLocation identifier, @NotNull IIngredient<ItemStack> input, @NotNull ItemStack result)
 	{
 		this.m_identifier = identifier;
 		this.m_input = input;
@@ -51,19 +53,19 @@ public class GrindingRecipe implements ITimedRecipe<Container>
 
 	
 	
-	public boolean canBeUsedOn(IItemHandler inventory)
+	public boolean canBeUsedOn(@NotNull IItemHandler inventory)
 	{
-		return this.m_input.apply(inventory.getStackInSlot(GrinderBlockEntity.INPUT_SLOT)) && //RecipeUtilities.testIngredientAgainst(inventory.getStackInSlot(GrinderBlockEntity.INPUT_SLOT), this.m_input) && 
+		return this.m_input.test(inventory.getStackInSlot(GrinderBlockEntity.INPUT_SLOT)) &&
 				inventory.insertItem(GrinderBlockEntity.RESULT_SLOT, this.m_result.copy(), true).isEmpty();
 	} // end canBeUsedOn()
 
-	public void startRecipe(IItemHandler inventory)
+	public void startRecipe(@NotNull IItemHandler inventory)
 	{
 		inventory.extractItem(GrinderBlockEntity.INPUT_SLOT, 
 				IngredientUtilities.getReqiuredCountFor(inventory.getStackInSlot(GrinderBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
 	} // end startRecipe()
 
-	public void setResults(IItemHandler inventory)
+	public void setResults(@NotNull IItemHandler inventory)
 	{
 		inventory.insertItem(GrinderBlockEntity.RESULT_SLOT, this.m_result.copy(), false);
 	} // end setResults()
@@ -73,7 +75,7 @@ public class GrindingRecipe implements ITimedRecipe<Container>
 	@Override
 	public boolean matches(Container container, Level level)
 	{
-		return this.m_input.apply(container.getItem(GrinderBlockEntity.INPUT_SLOT));
+		return this.m_input.test(container.getItem(GrinderBlockEntity.INPUT_SLOT));
 	} // end matches()
 
 	@Override

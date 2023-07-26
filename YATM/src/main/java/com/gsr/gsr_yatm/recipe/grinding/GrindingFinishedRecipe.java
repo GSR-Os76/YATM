@@ -1,10 +1,11 @@
 package com.gsr.gsr_yatm.recipe.grinding;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.google.gson.JsonObject;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
-import com.gsr.gsr_yatm.recipe.ingredient.IngredientUtilities;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
-import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -14,19 +15,19 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 
 public class GrindingFinishedRecipe implements FinishedRecipe
 {
-	private final ResourceLocation m_identifier;
-	private final ItemStack m_result;
-	private final IIngredient<ItemStack> m_input;
-	int m_currentPerTick = 8;
-	int m_timeInTicks = 20;
+	private final @NotNull ResourceLocation m_identifier;
+	private final @NotNull ItemStack m_result;
+	private final @NotNull IIngredient<ItemStack> m_input;
+	private final int m_currentPerTick;
+	private final int m_timeInTicks;
 	
-	String m_group = "";
-	private ResourceLocation m_advancementIdentifier;	
-	private Advancement.Builder m_advancement;
+	private final @NotNull String m_group;
+	private final @NotNull  ResourceLocation m_advancementIdentifier;	
+	private final @NotNull Advancement.Builder m_advancement;
 	
 	
 	
-	public GrindingFinishedRecipe(ResourceLocation identifier, ItemStack result, IIngredient<ItemStack> input, int currentPerTick, int timeInTicks, String group, ResourceLocation advancementIdentifier, Advancement.Builder advancement) 
+	public GrindingFinishedRecipe(@NotNull ResourceLocation identifier, @NotNull ItemStack result, @NotNull IIngredient<ItemStack> input, int currentPerTick, int timeInTicks, @NotNull String group, @NotNull ResourceLocation advancementIdentifier, @NotNull Advancement.Builder advancement) 
 	{
 		this.m_identifier = identifier;
 		this.m_result = result;		
@@ -47,15 +48,15 @@ public class GrindingFinishedRecipe implements FinishedRecipe
 	{
 		if(!this.m_group.isEmpty()) 
 		{
-			jsonObject.addProperty(RecipeUtilities.GROUP_KEY, this.m_group);
+			jsonObject.addProperty(IngredientUtilities.GROUP_KEY, this.m_group);
 		}
 		
-		jsonObject.add(RecipeUtilities.RESULT_OBJECT_KEY, RecipeUtilities.itemStackToJson(this.m_result));
+		jsonObject.add(IngredientUtilities.RESULT_OBJECT_KEY, IngredientUtilities.itemStackToJson(this.m_result));
 		JsonObject inputObject = new JsonObject();
-		inputObject.add(RecipeUtilities.INGREDIENT_KEY, IngredientUtilities.writeIngredient(this.m_input));
-		jsonObject.add(RecipeUtilities.INPUT_OBJECT_KEY, inputObject);
-		jsonObject.addProperty(RecipeUtilities.CURRENT_PER_TICK_KEY, this.m_currentPerTick);
-		jsonObject.addProperty(RecipeUtilities.TIME_IN_TICKS_KEY, this.m_timeInTicks);
+		inputObject.add(IngredientUtilities.INGREDIENT_KEY, IngredientUtilities.writeIngredient(this.m_input));
+		jsonObject.add(IngredientUtilities.INPUT_OBJECT_KEY, inputObject);
+		jsonObject.addProperty(IngredientUtilities.CURRENT_PER_TICK_KEY, this.m_currentPerTick);
+		jsonObject.addProperty(IngredientUtilities.TIME_IN_TICKS_KEY, this.m_timeInTicks);
 	} // end serializeRecipeData()
 
 	@Override

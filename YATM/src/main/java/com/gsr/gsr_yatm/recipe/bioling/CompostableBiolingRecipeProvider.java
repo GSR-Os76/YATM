@@ -4,6 +4,8 @@ import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.recipe.dynamic.IDynamicRecipeProvider;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
@@ -27,12 +29,12 @@ public class CompostableBiolingRecipeProvider implements IDynamicRecipeProvider<
 	public CompostableBiolingRecipeProvider() 
 	{
 		RecipeUtilities.addPersistentRecipeLoadListener(() -> CompostableBiolingRecipeProvider.this.m_cache = new HashMap<>());
-	}
+	} // end constructor
 	
 	
 	
 	@Override
-	public Enumeration<BiolingRecipe> getEnumerator(Level level)
+	public @NotNull Enumeration<BiolingRecipe> getEnumerator(@NotNull Level level)
 	{
 		return new Enumeration<BiolingRecipe>() 
 		{
@@ -69,7 +71,7 @@ public class CompostableBiolingRecipeProvider implements IDynamicRecipeProvider<
 	} // end getEnumerator
 	
 	@Override
-	public RecipeType<BiolingRecipe> recipeType()
+	public @NotNull RecipeType<BiolingRecipe> recipeType()
 	{
 		return YATMRecipeTypes.BIOLING.get();
 	} // end recipeType()

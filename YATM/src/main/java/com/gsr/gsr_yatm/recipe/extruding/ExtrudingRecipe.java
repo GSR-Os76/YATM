@@ -1,11 +1,15 @@
 package com.gsr.gsr_yatm.recipe.extruding;
 
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
@@ -18,24 +22,24 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.IItemHandler;
 
-public class ExtrusionRecipe implements ITimedRecipe<Container>
+public class ExtrudingRecipe implements ITimedRecipe<Container>
 {
-	private final ResourceLocation m_identifier;
-	private final ItemStack m_result;
+	private final @NotNull ResourceLocation m_identifier;
+	private final @NotNull ItemStack m_result;
 
-	private final Ingredient m_input;
-	private final Ingredient m_die;
+	private final @NotNull IIngredient<ItemStack> m_input;
+	private final @NotNull IIngredient<ItemStack> m_die;
 
-	ItemStack m_inputRemainder = ItemStack.EMPTY;
-	ItemStack m_dieRemainder = null;
+	@NotNull ItemStack m_inputRemainder = ItemStack.EMPTY;
+	@Nullable ItemStack m_dieRemainder = null;
 	int m_currentPerTick = 8;
 	int m_timeInTicks = 20;
 	
-	String m_group = "";
+	@NotNull String m_group = "";
 
 
 
-	public ExtrusionRecipe(ResourceLocation identifier, Ingredient input, Ingredient die, ItemStack result)// ItemStack input, ItemStack die,
+	public ExtrudingRecipe(@NotNull ResourceLocation identifier, @NotNull IIngredient<ItemStack> input, @NotNull IIngredient<ItemStack> die, @NotNull ItemStack result)
 	{
 		this.m_identifier = identifier;
 		this.m_input = input;
@@ -58,21 +62,21 @@ public class ExtrusionRecipe implements ITimedRecipe<Container>
 
 	
 	
-	public boolean canBeUsedOn(IItemHandler inventory)
+	public boolean canBeUsedOn(@NotNull IItemHandler inventory)
 	{
-		return RecipeUtilities.testIngredientAgainst(inventory.getStackInSlot(ExtruderBlockEntity.INPUT_SLOT), this.m_input) && 
-				RecipeUtilities.testIngredientAgainst(inventory.getStackInSlot(ExtruderBlockEntity.DIE_SLOT), this.m_die) && 
-				inventory.insertItem(ExtruderBlockEntity.RESULT_SLOT, this.m_result.copy(), true).isEmpty() && 
-				inventory.insertItem(ExtruderBlockEntity.INPUT_REMAINDER_SLOT, this.m_inputRemainder.copy(), true).isEmpty();
+		return  this.m_input.test(inventory.getStackInSlot(ExtruderBlockEntity.INPUT_SLOT)) 
+				&& this.m_input.test(inventory.getStackInSlot(ExtruderBlockEntity.DIE_SLOT)) 
+				&& inventory.insertItem(ExtruderBlockEntity.RESULT_SLOT, this.m_result.copy(), true).isEmpty() 
+				&& inventory.insertItem(ExtruderBlockEntity.INPUT_REMAINDER_SLOT, this.m_inputRemainder.copy(), true).isEmpty();
 	} // end canBeUsedOn()
 
-	public void startRecipe(IItemHandler inventory)
+	public void startRecipe(@NotNull IItemHandler inventory)
 	{
 		inventory.extractItem(ExtruderBlockEntity.INPUT_SLOT, 
-				RecipeUtilities.getReqiuredCountFor(inventory.getStackInSlot(ExtruderBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
+				IngredientUtilities.getReqiuredCountFor(inventory.getStackInSlot(ExtruderBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
 	} // end startRecipe()
 
-	public void setResults(IItemHandler inventory)
+	public void setResults(@NotNull IItemHandler inventory)
 	{
 		if (this.m_dieRemainder != null)
 		{
@@ -89,8 +93,8 @@ public class ExtrusionRecipe implements ITimedRecipe<Container>
 	@Override
 	public boolean matches(Container container, Level level)
 	{
-		return RecipeUtilities.testIngredientAgainst(container.getItem(ExtruderBlockEntity.INPUT_SLOT), this.m_input) && 
-				RecipeUtilities.testIngredientAgainst(container.getItem(ExtruderBlockEntity.DIE_SLOT), this.m_die);
+		return this.m_input.test(container.getItem(ExtruderBlockEntity.INPUT_SLOT))
+				&& this.m_die.test(container.getItem(ExtruderBlockEntity.DIE_SLOT));
 	} // end matches()
 
 	@Override
@@ -120,13 +124,13 @@ public class ExtrusionRecipe implements ITimedRecipe<Container>
 	} // end getId()
 
 	@Override
-	public RecipeSerializer<ExtrusionRecipe> getSerializer()
+	public RecipeSerializer<ExtrudingRecipe> getSerializer()
 	{
 		return YATMRecipeSerializers.EXTRUSION.get();
 	} // end getSerializer()
 
 	@Override
-	public RecipeType<ExtrusionRecipe> getType()
+	public RecipeType<ExtrudingRecipe> getType()
 	{
 		return YATMRecipeTypes.EXTRUSION.get();
 	} // end getType()
@@ -148,7 +152,7 @@ public class ExtrusionRecipe implements ITimedRecipe<Container>
 	@Override
 	public NonNullList<Ingredient> getIngredients()
 	{
-		return NonNullList.of(null, this.m_input, this.m_die);
+		return NonNullList.of(Ingredient.EMPTY, IngredientUtilities.toMinecraftIngredient(this.m_input), IngredientUtilities.toMinecraftIngredient(this.m_die));
 	} // end getIngredients()
 
 	@Override

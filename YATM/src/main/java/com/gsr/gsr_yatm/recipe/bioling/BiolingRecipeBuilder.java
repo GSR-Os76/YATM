@@ -1,6 +1,12 @@
 package com.gsr.gsr_yatm.recipe.bioling;
 
+import java.util.Objects;
 import java.util.function.Consumer;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.CriterionTriggerInstance;
@@ -8,47 +14,47 @@ import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
 
 public class BiolingRecipeBuilder implements RecipeBuilder
 {
-	private ResourceLocation m_identifier;
-	private FluidStack m_result;
-	private Ingredient m_input;
+	private @Nullable ResourceLocation m_identifier;
+	private @Nullable FluidStack m_result;
+	private @Nullable IIngredient<ItemStack> m_input;
 	private int m_currentPerTick = 8;
 	private int m_timeInTicks = 20;
 
-	private String m_group = "";
-	private Advancement.Builder m_advancement = Advancement.Builder.advancement();
+	private @NotNull String m_group = "";
+	private final @NotNull Advancement.Builder m_advancement = Advancement.Builder.advancement();
 
 
-	public BiolingRecipeBuilder identifier(ResourceLocation identifier)
+	public @NotNull BiolingRecipeBuilder identifier(@Nullable ResourceLocation identifier)
 	{
 		this.m_identifier = identifier;
 		return this;
 	} // end identifier()
 
-	public BiolingRecipeBuilder input(Ingredient input)
+	public @NotNull BiolingRecipeBuilder input(@Nullable IIngredient<ItemStack> input)
 	{
 		this.m_input = input;
 		return this;
 	} // end input()
 
-	public BiolingRecipeBuilder result(FluidStack result)
+	public @NotNull BiolingRecipeBuilder result(@Nullable FluidStack result)
 	{
-		this.m_result = result;
+		this.m_result = result == null ? null : result.copy();
 		return this;
 	} // end result()
 
-	public BiolingRecipeBuilder currentPerTick(int currentPerTick)
+	public @NotNull BiolingRecipeBuilder currentPerTick(int currentPerTick)
 	{
 		this.m_currentPerTick = currentPerTick;
 		return this;
 	} // end currentPerTick()
 
-	public BiolingRecipeBuilder timeInTicks(int timeInTicks)
+	public @NotNull BiolingRecipeBuilder timeInTicks(int timeInTicks)
 	{
 		this.m_timeInTicks = timeInTicks;
 		return this;
@@ -56,7 +62,7 @@ public class BiolingRecipeBuilder implements RecipeBuilder
 
 
 
-	public BiolingRecipe build()
+	public @NotNull BiolingRecipe build()
 	{
 		BiolingRecipe r = new BiolingRecipe(this.m_identifier, this.m_input, this.m_result);
 		r.m_currentPerTick = this.m_currentPerTick;
@@ -77,7 +83,8 @@ public class BiolingRecipeBuilder implements RecipeBuilder
 	@Override
 	public RecipeBuilder group(String group)
 	{
-		this.m_group = group == null ? "" : group;
+		Objects.requireNonNull(group);
+		this.m_group = group;// == null ? "" : group;
 		return this;
 	} // end group()
 

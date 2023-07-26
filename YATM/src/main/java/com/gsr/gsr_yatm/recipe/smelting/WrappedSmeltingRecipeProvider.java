@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.recipe.dynamic.IDynamicRecipeProvider;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
@@ -27,7 +29,7 @@ public class WrappedSmeltingRecipeProvider implements IDynamicRecipeProvider<Wra
 	
 	
 	@Override
-	public Enumeration<WrappedSmeltingRecipe> getEnumerator(Level level)
+	public @NotNull Enumeration<WrappedSmeltingRecipe> getEnumerator(@NotNull Level level)
 	{
 		return new Enumeration<>() 
 		{
@@ -54,7 +56,7 @@ public class WrappedSmeltingRecipeProvider implements IDynamicRecipeProvider<Wra
 	} // end getEnumerator()
 
 	@Override
-	public RecipeType<WrappedSmeltingRecipe> recipeType()
+	public @NotNull RecipeType<WrappedSmeltingRecipe> recipeType()
 	{
 		return YATMRecipeTypes.SMELTING_PLUS.get();
 	} // end recipeType()

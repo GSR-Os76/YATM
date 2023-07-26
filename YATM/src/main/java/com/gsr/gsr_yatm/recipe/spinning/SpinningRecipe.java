@@ -1,9 +1,14 @@
 package com.gsr.gsr_yatm.recipe.spinning;
 
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
+
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
@@ -19,15 +24,19 @@ import net.minecraft.world.level.Level;
 
 public class SpinningRecipe implements Recipe<Container>
 {
-	private final ResourceLocation m_identifier;
-	private final ItemStack m_result;
-	private final Ingredient m_input;
-	String m_group = "";
+	private final @NotNull ResourceLocation m_identifier;
+	private final @NotNull ItemStack m_result;
+	private final @NotNull IIngredient<ItemStack> m_input;
+	@NotNull String m_group = "";
 
 
 
-	public SpinningRecipe(ResourceLocation identifier, Ingredient input, ItemStack result)
+	public SpinningRecipe(@NotNull ResourceLocation identifier, @NotNull IIngredient<ItemStack> input, @NotNull ItemStack result)
 	{
+		Objects.requireNonNull(identifier);
+		Objects.requireNonNull(input);
+		Objects.requireNonNull(result);
+
 		this.m_identifier = identifier;
 		this.m_input = input;
 		this.m_result = result.copy();
@@ -36,14 +45,14 @@ public class SpinningRecipe implements Recipe<Container>
 
 
 	
-	public int getInputCount(Item item) 
+	public int getInputCount(@NotNull Item item) 
 	{
-		return RecipeUtilities.getReqiuredCountFor(item, this.m_input);
+		return IngredientUtilities.getReqiuredCountFor(item, this.m_input);
 	} // end getInputCount()
 	
-	public boolean canBeUsedOn(ItemStack input)
+	public boolean canBeUsedOn(@NotNull ItemStack input)
 	{
-		return RecipeUtilities.testIngredientAgainst(input, this.m_input);
+		return this.m_input.test(input);
 	} // end canBeUsedOn()
 	
 
@@ -51,7 +60,7 @@ public class SpinningRecipe implements Recipe<Container>
 	@Override
 	public boolean matches(Container container, Level level)
 	{
-		return RecipeUtilities.testIngredientAgainst(container.getItem(0), this.m_input);				
+		return this.m_input.test(container.getItem(0));				
 	} // end matches()
 
 	@Override
@@ -107,7 +116,7 @@ public class SpinningRecipe implements Recipe<Container>
 	@Override
 	public NonNullList<Ingredient> getIngredients()
 	{
-		return NonNullList.of(null, this.m_input);
+		return NonNullList.of(Ingredient.EMPTY, IngredientUtilities.toMinecraftIngredient(this.m_input));
 	} // end getIngredients()
 
 	@Override

@@ -3,7 +3,7 @@ package com.gsr.gsr_yatm.block.device.crystallizer;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
-import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizationRecipe;
+import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.ConfigurableTankWrapper;
@@ -20,7 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
-public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<CrystallizationRecipe, Container>
+public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<CrystallizingRecipe, Container>
 {
 	public static final int INVENTORY_SLOT_COUNT = 5;
 	public static final int DATA_SLOT_COUNT = 10;
@@ -253,19 +253,19 @@ public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<Crystalli
 	
 	
 	@Override
-	protected void setRecipeResults(CrystallizationRecipe from)
+	protected void setRecipeResults(CrystallizingRecipe from)
 	{
 		from.setResults(this.m_uncheckedInventory);
 	} // end setRecipeResults()
 
 	@Override
-	protected boolean canUseRecipe(CrystallizationRecipe from)
+	protected boolean canUseRecipe(CrystallizingRecipe from)
 	{
 		return from.canBeUsedOn(this.m_uncheckedInventory, this.m_inputTank);
 	} // end canUseRecipe()
 
 	@Override
-	protected void startRecipe(CrystallizationRecipe from)
+	protected void startRecipe(CrystallizingRecipe from)
 	{
 		from.startRecipe(this.m_uncheckedInventory, this.m_inputTank);
 	} // end startRecipe()

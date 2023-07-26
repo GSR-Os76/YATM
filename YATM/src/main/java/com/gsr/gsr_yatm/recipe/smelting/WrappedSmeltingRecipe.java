@@ -1,5 +1,7 @@
 package com.gsr.gsr_yatm.recipe.smelting;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.block.device.current_furnace.FurnacePlusBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.registry.YATMItems;
@@ -14,10 +16,8 @@ import net.minecraftforge.items.IItemHandler;
 
 public class WrappedSmeltingRecipe extends SmeltingRecipe implements ITimedRecipe<Container>
 {
-
 	
-	
-	public WrappedSmeltingRecipe(SmeltingRecipe r)
+	public WrappedSmeltingRecipe(@NotNull SmeltingRecipe r)
 	{
 		super(r.getId(), r.getGroup(), r.category(), r.getIngredients().get(0), r.getResultItem(null), r.getExperience(), r.getCookingTime());
 	} // end constructor
@@ -37,18 +37,18 @@ public class WrappedSmeltingRecipe extends SmeltingRecipe implements ITimedRecip
 	
 	
 	
-	public boolean canBeUsedOn(IItemHandler inventory)
+	public boolean canBeUsedOn(@NotNull IItemHandler inventory)
 	{
 		return this.ingredient.test(inventory.getStackInSlot(FurnacePlusBlockEntity.INPUT_SLOT)) && 
 				inventory.insertItem(FurnacePlusBlockEntity.RESULT_SLOT, this.result, true).isEmpty();
 	} // end canBeUsedOn()
 	
-	public void startRecipe(IItemHandler inventory)
+	public void startRecipe(@NotNull IItemHandler inventory)
 	{
 		inventory.extractItem(FurnacePlusBlockEntity.INPUT_SLOT, 1, false);
 	} // end startRecipe()
 	
-	public void setResults(IItemHandler inventory)
+	public void setResults(@NotNull IItemHandler inventory)
 	{
 		inventory.insertItem(FurnacePlusBlockEntity.RESULT_SLOT, this.result.copy(), false);
 	} // end setResults()

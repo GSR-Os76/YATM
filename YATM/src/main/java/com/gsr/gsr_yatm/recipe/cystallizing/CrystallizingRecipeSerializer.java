@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.recipe.grinding;
+package com.gsr.gsr_yatm.recipe.cystallizing;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -10,17 +10,23 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.crafting.CraftingHelper;
 
-public class GrindingRecipeSerializer implements RecipeSerializer<GrindingRecipe>
-{	
-	
+public class CrystallizingRecipeSerializer implements RecipeSerializer<CrystallizingRecipe>
+{
 	@Override
-	public GrindingRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject)
+	public CrystallizingRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject)
 	{
-		GrindingRecipeBuilder builder = new GrindingRecipeBuilder();
+		CrystallizingRecipeBuilder builder = new CrystallizingRecipeBuilder();
 		
 		builder.identifier(resourceLocation);
 		builder.result(CraftingHelper.getItemStack(jsonObject.getAsJsonObject(IngredientUtilities.RESULT_OBJECT_KEY), true));
 		builder.input(IngredientUtilities.readIngredient(jsonObject.getAsJsonObject(IngredientUtilities.INPUT_OBJECT_KEY).getAsJsonObject(IngredientUtilities.INGREDIENT_KEY)).cast());
+		
+		JsonObject seedObj = jsonObject.getAsJsonObject(IngredientUtilities.SEED_KEY);
+		builder.seed(IngredientUtilities.readIngredient(seedObj.getAsJsonObject(IngredientUtilities.INGREDIENT_KEY)).cast());
+		if(seedObj.has(IngredientUtilities.CONSUME_SEED_KEY)) 
+		{
+			builder.consumeSeed(seedObj.get(IngredientUtilities.CONSUME_SEED_KEY).getAsBoolean());
+		}
 		
 		if(jsonObject.has(IngredientUtilities.CURRENT_PER_TICK_KEY)) 
 		{
@@ -34,21 +40,20 @@ public class GrindingRecipeSerializer implements RecipeSerializer<GrindingRecipe
 		{
 			builder.group(jsonObject.get(IngredientUtilities.GROUP_KEY).getAsString());
 		}
-		
-		return builder.build();		
+		return builder.build();
 	} // end fromJson()
 
 	@Override
-	public @Nullable GrindingRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf)
+	public @Nullable CrystallizingRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf)
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void toNetwork(FriendlyByteBuf friendlyByteBuf, GrindingRecipe recipe)
+	public void toNetwork(FriendlyByteBuf friendlyByteBuf, CrystallizingRecipe recipe)
 	{
-		// TODO Auto-generated method stub
+		// TODO Auto-generated method stub	
 	}
-	
+
 } // end class

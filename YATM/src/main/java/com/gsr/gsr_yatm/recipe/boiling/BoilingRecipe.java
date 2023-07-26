@@ -1,9 +1,15 @@
 package com.gsr.gsr_yatm.recipe.boiling;
 
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
 
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
@@ -12,26 +18,31 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 
 public class BoilingRecipe implements ITimedRecipe<Container>
 {
-	private ResourceLocation m_identifier;
-	private FluidStack m_result;
-	private FluidStack m_input;
+	private final @NotNull ResourceLocation m_identifier;
+	private final @NotNull FluidStack m_result;
+	private final @NotNull IIngredient<FluidStack> m_input;
 	int m_temperature = 373;
 	int m_timeInTicks = 20;
 
-	String m_group = "";
+	@NotNull String m_group = "";
 	
 	
-	public BoilingRecipe(ResourceLocation identifier, FluidStack input, FluidStack result) 
+	public BoilingRecipe(@NotNull ResourceLocation identifier, @NotNull IIngredient<FluidStack> input, @NotNull FluidStack result) 
 	{
+		Objects.requireNonNull(identifier);
+		Objects.requireNonNull(input);
+		Objects.requireNonNull(result);
+		
 		this.m_identifier = identifier;
 		this.m_input = input;
-		this.m_result = result;
+		this.m_result = result.copy();
 	} // end constructor
 	
 	
@@ -50,22 +61,25 @@ public class BoilingRecipe implements ITimedRecipe<Container>
 	
 	
 	
-	public boolean canBeUsedOn(IFluidHandler inputTank, IFluidHandler resultTank, int temperature)
+	public boolean canBeUsedOn(@NotNull IFluidHandler inputTank, @NotNull IFluidHandler resultTank, int temperature)
 	{
-		// fix, input should be if it has m_input not can accept m_input
-		FluidStack inputDrainSimulated = inputTank.drain(this.m_input, FluidAction.SIMULATE);
-		return inputDrainSimulated.getFluid() == this.m_input.getFluid() && 
-				inputDrainSimulated.getAmount() == this.m_input.getAmount() &&
-				resultTank.fill(this.m_result, FluidAction.SIMULATE) == this.m_result.getAmount() &&
-				temperature >= this.m_temperature;
+		Fluid f = inputTank.getFluidInTank(0).getFluid();
+		int am = IngredientUtilities.getRequiredAmountFor(f, this.m_input);
+		FluidStack inputDrainSimulated = inputTank.drain(new FluidStack(f, am), FluidAction.EXECUTE);
+		
+		return am != -1 
+				&& inputDrainSimulated.getAmount() == am 
+				&& resultTank.fill(this.m_result, FluidAction.SIMULATE) == this.m_result.getAmount() 
+				&& temperature >= this.m_temperature;
 	} // end canBeUsedOn()
 	
-	public void startRecipe(IFluidHandler inputTank)
+	public void startRecipe(@NotNull IFluidHandler inputTank)
 	{
-		inputTank.drain(this.m_input, FluidAction.EXECUTE);
+		Fluid f = inputTank.getFluidInTank(0).getFluid();
+		inputTank.drain(new FluidStack(f, IngredientUtilities.getRequiredAmountFor(f, this.m_input)), FluidAction.EXECUTE);
 	} // end startRecipe()
 	
-	public void setResults(IFluidHandler resultTank)
+	public void setResults(@NotNull IFluidHandler resultTank)
 	{
 		resultTank.fill(this.m_result.copy(), FluidAction.EXECUTE);
 	} // end setResults()

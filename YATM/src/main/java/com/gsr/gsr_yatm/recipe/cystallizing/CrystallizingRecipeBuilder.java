@@ -1,6 +1,12 @@
 package com.gsr.gsr_yatm.recipe.cystallizing;
 
+import java.util.Objects;
 import java.util.function.Consumer;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.CriterionTriggerInstance;
@@ -9,60 +15,59 @@ import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
 
-public class CrystallizationRecipeBuilder implements RecipeBuilder
+public class CrystallizingRecipeBuilder implements RecipeBuilder
 {
-	private ResourceLocation m_identifier;
-	private ItemStack m_result;
-	private Ingredient m_seed;	
-	private FluidStack m_input;
-	boolean m_consumeSeed = false;
+	private @Nullable ResourceLocation m_identifier;
+	private @Nullable ItemStack m_result;
+	private @Nullable IIngredient<ItemStack> m_seed;	
+	private @Nullable IIngredient<FluidStack> m_input;
+	private boolean m_consumeSeed = false;
 	private int m_currentPerTick = 8;
 	private int m_timeInTicks = 20;
-	private String m_group = "";
-	private Advancement.Builder m_advancement = Advancement.Builder.advancement();
+	private @NotNull String m_group = "";
+	private final @NotNull Advancement.Builder m_advancement = Advancement.Builder.advancement();
 
 
 	
-	public CrystallizationRecipeBuilder identifier(ResourceLocation identifier)
+	public @NotNull CrystallizingRecipeBuilder identifier(@Nullable ResourceLocation identifier)
 	{
 		this.m_identifier = identifier;
 		return this;
 	} // end identifier()
 
-	public CrystallizationRecipeBuilder input(FluidStack input)
+	public @NotNull CrystallizingRecipeBuilder input(@Nullable IIngredient<FluidStack> input)
 	{
 		this.m_input = input;
 		return this;
 	} // end input()
 	
-	public CrystallizationRecipeBuilder seed(Ingredient seed)
+	public @NotNull CrystallizingRecipeBuilder seed(@Nullable IIngredient<ItemStack> seed)
 	{
 		this.m_seed = seed;
 		return this;
 	} // end seed()
 
-	public CrystallizationRecipeBuilder result(ItemStack result)
+	public @NotNull CrystallizingRecipeBuilder result(@Nullable ItemStack result)
 	{
-		this.m_result = result;
+		this.m_result = result == null ? null : result.copy();
 		return this;
 	} // end result()
 
-	public CrystallizationRecipeBuilder consumeSeed(boolean consumeSeed) 
+	public @NotNull CrystallizingRecipeBuilder consumeSeed(boolean consumeSeed) 
 	{
 		this.m_consumeSeed = consumeSeed;
 		return this;
 	} // end consumeSeed()
 	
-	public CrystallizationRecipeBuilder currentPerTick(int currentPerTick)
+	public @NotNull CrystallizingRecipeBuilder currentPerTick(int currentPerTick)
 	{
 		this.m_currentPerTick = currentPerTick;
 		return this;
 	} // end currentPerTick()
 	
-	public CrystallizationRecipeBuilder timeInTicks(int timeInTicks)
+	public @NotNull CrystallizingRecipeBuilder timeInTicks(int timeInTicks)
 	{
 		this.m_timeInTicks = timeInTicks;
 		return this;
@@ -70,9 +75,9 @@ public class CrystallizationRecipeBuilder implements RecipeBuilder
 
 
 
-	public CrystallizationRecipe build()
+	public @NotNull CrystallizingRecipe build()
 	{
-		CrystallizationRecipe r = new CrystallizationRecipe(this.m_identifier, this.m_input, this.m_seed, this.m_result);
+		CrystallizingRecipe r = new CrystallizingRecipe(this.m_identifier, this.m_input, this.m_seed, this.m_result);
 		r.m_consumeSeed = this.m_consumeSeed;
 		r.m_currentPerTick = this.m_currentPerTick;
 		r.m_timeInTicks = this.m_timeInTicks;
@@ -92,7 +97,8 @@ public class CrystallizationRecipeBuilder implements RecipeBuilder
 	@Override
 	public RecipeBuilder group(String group)
 	{
-		this.m_group = group == null ? "" : group;
+		Objects.requireNonNull(group);
+		this.m_group = group;// == null ? "" : group;
 		return this;
 	} // end group()
 
@@ -106,12 +112,12 @@ public class CrystallizationRecipeBuilder implements RecipeBuilder
 	public void save(Consumer<FinishedRecipe> writer, ResourceLocation fileName)
 	{
 		this.validate(fileName);
-		writer.accept(new CrystallizationFinishedRecipe(fileName, this.m_result, this.m_input, this.m_seed, this.m_consumeSeed, this.m_currentPerTick, this.m_timeInTicks, this.m_group, fileName.withPrefix("recipes/"), this.m_advancement));
+		writer.accept(new CrystallizingFinishedRecipe(fileName, this.m_result, this.m_input, this.m_seed, this.m_consumeSeed, this.m_currentPerTick, this.m_timeInTicks, this.m_group, fileName.withPrefix("recipes/"), this.m_advancement));
 	} // end save()
 	
 	
 	
-	private void validate(ResourceLocation wouldBeFileName)
+	private void validate(@NotNull ResourceLocation wouldBeFileName)
 	{
 		if (this.m_advancement.getCriteria().isEmpty())
 		{

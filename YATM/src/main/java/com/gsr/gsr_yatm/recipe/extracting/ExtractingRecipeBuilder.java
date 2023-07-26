@@ -1,6 +1,12 @@
 package com.gsr.gsr_yatm.recipe.extracting;
 
+import java.util.Objects;
 import java.util.function.Consumer;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.CriterionTriggerInstance;
@@ -10,53 +16,54 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraftforge.fluids.FluidStack;
 
-public class ExtractionRecipeBuilder implements RecipeBuilder
+public class ExtractingRecipeBuilder implements RecipeBuilder
 {
-	private ResourceLocation m_identifier;
-	private FluidStack m_result;
-	private Ingredient m_input;
-	private ItemStack m_inputRemainder = ItemStack.EMPTY;
+	// TODO, TODONE, maybe these should more all be nullable, considering they can validly be null sometimes, just shouldn't be when
+	private @Nullable ResourceLocation m_identifier;
+	private @Nullable FluidStack m_result;
+	private @Nullable IIngredient<ItemStack> m_input;
+	private @NotNull ItemStack m_inputRemainder = ItemStack.EMPTY;
 	private int m_currentPerTick = 8;
 	private int m_timeInTicks = 20;
 
-	private String m_group = "";
-	private Advancement.Builder m_advancement = Advancement.Builder.advancement();
+	private @NotNull String m_group = "";
+	private final @NotNull Advancement.Builder m_advancement = Advancement.Builder.advancement();
 
 
-	public ExtractionRecipeBuilder identifier(ResourceLocation identifier)
+	public @NotNull ExtractingRecipeBuilder identifier(@Nullable ResourceLocation identifier)
 	{
 		this.m_identifier = identifier;
 		return this;
 	} // end identifier()
 
-	public ExtractionRecipeBuilder input(Ingredient input)
+	public @NotNull ExtractingRecipeBuilder input(@Nullable IIngredient<ItemStack> input)
 	{
 		this.m_input = input;
 		return this;
 	} // end input()
 
-	public ExtractionRecipeBuilder result(FluidStack result)
+	public @NotNull ExtractingRecipeBuilder result(@Nullable FluidStack result)
 	{
-		this.m_result = result;
+		this.m_result = result.copy();
 		return this;
 	} // end result()
 
-	public ExtractionRecipeBuilder inputRemainder(ItemStack inputRemainder)
+	public @NotNull ExtractingRecipeBuilder inputRemainder(@NotNull ItemStack inputRemainder)
 	{
-		this.m_inputRemainder = inputRemainder;
+		Objects.requireNonNull(inputRemainder);
+		this.m_inputRemainder = inputRemainder.copy();
 		return this;
 	} // end inputRemainder()
 
-	public ExtractionRecipeBuilder currentPerTick(int currentPerTick)
+	public @NotNull ExtractingRecipeBuilder currentPerTick(int currentPerTick)
 	{
 		this.m_currentPerTick = currentPerTick;
 		return this;
 	} // end currentPerTick()
 
-	public ExtractionRecipeBuilder timeInTicks(int timeInTicks)
+	public @NotNull ExtractingRecipeBuilder timeInTicks(int timeInTicks)
 	{
 		this.m_timeInTicks = timeInTicks;
 		return this;
@@ -64,9 +71,9 @@ public class ExtractionRecipeBuilder implements RecipeBuilder
 
 
 
-	public ExtractionRecipe build()
+	public @NotNull ExtractingRecipe build()
 	{
-		ExtractionRecipe r = new ExtractionRecipe(this.m_identifier, this.m_input, this.m_result);
+		ExtractingRecipe r = new ExtractingRecipe(this.m_identifier, this.m_input, this.m_result);
 		r.m_inputRemainder = this.m_inputRemainder;
 		r.m_currentPerTick = this.m_currentPerTick;
 		r.m_timeInTicks = this.m_timeInTicks;
@@ -86,7 +93,8 @@ public class ExtractionRecipeBuilder implements RecipeBuilder
 	@Override
 	public RecipeBuilder group(String group)
 	{
-		this.m_group = group == null ? "" : group;
+		Objects.requireNonNull(group);
+		this.m_group = group;// == null ? "" : group;
 		return this;
 	} // end group()
 
@@ -100,12 +108,12 @@ public class ExtractionRecipeBuilder implements RecipeBuilder
 	public void save(Consumer<FinishedRecipe> writer, ResourceLocation fileName)
 	{
 		this.validate(fileName);
-		writer.accept(new ExtractionFinishedRecipe(fileName, this.m_result, this.m_input, this.m_inputRemainder, this.m_currentPerTick, this.m_timeInTicks, this.m_group, fileName.withPrefix("recipes/"), this.m_advancement));
+		writer.accept(new ExtractingFinishedRecipe(fileName, this.m_result, this.m_input, this.m_inputRemainder, this.m_currentPerTick, this.m_timeInTicks, this.m_group, fileName.withPrefix("recipes/"), this.m_advancement));
 	} // end save()
 	
 	
 	
-	private void validate(ResourceLocation wouldBeFileName)
+	private void validate(@NotNull ResourceLocation wouldBeFileName)
 	{
 		if (this.m_advancement.getCriteria().isEmpty())
 		{

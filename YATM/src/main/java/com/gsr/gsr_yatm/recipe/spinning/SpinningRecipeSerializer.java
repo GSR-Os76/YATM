@@ -3,11 +3,9 @@ package com.gsr.gsr_yatm.recipe.spinning;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonObject;
-import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
-
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.common.crafting.CraftingHelper;
 
@@ -20,12 +18,12 @@ public class SpinningRecipeSerializer implements RecipeSerializer<SpinningRecipe
 		SpinningRecipeBuilder builder = new SpinningRecipeBuilder();
 		
 		builder.identifier(resourceLocation);
-		builder.result(CraftingHelper.getItemStack(jsonObject.getAsJsonObject(RecipeUtilities.RESULT_OBJECT_KEY), false));
-		builder.input(Ingredient.fromJson(jsonObject.getAsJsonObject(RecipeUtilities.INPUT_OBJECT_KEY).get(RecipeUtilities.INGREDIENT_KEY)));
+		builder.result(CraftingHelper.getItemStack(jsonObject.getAsJsonObject(IngredientUtilities.RESULT_OBJECT_KEY), true));
+		builder.input(IngredientUtilities.readIngredient(jsonObject.getAsJsonObject(IngredientUtilities.INPUT_OBJECT_KEY).getAsJsonObject(IngredientUtilities.INGREDIENT_KEY)).cast());
 		
-		if(jsonObject.has(RecipeUtilities.GROUP_KEY)) 
+		if(jsonObject.has(IngredientUtilities.GROUP_KEY)) 
 		{
-			builder.group(jsonObject.get(RecipeUtilities.GROUP_KEY).getAsString());
+			builder.group(jsonObject.get(IngredientUtilities.GROUP_KEY).getAsString());
 		}
 		
 		return builder.build();		

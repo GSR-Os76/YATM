@@ -1,31 +1,41 @@
 package com.gsr.gsr_yatm.recipe.spinning;
 
-import com.google.gson.JsonObject;
-import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
-import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
+import java.util.Objects;
 
+import org.jetbrains.annotations.NotNull;
+
+import com.google.gson.JsonObject;
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
+import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
 public class SpinningFinishedRecipe implements FinishedRecipe
 {
-	private ResourceLocation m_identifier;
-	private ItemStack m_result;
+	private final @NotNull ResourceLocation m_identifier;
+	private final @NotNull ItemStack m_result;
 	
-	private Ingredient m_input;
+	private final @NotNull IIngredient<ItemStack> m_input;
 	
-	private String m_group;
-	private ResourceLocation m_advancementIdentifier;	
-	private Advancement.Builder m_advancement;
+	private final @NotNull String m_group;
+	private final @NotNull ResourceLocation m_advancementIdentifier;	
+	private final @NotNull Advancement.Builder m_advancement;
 	
 	
 	
-	public SpinningFinishedRecipe(ResourceLocation identifier, ItemStack result, Ingredient input, String group, ResourceLocation advancementIdentifier, Advancement.Builder advancement) 
+	public SpinningFinishedRecipe(@NotNull ResourceLocation identifier, @NotNull ItemStack result, @NotNull IIngredient<ItemStack> input, @NotNull String group, @NotNull ResourceLocation advancementIdentifier, @NotNull Advancement.Builder advancement) 
 	{
+		Objects.requireNonNull(identifier);
+		Objects.requireNonNull(result);
+		Objects.requireNonNull(input);
+		Objects.requireNonNull(group);
+		Objects.requireNonNull(advancementIdentifier);
+		Objects.requireNonNull(advancement);
+
 		this.m_identifier = identifier;
 		this.m_result = result;
 		
@@ -43,13 +53,13 @@ public class SpinningFinishedRecipe implements FinishedRecipe
 	{
 		if(!this.m_group.isEmpty()) 
 		{
-			jsonObject.addProperty(RecipeUtilities.GROUP_KEY, this.m_group);
+			jsonObject.addProperty(IngredientUtilities.GROUP_KEY, this.m_group);
 		}
 		
-		jsonObject.add(RecipeUtilities.RESULT_OBJECT_KEY, RecipeUtilities.itemStackToJson(this.m_result));
+		jsonObject.add(IngredientUtilities.RESULT_OBJECT_KEY, IngredientUtilities.nbtItemStackToJson(this.m_result));
 		JsonObject inputObject = new JsonObject();
-		inputObject.add(RecipeUtilities.INGREDIENT_KEY, this.m_input.toJson());
-		jsonObject.add(RecipeUtilities.INPUT_OBJECT_KEY, inputObject);
+		inputObject.add(IngredientUtilities.INGREDIENT_KEY, IngredientUtilities.writeIngredient(this.m_input));
+		jsonObject.add(IngredientUtilities.INPUT_OBJECT_KEY, inputObject);
 	} // end serializeRecipeData()
 
 	@Override

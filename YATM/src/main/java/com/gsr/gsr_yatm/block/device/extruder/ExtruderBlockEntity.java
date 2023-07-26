@@ -5,7 +5,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.api.implementation.CurrentUnitHandler;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
-import com.gsr.gsr_yatm.recipe.extruding.ExtrusionRecipe;
+import com.gsr.gsr_yatm.recipe.extruding.ExtrudingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.ConfigurableInventoryWrapper;
@@ -24,7 +24,7 @@ import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 
-public class ExtruderBlockEntity extends CraftingDeviceBlockEntity<ExtrusionRecipe, Container>
+public class ExtruderBlockEntity extends CraftingDeviceBlockEntity<ExtrudingRecipe, Container>
 {
 	public static final int INVENTORY_SLOT_COUNT = 5;
 	public static final int DATA_SLOT_COUNT = 4;
@@ -163,19 +163,19 @@ public class ExtruderBlockEntity extends CraftingDeviceBlockEntity<ExtrusionReci
 	} // end serverTick()
 
 	@Override
-	protected void setRecipeResults(ExtrusionRecipe from)
+	protected void setRecipeResults(ExtrudingRecipe from)
 	{
 		from.setResults(this.m_uncheckedInventory);
 	} // end setRecipeResult()
 
 	@Override
-	protected boolean canUseRecipe(ExtrusionRecipe from)
+	protected boolean canUseRecipe(ExtrudingRecipe from)
 	{
 		return from.canBeUsedOn(this.m_uncheckedInventory);
 	} // end canUseRecipe()
 
 	@Override
-	protected void startRecipe(ExtrusionRecipe from)
+	protected void startRecipe(ExtrudingRecipe from)
 	{
 		from.startRecipe(this.m_uncheckedInventory);
 	} // end startRecipe()

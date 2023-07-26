@@ -52,11 +52,10 @@ public class IngredientUtilities
 	
 	
 	
-	@SuppressWarnings("unchecked")
-	public static <T> @NotNull IIngredient<T> readIngredient(@NotNull JsonObject object)
+	public static @NotNull IIngredient<?> readIngredient(@NotNull JsonObject object)
 	{
 		IIngredientDeserializer<?> deserializer = YATMRegistries.INGREDIENT_DESERIALIZERS.get().getValue(new ResourceLocation(object.get(TYPE_KEY).getAsString()));
-		return (IIngredient<T>) deserializer.deserialize(object);
+		return deserializer.deserialize(object);
 	} // end readIngredient()
 	
 	public static @NotNull JsonObject writeIngredient(@NotNull IIngredient<?> ingredient)
@@ -68,11 +67,11 @@ public class IngredientUtilities
 
 	
 	
-	public static int getReqiuredCountFor(@NotNull Item forI, @NotNull IIngredient<ItemStack> in)
+	public static int getReqiuredCountFor(@NotNull Item item, @NotNull IIngredient<ItemStack> in)
 	{
 		for(ItemStack i : in.getValues()) 
 		{
-			if(i.getItem() == forI) 
+			if(i.getItem() == item) 
 			{
 				return i.getCount();
 				
@@ -80,6 +79,25 @@ public class IngredientUtilities
 		}
 		return -1;
 	} // end getReqiuredCountFor()
+	
+	public static int getRequiredAmountFor(@NotNull Fluid fluid, @NotNull IIngredient<FluidStack> in)
+	{
+		for(FluidStack f : in.getValues()) 
+		{
+			if(f.getFluid() == fluid) 
+			{
+				return f.getAmount();
+				
+			}
+		}
+		return -1;
+	} // end getRequiredAmountFor()
+	
+	public static @NotNull Ingredient toMinecraftIngredient(@NotNull IIngredient<ItemStack> ingredient)
+	{
+		return Ingredient.of(ingredient.getValues().stream());
+	} // end toMinecraftIngredient()
+	
 	
 	
 	// possibly make internally call getTag and getTagKey respectively for greater reuse and consistency and maintainability
@@ -225,5 +243,7 @@ public class IngredientUtilities
 		}
 		return false;
 	} // end testIngredientAgainst()
+
+
 	
 } // end class

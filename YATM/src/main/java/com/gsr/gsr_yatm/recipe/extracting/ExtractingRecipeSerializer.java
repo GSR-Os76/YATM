@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.recipe.bioling;
+package com.gsr.gsr_yatm.recipe.extracting;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -7,20 +7,25 @@ import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraftforge.common.crafting.CraftingHelper;
 
-public class BiolingRecipeSerializer implements RecipeSerializer<BiolingRecipe>
+public class ExtractingRecipeSerializer implements RecipeSerializer<ExtractingRecipe>
 {
 	@Override
-	public BiolingRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject)
+	public ExtractingRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject)
 	{
-		BiolingRecipeBuilder builder = new BiolingRecipeBuilder();
+		ExtractingRecipeBuilder builder = new ExtractingRecipeBuilder();
 		
 		builder.identifier(resourceLocation);
 		builder.result(IngredientUtilities.nbtFluidStackFromJson(jsonObject.getAsJsonObject(IngredientUtilities.RESULT_OBJECT_KEY)));
 		
 		JsonObject inputObj = jsonObject.getAsJsonObject(IngredientUtilities.INPUT_OBJECT_KEY);
 		builder.input(IngredientUtilities.readIngredient(inputObj.getAsJsonObject(IngredientUtilities.INGREDIENT_KEY)).cast());
-	
+		if(inputObj.has(IngredientUtilities.REMAINDER_STACK_KEY)) 
+		{
+			builder.inputRemainder(CraftingHelper.getItemStack(inputObj.getAsJsonObject(IngredientUtilities.REMAINDER_STACK_KEY), true));
+		}
+		
 		// current
 		if(jsonObject.has(IngredientUtilities.CURRENT_PER_TICK_KEY)) 
 		{
@@ -39,16 +44,17 @@ public class BiolingRecipeSerializer implements RecipeSerializer<BiolingRecipe>
 	} // end fromJson()
 
 	@Override
-	public @Nullable BiolingRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf)
+	public @Nullable ExtractingRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf)
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void toNetwork(FriendlyByteBuf friendlyByteBuf, BiolingRecipe recipe)
+	public void toNetwork(FriendlyByteBuf friendlyByteBuf, ExtractingRecipe recipe)
 	{
-		// TODO Auto-generated method stub	
+		// TODO Auto-generated method stub
+		
 	}
 
 } // end class

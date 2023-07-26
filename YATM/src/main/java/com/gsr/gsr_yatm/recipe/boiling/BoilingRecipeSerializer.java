@@ -3,7 +3,7 @@ package com.gsr.gsr_yatm.recipe.boiling;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonObject;
-import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -17,17 +17,17 @@ public class BoilingRecipeSerializer implements RecipeSerializer<BoilingRecipe>
 		BoilingRecipeBuilder builder = new BoilingRecipeBuilder();
 		
 		builder.identifier(resourceLocation);
-		builder.result(RecipeUtilities.fluidStackFromJson(jsonObject.getAsJsonObject(RecipeUtilities.RESULT_OBJECT_KEY)));
-		builder.input(RecipeUtilities.fluidStackFromJson(jsonObject.getAsJsonObject(RecipeUtilities.INPUT_OBJECT_KEY)));
-		builder.temperature(jsonObject.get(RecipeUtilities.TEMPERATURE_KEY).getAsInt());
+		builder.result(IngredientUtilities.nbtFluidStackFromJson(jsonObject.getAsJsonObject(IngredientUtilities.RESULT_OBJECT_KEY)));
+		builder.input(IngredientUtilities.readIngredient(jsonObject.getAsJsonObject(IngredientUtilities.INPUT_OBJECT_KEY).getAsJsonObject(IngredientUtilities.INGREDIENT_KEY)).cast());
+		builder.temperature(jsonObject.get(IngredientUtilities.TEMPERATURE_KEY).getAsInt());
 		
-		if(jsonObject.has(RecipeUtilities.TIME_IN_TICKS_KEY)) 
+		if(jsonObject.has(IngredientUtilities.TIME_IN_TICKS_KEY)) 
 		{
-			builder.timeInTicks(jsonObject.get(RecipeUtilities.TIME_IN_TICKS_KEY).getAsInt());
+			builder.timeInTicks(jsonObject.get(IngredientUtilities.TIME_IN_TICKS_KEY).getAsInt());
 		}
-		if(jsonObject.has(RecipeUtilities.GROUP_KEY)) 
+		if(jsonObject.has(IngredientUtilities.GROUP_KEY)) 
 		{
-			builder.group(jsonObject.get(RecipeUtilities.GROUP_KEY).getAsString());
+			builder.group(jsonObject.get(IngredientUtilities.GROUP_KEY).getAsString());
 		}
 		
 		return builder.build();

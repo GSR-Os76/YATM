@@ -5,7 +5,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.api.implementation.CurrentUnitHandler;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
-import com.gsr.gsr_yatm.recipe.extracting.ExtractionRecipe;
+import com.gsr.gsr_yatm.recipe.extracting.ExtractingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.ConfigurableTankWrapper;
@@ -26,7 +26,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
-public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractionRecipe, Container>
+public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractingRecipe, Container>
 {
 	public static final int DATA_SLOT_COUNT = 11;
 	public static final int INVENTORY_SLOT_COUNT = 4;
@@ -227,20 +227,20 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractionRe
 	} // end doDrainResultTank()
 	
 	@Override
-	protected void setRecipeResults(ExtractionRecipe from)
+	protected void setRecipeResults(ExtractingRecipe from)
 	{
 		from.setResults(this.m_uncheckedInventory, this.m_resultTank);
 		this.setRemainderFlag(false);
 	} // end setRecipeResults()
 
 	@Override
-	protected boolean canUseRecipe(ExtractionRecipe from)
+	protected boolean canUseRecipe(ExtractingRecipe from)
 	{
 		return from.canBeUsedOn(this.m_uncheckedInventory, this.m_resultTank);
 	} // end canUseRecipe()
 	
 	@Override
-	protected void startRecipe(ExtractionRecipe from)
+	protected void startRecipe(ExtractingRecipe from)
 	{
 		from.startRecipe(this.m_uncheckedInventory);
 		this.setRemainderFlag(from.hasRemainder());

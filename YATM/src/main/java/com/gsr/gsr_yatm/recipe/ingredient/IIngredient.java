@@ -20,4 +20,12 @@ public interface IIngredient<T> extends Predicate<T>
 
 	public @NotNull List<T> getValues();
 	
+	
+	
+	@SuppressWarnings("unchecked")
+	public default <X> IIngredient<X> cast()
+	{
+		return (IIngredient<X>) this;
+	} // end cast
+	
 } // end interface

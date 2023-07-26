@@ -1,43 +1,54 @@
 package com.gsr.gsr_yatm.recipe.cystallizing;
 
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
 
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.items.IItemHandler;
 
-public class CrystallizationRecipe implements ITimedRecipe<Container>
+public class CrystallizingRecipe implements ITimedRecipe<Container>
 {
-	private final ResourceLocation m_identifier;
-	private final ItemStack m_result;
-	private final Ingredient m_seed;	
-	private final FluidStack m_input;
+	private final @NotNull ResourceLocation m_identifier;
+	private final @NotNull ItemStack m_result;
+	private final @NotNull IIngredient<ItemStack> m_seed;	
+	private final @NotNull IIngredient<FluidStack> m_input;
 	boolean m_consumeSeed = false;
 	int m_currentPerTick = 8;
 	int m_timeInTicks = 20;
-	String m_group = "";
+	@NotNull String m_group = "";
 	
 	
 	
-	public CrystallizationRecipe(ResourceLocation identifier, FluidStack input, Ingredient seed, ItemStack result) 
+	public CrystallizingRecipe(@NotNull ResourceLocation identifier, @NotNull IIngredient<FluidStack> input, @NotNull IIngredient<ItemStack> seed, @NotNull ItemStack result) 
 	{
+		Objects.requireNonNull(identifier);
+		Objects.requireNonNull(input);
+		Objects.requireNonNull(seed);
+		Objects.requireNonNull(result);
+
 		this.m_identifier = identifier;
 		this.m_input = input;
 		this.m_seed = seed;
-		this.m_result = result;
+		this.m_result = result.copy();
 	} // end constructor
 	
 	
@@ -56,25 +67,29 @@ public class CrystallizationRecipe implements ITimedRecipe<Container>
 	
 	
 	
-	public boolean canBeUsedOn(IItemHandler inventory, IFluidHandler inputTank)
+	public boolean canBeUsedOn(@NotNull IItemHandler inventory, @NotNull IFluidHandler inputTank)
 	{
-		FluidStack inputDrainSimulated = inputTank.drain(this.m_input, FluidAction.SIMULATE);
-		return inputDrainSimulated.getFluid() == this.m_input.getFluid() && 
-				inputDrainSimulated.getAmount() == this.m_input.getAmount() && 
-				this.m_seed.test(inventory.getStackInSlot(CrystallizerBlockEntity.SEED_SLOT)) && 
-				inventory.insertItem(CrystallizerBlockEntity.RESULT_SLOT, this.m_result, true).isEmpty();
+		Fluid f = inputTank.getFluidInTank(0).getFluid();
+		int am = IngredientUtilities.getRequiredAmountFor(f, this.m_input);
+		FluidStack inputDrainSimulated = inputTank.drain(new FluidStack(f, am), FluidAction.EXECUTE);
+		
+		return am != -1 
+				&& inputDrainSimulated.getAmount() == am 
+				&& this.m_seed.test(inventory.getStackInSlot(CrystallizerBlockEntity.SEED_SLOT)) 
+				&& inventory.insertItem(CrystallizerBlockEntity.RESULT_SLOT, this.m_result, true).isEmpty();
 	} // end canBeUsedOn()
 	
-	public void startRecipe(IItemHandler inventory, IFluidHandler inputTank)
+	public void startRecipe(@NotNull IItemHandler inventory, @NotNull IFluidHandler inputTank)
 	{
-		inputTank.drain(this.m_input, FluidAction.EXECUTE);
+		Fluid f = inputTank.getFluidInTank(0).getFluid();
+		inputTank.drain(new FluidStack(f, IngredientUtilities.getRequiredAmountFor(f, this.m_input)), FluidAction.EXECUTE);
 		if(this.m_consumeSeed) 
 		{
 			inventory.extractItem(CrystallizerBlockEntity.SEED_SLOT, 1, false);
 		}		
 	} // end startRecipe()
 	
-	public void setResults(IItemHandler inventory)
+	public void setResults(@NotNull IItemHandler inventory)
 	{
 		inventory.insertItem(CrystallizerBlockEntity.RESULT_SLOT, this.m_result.copy(), false);
 	} // end setResults()
@@ -113,13 +128,13 @@ public class CrystallizationRecipe implements ITimedRecipe<Container>
 	} // end getId()
 
 	@Override
-	public RecipeSerializer<CrystallizationRecipe> getSerializer()
+	public RecipeSerializer<CrystallizingRecipe> getSerializer()
 	{
 		return YATMRecipeSerializers.CRYSTALLIZATION.get();
 	} // end getSerializer()
 
 	@Override
-	public RecipeType<CrystallizationRecipe> getType()
+	public RecipeType<CrystallizingRecipe> getType()
 	{
 		return YATMRecipeTypes.CRYSTALLIZATION.get();
 	} // end getType()
