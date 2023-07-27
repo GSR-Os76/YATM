@@ -1,0 +1,864 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:prismarine_crystal_moss",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "up": "true",
+            "up_age": "0"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:prismarine_crystal_moss_spores"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:prismarine_crystal_moss",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "up": "true",
+            "up_age": "1"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:prismarine_shard"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:prismarine_crystals"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:prismarine_crystal_moss_spores"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:all_of",
+          "terms": [
+            {
+              "block": "gsr_yatm:prismarine_crystal_moss",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "up": "true",
+                "up_age": "1"
+              }
+            },
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "chance": 0.0017361111,
+                  "condition": "minecraft:random_chance"
+                },
+                {
+                  "condition": "minecraft:all_of",
+                  "terms": [
+                    {
+                      "condition": "minecraft:weather_check",
+                      "raining": true,
+                      "thundering": true
+                    },
+                    {
+                      "chance": 0.010416667,
+                      "condition": "minecraft:random_chance"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:tide_armor_trim_smithing_template"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:prismarine_crystal_moss",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "down": "true",
+            "down_age": "0"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:prismarine_crystal_moss_spores"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:prismarine_crystal_moss",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "down": "true",
+            "down_age": "1"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:prismarine_shard"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:prismarine_crystals"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:prismarine_crystal_moss_spores"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:all_of",
+          "terms": [
+            {
+              "block": "gsr_yatm:prismarine_crystal_moss",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "down": "true",
+                "down_age": "1"
+              }
+            },
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "chance": 0.0017361111,
+                  "condition": "minecraft:random_chance"
+                },
+                {
+                  "condition": "minecraft:all_of",
+                  "terms": [
+                    {
+                      "condition": "minecraft:weather_check",
+                      "raining": true,
+                      "thundering": true
+                    },
+                    {
+                      "chance": 0.010416667,
+                      "condition": "minecraft:random_chance"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:tide_armor_trim_smithing_template"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:prismarine_crystal_moss",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "north": "true",
+            "north_age": "0"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:prismarine_crystal_moss_spores"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:prismarine_crystal_moss",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "north": "true",
+            "north_age": "1"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:prismarine_shard"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:prismarine_crystals"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:prismarine_crystal_moss_spores"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:all_of",
+          "terms": [
+            {
+              "block": "gsr_yatm:prismarine_crystal_moss",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "north": "true",
+                "north_age": "1"
+              }
+            },
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "chance": 0.0017361111,
+                  "condition": "minecraft:random_chance"
+                },
+                {
+                  "condition": "minecraft:all_of",
+                  "terms": [
+                    {
+                      "condition": "minecraft:weather_check",
+                      "raining": true,
+                      "thundering": true
+                    },
+                    {
+                      "chance": 0.010416667,
+                      "condition": "minecraft:random_chance"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:tide_armor_trim_smithing_template"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:prismarine_crystal_moss",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "south": "true",
+            "south_age": "0"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:prismarine_crystal_moss_spores"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:prismarine_crystal_moss",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "south": "true",
+            "south_age": "1"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:prismarine_shard"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:prismarine_crystals"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:prismarine_crystal_moss_spores"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:all_of",
+          "terms": [
+            {
+              "block": "gsr_yatm:prismarine_crystal_moss",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "south": "true",
+                "south_age": "1"
+              }
+            },
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "chance": 0.0017361111,
+                  "condition": "minecraft:random_chance"
+                },
+                {
+                  "condition": "minecraft:all_of",
+                  "terms": [
+                    {
+                      "condition": "minecraft:weather_check",
+                      "raining": true,
+                      "thundering": true
+                    },
+                    {
+                      "chance": 0.010416667,
+                      "condition": "minecraft:random_chance"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:tide_armor_trim_smithing_template"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:prismarine_crystal_moss",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "east": "true",
+            "east_age": "0"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:prismarine_crystal_moss_spores"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:prismarine_crystal_moss",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "east": "true",
+            "east_age": "1"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:prismarine_shard"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:prismarine_crystals"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:prismarine_crystal_moss_spores"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:all_of",
+          "terms": [
+            {
+              "block": "gsr_yatm:prismarine_crystal_moss",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "east": "true",
+                "east_age": "1"
+              }
+            },
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "chance": 0.0017361111,
+                  "condition": "minecraft:random_chance"
+                },
+                {
+                  "condition": "minecraft:all_of",
+                  "terms": [
+                    {
+                      "condition": "minecraft:weather_check",
+                      "raining": true,
+                      "thundering": true
+                    },
+                    {
+                      "chance": 0.010416667,
+                      "condition": "minecraft:random_chance"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:tide_armor_trim_smithing_template"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:prismarine_crystal_moss",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "west": "true",
+            "west_age": "0"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:prismarine_crystal_moss_spores"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:prismarine_crystal_moss",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "west": "true",
+            "west_age": "1"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:prismarine_shard"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:prismarine_crystals"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 2.0,
+                "min": 1.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:prismarine_crystal_moss_spores"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:all_of",
+          "terms": [
+            {
+              "block": "gsr_yatm:prismarine_crystal_moss",
+              "condition": "minecraft:block_state_property",
+              "properties": {
+                "west": "true",
+                "west_age": "1"
+              }
+            },
+            {
+              "condition": "minecraft:any_of",
+              "terms": [
+                {
+                  "chance": 0.0017361111,
+                  "condition": "minecraft:random_chance"
+                },
+                {
+                  "condition": "minecraft:all_of",
+                  "terms": [
+                    {
+                      "condition": "minecraft:weather_check",
+                      "raining": true,
+                      "thundering": true
+                    },
+                    {
+                      "chance": 0.010416667,
+                      "condition": "minecraft:random_chance"
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:tide_armor_trim_smithing_template"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "gsr_yatm:blocks/prismarine_crystal_moss"
+}

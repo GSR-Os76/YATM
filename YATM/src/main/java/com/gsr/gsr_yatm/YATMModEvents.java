@@ -16,6 +16,7 @@ import com.gsr.gsr_yatm.data_generation.YATMEntityTypeTags;
 import com.gsr.gsr_yatm.data_generation.YATMItemModelProvider;
 import com.gsr.gsr_yatm.data_generation.YATMItemTags;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProviderUnitedStatesEnglish;
+import com.gsr.gsr_yatm.data_generation.YATMLootTableProvider;
 import com.gsr.gsr_yatm.data_generation.YATMRecipeProvider;
 import com.gsr.gsr_yatm.recipe.bioling.CompostableBiolingRecipeProvider;
 import com.gsr.gsr_yatm.recipe.smelting.WrappedSmeltingRecipeProvider;
@@ -151,6 +152,14 @@ public class YATMModEvents
 
 		DataProvider.Factory<YATMRecipeProvider> recipeProviderFactory = (o) -> new YATMRecipeProvider(o);
 		event.getGenerator().addProvider(event.includeServer(), recipeProviderFactory);
+	
+		
+		
+		DataProvider.Factory<YATMLootTableProvider> lootTableProviderFactory = (o) -> YATMLootTableProvider.create(o);
+		event.getGenerator().addProvider(event.includeServer(), lootTableProviderFactory);
+	
+		
+		
 	} // end gatherData()
 	
 } // end class

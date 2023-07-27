@@ -1,0 +1,32 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:spider_vine",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "stage": "fruiting"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:spider_vine_fruits"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "gsr_yatm:blocks/spider_vine"
+}
