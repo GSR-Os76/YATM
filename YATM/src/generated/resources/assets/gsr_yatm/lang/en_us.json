@@ -107,6 +107,8 @@
   "block.gsr_yatm.suns_complement_solar_panel": "Sun's Complement Solar Panel",
   "block.gsr_yatm.white_shulkwart": "White Shulkwart",
   "block.gsr_yatm.yellow_shulkwart": "Yellow Shulkwart",
+  "command.yatm.unboundHorizontalGrowth": "Unbound horizontal growth set to %s for the level",
+  "command.yatm.unboundHorizontalGrowth.read": "This level's unbound horizontal growth's set as: %s",
   "effect.gsr_yatm.chorus_instant_teleportation": "Instant Teleportation",
   "effect.gsr_yatm.ender_instant_teleportation": "Instant Teleportation",
   "effect.gsr_yatm.molt_fatigue": "Molt Fatigue",

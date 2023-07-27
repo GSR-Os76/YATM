@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 import com.gsr.gsr_yatm.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.block.IOccasionallySpreadableBlock;
 import com.gsr.gsr_yatm.block.ISpreadabilitySettableBlock;
+import com.gsr.gsr_yatm.command.PlantData;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
 
@@ -178,7 +179,7 @@ public class CarcassRootRootBlock extends Block implements BonemealableBlock, IO
 	
 	
 	
-	public @Nullable Runnable simulateSendUpPlant(Level level, BlockState state, BlockPos position) 
+	public @Nullable Runnable simulateSendUpPlant(ServerLevel level, BlockState state, BlockPos position) 
 	{
 		if(!this.canSpread(level, state, position)) 
 		{
@@ -195,7 +196,7 @@ public class CarcassRootRootBlock extends Block implements BonemealableBlock, IO
 				if(placingState.getBlock() instanceof ISpreadabilitySettableBlock ss) 
 				{
 					// TODO, probably add unbound horizontal spread as a game rule
-					return () -> level.setBlock(pos, ss.setSpreadability(level, placingState, pos, false), Block.UPDATE_ALL);
+					return () -> level.setBlock(pos, ss.setSpreadability(level, placingState, pos, PlantData.isHorizontalGrowthUnbound(level)), Block.UPDATE_ALL);
 				}				
 				return () -> level.setBlock(pos, placingState, Block.UPDATE_ALL);
 			}

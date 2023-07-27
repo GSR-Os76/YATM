@@ -149,7 +149,7 @@ public class CarcassRootFoliageBlock extends CropBlock implements IHarvestable, 
 		BlockState baseState = this.getStateForAge(state, goingToAge);
 		level.setBlock(position, baseState, Block.UPDATE_CLIENTS);				
 		level.setBlock(position.above(), this.getStateForAge(goingToAge).setValue(CarcassRootFoliageBlock.HALF, DoubleBlockHalf.UPPER), Block.UPDATE_ALL);
-		this.sendOutRoots(level, baseState, position, level.random);
+		this.sendOutRoots((ServerLevel)level, baseState, position, level.random);
 	} // end growCrops()
 
 
@@ -198,7 +198,7 @@ public class CarcassRootFoliageBlock extends CropBlock implements IHarvestable, 
 		return this.isPastDoubleBlockThreshold(state.setValue(this.getAgeProperty(), nextAgeUp)) && !(abvState.canBeReplaced() || abvState.is(this)); 
 	} // end isGrowthBlocked()
 	
-	protected void sendOutRoots(Level level, BlockState thissState, BlockPos position, RandomSource random)
+	protected void sendOutRoots(ServerLevel level, BlockState thissState, BlockPos position, RandomSource random)
 	{
 		if(level.isClientSide) 
 		{
@@ -221,7 +221,7 @@ public class CarcassRootFoliageBlock extends CropBlock implements IHarvestable, 
 		}
 	} // end sendOutRoots()
 	
-	protected void maybePlaceRoot(Level level, BlockState placerState, BlockPos placerPosition, BlockPos placingPosition, RandomSource random) 
+	protected void maybePlaceRoot(ServerLevel level, BlockState placerState, BlockPos placerPosition, BlockPos placingPosition, RandomSource random) 
 	{
 		if(!level.isClientSide && random.nextInt(2) == 0) 
 		{

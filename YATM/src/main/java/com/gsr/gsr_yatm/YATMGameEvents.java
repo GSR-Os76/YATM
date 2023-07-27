@@ -5,6 +5,7 @@ import java.util.Collection;
 import com.gsr.gsr_yatm.block.IHarvestable;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.plant.tree.StrippedSapLogBlock;
+import com.gsr.gsr_yatm.command.YATMRuleCommand;
 import com.gsr.gsr_yatm.item.fluid.GlassBottleItemStack;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
@@ -34,6 +35,7 @@ import net.minecraftforge.client.event.RecipesUpdatedEvent;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
+import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.level.BlockEvent.BlockToolModificationEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -46,6 +48,7 @@ public class YATMGameEvents
 		eventBus.addListener(YATMGameEvents::blockToolModification);
 		eventBus.addListener(YATMGameEvents::entityDamaged);
 		eventBus.addListener(YATMGameEvents::recipesUpdated);
+		eventBus.addListener(YATMGameEvents::registerCommands);
 		eventBus.addGenericListener(ItemStack.class, YATMGameEvents::attachItemStackCapabilities);
 	} // end register()
 	
@@ -81,6 +84,11 @@ public class YATMGameEvents
 	{
 		RecipeUtilities.recipesUpdated();
 	} // end recipesUpdated()
+	
+	private static void registerCommands(RegisterCommandsEvent event)
+	{
+		YATMRuleCommand.register(event.getDispatcher());
+	} // end registerCommands()
 	
 	private static void attachItemStackCapabilities(AttachCapabilitiesEvent<ItemStack> event) 
 	{

@@ -13,6 +13,7 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.gsr.gsr_yatm.block.plant.CustomSeedCropBlock;
+import com.gsr.gsr_yatm.command.PlantData;
 import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
 
 import net.minecraft.Util;
@@ -280,7 +281,7 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 				}
 				else if(random.nextInt(12) == 0)
 				{
-					this.tryPropagate(startState, level, pos, random);
+					this.tryPropagate(level, startState, pos, random);
 				}
 			}
 		}
@@ -306,7 +307,7 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 		return has;
 	} // end getGrowingFacesFor()
 	
-	protected void tryPropagate(BlockState startState, ServerLevel level, BlockPos pos, RandomSource random) 
+	protected void tryPropagate(ServerLevel level, BlockState startState, BlockPos pos, RandomSource random) 
 	{
 		if(!startState.getValue(CAN_SPREAD) || !startState.getFluidState().is(Fluids.WATER)) 
 		{
@@ -326,7 +327,7 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 						BlockState setRes = this.getStateForPlacement(level, toCheck, toReplace, simulatedClickedFace);
 						if(setRes != null) 
 						{
-							level.setBlock(toCheck, setRes.setValue(CAN_SPREAD, false), 3);
+							level.setBlock(toCheck, setRes.setValue(CAN_SPREAD, PlantData.isHorizontalGrowthUnbound(level)), 3);
 							return;
 						}
 					}

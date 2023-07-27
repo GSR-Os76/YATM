@@ -1,5 +1,6 @@
 package com.gsr.gsr_yatm.data_generation;
 
+import com.gsr.gsr_yatm.command.YATMRuleCommand;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMCreativeModTabs;
 import com.gsr.gsr_yatm.registry.YATMFluids;
@@ -38,6 +39,11 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add("biome.gsr_yatm.old_growth_soul_sand_valley", "Old Growth Soul Sand Valley");
 		this.add("biome.gsr_yatm.rubber_forest", "Rubber Forest");
+		
+		
+		
+		this.add(YATMRuleCommand.SET_UNBOUND_HORIZONTAL_GROWTH_TRANSLATION_KEY, "Unbound horizontal growth set to %s for the level");
+		this.add(YATMRuleCommand.READ_UNBOUND_HORIZONTAL_GROWTH_TRANSLATION_KEY, "This level's unbound horizontal growth's set as: %s");
 		
 		
 		
