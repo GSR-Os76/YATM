@@ -16,6 +16,8 @@ import com.gsr.gsr_yatm.block.device.extruder.ExtruderBlockEntity;
 import com.gsr.gsr_yatm.block.device.grinder.GrinderBlockEntity;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlockEntity;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelBlockEntity;
+import com.gsr.gsr_yatm.block.sign.YATMHangingSignBlockEntity;
+import com.gsr.gsr_yatm.block.sign.YATMSignBlockEntity;
 
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraftforge.registries.DeferredRegister;
@@ -49,6 +51,13 @@ public class YATMBlockEntityTypes
 	
 	public static final RegistryObject<BlockEntityType<BatterySolarPanelBlockEntity>> BATTERY_SOLAR_PANEL = BLOCK_ENTITY_TYPES.register("battery_solar_panel", () -> BlockEntityType.Builder.of(BatterySolarPanelBlockEntity::new, YATMBlocks.CRUDE_BATTERY_SOLAR_PANEL.get(), YATMBlocks.ADVANCED_BATTERY_SOLAR_PANEL.get(), YATMBlocks.SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL.get()).build(null));
 	public static final RegistryObject<BlockEntityType<SolarPanelBlockEntity>> SOLAR_PANEL = BLOCK_ENTITY_TYPES.register("solar_panel", () -> BlockEntityType.Builder.of(SolarPanelBlockEntity::new, YATMBlocks.CRUDE_SOLAR_PANEL.get(), YATMBlocks.ADVANCED_SOLAR_PANEL.get(), YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get()).build(null));
+	
+	
+	
+	public static final RegistryObject<BlockEntityType<YATMSignBlockEntity>> YATM_SIGN = BLOCK_ENTITY_TYPES.register("yatm_sign", () -> BlockEntityType.Builder.of(YATMSignBlockEntity::new, YATMBlocks.RUBBER_SIGN.get(), YATMBlocks.RUBBER_WALL_SIGN.get(), YATMBlocks.SOUL_AFFLICTED_RUBBER_SIGN.get(), YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_SIGN.get()).build(null));
+	public static final RegistryObject<BlockEntityType<YATMHangingSignBlockEntity>> YATM_HANGING_SIGN = BLOCK_ENTITY_TYPES.register("yatm_hanging_sign", () -> BlockEntityType.Builder.of(YATMHangingSignBlockEntity::new, YATMBlocks.RUBBER_HANGING_SIGN.get(), YATMBlocks.RUBBER_WALL_HANGING_SIGN.get(), YATMBlocks.SOUL_AFFLICTED_RUBBER_HANGING_SIGN.get(), YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_HANGING_SIGN.get()).build(null));
+	
+	
 	
 	public static final RegistryObject<BlockEntityType<CurrentConduitBlockEntity>> CURRENT_CONDUIT = BLOCK_ENTITY_TYPES.register("current_conduit_block_entity", () -> BlockEntityType.Builder.of(CurrentConduitBlockEntity::new, 
 			YATMBlocks.ONE_CU_WIRE.get(), YATMBlocks.EIGHT_CU_WIRE.get(), YATMBlocks.SIXTYFOUR_CU_WIRE.get(), YATMBlocks.FIVEHUNDREDTWELVE_CU_WIRE.get(), YATMBlocks.FOURTHOUSANDNINTYSIX_CU_WIRE.get(),

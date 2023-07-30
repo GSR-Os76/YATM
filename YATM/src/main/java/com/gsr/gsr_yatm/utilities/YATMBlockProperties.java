@@ -16,17 +16,21 @@ import net.minecraft.world.level.material.PushReaction;
 public class YATMBlockProperties
 {
 	// TODO, work on these
-	public static final BlockBehaviour.Properties FLOWER_POT_PROPERTIES = BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY);
-	public static final BlockBehaviour.Properties SAPLING_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY);
-	public static final BlockBehaviour.Properties LEAVES_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(YATMBlockProperties::ocelotOrParrot).isSuffocating(YATMBlockProperties::never).isViewBlocking(YATMBlockProperties::never).ignitedByLava().pushReaction(PushReaction.DESTROY).isRedstoneConductor(YATMBlockProperties::never);
+	// public static final BlockBehaviour.Properties BASE_WOOD_PROPERTIES = BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).ignitedByLava();
 	public static final BlockBehaviour.Properties AERIAL_ROOTS_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.PODZOL).instrument(NoteBlockInstrument.BASS).strength(0.7F).randomTicks().sound(SoundType.MANGROVE_ROOTS).noOcclusion().isSuffocating(YATMBlockProperties::never).isViewBlocking(YATMBlockProperties::never).noOcclusion().ignitedByLava();
-	public static final BlockBehaviour.Properties BASE_WOOD_PROPERTIES = BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).ignitedByLava();
-	public static final BlockBehaviour.Properties RUBBER_WOOD_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).ignitedByLava();
-	public static final BlockBehaviour.Properties SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).ignitedByLava();
-	public static final BlockBehaviour.Properties RUBBER_WOOD_SWITCH_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).instrument(NoteBlockInstrument.BASS).strength(0.5F).sound(SoundType.WOOD).ignitedByLava();
-	public static final BlockBehaviour.Properties SOUL_AFFLICTED_RUBBER_WOOD_SWITCH_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).instrument(NoteBlockInstrument.BASS).strength(0.5F).sound(SoundType.WOOD).ignitedByLava();
+	public static final BlockBehaviour.Properties FLOWER_POT_PROPERTIES = BlockBehaviour.Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY);
 	public static final BlockBehaviour.Properties LEAF_MULCH_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.PODZOL).strength(0.1F).sound(SoundType.MOSS_CARPET).pushReaction(PushReaction.DESTROY);
-
+	public static final BlockBehaviour.Properties LEAVES_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion().isValidSpawn(YATMBlockProperties::ocelotOrParrot).isSuffocating(YATMBlockProperties::never).isViewBlocking(YATMBlockProperties::never).ignitedByLava().pushReaction(PushReaction.DESTROY).isRedstoneConductor(YATMBlockProperties::never);
+	public static final BlockBehaviour.Properties RUBBER_WOOD_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).ignitedByLava();
+	public static final BlockBehaviour.Properties RUBBER_WOOD_SIGN = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F).ignitedByLava();
+	public static final BlockBehaviour.Properties RUBBER_WOOD_SWITCH_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BROWN).instrument(NoteBlockInstrument.BASS).strength(0.5F).sound(SoundType.WOOD).ignitedByLava();
+	public static final BlockBehaviour.Properties SAPLING_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).noCollission().randomTicks().instabreak().sound(SoundType.GRASS).pushReaction(PushReaction.DESTROY);
+	public static final BlockBehaviour.Properties SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD);
+	public static final BlockBehaviour.Properties SOUL_AFFLICTED_RUBBER_WOOD_SIGN = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).forceSolidOn().instrument(NoteBlockInstrument.BASS).noCollission().strength(1.0F);
+	public static final BlockBehaviour.Properties SOUL_AFFLICTED_RUBBER_WOOD_SWITCH_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_GRAY).instrument(NoteBlockInstrument.BASS).strength(0.5F).sound(SoundType.WOOD);
+	
+	
+	
 	public static final BlockBehaviour.Properties AURUM_SP = BlockBehaviour.Properties.of().mapColor(MapColor.GOLD).sound(SoundType.NETHER_GOLD_ORE).pushReaction(PushReaction.BLOCK).requiresCorrectToolForDrops().strength(3.0F, 6.0F).noCollission().randomTicks();
 	
 	public static final BlockBehaviour.Properties CARCASS_ROOT_FOLIAGE = BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).replaceable().noCollission().instabreak().sound(SoundType.GRASS).ignitedByLava().pushReaction(PushReaction.DESTROY);

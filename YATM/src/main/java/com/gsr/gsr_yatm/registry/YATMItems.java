@@ -21,9 +21,11 @@ import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
 import net.minecraft.world.item.DyeColor;
+import net.minecraft.world.item.HangingSignItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.SignItem;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -55,6 +57,11 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> RUBBER_TRAPDOOR_ITEM = generalTabEnqueue(ITEMS.register("rubber_trapdoor", () -> new BlockItem(YATMBlocks.RUBBER_TRAPDOOR.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_PRESSURE_PLATE_ITEM = generalTabEnqueue(ITEMS.register("rubber_pressure_plate", () -> new BlockItem(YATMBlocks.RUBBER_PRESSURE_PLATE.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_BUTTON_ITEM = generalTabEnqueue(ITEMS.register("rubber_button", () -> new BlockItem(YATMBlocks.RUBBER_BUTTON.get(), new Item.Properties())));
+	
+// make non recurring, or figure out why vinalla implementers don't recur too, maybe start with arg order
+	public static final RegistryObject<SignItem> RUBBER_SIGN_ITEM = generalTabEnqueue(ITEMS.register("rubber_sign", () -> new SignItem(new Item.Properties().stacksTo(16), YATMBlocks.RUBBER_SIGN.get(), YATMBlocks.RUBBER_WALL_SIGN.get())));
+	public static final RegistryObject<HangingSignItem> RUBBER_HANGING_SIGN_ITEM = generalTabEnqueue(ITEMS.register("rubber_hanging_sign", () -> new HangingSignItem(YATMBlocks.RUBBER_HANGING_SIGN.get(), YATMBlocks.RUBBER_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16))));
+	
 	public static final RegistryObject<BlockItem> LEAF_MULCH_ITEM = generalTabEnqueue(ITEMS.register("leaf_mulch", () -> new BlockItem(YATMBlocks.LEAF_MULCH.get(), new Item.Properties())));
 
 
@@ -80,6 +87,10 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> SOUL_AFFLICTED_RUBBER_TRAPDOOR_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_trapdoor", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_TRAPDOOR.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_pressure_plate", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> SOUL_AFFLICTED_RUBBER_BUTTON_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_button", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_BUTTON.get(), new Item.Properties())));
+
+	public static final RegistryObject<SignItem> SOUL_AFFLICTED_RUBBER_SIGN_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_sign", () -> new SignItem(new Item.Properties().stacksTo(16), YATMBlocks.SOUL_AFFLICTED_RUBBER_SIGN.get(), YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_SIGN.get())));
+	public static final RegistryObject<HangingSignItem> SOUL_AFFLICTED_RUBBER_HANGING_SIGN_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_hanging_sign", () -> new HangingSignItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_HANGING_SIGN.get(), YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16))));
+	
 	public static final RegistryObject<BlockItem> SOUL_AFFLICTED_LEAF_MULCH_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_leaf_mulch", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), new Item.Properties())));
 
 	public static final RegistryObject<ItemNameBlockItem> AURUM_DEMINUTUS_FIDDLE_HEAD = generalTabEnqueue(ITEMS.register("aurum_deminutus_fiddle_head", () -> new ItemNameBlockItem(YATMBlocks.AURUM_DEMINUTUS.get(), new Item.Properties().fireResistant())));

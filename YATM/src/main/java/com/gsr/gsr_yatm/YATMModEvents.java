@@ -40,10 +40,16 @@ import com.gsr.gsr_yatm.registry.custom.YATMRegistries;
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
 
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.renderer.Sheets;
+import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
+import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -55,6 +61,14 @@ public class YATMModEvents
 {
 	public static void register(IEventBus modEventBus) 
 	{
+		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
+		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
+		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
+		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
+		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
+		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
+		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
+		
 		YATMBlocks.BLOCKS.register(modEventBus);
 		YATMItems.ITEMS.register(modEventBus);
 		YATMMenuTypes.MENU_TYPES.register(modEventBus);
@@ -78,6 +92,7 @@ public class YATMModEvents
 		YATMCreativeModTabs.register(modEventBus);
 		modEventBus.addListener(YATMModEvents::commonSetup);
 		modEventBus.addListener(YATMModEvents::clientSetup);
+		modEventBus.addListener(YATMModEvents::registerEntityRenderers);		
 		modEventBus.addListener(YATMModEvents::gatherData);
 	} // end register()
 	
@@ -92,6 +107,9 @@ public class YATMModEvents
 		// NetherBiomes l
 		// event.enqueueWork(() -> ; BiomeManager.addAdditionalOverworldBiomes(null))
 		event.enqueueWork(() -> BiomeManager.addAdditionalOverworldBiomes(ResourceKey.create(ForgeRegistries.BIOMES.getRegistryKey(), new ResourceLocation(YetAnotherTechMod.MODID, "rubber_forest"))));
+	
+		event.enqueueWork(() -> WoodType.register(YATMBlocks.RUBBER_WOOD_TYPE));
+		event.enqueueWork(() -> WoodType.register(YATMBlocks.SOUL_AFFLICTED_RUBBER_WOOD_TYPE));
 	} // end commonSetup()
 	
 	private static void clientSetup(FMLClientSetupEvent event)
@@ -108,8 +126,19 @@ public class YATMModEvents
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.SOLAR_PANEL.get(), SolarPanelScreen::new));
 		
 		
-	} // end clientSetup()
+		
+		Sheets.addWoodType(YATMBlocks.RUBBER_WOOD_TYPE);
+		Sheets.addWoodType(YATMBlocks.SOUL_AFFLICTED_RUBBER_WOOD_TYPE);
 
+} // end clientSetup()
+
+	private static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
+	{
+		event.registerBlockEntityRenderer(YATMBlockEntityTypes.YATM_SIGN.get(), SignRenderer::new);
+		event.registerBlockEntityRenderer(YATMBlockEntityTypes.YATM_HANGING_SIGN.get(), HangingSignRenderer::new);
+
+	} // end clientSetup()
+	
 	private static void gatherData(GatherDataEvent event)
 	{
 		DataProvider.Factory<YATMItemModelProvider> itemModelProviderFactory = (o) -> new YATMItemModelProvider(o, event.getExistingFileHelper());

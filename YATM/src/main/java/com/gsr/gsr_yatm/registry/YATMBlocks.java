@@ -41,6 +41,10 @@ import com.gsr.gsr_yatm.block.plant.tree.rubber_bush.RubberBushSaplingBlock;
 import com.gsr.gsr_yatm.block.plant.tree.soul_afflicted_rubber_bush.SoulAfflictedRubberBushSaplingBlock;
 import com.gsr.gsr_yatm.block.plant.vine.OnceFruitVineBodyBlock;
 import com.gsr.gsr_yatm.block.plant.vine.VineMeristemBlock;
+import com.gsr.gsr_yatm.block.sign.YATMCeilingHangingSignBlock;
+import com.gsr.gsr_yatm.block.sign.YATMStandingSignBlock;
+import com.gsr.gsr_yatm.block.sign.YATMWallHangingSignBlock;
+import com.gsr.gsr_yatm.block.sign.YATMWallSignBlock;
 import com.gsr.gsr_yatm.utilities.YATMBlockProperties;
 import com.gsr.gsr_yatm.utilities.YATMBlockShapes;
 import com.gsr.gsr_yatm.utilities.itemstack.RandomCountItemStackSupplier;
@@ -69,6 +73,7 @@ import net.minecraft.world.level.block.StairBlock;
 import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
+import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
@@ -87,9 +92,12 @@ public class YATMBlocks
 	
 	
 	
-	private static final BlockSetType RUBBER_BLOCK_SET_TYPE = new BlockSetType("rubber");
-	
-	
+	private static final BlockSetType RUBBER_BLOCK_SET_TYPE = /* BlockSetType.register( */new BlockSetType("gsr_yatm:rubber")/* ) */;
+	public static final WoodType RUBBER_WOOD_TYPE = new WoodType("gsr_yatm:rubber", YATMBlocks.RUBBER_BLOCK_SET_TYPE);
+
+	private static final BlockSetType SOUL_AFFLICTED_RUBBER_BLOCK_SET_TYPE = /* BlockSetType.register( */new BlockSetType("gsr_yatm:soul_afflicted_rubber")/* ) */;
+	public static final WoodType SOUL_AFFLICTED_RUBBER_WOOD_TYPE = new WoodType("gsr_yatm:soul_afflicted_rubber", YATMBlocks.SOUL_AFFLICTED_RUBBER_BLOCK_SET_TYPE);
+
 	public static final RegistryObject<RubberBushSaplingBlock> RUBBER_MERISTEM = BLOCKS.register("rubber_meristem", () -> new RubberBushSaplingBlock(YATMBlockProperties.SAPLING_PROPERTIES));	
 	public static final RegistryObject<FlowerPotBlock> POTTED_RUBBER_MERISTEM = BLOCKS.register("potted_rubber_meristem", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.RUBBER_MERISTEM.get(), YATMBlockProperties.FLOWER_POT_PROPERTIES));
 	public static final RegistryObject<LeavesBlock> RUBBER_LEAVES_YOUNG = BLOCKS.register("rubber_leaves_young", () ->  new LeavesBlock(YATMBlockProperties.LEAVES_PROPERTIES));
@@ -108,15 +116,23 @@ public class YATMBlocks
 	public static final RegistryObject<SlabBlock> RUBBER_SLAB = BLOCKS.register("rubber_slab", () -> new SlabBlock(YATMBlockProperties.RUBBER_WOOD_PROPERTIES));
 	public static final RegistryObject<FenceBlock> RUBBER_FENCE = BLOCKS.register("rubber_fence", () -> new FenceBlock(YATMBlockProperties.RUBBER_WOOD_PROPERTIES));
 	public static final RegistryObject<FenceGateBlock> RUBBER_FENCE_GATE = BLOCKS.register("rubber_fence_gate", () -> new FenceGateBlock(YATMBlockProperties.RUBBER_WOOD_PROPERTIES, SoundEvents.FENCE_GATE_OPEN, SoundEvents.FENCE_GATE_CLOSE));
-	public static final RegistryObject<DoorBlock> RUBBER_DOOR = BLOCKS.register("rubber_door", () -> new DoorBlock(YATMBlockProperties.RUBBER_WOOD_PROPERTIES, RUBBER_BLOCK_SET_TYPE));
-	public static final RegistryObject<TrapDoorBlock> RUBBER_TRAPDOOR = BLOCKS.register("rubber_trapdoor", () -> new TrapDoorBlock(YATMBlockProperties.RUBBER_WOOD_PROPERTIES, RUBBER_BLOCK_SET_TYPE));
-	public static final RegistryObject<PressurePlateBlock> RUBBER_PRESSURE_PLATE = BLOCKS.register("rubber_pressure_plate", () -> new PressurePlateBlock(Sensitivity.EVERYTHING, YATMBlockProperties.RUBBER_WOOD_SWITCH_PROPERTIES, RUBBER_BLOCK_SET_TYPE));
-	public static final RegistryObject<ButtonBlock> RUBBER_BUTTON = BLOCKS.register("rubber_button", () -> new ButtonBlock(YATMBlockProperties.RUBBER_WOOD_SWITCH_PROPERTIES, RUBBER_BLOCK_SET_TYPE, 30, true));
+	public static final RegistryObject<DoorBlock> RUBBER_DOOR = BLOCKS.register("rubber_door", () -> new DoorBlock(YATMBlockProperties.RUBBER_WOOD_PROPERTIES, YATMBlocks.RUBBER_BLOCK_SET_TYPE));
+	public static final RegistryObject<TrapDoorBlock> RUBBER_TRAPDOOR = BLOCKS.register("rubber_trapdoor", () -> new TrapDoorBlock(YATMBlockProperties.RUBBER_WOOD_PROPERTIES, YATMBlocks.RUBBER_BLOCK_SET_TYPE));
+	public static final RegistryObject<PressurePlateBlock> RUBBER_PRESSURE_PLATE = BLOCKS.register("rubber_pressure_plate", () -> new PressurePlateBlock(Sensitivity.EVERYTHING, YATMBlockProperties.RUBBER_WOOD_SWITCH_PROPERTIES, YATMBlocks.RUBBER_BLOCK_SET_TYPE));
+	public static final RegistryObject<ButtonBlock> RUBBER_BUTTON = BLOCKS.register("rubber_button", () -> new ButtonBlock(YATMBlockProperties.RUBBER_WOOD_SWITCH_PROPERTIES, YATMBlocks.RUBBER_BLOCK_SET_TYPE, 30, true));
+	
+	public static final RegistryObject<YATMStandingSignBlock> RUBBER_SIGN = BLOCKS.register("rubber_sign", () -> new YATMStandingSignBlock(YATMBlockProperties.RUBBER_WOOD_SIGN, YATMBlocks.RUBBER_WOOD_TYPE));
+	public static final RegistryObject<YATMWallSignBlock> RUBBER_WALL_SIGN = BLOCKS.register("rubber_wall_sign", () -> new YATMWallSignBlock(YATMBlockProperties.RUBBER_WOOD_SIGN, YATMBlocks.RUBBER_WOOD_TYPE));
+	public static final RegistryObject<YATMCeilingHangingSignBlock> RUBBER_HANGING_SIGN = BLOCKS.register("rubber_hanging_sign", () -> new YATMCeilingHangingSignBlock(YATMBlockProperties.RUBBER_WOOD_SIGN, YATMBlocks.RUBBER_WOOD_TYPE));
+	public static final RegistryObject<YATMWallHangingSignBlock> RUBBER_WALL_HANGING_SIGN = BLOCKS.register("rubber_wall_hanging_sign", () -> new YATMWallHangingSignBlock(YATMBlockProperties.RUBBER_WOOD_SIGN, YATMBlocks.RUBBER_WOOD_TYPE));
+	
 	public static final RegistryObject<CarpetBlock> LEAF_MULCH = BLOCKS.register("leaf_mulch", () -> new CarpetBlock(YATMBlockProperties.LEAF_MULCH_PROPERTIES));
 
 	// sign StandingSignBlock WallSignBlock CeilingHangingSignBlock WallHangingSignBlock
 	// boat
 	// boat with chest
+	//EntityType l;
+	Blocks j;
 	
 	public static final RegistryObject<SoulAfflictedRubberBushSaplingBlock> SOUL_AFFLICTED_RUBBER_MERISTEM = BLOCKS.register("soul_afflicted_rubber_meristem", () -> new SoulAfflictedRubberBushSaplingBlock(YATMBlockProperties.SAPLING_PROPERTIES));
 	public static final RegistryObject<FlowerPotBlock> POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM = BLOCKS.register("potted_soul_afflicted_rubber_meristem", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), YATMBlockProperties.FLOWER_POT_PROPERTIES));
@@ -136,12 +152,20 @@ public class YATMBlocks
 	public static final RegistryObject<SlabBlock> SOUL_AFFLICTED_RUBBER_SLAB = BLOCKS.register("soul_afflicted_rubber_slab", () -> new SlabBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES));
 	public static final RegistryObject<FenceBlock> SOUL_AFFLICTED_RUBBER_FENCE = BLOCKS.register("soul_afflicted_rubber_fence", () -> new FenceBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES));
 	public static final RegistryObject<FenceGateBlock> SOUL_AFFLICTED_RUBBER_FENCE_GATE = BLOCKS.register("soul_afflicted_rubber_fence_gate", () -> new FenceGateBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES, SoundEvents.FENCE_GATE_OPEN, SoundEvents.FENCE_GATE_CLOSE));
-	public static final RegistryObject<DoorBlock> SOUL_AFFLICTED_RUBBER_DOOR = BLOCKS.register("soul_afflicted_rubber_door", () -> new DoorBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES, RUBBER_BLOCK_SET_TYPE));
-	public static final RegistryObject<TrapDoorBlock> SOUL_AFFLICTED_RUBBER_TRAPDOOR = BLOCKS.register("soul_afflicted_rubber_trapdoor", () -> new TrapDoorBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES, RUBBER_BLOCK_SET_TYPE));
-	public static final RegistryObject<PressurePlateBlock> SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE = BLOCKS.register("soul_afflicted_rubber_pressure_plate", () -> new PressurePlateBlock(Sensitivity.EVERYTHING, YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_SWITCH_PROPERTIES, RUBBER_BLOCK_SET_TYPE));
-	public static final RegistryObject<ButtonBlock> SOUL_AFFLICTED_RUBBER_BUTTON = BLOCKS.register("soul_afflicted_rubber_button", () -> new ButtonBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_SWITCH_PROPERTIES, RUBBER_BLOCK_SET_TYPE, 30, true));
+	public static final RegistryObject<DoorBlock> SOUL_AFFLICTED_RUBBER_DOOR = BLOCKS.register("soul_afflicted_rubber_door", () -> new DoorBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES, YATMBlocks.SOUL_AFFLICTED_RUBBER_BLOCK_SET_TYPE));
+	public static final RegistryObject<TrapDoorBlock> SOUL_AFFLICTED_RUBBER_TRAPDOOR = BLOCKS.register("soul_afflicted_rubber_trapdoor", () -> new TrapDoorBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES, YATMBlocks.SOUL_AFFLICTED_RUBBER_BLOCK_SET_TYPE));
+	public static final RegistryObject<PressurePlateBlock> SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE = BLOCKS.register("soul_afflicted_rubber_pressure_plate", () -> new PressurePlateBlock(Sensitivity.EVERYTHING, YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_SWITCH_PROPERTIES, YATMBlocks.SOUL_AFFLICTED_RUBBER_BLOCK_SET_TYPE));
+	public static final RegistryObject<ButtonBlock> SOUL_AFFLICTED_RUBBER_BUTTON = BLOCKS.register("soul_afflicted_rubber_button", () -> new ButtonBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_SWITCH_PROPERTIES, YATMBlocks.SOUL_AFFLICTED_RUBBER_BLOCK_SET_TYPE, 30, true));
+	
+	public static final RegistryObject<YATMStandingSignBlock> SOUL_AFFLICTED_RUBBER_SIGN = BLOCKS.register("soul_afflicted_rubber_sign", () -> new YATMStandingSignBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_SIGN, YATMBlocks.SOUL_AFFLICTED_RUBBER_WOOD_TYPE));
+	public static final RegistryObject<YATMWallSignBlock> SOUL_AFFLICTED_RUBBER_WALL_SIGN = BLOCKS.register("soul_afflicted_rubber_wall_sign", () -> new YATMWallSignBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_SIGN, YATMBlocks.SOUL_AFFLICTED_RUBBER_WOOD_TYPE));
+	public static final RegistryObject<YATMCeilingHangingSignBlock> SOUL_AFFLICTED_RUBBER_HANGING_SIGN = BLOCKS.register("soul_afflicted_rubber_hanging_sign", () -> new YATMCeilingHangingSignBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_SIGN, YATMBlocks.SOUL_AFFLICTED_RUBBER_WOOD_TYPE));
+	public static final RegistryObject<YATMWallHangingSignBlock> SOUL_AFFLICTED_RUBBER_WALL_HANGING_SIGN = BLOCKS.register("soul_afflicted_rubber_wall_hanging_sign", () -> new YATMWallHangingSignBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_SIGN, YATMBlocks.SOUL_AFFLICTED_RUBBER_WOOD_TYPE));
+
+	
 	public static final RegistryObject<CarpetBlock> SOUL_AFFLICTED_LEAF_MULCH = BLOCKS.register("soul_afflicted_leaf_mulch", () -> new CarpetBlock(YATMBlockProperties.LEAF_MULCH_PROPERTIES));
 
+	// TODO, add an aurum flower pot
 	public static final RegistryObject<AurumDeminutusBlock> AURUM_DEMINUTUS = BLOCKS.register("aurum_deminutus", () -> new AurumDeminutusBlock(YATMBlockProperties.AURUM_SP, YATMBlockShapes.CUBE, () -> YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get(), () -> new ItemStack(YATMItems.AURUM_DEMINUTUS_FROND.get())));
 
 	// TODO, basin of tears, nether based plant, starts growing upward entirely vegitatively.
@@ -152,6 +176,7 @@ public class YATMBlocks
 	// tear extraction could limit production of seeds, or extenuate it
 	// extract by bottle as diluted, and boil into a tear, or maybe just smelt bottle.
 	
+	// TODO, add a cr flower pot
 	public static final RegistryObject<CarcassRootFoliageBlock> CARCASS_ROOT_FOLIAGE = BLOCKS.register("carcass_root_foliage", () -> new CarcassRootFoliageBlock(YATMBlockProperties.CARCASS_ROOT_FOLIAGE, YATMBlockShapes.CUBE, () -> YATMItems.CARCASS_ROOT_CUTTING.get(), () -> new ItemStack(YATMItems.CARCASS_ROOT_CUTTING.get()), new CarcassRootRootSupplier()));
 	public static final RegistryObject<CarcassRootRootBlock> CARCASS_ROOT_ROOTED_DIRT = BLOCKS.register("carcass_root_rooted_dirt", () -> new CarcassRootRootBlock(YATMBlockProperties.CARCASS_ROOT_ROOTED_DIRT, YATMBlockShapes.CUBE, () -> YATMBlocks.CARCASS_ROOT_FOLIAGE.get().defaultBlockState()));
 	public static final RegistryObject<CarcassRootRootBlock> CARCASS_ROOT_ROOTED_NETHERRACK = BLOCKS.register("carcass_root_rooted_netherrack", () -> new CarcassRootRootBlock(YATMBlockProperties.CARCASS_ROOT_ROOTED_NETHERRACK, YATMBlockShapes.CUBE, () -> YATMBlocks.CARCASS_ROOT_FOLIAGE.get().defaultBlockState()));

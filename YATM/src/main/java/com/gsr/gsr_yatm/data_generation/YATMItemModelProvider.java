@@ -20,6 +20,12 @@ public class YATMItemModelProvider extends ItemModelProvider
 	@Override
 	protected void registerModels()
 	{
+		this.basicItem(YATMItems.RUBBER_SIGN_ITEM.get());
+		this.basicItem(YATMItems.RUBBER_HANGING_SIGN_ITEM.get());
+		
+		this.basicItem(YATMItems.SOUL_AFFLICTED_RUBBER_SIGN_ITEM.get());
+		this.basicItem(YATMItems.SOUL_AFFLICTED_RUBBER_HANGING_SIGN_ITEM.get());
+		
 		// this.basicItem(YATMItems.STEEL_FLUID_EXCHANGER.get());
 
 		this.basicItem(YATMItems.ONE_CU_CURRENT_REGULATOR.get());

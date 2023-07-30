@@ -402,7 +402,6 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addCompressed()
 	
-	@SuppressWarnings("unused")
 	private void addTwoByTwoToOne(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, String key) 
 	{
 //		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)

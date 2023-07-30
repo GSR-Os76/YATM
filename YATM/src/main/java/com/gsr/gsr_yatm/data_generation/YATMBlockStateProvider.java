@@ -26,6 +26,7 @@ import com.gsr.gsr_yatm.block.plant.tree.SelfLayeringSaplingBlock;
 import com.gsr.gsr_yatm.block.plant.tree.StrippedSapLogBlock;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
+
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -191,6 +192,13 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createTrapDoor(YATMBlocks.RUBBER_TRAPDOOR.get(), "item/rubber_trapdoor", new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_trapdoor_top"));
 		this.createPressurePlate(YATMBlocks.RUBBER_PRESSURE_PLATE.get(), "item/rubber_pressure_plate", rubberPlanksTexture);
 		this.createButton(YATMBlocks.RUBBER_BUTTON.get(),"item/rubber_button", rubberPlanksTexture);
+		
+		this.createSign(YATMBlocks.RUBBER_SIGN.get(), rubberPlanksTexture);
+		this.createSign(YATMBlocks.RUBBER_WALL_SIGN.get(), rubberPlanksTexture);
+		this.createSign(YATMBlocks.RUBBER_HANGING_SIGN.get(), rubberLogSideTexture);
+		this.createSign(YATMBlocks.RUBBER_WALL_HANGING_SIGN.get(), rubberLogSideTexture);
+		
+		
 		this.createCarpet(YATMBlocks.LEAF_MULCH.get(), YATMItems.LEAF_MULCH_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/leaf_mulch"));
 		// sign
 		// the newer and fancier sign
@@ -232,6 +240,12 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createTrapDoor(YATMBlocks.SOUL_AFFLICTED_RUBBER_TRAPDOOR.get(), "item/soul_afflicted_rubber_trapdoor", new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_trapdoor_top"));
 		this.createPressurePlate(YATMBlocks.SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE.get(), "item/soul_afflicted_rubber_pressure_plate", soulAfflictedRubberPlanksTexture);
 		this.createButton(YATMBlocks.SOUL_AFFLICTED_RUBBER_BUTTON.get(),"item/soul_afflicted_rubber_button", soulAfflictedRubberPlanksTexture);
+		
+		this.createSign(YATMBlocks.SOUL_AFFLICTED_RUBBER_SIGN.get(), soulAfflictedRubberPlanksTexture);
+		this.createSign(YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_SIGN.get(), soulAfflictedRubberPlanksTexture);
+		this.createSign(YATMBlocks.SOUL_AFFLICTED_RUBBER_HANGING_SIGN.get(), soulAfflictedStrippedRubberLogSideTexture);
+		this.createSign(YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_HANGING_SIGN.get(), soulAfflictedStrippedRubberLogSideTexture);
+		
 		this.createCarpet(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_leaf_mulch"));
 	} // end addSoulAfflictedRubberSet()
 
@@ -729,6 +743,16 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.itemModels().buttonInventory(itemName, texture);
 	} // end createButton()
 	
+ 	private void createSign(Block block, ResourceLocation particleTexture) 
+ 	{
+ 		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
+ 		this.models().sign(name, particleTexture);
+ 		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
+		this.getVariantBuilder(block).forAllStates((bs) -> new ConfiguredModel[] {new ConfiguredModel(model)});
+ 	} // end createSign()
+ 	
+ 	
+ 	
 	private void createPartiallyStrippedLog(@NotNull Block block, ResourceLocation strippedSide, ResourceLocation strippedSideLeaking, ResourceLocation plainSide, ResourceLocation topBottom, String name, boolean leakingForItem)
 	{
 		String dryName = name + "_dry";

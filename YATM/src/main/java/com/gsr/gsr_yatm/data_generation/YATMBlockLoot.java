@@ -60,6 +60,10 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropSelf(YATMBlocks.RUBBER_TRAPDOOR.get());
 		this.dropSelf(YATMBlocks.RUBBER_PRESSURE_PLATE.get());
 		this.dropSelf(YATMBlocks.RUBBER_BUTTON.get());
+		this.dropSelf(YATMBlocks.RUBBER_SIGN.get());
+		this.dropSelf(YATMBlocks.RUBBER_WALL_SIGN.get());
+		this.dropSelf(YATMBlocks.RUBBER_HANGING_SIGN.get());
+		this.dropSelf(YATMBlocks.RUBBER_WALL_HANGING_SIGN.get());
 		this.dropSelf(YATMBlocks.LEAF_MULCH.get());
 
 		this.dropSelf(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get());
@@ -84,6 +88,10 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropSelf(YATMBlocks.SOUL_AFFLICTED_RUBBER_TRAPDOOR.get());
 		this.dropSelf(YATMBlocks.SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE.get());
 		this.dropSelf(YATMBlocks.SOUL_AFFLICTED_RUBBER_BUTTON.get());
+		this.dropSelf(YATMBlocks.SOUL_AFFLICTED_RUBBER_SIGN.get());
+		this.dropSelf(YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_SIGN.get());
+		this.dropSelf(YATMBlocks.SOUL_AFFLICTED_RUBBER_HANGING_SIGN.get());
+		this.dropSelf(YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_HANGING_SIGN.get());
 		this.dropSelf(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get());
 		
 		this.add(YATMBlocks.AURUM_DEMINUTUS.get(), (b) -> this.createAurumDeminutusTable());
