@@ -68,6 +68,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.RUBBER_TRAPDOOR.get(), "Rubber Trapdoor");
 		this.add(YATMBlocks.RUBBER_PRESSURE_PLATE.get(), "Rubber Pressure Plate");
 		this.add(YATMBlocks.RUBBER_BUTTON.get(), "Rubber Button");
+		this.add(YATMBlocks.RUBBER_SIGN.get(), "Rubber Sign");
+		this.add(YATMBlocks.RUBBER_HANGING_SIGN.get(), "Rubber Hanging Sign");
 		this.add(YATMBlocks.LEAF_MULCH.get(), "Leaf Mulch");
 
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), "Soul Afflicted Rubber Meristem");
@@ -92,6 +94,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_TRAPDOOR.get(), "Soul Afflicted Rubber Trapdoor");
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE.get(), "Soul Afflicted Rubber Pressure Plate");
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_BUTTON.get(), "Soul Afflicted Rubber Button");
+		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_SIGN.get(), "Soul Afflicted Rubber Sign");
+		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_HANGING_SIGN.get(), "Soul Afflicted Rubber Hanging Sign");
 		this.add(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), "Soul Afflicted Leaf Mulch");
 		
 		this.add(YATMBlocks.AURUM_DEMINUTUS.get(), "Carcass Root");		

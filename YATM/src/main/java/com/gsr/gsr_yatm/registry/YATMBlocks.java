@@ -168,6 +168,9 @@ public class YATMBlocks
 	// TODO, add an aurum flower pot
 	public static final RegistryObject<AurumDeminutusBlock> AURUM_DEMINUTUS = BLOCKS.register("aurum_deminutus", () -> new AurumDeminutusBlock(YATMBlockProperties.AURUM_SP, YATMBlockShapes.CUBE, () -> YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get(), () -> new ItemStack(YATMItems.AURUM_DEMINUTUS_FROND.get())));
 
+	// TODO, some dripping tree, a small tree with notable extrafloral nectaries, bees will interact with them, they will drip, small feeling tree
+	// TODO, possibly used for making still, if i do end up doing the plant machines
+	
 	// TODO, basin of tears, nether based plant, starts growing upward entirely vegitatively.
 	// eventually mature destroying all vegitation and leaving a clutter of "flower" buds, the titular basins
 	// bud clutter can be broken to get a proportional number of individual buds, buds when cluster grow small and stressed to a varying degree
