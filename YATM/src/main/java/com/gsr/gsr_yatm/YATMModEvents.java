@@ -18,11 +18,14 @@ import com.gsr.gsr_yatm.data_generation.YATMItemTags;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProviderUnitedStatesEnglish;
 import com.gsr.gsr_yatm.data_generation.YATMLootTableProvider;
 import com.gsr.gsr_yatm.data_generation.YATMRecipeProvider;
+import com.gsr.gsr_yatm.entity.boat.YATMBoatRenderer;
+import com.gsr.gsr_yatm.entity.boat.YATMBoatType;
 import com.gsr.gsr_yatm.recipe.bioling.CompostableBiolingRecipeProvider;
 import com.gsr.gsr_yatm.recipe.smelting.WrappedSmeltingRecipeProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMCreativeModTabs;
+import com.gsr.gsr_yatm.registry.YATMEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMFluidTypes;
 import com.gsr.gsr_yatm.registry.YATMFluids;
 import com.gsr.gsr_yatm.registry.YATMFoliagePlacerTypes;
@@ -37,10 +40,14 @@ import com.gsr.gsr_yatm.registry.YATMTrunkPlacerTypes;
 import com.gsr.gsr_yatm.registry.custom.YATMArmorSets;
 import com.gsr.gsr_yatm.registry.custom.YATMIngredientDeserializers;
 import com.gsr.gsr_yatm.registry.custom.YATMRegistries;
+import com.gsr.gsr_yatm.utilities.YATMModelLayers;
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
 
 import net.minecraft.client.gui.screens.MenuScreens;
+import net.minecraft.client.model.BoatModel;
+import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.geom.ModelLayers;
+import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
@@ -48,7 +55,9 @@ import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.level.block.state.properties.WoodType;
+import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -59,7 +68,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class YATMModEvents
 {
-	public static void register(IEventBus modEventBus) 
+	public static void register(IEventBus modEventBus)
 	{
 		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
 		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
@@ -68,7 +77,7 @@ public class YATMModEvents
 		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
 		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
 		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
-		
+
 		YATMBlocks.BLOCKS.register(modEventBus);
 		YATMItems.ITEMS.register(modEventBus);
 		YATMMenuTypes.MENU_TYPES.register(modEventBus);
@@ -82,36 +91,38 @@ public class YATMModEvents
 		YATMTrunkPlacerTypes.TRUNK_PLACER_TYPES.register(modEventBus);
 		YATMRootPlacerTypes.ROOT_PLACER_TYPES.register(modEventBus);
 		YATMTreeDecoratorTypes.TREE_DECORATOR_TYPES.register(modEventBus);
-		
+		YATMEntityTypes.ENTITY_TYPES.register(modEventBus);
+
 		YATMRegistries.classInitializer();
 		YATMArmorSets.ARMOR_SETS.register(modEventBus);
 		YATMIngredientDeserializers.INGREDIENT_DESERIALIZERS.register(modEventBus);
-		
+
 		YATMBlocks.addFlowersToPots();
-		
+
 		YATMCreativeModTabs.register(modEventBus);
 		modEventBus.addListener(YATMModEvents::commonSetup);
 		modEventBus.addListener(YATMModEvents::clientSetup);
-		modEventBus.addListener(YATMModEvents::registerEntityRenderers);		
+		modEventBus.addListener(YATMModEvents::registerEntityRenderers);
 		modEventBus.addListener(YATMModEvents::gatherData);
 	} // end register()
-	
-	
-	
-	private static void commonSetup(FMLCommonSetupEvent event) 
+
+
+
+	private static void commonSetup(FMLCommonSetupEvent event)
 	{
 		YATMItems.addCompostables();
 		RecipeUtilities.addDynamicRecipeProvider(new CompostableBiolingRecipeProvider());
 		RecipeUtilities.addDynamicRecipeProvider(new WrappedSmeltingRecipeProvider());
-		// TODO, add biome to the nether, biome manager seems to only support the overworld currently, and I wish to not break compatibility
+		// TODO, add biome to the nether, biome manager seems to only support the
+		// overworld currently, and I wish to not break compatibility
 		// NetherBiomes l
 		// event.enqueueWork(() -> ; BiomeManager.addAdditionalOverworldBiomes(null))
 		event.enqueueWork(() -> BiomeManager.addAdditionalOverworldBiomes(ResourceKey.create(ForgeRegistries.BIOMES.getRegistryKey(), new ResourceLocation(YetAnotherTechMod.MODID, "rubber_forest"))));
-	
+
 		event.enqueueWork(() -> WoodType.register(YATMBlocks.RUBBER_WOOD_TYPE));
 		event.enqueueWork(() -> WoodType.register(YATMBlocks.SOUL_AFFLICTED_RUBBER_WOOD_TYPE));
 	} // end commonSetup()
-	
+
 	private static void clientSetup(FMLClientSetupEvent event)
 	{
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BIOLER.get(), BiolerScreen::new));
@@ -130,6 +141,17 @@ public class YATMModEvents
 		Sheets.addWoodType(YATMBlocks.RUBBER_WOOD_TYPE);
 		Sheets.addWoodType(YATMBlocks.SOUL_AFFLICTED_RUBBER_WOOD_TYPE);
 
+		
+		
+		LayerDefinition boat = BoatModel.createBodyModel();
+		LayerDefinition chestBoat = ChestBoatModel.createBodyModel();
+
+		for (YATMBoatType type : YATMBoatType.values())
+		{
+			ForgeHooksClient.registerLayerDefinition(YATMModelLayers.createYATMBoatModelName(type), () -> boat);
+			ForgeHooksClient.registerLayerDefinition(YATMModelLayers.createYATMChestBoatModelName(type), () -> chestBoat);
+		}
+
 } // end clientSetup()
 
 	private static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
@@ -137,8 +159,10 @@ public class YATMModEvents
 		event.registerBlockEntityRenderer(YATMBlockEntityTypes.YATM_SIGN.get(), SignRenderer::new);
 		event.registerBlockEntityRenderer(YATMBlockEntityTypes.YATM_HANGING_SIGN.get(), HangingSignRenderer::new);
 
+		event.<Boat>registerEntityRenderer(YATMEntityTypes.YATM_BOAT.get(), (c) -> new YATMBoatRenderer(c, false));
+		event.<Boat>registerEntityRenderer(YATMEntityTypes.YATM_CHEST_BOAT.get(), (c) -> new YATMBoatRenderer(c, true));
 	} // end clientSetup()
-	
+
 	private static void gatherData(GatherDataEvent event)
 	{
 		DataProvider.Factory<YATMItemModelProvider> itemModelProviderFactory = (o) -> new YATMItemModelProvider(o, event.getExistingFileHelper());
@@ -151,7 +175,7 @@ public class YATMModEvents
 		event.getGenerator().addProvider(event.includeClient(), unitedStatesEnglishLanguageProviderFactory);
 
 
-		
+
 		DataProvider.Factory<YATMBiomeTags> biomeTagProviderFactory = (pOP) -> new YATMBiomeTags(pOP, event.getLookupProvider(), event.getExistingFileHelper());
 		event.getGenerator().addProvider(event.includeServer(), biomeTagProviderFactory);
 
@@ -181,14 +205,12 @@ public class YATMModEvents
 
 		DataProvider.Factory<YATMRecipeProvider> recipeProviderFactory = (o) -> new YATMRecipeProvider(o);
 		event.getGenerator().addProvider(event.includeServer(), recipeProviderFactory);
-	
-		
-		
+
+
+
 		DataProvider.Factory<YATMLootTableProvider> lootTableProviderFactory = (o) -> YATMLootTableProvider.create(o);
 		event.getGenerator().addProvider(event.includeServer(), lootTableProviderFactory);
-	
-		
-		
+
 	} // end gatherData()
-	
+
 } // end class

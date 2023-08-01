@@ -15,6 +15,9 @@ import net.minecraft.world.level.material.PushReaction;
 
 public class YATMBlockProperties
 {
+	
+	public static final BlockBehaviour.Properties TEMP = BlockBehaviour.Properties.of();
+	
 	// TODO, work on these
 	// public static final BlockBehaviour.Properties BASE_WOOD_PROPERTIES = BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).ignitedByLava();
 	public static final BlockBehaviour.Properties AERIAL_ROOTS_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.PODZOL).instrument(NoteBlockInstrument.BASS).strength(0.7F).randomTicks().sound(SoundType.MANGROVE_ROOTS).noOcclusion().isSuffocating(YATMBlockProperties::never).isViewBlocking(YATMBlockProperties::never).noOcclusion().ignitedByLava();

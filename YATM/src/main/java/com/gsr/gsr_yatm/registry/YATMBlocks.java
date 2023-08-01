@@ -224,6 +224,15 @@ public class YATMBlocks
 		return YATMBlocks.SPIDER_VINE_MERISTEM.get();
 	} // end getSpiderVine()
 	
+	
+	
+	// TODO, make custom class and block entity and be render, when a pot block related to the minecraft pot is used on it, custom render that given pot, and "chains" going up to the hook, when used again with an empty hand pop pot back off
+	// chains should be relatively thin, one pixel lines, as to fit and look nicely like, only the hook will be visually shaped just like other mincraft chain links, and with a small rectangle above it
+	// pot support chains should be designed to fit nicely in between the cross of crosses, even if a non-cross is used that's fine, plants growing over chains is normal and not weird. 
+	public static final RegistryObject<Block> HANGING_POT_HOOK = BLOCKS.register("hanging_pot_hook", () -> new Block(YATMBlockProperties.TEMP));
+	
+	
+	
 	//TODO, maybe add some sort of soul stone 
 	
 	public static final RegistryObject<Block> RUBBER_BLOCK = BLOCKS.register("rubber_block", () -> new Block(YATMBlockProperties.RUBBER_BLOCK_PROPERTIES));

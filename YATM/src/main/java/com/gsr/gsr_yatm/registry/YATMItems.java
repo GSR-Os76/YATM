@@ -6,17 +6,20 @@ import com.gsr.gsr_yatm.armor.YATMArmorMaterials;
 import com.gsr.gsr_yatm.creative.CreativeFluidSourceItem;
 import com.gsr.gsr_yatm.creative.CreativeFluidStorerItem;
 import com.gsr.gsr_yatm.creative.CreativeFluidVoidItem;
+import com.gsr.gsr_yatm.entity.boat.YATMBoatType;
 import com.gsr.gsr_yatm.item.InsulatingItem;
 import com.gsr.gsr_yatm.item.ShulkwartHornItem;
 import com.gsr.gsr_yatm.item.ShulkwartSporesBlockItem;
+import com.gsr.gsr_yatm.item.YATMBoatItem;
 import com.gsr.gsr_yatm.item.component.CurrentBreakerItem;
-import com.gsr.gsr_yatm.item.component.CurrentRegulatorItem;
 import com.gsr.gsr_yatm.item.component.CurrentFuseItem;
+import com.gsr.gsr_yatm.item.component.CurrentRegulatorItem;
 import com.gsr.gsr_yatm.item.component.fluid.FluidExchangerItem;
 import com.gsr.gsr_yatm.item.fluid.DrinkableFluidBottleItem;
 import com.gsr.gsr_yatm.item.fluid.EssenceOfSoulsBottleItem;
 import com.gsr.gsr_yatm.item.fluid.FluidBottleItem;
 import com.gsr.gsr_yatm.item.fluid.SoulSapBucketItem;
+
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
@@ -57,11 +60,10 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> RUBBER_TRAPDOOR_ITEM = generalTabEnqueue(ITEMS.register("rubber_trapdoor", () -> new BlockItem(YATMBlocks.RUBBER_TRAPDOOR.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_PRESSURE_PLATE_ITEM = generalTabEnqueue(ITEMS.register("rubber_pressure_plate", () -> new BlockItem(YATMBlocks.RUBBER_PRESSURE_PLATE.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_BUTTON_ITEM = generalTabEnqueue(ITEMS.register("rubber_button", () -> new BlockItem(YATMBlocks.RUBBER_BUTTON.get(), new Item.Properties())));
-	
-// make non recurring, or figure out why vinalla implementers don't recur too, maybe start with arg order
 	public static final RegistryObject<SignItem> RUBBER_SIGN_ITEM = generalTabEnqueue(ITEMS.register("rubber_sign", () -> new SignItem(new Item.Properties().stacksTo(16), YATMBlocks.RUBBER_SIGN.get(), YATMBlocks.RUBBER_WALL_SIGN.get())));
 	public static final RegistryObject<HangingSignItem> RUBBER_HANGING_SIGN_ITEM = generalTabEnqueue(ITEMS.register("rubber_hanging_sign", () -> new HangingSignItem(YATMBlocks.RUBBER_HANGING_SIGN.get(), YATMBlocks.RUBBER_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16))));
-	
+	public static final RegistryObject<YATMBoatItem> RUBBER_BOAT_ITEM = generalTabEnqueue(ITEMS.register("rubber_boat", () -> new YATMBoatItem(false, YATMBoatType.RUBBER, new Item.Properties().stacksTo(1))));
+	public static final RegistryObject<YATMBoatItem> RUBBER_CHEST_BOAT_ITEM = generalTabEnqueue(ITEMS.register("rubber_chest_boat", () -> new YATMBoatItem(true, YATMBoatType.RUBBER, new Item.Properties().stacksTo(1))));
 	public static final RegistryObject<BlockItem> LEAF_MULCH_ITEM = generalTabEnqueue(ITEMS.register("leaf_mulch", () -> new BlockItem(YATMBlocks.LEAF_MULCH.get(), new Item.Properties())));
 
 
@@ -87,12 +89,14 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> SOUL_AFFLICTED_RUBBER_TRAPDOOR_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_trapdoor", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_TRAPDOOR.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_pressure_plate", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> SOUL_AFFLICTED_RUBBER_BUTTON_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_button", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_BUTTON.get(), new Item.Properties())));
-
 	public static final RegistryObject<SignItem> SOUL_AFFLICTED_RUBBER_SIGN_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_sign", () -> new SignItem(new Item.Properties().stacksTo(16), YATMBlocks.SOUL_AFFLICTED_RUBBER_SIGN.get(), YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_SIGN.get())));
 	public static final RegistryObject<HangingSignItem> SOUL_AFFLICTED_RUBBER_HANGING_SIGN_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_hanging_sign", () -> new HangingSignItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_HANGING_SIGN.get(), YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16))));
-	
+	public static final RegistryObject<YATMBoatItem> SOUL_AFFLICTED_RUBBER_BOAT_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_boat", () -> new YATMBoatItem(false, YATMBoatType.SOUL_AFFLICTED_RUBBER, new Item.Properties().stacksTo(1))));
+	public static final RegistryObject<YATMBoatItem> SOUL_AFFLICTED_RUBBER_CHEST_BOAT_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_chest_boat", () -> new YATMBoatItem(true, YATMBoatType.SOUL_AFFLICTED_RUBBER, new Item.Properties().stacksTo(1))));	
 	public static final RegistryObject<BlockItem> SOUL_AFFLICTED_LEAF_MULCH_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_leaf_mulch", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), new Item.Properties())));
 
+	
+	
 	public static final RegistryObject<ItemNameBlockItem> AURUM_DEMINUTUS_FIDDLE_HEAD = generalTabEnqueue(ITEMS.register("aurum_deminutus_fiddle_head", () -> new ItemNameBlockItem(YATMBlocks.AURUM_DEMINUTUS.get(), new Item.Properties().fireResistant())));
 	public static final RegistryObject<Item> AURUM_DEMINUTUS_FROND = generalTabEnqueue(ITEMS.register("aurum_deminutus_frond", () -> new Item(new Item.Properties().fireResistant())));
 	
@@ -147,7 +151,12 @@ public class YATMItems
 	
 	public static final RegistryObject<ItemNameBlockItem> SPIDER_VINE_FRUITS = generalTabEnqueue(ITEMS.register("spider_vine_fruits", () -> new ItemNameBlockItem(YATMBlocks.SPIDER_VINE_MERISTEM.get(), new Item.Properties())));
 	
-		
+	
+	
+	public static final RegistryObject<BlockItem> HANGING_POT_HOOK_ITEM = generalTabEnqueue(ITEMS.register("hanging_pot_hook", () -> new BlockItem(YATMBlocks.HANGING_POT_HOOK.get(), new Item.Properties())));
+	
+	
+	
 	
 	public static final RegistryObject<BlockItem> RUBBER_BLOCK_ITEM = generalTabEnqueue(ITEMS.register("rubber_block", () -> new BlockItem(YATMBlocks.RUBBER_BLOCK.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> ROOTED_SOUL_SOIL_ITEM = generalTabEnqueue(ITEMS.register("rooted_soul_soil", () -> new BlockItem(YATMBlocks.ROOTED_SOUL_SOIL.get(), new Item.Properties())));
@@ -213,8 +222,6 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> STEEL_FLUID_CONDUIT_ITEM = generalTabEnqueue(ITEMS.register("steel_fluid_conduit", () -> new BlockItem(YATMBlocks.STEEL_FLUID_CONDUIT.get(), new Item.Properties())));
 		
 	
-	
-	// loom, gin
 	
 	public static final RegistryObject<FluidExchangerItem> STEEL_FLUID_EXCHANGER = generalTabEnqueue(ITEMS.register("steel_fluid_exchanger_component", () -> new FluidExchangerItem(new Item.Properties().stacksTo(1), 128)));
 	
