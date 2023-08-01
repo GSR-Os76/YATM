@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "group": "chest_boat",
+  "ingredients": [
+    {
+      "item": "minecraft:chest"
+    },
+    {
+      "item": "gsr_yatm:rubber_boat"
+    }
+  ],
+  "result": {
+    "item": "gsr_yatm:rubber_chest_boat"
+  }
+}

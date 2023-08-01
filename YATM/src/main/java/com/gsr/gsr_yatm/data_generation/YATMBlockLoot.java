@@ -130,6 +130,8 @@ public class YATMBlockLoot extends VanillaBlockLoot
 
 		
 		
+		this.dropSelf(YATMBlocks.HANGING_POT_HOOK.get());
+		
 		this.dropSelf(YATMBlocks.RUBBER_BLOCK.get());
 		this.dropSelf(YATMBlocks.ROOTED_SOUL_SOIL.get());
 			

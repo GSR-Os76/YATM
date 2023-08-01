@@ -175,7 +175,13 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.STEEL_FLUID_CONDUIT.get(), "Steel Fluid Conduit");
 		
 		
+		
 		// ITEMS \\
+		this.add(YATMItems.RUBBER_BOAT_ITEM.get(), "Rubber Boat");
+		this.add(YATMItems.RUBBER_CHEST_BOAT_ITEM.get(), "Rubber Chest Boat");
+		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_BOAT_ITEM.get(), "Soul Afflicted Rubber Boat");
+		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT_ITEM.get(), "Soul Afflicted Rubber Chest Boat");
+		
 		this.add(YATMItems.STEEL_FLUID_EXCHANGER.get(), "Steel Fluid Exchanger");
 		
 		this.add(YATMItems.ONE_CU_CURRENT_REGULATOR.get(), "1cu Current Regulator");

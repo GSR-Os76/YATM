@@ -75,6 +75,8 @@ public class YATMItemTags extends ItemTagsProvider
 	{
 		this.copy(BlockTags.FLOWERS, ItemTags.FLOWERS);
 		this.tag(ItemTags.BEACON_PAYMENT_ITEMS).add(YATMItems.STEEL_INGOT.get()).add(YATMItems.SILVER_INGOT.get());
+		this.tag(ItemTags.BOATS).add(YATMItems.RUBBER_BOAT_ITEM.get()).add(YATMItems.SOUL_AFFLICTED_RUBBER_BOAT_ITEM.get());
+		this.tag(ItemTags.CHEST_BOATS).add(YATMItems.RUBBER_CHEST_BOAT_ITEM.get()).add(YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT_ITEM.get());
 		this.copy(BlockTags.LOGS, ItemTags.LOGS);
 		this.copy(BlockTags.LOGS_THAT_BURN, ItemTags.LOGS_THAT_BURN);
 		this.tag(ItemTags.PIGLIN_LOVED).add(YATMItems.SIXTYFOUR_CU_CURRENT_REGULATOR.get()).add(YATMItems.SIXTYFOUR_CU_CURRENT_FUSE.get()).add(YATMItems.SIXTYFOUR_CU_CURRENT_BREAKER.get()).addTag(YATMItemTags.SIXTYFOUR_CU_WIRES_KEY).add(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get()).add(YATMItems.AURUM_DEMINUTUS_FROND.get());

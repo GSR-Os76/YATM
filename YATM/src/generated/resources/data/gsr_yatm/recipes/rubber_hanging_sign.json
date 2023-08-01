@@ -1,0 +1,23 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "hanging_sign",
+  "key": {
+    "C": {
+      "item": "minecraft:chain"
+    },
+    "P": {
+      "item": "gsr_yatm:stripped_rubber_log"
+    }
+  },
+  "pattern": [
+    "C C",
+    "PPP",
+    "PPP"
+  ],
+  "result": {
+    "count": 6,
+    "item": "gsr_yatm:rubber_hanging_sign"
+  },
+  "show_notification": true
+}

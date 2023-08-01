@@ -1,4 +1,4 @@
-// 1.20.1	2023-07-28T14:48:28.5968256	Loot Tables
+// 1.20.1	2023-08-01T12:02:54.1098243	Loot Tables
 c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
 e7fbd17d28377f6d02cdd2df79fd21c9ce25491d data/gsr_yatm/loot_tables/blocks/aurum_deminutus.json
@@ -29,6 +29,7 @@ af61b2aad862896558d719c17c12b2236a3b81eb data/gsr_yatm/loot_tables/blocks/fivehu
 9b7b80c5ee0230577bac03b27bbd05671be4a7a6 data/gsr_yatm/loot_tables/blocks/fourthousandnintysix_cu_wire.json
 38a306a3f7873936b5fdb85752dccecc8579916b data/gsr_yatm/loot_tables/blocks/gray_shulkwart.json
 5811cec04ad7d21a3916a67feb0034b162011bd8 data/gsr_yatm/loot_tables/blocks/green_shulkwart.json
+f2ebf3c49aaf53926a72d075a05ddbb04bb01f72 data/gsr_yatm/loot_tables/blocks/hanging_pot_hook.json
 9293bbdfb5d6f7ed81226c397ab2c8d23c4b0f26 data/gsr_yatm/loot_tables/blocks/insulated_eight_cu_wire.json
 2bee858c56bcd23a711c020069ccc17bae9abe38 data/gsr_yatm/loot_tables/blocks/insulated_fivehundredtwelve_cu_wire.json
 279dce77057904f457992e2e7b6cbb1d45c7ebe6 data/gsr_yatm/loot_tables/blocks/insulated_fourthousandnintysix_cu_wire.json

@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "group": "boat",
+  "key": {
+    "P": {
+      "tag": "gsr_yatm:soul_afflicted_rubber_planks"
+    }
+  },
+  "pattern": [
+    "   ",
+    "P P",
+    "PPP"
+  ],
+  "result": {
+    "item": "gsr_yatm:soul_afflicted_rubber_boat"
+  },
+  "show_notification": true
+}

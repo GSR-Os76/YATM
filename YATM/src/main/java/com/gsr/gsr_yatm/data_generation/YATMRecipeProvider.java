@@ -32,6 +32,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -140,6 +141,12 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addTrapdoor(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_TRAPDOOR_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_trapdoor_from_shaped_crafting");
 		this.addPressurePlate(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_PRESSURE_PLATE_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_pressure_plate_from_shaped_crafting");
 		this.addButton(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_BUTTON_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_button_from_shaped_crafting");
+		
+		this.addSign(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_SIGN_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_sign_from_shaped_crafting");
+		this.addHangingSign(writer, YATMItems.STRIPPED_RUBBER_LOG_ITEM.get(), YATMItems.RUBBER_HANGING_SIGN_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_hanging_sign_from_shaped_crafting");
+		this.addBoat(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_BOAT_ITEM.get(), "rubber_boat_from_shaped_crafting");
+		this.addChestBoat(writer, YATMItems.RUBBER_BOAT_ITEM.get(), YATMItems.RUBBER_CHEST_BOAT_ITEM.get(), "rubber_chest_boat_from_shapeless_crafting");
+
 	} // end addRubberWoodCoreRecipes()
 	
 	private void addSoulAfflictedRubberWoodCoreRecipes(Consumer<FinishedRecipe> writer) 
@@ -161,6 +168,12 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addTrapdoor(writer, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_TRAPDOOR_ITEM.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_trapdoor_from_shaped_crafting");
 		this.addPressurePlate(writer, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE_ITEM.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_pressure_plate_from_shaped_crafting");
 		this.addButton(writer, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_BUTTON_ITEM.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_button_from_shaped_crafting");
+		
+		this.addSign(writer, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_SIGN_ITEM.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_sign_from_shaped_crafting");
+		this.addHangingSign(writer, YATMItems.SOUL_AFFLICTED_STRIPPED_RUBBER_LOG_ITEM.get(), YATMItems.SOUL_AFFLICTED_RUBBER_HANGING_SIGN_ITEM.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_hanging_sign_from_shaped_crafting");
+		this.addBoat(writer, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_BOAT_ITEM.get(), "soul_afflicted_rubber_boat_from_shaped_crafting");
+		this.addChestBoat(writer, YATMItems.SOUL_AFFLICTED_RUBBER_BOAT_ITEM.get(), YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT_ITEM.get(), "soul_afflicted_rubber_chest_boat_from_shapeless_crafting");
+
 	} // end addSoulAfflictedRubberWoodCoreRecipes()
 	
 	private void addWireRecipes(Consumer<FinishedRecipe> writer) 
@@ -456,21 +469,21 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	private void addStairs(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
 	{
-		stairBuilder(result, Ingredient.of(ingredient))
+		RecipeProvider.stairBuilder(result, Ingredient.of(ingredient))
 		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);		
 	} // end addStairs()
 	
 	private void addSlabs(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
 	{
-		slabBuilder(RecipeCategory.BUILDING_BLOCKS, result, Ingredient.of(ingredient))
+		RecipeProvider.slabBuilder(RecipeCategory.BUILDING_BLOCKS, result, Ingredient.of(ingredient))
 		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);	
 	} // end addSlabs()
 	
 	private void addFence(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
 	{
-		fenceBuilder(result, Ingredient.of(ingredient))
+		RecipeProvider.fenceBuilder(result, Ingredient.of(ingredient))
 		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);			
 	} // endFence()
@@ -484,31 +497,75 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	private void addDoor(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
 	{
-		doorBuilder(result, Ingredient.of(ingredient))
+		RecipeProvider.doorBuilder(result, Ingredient.of(ingredient))
 		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);			
 	} // addDoor()
 	
 	private void addTrapdoor(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
 	{
-		trapdoorBuilder(result, Ingredient.of(ingredient))
+		RecipeProvider.trapdoorBuilder(result, Ingredient.of(ingredient))
 		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);			
 	} // addTrapdoor()
 	
 	private void addPressurePlate(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
 	{
-		pressurePlateBuilder(RecipeCategory.REDSTONE, result, Ingredient.of(ingredient))
+		RecipeProvider.pressurePlateBuilder(RecipeCategory.REDSTONE, result, Ingredient.of(ingredient))
 		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);			
 	} // addPressurePlate()
 	
 	private void addButton(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
 	{
-		buttonBuilder(result,Ingredient.of(ingredient))
+		RecipeProvider.buttonBuilder(result,Ingredient.of(ingredient))
 		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);
 	} // end addButton()
+	
+	private void addSign(Consumer<FinishedRecipe> writer, TagKey<Item> planks, Item sign, String key) 
+	{
+		RecipeProvider.signBuilder(sign, Ingredient.of(planks))
+		.unlockedBy("has_planks", has(planks))
+		.save(writer);
+	} // end addSign()
+	
+	private void addHangingSign(Consumer<FinishedRecipe> writer, Item strippedLog, Item sign, String key) 
+	{
+		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, sign, 6)
+		.group("hanging_sign")		
+		.pattern("C C")
+		.pattern("PPP")
+		.pattern("PPP")
+		.define('C', Items.CHAIN)
+		.define('P', strippedLog)
+		.unlockedBy("has_stripped_logs", has(strippedLog))
+		.save(writer);
+	} // end addHangingSign()
+	
+	private void addBoat(Consumer<FinishedRecipe> writer, TagKey<Item> planks, Item boat, String key) 
+	{
+		ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, boat)
+		.group("boat")
+		.pattern("   ")
+		.pattern("P P")
+		.pattern("PPP")
+		.define('P', planks)
+		.unlockedBy("in_water", insideOf(Blocks.WATER))
+		.save(writer);
+	} // end addBoat()
+	
+	private void addChestBoat(Consumer<FinishedRecipe> writer, Item boat, Item chestBoat, String key) 
+	{
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.TRANSPORTATION, chestBoat)
+		.group("chest_boat")
+		.requires(Blocks.CHEST)
+		.requires(boat)
+		.unlockedBy("has_boat", has(ItemTags.BOATS))
+		.save(writer);
+	} // end addChestBoat()
+	
+	
 
 	private void addWire(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemLike result, String key) 
 	{
