@@ -1,0 +1,9 @@
+{
+    "sources": [
+        {
+            "type": "directory",
+            "source": "entity/hanging_pot_support_chains",
+            "prefix": "entity/hanging_pot_support_chains/"
+        }
+    ]
+}

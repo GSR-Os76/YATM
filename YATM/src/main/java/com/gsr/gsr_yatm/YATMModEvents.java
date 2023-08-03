@@ -9,6 +9,7 @@ import com.gsr.gsr_yatm.block.device.extruder.ExtruderScreen;
 import com.gsr.gsr_yatm.block.device.grinder.GrinderScreen;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelScreen;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelScreen;
+import com.gsr.gsr_yatm.block.hanging_pot.HangingPotHookRenderer;
 import com.gsr.gsr_yatm.data_generation.YATMBiomeTags;
 import com.gsr.gsr_yatm.data_generation.YATMBlockStateProvider;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
@@ -138,27 +139,29 @@ public class YATMModEvents
 		
 		
 		
-		Sheets.addWoodType(YATMBlocks.RUBBER_WOOD_TYPE);
-		Sheets.addWoodType(YATMBlocks.SOUL_AFFLICTED_RUBBER_WOOD_TYPE);
-
+		event.enqueueWork(() -> Sheets.addWoodType(YATMBlocks.RUBBER_WOOD_TYPE));
+		event.enqueueWork(() -> Sheets.addWoodType(YATMBlocks.SOUL_AFFLICTED_RUBBER_WOOD_TYPE));
+		// event.enqueueWork(() -> YATMSheets.addBlock(HangingPotHookRenderer.DEFAULT_HANGING_POT_SUPPORT_CHAINS_LOCATION));
+		
 		
 		
 		LayerDefinition boat = BoatModel.createBodyModel();
 		LayerDefinition chestBoat = ChestBoatModel.createBodyModel();
-
+		// LayerDefinition defaulfHangingPotSupportChain = DefaultHangingPotSupportChainModel.createModel();
 		for (YATMBoatType type : YATMBoatType.values())
 		{
 			ForgeHooksClient.registerLayerDefinition(YATMModelLayers.createYATMBoatModelName(type), () -> boat);
 			ForgeHooksClient.registerLayerDefinition(YATMModelLayers.createYATMChestBoatModelName(type), () -> chestBoat);
 		}
-
+		// ForgeHooksClient.registerLayerDefinition(YATMModelLayers.DEAFULT_HANGING_POT_SUPPORT_CHAIN_MODEL_NAME, () -> defaulfHangingPotSupportChain);
 } // end clientSetup()
 
 	private static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
 	{
-		event.registerBlockEntityRenderer(YATMBlockEntityTypes.YATM_SIGN.get(), SignRenderer::new);
+		event.registerBlockEntityRenderer(YATMBlockEntityTypes.HANGING_POT_HOOK.get(), HangingPotHookRenderer::new);
 		event.registerBlockEntityRenderer(YATMBlockEntityTypes.YATM_HANGING_SIGN.get(), HangingSignRenderer::new);
-
+		event.registerBlockEntityRenderer(YATMBlockEntityTypes.YATM_SIGN.get(), SignRenderer::new);
+		
 		event.<Boat>registerEntityRenderer(YATMEntityTypes.YATM_BOAT.get(), (c) -> new YATMBoatRenderer(c, false));
 		event.<Boat>registerEntityRenderer(YATMEntityTypes.YATM_CHEST_BOAT.get(), (c) -> new YATMBoatRenderer(c, true));
 	} // end clientSetup()

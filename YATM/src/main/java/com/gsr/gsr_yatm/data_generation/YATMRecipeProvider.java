@@ -1,6 +1,7 @@
 package com.gsr.gsr_yatm.data_generation;
 
 import java.util.function.Consumer;
+
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
@@ -64,6 +65,14 @@ public class YATMRecipeProvider extends RecipeProvider
 		
 		this.addRubberWoodCoreRecipes(writer);
 		this.addSoulAfflictedRubberWoodCoreRecipes(writer);
+		
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.HANGING_POT_HOOK_ITEM.get(), 1)
+		.pattern("c")
+		.pattern("p")
+		.define('c', Items.CHAIN)
+		.define('p', Items.FLOWER_POT) // possibly make tag
+		.unlockedBy("has_pot", inventoryTrigger(ItemPredicate.Builder.item().of(Items.FLOWER_POT).build()))
+		.save(writer, YetAnotherTechMod.MODID + ":hanging_pot_from_shaped_crafting");
 		
 		this.addOneToX(writer, YATMItems.RUBBER_BAR.get(), YATMItems.RUBBER_SCRAP.get(), 4, YetAnotherTechMod.MODID + ":rubber_scrap_from_ingot_shapeless_crafting");
 		this.addOneToX(writer, YATMItems.RUBBER_SCRAP_BALL.get(), YATMItems.RUBBER_SCRAP.get(), 4, YetAnotherTechMod.MODID + ":rubber_scrap_from_scrap_ball_shapeless_crafting");

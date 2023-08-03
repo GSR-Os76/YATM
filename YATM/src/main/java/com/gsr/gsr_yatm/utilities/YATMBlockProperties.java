@@ -46,6 +46,7 @@ public class YATMBlockProperties
 	public static final BlockBehaviour.Properties FALLEN_SHULKWART_SPORES = BlockBehaviour.Properties.of().mapColor(MapColor.SAND).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();
 	public static final BlockBehaviour.Properties SPIDER_VINE = BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();;
 
+	public static final BlockBehaviour.Properties HANGING_POT_HOOK = BlockBehaviour.Properties.of().instabreak().noCollission().noOcclusion().pushReaction(PushReaction.DESTROY);
 	
 	
 	public static final BlockBehaviour.Properties RUBBER_BLOCK_PROPERTIES = BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2f).sound(SoundType.CANDLE);

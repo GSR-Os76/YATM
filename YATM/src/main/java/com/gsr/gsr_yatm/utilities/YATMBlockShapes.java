@@ -18,7 +18,7 @@ public class YATMBlockShapes
 {	
 	public static final VoxelShapeProvider CUBE = new VoxelShapeProvider() 
 	{
-		private static final VoxelShape CUBE = Block.box(0, 0, 0, 16, 16, 16);
+		private static final VoxelShape CUBE = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
 
 		@Override
 		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
@@ -31,7 +31,7 @@ public class YATMBlockShapes
 	
 	public static final VoxelShapeProvider DOWNWARD_LICHEN_LIKE = new VoxelShapeProvider() 
 	{
-		private static final VoxelShape SHAPE = Block.box(0, 0, 0, 16, 1, 16);
+		private static final VoxelShape SHAPE = Block.box(0d, 0d, 0d, 16d, 1d, 16d);
 
 		@Override
 		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
@@ -42,12 +42,12 @@ public class YATMBlockShapes
 	
 	public static final VoxelShapeProvider PRISMARINE_CRYSTAL_MOSS = new VoxelShapeProvider() 
 	{
-		private static final VoxelShape HAS_UP = Block.box(0, 15, 0, 16, 16, 16);
-		private static final VoxelShape HAS_DOWN = Block.box(0, 0, 0, 16, 1, 16);
-		private static final VoxelShape HAS_NORTH = Block.box(0, 0, 0, 16, 16, 1);
-		private static final VoxelShape HAS_SOUTH = Block.box(0, 0, 15, 16, 16, 16);
-		private static final VoxelShape HAS_EAST = Block.box(15, 0, 0, 16, 16, 16);
-		private static final VoxelShape HAS_WEST = Block.box(0, 0, 0, 1, 16, 16);
+		private static final VoxelShape HAS_UP = Block.box(0d, 15d, 0d, 16d, 16d, 16d);
+		private static final VoxelShape HAS_DOWN = Block.box(0d, 0d, 0d, 16d, 1d, 16d);
+		private static final VoxelShape HAS_NORTH = Block.box(0d, 0d, 0d, 16d, 16d, 1d);
+		private static final VoxelShape HAS_SOUTH = Block.box(0d, 0d, 15d, 16d, 16d, 16d);
+		private static final VoxelShape HAS_EAST = Block.box(15d, 0d, 0d, 16d, 16d, 16d);
+		private static final VoxelShape HAS_WEST = Block.box(0d, 0d, 0d, 1d, 16d, 16d);
 
 		@Override
 		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
@@ -83,13 +83,13 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 	
+	
 	public static final VoxelShapeProvider SHULKWART = new VoxelShapeProvider() 
 	{
-		// TODO, do
-		private static final VoxelShape SHAPE_ZERO = Block.box(6, 15, 6, 10, 16, 10);
-		private static final VoxelShape SHAPE_ONE = Block.box(7, 8, 7, 9, 16, 9);
-		private static final VoxelShape SHAPE_TWO = Block.box(4, 3, 4, 12, 16, 12);
-		private static final VoxelShape SHAPE_THREE = Block.box(1, 0, 1, 15, 16, 15);
+		private static final VoxelShape SHAPE_ZERO = Block.box(6, 15d, 6d, 10d, 16d, 10d);
+		private static final VoxelShape SHAPE_ONE = Block.box(7d, 8d, 7d, 9d, 16d, 9d);
+		private static final VoxelShape SHAPE_TWO = Block.box(4d, 3d, 4d, 12d, 16d, 12d);
+		private static final VoxelShape SHAPE_THREE = Block.box(1d, 0d, 1d, 15d, 16d, 15d);
 
 		@Override
 		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
@@ -105,6 +105,19 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 
+	
+	
+	public static final VoxelShapeProvider HANGING_POT_HOOK = new VoxelShapeProvider() 
+	{
+		private static final VoxelShape TOP_PIECE = Block.box(6d, 15d, 6d, 10d, 16d, 10d);
+		private static final VoxelShape CHAIN_LINK = Block.box(6.5d, 12d, 6.5d, 9.5d, 15d, 9.5d);//Block.box(6d, 12d, 6d, 9d, 15d, 9d);
+
+		@Override
+		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		{
+			return Shapes.or(TOP_PIECE, CHAIN_LINK);
+		} // end getShape()
+	};
 	
 	
 	
@@ -139,8 +152,8 @@ public class YATMBlockShapes
 	
 	public static final VoxelShapeProvider BOILER_SHAPE = new VoxelShapeProvider()
 	{		
-		private static final VoxelShape BASE_SHAPE = Block.box(0, 0, 0, 16, 14, 16);
-		private static final VoxelShape HAS_TANK_SHAPE = Block.box(1, 14, 1, 15, 16, 15);
+		private static final VoxelShape BASE_SHAPE = Block.box(0d, 0d, 0d, 16d, 14d, 16d);
+		private static final VoxelShape HAS_TANK_SHAPE = Block.box(1d, 14d, 1d, 15d, 16d, 15d);
 
 		@Override
 		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
@@ -160,7 +173,7 @@ public class YATMBlockShapes
 
 	public static final VoxelShapeProvider SOLAR_PANEL = new VoxelShapeProvider() 
 	{
-		private static final VoxelShape SOLAR_PANEL = Block.box(0, 0, 0, 16, 2, 16);
+		private static final VoxelShape SOLAR_PANEL = Block.box(0d, 0d, 0d, 16d, 2d, 16d);
 
 		@Override
 		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)

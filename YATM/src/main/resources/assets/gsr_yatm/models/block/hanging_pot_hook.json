@@ -1,0 +1,35 @@
+{
+	"parent": "minecraft:block/blcok",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"0": "gsr_yatm:block/hanging_pot_hook",
+		"particle": "#0"
+	},	
+	"elements": [
+		{
+			"from": [6, 15, 6],
+			"to": [10, 16, 10],
+			"faces": {
+				"north": {"uv": [1, 0, 5, 1], "texture": "#0"},
+				"east": {"uv": [5, 1, 6, 5], "rotation": 90, "texture": "#0"},
+				"south": {"uv": [1, 5, 5, 6], "texture": "#0"},
+				"west": {"uv": [0, 1, 1, 5], "rotation": 270, "texture": "#0"},
+				"up": {"uv": [1, 6, 5, 10], "texture": "#0"},
+				"down": {"uv": [1, 1, 5, 5], "texture": "#0"}
+			}
+		},
+		{
+			"from": [6.5, 12, 8],
+			"to": [9.5, 15, 8],
+			"rotation": {"angle": 45, "axis": "y", "origin": [8, 15, 8]},
+			"faces": {
+				"north": {"uv": [7, 2, 10, 5], "texture": "#0"},
+				"east": {"uv": [0, 0, 0, 3], "texture": "#0"},
+				"south": {"uv": [7, 2, 10, 5], "texture": "#0"},
+				"west": {"uv": [0, 0, 0, 3], "texture": "#0"},
+				"up": {"uv": [0, 0, 3, 0], "texture": "#0"},
+				"down": {"uv": [0, 0, 3, 0], "texture": "#0"}
+			}
+		}
+	]
+}

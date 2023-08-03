@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "gsr_yatm:hanging_pot_hook"
+          "name": "minecraft:chain"
         }
       ],
       "rolls": 1.0

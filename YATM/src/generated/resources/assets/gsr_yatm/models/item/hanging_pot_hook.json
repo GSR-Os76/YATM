@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gsr_yatm:item/hanging_pot_hook"
+  }
+}

@@ -81,6 +81,9 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	private ModelFile m_shulkwartFruitThreeModel;
 	public static final ModelFile SHULKWART_HORN = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/shulkwart_horn"));
 	
+	public static final ModelFile HANGING_POT_HOOK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/hanging_pot_hook"));
+	public static final ModelFile DEFAULT_HANGING_POT_SUPPORT_CHAINS_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/default_hanging_pot_support_chains"));
+	
 	public static final ModelFile SPINNING_WHEEL_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/spinning_wheel"));
 	
 	public static final ModelFile LARGE_HEAT_SINK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/large_heat_sink"));
@@ -138,6 +141,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get());
 		this.addSpiderVine();
 		
+		this.createBlock(YATMBlocks.HANGING_POT_HOOK.get(), YATMBlockStateProvider.HANGING_POT_HOOK_MODEL);
+		this.createBlock(YATMBlocks.DEFAULT_HANGING_POT_SUPPORT_CHAINS.get(), YATMBlockStateProvider.DEFAULT_HANGING_POT_SUPPORT_CHAINS_MODEL);
 		this.createAllBlock(YATMBlocks.RUBBER_BLOCK.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rubber_block"));
 		this.createAllBlock(YATMBlocks.ROOTED_SOUL_SOIL.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rooted_soul_soil"));
 		
@@ -412,6 +417,18 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.simpleBlockItem(block, model);
 		this.getVariantBuilder(block).forAllStates((blockState) -> new ConfiguredModel[]
 		{ new ConfiguredModel(model) });
+	} // end createAllBlock()
+	
+	private void createBlock(Block block, ModelFile model)
+	{
+		this.getVariantBuilder(block).forAllStates((blockState) -> new ConfiguredModel[] { new ConfiguredModel(model) });
+	} // end createAllBlock()
+	
+	@SuppressWarnings("unused")
+	private void createBlockWithItem(Block block, ModelFile model)
+	{
+		this.simpleBlockItem(block, model);
+		this.getVariantBuilder(block).forAllStates((blockState) -> new ConfiguredModel[] { new ConfiguredModel(model) });
 	} // end createAllBlock()
 	
 	private void createHorizontalFacingTopBlock(Block block, Item item, ResourceLocation sideTexture, ResourceLocation topTexture) 

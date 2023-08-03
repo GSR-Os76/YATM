@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "c": {
+      "item": "minecraft:chain"
+    },
+    "p": {
+      "item": "minecraft:flower_pot"
+    }
+  },
+  "pattern": [
+    "c",
+    "p"
+  ],
+  "result": {
+    "item": "gsr_yatm:hanging_pot_hook"
+  },
+  "show_notification": true
+}

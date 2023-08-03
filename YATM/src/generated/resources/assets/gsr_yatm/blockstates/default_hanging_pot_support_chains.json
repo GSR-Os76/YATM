@@ -1,0 +1,7 @@
+{
+  "variants": {
+    "": {
+      "model": "gsr_yatm:block/default_hanging_pot_support_chains"
+    }
+  }
+}

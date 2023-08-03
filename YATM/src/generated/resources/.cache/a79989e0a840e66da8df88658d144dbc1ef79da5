@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-01T12:02:54.115909	Item Models: gsr_yatm
+// 1.20.1	2023-08-03T13:17:41.1045668	Item Models: gsr_yatm
 39dc65663f22bc3413323e63119c165dc4f51c76 assets/gsr_yatm/models/item/aurum_deminutus_fiddle_head.json
 4bab78a47a4fc45a258b74c9012f61de899aee93 assets/gsr_yatm/models/item/aurum_deminutus_frond.json
 b860c72785d969dab4933b80dd6652fa794539bf assets/gsr_yatm/models/item/aurum_fan.json
@@ -34,6 +34,7 @@ dc0d6842adbf21ba5b5330616b224d0686788884 assets/gsr_yatm/models/item/fivehundred
 040c589f90c7240f0e2a43a2fd18cc08362735d7 assets/gsr_yatm/models/item/fourthousandnintysix_cu_current_breaker_component.json
 0f7550228501ab8b3ca5b4945e29dfd24e1ffef7 assets/gsr_yatm/models/item/fourthousandnintysix_cu_current_fuse_component.json
 c302c06f8d16d172aff072633b16327f6e98c883 assets/gsr_yatm/models/item/fourthousandnintysix_cu_current_regulator_component.json
+4ecb9bcdbfaf0729e97f13aaa2aaa5b6fcc1f4fc assets/gsr_yatm/models/item/hanging_pot_hook.json
 addb4f3a98d50515e7a7cb534030a1f0e09f6177 assets/gsr_yatm/models/item/iron_wire_die.json
 130079ff0bfb9fca9d683d4af51b13482817774b assets/gsr_yatm/models/item/latex_bottle.json
 0ae36a420f6db4a61dc357a25874a67a9b43081b assets/gsr_yatm/models/item/latex_bucket.json

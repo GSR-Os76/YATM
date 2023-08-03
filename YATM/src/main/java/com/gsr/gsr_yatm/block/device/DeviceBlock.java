@@ -103,9 +103,9 @@ public abstract class DeviceBlock extends Block implements EntityBlock
 	
 	@SuppressWarnings("deprecation")
 	@Override
-	public void onRemove(BlockState fromBlockState, Level level, BlockPos blockPos, BlockState toBlockstate, boolean dunno)
+	public void onRemove(BlockState fromState, Level level, BlockPos blockPos, BlockState toState, boolean dunno)
 	{
-		if(!fromBlockState.is(toBlockstate.getBlock())) 
+		if(!fromState.is(toState.getBlock())) 
 		{
 			BlockEntity be = level.getBlockEntity(blockPos);
 			if(be instanceof DeviceBlockEntity dbe && level instanceof ServerLevel) 
@@ -113,7 +113,7 @@ public abstract class DeviceBlock extends Block implements EntityBlock
 				dbe.blockBroken();
 			}
 		}
-		super.onRemove(fromBlockState, level, blockPos, toBlockstate, dunno);;
+		super.onRemove(fromState, level, blockPos, toState, dunno);;
 	} // end onRemove()
 
 } // end class

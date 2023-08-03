@@ -127,8 +127,11 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.SPIDER_VINE_MERISTEM.get(), "Spider Vine Meristem");		
 		
 		
+		
+		this.add(YATMBlocks.HANGING_POT_HOOK.get(), "Hanging Pot");
 		this.add(YATMBlocks.RUBBER_BLOCK.get(), "Rubber Block");
 		this.add(YATMBlocks.ROOTED_SOUL_SOIL.get(), "Rooted Soul Soil");
+		
 		
 		
 		this.add(YATMBlocks.SPINNING_WHEEL.get(), "Spinning Wheel");
