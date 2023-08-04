@@ -128,6 +128,8 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.add(YATMBlocks.SPIDER_VINE.get(), (b) -> LootTable.lootTable().withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(b).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(OnceFruitVineBodyBlock.FRUITING_STAGE, OnceFruitingPlantStages.FRUITING))).add(LootItem.lootTableItem(YATMItems.SPIDER_VINE_FRUITS.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0f))))));
 		this.add(YATMBlocks.SPIDER_VINE_MERISTEM.get(), BlockLootSubProvider.noDrop());
 
+		this.dropSelf(YATMBlocks.VARIEGATED_CACTUS.get());
+		
 		
 		
 		this.dropOther(YATMBlocks.HANGING_POT_HOOK.get(), Items.CHAIN);

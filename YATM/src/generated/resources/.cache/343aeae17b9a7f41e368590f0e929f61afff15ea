@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-03T13:17:41.1101269	Block States: gsr_yatm
+// 1.20.1	2023-08-04T10:37:01.589824	Block States: gsr_yatm
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 a2a385d05e4f86cda9dd2c5a246077dac4e32579 assets/gsr_yatm/blockstates/advanced_solar_panel.json
 933660d749d6ccd2fe68c8216e2e98db21104e97 assets/gsr_yatm/blockstates/aurum_deminutus.json
@@ -109,6 +109,7 @@ e203b44732aa0a9fe3292c4ac1785eb491e795d7 assets/gsr_yatm/blockstates/spider_vine
 189cb568c67e71e5461920eb2692572261fb0a74 assets/gsr_yatm/blockstates/stripped_rubber_wood.json
 7a89131c06eb8fa9c3fcd1279a0d272bff11be9d assets/gsr_yatm/blockstates/suns_complement_battery_solar_panel.json
 904e5494cc5c70f733ffe896840521f91121f7be assets/gsr_yatm/blockstates/suns_complement_solar_panel.json
+4910fb36ac37d7b24d3d5b0acabd1bd1ba55ed57 assets/gsr_yatm/blockstates/variegated_cactus.json
 f55696ebcc8e4fb0530b1764ed7a2d2b4d67dfd0 assets/gsr_yatm/blockstates/white_shulkwart.json
 f2c674dc5e09fd29fcb9651e7446ea2e83f3f0b1 assets/gsr_yatm/blockstates/yellow_shulkwart.json
 d34904da0af1aef92ddf3e9895414ca4ba0b414f assets/gsr_yatm/models/block/advanced_battery_solar_panel.json
@@ -325,6 +326,7 @@ e31e7a745af51b5381eef8a098162e2bb9165b2d assets/gsr_yatm/models/block/stripped_r
 184f039d3749ccc0eb3399d425ae3b83fd5862c0 assets/gsr_yatm/models/block/stripped_rubber_wood.json
 3a40a52d6a9aa994833868bd6dcc354e750e9489 assets/gsr_yatm/models/block/suns_complement_battery_solar_panel.json
 19280d7edd30b4185ea0ac04d0cda8ccf46e2929 assets/gsr_yatm/models/block/suns_complement_solar_panel.json
+2e6e110f69cbb4e6074b73faea377c0a6178cc4f assets/gsr_yatm/models/block/variegated_cactus.json
 6295240077c34876c07b25eec7a4ee53884c927a assets/gsr_yatm/models/block/white_shulkwart_grown.json
 5b891968cdcd87600cd57be71bd255fa5462800d assets/gsr_yatm/models/block/yellow_shulkwart_grown.json
 5098825f5a56495232c14fa1ce6ad327c5b08a79 assets/gsr_yatm/models/item/advanced_battery_crude_solar_panel.json
@@ -418,5 +420,6 @@ e9a14964307461480f82a1adfecf61de9df90ee0 assets/gsr_yatm/models/item/stripped_ru
 fd5409c14df15f41ab13d727e7cf1184efc63169 assets/gsr_yatm/models/item/stripped_rubber_wood.json
 1a7cc60888c9b98185760e81bc5222416e4c2fe4 assets/gsr_yatm/models/item/suns_complement_battery_solar_panel.json
 d9fac83c24305d7e4c86e499bb2f17ad93fe8dd4 assets/gsr_yatm/models/item/suns_complement_solar_panel.json
+18d3cf32c1bbf4fad286a2876d45ed279928271d assets/gsr_yatm/models/item/variegated_cactus.json
 5f5481f52ef9f5092df6b17e557ecc8f6ce2f35d assets/gsr_yatm/models/item/white_shulkwart_horn.json
 30652c9380f4749c87285974199447de2cc4bca7 assets/gsr_yatm/models/item/yellow_shulkwart_horn.json

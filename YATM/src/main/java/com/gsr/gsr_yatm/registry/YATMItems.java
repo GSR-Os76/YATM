@@ -152,6 +152,9 @@ public class YATMItems
 	
 	public static final RegistryObject<ItemNameBlockItem> SPIDER_VINE_FRUITS = generalTabEnqueue(ITEMS.register("spider_vine_fruits", () -> new ItemNameBlockItem(YATMBlocks.SPIDER_VINE_MERISTEM.get(), new Item.Properties())));
 	
+	public static final RegistryObject<BlockItem> VARIEGATED_CACTUS_ITEM = generalTabEnqueue(ITEMS.register("variegated_cactus", () -> new BlockItem(YATMBlocks.VARIEGATED_CACTUS.get(), new Item.Properties())));
+	
+	
 	
 	
 	public static final RegistryObject<BlockItem> HANGING_POT_HOOK_ITEM = generalTabEnqueue(ITEMS.register("hanging_pot_hook", () -> new BlockItem(YATMBlocks.HANGING_POT_HOOK.get(), new Item.Properties())));

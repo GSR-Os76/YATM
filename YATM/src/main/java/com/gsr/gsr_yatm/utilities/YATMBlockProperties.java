@@ -46,6 +46,8 @@ public class YATMBlockProperties
 	public static final BlockBehaviour.Properties FALLEN_SHULKWART_SPORES = BlockBehaviour.Properties.of().mapColor(MapColor.SAND).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();
 	public static final BlockBehaviour.Properties SPIDER_VINE = BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();;
 
+	public static final BlockBehaviour.Properties CACTUS = BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).randomTicks().strength(0.4F).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY);
+	
 	public static final BlockBehaviour.Properties HANGING_POT_HOOK = BlockBehaviour.Properties.of().instabreak().noCollission().noOcclusion().pushReaction(PushReaction.DESTROY);
 	
 	
@@ -62,6 +64,7 @@ public class YATMBlockProperties
 	
 	// TODO, make color customizable by method
 	public static final BlockBehaviour.Properties LIQUID_PROPERTIES = BlockBehaviour.Properties.of()/* .mapColor(MapColor.WATER) */.replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY);
+
 	
 	
 	

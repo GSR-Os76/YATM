@@ -5,6 +5,7 @@ import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 import org.joml.Vector2i;
 
 import com.google.common.collect.ImmutableList;
@@ -61,6 +62,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	public static final ModelFile DEFAULT_ITEM_MODEL_PARENT = new ModelFile.UncheckedModelFile("minecraft:item/generated");
 	
+	
+	public static final ModelFile CACTUS_MODEL = new ModelFile.UncheckedModelFile("minecraft:block/cactus");
 	public static final ModelFile CARPET = new ModelFile.UncheckedModelFile("minecraft:block/carpet");
 	public static final ModelFile CROP = new ModelFile.UncheckedModelFile("minecraft:block/crop");
 	public static final ModelFile CROSS = new ModelFile.UncheckedModelFile("minecraft:block/cross");
@@ -140,6 +143,10 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addShulkwarts();
 		this.createShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get());
 		this.addSpiderVine();
+		this.createCactus(YATMBlocks.VARIEGATED_CACTUS.get(), YATMItems.VARIEGATED_CACTUS_ITEM.get(), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/variegated_cactus/variegated_cactus_top"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/variegated_cactus/variegated_cactus_side"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/variegated_cactus/variegated_cactus_bottom"));
 		
 		this.createBlock(YATMBlocks.HANGING_POT_HOOK.get(), YATMBlockStateProvider.HANGING_POT_HOOK_MODEL);
 		this.createBlock(YATMBlocks.DEFAULT_HANGING_POT_SUPPORT_CHAINS.get(), YATMBlockStateProvider.DEFAULT_HANGING_POT_SUPPORT_CHAINS_MODEL);
@@ -689,19 +696,31 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	{
 		// TODO, likely change model reducing vertex density significantly
 		// TODO, textures
-		String name = getModelLocationNameFor(block);	
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);	
 		String smallName = name + "_small";
 		String mediumName = name + "_medium";
 		String largeName = name + "_large";
-		this.models().getBuilder(smallName).parent(SMALL_SHELF_FUNGUS);
-		this.models().getBuilder(mediumName).parent(MEDIUM_SHELF_FUNGUS);	
-		this.models().getBuilder(largeName).parent(LARGE_SHELF_FUNGUS);	
+		this.models().getBuilder(smallName).parent(YATMBlockStateProvider.SMALL_SHELF_FUNGUS);
+		this.models().getBuilder(mediumName).parent(YATMBlockStateProvider.MEDIUM_SHELF_FUNGUS);	
+		this.models().getBuilder(largeName).parent(YATMBlockStateProvider.LARGE_SHELF_FUNGUS);	
 		ModelFile smallModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, smallName));
 		ModelFile mediumModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, mediumName));
 		ModelFile largeModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, largeName));
-		this.getVariantBuilder(block).forAllStates((bs) -> forShelfFungi(bs, smallModel, mediumModel, largeModel));
+		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forShelfFungi(bs, smallModel, mediumModel, largeModel));
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(largeModel);
 	} // end createShelfFungus()
+	
+	private void createCactus(@NotNull Block block, @Nullable Item item, @NotNull ResourceLocation topTexture, @NotNull ResourceLocation sideTexture, @NotNull ResourceLocation bottomTexture) 
+	{		
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);	
+		this.models().getBuilder(name).parent(YATMBlockStateProvider.CACTUS_MODEL).texture("top", topTexture).texture("side", sideTexture).texture("bottom", bottomTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);	
+		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
+		this.getVariantBuilder(block).forAllStates((bs) -> new ConfiguredModel[] {new ConfiguredModel(model)});
+		if(item != null) 
+		{
+			this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
+		}
+	} // end createCactus()
 	
 	private void createStair(StairBlock block, String name, ResourceLocation texture) 
 	{ 

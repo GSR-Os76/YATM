@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-03T14:36:51.0801882	Loot Tables
+// 1.20.1	2023-08-03T22:53:45.6018127	Loot Tables
 c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
 e7fbd17d28377f6d02cdd2df79fd21c9ce25491d data/gsr_yatm/loot_tables/blocks/aurum_deminutus.json
@@ -117,5 +117,6 @@ f87ea71e51838e9d7ca7983b53bf36a89216cc05 data/gsr_yatm/loot_tables/blocks/steel_
 9c24993739cc444163ea48351e3b1a745d9b2cfe data/gsr_yatm/loot_tables/blocks/stripped_rubber_wood.json
 10ba5c51e8e2e053360346f0e40e1e5614088907 data/gsr_yatm/loot_tables/blocks/suns_complement_battery_solar_panel.json
 f65f5e32ef63ad3fcfe2e4ff59c4ed88d4c94ac2 data/gsr_yatm/loot_tables/blocks/suns_complement_solar_panel.json
+7f43019907fd0bd0fed5b540663e4c473a7012d2 data/gsr_yatm/loot_tables/blocks/variegated_cactus.json
 1386817c345d6d5cdf0722e43487eeaa1ea41e40 data/gsr_yatm/loot_tables/blocks/white_shulkwart.json
 b52f5c04b3096dce49ef3917806b26e5c41b2f5d data/gsr_yatm/loot_tables/blocks/yellow_shulkwart.json
