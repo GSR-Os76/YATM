@@ -218,6 +218,7 @@ public class YATMBlocks
 	
 	
 	
+	// TODO, fix face culling, which is to stay stop it happening, seems only a hack solution is doable by json 
 	public static final RegistryObject<Block> DEFAULT_HANGING_POT_SUPPORT_CHAINS = BLOCKS.register("default_hanging_pot_support_chains", () -> new Block(BlockBehaviour.Properties.of().noLootTable()));
 	public static final RegistryObject<HangingPotHookBlock> HANGING_POT_HOOK = BLOCKS.register("hanging_pot_hook", () -> new HangingPotHookBlock(YATMBlockProperties.HANGING_POT_HOOK, YATMBlockShapes.HANGING_POT_HOOK));
 	

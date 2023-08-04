@@ -6,6 +6,7 @@ import java.util.stream.Stream;
 import com.google.common.collect.ImmutableMap;
 import com.gsr.gsr_yatm.utilities.YATMModelLayers;
 import com.mojang.datafixers.util.Pair;
+
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
 import net.minecraft.client.model.ListModel;
@@ -31,7 +32,7 @@ public class YATMBoatRenderer extends BoatRenderer
 		this.shadowRadius = 0.8F;
 		this.m_yatmBoatResources = Stream.of(YATMBoatType.values()).collect(ImmutableMap.toImmutableMap(
 				(key) -> key, 
-				(value) -> Pair.of(new ResourceLocation(YATMBoatRenderer.getTextureLocation(value, hasChest)), this.createBoatModel(context, value, hasChest))));
+				(value) -> Pair.of(YATMBoatRenderer.getTextureLocation(value, hasChest), this.createBoatModel(context, value, hasChest))));
 	} // end constructor
 
 	
@@ -42,14 +43,14 @@ public class YATMBoatRenderer extends BoatRenderer
 		return (ListModel<Boat>) (hasChest ? new ChestBoatModel(modelpart) : new BoatModel(modelpart));
 	} // end createBoatModel()
 
-	private static String getTextureLocation(YATMBoatType type, boolean hasChest)
+	private static ResourceLocation getTextureLocation(YATMBoatType type, boolean hasChest)
 	{
 		ResourceLocation location = new ResourceLocation(type.getIdentifier());
-		return location.getNamespace() + (hasChest ? "textures/entity/chest_boat/" : "textures/entity/boat/") + location.getPath() + ".png";
+		return new ResourceLocation(location.getNamespace(), ((hasChest ? "textures/entity/chest_boat/" : "textures/entity/boat/") + location.getPath() + ".png"));
 	} // end getTextureLocation()
 
 
-
+	@Override
 	public Pair<ResourceLocation, ListModel<Boat>> getModelWithLocation(Boat boat)
 	{
 		return boat instanceof IYATMBoat yb ? this.m_yatmBoatResources.get(yb.getVariantType()) : super.getModelWithLocation(boat);

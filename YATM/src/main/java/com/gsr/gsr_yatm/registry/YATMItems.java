@@ -91,6 +91,7 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> SOUL_AFFLICTED_RUBBER_BUTTON_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_button", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_BUTTON.get(), new Item.Properties())));
 	public static final RegistryObject<SignItem> SOUL_AFFLICTED_RUBBER_SIGN_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_sign", () -> new SignItem(new Item.Properties().stacksTo(16), YATMBlocks.SOUL_AFFLICTED_RUBBER_SIGN.get(), YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_SIGN.get())));
 	public static final RegistryObject<HangingSignItem> SOUL_AFFLICTED_RUBBER_HANGING_SIGN_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_hanging_sign", () -> new HangingSignItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_HANGING_SIGN.get(), YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16))));
+	// TODO, maybe add a special boat, longer, and with a soul lantern
 	public static final RegistryObject<YATMBoatItem> SOUL_AFFLICTED_RUBBER_BOAT_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_boat", () -> new YATMBoatItem(false, YATMBoatType.SOUL_AFFLICTED_RUBBER, new Item.Properties().stacksTo(1))));
 	public static final RegistryObject<YATMBoatItem> SOUL_AFFLICTED_RUBBER_CHEST_BOAT_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_rubber_chest_boat", () -> new YATMBoatItem(true, YATMBoatType.SOUL_AFFLICTED_RUBBER, new Item.Properties().stacksTo(1))));	
 	public static final RegistryObject<BlockItem> SOUL_AFFLICTED_LEAF_MULCH_ITEM = generalTabEnqueue(ITEMS.register("soul_afflicted_leaf_mulch", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), new Item.Properties())));
@@ -174,7 +175,7 @@ public class YATMItems
 	
 	public static final RegistryObject<BlockItem> LARGE_COPPER_HEAT_SINK_ITEM = generalTabEnqueue(ITEMS.register("large_copper_heat_sink", () -> new BlockItem(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), new Item.Properties())));
 
-	
+	// make two different texture packs, plant styled machines and metal style machines. data pack too
 	
 	public static final RegistryObject<BlockItem> DATA_STORAGE_BLOCK_ITEM = generalTabEnqueue(ITEMS.register("data_storage_block", () -> new BlockItem(YATMBlocks.DATA_STORAGE_BLOCK.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> DATA_SCAN_COLLECTOR_ITEM = generalTabEnqueue(ITEMS.register("data_scan_collector", () -> new BlockItem(YATMBlocks.DATA_SCAN_COLLECTOR.get(), new Item.Properties())));
