@@ -70,6 +70,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile FLOWER_POT_CROSS = new ModelFile.UncheckedModelFile("minecraft:block/flower_pot_cross");
 	public static final ModelFile GLOW_LICHEN = new ModelFile.UncheckedModelFile("minecraft:block/glow_lichen");
 	public static final ModelFile MANGROVE_ROOTS = new ModelFile.UncheckedModelFile("minecraft:block/mangrove_roots");
+	public static final ModelFile POTTED_CACTUS = new ModelFile.UncheckedModelFile("minecraft:block/potted_cactus");
 	
 	
 	
@@ -143,10 +144,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addShulkwarts();
 		this.createShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get());
 		this.addSpiderVine();
-		this.createCactus(YATMBlocks.VARIEGATED_CACTUS.get(), YATMItems.VARIEGATED_CACTUS_ITEM.get(), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/variegated_cactus/variegated_cactus_top"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/variegated_cactus/variegated_cactus_side"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/variegated_cactus/variegated_cactus_bottom"));
+		this.addVariegatedCactus();
+		
 		
 		this.createBlock(YATMBlocks.HANGING_POT_HOOK.get(), YATMBlockStateProvider.HANGING_POT_HOOK_MODEL);
 		this.createBlock(YATMBlocks.DEFAULT_HANGING_POT_SUPPORT_CHAINS.get(), YATMBlockStateProvider.DEFAULT_HANGING_POT_SUPPORT_CHAINS_MODEL);
@@ -171,7 +170,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	{
 		ResourceLocation meristemTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_meristem");
 		this.createSelfLayeringSapling(YATMBlocks.RUBBER_MERISTEM.get(), YATMItems.RUBBER_MERISTEM_ITEM.get(), "block/rubber_meristem", meristemTexture);
-		this.addPottedPlant(YATMBlocks.POTTED_RUBBER_MERISTEM.get(), meristemTexture);
+		this.createPottedCross(YATMBlocks.POTTED_RUBBER_MERISTEM.get(), meristemTexture);
 		this.createAllBlock(YATMBlocks.RUBBER_LEAVES_YOUNG.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_leaves_young"));
 		this.createAllBlock(YATMBlocks.RUBBER_LEAVES_FLOWERING.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_leaves_flowering"));
 		this.createAllBlock(YATMBlocks.RUBBER_LEAVES_OLD.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_leaves_old"));
@@ -220,7 +219,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	{
 		ResourceLocation meristemTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_meristem");
 		this.createSelfLayeringSapling(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM_ITEM.get(), "block/soul_afflicted_rubber_meristem", meristemTexture);
-		this.addPottedPlant(YATMBlocks.POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM.get(), meristemTexture);
+		this.createPottedCross(YATMBlocks.POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM.get(), meristemTexture);
 		this.createAllBlock(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_leaves_young"));
 		this.createAllBlock(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_leaves_flowering"));
 		this.createAllBlock(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_OLD.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_leaves_old"));
@@ -297,6 +296,17 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createOnceFruitingCross(YATMBlocks.SPIDER_VINE.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_vine/spider_vine"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_vine/spider_vine_fruiting"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_vine/spider_vine_harvested"));
 		this.createCross(YATMBlocks.SPIDER_VINE_MERISTEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_vine/spider_vine_meristem"));
 	} // end addSpiderVine()
+	
+	private void addVariegatedCactus()
+	{
+		ResourceLocation topTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/variegated_cactus/variegated_cactus_top");
+		ResourceLocation sideTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/variegated_cactus/variegated_cactus_side");
+		this.createCactus(YATMBlocks.VARIEGATED_CACTUS.get(), YATMItems.VARIEGATED_CACTUS_ITEM.get(), 
+				topTexture, 
+				sideTexture, 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/variegated_cactus/variegated_cactus_bottom"));
+		this.createPottedCactus(YATMBlocks.POTTED_VARIEGATED_CACTUS.get(), topTexture, sideTexture);
+	} // end addVariegatedCactus()
 	
 	
 	
@@ -656,10 +666,19 @@ public class YATMBlockStateProvider extends BlockStateProvider
         .texture("layer0", texture);
 	} // end createSelfLayerinSapling
 	
-	private void addPottedPlant(Block block, ResourceLocation texture) 
+	private void createPottedCross(Block block, ResourceLocation texture) 
 	{
 		String name = getModelLocationNameFor(block);			
-		this.models().getBuilder(name).parent(FLOWER_POT_CROSS).texture("plant", texture).renderType(CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(name).parent(YATMBlockStateProvider.FLOWER_POT_CROSS).texture("plant", texture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
+		this.getVariantBuilder(block).forAllStates((blockState) -> new ConfiguredModel[]
+		{ new ConfiguredModel(model) });
+	} // end addPottedPlant()
+	
+	private void createPottedCactus(Block block, ResourceLocation topTexture, ResourceLocation sideTexture) 
+	{
+		String name = getModelLocationNameFor(block);			
+		this.models().getBuilder(name).parent(YATMBlockStateProvider.POTTED_CACTUS).texture("cactus_top", topTexture).texture("cactus", sideTexture); // .renderType(CUTOUT_RENDER_TYPE);		
 		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
 		this.getVariantBuilder(block).forAllStates((blockState) -> new ConfiguredModel[]
 		{ new ConfiguredModel(model) });

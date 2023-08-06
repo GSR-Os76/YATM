@@ -6,6 +6,7 @@ import com.gsr.gsr_yatm.block.IHarvestable;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.plant.tree.StrippedSapLogBlock;
 import com.gsr.gsr_yatm.command.YATMRuleCommand;
+import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.item.fluid.GlassBottleItemStack;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
@@ -28,16 +29,21 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.event.RecipesUpdatedEvent;
+import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.level.BlockEvent.BlockToolModificationEvent;
+import net.minecraftforge.event.level.BlockEvent.CropGrowEvent;
+import net.minecraftforge.eventbus.api.Event.Result;
 import net.minecraftforge.eventbus.api.IEventBus;
 
 public class YATMGameEvents
@@ -47,6 +53,7 @@ public class YATMGameEvents
 		YATMRegistries.register(eventBus);
 		eventBus.addListener(YATMGameEvents::blockToolModification);
 		eventBus.addListener(YATMGameEvents::entityDamaged);
+		eventBus.addListener(YATMGameEvents::cropsGrowPre);
 		eventBus.addListener(YATMGameEvents::recipesUpdated);
 		eventBus.addListener(YATMGameEvents::registerCommands);
 		eventBus.addGenericListener(ItemStack.class, YATMGameEvents::attachItemStackCapabilities);
@@ -76,9 +83,18 @@ public class YATMGameEvents
 	
 	private static void entityDamaged(LivingDamageEvent event) 
 	{
-		tryWitherSoulAffliction(event);
-		tryWitherSoulAdornedNetheriteArmorPieces(event);
+		YATMGameEvents.tryWitherSoulAffliction(event);
+		YATMGameEvents.tryWitherSoulAdornedNetheriteArmorPieces(event);
 	} // end onEntityDamaged()
+	
+	private static void cropsGrowPre(CropGrowEvent.Pre event)
+	{
+		if(YATMGameEvents.tryCactusHeightRestriction(event)) 
+		{
+			return;
+		}
+		YATMGameEvents.tryVariegateCactus(event);
+	} // end cropsGrowPree
 	
 	private static void recipesUpdated(RecipesUpdatedEvent event) 
 	{
@@ -280,6 +296,50 @@ public class YATMGameEvents
 
 		}
 	} // end tryWitherSoulArmor()
+	
+	// returns true if growth is being cancelled, otherwise returns false.
+	private static boolean tryCactusHeightRestriction(CropGrowEvent.Pre event)
+	{
+		BlockState state = event.getState();
+		if(!state.is(Blocks.CACTUS)) 
+		{
+			return false;
+		}
+		
+		int cactusMaxHeight = 3;
+		LevelAccessor la = event.getLevel();
+		BlockPos position = event.getPos();
+		int cactusBelow;
+		for (cactusBelow = 1; la.getBlockState(position.below(cactusBelow)).is(YATMBlockTags.FORGE_CACTUSES_KEY) && cactusBelow <= cactusMaxHeight; ++cactusBelow);
+		
+		// TODO, this check is meant to match the vanilla one, how less than three below limits the total height to three is escaping me though.
+		if(!(cactusBelow < cactusMaxHeight)) 
+		{
+			event.setResult(Result.DENY);
+			return true;
+		}
+		return false;
+	} // end tryCactusHeightRestriction()
+	
+	private static boolean tryVariegateCactus(CropGrowEvent.Pre event)
+	{
+		if(event.getState().is(Blocks.CACTUS) && event.getLevel() instanceof Level l && (l.getRandom().nextInt(622) == 0))
+		{
+			BlockState goingTo = YATMBlocks.VARIEGATED_CACTUS.get().defaultBlockState();
+			BlockPos position = event.getPos();
+			if (ForgeHooks.onCropsGrowPre(l, position, goingTo, true)) 
+			{
+				if(!l.isClientSide()) 
+				{
+					l.setBlock(position, goingTo, 3);
+				}
+				ForgeHooks.onCropsGrowPost(l, position, event.getState());
+				event.setResult(Result.DENY);
+				return true;
+			}
+		}
+		return false;
+	} // end tryVariegateCactus()
 	
 	public static ItemStack copyDurabilityByProportion(ItemStack from, ItemStack to) 
 	{

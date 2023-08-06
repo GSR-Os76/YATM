@@ -126,6 +126,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.SPIDER_VINE.get(), "Spider Vine");		
 		this.add(YATMBlocks.SPIDER_VINE_MERISTEM.get(), "Spider Vine Meristem");		
 		this.add(YATMBlocks.VARIEGATED_CACTUS.get(), "Variegated Cactus");
+		this.add(YATMBlocks.POTTED_VARIEGATED_CACTUS.get(), "Potted Variegated Cactus");
 		
 		
 		

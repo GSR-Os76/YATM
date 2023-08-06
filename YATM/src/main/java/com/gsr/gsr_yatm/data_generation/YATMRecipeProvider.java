@@ -67,8 +67,8 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addSoulAfflictedRubberWoodCoreRecipes(writer);
 		
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.HANGING_POT_HOOK_ITEM.get(), 1)
-		.pattern("c")
-		.pattern("p")
+		.pattern("c ")
+		.pattern("p ")
 		.define('c', Items.CHAIN)
 		.define('p', Items.FLOWER_POT) // possibly make tag
 		.unlockedBy("has_pot", inventoryTrigger(ItemPredicate.Builder.item().of(Items.FLOWER_POT).build()))
@@ -82,6 +82,9 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addOneToNine(writer, YATMItemTags.FORGE_RUBBER_STORAGE_BLOCK_KEY, YATMItems.RUBBER_BAR.get(), YetAnotherTechMod.MODID + ":rubber_bar_from_block_shapeless_crafting");
 		this.addNineToOne(writer, YATMItemTags.FORGE_RUBBER_INGOTS_KEY, YATMItems.RUBBER_BLOCK_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_block_from_bar_shapeless_crafting");
 		
+		
+		
+		this.addSmelting(writer, new ItemLike[] {YATMItems.VARIEGATED_CACTUS_ITEM.get()}, Items.GREEN_DYE, 1.0f, 100, YetAnotherTechMod.MODID + ":green_dye_from_variegated_cactus_smelting");
 		
 		
 		

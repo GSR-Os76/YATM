@@ -10,8 +10,8 @@
     }
   },
   "pattern": [
-    "c",
-    "p"
+    "c ",
+    "p "
   ],
   "result": {
     "item": "gsr_yatm:hanging_pot_hook"

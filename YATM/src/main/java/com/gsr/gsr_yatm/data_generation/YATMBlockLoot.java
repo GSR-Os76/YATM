@@ -129,6 +129,7 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.add(YATMBlocks.SPIDER_VINE_MERISTEM.get(), BlockLootSubProvider.noDrop());
 
 		this.dropSelf(YATMBlocks.VARIEGATED_CACTUS.get());
+		this.dropPottedContents(YATMBlocks.POTTED_VARIEGATED_CACTUS.get());
 		
 		
 		

@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/potted_cactus",
+  "textures": {
+    "cactus": "gsr_yatm:block/plant/variegated_cactus/variegated_cactus_side",
+    "cactus_top": "gsr_yatm:block/plant/variegated_cactus/variegated_cactus_top"
+  }
+}

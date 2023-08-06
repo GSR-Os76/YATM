@@ -47,7 +47,6 @@ import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.BoatModel;
 import net.minecraft.client.model.ChestBoatModel;
-import net.minecraft.client.model.geom.ModelLayers;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
@@ -71,14 +70,6 @@ public class YATMModEvents
 {
 	public static void register(IEventBus modEventBus)
 	{
-		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
-		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
-		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
-		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
-		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
-		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
-		YetAnotherTechMod.LOGGER.info("" + ModelLayers.createSignModelName(YATMBlocks.RUBBER_WOOD_TYPE));
-
 		YATMBlocks.BLOCKS.register(modEventBus);
 		YATMItems.ITEMS.register(modEventBus);
 		YATMMenuTypes.MENU_TYPES.register(modEventBus);
