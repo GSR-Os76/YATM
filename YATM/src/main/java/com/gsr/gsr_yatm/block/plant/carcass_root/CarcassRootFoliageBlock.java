@@ -198,6 +198,7 @@ public class CarcassRootFoliageBlock extends CropBlock implements IHarvestable, 
 		return this.isPastDoubleBlockThreshold(state.setValue(this.getAgeProperty(), nextAgeUp)) && !(abvState.canBeReplaced() || abvState.is(this)); 
 	} // end isGrowthBlocked()
 	
+	// TODO, possibly make this feature based
 	protected void sendOutRoots(ServerLevel level, BlockState thissState, BlockPos position, RandomSource random)
 	{
 		if(level.isClientSide) 

@@ -72,6 +72,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile MANGROVE_ROOTS = new ModelFile.UncheckedModelFile("minecraft:block/mangrove_roots");
 	public static final ModelFile POTTED_CACTUS = new ModelFile.UncheckedModelFile("minecraft:block/potted_cactus");
 	
+	public static final ResourceLocation STONE_TEXTURE = new ResourceLocation("minecraft", "block/stone");
+	
 	
 	
 	public static final ModelFile SMALL_SHELF_FUNGUS = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/shelf_fungi_small"));
@@ -126,14 +128,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addRubberSet();
 		this.addSoulAfflictedRubberSet();
 		
-		this.createAurumDeminutus(YATMBlocks.AURUM_DEMINUTUS.get(), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/fiddle_heads"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/young"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/adolescent"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/adolescent_double_lower"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/adolescent_double_higher"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/mature_double_lower"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/mature_double_higher"));
+		this.addAurumDeminutus();
 		this.addCarcassRoot();
 		this.createFourStageCrop(YATMBlocks.COTTON.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_germinating"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_flowering"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_maturing"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_mature"));
 		this.createPrismarineCrystalMossLike(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), 
@@ -260,12 +255,28 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createCarpet(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_leaf_mulch"));
 	} // end addSoulAfflictedRubberSet()
 
+	private void addAurumDeminutus()
+	{
+		ResourceLocation adolescentTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/adolescent");
+		this.createAurumDeminutus(YATMBlocks.AURUM_DEMINUTUS.get(), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/fiddle_heads"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/young"), 
+				adolescentTexture, 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/adolescent_double_lower"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/adolescent_double_higher"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/mature_double_lower"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/mature_double_higher"));
+		this.createStoneSoilPottedCross(YATMBlocks.POTTED_AURUM_DEMINUTUS.get(), adolescentTexture);
+	} // end addAurumDeminutus()
+	
 	private void addCarcassRoot() 
 	{
-		this.createCarcassRootFoliage(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/young"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/old_lower"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/old_higher"));
-		
+		ResourceLocation youngTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/young");
+		this.createCarcassRootFoliage(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), youngTexture, new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/old_lower"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/old_higher"));
+		this.createPottedCross(YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE.get(), youngTexture);
 		this.createCarcassRootRooted(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get(), YATMItems.CARCASS_ROOT_ROOTED_DIRT_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_dirt_young"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_dirt_old"));
 		this.createCarcassRootRooted(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get(), YATMItems.CARCASS_ROOT_ROOTED_NETHERRACK_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_netherrack_young"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_netherrack_old"));
+		
 	} // end addCarcassRoot()
 	
 	private void addShulkwarts()
@@ -674,6 +685,15 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.getVariantBuilder(block).forAllStates((blockState) -> new ConfiguredModel[]
 		{ new ConfiguredModel(model) });
 	} // end addPottedPlant()
+	
+	private void createStoneSoilPottedCross(Block block, ResourceLocation texture)
+	{
+		String name = getModelLocationNameFor(block);			
+		this.models().getBuilder(name).parent(YATMBlockStateProvider.FLOWER_POT_CROSS).texture("dirt", STONE_TEXTURE).texture("plant", texture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
+		this.getVariantBuilder(block).forAllStates((blockState) -> new ConfiguredModel[]
+		{ new ConfiguredModel(model) });
+	} // end createStoneSoilPottedCross()
 	
 	private void createPottedCactus(Block block, ResourceLocation topTexture, ResourceLocation sideTexture) 
 	{
@@ -1230,6 +1250,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 
 	private static String getModelLocationNameFor(Block block) 
 	{
-		return BLOCK_MODEL_FOLDER + ForgeRegistries.BLOCKS.getKey(block).getPath();
-	}
+		return YATMBlockStateProvider.BLOCK_MODEL_FOLDER + ForgeRegistries.BLOCKS.getKey(block).getPath();
+	} // end getModelLocationNameFor
 } // end class

@@ -71,7 +71,7 @@ public class VariegatedCactusBlock extends CactusBlock implements IYATMPlantable
 				{
 					if (age == 15)
 					{
-						BlockState blockToGrow = random.nextInt(128) == 0 ? this.defaultBlockState() : this.m_revertsInto.get();
+						BlockState blockToGrow = random.nextInt(128) != 0 ? this.defaultBlockState() : this.m_revertsInto.get();
 						level.setBlockAndUpdate(target, blockToGrow);
 						BlockState blockstate = state.setValue(AGE, 0);
 						level.setBlock(position, blockstate, 4);

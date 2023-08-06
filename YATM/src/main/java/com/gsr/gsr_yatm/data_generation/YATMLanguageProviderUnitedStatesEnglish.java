@@ -98,8 +98,10 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_HANGING_SIGN.get(), "Soul Afflicted Rubber Hanging Sign");
 		this.add(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), "Soul Afflicted Leaf Mulch");
 		
-		this.add(YATMBlocks.AURUM_DEMINUTUS.get(), "Carcass Root");		
-		this.add(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), "Aurum Deminutus");		
+		this.add(YATMBlocks.AURUM_DEMINUTUS.get(), "Aurum Deminutus");		
+		this.add(YATMBlocks.POTTED_AURUM_DEMINUTUS.get(), "Potted Aurum Deminutus");		
+		this.add(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), "Carcass Root");		
+		this.add(YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE.get(), "Potted Carcass Root");		
 		this.add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get(), "Carcass Root Rooted Dirt");		
 		this.add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get(), "Carcass Root Rooted Netherrack");		
 		this.add(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), "Phantasmal Shelf Fungi");		
