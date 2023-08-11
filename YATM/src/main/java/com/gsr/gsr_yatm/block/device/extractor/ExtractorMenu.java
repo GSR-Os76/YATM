@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.block.device.extractor;
 
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
 import com.gsr.gsr_yatm.utilities.network.BooleanFlagHandler;
 import com.gsr.gsr_yatm.utilities.network.NetworkUtilities;
 

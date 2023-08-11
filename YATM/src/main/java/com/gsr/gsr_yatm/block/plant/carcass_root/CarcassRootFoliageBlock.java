@@ -6,13 +6,13 @@ import java.util.function.Supplier;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.block.IBlockForPlacementByBlockSupplier;
 import com.gsr.gsr_yatm.block.IHarvestable;
 import com.gsr.gsr_yatm.block.IOccasionallySpreadableBlock;
 import com.gsr.gsr_yatm.block.ISpreadabilitySettableBlock;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
-import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
+import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
+import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.BlockPos.MutableBlockPos;
@@ -54,14 +54,14 @@ public class CarcassRootFoliageBlock extends CropBlock implements IHarvestable, 
 	public static final EnumProperty<DoubleBlockHalf> HALF = YATMBlockStateProperties.DOUBLE_BLOCK_HALF;
 	public static final IntegerProperty AGE = YATMBlockStateProperties.AGE_TWO;
 	public static final BooleanProperty CAN_SPREAD = YATMBlockStateProperties.CAN_SPREAD;
-	private final VoxelShapeProvider m_shape;
+	private final ICollisionVoxelShapeProvider m_shape;
 	private final Supplier<ItemLike> m_seeds;
 	private final Supplier<ItemStack> m_harvestResults;
 	private final IBlockForPlacementByBlockSupplier m_roots;
 	
 	
 	
-	public CarcassRootFoliageBlock(Properties properties, VoxelShapeProvider shape, Supplier<ItemLike> seeds, Supplier<ItemStack> harvestResults, IBlockForPlacementByBlockSupplier roots)
+	public CarcassRootFoliageBlock(Properties properties, ICollisionVoxelShapeProvider shape, Supplier<ItemLike> seeds, Supplier<ItemStack> harvestResults, IBlockForPlacementByBlockSupplier roots)
 	{
 		super(properties);
 		

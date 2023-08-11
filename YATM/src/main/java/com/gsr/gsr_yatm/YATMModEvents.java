@@ -102,9 +102,11 @@ public class YATMModEvents
 
 	private static void commonSetup(FMLCommonSetupEvent event)
 	{
-		YATMItems.addCompostables();
-		RecipeUtilities.addDynamicRecipeProvider(new CompostableBiolingRecipeProvider());
-		RecipeUtilities.addDynamicRecipeProvider(new WrappedSmeltingRecipeProvider());
+		event.enqueueWork(() -> YATMItems.addCompostables());
+		event.enqueueWork(() -> RecipeUtilities.addDynamicRecipeProvider(new CompostableBiolingRecipeProvider()));
+		event.enqueueWork(() -> RecipeUtilities.addDynamicRecipeProvider(new WrappedSmeltingRecipeProvider()));
+		event.enqueueWork(() -> YATMBlocks.addSapCollectorVariants());
+		
 		// TODO, add biome to the nether, biome manager seems to only support the
 		// overworld currently, and I wish to not break compatibility
 		// NetherBiomes l

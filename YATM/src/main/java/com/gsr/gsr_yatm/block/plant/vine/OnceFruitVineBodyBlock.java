@@ -2,8 +2,8 @@ package com.gsr.gsr_yatm.block.plant.vine;
 
 import java.util.function.Supplier;
 
-import com.gsr.gsr_yatm.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.block.plant.OnceFruitingPlantStages;
+import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

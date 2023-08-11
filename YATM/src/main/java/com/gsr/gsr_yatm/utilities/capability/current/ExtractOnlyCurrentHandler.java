@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.utilities;
+package com.gsr.gsr_yatm.utilities.capability.current;
 
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 

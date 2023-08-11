@@ -24,6 +24,8 @@ import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlock;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderBlock;
 import com.gsr.gsr_yatm.block.device.grinder.GrinderBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
+import com.gsr.gsr_yatm.block.device.sap_collector.FilledSapCollectorBlock;
+import com.gsr.gsr_yatm.block.device.sap_collector.SapCollectorBlock;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlock;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelBlock;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelSettings;
@@ -48,9 +50,10 @@ import com.gsr.gsr_yatm.block.sign.YATMCeilingHangingSignBlock;
 import com.gsr.gsr_yatm.block.sign.YATMStandingSignBlock;
 import com.gsr.gsr_yatm.block.sign.YATMWallHangingSignBlock;
 import com.gsr.gsr_yatm.block.sign.YATMWallSignBlock;
+import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.utilities.YATMBlockProperties;
-import com.gsr.gsr_yatm.utilities.YATMBlockShapes;
 import com.gsr.gsr_yatm.utilities.itemstack.RandomCountItemStackSupplier;
+import com.gsr.gsr_yatm.utilities.shape.YATMBlockShapes;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
@@ -110,7 +113,7 @@ public class YATMBlocks
 	public static final RegistryObject<AerialRootsBlock> RUBBER_ROOTS = BLOCKS.register("rubber_roots", () ->  new AerialRootsBlock(YATMBlockProperties.AERIAL_ROOTS_PROPERTIES));
 	public static final RegistryObject<RotatedPillarBlock> RUBBER_LOG = BLOCKS.register("rubber_log", () -> new RotatedPillarBlock(YATMBlockProperties.RUBBER_WOOD_PROPERTIES));
 	public static final RegistryObject<RotatedPillarBlock> RUBBER_WOOD = BLOCKS.register("rubber_wood", () -> new RotatedPillarBlock(YATMBlockProperties.RUBBER_WOOD_PROPERTIES));
-	public static final RegistryObject<StrippedSapLogBlock> PARTIALLY_STRIPPED_RUBBER_LOG = BLOCKS.register("partially_stripped_rubber_log", () -> new StrippedSapLogBlock(YATMBlockProperties.RUBBER_WOOD_PROPERTIES /*TODO, add random ticks*/));
+	public static final RegistryObject<StrippedSapLogBlock> PARTIALLY_STRIPPED_RUBBER_LOG = BLOCKS.register("partially_stripped_rubber_log", () -> new StrippedSapLogBlock(YATMFluids.LATEX::get, (l, bs, p) -> bs.is(YATMBlockTags.RUBBER_TREE_BLOCKS_KEY), YATMBlockProperties.PARTIALLY_STRIPPED_RUBBER_WOOD_PROPERTIES));
 	public static final RegistryObject<RotatedPillarBlock> STRIPPED_RUBBER_LOG = BLOCKS.register("stripped_rubber_log", () -> new RotatedPillarBlock(YATMBlockProperties.RUBBER_WOOD_PROPERTIES));
 	public static final RegistryObject<RotatedPillarBlock> STRIPPED_RUBBER_WOOD = BLOCKS.register("stripped_rubber_wood", () -> new RotatedPillarBlock(YATMBlockProperties.RUBBER_WOOD_PROPERTIES));
 	public static final RegistryObject<Block> RUBBER_PLANKS = BLOCKS.register("rubber_planks", () -> new Block(YATMBlockProperties.RUBBER_WOOD_PROPERTIES));
@@ -139,7 +142,7 @@ public class YATMBlocks
 	public static final RegistryObject<AerialRootsBlock> SOUL_AFFLICTED_RUBBER_ROOTS = BLOCKS.register("soul_afflicted_rubber_roots", () ->  new AerialRootsBlock(YATMBlockProperties.AERIAL_ROOTS_PROPERTIES));
 	public static final RegistryObject<RotatedPillarBlock> SOUL_AFFLICTED_RUBBER_LOG = BLOCKS.register("soul_afflicted_rubber_log", () -> new RotatedPillarBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES));
 	public static final RegistryObject<RotatedPillarBlock> SOUL_AFFLICTED_RUBBER_WOOD = BLOCKS.register("soul_afflicted_rubber_wood", () -> new RotatedPillarBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES));
-	public static final RegistryObject<StrippedSapLogBlock> SOUL_AFFLICTED_PARTIALLY_STRIPPED_RUBBER_LOG = BLOCKS.register("soul_afflicted_partially_stripped_rubber_log", () -> new StrippedSapLogBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES /*TODO, .randomTicks()*/));
+	public static final RegistryObject<StrippedSapLogBlock> SOUL_AFFLICTED_PARTIALLY_STRIPPED_RUBBER_LOG = BLOCKS.register("soul_afflicted_partially_stripped_rubber_log", () -> new StrippedSapLogBlock(YATMFluids.SOUL_SAP::get, (l, bs, p) -> bs.is(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_BLOCKS_KEY), YATMBlockProperties.PARTIALLY_STRIPPED_SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES));
 	public static final RegistryObject<RotatedPillarBlock> SOUL_AFFLICTED_STRIPPED_RUBBER_LOG = BLOCKS.register("soul_afflicted_stripped_rubber_log", () -> new RotatedPillarBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES));
 	public static final RegistryObject<RotatedPillarBlock> SOUL_AFFLICTED_STRIPPED_RUBBER_WOOD = BLOCKS.register("soul_afflicted_stripped_rubber_wood", () -> new RotatedPillarBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES));
 	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_PLANKS = BLOCKS.register("soul_afflicted_rubber_planks", () -> new Block(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_PROPERTIES));
@@ -235,6 +238,12 @@ public class YATMBlocks
 	public static final RegistryObject<Block> RUBBER_BLOCK = BLOCKS.register("rubber_block", () -> new Block(YATMBlockProperties.RUBBER_BLOCK_PROPERTIES));
 	public static final RegistryObject<RootedDirtBlock> ROOTED_SOUL_SOIL = BLOCKS.register("rooted_soul_soil", () -> new RootedDirtBlock(YATMBlockProperties.ROOTED_SOUL_SOIL_PROPERTIES));
 		
+	
+	
+	public static final RegistryObject<SapCollectorBlock> SAP_COLLECTOR = BLOCKS.register("sap_collector", () -> new SapCollectorBlock(YATMBlockProperties.SAP_COLLECTOR, YATMBlockShapes.SAP_COLLECTOR_SHAPES));
+	public static final RegistryObject<FilledSapCollectorBlock> SAP_COLLECTOR_LATEX = BLOCKS.register("sap_collector_latex", () -> new FilledSapCollectorBlock(YATMBlockProperties.SAP_COLLECTOR, YATMBlockShapes.SAP_COLLECTOR_SHAPES, YATMBlocks.SAP_COLLECTOR.get()::defaultBlockState));
+	public static final RegistryObject<FilledSapCollectorBlock> SAP_COLLECTOR_SOUL_SAP = BLOCKS.register("sap_collector_soul_sap", () -> new FilledSapCollectorBlock(YATMBlockProperties.SAP_COLLECTOR, YATMBlockShapes.SAP_COLLECTOR_SHAPES, YATMBlocks.SAP_COLLECTOR.get()::defaultBlockState));
+	
 	// TODO, make up properties
 	public static final RegistryObject<SpinningWheelBlock> SPINNING_WHEEL = BLOCKS.register("spinning_wheel", () -> new SpinningWheelBlock(BlockBehaviour.Properties.of(), YATMBlockShapes.SPINNING_WHEEL));
 	
@@ -326,5 +335,13 @@ public class YATMBlocks
 		minecraftFlowerPot.addPlant(YATMBlocks.CARCASS_ROOT_FOLIAGE.getKey().location(), YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE);
 
 	} // end addFlowersToPots()
+	
+	public static void addSapCollectorVariants()
+	{
+		SapCollectorBlock sapCollector = YATMBlocks.SAP_COLLECTOR.get();
+		sapCollector.addVariant(YATMFluids.LATEX.get(), YATMBlocks.SAP_COLLECTOR_LATEX.get().defaultBlockState());
+		sapCollector.addVariant(YATMFluids.SOUL_SAP.get(), YATMBlocks.SAP_COLLECTOR_SOUL_SAP.get().defaultBlockState());
+
+	} // end addSapCollectorVariants()
 
 } // end class

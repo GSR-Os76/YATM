@@ -7,7 +7,7 @@ import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

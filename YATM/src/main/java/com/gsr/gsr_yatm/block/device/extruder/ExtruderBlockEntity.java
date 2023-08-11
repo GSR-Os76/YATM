@@ -8,8 +8,8 @@ import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.extruding.ExtrudingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.ConfigurableInventoryWrapper;
-import com.gsr.gsr_yatm.utilities.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.item.ConfigurableInventoryWrapper;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

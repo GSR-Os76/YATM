@@ -2,8 +2,8 @@ package com.gsr.gsr_yatm.block.device;
 
 import java.util.function.Supplier;
 
-import com.gsr.gsr_yatm.YATMBlockStateProperties;
-import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
+import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
+import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -34,11 +34,11 @@ public abstract class DeviceBlock extends Block implements EntityBlock
 	public static final DirectionProperty FACING = YATMBlockStateProperties.FACING_HORIZONTAL;
 	
 	protected final Supplier<BlockEntityType<? extends DeviceBlockEntity>> m_type;
-	protected final VoxelShapeProvider m_shape;
+	protected final ICollisionVoxelShapeProvider m_shape;
 	
 	
 	
-	public DeviceBlock(Properties properties, Supplier<BlockEntityType<? extends DeviceBlockEntity>> type, VoxelShapeProvider shape)
+	public DeviceBlock(Properties properties, Supplier<BlockEntityType<? extends DeviceBlockEntity>> type, ICollisionVoxelShapeProvider shape)
 	{
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));

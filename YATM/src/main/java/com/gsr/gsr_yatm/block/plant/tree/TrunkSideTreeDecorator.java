@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.block.plant.tree;
 
-import com.gsr.gsr_yatm.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.registry.YATMTreeDecoratorTypes;
+import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.mojang.datafixers.Products.P2;
 import com.mojang.serialization.Codec;
 import com.mojang.serialization.codecs.RecordCodecBuilder;

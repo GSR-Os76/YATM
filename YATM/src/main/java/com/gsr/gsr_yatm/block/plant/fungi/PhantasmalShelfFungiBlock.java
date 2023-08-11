@@ -8,12 +8,12 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Math;
 
-import com.gsr.gsr_yatm.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.block.IHarvestable;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.data_generation.YATMItemTags;
-import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
+import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.itemstack.RandomCountItemStackSupplier;
+import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -51,13 +51,13 @@ public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestable
 
 	public static final DirectionProperty FACING = YATMBlockStateProperties.FACING_HORIZONTAL;
 	
-	private final VoxelShapeProvider m_shape;
+	private final ICollisionVoxelShapeProvider m_shape;
 	private final Supplier<ItemLike> m_seed;
 	/*TODO, probably unhardcode this*/private final Supplier<ItemStack> m_harvestResults = new RandomCountItemStackSupplier(() -> Items.PHANTOM_MEMBRANE, 0, 3, RandomSource.createNewThreadLocalInstance());
 	
 
 	
-	public PhantasmalShelfFungiBlock(Properties properties, VoxelShapeProvider shape, Supplier<ItemLike> seed)
+	public PhantasmalShelfFungiBlock(Properties properties, ICollisionVoxelShapeProvider shape, Supplier<ItemLike> seed)
 	{
 		super(properties);
 		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));

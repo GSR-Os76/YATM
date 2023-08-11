@@ -5,7 +5,7 @@ import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
+import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.MenuProvider;
@@ -16,17 +16,14 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class GrinderBlock extends DeviceBlock
 {
-	// public static final DirectionProperty FACING = YATMBlockStateProperties.FACING_HORIZONTAL;
-	
 	private final int m_currentCapacity;
 	private final int m_maxCurrent;
 	
 	
 	
-	public GrinderBlock(Properties properties, VoxelShapeProvider shape, int currentCapacity, int maxCurrent)
+	public GrinderBlock(Properties properties, ICollisionVoxelShapeProvider shape, int currentCapacity, int maxCurrent)
 	{
 		super(properties, YATMBlockEntityTypes.GRINDER::get, shape);
-		// this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
 		this.m_currentCapacity = currentCapacity;
 		this.m_maxCurrent = maxCurrent;
 	} // end constructor
@@ -37,7 +34,7 @@ public class GrinderBlock extends DeviceBlock
 	public DeviceBlockEntity newDeviceBlockEntity(BlockPos blockPos, BlockState blockState)
 	{
 		return new GrinderBlockEntity(blockPos, blockState, this.m_currentCapacity, this.m_maxCurrent);
-	} // end newDeviceBlockEntity
+	} // end newDeviceBlockEntity()
 	
 	@Override
 	public MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos)

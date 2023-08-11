@@ -6,10 +6,10 @@ import java.util.function.Supplier;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.block.IHarvestable;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
-import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
+import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
+import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -46,13 +46,13 @@ public class AurumDeminutusBlock extends CropBlock implements IHarvestable
 	public static final int DOUBLES_PAST_THRESHOLD = 2;
 	public static final EnumProperty<DoubleBlockHalf> HALF = YATMBlockStateProperties.DOUBLE_BLOCK_HALF;
 	public static final IntegerProperty AGE = YATMBlockStateProperties.AGE_FIVE;
-	private final VoxelShapeProvider m_shape;
+	private final ICollisionVoxelShapeProvider m_shape;
 	private final Supplier<ItemLike> m_seed;
 	private final Supplier<ItemStack> m_harvestResult;
 	
 	
 	
-	public AurumDeminutusBlock(Properties properties, VoxelShapeProvider shape, Supplier<ItemLike> seed, Supplier<ItemStack> harvestResult)
+	public AurumDeminutusBlock(Properties properties, ICollisionVoxelShapeProvider shape, Supplier<ItemLike> seed, Supplier<ItemStack> harvestResult)
 	{
 		super(properties);
 		

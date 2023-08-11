@@ -1,13 +1,13 @@
 package com.gsr.gsr_yatm.block.device.current_furnace;
 
-import com.gsr.gsr_yatm.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.block.device.DeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
+import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
+import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.MenuProvider;
@@ -29,7 +29,7 @@ public class FurnacePlusBlock extends DeviceBlock
 	
 
 	
-	public FurnacePlusBlock(Properties properties, VoxelShapeProvider shape, DeviceTierConstants constants)
+	public FurnacePlusBlock(Properties properties, ICollisionVoxelShapeProvider shape, DeviceTierConstants constants)
 	{
 		super(properties, YATMBlockEntityTypes.FURNACE_PLUS::get, shape);
 		

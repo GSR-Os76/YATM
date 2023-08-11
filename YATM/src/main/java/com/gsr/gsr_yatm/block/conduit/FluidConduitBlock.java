@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.block.conduit;
 
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
-import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
+import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -20,11 +20,11 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 
 public class FluidConduitBlock extends Block implements EntityBlock, IConduitBlock<IFluidHandler>
 {
-	private final VoxelShapeProvider m_voxelShapeGetter;
+	private final ICollisionVoxelShapeProvider m_voxelShapeGetter;
 	
 	
 
-	public FluidConduitBlock(Properties properties, VoxelShapeProvider voxelShapeGetter)
+	public FluidConduitBlock(Properties properties, ICollisionVoxelShapeProvider voxelShapeGetter)
 	{
 		super(properties);
 		this.m_voxelShapeGetter = voxelShapeGetter;

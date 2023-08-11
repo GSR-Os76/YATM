@@ -11,8 +11,8 @@ import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.api.implementation.CurrentUnitHandler;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
-import com.gsr.gsr_yatm.utilities.ExtractOnlyCurrentHandler;
-import com.gsr.gsr_yatm.utilities.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.current.ExtractOnlyCurrentHandler;
 import com.gsr.gsr_yatm.utilities.network.AccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
 import com.gsr.gsr_yatm.utilities.network.CurrentHandlerContainerData;
@@ -164,9 +164,9 @@ public abstract class AbstractSolarPanelBlockEntity extends DeviceBlockEntity
 	
 
 	@Override
-	protected void onItemWithdrawal(int slot, int amount)
+	protected void onItemWithdrawal(int slot, ItemStack stack)
 	{
-		super.onItemWithdrawal(slot, amount);
+		super.onItemWithdrawal(slot, stack);
 		this.clearOldCap();
 	} // end onItemWithdrawal()
 	

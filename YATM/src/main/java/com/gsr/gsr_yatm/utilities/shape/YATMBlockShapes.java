@@ -1,4 +1,6 @@
-package com.gsr.gsr_yatm.utilities;
+package com.gsr.gsr_yatm.utilities.shape;
+
+import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
@@ -16,12 +18,25 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class YATMBlockShapes
 {	
-	public static final VoxelShapeProvider CUBE = new VoxelShapeProvider() 
+	
+	public static final ICollisionVoxelShapeProvider SAP_COLLECTOR_SHAPE = new ICollisionVoxelShapeProvider() 
+	{
+		// TODO, add actual shape
+		private static final VoxelShape SAP_COLLECTOR_SHAPE = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
+
+		@Override
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		{
+			return SAP_COLLECTOR_SHAPE;
+		} // end getShape()
+	};
+	
+	public static final ICollisionVoxelShapeProvider CUBE = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape CUBE = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
 
 		@Override
-		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
 		{
 			return CUBE;
 		} // end getShape()
@@ -29,18 +44,18 @@ public class YATMBlockShapes
 	
 	
 	
-	public static final VoxelShapeProvider DOWNWARD_LICHEN_LIKE = new VoxelShapeProvider() 
+	public static final ICollisionVoxelShapeProvider DOWNWARD_LICHEN_LIKE = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape SHAPE = Block.box(0d, 0d, 0d, 16d, 1d, 16d);
 
 		@Override
-		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
 		{
 			return SHAPE;
 		} // end getShape()
 	};
 	
-	public static final VoxelShapeProvider PRISMARINE_CRYSTAL_MOSS = new VoxelShapeProvider() 
+	public static final ICollisionVoxelShapeProvider PRISMARINE_CRYSTAL_MOSS = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape HAS_UP = Block.box(0d, 15d, 0d, 16d, 16d, 16d);
 		private static final VoxelShape HAS_DOWN = Block.box(0d, 0d, 0d, 16d, 1d, 16d);
@@ -50,7 +65,7 @@ public class YATMBlockShapes
 		private static final VoxelShape HAS_WEST = Block.box(0d, 0d, 0d, 1d, 16d, 16d);
 
 		@Override
-		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
 		{
 			VoxelShape res = Shapes.empty();
 
@@ -84,7 +99,7 @@ public class YATMBlockShapes
 	};
 	
 	
-	public static final VoxelShapeProvider SHULKWART = new VoxelShapeProvider() 
+	public static final ICollisionVoxelShapeProvider SHULKWART = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape SHAPE_ZERO = Block.box(6, 15d, 6d, 10d, 16d, 10d);
 		private static final VoxelShape SHAPE_ONE = Block.box(7d, 8d, 7d, 9d, 16d, 9d);
@@ -92,7 +107,7 @@ public class YATMBlockShapes
 		private static final VoxelShape SHAPE_THREE = Block.box(1d, 0d, 1d, 15d, 16d, 15d);
 
 		@Override
-		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
 		{
 			return switch(blockState.getValue(ShulkwartBlock.AGE)) 
 			{
@@ -107,13 +122,13 @@ public class YATMBlockShapes
 
 	
 	
-	public static final VoxelShapeProvider HANGING_POT_HOOK = new VoxelShapeProvider() 
+	public static final ICollisionVoxelShapeProvider HANGING_POT_HOOK = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape TOP_PIECE = Block.box(6d, 15d, 6d, 10d, 16d, 10d);
 		private static final VoxelShape CHAIN_LINK = Block.box(6.5d, 12d, 6.5d, 9.5d, 15d, 9.5d);//Block.box(6d, 12d, 6d, 9d, 15d, 9d);
 
 		@Override
-		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
 		{
 			return Shapes.or(TOP_PIECE, CHAIN_LINK);
 		} // end getShape()
@@ -121,7 +136,7 @@ public class YATMBlockShapes
 	
 	
 	
-	public static final VoxelShapeProvider SPINNING_WHEEL = new VoxelShapeProvider() 
+	public static final ICollisionVoxelShapeProvider SPINNING_WHEEL = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape BODY_NORTH = Block.box(3, 0, 0, 10, 15, 15);
 		private static final VoxelShape HANDLE_NORTH = Block.box(10, 8, 11, 14, 12, 12);
@@ -136,7 +151,7 @@ public class YATMBlockShapes
 		private static final VoxelShape HANDLE_WEST = Block.box(11, 8, 2, 12, 12, 6);
 		
 		@Override
-		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
 		{
 			VoxelShape ret = switch(blockState.getValue(SpinningWheelBlock.FACING)) 
 					{
@@ -150,13 +165,13 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 	
-	public static final VoxelShapeProvider BOILER_SHAPE = new VoxelShapeProvider()
+	public static final ICollisionVoxelShapeProvider BOILER_SHAPE = new ICollisionVoxelShapeProvider()
 	{		
 		private static final VoxelShape BASE_SHAPE = Block.box(0d, 0d, 0d, 16d, 14d, 16d);
 		private static final VoxelShape HAS_TANK_SHAPE = Block.box(1d, 14d, 1d, 15d, 16d, 15d);
 
 		@Override
-		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
 		{
 			
 			VoxelShape shape = BASE_SHAPE;
@@ -171,12 +186,12 @@ public class YATMBlockShapes
 
 	};
 
-	public static final VoxelShapeProvider SOLAR_PANEL = new VoxelShapeProvider() 
+	public static final ICollisionVoxelShapeProvider SOLAR_PANEL = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape SOLAR_PANEL = Block.box(0d, 0d, 0d, 16d, 2d, 16d);
 
 		@Override
-		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
 		{
 			return SOLAR_PANEL;
 		} // end getShape()
@@ -184,7 +199,7 @@ public class YATMBlockShapes
 	
 	
 		
-	public static final VoxelShapeProvider STEEL_FLUID_CONDUIT_SHAPE = new VoxelShapeProvider()
+	public static final ICollisionVoxelShapeProvider STEEL_FLUID_CONDUIT_SHAPE = new ICollisionVoxelShapeProvider()
 	{		
 		private static final VoxelShape CENTER_SHAPE = Block.box(6d, 6d, 6d, 10d, 10d, 10d);
 		
@@ -196,7 +211,7 @@ public class YATMBlockShapes
 		private static final VoxelShape BRANCH_SHAPE_WEST = Block.box(0d, 5d, 5d, 6d, 11d, 11d);
 		
 		@Override
-		public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
 		{
 			VoxelShape shape = CENTER_SHAPE;
 
@@ -228,92 +243,96 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 
-	public static final VoxelShapeProvider WIRE_SHAPE = new VoxelShapeProvider()
+	public static final ICollisionVoxelShapeProvider WIRE_SHAPE = new ICollisionVoxelShapeProvider()
 	{
-			private static final VoxelShape CENTER_SHAPE =  Block.box(7d, 7d, 7d, 9d, 9d, 9d);
-			private static final VoxelShape BRANCH_SHAPE_UP = Block.box(7d, 9d, 7d, 9d, 16d, 9d);
-			private static final VoxelShape BRANCH_SHAPE_DOWN = Block.box(7d, 0d, 7d, 9d, 7d, 9d);
-			private static final VoxelShape BRANCH_SHAPE_NORTH = Block.box(7d, 7d, 0d, 9d, 9d, 7d);
-			private static final VoxelShape BRANCH_SHAPE_SOUTH = Block.box(7d, 7d, 9d, 9d, 9d, 16d);
-			private static final VoxelShape BRANCH_SHAPE_EAST = Block.box(9d, 7d, 7d, 16d, 9d, 9d);
-			private static final VoxelShape BRANCH_SHAPE_WEST = Block.box(0d, 7d, 7d, 7d, 9d, 9d);
-			
-			@Override
-			public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
-			{
-				VoxelShape shape = CENTER_SHAPE;
+		private static final VoxelShape CENTER_SHAPE = Block.box(7d, 7d, 7d, 9d, 9d, 9d);
+		private static final VoxelShape BRANCH_SHAPE_UP = Block.box(7d, 9d, 7d, 9d, 16d, 9d);
+		private static final VoxelShape BRANCH_SHAPE_DOWN = Block.box(7d, 0d, 7d, 9d, 7d, 9d);
+		private static final VoxelShape BRANCH_SHAPE_NORTH = Block.box(7d, 7d, 0d, 9d, 9d, 7d);
+		private static final VoxelShape BRANCH_SHAPE_SOUTH = Block.box(7d, 7d, 9d, 9d, 9d, 16d);
+		private static final VoxelShape BRANCH_SHAPE_EAST = Block.box(9d, 7d, 7d, 16d, 9d, 9d);
+		private static final VoxelShape BRANCH_SHAPE_WEST = Block.box(0d, 7d, 7d, 7d, 9d, 9d);
 
-				if (blockState.getValue(IConduit.UP))
-				{
-					shape = Shapes.or(shape, BRANCH_SHAPE_UP);
-				}
-				if (blockState.getValue(IConduit.DOWN))
-				{
-					shape = Shapes.or(shape, BRANCH_SHAPE_DOWN);
-				}
-				if (blockState.getValue(IConduit.NORTH))
-				{
-					shape = Shapes.or(shape, BRANCH_SHAPE_NORTH);
-				}
-				if (blockState.getValue(IConduit.SOUTH))
-				{
-					shape = Shapes.or(shape, BRANCH_SHAPE_SOUTH);
-				}
-				if (blockState.getValue(IConduit.EAST))
-				{
-					shape = Shapes.or(shape, BRANCH_SHAPE_EAST);
-				}
-				if (blockState.getValue(IConduit.WEST))
-				{
-					shape = Shapes.or(shape, BRANCH_SHAPE_WEST);
-				}
-				
-				return shape;
-			} // end getShape()
+		@Override
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		{
+			VoxelShape shape = CENTER_SHAPE;
+
+			if (blockState.getValue(IConduit.UP))
+			{
+				shape = Shapes.or(shape, BRANCH_SHAPE_UP);
+			}
+			if (blockState.getValue(IConduit.DOWN))
+			{
+				shape = Shapes.or(shape, BRANCH_SHAPE_DOWN);
+			}
+			if (blockState.getValue(IConduit.NORTH))
+			{
+				shape = Shapes.or(shape, BRANCH_SHAPE_NORTH);
+			}
+			if (blockState.getValue(IConduit.SOUTH))
+			{
+				shape = Shapes.or(shape, BRANCH_SHAPE_SOUTH);
+			}
+			if (blockState.getValue(IConduit.EAST))
+			{
+				shape = Shapes.or(shape, BRANCH_SHAPE_EAST);
+			}
+			if (blockState.getValue(IConduit.WEST))
+			{
+				shape = Shapes.or(shape, BRANCH_SHAPE_WEST);
+			}
+
+			return shape;
+		} // end getShape()
 	};
 
-	public static final VoxelShapeProvider INSULATED_WIRE_SHAPE = new VoxelShapeProvider()
+	public static final ICollisionVoxelShapeProvider INSULATED_WIRE_SHAPE = new ICollisionVoxelShapeProvider()
 	{
-			private static final VoxelShape CENTER_SHAPE =  Block.box(6d, 6d, 6d, 10d, 10d, 10d);
-			private static final VoxelShape BRANCH_SHAPE_UP = Block.box(6d, 10d, 6d, 10d, 16d, 10d);
-			private static final VoxelShape BRANCH_SHAPE_DOWN = Block.box(6d, 0d, 6d, 10d, 6d, 10d);
-			private static final VoxelShape BRANCH_SHAPE_NORTH = Block.box(6d, 6d, 0d, 10d, 10d, 6d);
-			private static final VoxelShape BRANCH_SHAPE_SOUTH = Block.box(6d, 6d, 10d, 10d, 10d, 16d);
-			private static final VoxelShape BRANCH_SHAPE_EAST = Block.box(10d, 6d, 6d, 16d, 10d, 10d);
-			private static final VoxelShape BRANCH_SHAPE_WEST = Block.box(0d, 6d, 6d, 6d, 10d, 10d);
-			
-			@Override
-			public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		private static final VoxelShape CENTER_SHAPE = Block.box(6d, 6d, 6d, 10d, 10d, 10d);
+		private static final VoxelShape BRANCH_SHAPE_UP = Block.box(6d, 10d, 6d, 10d, 16d, 10d);
+		private static final VoxelShape BRANCH_SHAPE_DOWN = Block.box(6d, 0d, 6d, 10d, 6d, 10d);
+		private static final VoxelShape BRANCH_SHAPE_NORTH = Block.box(6d, 6d, 0d, 10d, 10d, 6d);
+		private static final VoxelShape BRANCH_SHAPE_SOUTH = Block.box(6d, 6d, 10d, 10d, 10d, 16d);
+		private static final VoxelShape BRANCH_SHAPE_EAST = Block.box(10d, 6d, 6d, 16d, 10d, 10d);
+		private static final VoxelShape BRANCH_SHAPE_WEST = Block.box(0d, 6d, 6d, 6d, 10d, 10d);
+
+		@Override
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		{
+			VoxelShape shape = CENTER_SHAPE;
+
+			if (blockState.getValue(IConduit.UP))
 			{
-				VoxelShape shape = CENTER_SHAPE;
+				shape = Shapes.or(shape, BRANCH_SHAPE_UP);
+			}
+			if (blockState.getValue(IConduit.DOWN))
+			{
+				shape = Shapes.or(shape, BRANCH_SHAPE_DOWN);
+			}
+			if (blockState.getValue(IConduit.NORTH))
+			{
+				shape = Shapes.or(shape, BRANCH_SHAPE_NORTH);
+			}
+			if (blockState.getValue(IConduit.SOUTH))
+			{
+				shape = Shapes.or(shape, BRANCH_SHAPE_SOUTH);
+			}
+			if (blockState.getValue(IConduit.EAST))
+			{
+				shape = Shapes.or(shape, BRANCH_SHAPE_EAST);
+			}
+			if (blockState.getValue(IConduit.WEST))
+			{
+				shape = Shapes.or(shape, BRANCH_SHAPE_WEST);
+			}
 
-				if (blockState.getValue(IConduit.UP))
-				{
-					shape = Shapes.or(shape, BRANCH_SHAPE_UP);
-				}
-				if (blockState.getValue(IConduit.DOWN))
-				{
-					shape = Shapes.or(shape, BRANCH_SHAPE_DOWN);
-				}
-				if (blockState.getValue(IConduit.NORTH))
-				{
-					shape = Shapes.or(shape, BRANCH_SHAPE_NORTH);
-				}
-				if (blockState.getValue(IConduit.SOUTH))
-				{
-					shape = Shapes.or(shape, BRANCH_SHAPE_SOUTH);
-				}
-				if (blockState.getValue(IConduit.EAST))
-				{
-					shape = Shapes.or(shape, BRANCH_SHAPE_EAST);
-				}
-				if (blockState.getValue(IConduit.WEST))
-				{
-					shape = Shapes.or(shape, BRANCH_SHAPE_WEST);
-				}
-
-				return shape;
-			} // end getShape()
+			return shape;
+		} // end getShape()
 	};
+
+	
+	
+	public static final BlockShapesProvider SAP_COLLECTOR_SHAPES = BlockShapesProvider.Builder.of(YATMBlockShapes.SAP_COLLECTOR_SHAPE).build();
 
 } // end class

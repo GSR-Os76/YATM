@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.block.device.grinder;
 
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;

@@ -3,8 +3,8 @@ package com.gsr.gsr_yatm.block.device;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.api.implementation.CurrentUnitHandler;
-import com.gsr.gsr_yatm.utilities.ConfigurableInventoryWrapper;
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
+import com.gsr.gsr_yatm.utilities.capability.item.ConfigurableInventoryWrapper;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -14,6 +14,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
@@ -39,8 +40,8 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	{
 		super(type, blockPos, blockState);
 		this.m_rawInventory = new ItemStackHandler(inventorySlotCount);
-		this.m_uncheckedInventory = new ConfigurableInventoryWrapper.Builder(this.m_rawInventory).onInsertion(this::onItemInsertion).onWithdrawal(this::onItemWithdrawal).build();
-		this.m_inventory = new ConfigurableInventoryWrapper.Builder(this.m_uncheckedInventory).slotValidator(this::itemInsertionValidator).build();
+		this.m_uncheckedInventory = ConfigurableInventoryWrapper.Builder.of(this.m_rawInventory).onInsertion(this::onItemInsertion).onWithdrawal(this::onItemWithdrawal).build();
+		this.m_inventory = ConfigurableInventoryWrapper.Builder.of(this.m_uncheckedInventory).slotValidator(this::itemInsertionValidator).build();
 	} // end constructor
 	
 	protected abstract @NotNull CompoundTag setupToNBT();
@@ -57,12 +58,12 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	
 	protected abstract boolean itemInsertionValidator(int slot, ItemStack itemStack, boolean simulate);
 
-	protected void onItemInsertion(int slot, ItemStack itemStack)
+	protected void onItemInsertion(int slot, ItemStack stack)
 	{
 		this.setChanged();
 	} // end onItemInsertion()
 
-	protected void onItemWithdrawal(int slot, int amount)
+	protected void onItemWithdrawal(int slot, ItemStack stack)
 	{
 		this.setChanged();
 	} // onItemWithdrawal
@@ -77,7 +78,7 @@ public abstract class DeviceBlockEntity extends BlockEntity
 		}
 	} // end onCurrentExchanged()
 	
-	protected void onFluidContentsChanged() 
+	protected void onFluidContentsChanged(FluidStack stack) 
 	{		
 		this.setChanged();
 	} // end onFluidContentsChanged()

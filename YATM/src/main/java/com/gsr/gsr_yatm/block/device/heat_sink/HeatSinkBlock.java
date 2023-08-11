@@ -1,6 +1,6 @@
 package com.gsr.gsr_yatm.block.device.heat_sink;
 
-import com.gsr.gsr_yatm.YATMBlockStateProperties;
+import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.context.BlockPlaceContext;

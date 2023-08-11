@@ -16,6 +16,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.fluids.FluidStack;
 
 public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C extends Container> extends DeviceBlockEntity 
 {	
@@ -46,21 +47,21 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 	
 	
 	@Override
-	protected void onItemInsertion(int slot, ItemStack itemStack)
+	protected void onItemInsertion(int slot, ItemStack stack)
 	{
-		super.onItemInsertion(slot, itemStack);
+		super.onItemInsertion(slot, stack);
 		this.m_timeSinceRecheck = RECHECK_PERIOD;
 	} // end onItemInsertion()
 
 	@Override
-	protected void onItemWithdrawal(int slot, int amount)
+	protected void onItemWithdrawal(int slot, ItemStack stack)
 	{
-		super.onItemWithdrawal(slot, amount);
+		super.onItemWithdrawal(slot, stack);
 		this.m_timeSinceRecheck = RECHECK_PERIOD;
 	} // end onItemWithdrawal()
 	
 	@Override
-	protected void onFluidContentsChanged() 
+	protected void onFluidContentsChanged(FluidStack stack) 
 	{	
 		this.m_timeSinceRecheck = RECHECK_PERIOD;
 	} // end onFluidContentsChanged()

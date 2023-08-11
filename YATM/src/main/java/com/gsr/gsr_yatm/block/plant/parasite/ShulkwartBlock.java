@@ -9,7 +9,7 @@ import org.jetbrains.annotations.Nullable;
 import com.gsr.gsr_yatm.block.IHarvestable;
 import com.gsr.gsr_yatm.block.plant.CustomSeedCropBlock;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
-import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
+import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -38,12 +38,12 @@ public class ShulkwartBlock extends CustomSeedCropBlock implements IHarvestable
 {
 	private static final int MAX_SPORE_FALL_DISTANCE = 16;
 	private static final int SPORE_DISPERSION_DISTANCE = 8;
-	private final VoxelShapeProvider m_shape;
+	private final ICollisionVoxelShapeProvider m_shape;
 	private final Supplier<Block> m_fallenSpores;
 	/*TODO, probably unhardcode this, make into a data driven loottable if is possible*/private final Supplier<ItemStack> m_harvestResults;
 	
 	
-	public ShulkwartBlock(Properties properties, VoxelShapeProvider shape, Supplier<ItemLike> seed, Supplier<Block> fallenSpores, Supplier<ItemStack> harvestResults)
+	public ShulkwartBlock(Properties properties, ICollisionVoxelShapeProvider shape, Supplier<ItemLike> seed, Supplier<Block> fallenSpores, Supplier<ItemStack> harvestResults)
 	{
 		super(properties, seed);
 		this.m_shape = shape;

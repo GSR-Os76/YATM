@@ -1,11 +1,11 @@
 package com.gsr.gsr_yatm.block.device.spinning_wheel;
 
-import com.gsr.gsr_yatm.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.recipe.spinning.SpinningRecipe;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
-import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
+import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -28,11 +28,11 @@ public class SpinningWheelBlock extends Block
 {
 	public static final DirectionProperty FACING = YATMBlockStateProperties.FACING_HORIZONTAL;
 	
-	private final VoxelShapeProvider m_shape;
+	private final ICollisionVoxelShapeProvider m_shape;
 	
 	
 	
-	public SpinningWheelBlock(Properties properties, VoxelShapeProvider shape)
+	public SpinningWheelBlock(Properties properties, ICollisionVoxelShapeProvider shape)
 	{
 		super(properties);
 		this.m_shape = shape;

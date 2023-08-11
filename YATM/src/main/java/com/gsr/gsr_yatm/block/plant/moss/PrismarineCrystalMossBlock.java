@@ -14,7 +14,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.gsr.gsr_yatm.block.plant.CustomSeedCropBlock;
 import com.gsr.gsr_yatm.command.PlantData;
-import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
+import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.Util;
 import net.minecraft.core.BlockPos;
@@ -71,11 +71,11 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 		em.put(Direction.EAST, EAST_AGE);
 		em.put(Direction.WEST, WEST_AGE);
 		}));
-	private final VoxelShapeProvider m_shape;
+	private final ICollisionVoxelShapeProvider m_shape;
 	
 	   
 	
-	public PrismarineCrystalMossBlock(Properties properties, VoxelShapeProvider shape, Supplier<ItemLike> seed)
+	public PrismarineCrystalMossBlock(Properties properties, ICollisionVoxelShapeProvider shape, Supplier<ItemLike> seed)
 	{
 		super(properties, seed);
 		

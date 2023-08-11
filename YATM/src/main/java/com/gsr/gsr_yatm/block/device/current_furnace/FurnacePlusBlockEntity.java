@@ -11,7 +11,7 @@ import com.gsr.gsr_yatm.recipe.smelting.WrappedSmeltingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
-import com.gsr.gsr_yatm.utilities.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
 import com.gsr.gsr_yatm.utilities.network.AccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.CompositeAccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;

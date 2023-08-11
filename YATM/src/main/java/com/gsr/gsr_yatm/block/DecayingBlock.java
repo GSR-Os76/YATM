@@ -1,6 +1,6 @@
 package com.gsr.gsr_yatm.block;
 
-import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
+import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -14,12 +14,12 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class DecayingBlock extends Block
 {
-	private final VoxelShapeProvider m_shape;
+	private final ICollisionVoxelShapeProvider m_shape;
 	private final int m_decayChance;
 	private final BlockState m_decaysInto = Blocks.AIR.defaultBlockState();
 	
 	
-	public DecayingBlock(Properties properties, VoxelShapeProvider shape, int decayChance)
+	public DecayingBlock(Properties properties, ICollisionVoxelShapeProvider shape, int decayChance)
 	{
 		super(properties);
 		this.m_shape = shape;

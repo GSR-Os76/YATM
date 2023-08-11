@@ -9,7 +9,6 @@ import org.jetbrains.annotations.Nullable;
 import org.joml.Vector2i;
 
 import com.google.common.collect.ImmutableList;
-import com.gsr.gsr_yatm.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.device.bioler.BiolerBlock;
@@ -27,6 +26,7 @@ import com.gsr.gsr_yatm.block.plant.tree.SelfLayeringSaplingBlock;
 import com.gsr.gsr_yatm.block.plant.tree.StrippedSapLogBlock;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
+import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 
 import net.minecraft.core.Direction;
 import net.minecraft.data.PackOutput;

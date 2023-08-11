@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-06T10:51:29.8862757	Loot Tables
+// 1.20.1	2023-08-10T20:57:30.0721574	Loot Tables
 c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
 e7fbd17d28377f6d02cdd2df79fd21c9ce25491d data/gsr_yatm/loot_tables/blocks/aurum_deminutus.json
@@ -76,6 +76,9 @@ bdec70a43d8483ddad083d551311b029c3e5164b data/gsr_yatm/loot_tables/blocks/rubber
 b42b719a1bbcb99d4db1dd4a04fd7ebb72f2cd4c data/gsr_yatm/loot_tables/blocks/rubber_wall_hanging_sign.json
 3c8077b22c81b3b9ebac320ecc794dac7a4473f7 data/gsr_yatm/loot_tables/blocks/rubber_wall_sign.json
 d9144d40e56147a8f28d36a74fb9fbe8f25cb9e0 data/gsr_yatm/loot_tables/blocks/rubber_wood.json
+f08349caceae1d7cab74212e750867d502e8f131 data/gsr_yatm/loot_tables/blocks/sap_collector.json
+9a6f2bb2efdc62a5db7f58eebf91c1babf931317 data/gsr_yatm/loot_tables/blocks/sap_collector_latex.json
+9eb92fe2d3897241748510886ac78130177c5577 data/gsr_yatm/loot_tables/blocks/sap_collector_soul_sap.json
 7bfa863b5690f3615851c187b9a3a99184b6b705 data/gsr_yatm/loot_tables/blocks/shulkwart.json
 7415b0b34eb01138ed59607f4b874242238f3f4b data/gsr_yatm/loot_tables/blocks/sixtyfour_cu_wire.json
 5b7ebb34fa15bfbb935c5fcf5a27ce7dadc7d651 data/gsr_yatm/loot_tables/blocks/soul_afflicted_fancy_rubber_planks.json

@@ -14,6 +14,7 @@ import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInte
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlockEntity;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderBlockEntity;
 import com.gsr.gsr_yatm.block.device.grinder.GrinderBlockEntity;
+import com.gsr.gsr_yatm.block.device.sap_collector.SapCollectorBlockEntity;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlockEntity;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelBlockEntity;
 import com.gsr.gsr_yatm.block.hanging_pot.HangingPotHookBlockEntity;
@@ -35,7 +36,7 @@ public class YATMBlockEntityTypes
 	public static final RegistryObject<BlockEntityType<YATMSignBlockEntity>> YATM_SIGN = BLOCK_ENTITY_TYPES.register("yatm_sign", () -> BlockEntityType.Builder.of(YATMSignBlockEntity::new, YATMBlocks.RUBBER_SIGN.get(), YATMBlocks.RUBBER_WALL_SIGN.get(), YATMBlocks.SOUL_AFFLICTED_RUBBER_SIGN.get(), YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_SIGN.get()).build(null));
 	public static final RegistryObject<BlockEntityType<YATMHangingSignBlockEntity>> YATM_HANGING_SIGN = BLOCK_ENTITY_TYPES.register("yatm_hanging_sign", () -> BlockEntityType.Builder.of(YATMHangingSignBlockEntity::new, YATMBlocks.RUBBER_HANGING_SIGN.get(), YATMBlocks.RUBBER_WALL_HANGING_SIGN.get(), YATMBlocks.SOUL_AFFLICTED_RUBBER_HANGING_SIGN.get(), YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_HANGING_SIGN.get()).build(null));
 	
-	
+	public static final RegistryObject<BlockEntityType<SapCollectorBlockEntity>> SAP_COLLECTOR = BLOCK_ENTITY_TYPES.register("sap_collector", () -> BlockEntityType.Builder.of(SapCollectorBlockEntity::new, YATMBlocks.SAP_COLLECTOR.get()).build(null));	
 	
 	public static final RegistryObject<BlockEntityType<BiolerBlockEntity>> BIOLER = BLOCK_ENTITY_TYPES.register("bioler_block_entity", () -> BlockEntityType.Builder.of(BiolerBlockEntity::new, YATMBlocks.STEEL_BIOLER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<BoilerTankBlockEntity>> BOILER_TANK = BLOCK_ENTITY_TYPES.register("boiler_tank_block_entity", () -> BlockEntityType.Builder.of(BoilerTankBlockEntity::new, YATMBlocks.STEEL_BOILER_TANK.get()).build(null));

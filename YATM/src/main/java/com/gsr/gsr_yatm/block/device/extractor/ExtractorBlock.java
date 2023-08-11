@@ -5,7 +5,7 @@ import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
+import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.MenuProvider;
@@ -22,7 +22,8 @@ public class ExtractorBlock extends DeviceBlock
 	private final int m_maxFluidTransferRate;
 	
 	
-	public ExtractorBlock(Properties properties, VoxelShapeProvider shape, int currentCapacity, int maxCurrent, int fluidCapacity, int maxFluidTransferRate)
+	
+	public ExtractorBlock(Properties properties, ICollisionVoxelShapeProvider shape, int currentCapacity, int maxCurrent, int fluidCapacity, int maxFluidTransferRate)
 	{
 		super(properties, YATMBlockEntityTypes.EXTRACTOR::get, shape);
 		this.m_currentCapacity = currentCapacity;

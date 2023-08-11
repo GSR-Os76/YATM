@@ -1,6 +1,6 @@
 package com.gsr.gsr_yatm.block.device.compute.scan_collector;
 
-import com.gsr.gsr_yatm.YATMBlockStateProperties;
+import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

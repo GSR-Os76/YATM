@@ -5,7 +5,7 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
-import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
+import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvents;
@@ -32,9 +32,9 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class HangingPotHookBlock extends Block implements EntityBlock
 {
-	private final @NotNull VoxelShapeProvider m_shape;
+	private final @NotNull ICollisionVoxelShapeProvider m_shape;
 	
-	public HangingPotHookBlock(Properties properties, @NotNull VoxelShapeProvider shape)
+	public HangingPotHookBlock(Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
 		super(properties);
 		this.m_shape = Objects.requireNonNull(shape);

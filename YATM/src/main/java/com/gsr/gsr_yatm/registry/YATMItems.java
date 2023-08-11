@@ -19,7 +19,6 @@ import com.gsr.gsr_yatm.item.fluid.DrinkableFluidBottleItem;
 import com.gsr.gsr_yatm.item.fluid.EssenceOfSoulsBottleItem;
 import com.gsr.gsr_yatm.item.fluid.FluidBottleItem;
 import com.gsr.gsr_yatm.item.fluid.SoulSapBucketItem;
-
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
@@ -164,6 +163,12 @@ public class YATMItems
 	
 	public static final RegistryObject<BlockItem> RUBBER_BLOCK_ITEM = generalTabEnqueue(ITEMS.register("rubber_block", () -> new BlockItem(YATMBlocks.RUBBER_BLOCK.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> ROOTED_SOUL_SOIL_ITEM = generalTabEnqueue(ITEMS.register("rooted_soul_soil", () -> new BlockItem(YATMBlocks.ROOTED_SOUL_SOIL.get(), new Item.Properties())));
+	
+	
+	
+	public static final RegistryObject<BlockItem> SAP_COLLECTOR_ITEM = generalTabEnqueue(ITEMS.register("sap_collector", () -> new BlockItem(YATMBlocks.SAP_COLLECTOR.get(), new Item.Properties())));
+	// public static final RegistryObject<BlockItem> SAP_COLLECTOR_LATEX_ITEM = generalTabEnqueue(ITEMS.register("sap_collector_latex", () -> new BlockItem(YATMBlocks.SAP_COLLECTOR_LATEX.get(), new Item.Properties())));
+	// public static final RegistryObject<BlockItem> SAP_COLLECTOR_SOUL_SAP_ITEM = generalTabEnqueue(ITEMS.register("sap_collector_soul_sap", () -> new BlockItem(YATMBlocks.SAP_COLLECTOR_SOUL_SAP.get(), new Item.Properties())));
 	
 	// add celestial altar
 	// add liquid celestial light, liquid lunar light, and the liquid solar liquids;

@@ -138,6 +138,10 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		
 		
+		this.add(YATMBlocks.SAP_COLLECTOR.get(), "Sap Collector");
+		this.add(YATMBlocks.SAP_COLLECTOR_LATEX.get(), "Sap Collector (Latex)");
+		this.add(YATMBlocks.SAP_COLLECTOR_SOUL_SAP.get(), "Sap Collector {Soul Sap}");
+		
 		this.add(YATMBlocks.SPINNING_WHEEL.get(), "Spinning Wheel");
 		
 		this.add(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), "Large Copper Heat Sink");

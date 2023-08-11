@@ -1,10 +1,12 @@
-package com.gsr.gsr_yatm.utilities;
+package com.gsr.gsr_yatm.utilities.capability;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Range;
 
 import com.gsr.gsr_yatm.api.IComponent;
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
+import com.gsr.gsr_yatm.utilities.InventoryUtilities;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
@@ -21,6 +23,19 @@ import net.minecraftforge.items.IItemHandler;
 
 public class SlotUtilities
 {
+	// TODO, maybe should be min 1
+	public static int[] defaultTranslationTable(@Range(from = 0, to = Integer.MAX_VALUE) int length) 
+	{
+		int[] t = new int[length];
+		for(int i = 0; i < length; i++) 
+		{
+			t[i] = i;
+		}
+		return t;
+	} // end defaultTranslationTable()
+	
+	
+	
 	
 	public static int getHeatingBurnTime(ItemStack itemStack) 
 	{

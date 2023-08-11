@@ -5,7 +5,7 @@ import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
+import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.MenuProvider;
@@ -21,7 +21,7 @@ public class ExtruderBlock extends DeviceBlock
 
 
 
-	public ExtruderBlock(Properties properties, VoxelShapeProvider shape, int currentCapacity, int maxCurrent)
+	public ExtruderBlock(Properties properties, ICollisionVoxelShapeProvider shape, int currentCapacity, int maxCurrent)
 	{
 		super(properties, YATMBlockEntityTypes.EXTRUDER::get, shape);
 		this.m_currentCapacity = currentCapacity;

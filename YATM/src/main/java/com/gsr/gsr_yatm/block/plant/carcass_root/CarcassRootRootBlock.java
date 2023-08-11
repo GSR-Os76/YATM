@@ -5,12 +5,12 @@ import java.util.function.Supplier;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.block.IOccasionallySpreadableBlock;
 import com.gsr.gsr_yatm.block.ISpreadabilitySettableBlock;
 import com.gsr.gsr_yatm.command.PlantData;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
-import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
+import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
+import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -34,12 +34,12 @@ public class CarcassRootRootBlock extends Block implements BonemealableBlock, IO
 	
 	public static final BooleanProperty CAN_SPREAD = YATMBlockStateProperties.CAN_SPREAD;
 	public static final IntegerProperty AGE = YATMBlockStateProperties.AGE_TWO;
-	private final VoxelShapeProvider m_shape;
+	private final ICollisionVoxelShapeProvider m_shape;
 	private final Supplier<BlockState> m_plant;
 
 	
 	
-	public CarcassRootRootBlock(Properties properties, VoxelShapeProvider shape, Supplier<BlockState> plant)
+	public CarcassRootRootBlock(Properties properties, ICollisionVoxelShapeProvider shape, Supplier<BlockState> plant)
 	{
 		super(properties);
 		

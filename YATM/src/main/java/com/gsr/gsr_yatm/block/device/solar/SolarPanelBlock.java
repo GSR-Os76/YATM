@@ -5,7 +5,7 @@ import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.VoxelShapeProvider;
+import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.MenuProvider;
@@ -22,7 +22,7 @@ public class SolarPanelBlock extends DeviceBlock
 	private final SolarPanelSettings m_settings;
 	
 	
-	public SolarPanelBlock(Properties properties, VoxelShapeProvider shape, int currentCapacity, int maxSafeCurrent, int maxCurrent, SolarPanelSettings settings)
+	public SolarPanelBlock(Properties properties, ICollisionVoxelShapeProvider shape, int currentCapacity, int maxSafeCurrent, int maxCurrent, SolarPanelSettings settings)
 	{
 		super(properties, YATMBlockEntityTypes.SOLAR_PANEL::get, shape);
 		this.m_currentCapacity = currentCapacity;
