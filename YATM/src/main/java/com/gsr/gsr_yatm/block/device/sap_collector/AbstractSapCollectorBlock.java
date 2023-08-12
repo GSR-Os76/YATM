@@ -5,6 +5,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.utilities.UseUtilities;
 import com.gsr.gsr_yatm.utilities.shape.BlockShapesProvider;
 
 import net.minecraft.core.BlockPos;
@@ -37,8 +38,7 @@ public abstract class AbstractSapCollectorBlock extends AbstractCauldronBlock
 	@Override
 	public InteractionResult use(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
-		// TODO, fill or such, add utility method for this, boiler tank need this too I recall
-		return InteractionResult.PASS;
+		return UseUtilities.tryFillOrDrainFromHeld(state, level, position, player, hand, hitResult);
 	} // end use()
 
 	

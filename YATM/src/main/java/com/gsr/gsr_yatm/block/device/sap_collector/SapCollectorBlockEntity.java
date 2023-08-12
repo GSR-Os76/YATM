@@ -13,10 +13,13 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
+import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 
 public class SapCollectorBlockEntity extends BlockEntity
 {
@@ -37,6 +40,12 @@ public class SapCollectorBlockEntity extends BlockEntity
 		this.setup();
 	} // end constructor
 	
+	public SapCollectorBlockEntity(BlockPos position, BlockState state, Fluid holding)
+	{
+		this(position, state);
+		this.m_rawFluidHandler.fill(new FluidStack(holding, SapCollectorBlockEntity.BOTTLE_FLUID_QUANTITY), FluidAction.EXECUTE);
+	} // end constructor
+	
 	protected void setup() 
 	{
 		ISapCollector sc = (ISapCollector)this.getBlockState().getBlock();
@@ -48,9 +57,6 @@ public class SapCollectorBlockEntity extends BlockEntity
 				.build();
 		this.defineCap();
 	} // end setup()
-	
-	
-	
 	
 	
 

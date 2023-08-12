@@ -1,6 +1,5 @@
 package com.gsr.gsr_yatm.entity.boat;
 
-import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.registry.YATMEntityTypes;
 
 import net.minecraft.core.BlockPos;
@@ -30,8 +29,6 @@ public class YATMBoat extends Boat implements IYATMBoat
    
 	
 	
-	
-	
 	@Override
 	protected void defineSynchedData()
 	{
@@ -55,23 +52,12 @@ public class YATMBoat extends Boat implements IYATMBoat
 
 	protected void addAdditionalSaveData(CompoundTag tag)
 	{
-		YetAnotherTechMod.LOGGER.info("saving additional data for ytm boat");
-		YetAnotherTechMod.LOGGER.info("saving additional data for ytm boat");
-		YetAnotherTechMod.LOGGER.info("saving additional data for ytm boat");
-		YetAnotherTechMod.LOGGER.info("saving additional data for ytm boat");
-		YetAnotherTechMod.LOGGER.info("saving additional data for ytm boat");
-		
 		tag.putString(IYATMBoat.TYPE_TAG_KEY_NAME, this.getVariantType().getSerializedName());
 	} // end addAdditionalSaveData()
 	
 	@Override
 	protected void readAdditionalSaveData(CompoundTag tag)
 	{
-		YetAnotherTechMod.LOGGER.info("reading additional data for ytm boat");
-		YetAnotherTechMod.LOGGER.info("reading additional data for ytm boat");
-		YetAnotherTechMod.LOGGER.info("reading additional data for ytm boat");
-		YetAnotherTechMod.LOGGER.info("reading additional data for ytm boat");
-		YetAnotherTechMod.LOGGER.info("reading additional data for ytm boat");
 		if (tag.contains(IYATMBoat.TYPE_TAG_KEY_NAME))
 		{
 			this.setVariantType(YATMBoatType.byName(tag.getString(IYATMBoat.TYPE_TAG_KEY_NAME)));
@@ -112,14 +98,5 @@ public class YATMBoat extends Boat implements IYATMBoat
 			}
 		}
 	} // end checkFallDamage()	
-
-	@Override
-	public EntityType<?> getType()
-	{
-		// TODO Auto-generated method stub
-		return super.getType();
-	}
-	
-	
 	
 } // end class

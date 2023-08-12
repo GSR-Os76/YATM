@@ -105,7 +105,7 @@ public class StrippedSapLogBlock extends RotatedPillarBlock
 			level.setBlock(position, state.setValue(StrippedSapLogBlock.FLOWING, shouldFlow), Block.UPDATE_CLIENTS);
 		}
 		
-		if(shouldFlow) 
+		if(shouldFlow && random.nextInt(24) == 0) 
 		{
 			BlockPos.MutableBlockPos mbp = new BlockPos.MutableBlockPos().set(position.relative(state.getValue(StrippedSapLogBlock.FACING)));
 			for(int i = 1; i <= StrippedSapLogBlock.MAX_DRIP_DISTANCE; i++) 

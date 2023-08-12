@@ -79,20 +79,21 @@ public class BinaryFluidHandler implements IFluidHandler, IFluidTank, INBTSerial
 			return 0;	
 		}
 		
-		this.m_stored = resource.getFluid();
+		if(action.execute()) 
+		{
+			this.m_stored = resource.getFluid();
+		}
 		return this.m_capacity;
 	} // end fill()
 
 	@Override
 	public @NotNull FluidStack drain(FluidStack resource, FluidAction action)
 	{
-		if(resource.isEmpty() || this.isEmpty() || resource.getAmount() < this.m_capacity) 
+		if(resource.getFluid() != this.m_stored) 
 		{
 			return FluidStack.EMPTY;
 		}
-		FluidStack result = this.getFluid();
-		this.m_stored = Fluids.EMPTY;
-		return result;
+		return this.drain(resource.getAmount(), action);
 	} // end drain()
 
 	@Override
@@ -102,8 +103,12 @@ public class BinaryFluidHandler implements IFluidHandler, IFluidTank, INBTSerial
 		{
 			return FluidStack.EMPTY;
 		}
+		
 		FluidStack result = this.getFluid();
-		this.m_stored = Fluids.EMPTY;
+		if(action.execute()) 
+		{
+			this.m_stored = Fluids.EMPTY;
+		}
 		return result;
 	} // end drain()
 

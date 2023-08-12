@@ -18,14 +18,16 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class FilledSapCollectorBlock extends AbstractSapCollectorBlock implements ISapCollector, EntityBlock
 {
-	private final Supplier<BlockState> m_drainedState;
+	private final @NotNull Supplier<BlockState> m_drainedState;
+	private final @NotNull Supplier<Fluid> m_holding;
 	
 	
 	
-	public FilledSapCollectorBlock(@NotNull Properties properties, @NotNull BlockShapesProvider shapes, @NotNull Supplier<BlockState> drainedState)
+	public FilledSapCollectorBlock(@NotNull Properties properties, @NotNull BlockShapesProvider shapes, @NotNull Supplier<BlockState> drainedState, @NotNull Supplier<Fluid> holding)
 	{
 		super(properties, shapes);
 		this.m_drainedState = Objects.requireNonNull(drainedState);
+		this.m_holding = Objects.requireNonNull(holding);
 	} // end constructor
 
 	
@@ -33,7 +35,7 @@ public class FilledSapCollectorBlock extends AbstractSapCollectorBlock implement
 	@Override
 	public BlockEntity newBlockEntity(BlockPos position, BlockState state)
 	{
-		return new SapCollectorBlockEntity(position, state);
+		return new SapCollectorBlockEntity(position, state, this.m_holding.get());
 	} // end newBlockEntity()
 	
 	

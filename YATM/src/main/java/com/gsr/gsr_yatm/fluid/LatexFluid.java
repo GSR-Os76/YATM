@@ -1,5 +1,6 @@
 package com.gsr.gsr_yatm.fluid;
 
+import com.gsr.gsr_yatm.api.IBottleable;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMFluidTypes;
 import com.gsr.gsr_yatm.registry.YATMFluids;
@@ -21,7 +22,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.fluids.FluidType;
 
-public abstract class LatexFluid extends FlowingFluid
+public abstract class LatexFluid extends FlowingFluid implements IBottleable
 {
 
 	@Override
@@ -56,6 +57,14 @@ public abstract class LatexFluid extends FlowingFluid
 		return YATMItems.LATEX_BUCKET.get();
 	} // end getBucket()
 	
+	
+	
+	@Override
+	public Item getBottle()
+	{
+		return YATMItems.LATEX_BOTTLE.get();
+	} // end getBottle()
+
 	@Override
 	public boolean isSame(Fluid fluid)
 	{
