@@ -1,0 +1,6 @@
+{
+  "parent": "gsr_yatm:block/sap_collector_filled",
+  "textures": {
+    "fluid": "gsr_yatm:block/soul_sap_still"
+  }
+}

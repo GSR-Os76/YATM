@@ -2,7 +2,6 @@ package com.gsr.gsr_yatm.data_generation;
 
 import java.util.List;
 import java.util.function.BiConsumer;
-import java.util.function.Consumer;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -90,6 +89,9 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile HANGING_POT_HOOK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/hanging_pot_hook"));
 	public static final ModelFile DEFAULT_HANGING_POT_SUPPORT_CHAINS_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/default_hanging_pot_support_chains"));
 	
+	public static final ModelFile SAP_COLLECTOR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/sap_collector"));
+	public static final ModelFile SAP_COLLECTOR_FILLED_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/sap_collector_filled"));
+	
 	public static final ModelFile SPINNING_WHEEL_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/spinning_wheel"));
 	
 	public static final ModelFile LARGE_HEAT_SINK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/large_heat_sink"));
@@ -147,6 +149,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createAllBlock(YATMBlocks.RUBBER_BLOCK.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rubber_block"));
 		this.createAllBlock(YATMBlocks.ROOTED_SOUL_SOIL.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rooted_soul_soil"));
 		
+		this.addSapCollectors();
 		this.createSpinningWheel(YATMBlocks.SPINNING_WHEEL.get(), YATMItems.SPINNING_WHEEL_ITEM.get());
 		this.addHeatSinks();
 		this.addComputeBlocks();
@@ -321,6 +324,13 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	
 	
+	private void addSapCollectors() 
+	{
+		this.createBlockWithItem(YATMBlocks.SAP_COLLECTOR.get(), YATMBlockStateProvider.SAP_COLLECTOR_MODEL);
+		this.createFilledSapCollector(YATMBlocks.SAP_COLLECTOR_LATEX.get(), new ResourceLocation("gsr_yatm:block/latex_still"));
+		this.createFilledSapCollector(YATMBlocks.SAP_COLLECTOR_SOUL_SAP.get(), new ResourceLocation("gsr_yatm:block/soul_sap_still"));
+	} // end addSapCollectors()
+	
 	private void addHeatSinks() 
 	{
 		this.createLargeHeatSink(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), YATMItems.LARGE_COPPER_HEAT_SINK_ITEM.get(), 
@@ -452,7 +462,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.getVariantBuilder(block).forAllStates((blockState) -> new ConfiguredModel[] { new ConfiguredModel(model) });
 	} // end createAllBlock()
 	
-	@SuppressWarnings("unused")
 	private void createBlockWithItem(Block block, ModelFile model)
 	{
 		this.simpleBlockItem(block, model);
@@ -828,7 +837,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
  	
  	
  	
-	private void createPartiallyStrippedLog(@NotNull Block block, ResourceLocation strippedSide, ResourceLocation strippedSideLeaking, ResourceLocation plainSide, ResourceLocation topBottom, String name, boolean leakingForItem)
+	private void createPartiallyStrippedLog(@NotNull Block block, @NotNull ResourceLocation strippedSide, @NotNull ResourceLocation strippedSideLeaking, @NotNull ResourceLocation plainSide, @NotNull ResourceLocation topBottom, @NotNull String name, boolean leakingForItem)
 	{
 		String dryName = name + "_dry";
 		String leakingName = name + "_leaking";
@@ -840,10 +849,10 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.getVariantBuilder(block).forAllStates((bs) -> forPartiallyStrippedBlock(bs, dryModel, leakingModel));
 	} // end createPartiallyStrippedLog
 	
-	private void createCarpet(Block block, Item item, ResourceLocation texture) 
+	private void createCarpet(@NotNull Block block, @Nullable Item item, @NotNull ResourceLocation texture) 
 	{
-		String name = getModelLocationNameFor(block);			
-		this.models().getBuilder(name).parent(CARPET).texture("wool", texture);		
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);			
+		this.models().getBuilder(name).parent(YATMBlockStateProvider.CARPET).texture("wool", texture);		
 		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
 		if (item != null)
 		{
@@ -855,11 +864,21 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	
 	
-	private void createLargeHeatSink(HeatSinkBlock block, Item item, ResourceLocation oneTexture, ResourceLocation twoTexture) 
+	private void createFilledSapCollector(@NotNull Block block, @NotNull ResourceLocation fluidTexture) 
 	{
-		String modelName = getModelLocationNameFor(block);
-		this.models().getBuilder(modelName).parent(LARGE_HEAT_SINK_MODEL).texture("1", oneTexture).texture("2", twoTexture);
-		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, modelName));
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
+		this.models().getBuilder(name).parent(YATMBlockStateProvider.SAP_COLLECTOR_FILLED_MODEL).texture("fluid", fluidTexture);
+		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
+		this.getVariantBuilder(block).forAllStates((bs) -> new ConfiguredModel[] {new ConfiguredModel(model)});
+	} // end createFilledSapCollector()
+	
+	
+	
+	private void createLargeHeatSink(@NotNull HeatSinkBlock block, @NotNull Item item, @NotNull ResourceLocation oneTexture, @NotNull ResourceLocation twoTexture) 
+	{
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
+		this.models().getBuilder(name).parent(YATMBlockStateProvider.LARGE_HEAT_SINK_MODEL).texture("1", oneTexture).texture("2", twoTexture);
+		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
 		this.getVariantBuilder(block).forAllStates((bs) -> new ConfiguredModel[] {new ConfiguredModel(model, rotationForDirectionFromUp(bs.getValue(HeatSinkBlock.FACING)).x, rotationForDirectionFromUp(bs.getValue(HeatSinkBlock.FACING)).y, false)});
 		
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
@@ -867,9 +886,9 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	
 	
-	private void createFaceFacingBlock(Block block, Item item, ResourceLocation faceTexture, ResourceLocation sideTexture)
+	private void createFaceFacingBlock(@NotNull Block block, @NotNull Item item, @NotNull ResourceLocation faceTexture, @NotNull ResourceLocation sideTexture)
 	{
-		String name = getModelLocationNameFor(block);
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
 		this.models().cube(name, sideTexture, sideTexture, faceTexture, sideTexture, sideTexture, sideTexture);
 		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
 		
@@ -882,9 +901,9 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	} // end createFaceFacingBlock()
 	
 	
-	private void createBioler(BiolerBlock block, Item item, ResourceLocation portTexture, ResourceLocation sideTexture, ResourceLocation bottomTexture, ResourceLocation topTexture, ResourceLocation insideTexture) 
+	private void createBioler(@NotNull BiolerBlock block, @NotNull Item item, @NotNull ResourceLocation portTexture, @NotNull ResourceLocation sideTexture, @NotNull ResourceLocation bottomTexture, @NotNull ResourceLocation topTexture, @NotNull ResourceLocation insideTexture) 
 	{
-		String name = getModelLocationNameFor(block);
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
 		this.models().getBuilder(name).parent(BIOLER_MODEL)
 		.texture("0", portTexture)
 		.texture("1", sideTexture)
@@ -893,65 +912,50 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		.texture("4", insideTexture);
 		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
 		
-		this.getVariantBuilder(block).forAllStates((bs) -> 
-		{
-			return new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(BiolerBlock.FACING)).x, rotationForDirectionFromNorth(bs.getValue(BiolerBlock.FACING)).y, false) };
-		});
+		this.getVariantBuilder(block).forAllStates((bs) -> new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(BiolerBlock.FACING)).x, rotationForDirectionFromNorth(bs.getValue(BiolerBlock.FACING)).y, false) });
 		
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
 	} // end createBioler()
 	
-	private void createBoiler(BoilerBlock block, Item item, ResourceLocation facePlateAndPortsTexture, ResourceLocation topTexture, ResourceLocation sidesTexture, ResourceLocation faceTexture, ResourceLocation litFaceTexture, ResourceLocation hasTankTopTexture, ResourceLocation hasTankPartSideTexture)
+	private void createBoiler(@NotNull BoilerBlock block, @NotNull Item item, @NotNull ResourceLocation facePlateAndPortsTexture, @NotNull ResourceLocation topTexture, @NotNull ResourceLocation sidesTexture, @NotNull ResourceLocation faceTexture, @NotNull ResourceLocation litFaceTexture, ResourceLocation hasTankTopTexture, ResourceLocation hasTankPartSideTexture)
 	{
-		String baseName = getModelLocationNameFor(block);
+		String baseName = YATMBlockStateProvider.getModelLocationNameFor(block);
 		String litName = baseName + "_lit";
 		String hasTankPartName = baseName + "_has_tank_part";
-		this.models().getBuilder(baseName).parent(BOILER_MODEL).texture("0", facePlateAndPortsTexture).texture("1", topTexture).texture("2", sidesTexture).texture("3", faceTexture);
-		this.models().getBuilder(litName).parent(BOILER_MODEL).texture("0", facePlateAndPortsTexture).texture("1", topTexture).texture("2", sidesTexture).texture("3", litFaceTexture);
-		this.models().getBuilder(hasTankPartName).parent(BOILER_WHEN_HAS_TANK_PART_MODEL).texture("0", hasTankTopTexture).texture("1", hasTankPartSideTexture);
+		this.models().getBuilder(baseName).parent(YATMBlockStateProvider.BOILER_MODEL).texture("0", facePlateAndPortsTexture).texture("1", topTexture).texture("2", sidesTexture).texture("3", faceTexture);
+		this.models().getBuilder(litName).parent(YATMBlockStateProvider.BOILER_MODEL).texture("0", facePlateAndPortsTexture).texture("1", topTexture).texture("2", sidesTexture).texture("3", litFaceTexture);
+		this.models().getBuilder(hasTankPartName).parent(YATMBlockStateProvider.BOILER_WHEN_HAS_TANK_PART_MODEL).texture("0", hasTankTopTexture).texture("1", hasTankPartSideTexture);
 		ModelFile unlitModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, baseName));
 		ModelFile litModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, litName));
 		ModelFile hasTankPartModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, hasTankPartName));
 		MultiPartBlockStateBuilder builder = this.getMultipartBuilder(block);
-		Direction.Plane.HORIZONTAL.forEach(new Consumer<>() 
-		{
-			@Override
-			public void accept(Direction dir)
-			{
+		Direction.Plane.HORIZONTAL.forEach((dir) ->
 				builder.part()
 				.modelFile(unlitModel)
 				.rotationY(YATMBlockStateProvider.rotationForDirectionFromNorth(dir).y)
 				.addModel()
 				.condition(BoilerBlock.FACING, dir)
-				.condition(BoilerBlock.LIT, false);
-			} // end accept()
-		} // end anonymous type
+				.condition(BoilerBlock.LIT, false)
 		);
-		Direction.Plane.HORIZONTAL.forEach(new Consumer<>() 
-		{
-			@Override
-			public void accept(Direction dir)
-			{
+		Direction.Plane.HORIZONTAL.forEach((dir) -> 
 				builder.part()
 				.modelFile(litModel)
 				.rotationY(YATMBlockStateProvider.rotationForDirectionFromNorth(dir).y)
 				.addModel()
 				.condition(BoilerBlock.FACING, dir)
-				.condition(BoilerBlock.LIT, true);
-			} // end accept()
-		} // end anonymous type
+				.condition(BoilerBlock.LIT, true)
 		);
 		builder.part().modelFile(hasTankPartModel).addModel().condition(BoilerBlock.HAS_TANK, true);
 		
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(unlitModel);
 	} // end createBoiler()
 	
-	private void createBoilerTank(BoilerTankBlock block, Item item, ResourceLocation sideTexture, ResourceLocation hasBoilerSideTexture, ResourceLocation endsTexture)
+	private void createBoilerTank(@NotNull BoilerTankBlock block, @NotNull Item item, @NotNull ResourceLocation sideTexture, @NotNull ResourceLocation hasBoilerSideTexture, @NotNull ResourceLocation endsTexture)
 	{
-		String baseName = getModelLocationNameFor(block);
+		String baseName = YATMBlockStateProvider.getModelLocationNameFor(block);
 		String hasBoilerName = baseName + "_has_boiler";
-		this.models().getBuilder(baseName).parent(BOILER_TANK_MODEL).texture("0", endsTexture).texture("1", sideTexture);
-		this.models().getBuilder(hasBoilerName).parent(BOILER_TANK_MODEL).texture("0", endsTexture).texture("1", hasBoilerSideTexture);
+		this.models().getBuilder(baseName).parent(YATMBlockStateProvider.BOILER_TANK_MODEL).texture("0", endsTexture).texture("1", sideTexture);
+		this.models().getBuilder(hasBoilerName).parent(YATMBlockStateProvider.BOILER_TANK_MODEL).texture("0", endsTexture).texture("1", hasBoilerSideTexture);
 		ModelFile unpairedModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, baseName));
 		ModelFile pairedModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, hasBoilerName));
 		this.getVariantBuilder(block)
@@ -962,19 +966,19 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	} // end createBoilerTank()
 	
 	
-	private void createWire(Block block, Item item, ResourceLocation texture) 
+	private void createWire(@NotNull Block block, @NotNull Item item, @NotNull ResourceLocation texture) 
 	{
-		this.createConduit(block, item, texture, WIRE_BRANCH_HIGH_MODEL, WIRE_BRANCH_LOW_MODEL, WIRE_CENTER_MODEL, WIRE_STRAIGHT_VERTICAL_MODEL);
+		this.createConduit(block, item, texture, YATMBlockStateProvider.WIRE_BRANCH_HIGH_MODEL, YATMBlockStateProvider.WIRE_BRANCH_LOW_MODEL, YATMBlockStateProvider.WIRE_CENTER_MODEL, YATMBlockStateProvider.WIRE_STRAIGHT_VERTICAL_MODEL);
 	} // end addWire()
 	
-	private void createInsulatedWire(Block block, Item item, ResourceLocation texture) 
+	private void createInsulatedWire(@NotNull Block block, @NotNull Item item, @NotNull ResourceLocation texture) 
 	{
-		this.createConduit(block, item, texture, INSULATED_WIRE_BRANCH_HIGH_MODEL, INSULATED_WIRE_BRANCH_LOW_MODEL, INSULATED_WIRE_CENTER_MODEL, INSULATED_WIRE_STRAIGHT_VERTICAL_MODEL);
+		this.createConduit(block, item, texture, YATMBlockStateProvider.INSULATED_WIRE_BRANCH_HIGH_MODEL, YATMBlockStateProvider.INSULATED_WIRE_BRANCH_LOW_MODEL, YATMBlockStateProvider.INSULATED_WIRE_CENTER_MODEL, YATMBlockStateProvider.INSULATED_WIRE_STRAIGHT_VERTICAL_MODEL);
 	} // end addInsulatedWire()
 	
-	private void createConduit(Block block, Item item, ResourceLocation texture, ModelFile highBranch, ModelFile lowBranch, ModelFile center, ModelFile straight) 
+	private void createConduit(@NotNull Block block, @NotNull Item item, @NotNull ResourceLocation texture, @NotNull ModelFile highBranch, @NotNull ModelFile lowBranch, @NotNull ModelFile center, @NotNull ModelFile straight) 
 	{
-		String baseName = getModelLocationNameFor(block);
+		String baseName = YATMBlockStateProvider.getModelLocationNameFor(block);
 		String highModelName = baseName + "_branch_high";
 		String lowModelName = baseName + "_branch_low";
 		String centerModelName = baseName + "_center";
@@ -995,7 +999,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 			@Override
 			public void accept(Direction dir, BooleanProperty val)
 			{
-				boolean high = HIGH_DIRECTIONS.contains(dir);
+				boolean high = YATMBlockStateProvider.HIGH_DIRECTIONS.contains(dir);
 				Vector2i rot = YATMBlockStateProvider.rotationForDirectionFromNorth(dir);
 				builder.part()
 				.modelFile(high ? highModel : lowModel)

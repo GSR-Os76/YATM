@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-06T11:17:20.0267648	Block States: gsr_yatm
+// 1.20.1	2023-08-12T23:18:18.9450124	Block States: gsr_yatm
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 a2a385d05e4f86cda9dd2c5a246077dac4e32579 assets/gsr_yatm/blockstates/advanced_solar_panel.json
 933660d749d6ccd2fe68c8216e2e98db21104e97 assets/gsr_yatm/blockstates/aurum_deminutus.json
@@ -74,6 +74,9 @@ d5e98e7ead5ef812e72b2866d3e338f6ddd202be assets/gsr_yatm/blockstates/rubber_sign
 59c773d1c4af1f8337ca9a6e7f8595eb119772e9 assets/gsr_yatm/blockstates/rubber_wall_hanging_sign.json
 caba5df69e631d874717ad27637f8aa9ee5a203f assets/gsr_yatm/blockstates/rubber_wall_sign.json
 a30b7e3f4bcc3be14c05581280e27d0fe14dc0bc assets/gsr_yatm/blockstates/rubber_wood.json
+ea39ca5596cd846f77911ee356b9bdc6cb428f14 assets/gsr_yatm/blockstates/sap_collector.json
+6dc41c59b517b2ccb23ad2a784c4dc6344dd9f61 assets/gsr_yatm/blockstates/sap_collector_latex.json
+fac3c4cc89cf4da7c6b17c8834e34fc53bc5c8c4 assets/gsr_yatm/blockstates/sap_collector_soul_sap.json
 7a4250d483aeda8a647b757e29dc684ff539a9c0 assets/gsr_yatm/blockstates/shulkwart.json
 00388f3cbf1b1452832ad9233670912152924b4a assets/gsr_yatm/blockstates/sixtyfour_cu_wire.json
 13a65e33c551131e5f9dc7fa2daf79073bfd7649 assets/gsr_yatm/blockstates/soul_afflicted_fancy_rubber_planks.json
@@ -268,6 +271,8 @@ ce2a5b366886871afda0839229e936e8985b0e63 assets/gsr_yatm/models/block/rubber_tra
 fbcd76f07bd7fa62fed1fa595bf9fc2f2b54bffe assets/gsr_yatm/models/block/rubber_wall_hanging_sign.json
 a7f67d964a42296b2bba1c2ac7e853917f910c3c assets/gsr_yatm/models/block/rubber_wall_sign.json
 de33bf8db5adb562d2d65ae420961d87155a5c63 assets/gsr_yatm/models/block/rubber_wood.json
+687ccc72ed2b4e4cc38799c266b963dbc2acdcae assets/gsr_yatm/models/block/sap_collector_latex.json
+a41872b3918baf757cdf78c2e0d6cc0b1f142a44 assets/gsr_yatm/models/block/sap_collector_soul_sap.json
 ebf860d73f0c1fedf036fd4c7bf9fd6300d5b23d assets/gsr_yatm/models/block/shulkwart_grown.json
 efb2f0a9f5da0466bae4d4f3057465b5adb96787 assets/gsr_yatm/models/block/sixtyfour_cu_wire_branch_high.json
 dc6ea9693d14ca07466e946a07a7745a6f648e17 assets/gsr_yatm/models/block/sixtyfour_cu_wire_branch_low.json
@@ -394,6 +399,7 @@ ad3ef8a61c5283c658606f77ef50c1c7b2b38fa8 assets/gsr_yatm/models/item/rubber_root
 3d12386bd05ccef1c92f41f6d6b3fab38bcca52c assets/gsr_yatm/models/item/rubber_stairs.json
 cf1e82327b89679ae0e007a945e602a5cd4d0f27 assets/gsr_yatm/models/item/rubber_trapdoor.json
 d1429ac9f5486d53eefb8c7d73499b10ee9b3cd4 assets/gsr_yatm/models/item/rubber_wood.json
+797791dd17588e079cd48427f1c665ed4bf3c4dc assets/gsr_yatm/models/item/sap_collector.json
 34a58b88323dd1d0cff2c1905ad9c7519d2f4fbb assets/gsr_yatm/models/item/shulkwart_horn.json
 431f71853e5bc0f65a99ed2e63e770810441857f assets/gsr_yatm/models/item/sixtyfour_cu_wire.json
 0fc503fb5b940f82cfe443bc004847ea6bef6ad5 assets/gsr_yatm/models/item/soul_afflicted_fancy_rubber_planks.json

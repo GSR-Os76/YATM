@@ -21,8 +21,7 @@ public class YATMBlockShapes
 	
 	public static final ICollisionVoxelShapeProvider SAP_COLLECTOR_SHAPE = new ICollisionVoxelShapeProvider() 
 	{
-		// TODO, add actual shape
-		private static final VoxelShape SAP_COLLECTOR_SHAPE = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
+		private static final VoxelShape SAP_COLLECTOR_SHAPE = Block.box(0d, 0d, 0d, 16d, 8d, 16d);
 
 		@Override
 		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
