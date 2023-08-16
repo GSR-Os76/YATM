@@ -22,7 +22,7 @@ import com.gsr.gsr_yatm.block.plant.fern.AurumDeminutusBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.moss.PrismarineCrystalMossBlock;
 import com.gsr.gsr_yatm.block.plant.tree.SelfLayeringSaplingBlock;
-import com.gsr.gsr_yatm.block.plant.tree.StrippedSapLogBlock;
+import com.gsr.gsr_yatm.block.plant.tree.TappedLogBlock;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
@@ -1165,9 +1165,9 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static ConfiguredModel[] forPartiallyStrippedBlock(BlockState bs, ModelFile dryModel, ModelFile leakingModel)
 	{
 		Direction.Axis axis = bs.getValue(RotatedPillarBlock.AXIS);
-		ModelFile f = bs.getValue(StrippedSapLogBlock.FLOWING) ? leakingModel : dryModel;
+		ModelFile f = bs.getValue(TappedLogBlock.FLOWING) ? leakingModel : dryModel;
 		int xRot = axis == Direction.Axis.Y ? 0 : 90;
-		int yRot = getRotForYPartiallyStrippedFromFacing(bs.getValue(StrippedSapLogBlock.FACING)) + (axis == Direction.Axis.X ? 90 : 0);
+		int yRot = getRotForYPartiallyStrippedFromFacing(bs.getValue(TappedLogBlock.FACING)) + (axis == Direction.Axis.X ? 90 : 0);
 		return new ConfiguredModel[]
 		{ new ConfiguredModel(f, xRot, yRot, false) };
 	} // end forPillarAxis()

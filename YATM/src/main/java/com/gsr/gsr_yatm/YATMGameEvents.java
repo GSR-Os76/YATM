@@ -4,7 +4,7 @@ import java.util.Collection;
 
 import com.gsr.gsr_yatm.block.IHarvestable;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
-import com.gsr.gsr_yatm.block.plant.tree.StrippedSapLogBlock;
+import com.gsr.gsr_yatm.block.plant.tree.TappedLogBlock;
 import com.gsr.gsr_yatm.command.YATMRuleCommand;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.item.fluid.GlassBottleItemStack;
@@ -133,14 +133,14 @@ public class YATMGameEvents
 			Direction.Axis axis = toolUsedOn.getValue(RotatedPillarBlock.AXIS);
 			Direction clickFaceDir = context.getClickedFace();
 			Direction facing = axis != Axis.Y ? Direction.DOWN : (clickFaceDir.getAxis() == Axis.Y ? context.getHorizontalDirection().getOpposite() : clickFaceDir);
-			resSta = YATMBlocks.PARTIALLY_STRIPPED_RUBBER_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, axis).setValue(StrippedSapLogBlock.FACING, facing);
+			resSta = YATMBlocks.PARTIALLY_STRIPPED_RUBBER_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, axis).setValue(TappedLogBlock.FACING, facing);
 		}
 		else if(toolUsedOn.getBlock() == YATMBlocks.SOUL_AFFLICTED_RUBBER_LOG.get()) 
 		{
 			Direction.Axis axis = toolUsedOn.getValue(RotatedPillarBlock.AXIS);
 			Direction clickFaceDir = context.getClickedFace();
 			Direction facing = axis != Axis.Y ? Direction.DOWN : (clickFaceDir.getAxis() == Axis.Y ? context.getHorizontalDirection().getOpposite() : clickFaceDir);
-			resSta = YATMBlocks.SOUL_AFFLICTED_PARTIALLY_STRIPPED_RUBBER_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, axis).setValue(StrippedSapLogBlock.FACING, facing);
+			resSta = YATMBlocks.SOUL_AFFLICTED_PARTIALLY_STRIPPED_RUBBER_LOG.get().defaultBlockState().setValue(RotatedPillarBlock.AXIS, axis).setValue(TappedLogBlock.FACING, facing);
 		}
 		
 		else if(toolUsedOn.getBlock() == YATMBlocks.PARTIALLY_STRIPPED_RUBBER_LOG.get()) 

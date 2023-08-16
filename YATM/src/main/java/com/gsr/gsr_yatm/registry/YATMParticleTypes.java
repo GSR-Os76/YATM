@@ -13,6 +13,11 @@ public class YATMParticleTypes
 	
 
 	
-	public static final RegistryObject<SimpleParticleType> SOUL_SAP_DRIP = PARTICLE_TYPES.register("soul_sap_drip", () -> new SimpleParticleType(false));
-	
+	public static final RegistryObject<SimpleParticleType> DRIPPING_TAPPED_LOG_LATEX = PARTICLE_TYPES.register("dripping_tapped_log_latex", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> DRIPPING_TAPPED_LOG_SOUL_SAP = PARTICLE_TYPES.register("dripping_tapped_log_soul_sap", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> FALLING_LATEX = PARTICLE_TYPES.register("falling_latex", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> FALLING_SOUL_SAP = PARTICLE_TYPES.register("falling_soul_sap", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> LANDING_LATEX = PARTICLE_TYPES.register("landing_latex", () -> new SimpleParticleType(false));
+	public static final RegistryObject<SimpleParticleType> LANDING_SOUL_SAP = PARTICLE_TYPES.register("landing_soul_sap", () -> new SimpleParticleType(false));
+
 } // end class

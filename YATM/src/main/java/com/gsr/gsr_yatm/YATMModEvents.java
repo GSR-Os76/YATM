@@ -33,6 +33,7 @@ import com.gsr.gsr_yatm.registry.YATMFoliagePlacerTypes;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.registry.YATMMobEffects;
+import com.gsr.gsr_yatm.registry.YATMParticleTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.registry.YATMRootPlacerTypes;
@@ -42,6 +43,7 @@ import com.gsr.gsr_yatm.registry.custom.YATMArmorSets;
 import com.gsr.gsr_yatm.registry.custom.YATMIngredientDeserializers;
 import com.gsr.gsr_yatm.registry.custom.YATMRegistries;
 import com.gsr.gsr_yatm.utilities.YATMModelLayers;
+import com.gsr.gsr_yatm.utilities.YATMParticleProviders;
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
 
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -59,6 +61,7 @@ import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -71,20 +74,21 @@ public class YATMModEvents
 	public static void register(IEventBus modEventBus)
 	{
 		YATMBlocks.BLOCKS.register(modEventBus);
-		YATMItems.ITEMS.register(modEventBus);
-		YATMMenuTypes.MENU_TYPES.register(modEventBus);
-		YATMBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);
-		YATMRecipeTypes.RECIPE_TYPES.register(modEventBus);
-		YATMRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
+		YATMBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);		
+		YATMEntityTypes.ENTITY_TYPES.register(modEventBus);
 		YATMFluids.FLUIDS.register(modEventBus);
 		YATMFluidTypes.FLUID_TYPES.register(modEventBus);
-		YATMMobEffects.MOB_EFFECTS.register(modEventBus);
 		YATMFoliagePlacerTypes.FOLIAGE_PLACER_TYPES.register(modEventBus);
-		YATMTrunkPlacerTypes.TRUNK_PLACER_TYPES.register(modEventBus);
+		YATMItems.ITEMS.register(modEventBus);
+		YATMMenuTypes.MENU_TYPES.register(modEventBus);
+		YATMMobEffects.MOB_EFFECTS.register(modEventBus);
+		YATMParticleTypes.PARTICLE_TYPES.register(modEventBus);
+		YATMRecipeSerializers.RECIPE_SERIALIZERS.register(modEventBus);
+		YATMRecipeTypes.RECIPE_TYPES.register(modEventBus);
 		YATMRootPlacerTypes.ROOT_PLACER_TYPES.register(modEventBus);
 		YATMTreeDecoratorTypes.TREE_DECORATOR_TYPES.register(modEventBus);
-		YATMEntityTypes.ENTITY_TYPES.register(modEventBus);
-
+		YATMTrunkPlacerTypes.TRUNK_PLACER_TYPES.register(modEventBus);
+		
 		YATMRegistries.classInitializer();
 		YATMArmorSets.ARMOR_SETS.register(modEventBus);
 		YATMIngredientDeserializers.INGREDIENT_DESERIALIZERS.register(modEventBus);
@@ -92,31 +96,15 @@ public class YATMModEvents
 		YATMBlocks.addFlowersToPots();
 
 		YATMCreativeModTabs.register(modEventBus);
-		modEventBus.addListener(YATMModEvents::commonSetup);
 		modEventBus.addListener(YATMModEvents::clientSetup);
-		modEventBus.addListener(YATMModEvents::registerEntityRenderers);
+		modEventBus.addListener(YATMModEvents::commonSetup);
 		modEventBus.addListener(YATMModEvents::gatherData);
+		modEventBus.addListener(YATMModEvents::registerEntityRenderers);
+		modEventBus.addListener(YATMModEvents::registerParticleProviders);
 	} // end register()
 
-
-
-	private static void commonSetup(FMLCommonSetupEvent event)
-	{
-		event.enqueueWork(() -> YATMItems.addCompostables());
-		event.enqueueWork(() -> RecipeUtilities.addDynamicRecipeProvider(new CompostableBiolingRecipeProvider()));
-		event.enqueueWork(() -> RecipeUtilities.addDynamicRecipeProvider(new WrappedSmeltingRecipeProvider()));
-		event.enqueueWork(() -> YATMBlocks.addSapCollectorVariants());
-		
-		// TODO, add biome to the nether, biome manager seems to only support the
-		// overworld currently, and I wish to not break compatibility
-		// NetherBiomes l
-		// event.enqueueWork(() -> ; BiomeManager.addAdditionalOverworldBiomes(null))
-		event.enqueueWork(() -> BiomeManager.addAdditionalOverworldBiomes(ResourceKey.create(ForgeRegistries.BIOMES.getRegistryKey(), new ResourceLocation(YetAnotherTechMod.MODID, "rubber_forest"))));
-
-		event.enqueueWork(() -> WoodType.register(YATMBlocks.RUBBER_WOOD_TYPE));
-		event.enqueueWork(() -> WoodType.register(YATMBlocks.SOUL_AFFLICTED_RUBBER_WOOD_TYPE));
-	} // end commonSetup()
-
+	
+	
 	private static void clientSetup(FMLClientSetupEvent event)
 	{
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BIOLER.get(), BiolerScreen::new));
@@ -147,17 +135,24 @@ public class YATMModEvents
 			ForgeHooksClient.registerLayerDefinition(YATMModelLayers.createYATMChestBoatModelName(type), () -> chestBoat);
 		}
 		// ForgeHooksClient.registerLayerDefinition(YATMModelLayers.DEAFULT_HANGING_POT_SUPPORT_CHAIN_MODEL_NAME, () -> defaulfHangingPotSupportChain);
-} // end clientSetup()
-
-	private static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
-	{
-		event.registerBlockEntityRenderer(YATMBlockEntityTypes.HANGING_POT_HOOK.get(), HangingPotHookRenderer::new);
-		event.registerBlockEntityRenderer(YATMBlockEntityTypes.YATM_HANGING_SIGN.get(), HangingSignRenderer::new);
-		event.registerBlockEntityRenderer(YATMBlockEntityTypes.YATM_SIGN.get(), SignRenderer::new);
-		
-		event.<Boat>registerEntityRenderer(YATMEntityTypes.YATM_BOAT.get(), (c) -> new YATMBoatRenderer(c, false));
-		event.<Boat>registerEntityRenderer(YATMEntityTypes.YATM_CHEST_BOAT.get(), (c) -> new YATMBoatRenderer(c, true));
 	} // end clientSetup()
+
+	private static void commonSetup(FMLCommonSetupEvent event)
+	{
+		event.enqueueWork(() -> YATMItems.addCompostables());
+		event.enqueueWork(() -> RecipeUtilities.addDynamicRecipeProvider(new CompostableBiolingRecipeProvider()));
+		event.enqueueWork(() -> RecipeUtilities.addDynamicRecipeProvider(new WrappedSmeltingRecipeProvider()));
+		event.enqueueWork(() -> YATMBlocks.addSapCollectorVariants());
+		
+		// TODO, add biome to the nether, biome manager seems to only support the
+		// overworld currently, and I wish to not break compatibility
+		// NetherBiomes l
+		// event.enqueueWork(() -> ; BiomeManager.addAdditionalOverworldBiomes(null))
+		event.enqueueWork(() -> BiomeManager.addAdditionalOverworldBiomes(ResourceKey.create(ForgeRegistries.BIOMES.getRegistryKey(), new ResourceLocation(YetAnotherTechMod.MODID, "rubber_forest"))));
+
+		event.enqueueWork(() -> WoodType.register(YATMBlocks.RUBBER_WOOD_TYPE));
+		event.enqueueWork(() -> WoodType.register(YATMBlocks.SOUL_AFFLICTED_RUBBER_WOOD_TYPE));
+	} // end commonSetup()
 
 	private static void gatherData(GatherDataEvent event)
 	{
@@ -209,4 +204,24 @@ public class YATMModEvents
 
 	} // end gatherData()
 
+	private static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
+	{
+		event.registerBlockEntityRenderer(YATMBlockEntityTypes.HANGING_POT_HOOK.get(), HangingPotHookRenderer::new);
+		event.registerBlockEntityRenderer(YATMBlockEntityTypes.YATM_HANGING_SIGN.get(), HangingSignRenderer::new);
+		event.registerBlockEntityRenderer(YATMBlockEntityTypes.YATM_SIGN.get(), SignRenderer::new);
+		
+		event.<Boat>registerEntityRenderer(YATMEntityTypes.YATM_BOAT.get(), (c) -> new YATMBoatRenderer(c, false));
+		event.<Boat>registerEntityRenderer(YATMEntityTypes.YATM_CHEST_BOAT.get(), (c) -> new YATMBoatRenderer(c, true));
+	} // end clientSetup()
+
+	private static void registerParticleProviders(RegisterParticleProvidersEvent event) 
+	{
+		event.registerSprite(YATMParticleTypes.DRIPPING_TAPPED_LOG_LATEX.get(), YATMParticleProviders.DRIPPING_TAPPED_LOG_LATEX);
+		event.registerSprite(YATMParticleTypes.DRIPPING_TAPPED_LOG_SOUL_SAP.get(), YATMParticleProviders.DRIPPING_TAPPED_LOG_SOUL_SAP);
+		event.registerSprite(YATMParticleTypes.FALLING_LATEX.get(), YATMParticleProviders.FALLING_TAPPED_LOG_LATEX);
+		event.registerSprite(YATMParticleTypes.FALLING_SOUL_SAP.get(), YATMParticleProviders.FALLING_TAPPED_LOG_SOUL_SAP);
+		event.registerSprite(YATMParticleTypes.LANDING_LATEX.get(), YATMParticleProviders.LANDING_LATEX);
+		event.registerSprite(YATMParticleTypes.LANDING_SOUL_SAP.get(), YATMParticleProviders.LANDING_SOUL_SAP);
+	} // end registerParticleProviders()
+	
 } // end class

@@ -11,6 +11,7 @@ import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -24,26 +25,26 @@ import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.util.TriPredicate;
 
-public class StrippedSapLogBlock extends RotatedPillarBlock
+public class TappedLogBlock extends RotatedPillarBlock
 {
 	public static final BooleanProperty FLOWING = YATMBlockStateProperties.FLOWING;
 	public static final DirectionProperty FACING = YATMBlockStateProperties.FACING_NOT_UP;
 	
 	public static final int MAX_DRIP_DISTANCE = 24;
 	
-	// private final @NotNull ParticleOptions m_dripParticle;
+	private final @NotNull Supplier<ParticleOptions> m_dripParticle;
 	private final @NotNull Supplier<Fluid> m_fluid;
 	private final @NotNull TriPredicate<Level, BlockState, BlockPos> m_sapProviderTest;
 	
 	
 	
 	
-	public StrippedSapLogBlock(@NotNull Supplier<Fluid> fluid, @NotNull TriPredicate<Level, BlockState, BlockPos> sapProviderTest, @NotNull Properties properties) // , @NotNull ParticleOptions dripParticle)
+	public TappedLogBlock(@NotNull Supplier<Fluid> fluid, @NotNull TriPredicate<Level, BlockState, BlockPos> sapProviderTest, @NotNull Properties properties, @NotNull Supplier<ParticleOptions> dripParticle)
 	{
 		super(Objects.requireNonNull(properties));
 		this.registerDefaultState(this.defaultBlockState().setValue(FLOWING, true).setValue(FACING, Direction.NORTH));
 		
-		// this.m_dripParticle = Objects.requireNonNull(dripParticle);
+		this.m_dripParticle = Objects.requireNonNull(dripParticle);
 		this.m_fluid = Objects.requireNonNull(fluid);
 		this.m_sapProviderTest = Objects.requireNonNull(sapProviderTest);
 		
@@ -54,14 +55,14 @@ public class StrippedSapLogBlock extends RotatedPillarBlock
 	@Override
 	protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
 	{
-		super.createBlockStateDefinition(builder.add(StrippedSapLogBlock.FLOWING, StrippedSapLogBlock.FACING));
+		super.createBlockStateDefinition(builder.add(TappedLogBlock.FLOWING, TappedLogBlock.FACING));
 	} // end createBlockStateDefinition()
 
 	@Override
 	public BlockState getStateForPlacement(BlockPlaceContext context)
 	{
 		Direction facing = context.getClickedFace().getAxis() == Axis.Y ? context.getHorizontalDirection().getOpposite() : Direction.DOWN;
-		return super.getStateForPlacement(context).setValue(StrippedSapLogBlock.FACING, facing);		
+		return super.getStateForPlacement(context).setValue(TappedLogBlock.FACING, facing);		
 	} // end getStateForPlacement()
 
 
@@ -100,15 +101,15 @@ public class StrippedSapLogBlock extends RotatedPillarBlock
 			}
 		}
 
-		if (shouldFlow != state.getValue(StrippedSapLogBlock.FLOWING))
+		if (shouldFlow != state.getValue(TappedLogBlock.FLOWING))
 		{
-			level.setBlock(position, state.setValue(StrippedSapLogBlock.FLOWING, shouldFlow), Block.UPDATE_CLIENTS);
+			level.setBlock(position, state.setValue(TappedLogBlock.FLOWING, shouldFlow), Block.UPDATE_CLIENTS);
 		}
 		
 		if(shouldFlow && random.nextInt(24) == 0) 
 		{
-			BlockPos.MutableBlockPos mbp = new BlockPos.MutableBlockPos().set(position.relative(state.getValue(StrippedSapLogBlock.FACING)));
-			for(int i = 1; i <= StrippedSapLogBlock.MAX_DRIP_DISTANCE; i++) 
+			BlockPos.MutableBlockPos mbp = new BlockPos.MutableBlockPos().set(position.relative(state.getValue(TappedLogBlock.FACING)));
+			for(int i = 1; i <= TappedLogBlock.MAX_DRIP_DISTANCE; i++) 
 			{
 				mbp.move(Direction.DOWN);
 				BlockState toCheckState = level.getBlockState(mbp);
@@ -128,16 +129,15 @@ public class StrippedSapLogBlock extends RotatedPillarBlock
 	@Override
 	public void animateTick(BlockState state, Level level, BlockPos position, RandomSource random)
 	{
-		if(!state.getValue(StrippedSapLogBlock.FLOWING)) 
+		if(state.getValue(TappedLogBlock.FLOWING) && level.random.nextInt(48) == 0) 
 		{
-			return;
+			// TODO, positioning needs some conditional tuning, possibly extract into a method all that, return them packaged into some sort of vector tuple kinda thing
+			Direction facing = state.getValue(TappedLogBlock.FACING);
+			double x = ((double)position.relative(facing).getX());
+			double y = ((double)position.relative(facing).getY());
+			double z = ((double)position.relative(facing).getZ());
+			level.addParticle(this.m_dripParticle.get(), x, y, z, 0.0d, 0.0d, 0.0d);
 		}
-		
-		// TODO, visual dripping particles
-//		double x = ((double)position.getX());
-//		double y = ((double)position.getY());
-//		double z = ((double)position.getZ());
-//		level.addParticle(this.m_dripParticle, x, y, z, 0.0d, 0.0d, 0.0d);
 	} // end animateTick()
 	
 } // end class
