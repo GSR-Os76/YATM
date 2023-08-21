@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-12T23:18:18.9450124	Block States: gsr_yatm
+// 1.20.1	2023-08-21T13:34:19.5710169	Block States: gsr_yatm
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 a2a385d05e4f86cda9dd2c5a246077dac4e32579 assets/gsr_yatm/blockstates/advanced_solar_panel.json
 933660d749d6ccd2fe68c8216e2e98db21104e97 assets/gsr_yatm/blockstates/aurum_deminutus.json
@@ -215,9 +215,9 @@ eedfb74bb394e712164cde9c9822ba2170b53be8 assets/gsr_yatm/models/block/lime_shulk
 62c77c320bd2a827ef8b541140087bd03f381a0b assets/gsr_yatm/models/block/orange_shulkwart_grown.json
 706056341466c8e35e216b42ae2f81b82f05a23a assets/gsr_yatm/models/block/partially_stripped_rubber_log_dry.json
 47d81ee5ca024b1c93b928b04f673686f8b8cfd8 assets/gsr_yatm/models/block/partially_stripped_rubber_log_leaking.json
-8c070648255f0b54ca8a5c675b54ea1bea637c3e assets/gsr_yatm/models/block/phantasmal_shelf_fungus_large.json
-b9db7eb8920f0088fc17a2998730d34de5effce5 assets/gsr_yatm/models/block/phantasmal_shelf_fungus_medium.json
-2b2f04a129ad399c558286d29e70a62d049cfa8d assets/gsr_yatm/models/block/phantasmal_shelf_fungus_small.json
+e4abbcb30a2853060dd195e7ff525da0d21d7bed assets/gsr_yatm/models/block/phantasmal_shelf_fungus_large.json
+f68e0d21b05783094725c52e3fb331fdd4ae6583 assets/gsr_yatm/models/block/phantasmal_shelf_fungus_medium.json
+949338c0a80f080aa20fc2465ba9436181bcbde1 assets/gsr_yatm/models/block/phantasmal_shelf_fungus_small.json
 07793eafc5244874ed05c269b9c82875419c1f49 assets/gsr_yatm/models/block/pink_shulkwart_grown.json
 ef6622b3ee7902380cd1ea20ad5475245e283c9c assets/gsr_yatm/models/block/plant/shulkwart/shulkwart_fruit_one.json
 4997eb0020e7a8cea004978db3bfbcde7546853a assets/gsr_yatm/models/block/plant/shulkwart/shulkwart_fruit_three.json

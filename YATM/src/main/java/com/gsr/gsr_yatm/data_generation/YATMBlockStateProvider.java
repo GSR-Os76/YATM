@@ -75,9 +75,9 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	
 	
-	public static final ModelFile SMALL_SHELF_FUNGUS = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/shelf_fungi_small"));
-	public static final ModelFile MEDIUM_SHELF_FUNGUS = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/shelf_fungi_medium"));
-	public static final ModelFile LARGE_SHELF_FUNGUS = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/shelf_fungi_large"));
+	public static final ModelFile PHANTASMAL_SHELF_FUNGUS_SMALL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/phantasmal_shelf_fungi_small"));
+	public static final ModelFile PHANTASMAL_MEDIUM_SHELF_FUNGUS = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/phantasmal_shelf_fungi_medium"));
+	public static final ModelFile PHANTASMAL_LARGE_SHELF_FUNGUS = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/phantasmal_shelf_fungi_large"));
 	
 	public static final ModelFile SHULKWART_SPORE_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/shulkwart_spore"));
 	public static final ModelFile SHULKWARK_CRYPTIC_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/shulkwart_cryptic"));
@@ -748,9 +748,9 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		String smallName = name + "_small";
 		String mediumName = name + "_medium";
 		String largeName = name + "_large";
-		this.models().getBuilder(smallName).parent(YATMBlockStateProvider.SMALL_SHELF_FUNGUS);
-		this.models().getBuilder(mediumName).parent(YATMBlockStateProvider.MEDIUM_SHELF_FUNGUS);	
-		this.models().getBuilder(largeName).parent(YATMBlockStateProvider.LARGE_SHELF_FUNGUS);	
+		this.models().getBuilder(smallName).parent(YATMBlockStateProvider.PHANTASMAL_SHELF_FUNGUS_SMALL);
+		this.models().getBuilder(mediumName).parent(YATMBlockStateProvider.PHANTASMAL_MEDIUM_SHELF_FUNGUS);	
+		this.models().getBuilder(largeName).parent(YATMBlockStateProvider.PHANTASMAL_LARGE_SHELF_FUNGUS);	
 		ModelFile smallModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, smallName));
 		ModelFile mediumModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, mediumName));
 		ModelFile largeModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, largeName));
