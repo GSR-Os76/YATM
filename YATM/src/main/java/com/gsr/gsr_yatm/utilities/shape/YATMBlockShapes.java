@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
+import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
 
 import net.minecraft.core.BlockPos;
@@ -30,6 +31,7 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 	
+
 	public static final ICollisionVoxelShapeProvider CUBE = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape CUBE = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
@@ -51,6 +53,73 @@ public class YATMBlockShapes
 		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
 		{
 			return SHAPE;
+		} // end getShape()
+	};
+	
+	public static final ICollisionVoxelShapeProvider PHANTASMAL_SHELF_FUNGUS = new ICollisionVoxelShapeProvider() 
+	{
+		private static final IVoxelShapeBuilder SMALL = IVoxelShapeBuilder.MutableWrapper.of((VoxelShapeBuilder
+				.box(11d, 12d, 14d, 14d, 14d, 16d)
+				.or(VoxelShapeBuilder.box(5d, 8d, 14d, 9d, 10d, 16d))
+				.or(VoxelShapeBuilder.box(10d, 5d, 15d, 12d, 6d, 16d))));
+		private static final VoxelShape SMALL_NORTH = SMALL.toMCVoxelShape();
+		private static final VoxelShape SMALL_WEST = SMALL.yRotateLookingDownCounterClockwise().toMCVoxelShape();
+		private static final VoxelShape SMALL_SOUTH = SMALL.yRotateLookingDownCounterClockwise().toMCVoxelShape();
+		private static final VoxelShape SMALL_EAST = SMALL.yRotateLookingDownCounterClockwise().toMCVoxelShape();
+
+		private static final IVoxelShapeBuilder MEDIUM = IVoxelShapeBuilder.MutableWrapper.of((VoxelShapeBuilder
+				.box(10d, 12d, 14d, 14d, 14d, 16d)
+				.or(VoxelShapeBuilder.box(3d, 12d, 15d, 5d, 13d, 16d))
+				.or(VoxelShapeBuilder.box(4d, 9d, 12d, 10d, 11d, 16d))
+				.or(VoxelShapeBuilder.box(9d, 4d, 14d, 12d, 6d, 16d))));
+		private static final VoxelShape MEDIUM_NORTH = MEDIUM.toMCVoxelShape();
+		private static final VoxelShape MEDIUM_WEST = MEDIUM.yRotateLookingDownCounterClockwise().toMCVoxelShape();
+		private static final VoxelShape MEDIUM_SOUTH = MEDIUM.yRotateLookingDownCounterClockwise().toMCVoxelShape();
+		private static final VoxelShape MEDIUM_EAST = MEDIUM.yRotateLookingDownCounterClockwise().toMCVoxelShape();
+
+		private static final IVoxelShapeBuilder LARGE = IVoxelShapeBuilder.MutableWrapper.of((VoxelShapeBuilder
+				.box(8d, 13d, 12d, 14d, 15d, 16d)
+				.or(VoxelShapeBuilder.box(3d, 12d, 14d, 7d, 14d, 16d))
+				.or(VoxelShapeBuilder.box(2d, 7d, 9d, 14d, 11d, 16d))
+				.or(VoxelShapeBuilder.box(6d, 3d, 11d, 14d, 6d, 16d))
+				.or(VoxelShapeBuilder.box(2d, 2d, 14d, 5d, 4d, 16d))));
+		private static final VoxelShape LARGE_NORTH = LARGE.toMCVoxelShape();
+		private static final VoxelShape LARGE_WEST = LARGE.yRotateLookingDownCounterClockwise().toMCVoxelShape();
+		private static final VoxelShape LARGE_SOUTH = LARGE.yRotateLookingDownCounterClockwise().toMCVoxelShape();
+		private static final VoxelShape LARGE_EAST = LARGE.yRotateLookingDownCounterClockwise().toMCVoxelShape();
+
+		@Override
+		public @NotNull VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		{
+			return switch(state.getValue(PhantasmalShelfFungiBlock.AGE)) 
+			{
+				// TODO, these ranges and the one in the YATMBlockStateProvider should be variable, not hard coded off in distant places, it's poorly resilient
+				case 0, 1, 2 -> switch (state.getValue(PhantasmalShelfFungiBlock.FACING)) 
+				{
+					case NORTH -> SMALL_NORTH;
+					case WEST -> SMALL_WEST;
+					case SOUTH -> SMALL_SOUTH;
+					case EAST -> SMALL_EAST;
+					default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(PhantasmalShelfFungiBlock.FACING));	
+				};
+				case 3, 4, 5, 6 -> switch (state.getValue(PhantasmalShelfFungiBlock.FACING)) 
+				{
+					case NORTH -> MEDIUM_NORTH;
+					case WEST -> MEDIUM_WEST;
+					case SOUTH -> MEDIUM_SOUTH;
+					case EAST -> MEDIUM_EAST;
+					default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(PhantasmalShelfFungiBlock.FACING));	
+				};
+				case 7 -> switch (state.getValue(PhantasmalShelfFungiBlock.FACING)) 
+				{
+					case NORTH -> LARGE_NORTH;
+					case WEST -> LARGE_WEST;
+					case SOUTH -> LARGE_SOUTH;
+					case EAST -> LARGE_EAST;
+					default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(PhantasmalShelfFungiBlock.FACING));	
+				};
+				default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(PhantasmalShelfFungiBlock.AGE));
+			};
 		} // end getShape()
 	};
 	
@@ -96,6 +165,7 @@ public class YATMBlockShapes
 			return res;
 		} // end getShape()
 	};
+	
 	
 	
 	public static final ICollisionVoxelShapeProvider SHULKWART = new ICollisionVoxelShapeProvider() 

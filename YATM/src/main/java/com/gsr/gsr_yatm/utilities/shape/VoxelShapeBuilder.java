@@ -1,5 +1,6 @@
 package com.gsr.gsr_yatm.utilities.shape;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -107,7 +108,9 @@ public class VoxelShapeBuilder implements IVoxelShapeBuilder
 		Vector3d low = a.getLowVertex();
 		Vector3d high = a.getHighVertex();
 		
-		return new VoxelShapeBuilder(low.x, low.y, low.z, high.x, high.y, high.z, List.of(new Pair<>(operation, b)));
+		List<@NotNull Pair<@NotNull BinaryOperation, @NotNull IVoxelShapeBuilder>> l = new ArrayList<>(a.getAdditionalParts());
+		l.add(new Pair<>(operation, b));
+		return new VoxelShapeBuilder(low.x, low.y, low.z, high.x, high.y, high.z, l);
 	} // end binary()
 	
 	public static @NotNull VoxelShapeBuilder and(@NotNull IVoxelShapeBuilder a, @NotNull IVoxelShapeBuilder b) 
@@ -167,10 +170,11 @@ public class VoxelShapeBuilder implements IVoxelShapeBuilder
 	// rotation
 	public static @NotNull VoxelShapeBuilder yRotateLookingDownClockwise(@NotNull VoxelShapeBuilder shape, @NotNull Vector3d pivot) 
 	{
+		// TODO, possibly not pivoting around correctly for pivot where (pivot.x != pivot.z), review
 		Vector3d lVert = shape.getLowVertex();
 		Vector3d hVert = shape.getHighVertex();
 		
-		double x = Math.min(lVert.z, hVert.z);// z;
+		double x = Math.min(lVert.z, hVert.z);
 		double y = lVert.y;
 		double z = Math.min(((pivot.x - lVert.x) + pivot.x), ((pivot.x - hVert.x) + pivot.x));
 		double toX = Math.max(lVert.z, hVert.z);;
