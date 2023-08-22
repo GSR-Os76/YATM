@@ -1,5 +1,5 @@
 {
-	"parent": "minecrat:block/block",
+	"parent": "minecraft:block/block",
 	"textures": {
 		"0": "gsr_yatm:block/plant/phantasmal_shelf_fungi/medium",
 		"1": "gsr_yatm:block/plant/phantasmal_shelf_fungi/small",

@@ -139,7 +139,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				//new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_maturing"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_mature"));
 		this.addShulkwarts();
-		this.createShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get());
+		this.createPhantasmalShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get());
 		this.addSpiderVine();
 		this.addVariegatedCactus();
 		
@@ -740,22 +740,10 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.getVariantBuilder(block).forAllStates((bs) -> forAurumDeminutus(bs, fModel, yModel, aModel, aDLModel, aDHModel, mDLModel, mDHModel));
 	} // end createAurumDeminutus()
 	
-	private void createShelfFungus(PhantasmalShelfFungiBlock block, Item item) 
+	private void createPhantasmalShelfFungus(PhantasmalShelfFungiBlock block, Item item) 
 	{
-		// TODO, likely change model reducing vertex density significantly
-		// TODO, textures
-		String name = YATMBlockStateProvider.getModelLocationNameFor(block);	
-		String smallName = name + "_small";
-		String mediumName = name + "_medium";
-		String largeName = name + "_large";
-		this.models().getBuilder(smallName).parent(YATMBlockStateProvider.PHANTASMAL_SHELF_FUNGUS_SMALL);
-		this.models().getBuilder(mediumName).parent(YATMBlockStateProvider.PHANTASMAL_MEDIUM_SHELF_FUNGUS);	
-		this.models().getBuilder(largeName).parent(YATMBlockStateProvider.PHANTASMAL_LARGE_SHELF_FUNGUS);	
-		ModelFile smallModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, smallName));
-		ModelFile mediumModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, mediumName));
-		ModelFile largeModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, largeName));
-		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forShelfFungi(bs, smallModel, mediumModel, largeModel));
-		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(largeModel);
+		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forShelfFungi(bs, YATMBlockStateProvider.PHANTASMAL_SHELF_FUNGUS_SMALL, YATMBlockStateProvider.PHANTASMAL_MEDIUM_SHELF_FUNGUS, YATMBlockStateProvider.PHANTASMAL_LARGE_SHELF_FUNGUS));
+		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(YATMBlockStateProvider.PHANTASMAL_SHELF_FUNGUS_SMALL);
 	} // end createShelfFungus()
 	
 	private void createCactus(@NotNull Block block, @Nullable Item item, @NotNull ResourceLocation topTexture, @NotNull ResourceLocation sideTexture, @NotNull ResourceLocation bottomTexture) 
