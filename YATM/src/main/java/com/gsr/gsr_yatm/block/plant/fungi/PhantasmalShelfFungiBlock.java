@@ -60,7 +60,7 @@ public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestable
 	public PhantasmalShelfFungiBlock(Properties properties, ICollisionVoxelShapeProvider shape, Supplier<ItemLike> seed)
 	{
 		super(properties);
-		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
+		this.registerDefaultState(this.defaultBlockState().setValue(PhantasmalShelfFungiBlock.FACING, Direction.NORTH));
 		this.m_shape = shape;
 		this.m_seed = seed;
 	} // end constructor
@@ -70,7 +70,7 @@ public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestable
 	@Override
 	protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
 	{
-		super.createBlockStateDefinition(builder.add(FACING));//, GROWTH_STAGE));
+		super.createBlockStateDefinition(builder.add(PhantasmalShelfFungiBlock.FACING));
 	} // end createBlockStateDefinition()
 	
 	@Override
@@ -81,7 +81,7 @@ public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestable
 		Direction face = context.getClickedFace();
 		BlockState state = level.getBlockState(position.relative(face.getOpposite()));
 
-		return Direction.Plane.VERTICAL.test(face) ? null : this.canPlaceOn(level, position, state, face) ? super.getStateForPlacement(context).setValue(FACING, face) : null;
+		return Direction.Plane.VERTICAL.test(face) ? null : this.canPlaceOn(level, position, state, face) ? super.getStateForPlacement(context).setValue(PhantasmalShelfFungiBlock.FACING, face) : null;
 	} // end getStateForPlacement()
 
 	
@@ -124,6 +124,26 @@ public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestable
 	} // end use()
 
 		
+	
+	@Override
+	public void randomTick(BlockState state, ServerLevel level, BlockPos position, RandomSource random)
+	{
+		int i = this.getAge(state);
+		if (i < this.getMaxAge())
+		{
+			float f = getGrowthSpeed(this, level, position);
+			if (net.minecraftforge.common.ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt((int) (25.0F / f) + 1) == 0))
+			{
+				level.setBlock(position, state.setValue(this.getAgeProperty(), i + 1), 2);
+				net.minecraftforge.common.ForgeHooks.onCropsGrowPost(level, position, state);
+			}
+		}
+	} // end randomTick()
+	
+	
+	
+
+
 
 	@Override
 	protected ItemLike getBaseSeedId()
@@ -140,13 +160,13 @@ public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestable
 	@Override
 	protected boolean mayPlaceOn(BlockState state, BlockGetter getter, BlockPos position)
 	{
-		return this.canPlaceOn(getter, position, state, Direction.DOWN); // return Direction.Plane.HORIZONTAL.stream().anyMatch((d) -> Block.isFaceFull(getter.getBlockState(position.relative(d.getOpposite())).getBlockSupportShape(getter, position.relative(d.getOpposite())), d));
+		return this.canPlaceOn(getter, position, state, Direction.DOWN);
 	} // end mayPlaceOn()
 
 	@Override
 	public boolean canSurvive(BlockState state, LevelReader level, BlockPos position)
 	{
-		Direction facing = state.getValue(FACING);
+		Direction facing = state.getValue(PhantasmalShelfFungiBlock.FACING);
 		BlockPos checkingPos = position.relative(facing.getOpposite());
 		return Block.isFaceFull(level.getBlockState(checkingPos).getBlockSupportShape(level, checkingPos), facing);
 	} // end canSurvive()
@@ -162,7 +182,7 @@ public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestable
 	public void grow(ServerLevel level, BlockState state, BlockPos position) 
 	{
 		int ageIncd = state.getValue(this.getAgeProperty()) + 1;
-		level.setBlock(position, state.setValue(this.getAgeProperty(), Math.min(ageIncd, this.getMaxAge())), 2);
+		level.setBlock(position, state.setValue(this.getAgeProperty(), Math.min(ageIncd, this.getMaxAge())), Block.UPDATE_CLIENTS);
 	} // end grow()
 	
 	public void spread(ServerLevel level, BlockState state, BlockPos position, RandomSource random) 
