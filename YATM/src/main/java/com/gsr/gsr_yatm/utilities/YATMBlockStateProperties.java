@@ -14,6 +14,8 @@ public class YATMBlockStateProperties
 {
 	public static final IntegerProperty AGE_TWO = IntegerProperty.create("age", 0, 1);
 	public static final IntegerProperty AGE_FIVE = IntegerProperty.create("age", 0, 4);
+	public static final IntegerProperty AGE_EIGHT = IntegerProperty.create("age", 0, 7);
+	
 	
 	// TODO, make sure nothing is using this when they mean can spread, semantics are important.
 	public static final BooleanProperty CAN_GROW = BooleanProperty.create("can_grow");	

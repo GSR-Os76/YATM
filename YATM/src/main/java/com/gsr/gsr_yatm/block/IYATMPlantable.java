@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.plant;
+package com.gsr.gsr_yatm.block;
 
 import org.jetbrains.annotations.NotNull;
 

@@ -3,7 +3,7 @@ package com.gsr.gsr_yatm.block.plant.variegated_cactus;
 import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.block.plant.IYATMPlantable;
+import com.gsr.gsr_yatm.block.IYATMPlantable;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 
 import net.minecraft.core.BlockPos;
@@ -43,8 +43,7 @@ public class VariegatedCactusBlock extends CactusBlock implements IYATMPlantable
 		{
 			BlockPos neighborPos = position.relative(direction);
 			BlockState neighbor = levelReader.getBlockState(neighborPos);
-			if (neighbor.isSolid()// Block.isFaceFull(neighbor.getBlockSupportShape(levelReader, neighborPos),
-									// direction.getOpposite())
+			if (neighbor.isSolid()
 					|| levelReader.getFluidState(position.relative(direction)).is(FluidTags.LAVA))
 			{
 				return false;

@@ -1,14 +1,17 @@
 package com.gsr.gsr_yatm.block.plant.parasite;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.block.IAging;
 import com.gsr.gsr_yatm.block.IHarvestable;
-import com.gsr.gsr_yatm.block.plant.CustomSeedCropBlock;
+import com.gsr.gsr_yatm.block.IYATMPlantable;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
+import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
@@ -19,14 +22,17 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition.Builder;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -34,22 +40,58 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 
-public class ShulkwartBlock extends CustomSeedCropBlock implements IHarvestable
+public class ShulkwartBlock extends Block implements IAging, IHarvestable, IYATMPlantable
 {
+	public static final IntegerProperty AGE = YATMBlockStateProperties.AGE_EIGHT;
 	private static final int MAX_SPORE_FALL_DISTANCE = 16;
 	private static final int SPORE_DISPERSION_DISTANCE = 8;
-	private final ICollisionVoxelShapeProvider m_shape;
+	
 	private final Supplier<Block> m_fallenSpores;
-	/*TODO, probably unhardcode this, make into a data driven loottable if is possible*/private final Supplier<ItemStack> m_harvestResults;
+	/*TODO, probably unhardcode this, make into a data driven loottable if is possible*/
+	private final Supplier<ItemStack> m_harvestResults;
+	private final Supplier<Item> m_seed;
+	private final ICollisionVoxelShapeProvider m_shape;
 	
 	
-	public ShulkwartBlock(Properties properties, ICollisionVoxelShapeProvider shape, Supplier<ItemLike> seed, Supplier<Block> fallenSpores, Supplier<ItemStack> harvestResults)
+	
+	public ShulkwartBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, Supplier<Item> seed, @NotNull Supplier<Block> fallenSpores, @NotNull Supplier<ItemStack> harvestResults)
 	{
-		super(properties, seed);
-		this.m_shape = shape;
-		this.m_fallenSpores = fallenSpores;
-		this.m_harvestResults = harvestResults;
+		super(Objects.requireNonNull(properties));
+		
+		this.registerDefaultState(this.defaultBlockState().setValue(this.getAgeProperty(), 0));
+		
+		this.m_fallenSpores = Objects.requireNonNull(fallenSpores);
+		this.m_harvestResults = Objects.requireNonNull(harvestResults);
+		this.m_seed = Objects.requireNonNull(seed);
+		this.m_shape = Objects.requireNonNull(shape);
 	} // end constructor
+
+	
+	
+	@Override
+	public Item asItem()
+	{
+		return this.m_seed.get();
+	} // end asItem()
+
+
+
+	@Override
+	protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
+	{
+		super.createBlockStateDefinition(builder.add(this.getAgeProperty()));
+	} // end createBlockStateDefinition()
+	
+	@Override
+	public @NotNull BlockState getStateForPlacement(BlockPlaceContext context)
+	{
+		Level level = context.getLevel();
+		BlockPos position = context.getClickedPos().above();
+		BlockState state = level.getBlockState(position);
+		return this.canPlantOn(level, state, position, Direction.DOWN) 
+				? super.getStateForPlacement(context) 
+				: null;
+	} // end getStateForPlacement()
 
 
 
@@ -59,45 +101,47 @@ public class ShulkwartBlock extends CustomSeedCropBlock implements IHarvestable
 		return IHarvestable.use(this, level, state, position, player, hand, hitResult);
 	} // end use()
 
-	
-	
-	@Override
-	protected boolean mayPlaceOn(BlockState state, BlockGetter blockGetter, BlockPos position)
-	{
-		return YATMBlockTags.SHULKWART_GROWS_ON.contains(state.getBlock());
-	} // end mayPlaceOn()
+
 
 	@Override
 	public boolean canSurvive(BlockState state, LevelReader level, BlockPos position)
 	{
 		BlockPos check = position.above();
-		return this.mayPlaceOn(level.getBlockState(check), level, check);
+		return this.canPlantOrSurviveOn(level.getBlockState(check), Direction.DOWN);
 	} // end canSurvive()
 
+
+
+	@Override
+	public boolean isRandomlyTicking(BlockState state)
+	{
+		return this.getAge(state) != this.getMaxAge();
+	} // end isRandomlyTicking()
 	
+
+
 
 	@Override
 	public void randomTick(BlockState state, ServerLevel level, BlockPos position, RandomSource random)
 	{
-		// TODO, i'm assuming here I don't need to check if anything is loaded since this is all contained in the one position, and it should be up to the called to verify loadedness of chunks
-		int i = this.getAge(state);
-		if (i < this.getMaxAge())
+		int age = this.getAge(state);
+		if (age < this.getMaxAge())
 		{
 			float f = (3.0f * ((float)state.getValue(this.getAgeProperty()))) + 1.0f;
 			if (ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt((int) (25.0F / f) + 1) == 0))
 			{
-				int goingToAge = i + 1;
+				int goingToAge = age + 1;
 				if(goingToAge == this.getMaxAge()) 
 				{
 					this.tryDropSpores(level, position, random);
 				}
-				level.setBlock(position, this.getStateForAge(goingToAge), 2);
+				level.setBlock(position, this.getStateForAge(state, goingToAge), 2);
 				ForgeHooks.onCropsGrowPost(level, position, state);
 			}
 		}
 	} // end randomTick()
 
-	private void tryDropSpores(Level level, BlockPos from, RandomSource random) 
+	protected void tryDropSpores(Level level, BlockPos from, RandomSource random) 
 	{
 		if(level.isClientSide) 
 		{
@@ -148,33 +192,19 @@ public class ShulkwartBlock extends CustomSeedCropBlock implements IHarvestable
 	
 	
 	@Override
-	public boolean isValidBonemealTarget(LevelReader level, BlockPos position, BlockState state, boolean p_52261_)
-	{
-		return false;
-	} // end isValidBonemealTarget()
-	
-	@Override
-	public void growCrops(Level level, BlockPos position, BlockState state)
-	{
-		int maxAge = this.getMaxAge();
-		int targetAge = Math.min(maxAge, this.getAge(state) + this.getBonemealAgeIncrease(level));
-		if (targetAge == maxAge)
-		{
-			this.tryDropSpores(level, position, level.getRandom());
-		}
-
-		level.setBlock(position, this.getStateForAge(targetAge), 2);
-	} // end growCrops()
-
-	
-	
-	@Override
 	public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 	{		
 		return this.m_shape.getShape(blockState, blockGetter, blockPos, context);
 	} // end getShape()
 
 
+	
+	public @NotNull IntegerProperty getAgeProperty()
+	{
+		return ShulkwartBlock.AGE;
+	} // end getAgeProperty()
+	
+	
 
 	@Override
 	public boolean allowEventHandling()
@@ -193,7 +223,7 @@ public class ShulkwartBlock extends CustomSeedCropBlock implements IHarvestable
 	@Override
 	public boolean isHarvestable(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
 	{
-		return (state.getValue(this.getAgeProperty()) == this.getMaxAge()) && action != null && action == ToolActions.SHEARS_HARVEST;
+		return (state.getValue(this.getAgeProperty()) == this.getMaxAge()) && action != null && this.validActions(level, state, position).contains(action); // action == ToolActions.SHEARS_HARVEST;
 	} // end isHarvestable()
 
 	@Override
@@ -215,5 +245,18 @@ public class ShulkwartBlock extends CustomSeedCropBlock implements IHarvestable
 		}
 		return null;
 	} // end getResults()
+
+
+
+	@Override
+	public boolean canPlantOn(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos pos, @NotNull Direction face)
+	{
+		return this.canPlantOrSurviveOn(state, face);
+	} // end canPkantOn()
+	
+	private boolean canPlantOrSurviveOn(BlockState state, Direction face) 
+	{
+		return YATMBlockTags.SHULKWART_GROWS_ON.contains(state.getBlock()) && face == Direction.DOWN;
+	} // end canPlantOrSurviveOn()
 	
 } // end class
