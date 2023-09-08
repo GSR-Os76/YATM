@@ -4,7 +4,7 @@ import com.google.common.collect.ImmutableBiMap;
 
 import net.minecraft.world.phys.shapes.BooleanOp;
 
-public class ShapeUtilities
+public class ShapeUtil
 {
 	public static final ImmutableBiMap<BinaryOperation, BooleanOp> EQUIVALENCE_TABLE = ImmutableBiMap.of(
 			BinaryOperation.AND, BooleanOp.AND, 
@@ -17,7 +17,7 @@ public class ShapeUtilities
 	
 	public static BooleanOp toBooleanOp(BinaryOperation operation) 
 	{
-		return ShapeUtilities.EQUIVALENCE_TABLE.get(operation);
+		return ShapeUtil.EQUIVALENCE_TABLE.get(operation);
 	} // end toBooleanOp()
 	
 } // end class

@@ -11,7 +11,7 @@ import com.gsr.gsr_yatm.recipe.smelting.WrappedSmeltingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
-import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.network.AccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.CompositeAccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
@@ -50,7 +50,7 @@ public class FurnacePlusBlockEntity extends CraftingDeviceBlockEntity<WrappedSme
 	private int m_temperature = 0;
 	private int m_maxTemperature = 0;
 	
-	private static final IContainerDataProvider CONTAINER_DATA_PROVIDER = FurnacePlusBlockEntity.createContainerDataProvider();
+	private static final IContainerDataProvider<FurnacePlusBlockEntity> CONTAINER_DATA_PROVIDER = FurnacePlusBlockEntity.createContainerDataProvider();
 	public static final ICompositeAccessSpecification ACCESS_SPEC = CONTAINER_DATA_PROVIDER.createSpec();
 	private final ContainerData m_data = CONTAINER_DATA_PROVIDER.createFor(this);
 	
@@ -91,33 +91,29 @@ public class FurnacePlusBlockEntity extends CraftingDeviceBlockEntity<WrappedSme
 		this.m_maxTemperature = maxTemperature;
 	} // end setup()
 
-	private static IContainerDataProvider createContainerDataProvider()
+	private static IContainerDataProvider<FurnacePlusBlockEntity> createContainerDataProvider()
 	{
-		return new IContainerDataProvider() 
+		return new IContainerDataProvider<FurnacePlusBlockEntity>() 
 		{
 			private ICompositeAccessSpecification m_spec;
 			
 			@Override
-			public <T> ContainerData createFor(T t)
+			public ContainerData createFor(FurnacePlusBlockEntity t)
 			{
-				if(t instanceof FurnacePlusBlockEntity f) 
+				List<Map.Entry<String, AccessSpecification>> specs = new ArrayList<>();
+				ContainerDataBuilder builder = new ContainerDataBuilder();
+				specs.add(Map.entry(CRAFT_PROGRESS_SPEC_KEY, builder.addContainerData(t.m_craftProgressC)));
+				AccessSpecification burnP = builder.addPropety(() -> t.m_burnProgress, (i) -> {});
+				AccessSpecification burnT = builder.addPropety(() -> t.m_burnTime, (i) -> {});
+				specs.add(Map.entry(BURN_PROGRESS_SPEC_KEY, AccessSpecification.join(burnP, burnT)));
+				AccessSpecification curTemp = builder.addPropety(() -> t.m_temperature, (i) -> {});
+				AccessSpecification maxTemp = builder.addPropety(() -> t.m_maxTemperature, (i) -> {});
+				specs.add(Map.entry(TEMPERATURE_DATA_SPEC_KEY, AccessSpecification.join(curTemp, maxTemp)));
+				if(this.m_spec == null) 
 				{
-					List<Map.Entry<String, AccessSpecification>> specs = new ArrayList<>();
-					ContainerDataBuilder builder = new ContainerDataBuilder();
-					specs.add(Map.entry(CRAFT_PROGRESS_SPEC_KEY, builder.addContainerData(f.m_craftProgressC)));
-					AccessSpecification burnP = builder.addPropety(() -> f.m_burnProgress, (i) -> {});
-					AccessSpecification burnT = builder.addPropety(() -> f.m_burnTime, (i) -> {});
-					specs.add(Map.entry(BURN_PROGRESS_SPEC_KEY, AccessSpecification.join(burnP, burnT)));
-					AccessSpecification curTemp = builder.addPropety(() -> f.m_temperature, (i) -> {});
-					AccessSpecification maxTemp = builder.addPropety(() -> f.m_maxTemperature, (i) -> {});
-					specs.add(Map.entry(TEMPERATURE_DATA_SPEC_KEY, AccessSpecification.join(curTemp, maxTemp)));
-					if(this.m_spec == null) 
-					{
-						this.m_spec = new CompositeAccessSpecification(specs);
-					}
-					return builder.build();
+					this.m_spec = new CompositeAccessSpecification(specs);
 				}
-				return null;
+				return builder.build();
 			}
 
 			@Override
@@ -148,7 +144,7 @@ public class FurnacePlusBlockEntity extends CraftingDeviceBlockEntity<WrappedSme
 		{
 			case INPUT_SLOT -> true;
 			case RESULT_SLOT -> false;
-			case HEAT_SLOT -> SlotUtilities.isValidHeatingSlotInsert(itemStack);
+			case HEAT_SLOT -> SlotUtil.isValidHeatingSlotInsert(itemStack);
 			default -> throw new IllegalArgumentException("Unexpected value of: " + slot);
 		};
 	} // end itemInsertionValidator()
@@ -200,7 +196,7 @@ public class FurnacePlusBlockEntity extends CraftingDeviceBlockEntity<WrappedSme
 		}
 		else
 		{
-			if (SlotUtilities.getHeatingBurnTime(this.m_inventory.getStackInSlot(HEAT_SLOT)) > 0)
+			if (SlotUtil.getHeatingBurnTime(this.m_inventory.getStackInSlot(HEAT_SLOT)) > 0)
 			{
 				ItemStack i = this.m_inventory.extractItem(HEAT_SLOT, 1, false);
 				if(i.hasCraftingRemainingItem()) 
@@ -208,9 +204,9 @@ public class FurnacePlusBlockEntity extends CraftingDeviceBlockEntity<WrappedSme
 					InventoryUtilities.insertItemOrDrop(this.level, this.worldPosition, this.m_inventory, HEAT_SLOT, i.getCraftingRemainingItem());
 				}				
 
-				this.m_burnTime = SlotUtilities.getHeatingBurnTime(i);
+				this.m_burnTime = SlotUtil.getHeatingBurnTime(i);
 				this.m_burnProgress = this.m_burnTime;
-				this.m_temperature = SlotUtilities.getHeatingTemperature(i);
+				this.m_temperature = SlotUtil.getHeatingTemperature(i);
 				changed = true;
 			}
 		}

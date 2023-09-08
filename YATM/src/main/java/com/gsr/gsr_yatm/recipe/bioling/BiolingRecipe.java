@@ -10,7 +10,7 @@ import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
@@ -71,7 +71,7 @@ public class BiolingRecipe implements ITimedRecipe<Container>
 	
 	public void startRecipe(IItemHandler inventory)
 	{
-		inventory.extractItem(BiolerBlockEntity.INPUT_SLOT, IngredientUtilities.getReqiuredCountFor(inventory.getStackInSlot(BiolerBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
+		inventory.extractItem(BiolerBlockEntity.INPUT_SLOT, IngredientUtil.getReqiuredCountFor(inventory.getStackInSlot(BiolerBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
 	} // end startRecipe()
 	
 	public void setResults(IItemHandler inventory, IFluidHandler resultTank)

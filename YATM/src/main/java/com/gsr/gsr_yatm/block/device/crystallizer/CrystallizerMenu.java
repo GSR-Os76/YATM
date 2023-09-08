@@ -1,8 +1,8 @@
 package com.gsr.gsr_yatm.block.device.crystallizer;
 
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
-import com.gsr.gsr_yatm.utilities.network.NetworkUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
+import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -90,15 +90,15 @@ public class CrystallizerMenu extends AbstractContainerMenu
 			else if (quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END)
 			{	
 				boolean moved = false;
-				if(SlotUtilities.isValidTankFillSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, CrystallizerBlockEntity.FILL_INPUT_TANK_SLOT, CrystallizerBlockEntity.FILL_INPUT_TANK_SLOT + 1, false)) 
+				if(SlotUtil.isValidTankFillSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, CrystallizerBlockEntity.FILL_INPUT_TANK_SLOT, CrystallizerBlockEntity.FILL_INPUT_TANK_SLOT + 1, false)) 
 				{						
 					moved = true; //return ItemStack.EMPTY;					
 				}
-				else if(SlotUtilities.isValidTankDrainSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT + 1, false)) 
+				else if(SlotUtil.isValidTankDrainSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT + 1, false)) 
 				{											
 					moved = true; //return ItemStack.EMPTY;					
 				}
-				else if(SlotUtilities.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, CrystallizerBlockEntity.POWER_SLOT, CrystallizerBlockEntity.POWER_SLOT + 1, false)) 
+				else if(SlotUtil.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, CrystallizerBlockEntity.POWER_SLOT, CrystallizerBlockEntity.POWER_SLOT + 1, false)) 
 				{					
 					moved = true; //return ItemStack.EMPTY;
 				}
@@ -184,7 +184,7 @@ public class CrystallizerMenu extends AbstractContainerMenu
 
 	public Fluid getFluid() 
 	{
-		return NetworkUtilities.getFluid(NetworkUtilities.composeInt(this.m_data.get(CrystallizerBlockEntity.FLUID_INDEX_LOW_SLOT), this.m_data.get(CrystallizerBlockEntity.FLUID_INDEX_HIGH_SLOT)));
+		return NetworkUtil.getFluid(NetworkUtil.composeInt(this.m_data.get(CrystallizerBlockEntity.FLUID_INDEX_LOW_SLOT), this.m_data.get(CrystallizerBlockEntity.FLUID_INDEX_HIGH_SLOT)));
 	} // end getFluid()	
 
 

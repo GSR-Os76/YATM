@@ -6,9 +6,9 @@ import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.fluid.ConfigurableTankWrapper;
-import com.gsr.gsr_yatm.utilities.network.NetworkUtilities;
+import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -80,8 +80,8 @@ public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<Crystalli
 				case CrystallizerBlockEntity.FLUID_AMOUNT_SLOT -> CrystallizerBlockEntity.this.m_inputTank.getFluidAmount();
 				case CrystallizerBlockEntity.FLUID_CAPACITY_SLOT -> CrystallizerBlockEntity.this.m_inputTank.getCapacity();
 				
-				case CrystallizerBlockEntity.FLUID_INDEX_LOW_SLOT -> NetworkUtilities.splitInt(NetworkUtilities.getFluidIndex(CrystallizerBlockEntity.this.m_rawInputTank.getFluid().getFluid()), false);
-				case CrystallizerBlockEntity.FLUID_INDEX_HIGH_SLOT -> NetworkUtilities.splitInt(NetworkUtilities.getFluidIndex(CrystallizerBlockEntity.this.m_rawInputTank.getFluid().getFluid()), true);
+				case CrystallizerBlockEntity.FLUID_INDEX_LOW_SLOT -> NetworkUtil.splitInt(NetworkUtil.getFluidIndex(CrystallizerBlockEntity.this.m_rawInputTank.getFluid().getFluid()), false);
+				case CrystallizerBlockEntity.FLUID_INDEX_HIGH_SLOT -> NetworkUtil.splitInt(NetworkUtil.getFluidIndex(CrystallizerBlockEntity.this.m_rawInputTank.getFluid().getFluid()), true);
 				
 				case CrystallizerBlockEntity.FILL_INPUT_TANK_TRANSFER_PROGRESS -> CrystallizerBlockEntity.this.m_fillInputTankBuffer.getFluidAmount();
 				case CrystallizerBlockEntity.FILL_INPUT_TANK_TRANSFER_INITIAL -> CrystallizerBlockEntity.this.m_fillInputTankInitialTransferSize;
@@ -166,8 +166,8 @@ public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<Crystalli
 	{
 		return switch(slot) 
 				{
-					case CrystallizerBlockEntity.FILL_INPUT_TANK_SLOT -> SlotUtilities.isValidTankFillSlotInsert(itemStack);
-					case CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT -> SlotUtilities.isValidTankDrainSlotInsert(itemStack);
+					case CrystallizerBlockEntity.FILL_INPUT_TANK_SLOT -> SlotUtil.isValidTankFillSlotInsert(itemStack);
+					case CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT -> SlotUtil.isValidTankDrainSlotInsert(itemStack);
 					case CrystallizerBlockEntity.RESULT_SLOT -> false;
 					default -> true;
 				};
@@ -210,7 +210,7 @@ public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<Crystalli
 		boolean changed = false;
 		if(this.m_fillInputTankBuffer.getFluidAmount() <= 0) 
 		{
-			this.m_fillInputTankInitialTransferSize = SlotUtilities.queueToFillFromSlot(this.level, this.worldPosition, this.m_inventory, CrystallizerBlockEntity.FILL_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_fillInputTankBuffer, this.m_maxFluidTransferRate);
+			this.m_fillInputTankInitialTransferSize = SlotUtil.queueToFillFromSlot(this.level, this.worldPosition, this.m_inventory, CrystallizerBlockEntity.FILL_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_fillInputTankBuffer, this.m_maxFluidTransferRate);
 			if(this.m_fillInputTankInitialTransferSize > 0) 
 			{
 				changed = true;
@@ -233,7 +233,7 @@ public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<Crystalli
 		boolean changed = false;		
 		if (this.m_drainInputTankCountDown > 0)
 		{
-			this.m_drainInputTankCountDown = SlotUtilities.countDownOrDrainToSlot(this.level, this.worldPosition, this.m_inventory, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_drainInputTankInitialTransferSize, this.m_drainInputTankCountDown, this.m_maxFluidTransferRate);
+			this.m_drainInputTankCountDown = SlotUtil.countDownOrDrainToSlot(this.level, this.worldPosition, this.m_inventory, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_drainInputTankInitialTransferSize, this.m_drainInputTankCountDown, this.m_maxFluidTransferRate);
 			if (this.m_drainInputTankCountDown <= 0)
 			{
 				this.m_drainInputTankInitialTransferSize = 0;
@@ -242,7 +242,7 @@ public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<Crystalli
 		}
 		if(m_drainInputTankInitialTransferSize == 0) 
 		{
-			this.m_drainInputTankInitialTransferSize = SlotUtilities.queueToDrainToSlot(this.m_inventory, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_maxFluidTransferRate);
+			this.m_drainInputTankInitialTransferSize = SlotUtil.queueToDrainToSlot(this.m_inventory, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_maxFluidTransferRate);
 			this.m_drainInputTankCountDown = this.m_drainInputTankInitialTransferSize;
 			
 			changed = true;

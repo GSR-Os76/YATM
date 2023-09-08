@@ -9,7 +9,7 @@ import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.recipe.dynamic.IDynamicRecipeProvider;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.RecipeUtil;
 
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
@@ -23,7 +23,7 @@ public class WrappedSmeltingRecipeProvider implements IDynamicRecipeProvider<Wra
 	
 	public WrappedSmeltingRecipeProvider() 
 	{
-		RecipeUtilities.addPersistentRecipeLoadListener(() -> WrappedSmeltingRecipeProvider.this.m_cache = new HashMap<>());
+		RecipeUtil.addPersistentRecipeLoadListener(() -> WrappedSmeltingRecipeProvider.this.m_cache = new HashMap<>());
 	} // end constructor
 	
 	

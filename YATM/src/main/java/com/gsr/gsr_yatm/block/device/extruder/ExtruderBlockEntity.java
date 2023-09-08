@@ -8,7 +8,7 @@ import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.extruding.ExtrudingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.item.ConfigurableInventoryWrapper;
 
 import net.minecraft.core.BlockPos;
@@ -144,7 +144,7 @@ public class ExtruderBlockEntity extends CraftingDeviceBlockEntity<ExtrudingReci
 			{
 				case ExtruderBlockEntity.INPUT_SLOT, ExtruderBlockEntity.DIE_SLOT -> true;
 				case ExtruderBlockEntity.RESULT_SLOT, ExtruderBlockEntity.INPUT_REMAINDER_SLOT -> false;
-				case ExtruderBlockEntity.POWER_SLOT -> SlotUtilities.isValidPowerSlotInsert(itemStack);
+				case ExtruderBlockEntity.POWER_SLOT -> SlotUtil.isValidPowerSlotInsert(itemStack);
 				default -> throw new IllegalArgumentException("Unexpected value of: " + slot);				
 			};
 	} // end itemInsertionValidator()

@@ -9,7 +9,7 @@ import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
@@ -73,7 +73,7 @@ public class ExtrudingRecipe implements ITimedRecipe<Container>
 	public void startRecipe(@NotNull IItemHandler inventory)
 	{
 		inventory.extractItem(ExtruderBlockEntity.INPUT_SLOT, 
-				IngredientUtilities.getReqiuredCountFor(inventory.getStackInSlot(ExtruderBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
+				IngredientUtil.getReqiuredCountFor(inventory.getStackInSlot(ExtruderBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
 	} // end startRecipe()
 
 	public void setResults(@NotNull IItemHandler inventory)
@@ -152,7 +152,7 @@ public class ExtrudingRecipe implements ITimedRecipe<Container>
 	@Override
 	public NonNullList<Ingredient> getIngredients()
 	{
-		return NonNullList.of(Ingredient.EMPTY, IngredientUtilities.toMinecraftIngredient(this.m_input), IngredientUtilities.toMinecraftIngredient(this.m_die));
+		return NonNullList.of(Ingredient.EMPTY, IngredientUtil.toMinecraftIngredient(this.m_input), IngredientUtil.toMinecraftIngredient(this.m_die));
 	} // end getIngredients()
 
 	@Override
@@ -162,4 +162,4 @@ public class ExtrudingRecipe implements ITimedRecipe<Container>
 	} // end getGroup()
 
 
-} // end outer class
+} // end class

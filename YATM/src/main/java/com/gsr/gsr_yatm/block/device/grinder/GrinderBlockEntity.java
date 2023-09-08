@@ -7,7 +7,7 @@ import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -135,7 +135,7 @@ public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe
 		return switch(slot) 
 		{
 			case GrinderBlockEntity.INPUT_SLOT -> true;
-			case GrinderBlockEntity.POWER_SLOT -> SlotUtilities.isValidPowerSlotInsert(itemStack);
+			case GrinderBlockEntity.POWER_SLOT -> SlotUtil.isValidPowerSlotInsert(itemStack);
 			case GrinderBlockEntity.RESULT_SLOT -> false;
 			
 			default -> throw new IllegalArgumentException("Unexpected value: " + slot);

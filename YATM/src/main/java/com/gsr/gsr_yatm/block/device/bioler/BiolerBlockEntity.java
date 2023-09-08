@@ -7,7 +7,7 @@ import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.bioling.BiolingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.fluid.ConfigurableTankWrapper;
 import com.gsr.gsr_yatm.utilities.network.AccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
@@ -167,8 +167,8 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 		return switch(slot) 
 		{
 			case BiolerBlockEntity.INPUT_SLOT -> true;
-			case BiolerBlockEntity.DRAIN_RESULT_TANK_SLOT -> SlotUtilities.isValidTankDrainSlotInsert(itemStack);
-			case BiolerBlockEntity.POWER_SLOT -> SlotUtilities.isValidPowerSlotInsert(itemStack);
+			case BiolerBlockEntity.DRAIN_RESULT_TANK_SLOT -> SlotUtil.isValidTankDrainSlotInsert(itemStack);
+			case BiolerBlockEntity.POWER_SLOT -> SlotUtil.isValidPowerSlotInsert(itemStack);
 			default -> throw new IllegalArgumentException("Unexpected value of: " + slot);
 		};
 	} // end itemInsertionValidator()
@@ -192,7 +192,7 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 		boolean changed = false;		
 		if (this.m_resultTankDrainCountDown > 0)
 		{
-			this.m_resultTankDrainCountDown = SlotUtilities.countDownOrDrainToSlot(this.level, this.worldPosition, this.m_inventory, DRAIN_RESULT_TANK_SLOT, this.m_resultTank, 0, this.m_initialDrainResultTankTransferSize, this.m_resultTankDrainCountDown, this.m_maxFluidTransferRate);
+			this.m_resultTankDrainCountDown = SlotUtil.countDownOrDrainToSlot(this.level, this.worldPosition, this.m_inventory, DRAIN_RESULT_TANK_SLOT, this.m_resultTank, 0, this.m_initialDrainResultTankTransferSize, this.m_resultTankDrainCountDown, this.m_maxFluidTransferRate);
 			if (this.m_resultTankDrainCountDown <= 0)
 			{
 				this.m_initialDrainResultTankTransferSize = 0;
@@ -201,7 +201,7 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 		}
 		if(m_initialDrainResultTankTransferSize == 0) 
 		{
-			this.m_initialDrainResultTankTransferSize = SlotUtilities.queueToDrainToSlot(this.m_inventory, DRAIN_RESULT_TANK_SLOT, this.m_resultTank, 0, this.m_maxFluidTransferRate);
+			this.m_initialDrainResultTankTransferSize = SlotUtil.queueToDrainToSlot(this.m_inventory, DRAIN_RESULT_TANK_SLOT, this.m_resultTank, 0, this.m_maxFluidTransferRate);
 			this.m_resultTankDrainCountDown = this.m_initialDrainResultTankTransferSize;
 			changed = true;
 		}

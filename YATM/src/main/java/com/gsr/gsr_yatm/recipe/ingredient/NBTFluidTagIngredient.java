@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonObject;
 import com.gsr.gsr_yatm.registry.custom.YATMIngredientDeserializers;
-import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.tags.TagKey;
@@ -49,11 +49,11 @@ public class NBTFluidTagIngredient implements IIngredient<FluidStack>
 	public @NotNull JsonObject serialize()
 	{
 		JsonObject obj = new JsonObject();
-		obj.addProperty(IngredientUtilities.TAG_KEY, this.m_tagKey.toString());
-		obj.addProperty(IngredientUtilities.AMOUNT_KEY, this.m_amount);
+		obj.addProperty(IngredientUtil.TAG_KEY, this.m_tagKey.toString());
+		obj.addProperty(IngredientUtil.AMOUNT_KEY, this.m_amount);
 		if(this.m_nbt != null) 
 		{
-			obj.addProperty(IngredientUtilities.NBT_KEY, this.m_nbt.toString());
+			obj.addProperty(IngredientUtil.NBT_KEY, this.m_nbt.toString());
 		}
 		return obj;
 	} // end serialize()

@@ -54,7 +54,7 @@ public class ShulkwartBlock extends Block implements IAging, IHarvestable, IYATM
 	
 	
 	
-	public ShulkwartBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, Supplier<Item> seed, @NotNull Supplier<Block> fallenSpores, @NotNull Supplier<ItemStack> harvestResults)
+	public ShulkwartBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, @NotNull Supplier<Item> seed, @NotNull Supplier<Block> fallenSpores, @NotNull Supplier<ItemStack> harvestResults)
 	{
 		super(Objects.requireNonNull(properties));
 		

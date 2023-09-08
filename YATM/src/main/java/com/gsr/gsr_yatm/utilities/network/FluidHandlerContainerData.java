@@ -1,11 +1,19 @@
 package com.gsr.gsr_yatm.utilities.network;
 
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
+
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
 public class FluidHandlerContainerData implements ContainerData
 {
+	public static final int SLOT_COUNT = 3;
+	
 	public static final int AMOUNT_INDEX = 0;
 	public static final int CAPACITY_INDEX = 1;
 	public static final int FLUID_INDEX = 2;
@@ -16,14 +24,14 @@ public class FluidHandlerContainerData implements ContainerData
 	
 	
 	
-	public FluidHandlerContainerData(IFluidHandler fluidHandler, int tank) 
+	public FluidHandlerContainerData(@NotNull IFluidHandler fluidHandler, int tank) 
 	{
-		this(fluidHandler, tank, false);
+		this(Objects.requireNonNull(fluidHandler), tank, false);
 	} // end constructor
 	
-	public FluidHandlerContainerData(IFluidHandler fluidHandler, int tank, boolean allowSetting) 
+	public FluidHandlerContainerData(@NotNull IFluidHandler fluidHandler, int tank, boolean allowSetting) 
 	{
-		this.m_fluidHandler = fluidHandler;
+		this.m_fluidHandler = Objects.requireNonNull(fluidHandler);
 		this.m_tank = tank;
 		this.m_allowSetting = allowSetting;
 	} // end constructor
@@ -31,19 +39,19 @@ public class FluidHandlerContainerData implements ContainerData
 	
 	
 	@Override
-	public int get(int index)
+	public int get(@NotNegative int index)
 	{
 		return switch(index) 
 		{
-			case AMOUNT_INDEX -> this.m_fluidHandler.getFluidInTank(this.m_tank).getAmount();
-			case CAPACITY_INDEX -> this.m_fluidHandler.getTankCapacity(this.m_tank);
-			case FLUID_INDEX -> NetworkUtilities.getFluidIndex(this.m_fluidHandler.getFluidInTank(this.m_tank).getFluid());
+			case FluidHandlerContainerData.AMOUNT_INDEX -> this.m_fluidHandler.getFluidInTank(this.m_tank).getAmount();
+			case FluidHandlerContainerData.CAPACITY_INDEX -> this.m_fluidHandler.getTankCapacity(this.m_tank);
+			case FluidHandlerContainerData.FLUID_INDEX -> NetworkUtil.getFluidIndex(this.m_fluidHandler.getFluidInTank(this.m_tank).getFluid());
 			default -> throw new IllegalArgumentException("Unexpected value of: " + index);
 		};
 	} // end get()
 
 	@Override
-	public void set(int index, int value)
+	public void set(@NotNegative int index, int value)
 	{
 		if(this.m_allowSetting) 
 		{
@@ -60,21 +68,21 @@ public class FluidHandlerContainerData implements ContainerData
 	} // end set()
 
 	@Override
-	public int getCount()
+	public @NotNegative int getCount()
 	{
-		return 3;
+		return FluidHandlerContainerData.SLOT_COUNT;
 	} // end getCount()
 	
 	
 	
-	public static int getCapacity(ContainerData containerData) 
+	public static int getCapacity(@NotNull ContainerData containerData) 
 	{
-		return containerData.get(CAPACITY_INDEX);
+		return containerData.get(FluidHandlerContainerData.CAPACITY_INDEX);
 	} // end getCapacity()
 	
-	public static FluidStack getContents(ContainerData containerData) 
+	public static FluidStack getContents(@NotNull ContainerData containerData) 
 	{
-		return new FluidStack(NetworkUtilities.getFluid(containerData.get(FLUID_INDEX)), containerData.get(AMOUNT_INDEX));
-	} // end getCapacity()
+		return new FluidStack(NetworkUtil.getFluid(containerData.get(FluidHandlerContainerData.FLUID_INDEX)), containerData.get(FluidHandlerContainerData.AMOUNT_INDEX));
+	} // end getContents()
 	
 } // end class

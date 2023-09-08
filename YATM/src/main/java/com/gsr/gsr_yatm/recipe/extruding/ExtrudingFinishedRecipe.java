@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 import com.google.gson.JsonObject;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
-import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
@@ -71,26 +71,26 @@ public class ExtrudingFinishedRecipe implements FinishedRecipe
 	{
 		if(!this.m_group.isEmpty()) 
 		{
-			jsonObject.addProperty(IngredientUtilities.GROUP_KEY, this.m_group);
+			jsonObject.addProperty(IngredientUtil.GROUP_KEY, this.m_group);
 		}
 		
-		jsonObject.add(IngredientUtilities.RESULT_OBJECT_KEY, IngredientUtilities.nbtItemStackToJson(this.m_result));
+		jsonObject.add(IngredientUtil.RESULT_KEY, IngredientUtil.nbtItemStackToJson(this.m_result));
 		JsonObject inputObject = new JsonObject();
-		inputObject.add(IngredientUtilities.INGREDIENT_KEY, IngredientUtilities.writeIngredient(this.m_input));
+		inputObject.add(IngredientUtil.INGREDIENT_KEY, IngredientUtil.writeIngredient(this.m_input));
 		if(this.m_inputRemainder != null && !this.m_inputRemainder.isEmpty()) 
 		{
-			inputObject.add(IngredientUtilities.REMAINDER_STACK_KEY, IngredientUtilities.nbtItemStackToJson(this.m_inputRemainder));
+			inputObject.add(IngredientUtil.REMAINDER_STACK_KEY, IngredientUtil.nbtItemStackToJson(this.m_inputRemainder));
 		}
 		JsonObject dieObject = new JsonObject();
-		dieObject.add(IngredientUtilities.INGREDIENT_KEY, IngredientUtilities.writeIngredient(this.m_die));
+		dieObject.add(IngredientUtil.INGREDIENT_KEY, IngredientUtil.writeIngredient(this.m_die));
 		if(this.m_dieRemainder != null && !this.m_dieRemainder.isEmpty()) 
 		{
-			dieObject.add(IngredientUtilities.REMAINDER_STACK_KEY, IngredientUtilities.nbtItemStackToJson(this.m_dieRemainder));
+			dieObject.add(IngredientUtil.REMAINDER_STACK_KEY, IngredientUtil.nbtItemStackToJson(this.m_dieRemainder));
 		}
-		jsonObject.add(IngredientUtilities.INPUT_OBJECT_KEY, inputObject);
-		jsonObject.add(IngredientUtilities.DIE_OBJECT_KEY, dieObject);
-		jsonObject.addProperty(IngredientUtilities.CURRENT_PER_TICK_KEY, this.m_currentPerTick);
-		jsonObject.addProperty(IngredientUtilities.TIME_IN_TICKS_KEY, this.m_timeInTicks);
+		jsonObject.add(IngredientUtil.INPUT_KEY, inputObject);
+		jsonObject.add(IngredientUtil.DIE_KEY, dieObject);
+		jsonObject.addProperty(IngredientUtil.CURRENT_PER_TICK_KEY, this.m_currentPerTick);
+		jsonObject.addProperty(IngredientUtil.TIME_IN_TICKS_KEY, this.m_timeInTicks);
 	} // end serializeRecipeData()
 
 	@Override

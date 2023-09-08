@@ -49,12 +49,13 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	
 	
 	
-	public IItemHandler getInventory()
+	public @NotNull IItemHandler getInventory()
 	{
 		return m_inventory;
 	} // end getInventory()
 
-	public abstract ContainerData getDataAccessor();
+	// TODO, sub classes should explicitly declare contract too
+	public abstract @NotNull ContainerData getDataAccessor();
 	
 	protected abstract boolean itemInsertionValidator(int slot, ItemStack itemStack, boolean simulate);
 

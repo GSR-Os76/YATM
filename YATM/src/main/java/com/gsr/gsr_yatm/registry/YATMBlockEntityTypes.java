@@ -14,6 +14,7 @@ import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInte
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlockEntity;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderBlockEntity;
 import com.gsr.gsr_yatm.block.device.grinder.GrinderBlockEntity;
+import com.gsr.gsr_yatm.block.device.injector.InjectorBlockEntity;
 import com.gsr.gsr_yatm.block.device.sap_collector.SapCollectorBlockEntity;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlockEntity;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelBlockEntity;
@@ -46,7 +47,8 @@ public class YATMBlockEntityTypes
 	public static final RegistryObject<BlockEntityType<ExtractorBlockEntity>> EXTRACTOR = BLOCK_ENTITY_TYPES.register("extractor_block_entity", () -> BlockEntityType.Builder.of(ExtractorBlockEntity::new, YATMBlocks.STEEL_EXTRACTOR.get()).build(null));
 	public static final RegistryObject<BlockEntityType<FurnacePlusBlockEntity>> FURNACE_PLUS = BLOCK_ENTITY_TYPES.register("furnace_plus", () -> BlockEntityType.Builder.of(FurnacePlusBlockEntity::new, YATMBlocks.STEEL_CRYSTALLIZER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<GrinderBlockEntity>> GRINDER = BLOCK_ENTITY_TYPES.register("grinder_block_entity", () -> BlockEntityType.Builder.of(GrinderBlockEntity::new, YATMBlocks.STEEL_GRINDER.get()).build(null));
-
+	public static final RegistryObject<BlockEntityType<InjectorBlockEntity>> INJECTOR = BLOCK_ENTITY_TYPES.register("injector_block_entity", () -> BlockEntityType.Builder.of(InjectorBlockEntity::new, YATMBlocks.STEEL_INJECTOR.get()).build(null));
+	
 	public static final RegistryObject<BlockEntityType<DataScanCollectorBlockEntity>> DATA_SCAN_COLLECTOR = BLOCK_ENTITY_TYPES.register("data_scan_collector", () -> BlockEntityType.Builder.of(DataScanCollectorBlockEntity::new, YATMBlocks.DATA_SCAN_COLLECTOR.get()).build(null));
 	// public static final RegistryObject<BlockEntityType<DestructiveScannerBlockEntity>> DESTRUCTIVE_SCANNER = BLOCK_ENTITY_TYPES.register("destructive_scanner", () -> BlockEntityType.Builder.of(DestructiveScannerBlockEntity::new, YATMBlocks..get()).build(null));
 	public static final RegistryObject<BlockEntityType<DataStorageBlockEntity>> DATA_STORAGE = BLOCK_ENTITY_TYPES.register("data_storage", () -> BlockEntityType.Builder.of(DataStorageBlockEntity::new, YATMBlocks.DATA_STORAGE_BLOCK.get()).build(null));

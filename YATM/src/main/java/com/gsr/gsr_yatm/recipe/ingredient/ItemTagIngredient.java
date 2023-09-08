@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonObject;
 import com.gsr.gsr_yatm.registry.custom.YATMIngredientDeserializers;
-import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -53,8 +53,8 @@ public class ItemTagIngredient implements IIngredient<ItemStack>
 	public @NotNull JsonObject serialize()
 	{
 		JsonObject jsObj = new JsonObject();
-		jsObj.addProperty(IngredientUtilities.TAG_KEY, this.m_tagKey.location().toString());
-		jsObj.addProperty(IngredientUtilities.COUNT_KEY, this.m_count);
+		jsObj.addProperty(IngredientUtil.TAG_KEY, this.m_tagKey.location().toString());
+		jsObj.addProperty(IngredientUtil.COUNT_KEY, this.m_count);
 		return jsObj;
 	} // end serialize()
 

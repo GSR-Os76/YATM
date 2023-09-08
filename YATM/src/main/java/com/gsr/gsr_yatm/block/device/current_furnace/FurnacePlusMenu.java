@@ -1,8 +1,8 @@
 package com.gsr.gsr_yatm.block.device.current_furnace;
 
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
-import com.gsr.gsr_yatm.utilities.network.NetworkUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
+import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -96,7 +96,7 @@ public class FurnacePlusMenu extends AbstractContainerMenu
 				{					
 					moved = true;				
 				}
-				else if(SlotUtilities.isValidHeatingSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, FurnacePlusBlockEntity.HEAT_SLOT, FurnacePlusBlockEntity.HEAT_SLOT + 1, false)) 
+				else if(SlotUtil.isValidHeatingSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, FurnacePlusBlockEntity.HEAT_SLOT, FurnacePlusBlockEntity.HEAT_SLOT + 1, false)) 
 				{			
 					moved = true;
 				}
@@ -152,12 +152,12 @@ public class FurnacePlusMenu extends AbstractContainerMenu
 	
 	public float craftProgress() 
 	{
-		return NetworkUtilities.getProgess(FurnacePlusBlockEntity.ACCESS_SPEC.get(FurnacePlusBlockEntity.CRAFT_PROGRESS_SPEC_KEY), this.m_data);
+		return NetworkUtil.getProgess(FurnacePlusBlockEntity.ACCESS_SPEC.get(FurnacePlusBlockEntity.CRAFT_PROGRESS_SPEC_KEY), this.m_data);
 	} // end craftProgress()
 	
 	public float burnRemaining()
 	{
-		return NetworkUtilities.getRemaining(FurnacePlusBlockEntity.ACCESS_SPEC.get(FurnacePlusBlockEntity.BURN_PROGRESS_SPEC_KEY), this.m_data);
+		return NetworkUtil.getRemaining(FurnacePlusBlockEntity.ACCESS_SPEC.get(FurnacePlusBlockEntity.BURN_PROGRESS_SPEC_KEY), this.m_data);
 	} // end burnPercentageRemaining()
 	
 	

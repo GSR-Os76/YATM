@@ -1,8 +1,8 @@
 package com.gsr.gsr_yatm.block.device.boiler;
 
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
-import com.gsr.gsr_yatm.utilities.network.NetworkUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
+import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -98,15 +98,15 @@ public class BoilerMenu extends AbstractContainerMenu
 			else if (quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END)
 			{			
 				boolean moved = false;
-				if(SlotUtilities.isValidTankFillSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, BoilerBlockEntity.FIRST_FILL_FLUID_SLOT, BoilerBlockEntity.LAST_FILL_FLUID_SLOT + 1, false)) 
+				if(SlotUtil.isValidTankFillSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, BoilerBlockEntity.FIRST_FILL_FLUID_SLOT, BoilerBlockEntity.LAST_FILL_FLUID_SLOT + 1, false)) 
 				{					
 					moved = true;				
 				}
-				else if(SlotUtilities.isValidTankDrainSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, BoilerBlockEntity.FIRST_DRAIN_FLUID_SLOT, BoilerBlockEntity.LAST_DRAIN_FLUID_SLOT + 1, false)) 
+				else if(SlotUtil.isValidTankDrainSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, BoilerBlockEntity.FIRST_DRAIN_FLUID_SLOT, BoilerBlockEntity.LAST_DRAIN_FLUID_SLOT + 1, false)) 
 				{				
 					moved = true;
 				}
-				else if(SlotUtilities.isValidHeatingSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, BoilerBlockEntity.HEAT_SLOT, BoilerBlockEntity.HEAT_SLOT + 1, false)) 
+				else if(SlotUtil.isValidHeatingSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, BoilerBlockEntity.HEAT_SLOT, BoilerBlockEntity.HEAT_SLOT + 1, false)) 
 				{			
 					moved = true;
 				}
@@ -196,8 +196,8 @@ public class BoilerMenu extends AbstractContainerMenu
 	
 	public FluidStack getInputTankContents()
 	{
-		int index = NetworkUtilities.composeInt(this.m_data.get(BoilerBlockEntity.INPUT_TANK_FLUID_INDEX_LOW), this.m_data.get(BoilerBlockEntity.INPUT_TANK_FLUID_INDEX_HIGH));
-		return new FluidStack(NetworkUtilities.getFluid(index), this.m_data.get(BoilerBlockEntity.INPUT_HOLDING_INDEX));
+		int index = NetworkUtil.composeInt(this.m_data.get(BoilerBlockEntity.INPUT_TANK_FLUID_INDEX_LOW), this.m_data.get(BoilerBlockEntity.INPUT_TANK_FLUID_INDEX_HIGH));
+		return new FluidStack(NetworkUtil.getFluid(index), this.m_data.get(BoilerBlockEntity.INPUT_HOLDING_INDEX));
 	} // end getInputTankFluid()
 	
 
@@ -210,8 +210,8 @@ public class BoilerMenu extends AbstractContainerMenu
 	
 	public FluidStack getOutputTankContents()
 	{
-		int index = NetworkUtilities.composeInt(this.m_data.get(BoilerBlockEntity.RESULT_TANK_FLUID_INDEX_LOW), this.m_data.get(BoilerBlockEntity.RESULT_TANK_FLUID_INDEX_HIGH));
-		return new FluidStack(NetworkUtilities.getFluid(index), this.m_data.get(BoilerBlockEntity.RESULT_HOLDING_INDEX));
+		int index = NetworkUtil.composeInt(this.m_data.get(BoilerBlockEntity.RESULT_TANK_FLUID_INDEX_LOW), this.m_data.get(BoilerBlockEntity.RESULT_TANK_FLUID_INDEX_HIGH));
+		return new FluidStack(NetworkUtil.getFluid(index), this.m_data.get(BoilerBlockEntity.RESULT_HOLDING_INDEX));
 	} // end getOutputTankFluid()
 	
 	

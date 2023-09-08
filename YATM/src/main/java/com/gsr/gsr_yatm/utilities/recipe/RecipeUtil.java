@@ -36,7 +36,7 @@ import net.minecraftforge.registries.tags.ITag;
 import net.minecraftforge.registries.tags.ITagManager;
 
 @SuppressWarnings("unused")
-public class RecipeUtilities
+public class RecipeUtil
 {	
 	public static final int RECHECK_CRAFTING_PERIOD = 20;
 	
@@ -198,21 +198,21 @@ public class RecipeUtilities
 	
 	public static void recipesUpdated() 
 	{
-		for(int i = 0; i < RecipeUtilities.RELOAD_LISTENERS.size(); i++) 
+		for(int i = 0; i < RecipeUtil.RELOAD_LISTENERS.size(); i++) 
 		{
-			RecipeUtilities.RELOAD_LISTENERS.remove(0).run();
+			RecipeUtil.RELOAD_LISTENERS.remove(0).run();
 		}
-		RecipeUtilities.PERSISTENT_RELOAD_LISTENERS.forEach((r) -> r.run());
+		RecipeUtil.PERSISTENT_RELOAD_LISTENERS.forEach((r) -> r.run());
 	} // end recipesUpdated()
 	
 	public static void addPersistentRecipeLoadListener(Runnable handler) 
 	{
-		RecipeUtilities.PERSISTENT_RELOAD_LISTENERS.add(handler);
+		RecipeUtil.PERSISTENT_RELOAD_LISTENERS.add(handler);
 	} // end addRecipeLoadListener()
 	
 	public static void addRecipeLoadListener(Runnable handler) 
 	{
-		RecipeUtilities.RELOAD_LISTENERS.add(handler);
+		RecipeUtil.RELOAD_LISTENERS.add(handler);
 	} // end addRecipeLoadListener()
 	
 	@SuppressWarnings("unchecked")
@@ -226,9 +226,9 @@ public class RecipeUtilities
 				return r;
 			}
 		}
-		if(RecipeUtilities.DYNAMIC_RECIPE_PROVIDERS.containsKey(type)) 
+		if(RecipeUtil.DYNAMIC_RECIPE_PROVIDERS.containsKey(type)) 
 		{
-			for(IDynamicRecipeProvider<?> dpl : RecipeUtilities.DYNAMIC_RECIPE_PROVIDERS.get(type)) 
+			for(IDynamicRecipeProvider<?> dpl : RecipeUtil.DYNAMIC_RECIPE_PROVIDERS.get(type)) 
 			{
 				Enumeration<? extends Recipe<? extends Container>> e = dpl.getEnumerator(level);
 				while(e.hasMoreElements()) 
@@ -266,8 +266,8 @@ public class RecipeUtilities
 		return new Enumeration<T>() 
 		{
 			Iterator<T> levelRManager = level.getRecipeManager().getAllRecipesFor(type).iterator();
-			Iterator<IDynamicRecipeProvider<?>> drp = RecipeUtilities.DYNAMIC_RECIPE_PROVIDERS.containsKey(type) 
-					? RecipeUtilities.DYNAMIC_RECIPE_PROVIDERS.get(type).iterator() 
+			Iterator<IDynamicRecipeProvider<?>> drp = RecipeUtil.DYNAMIC_RECIPE_PROVIDERS.containsKey(type) 
+					? RecipeUtil.DYNAMIC_RECIPE_PROVIDERS.get(type).iterator() 
 							: null;
 			Enumeration<? extends Recipe<? extends Container>> drprs = null;
 			
@@ -326,11 +326,11 @@ public class RecipeUtilities
 	
 	public static void addDynamicRecipeProvider(IDynamicRecipeProvider<?> provider)
 	{
-		if(!RecipeUtilities.DYNAMIC_RECIPE_PROVIDERS.containsKey(provider.recipeType())) 
+		if(!RecipeUtil.DYNAMIC_RECIPE_PROVIDERS.containsKey(provider.recipeType())) 
 		{
-			RecipeUtilities.DYNAMIC_RECIPE_PROVIDERS.put(provider.recipeType(), new ArrayList<IDynamicRecipeProvider<?>>());
+			RecipeUtil.DYNAMIC_RECIPE_PROVIDERS.put(provider.recipeType(), new ArrayList<IDynamicRecipeProvider<?>>());
 		}
-		RecipeUtilities.DYNAMIC_RECIPE_PROVIDERS.get(provider.recipeType()).add(provider);
+		RecipeUtil.DYNAMIC_RECIPE_PROVIDERS.get(provider.recipeType()).add(provider);
 	} // end addDynamicRecipeProvider()
 	
 } // end class

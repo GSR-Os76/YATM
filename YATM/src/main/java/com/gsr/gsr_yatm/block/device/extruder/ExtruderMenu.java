@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.block.device.extruder;
 
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -95,7 +95,7 @@ public class ExtruderMenu extends AbstractContainerMenu
 				{											
 					moved = true;
 				}
-				else if(SlotUtilities.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, ExtruderBlockEntity.POWER_SLOT, ExtruderBlockEntity.POWER_SLOT + 1, false)) 
+				else if(SlotUtil.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, ExtruderBlockEntity.POWER_SLOT, ExtruderBlockEntity.POWER_SLOT + 1, false)) 
 				{					
 					moved = true;
 				}

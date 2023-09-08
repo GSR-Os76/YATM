@@ -4,7 +4,7 @@ import com.gsr.gsr_yatm.recipe.spinning.SpinningRecipe;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
-import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.RecipeUtil;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
@@ -60,7 +60,7 @@ public class SpinningWheelBlock extends Block
 	public InteractionResult use(BlockState blockState, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult blockHitResult)
 	{
 		ItemStack held = player.getItemInHand(hand);
-		SpinningRecipe recipe = RecipeUtilities.firstRecipeMatching(level, YATMRecipeTypes.SPINNING.get(), (r) -> r.canBeUsedOn(held));
+		SpinningRecipe recipe = RecipeUtil.firstRecipeMatching(level, YATMRecipeTypes.SPINNING.get(), (r) -> r.canBeUsedOn(held));
 		if(recipe != null) 
 		{
 			if(!level.isClientSide) 

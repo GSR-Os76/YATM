@@ -14,6 +14,8 @@ import com.gsr.gsr_yatm.recipe.extruding.ExtrudingRecipe;
 import com.gsr.gsr_yatm.recipe.extruding.ExtrudingRecipeSerializer;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipe;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipeSerializer;
+import com.gsr.gsr_yatm.recipe.injecting.InjectingRecipe;
+import com.gsr.gsr_yatm.recipe.injecting.InjectingRecipeSerializer;
 import com.gsr.gsr_yatm.recipe.spinning.SpinningRecipe;
 import com.gsr.gsr_yatm.recipe.spinning.SpinningRecipeSerializer;
 
@@ -37,6 +39,6 @@ public class YATMRecipeSerializers
 	public static final RegistryObject<RecipeSerializer<ExtrudingRecipe>> EXTRUDING = RECIPE_SERIALIZERS.register("extruding", () -> new ExtrudingRecipeSerializer());
 	public static final RegistryObject<RecipeSerializer<GrindingRecipe>> GRINDING = RECIPE_SERIALIZERS.register("grinding", () -> new GrindingRecipeSerializer());
 	
-	public static final RegistryObject<RecipeSerializer<FluidInjectingRecipe>> FLUID_INJECTING = RECIPE_SERIALIZERS.register("fluid_injecting", () -> new FluidInjectingRecipeSerializer());
+	public static final RegistryObject<RecipeSerializer<InjectingRecipe>> INJECTING = RECIPE_SERIALIZERS.register("fluid_injecting", () -> new InjectingRecipeSerializer());
 	
 } // end class

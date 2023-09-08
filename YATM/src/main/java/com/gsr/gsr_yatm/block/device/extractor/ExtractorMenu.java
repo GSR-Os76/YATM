@@ -1,9 +1,9 @@
 package com.gsr.gsr_yatm.block.device.extractor;
 
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.network.BooleanFlagHandler;
-import com.gsr.gsr_yatm.utilities.network.NetworkUtilities;
+import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -94,7 +94,7 @@ public class ExtractorMenu extends AbstractContainerMenu
 				{						
 					moved = true; //return ItemStack.EMPTY;					
 				}
-				else if(SlotUtilities.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, ExtractorBlockEntity.POWER_SLOT, ExtractorBlockEntity.POWER_SLOT + 1, false)) 
+				else if(SlotUtil.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, ExtractorBlockEntity.POWER_SLOT, ExtractorBlockEntity.POWER_SLOT + 1, false)) 
 				{					
 					moved = true; //return ItemStack.EMPTY;
 				}
@@ -174,8 +174,8 @@ public class ExtractorMenu extends AbstractContainerMenu
 
 	public Fluid getFluid()
 	{
-		int index = NetworkUtilities.composeInt(this.m_data.get(ExtractorBlockEntity.FLUID_INDEX_LOW_SLOT), this.m_data.get(ExtractorBlockEntity.FLUID_INDEX_HIGH_SLOT));
-		return NetworkUtilities.getFluid(index);//Fluids.EMPTY;
+		int index = NetworkUtil.composeInt(this.m_data.get(ExtractorBlockEntity.FLUID_INDEX_LOW_SLOT), this.m_data.get(ExtractorBlockEntity.FLUID_INDEX_HIGH_SLOT));
+		return NetworkUtil.getFluid(index);//Fluids.EMPTY;
 	} // end getFluid()
 	
 	// current held things	

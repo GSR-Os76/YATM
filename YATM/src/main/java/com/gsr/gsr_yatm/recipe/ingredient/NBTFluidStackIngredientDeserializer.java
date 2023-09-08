@@ -3,7 +3,7 @@ package com.gsr.gsr_yatm.recipe.ingredient;
 import org.jetbrains.annotations.NotNull;
 
 import com.google.gson.JsonObject;
-import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 public class NBTFluidStackIngredientDeserializer implements IIngredientDeserializer<NBTFluidStackIngredient>
 {
@@ -11,7 +11,7 @@ public class NBTFluidStackIngredientDeserializer implements IIngredientDeseriali
 	@Override
 	public @NotNull NBTFluidStackIngredient deserialize(@NotNull JsonObject jsonObject)
 	{
-		return new NBTFluidStackIngredient(IngredientUtilities.nbtFluidStackFromJson(jsonObject));
+		return new NBTFluidStackIngredient(IngredientUtil.nbtFluidStackFromJson(jsonObject));
 	} // end deserialize()
 
 } // end class

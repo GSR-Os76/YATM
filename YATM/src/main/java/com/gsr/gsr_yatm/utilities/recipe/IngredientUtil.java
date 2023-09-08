@@ -21,19 +21,19 @@ import net.minecraftforge.registries.IForgeRegistry;
 import net.minecraftforge.registries.tags.ITag;
 import net.minecraftforge.registries.tags.ITagManager;
 
-public class IngredientUtilities
+public class IngredientUtil
 {
 	public static final String GROUP_KEY = "group";
 
-	public static final String INPUT_OBJECT_KEY = "input";
-	public static final String RESULT_OBJECT_KEY = "result";
+	public static final String INPUT_KEY = "input";
+	public static final String RESULT_KEY = "result";
 	
 	// unique secondary keys
-	public static final String DIE_OBJECT_KEY = "die";
-	public static final String SEED_KEY = "seed";
 	public static final String CONSUME_SEED_KEY = "consume";
-	
 	public static final String CURRENT_PER_TICK_KEY = "cost";
+	public static final String DIE_KEY = "die";
+	public static final String SEED_KEY = "seed";
+	public static final String SUBSTRATE_KEY = "substrate";
 	public static final String TIME_IN_TICKS_KEY = "time";
 			
 	
@@ -49,7 +49,7 @@ public class IngredientUtilities
 	public static final String TEMPERATURE_KEY = "temperature";
 	
 	public static final String TYPE_KEY = "type";
-	
+
 	
 	
 	public static @NotNull IIngredient<?> readIngredient(@NotNull JsonObject object)
@@ -136,20 +136,20 @@ public class IngredientUtilities
 	public static @NotNull JsonObject itemStackToJson(@NotNull ItemStack itemStack)
 	{
 		JsonObject result = new JsonObject();
-		result.addProperty(IngredientUtilities.ITEM_KEY, ForgeRegistries.ITEMS.getKey(itemStack.getItem()).toString());
-		result.addProperty(IngredientUtilities.COUNT_KEY, itemStack.getCount());
+		result.addProperty(IngredientUtil.ITEM_KEY, ForgeRegistries.ITEMS.getKey(itemStack.getItem()).toString());
+		result.addProperty(IngredientUtil.COUNT_KEY, itemStack.getCount());
 		return result;
 	} // end itemStackToJson()
 	
 	public static @NotNull JsonObject nbtItemStackToJson(@NotNull ItemStack itemStack)
 	{
 		JsonObject result = new JsonObject();
-		result.addProperty(IngredientUtilities.ITEM_KEY, ForgeRegistries.ITEMS.getKey(itemStack.getItem()).toString());
-		result.addProperty(IngredientUtilities.COUNT_KEY, itemStack.getCount());
+		result.addProperty(IngredientUtil.ITEM_KEY, ForgeRegistries.ITEMS.getKey(itemStack.getItem()).toString());
+		result.addProperty(IngredientUtil.COUNT_KEY, itemStack.getCount());
 		CompoundTag t = itemStack.getTag();
 		if(t != null) 
 		{
-			result.addProperty(IngredientUtilities.NBT_KEY, t.toString());
+			result.addProperty(IngredientUtil.NBT_KEY, t.toString());
 		}
 		return result;
 	} // end itemStackToJson()
@@ -157,20 +157,20 @@ public class IngredientUtilities
 	public static @NotNull JsonObject fluidStackToJson(@NotNull FluidStack fluidStack) 
 	{
 		JsonObject result = new JsonObject();
-		result.addProperty(IngredientUtilities.FLUID_KEY, ForgeRegistries.FLUIDS.getKey(fluidStack.getFluid()).toString());
-		result.addProperty(IngredientUtilities.COUNT_KEY, fluidStack.getAmount());
+		result.addProperty(IngredientUtil.FLUID_KEY, ForgeRegistries.FLUIDS.getKey(fluidStack.getFluid()).toString());
+		result.addProperty(IngredientUtil.COUNT_KEY, fluidStack.getAmount());
 		return result;
 	} // end fluidStackToJson()
 	
 	public static @NotNull JsonObject nbtFluidStackToJson(@NotNull FluidStack fluidStack) 
 	{
 		JsonObject result = new JsonObject();
-		result.addProperty(IngredientUtilities.FLUID_KEY, ForgeRegistries.FLUIDS.getKey(fluidStack.getFluid()).toString());
-		result.addProperty(IngredientUtilities.COUNT_KEY, fluidStack.getAmount());
+		result.addProperty(IngredientUtil.FLUID_KEY, ForgeRegistries.FLUIDS.getKey(fluidStack.getFluid()).toString());
+		result.addProperty(IngredientUtil.COUNT_KEY, fluidStack.getAmount());
 		CompoundTag t = fluidStack.getTag();
 		if(t != null) 
 		{
-			result.addProperty(IngredientUtilities.NBT_KEY, t.toString());
+			result.addProperty(IngredientUtil.NBT_KEY, t.toString());
 		}
 		return result;
 	} // end fluidStackToJson()
@@ -179,36 +179,36 @@ public class IngredientUtilities
 
 	public static @NotNull FluidStack fluidStackFromJson(@NotNull JsonObject jsonObject)
 	{
-		ResourceLocation fluidKey = new ResourceLocation(jsonObject.get(IngredientUtilities.FLUID_KEY).getAsString());
+		ResourceLocation fluidKey = new ResourceLocation(jsonObject.get(IngredientUtil.FLUID_KEY).getAsString());
         Fluid fluid = ForgeRegistries.FLUIDS.getValue(fluidKey);
         if (fluid == null)
         {
             return FluidStack.EMPTY;
         }
         int amount = 1;
-        if(jsonObject.has(IngredientUtilities.COUNT_KEY)) 
+        if(jsonObject.has(IngredientUtil.COUNT_KEY)) 
         {
-        	amount = jsonObject.get(IngredientUtilities.COUNT_KEY).getAsInt();
+        	amount = jsonObject.get(IngredientUtil.COUNT_KEY).getAsInt();
         }
 		return new FluidStack(fluid, amount);
 	} // end fluidStackFromJson()
 	
 	public static @NotNull FluidStack nbtFluidStackFromJson(@NotNull JsonObject jsonObject)
 	{
-		ResourceLocation fluidKey = new ResourceLocation(jsonObject.get(IngredientUtilities.FLUID_KEY).getAsString());
+		ResourceLocation fluidKey = new ResourceLocation(jsonObject.get(IngredientUtil.FLUID_KEY).getAsString());
         Fluid fluid = ForgeRegistries.FLUIDS.getValue(fluidKey);
         if (fluid == null)
         {
             return FluidStack.EMPTY;
         }
         int amount = 1;
-        if(jsonObject.has(IngredientUtilities.COUNT_KEY)) 
+        if(jsonObject.has(IngredientUtil.COUNT_KEY)) 
         {
-        	amount = jsonObject.get(IngredientUtilities.COUNT_KEY).getAsInt();
+        	amount = jsonObject.get(IngredientUtil.COUNT_KEY).getAsInt();
         }
-        if(jsonObject.has(IngredientUtilities.NBT_KEY)) 
+        if(jsonObject.has(IngredientUtil.NBT_KEY)) 
         {
-        	return new FluidStack(fluid, amount, CraftingHelper.getNBT(jsonObject.get(IngredientUtilities.NBT_KEY)));
+        	return new FluidStack(fluid, amount, CraftingHelper.getNBT(jsonObject.get(IngredientUtil.NBT_KEY)));
         }
 		return new FluidStack(fluid, amount);
 	} // end fluidStackFromJson()
@@ -243,7 +243,5 @@ public class IngredientUtilities
 		}
 		return false;
 	} // end testIngredientAgainst()
-
-
 	
 } // end class

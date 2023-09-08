@@ -1,9 +1,9 @@
 package com.gsr.gsr_yatm.block.device.bioler;
 
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.network.FluidHandlerContainerData;
-import com.gsr.gsr_yatm.utilities.network.NetworkUtilities;
+import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
 import com.gsr.gsr_yatm.utilities.network.SubsettingContainerData;
 
 import net.minecraft.world.entity.player.Inventory;
@@ -98,11 +98,11 @@ public class BiolerMenu extends AbstractContainerMenu
 				{						
 					moved = true;				
 				}
-				else if(SlotUtilities.isValidTankDrainSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, BiolerBlockEntity.DRAIN_RESULT_TANK_SLOT, BiolerBlockEntity.DRAIN_RESULT_TANK_SLOT + 1, false)) 
+				else if(SlotUtil.isValidTankDrainSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, BiolerBlockEntity.DRAIN_RESULT_TANK_SLOT, BiolerBlockEntity.DRAIN_RESULT_TANK_SLOT + 1, false)) 
 				{					
 					moved = true;
 				}
-				else if(SlotUtilities.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, BiolerBlockEntity.POWER_SLOT, BiolerBlockEntity.POWER_SLOT + 1, false)) 
+				else if(SlotUtil.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, BiolerBlockEntity.POWER_SLOT, BiolerBlockEntity.POWER_SLOT + 1, false)) 
 				{					
 					moved = true;
 				}
@@ -156,12 +156,12 @@ public class BiolerMenu extends AbstractContainerMenu
 	
 	public float getCraftProgress()
 	{
-		return NetworkUtilities.getProgess(BiolerBlockEntity.getCraftData(), this.m_data);
+		return NetworkUtil.getProgess(BiolerBlockEntity.getCraftData(), this.m_data);
 	} // end getCraftProgess
 	
 	public float getResultTankDrainProgress()
 	{
-		return  NetworkUtilities.getProgess(BiolerBlockEntity.getDrainResultTankData(), this.m_data);
+		return  NetworkUtil.getProgess(BiolerBlockEntity.getDrainResultTankData(), this.m_data);
 	} // end getResultTankDrainProgress()
 
 	public int getResultTankCapacity()

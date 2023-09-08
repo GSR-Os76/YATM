@@ -8,10 +8,10 @@ import com.gsr.gsr_yatm.recipe.boiling.BoilingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
-import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.fluid.ConfigurableTankWrapper;
 import com.gsr.gsr_yatm.utilities.capability.item.ConfigurableInventoryWrapper;
-import com.gsr.gsr_yatm.utilities.network.NetworkUtilities;
+import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -151,10 +151,10 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 				case BoilerBlockEntity.DRAIN_INPUT_TANK_TRANSFER_INITIAL -> BoilerBlockEntity.this.m_initialDrainInputTankTransferSize;
 				case BoilerBlockEntity.DRAIN_RESULT_TANK_TRANSFER_PROGRESS -> BoilerBlockEntity.this.m_resultTankDrainCountDown;
 				case BoilerBlockEntity.DRAIN_RESULT_TANK_TRANSFER_INITIAL -> BoilerBlockEntity.this.m_initialDrainResultTankTransferSize;
-				case BoilerBlockEntity.INPUT_TANK_FLUID_INDEX_LOW -> NetworkUtilities.splitInt(NetworkUtilities.getFluidIndex(BoilerBlockEntity.this.m_inputTank.getFluid().getFluid()), false);
-				case BoilerBlockEntity.INPUT_TANK_FLUID_INDEX_HIGH -> NetworkUtilities.splitInt(NetworkUtilities.getFluidIndex(BoilerBlockEntity.this.m_inputTank.getFluid().getFluid()), true);
-				case BoilerBlockEntity.RESULT_TANK_FLUID_INDEX_LOW -> NetworkUtilities.splitInt(NetworkUtilities.getFluidIndex(BoilerBlockEntity.this.m_resultTank.getFluid().getFluid()), false);
-				case BoilerBlockEntity.RESULT_TANK_FLUID_INDEX_HIGH -> NetworkUtilities.splitInt(NetworkUtilities.getFluidIndex(BoilerBlockEntity.this.m_resultTank.getFluid().getFluid()), true);
+				case BoilerBlockEntity.INPUT_TANK_FLUID_INDEX_LOW -> NetworkUtil.splitInt(NetworkUtil.getFluidIndex(BoilerBlockEntity.this.m_inputTank.getFluid().getFluid()), false);
+				case BoilerBlockEntity.INPUT_TANK_FLUID_INDEX_HIGH -> NetworkUtil.splitInt(NetworkUtil.getFluidIndex(BoilerBlockEntity.this.m_inputTank.getFluid().getFluid()), true);
+				case BoilerBlockEntity.RESULT_TANK_FLUID_INDEX_LOW -> NetworkUtil.splitInt(NetworkUtil.getFluidIndex(BoilerBlockEntity.this.m_resultTank.getFluid().getFluid()), false);
+				case BoilerBlockEntity.RESULT_TANK_FLUID_INDEX_HIGH -> NetworkUtil.splitInt(NetworkUtil.getFluidIndex(BoilerBlockEntity.this.m_resultTank.getFluid().getFluid()), true);
 				
 				default -> throw new IllegalArgumentException("Unexpected value of: " + index);
 			};
@@ -260,9 +260,9 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 	{
 		return switch(slot) 
 		{
-			case FILL_INPUT_TANK_SLOT -> SlotUtilities.isValidTankFillSlotInsert(itemStack);
-			case DRAIN_INPUT_TANK_SLOT, DRAIN_RESULT_TANK_SLOT -> SlotUtilities.isValidTankDrainSlotInsert(itemStack);
-			case HEAT_SLOT -> SlotUtilities.isValidHeatingSlotInsert(itemStack);
+			case FILL_INPUT_TANK_SLOT -> SlotUtil.isValidTankFillSlotInsert(itemStack);
+			case DRAIN_INPUT_TANK_SLOT, DRAIN_RESULT_TANK_SLOT -> SlotUtil.isValidTankDrainSlotInsert(itemStack);
+			case HEAT_SLOT -> SlotUtil.isValidHeatingSlotInsert(itemStack);
 			
 			default -> throw new IllegalArgumentException("Unexpected value: " + slot);
 		};
@@ -304,7 +304,7 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 		}
 		else
 		{
-			if (SlotUtilities.getHeatingBurnTime(this.m_inventory.getStackInSlot(HEAT_SLOT)) > 0)
+			if (SlotUtil.getHeatingBurnTime(this.m_inventory.getStackInSlot(HEAT_SLOT)) > 0)
 			{
 				ItemStack i = this.m_inventory.extractItem(HEAT_SLOT, 1, false);
 				if(i.hasCraftingRemainingItem()) 
@@ -312,9 +312,9 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 					InventoryUtilities.insertItemOrDrop(this.level, this.worldPosition, this.m_inventory, HEAT_SLOT, i.getCraftingRemainingItem());
 				}				
 
-				this.m_burnTime = SlotUtilities.getHeatingBurnTime(i);
+				this.m_burnTime = SlotUtil.getHeatingBurnTime(i);
 				this.m_burnProgress = this.m_burnTime;
-				this.m_temperature = SlotUtilities.getHeatingTemperature(i);
+				this.m_temperature = SlotUtil.getHeatingTemperature(i);
 				changed = true;
 			}
 		}
@@ -326,7 +326,7 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 		boolean changed = false;
 		if(this.m_inputTankFillBuffer.getFluidAmount() <= 0) 
 		{
-			this.m_initialFillInputTankTransferSize = SlotUtilities.queueToFillFromSlot(this.level, this.worldPosition, this.m_inventory, BoilerBlockEntity.FILL_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_inputTankFillBuffer, this.m_maxFluidTransferRate);
+			this.m_initialFillInputTankTransferSize = SlotUtil.queueToFillFromSlot(this.level, this.worldPosition, this.m_inventory, BoilerBlockEntity.FILL_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_inputTankFillBuffer, this.m_maxFluidTransferRate);
 			if(this.m_initialFillInputTankTransferSize > 0) 
 			{
 				changed = true;
@@ -349,7 +349,7 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 		boolean changed = false;		
 		if (this.m_inputTankDrainCountDown > 0)
 		{
-			this.m_inputTankDrainCountDown = SlotUtilities.countDownOrDrainToSlot(this.level, this.worldPosition, this.m_inventory, BoilerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_initialDrainInputTankTransferSize, this.m_inputTankDrainCountDown, this.m_maxFluidTransferRate);
+			this.m_inputTankDrainCountDown = SlotUtil.countDownOrDrainToSlot(this.level, this.worldPosition, this.m_inventory, BoilerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_initialDrainInputTankTransferSize, this.m_inputTankDrainCountDown, this.m_maxFluidTransferRate);
 			if (this.m_inputTankDrainCountDown <= 0)
 			{
 				this.m_initialDrainInputTankTransferSize = 0;
@@ -358,7 +358,7 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 		}
 		if(m_initialDrainInputTankTransferSize == 0) 
 		{
-			this.m_initialDrainInputTankTransferSize = SlotUtilities.queueToDrainToSlot(this.m_inventory, BoilerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_maxFluidTransferRate);
+			this.m_initialDrainInputTankTransferSize = SlotUtil.queueToDrainToSlot(this.m_inventory, BoilerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_maxFluidTransferRate);
 			this.m_inputTankDrainCountDown = this.m_initialDrainInputTankTransferSize;
 			
 			changed = true;
@@ -371,7 +371,7 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 		boolean changed = false;		
 		if (this.m_resultTankDrainCountDown > 0)
 		{
-			this.m_resultTankDrainCountDown = SlotUtilities.countDownOrDrainToSlot(this.level, this.worldPosition, this.m_inventory, DRAIN_RESULT_TANK_SLOT, this.m_resultTank, 0, this.m_initialDrainResultTankTransferSize, this.m_resultTankDrainCountDown, this.m_maxFluidTransferRate);
+			this.m_resultTankDrainCountDown = SlotUtil.countDownOrDrainToSlot(this.level, this.worldPosition, this.m_inventory, DRAIN_RESULT_TANK_SLOT, this.m_resultTank, 0, this.m_initialDrainResultTankTransferSize, this.m_resultTankDrainCountDown, this.m_maxFluidTransferRate);
 			if (this.m_resultTankDrainCountDown <= 0)
 			{
 				this.m_initialDrainResultTankTransferSize = 0;
@@ -380,7 +380,7 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 		}
 		if(m_initialDrainResultTankTransferSize == 0) 
 		{
-			this.m_initialDrainResultTankTransferSize = SlotUtilities.queueToDrainToSlot(this.m_inventory, DRAIN_RESULT_TANK_SLOT, this.m_resultTank, 0, this.m_maxFluidTransferRate);
+			this.m_initialDrainResultTankTransferSize = SlotUtil.queueToDrainToSlot(this.m_inventory, DRAIN_RESULT_TANK_SLOT, this.m_resultTank, 0, this.m_maxFluidTransferRate);
 			this.m_resultTankDrainCountDown = this.m_initialDrainResultTankTransferSize;
 			changed = true;
 		}
@@ -511,7 +511,7 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 		
 		if(releventSlot != null) 
 		{
-			LazyOptional<T> c = SlotUtilities.getSlotsCapability(releventSlot, cap);
+			LazyOptional<T> c = SlotUtil.getSlotsCapability(releventSlot, cap);
 			if(c.isPresent()) 
 			{
 				return c;

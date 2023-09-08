@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.block.device.solar;
 
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -75,7 +75,7 @@ public class SolarPanelMenu extends AbstractContainerMenu
 			if (quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END)
 			{	
 				boolean moved = false;
-				if(SlotUtilities.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, SolarPanelBlockEntity.POWER_SLOT, SolarPanelBlockEntity.POWER_SLOT + 1, false)) 
+				if(SlotUtil.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, SolarPanelBlockEntity.POWER_SLOT, SolarPanelBlockEntity.POWER_SLOT + 1, false)) 
 				{					
 					moved = true;
 				}

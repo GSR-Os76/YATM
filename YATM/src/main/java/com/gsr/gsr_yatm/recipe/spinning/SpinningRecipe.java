@@ -8,7 +8,7 @@ import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
@@ -47,7 +47,7 @@ public class SpinningRecipe implements Recipe<Container>
 	
 	public int getInputCount(@NotNull Item item) 
 	{
-		return IngredientUtilities.getReqiuredCountFor(item, this.m_input);
+		return IngredientUtil.getReqiuredCountFor(item, this.m_input);
 	} // end getInputCount()
 	
 	public boolean canBeUsedOn(@NotNull ItemStack input)
@@ -116,7 +116,7 @@ public class SpinningRecipe implements Recipe<Container>
 	@Override
 	public NonNullList<Ingredient> getIngredients()
 	{
-		return NonNullList.of(Ingredient.EMPTY, IngredientUtilities.toMinecraftIngredient(this.m_input));
+		return NonNullList.of(Ingredient.EMPTY, IngredientUtil.toMinecraftIngredient(this.m_input));
 	} // end getIngredients()
 
 	@Override

@@ -9,7 +9,7 @@ import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
@@ -64,7 +64,7 @@ public class BoilingRecipe implements ITimedRecipe<Container>
 	public boolean canBeUsedOn(@NotNull IFluidHandler inputTank, @NotNull IFluidHandler resultTank, int temperature)
 	{
 		Fluid f = inputTank.getFluidInTank(0).getFluid();
-		int am = IngredientUtilities.getRequiredAmountFor(f, this.m_input);
+		int am = IngredientUtil.getRequiredAmountFor(f, this.m_input);
 		FluidStack inputDrainSimulated = inputTank.drain(new FluidStack(f, am), FluidAction.EXECUTE);
 		
 		return am != -1 
@@ -76,7 +76,7 @@ public class BoilingRecipe implements ITimedRecipe<Container>
 	public void startRecipe(@NotNull IFluidHandler inputTank)
 	{
 		Fluid f = inputTank.getFluidInTank(0).getFluid();
-		inputTank.drain(new FluidStack(f, IngredientUtilities.getRequiredAmountFor(f, this.m_input)), FluidAction.EXECUTE);
+		inputTank.drain(new FluidStack(f, IngredientUtil.getRequiredAmountFor(f, this.m_input)), FluidAction.EXECUTE);
 	} // end startRecipe()
 	
 	public void setResults(@NotNull IFluidHandler resultTank)

@@ -3,7 +3,7 @@ package com.gsr.gsr_yatm.recipe.extruding;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonObject;
-import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -18,33 +18,33 @@ public class ExtrudingRecipeSerializer implements RecipeSerializer<ExtrudingReci
 		ExtrudingRecipeBuilder builder = new ExtrudingRecipeBuilder();
 		
 		builder.identifier(resourceLocation);
-		builder.result(CraftingHelper.getItemStack(jsonObject.getAsJsonObject(IngredientUtilities.RESULT_OBJECT_KEY), true));
+		builder.result(CraftingHelper.getItemStack(jsonObject.getAsJsonObject(IngredientUtil.RESULT_KEY), true));
 		
-		JsonObject inputObj = jsonObject.getAsJsonObject(IngredientUtilities.INPUT_OBJECT_KEY);
-		builder.input(IngredientUtilities.readIngredient((inputObj.getAsJsonObject(IngredientUtilities.INGREDIENT_KEY))).cast());
-		if(inputObj.has(IngredientUtilities.REMAINDER_STACK_KEY)) 
+		JsonObject inputObj = jsonObject.getAsJsonObject(IngredientUtil.INPUT_KEY);
+		builder.input(IngredientUtil.readIngredient((inputObj.getAsJsonObject(IngredientUtil.INGREDIENT_KEY))).cast());
+		if(inputObj.has(IngredientUtil.REMAINDER_STACK_KEY)) 
 		{
-			builder.inputRemainder(CraftingHelper.getItemStack(inputObj.getAsJsonObject(IngredientUtilities.REMAINDER_STACK_KEY), true));
-		}
-		
-		JsonObject dieObj = jsonObject.getAsJsonObject(IngredientUtilities.DIE_OBJECT_KEY);
-		builder.die(IngredientUtilities.readIngredient((dieObj.getAsJsonObject(IngredientUtilities.INGREDIENT_KEY))).cast());
-		if(dieObj.has(IngredientUtilities.REMAINDER_STACK_KEY)) 
-		{
-			builder.dieRemainder(CraftingHelper.getItemStack(dieObj.getAsJsonObject(IngredientUtilities.REMAINDER_STACK_KEY), true));
+			builder.inputRemainder(CraftingHelper.getItemStack(inputObj.getAsJsonObject(IngredientUtil.REMAINDER_STACK_KEY), true));
 		}
 		
-		if(jsonObject.has(IngredientUtilities.CURRENT_PER_TICK_KEY)) 
+		JsonObject dieObj = jsonObject.getAsJsonObject(IngredientUtil.DIE_KEY);
+		builder.die(IngredientUtil.readIngredient((dieObj.getAsJsonObject(IngredientUtil.INGREDIENT_KEY))).cast());
+		if(dieObj.has(IngredientUtil.REMAINDER_STACK_KEY)) 
 		{
-			builder.currentPerTick(jsonObject.get(IngredientUtilities.CURRENT_PER_TICK_KEY).getAsInt());
+			builder.dieRemainder(CraftingHelper.getItemStack(dieObj.getAsJsonObject(IngredientUtil.REMAINDER_STACK_KEY), true));
 		}
-		if(jsonObject.has(IngredientUtilities.TIME_IN_TICKS_KEY)) 
+		
+		if(jsonObject.has(IngredientUtil.CURRENT_PER_TICK_KEY)) 
 		{
-			builder.timeInTicks(jsonObject.get(IngredientUtilities.TIME_IN_TICKS_KEY).getAsInt());
+			builder.currentPerTick(jsonObject.get(IngredientUtil.CURRENT_PER_TICK_KEY).getAsInt());
 		}
-		if(jsonObject.has(IngredientUtilities.GROUP_KEY)) 
+		if(jsonObject.has(IngredientUtil.TIME_IN_TICKS_KEY)) 
 		{
-			builder.group(jsonObject.get(IngredientUtilities.GROUP_KEY).getAsString());
+			builder.timeInTicks(jsonObject.get(IngredientUtil.TIME_IN_TICKS_KEY).getAsInt());
+		}
+		if(jsonObject.has(IngredientUtil.GROUP_KEY)) 
+		{
+			builder.group(jsonObject.get(IngredientUtil.GROUP_KEY).getAsString());
 		}
 		
 		return builder.build();		

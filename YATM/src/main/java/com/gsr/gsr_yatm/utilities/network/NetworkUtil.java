@@ -8,7 +8,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class NetworkUtilities
+public class NetworkUtil
 {
 	// can we confirm that client and server will list these in the exact same order?
 	public static int getFluidIndex(Fluid fluid) 
@@ -58,7 +58,7 @@ public class NetworkUtilities
 	
 	public static float getProgess(AccessSpecification progressAccessSpecification, ContainerData data)
 	{
-		return 1f - NetworkUtilities.getRemaining(progressAccessSpecification, data);
+		return 1f - NetworkUtil.getRemaining(progressAccessSpecification, data);
 	} // end getProgess()
 	
 	public static float getRemaining(AccessSpecification progressAccessSpecification, ContainerData data)

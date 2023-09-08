@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import com.google.gson.JsonObject;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
-import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.resources.ResourceLocation;
@@ -53,13 +53,13 @@ public class SpinningFinishedRecipe implements FinishedRecipe
 	{
 		if(!this.m_group.isEmpty()) 
 		{
-			jsonObject.addProperty(IngredientUtilities.GROUP_KEY, this.m_group);
+			jsonObject.addProperty(IngredientUtil.GROUP_KEY, this.m_group);
 		}
 		
-		jsonObject.add(IngredientUtilities.RESULT_OBJECT_KEY, IngredientUtilities.nbtItemStackToJson(this.m_result));
+		jsonObject.add(IngredientUtil.RESULT_KEY, IngredientUtil.nbtItemStackToJson(this.m_result));
 		JsonObject inputObject = new JsonObject();
-		inputObject.add(IngredientUtilities.INGREDIENT_KEY, IngredientUtilities.writeIngredient(this.m_input));
-		jsonObject.add(IngredientUtilities.INPUT_OBJECT_KEY, inputObject);
+		inputObject.add(IngredientUtil.INGREDIENT_KEY, IngredientUtil.writeIngredient(this.m_input));
+		jsonObject.add(IngredientUtil.INPUT_KEY, inputObject);
 	} // end serializeRecipeData()
 
 	@Override

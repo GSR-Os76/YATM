@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonObject;
 import com.gsr.gsr_yatm.registry.custom.YATMIngredientDeserializers;
-import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -44,7 +44,7 @@ public class NBTItemStackIngredient implements IIngredient<ItemStack>
 	@Override
 	public @NotNull JsonObject serialize()
 	{
-		return IngredientUtilities.nbtItemStackToJson(this.m_ingredient);
+		return IngredientUtil.nbtItemStackToJson(this.m_ingredient);
 	} // end serialize()
 
 	@Override

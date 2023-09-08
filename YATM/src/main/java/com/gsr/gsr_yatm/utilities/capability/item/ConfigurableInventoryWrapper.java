@@ -5,7 +5,7 @@ import java.util.function.BiConsumer;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.util.TriPredicate;
@@ -141,7 +141,7 @@ public class ConfigurableInventoryWrapper implements IItemHandler, IItemHandlerM
 		{
 			Builder b = new Builder();
 			b.m_inventory = inventory;
-			b.m_slots = SlotUtilities.defaultTranslationTable(inventory.getSlots());
+			b.m_slots = SlotUtil.defaultTranslationTable(inventory.getSlots());
 			return b;
 		} // end of()
 		

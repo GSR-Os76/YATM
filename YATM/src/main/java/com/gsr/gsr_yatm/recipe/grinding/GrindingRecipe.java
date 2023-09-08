@@ -8,7 +8,7 @@ import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
@@ -62,7 +62,7 @@ public class GrindingRecipe implements ITimedRecipe<Container>
 	public void startRecipe(@NotNull IItemHandler inventory)
 	{
 		inventory.extractItem(GrinderBlockEntity.INPUT_SLOT, 
-				IngredientUtilities.getReqiuredCountFor(inventory.getStackInSlot(GrinderBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
+				IngredientUtil.getReqiuredCountFor(inventory.getStackInSlot(GrinderBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
 	} // end startRecipe()
 
 	public void setResults(@NotNull IItemHandler inventory)

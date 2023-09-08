@@ -14,7 +14,7 @@ import com.gsr.gsr_yatm.api.Task;
 import com.gsr.gsr_yatm.api.capability.DataPacket;
 import com.gsr.gsr_yatm.api.capability.IDataHandler;
 import com.gsr.gsr_yatm.block.device.compute.IDataProcessingTicker;
-import com.gsr.gsr_yatm.utilities.tag.TagUtilities;
+import com.gsr.gsr_yatm.utilities.tag.TagUtil;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -124,8 +124,8 @@ public class StorageDataHandler implements IDataHandler, INBTSerializable<Compou
 		tag.putInt(READ_DELAY_TAG_NAME, this.m_readDelay);
 		tag.putInt(WRITE_DELAY_TAG_NAME, this.m_writeDelay);
 
-		tag.put(TASKS_TAG_NAME, TagUtilities.serializeCollection(this.m_tasks, (t) -> t.serializeNBT()));
-		tag.put(DATA_TAG_NAME, TagUtilities.serializeCollection(this.m_data));
+		tag.put(TASKS_TAG_NAME, TagUtil.serializeCollection(this.m_tasks, (t) -> t.serializeNBT()));
+		tag.put(DATA_TAG_NAME, TagUtil.serializeCollection(this.m_data));
 
 		return tag;
 	} // end serializeNBT()
@@ -144,12 +144,12 @@ public class StorageDataHandler implements IDataHandler, INBTSerializable<Compou
 		if(tag.contains(TASKS_TAG_NAME)) 
 		{
 			this.m_data.clear();
-			TagUtilities.deserializeCollection(tag.getCompound(TASKS_TAG_NAME), this.m_tasks, (t) -> Task.deserializeNBT(t));
+			TagUtil.deserializeCollection(tag.getCompound(TASKS_TAG_NAME), this.m_tasks, (t) -> Task.deserializeNBT(t));
 		}
 		if(tag.contains(DATA_TAG_NAME)) 
 		{
 			this.m_data.clear();
-			TagUtilities.deserializeCollection(tag.getCompound(DATA_TAG_NAME), this.m_data);
+			TagUtil.deserializeCollection(tag.getCompound(DATA_TAG_NAME), this.m_data);
 		}
 	} // end deserializeNBT()
 	

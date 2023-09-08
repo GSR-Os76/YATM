@@ -13,7 +13,7 @@ import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMMobEffects;
 import com.gsr.gsr_yatm.registry.custom.YATMRegistries;
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
-import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.RecipeUtil;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -98,7 +98,7 @@ public class YATMGameEvents
 	
 	private static void recipesUpdated(RecipesUpdatedEvent event) 
 	{
-		RecipeUtilities.recipesUpdated();
+		RecipeUtil.recipesUpdated();
 	} // end recipesUpdated()
 	
 	private static void registerCommands(RegisterCommandsEvent event)

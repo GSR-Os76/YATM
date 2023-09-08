@@ -7,6 +7,7 @@ import com.gsr.gsr_yatm.block.device.current_furnace.FurnacePlusScreen;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorScreen;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderScreen;
 import com.gsr.gsr_yatm.block.device.grinder.GrinderScreen;
+import com.gsr.gsr_yatm.block.device.injector.InjectorScreen;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelScreen;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelScreen;
 import com.gsr.gsr_yatm.block.hanging_pot.HangingPotHookRenderer;
@@ -44,7 +45,7 @@ import com.gsr.gsr_yatm.registry.custom.YATMIngredientDeserializers;
 import com.gsr.gsr_yatm.registry.custom.YATMRegistries;
 import com.gsr.gsr_yatm.utilities.YATMModelLayers;
 import com.gsr.gsr_yatm.utilities.YATMParticleProviders;
-import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.RecipeUtil;
 
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraft.client.model.BoatModel;
@@ -114,6 +115,7 @@ public class YATMModEvents
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRUDER.get(), ExtruderScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.FURNACE_PLUS.get(), FurnacePlusScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.GRINDER.get(), GrinderScreen::new));
+		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.INJECTOR.get(), InjectorScreen::new));
 		
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BATTERY_SOLAR_PANEL.get(), BatterySolarPanelScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.SOLAR_PANEL.get(), SolarPanelScreen::new));
@@ -140,8 +142,8 @@ public class YATMModEvents
 	private static void commonSetup(FMLCommonSetupEvent event)
 	{
 		event.enqueueWork(() -> YATMItems.addCompostables());
-		event.enqueueWork(() -> RecipeUtilities.addDynamicRecipeProvider(new CompostableBiolingRecipeProvider()));
-		event.enqueueWork(() -> RecipeUtilities.addDynamicRecipeProvider(new WrappedSmeltingRecipeProvider()));
+		event.enqueueWork(() -> RecipeUtil.addDynamicRecipeProvider(new CompostableBiolingRecipeProvider()));
+		event.enqueueWork(() -> RecipeUtil.addDynamicRecipeProvider(new WrappedSmeltingRecipeProvider()));
 		event.enqueueWork(() -> YATMBlocks.addSapCollectorVariants());
 		
 		// TODO, add biome to the nether, biome manager seems to only support the

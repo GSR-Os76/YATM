@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.nbt.Tag;
 
-public class TagUtilities
+public class TagUtil
 {
 	public static final String COUNT_TAG_NAME = "count";
 	
@@ -16,12 +16,12 @@ public class TagUtilities
 	
 	public static @NotNull CompoundTag serializeCollection(@NotNull Collection<CompoundTag> collection)
 	{
-		return TagUtilities.serializeCollection(collection, (t) -> t);
+		return TagUtil.serializeCollection(collection, (t) -> t);
 	} // end serializeCollection()
 	
 	public static<T extends Collection<CompoundTag>> @NotNull T deserializeCollection(@NotNull CompoundTag tag, @NotNull T toFill) 
 	{
-		return TagUtilities.deserializeCollection(tag, toFill, (t) -> t);
+		return TagUtil.deserializeCollection(tag, toFill, (t) -> t);
 	} // end deserializeCollection()
 	
 	

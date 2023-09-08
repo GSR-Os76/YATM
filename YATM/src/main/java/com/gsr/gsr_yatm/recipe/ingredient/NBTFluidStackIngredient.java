@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonObject;
 import com.gsr.gsr_yatm.registry.custom.YATMIngredientDeserializers;
-import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraftforge.fluids.FluidStack;
 
@@ -38,7 +38,7 @@ public class NBTFluidStackIngredient implements IIngredient<FluidStack>
 	@Override
 	public @NotNull JsonObject serialize()
 	{
-		return IngredientUtilities.nbtFluidStackToJson(this.m_ingredient);
+		return IngredientUtil.nbtFluidStackToJson(this.m_ingredient);
 	} // end serialize()
 
 	@Override

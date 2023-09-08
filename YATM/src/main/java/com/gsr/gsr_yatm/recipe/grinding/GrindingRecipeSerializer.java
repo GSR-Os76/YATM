@@ -3,7 +3,7 @@ package com.gsr.gsr_yatm.recipe.grinding;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonObject;
-import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -19,20 +19,20 @@ public class GrindingRecipeSerializer implements RecipeSerializer<GrindingRecipe
 		GrindingRecipeBuilder builder = new GrindingRecipeBuilder();
 		
 		builder.identifier(resourceLocation);
-		builder.result(CraftingHelper.getItemStack(jsonObject.getAsJsonObject(IngredientUtilities.RESULT_OBJECT_KEY), true));
-		builder.input(IngredientUtilities.readIngredient(jsonObject.getAsJsonObject(IngredientUtilities.INPUT_OBJECT_KEY).getAsJsonObject(IngredientUtilities.INGREDIENT_KEY)).cast());
+		builder.result(CraftingHelper.getItemStack(jsonObject.getAsJsonObject(IngredientUtil.RESULT_KEY), true));
+		builder.input(IngredientUtil.readIngredient(jsonObject.getAsJsonObject(IngredientUtil.INPUT_KEY).getAsJsonObject(IngredientUtil.INGREDIENT_KEY)).cast());
 		
-		if(jsonObject.has(IngredientUtilities.CURRENT_PER_TICK_KEY)) 
+		if(jsonObject.has(IngredientUtil.CURRENT_PER_TICK_KEY)) 
 		{
-			builder.currentPerTick(jsonObject.get(IngredientUtilities.CURRENT_PER_TICK_KEY).getAsInt());
+			builder.currentPerTick(jsonObject.get(IngredientUtil.CURRENT_PER_TICK_KEY).getAsInt());
 		}
-		if(jsonObject.has(IngredientUtilities.TIME_IN_TICKS_KEY)) 
+		if(jsonObject.has(IngredientUtil.TIME_IN_TICKS_KEY)) 
 		{
-			builder.timeInTicks(jsonObject.get(IngredientUtilities.TIME_IN_TICKS_KEY).getAsInt());
+			builder.timeInTicks(jsonObject.get(IngredientUtil.TIME_IN_TICKS_KEY).getAsInt());
 		}
-		if(jsonObject.has(IngredientUtilities.GROUP_KEY)) 
+		if(jsonObject.has(IngredientUtil.GROUP_KEY)) 
 		{
-			builder.group(jsonObject.get(IngredientUtilities.GROUP_KEY).getAsString());
+			builder.group(jsonObject.get(IngredientUtil.GROUP_KEY).getAsString());
 		}
 		
 		return builder.build();		

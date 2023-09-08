@@ -8,10 +8,10 @@ import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.extracting.ExtractingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.fluid.ConfigurableTankWrapper;
 import com.gsr.gsr_yatm.utilities.network.BooleanFlagHandler;
-import com.gsr.gsr_yatm.utilities.network.NetworkUtilities;
+import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -90,8 +90,8 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractingRe
 				
 				case ExtractorBlockEntity.DATA_FLAGS_SLOT -> ExtractorBlockEntity.this.m_flagHandler.getValue();//m_flags;
 				
-				case ExtractorBlockEntity.FLUID_INDEX_LOW_SLOT -> NetworkUtilities.splitInt(NetworkUtilities.getFluidIndex(ExtractorBlockEntity.this.m_rawResultTank.getFluid().getFluid()), false);
-				case ExtractorBlockEntity.FLUID_INDEX_HIGH_SLOT -> NetworkUtilities.splitInt(NetworkUtilities.getFluidIndex(ExtractorBlockEntity.this.m_rawResultTank.getFluid().getFluid()), true);
+				case ExtractorBlockEntity.FLUID_INDEX_LOW_SLOT -> NetworkUtil.splitInt(NetworkUtil.getFluidIndex(ExtractorBlockEntity.this.m_rawResultTank.getFluid().getFluid()), false);
+				case ExtractorBlockEntity.FLUID_INDEX_HIGH_SLOT -> NetworkUtil.splitInt(NetworkUtil.getFluidIndex(ExtractorBlockEntity.this.m_rawResultTank.getFluid().getFluid()), true);
 				
 				default -> throw new IllegalArgumentException("Unexpected value of: " + index);
 			};
@@ -184,9 +184,9 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractingRe
 		return switch(slot) 
 		{
 			case ExtractorBlockEntity.INPUT_SLOT -> true;
-			case ExtractorBlockEntity.DRAIN_RESULT_TANK_SLOT -> SlotUtilities.isValidTankDrainSlotInsert(itemStack);
+			case ExtractorBlockEntity.DRAIN_RESULT_TANK_SLOT -> SlotUtil.isValidTankDrainSlotInsert(itemStack);
 			case ExtractorBlockEntity.INPUT_REMAINDER_SLOT -> false;
-			case ExtractorBlockEntity.POWER_SLOT -> SlotUtilities.isValidPowerSlotInsert(itemStack);
+			case ExtractorBlockEntity.POWER_SLOT -> SlotUtil.isValidPowerSlotInsert(itemStack);
 			default -> throw new IllegalArgumentException("Unexpected value of: " + slot);
 		};
 	} // end itemInsertionValidator()
@@ -210,7 +210,7 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractingRe
 		boolean changed = false;		
 		if (this.m_resultTankDrainCountDown > 0)
 		{
-			this.m_resultTankDrainCountDown = SlotUtilities.countDownOrDrainToSlot(this.level, this.worldPosition, this.m_inventory, DRAIN_RESULT_TANK_SLOT, this.m_resultTank, 0, this.m_initialDrainResultTankTransferSize, this.m_resultTankDrainCountDown, this.m_maxFluidTransferRate);
+			this.m_resultTankDrainCountDown = SlotUtil.countDownOrDrainToSlot(this.level, this.worldPosition, this.m_inventory, DRAIN_RESULT_TANK_SLOT, this.m_resultTank, 0, this.m_initialDrainResultTankTransferSize, this.m_resultTankDrainCountDown, this.m_maxFluidTransferRate);
 			if (this.m_resultTankDrainCountDown <= 0)
 			{
 				this.m_initialDrainResultTankTransferSize = 0;
@@ -219,7 +219,7 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractingRe
 		}
 		if(m_initialDrainResultTankTransferSize == 0) 
 		{
-			this.m_initialDrainResultTankTransferSize = SlotUtilities.queueToDrainToSlot(this.m_inventory, DRAIN_RESULT_TANK_SLOT, this.m_resultTank, 0, this.m_maxFluidTransferRate);
+			this.m_initialDrainResultTankTransferSize = SlotUtil.queueToDrainToSlot(this.m_inventory, DRAIN_RESULT_TANK_SLOT, this.m_resultTank, 0, this.m_maxFluidTransferRate);
 			this.m_resultTankDrainCountDown = this.m_initialDrainResultTankTransferSize;
 			changed = true;
 		}

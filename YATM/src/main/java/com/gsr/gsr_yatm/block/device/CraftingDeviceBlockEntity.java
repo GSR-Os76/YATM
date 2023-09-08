@@ -6,7 +6,7 @@ import java.util.List;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.utilities.network.Property;
 import com.gsr.gsr_yatm.utilities.network.PropertyContainerData;
-import com.gsr.gsr_yatm.utilities.recipe.RecipeUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.RecipeUtil;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -20,11 +20,13 @@ import net.minecraftforge.fluids.FluidStack;
 
 public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C extends Container> extends DeviceBlockEntity 
 {	
+	public static final String CRAFT_PROGRESS_SPEC_KEY = "craftProgress";
+	
 	public static final String RECIPE_IDENTIFIER_TAG_NAME = "recipe";	
 	public static final String CRAFT_PROGESS_TAG_NAME = "craftProgress";
 	public static final String CRAFT_TIME_TAG_NAME = "craftTime";
 	
-	public static final int RECHECK_PERIOD = RecipeUtilities.RECHECK_CRAFTING_PERIOD;
+	public static final int RECHECK_PERIOD = RecipeUtil.RECHECK_CRAFTING_PERIOD;
 	
 	protected final RecipeType<T> m_recipeType;
 	protected T m_activeRecipe = null;
@@ -96,7 +98,7 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 		this.m_craftTime = 0;
 		this.m_craftProgress = 0;
 		
-		Enumeration<T> recipes = RecipeUtilities.getRecipes(this.level, this.m_recipeType);
+		Enumeration<T> recipes = RecipeUtil.getRecipes(this.level, this.m_recipeType);
 		while (recipes.hasMoreElements())//for (T r : recipes)
 		{
 			T r = recipes.nextElement();
@@ -121,7 +123,7 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 	protected void onRecipeLoad() 
 	{
 		this.m_waitingForLoad = false;
-		this.m_activeRecipe = RecipeUtilities.loadRecipe(this.m_activeRecipeIdentifier, this.level, this.m_recipeType);
+		this.m_activeRecipe = RecipeUtil.loadRecipe(this.m_activeRecipeIdentifier, this.level, this.m_recipeType);
 		if(this.m_activeRecipe == null || this.m_craftProgress <= 0 || this.m_craftTime <= 0) 
 		{
 			this.m_activeRecipe = null;
@@ -155,7 +157,7 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 			this.m_craftProgress = tag.getInt(CraftingDeviceBlockEntity.CRAFT_PROGESS_TAG_NAME);
 			this.m_craftTime = tag.getInt(CraftingDeviceBlockEntity.CRAFT_TIME_TAG_NAME);
 			this.m_waitingForLoad = true;
-			RecipeUtilities.addRecipeLoadListener(this::onRecipeLoad);
+			RecipeUtil.addRecipeLoadListener(this::onRecipeLoad);
 		}		
 	} // end load()	
 	

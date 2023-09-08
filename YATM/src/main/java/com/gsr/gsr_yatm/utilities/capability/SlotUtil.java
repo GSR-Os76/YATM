@@ -21,7 +21,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.items.IItemHandler;
 
-public class SlotUtilities
+public class SlotUtil
 {
 	// TODO, maybe should be min 1
 	public static int[] defaultTranslationTable(@Range(from = 0, to = Integer.MAX_VALUE) int length) 
@@ -238,9 +238,9 @@ public class SlotUtilities
 		countDownTime -= maxRateOfTransfer;
 		if (countDownTime <= 0)
 		{
-			if (SlotUtilities.canDrainTankto(inventory.getStackInSlot(slot), toDrain, transferSize))
+			if (SlotUtil.canDrainTankto(inventory.getStackInSlot(slot), toDrain, transferSize))
 			{
-					ItemStack remainder = SlotUtilities.drainTankTo(inventory.extractItem(slot, inventory.getSlotLimit(slot), false), toDrain, transferSize);
+					ItemStack remainder = SlotUtil.drainTankTo(inventory.extractItem(slot, inventory.getSlotLimit(slot), false), toDrain, transferSize);
 					InventoryUtilities.insertItemOrDrop(level, position, inventory, slot, remainder);
 			}
 		}		
@@ -261,7 +261,7 @@ public class SlotUtilities
 		int amountTransferableToBuffer = Math.max(minDrainTankTo(fillBuffer, stackInSlot), drainClosestToFavoringLow(fillBuffer, stackInSlot, favoredTransferSize));
 		int amountTransferableToTank = Math.max(minDrainTankTo(toFill, stackInSlot), drainClosestToFavoringLow(toFill, stackInSlot, favoredTransferSize));
 		int amountTransferable = Math.min(amountTransferableToBuffer, amountTransferableToTank);
-		ItemStack remainder = SlotUtilities.fillTankFrom(inventory.extractItem(slot, inventory.getSlotLimit(slot), false), fillBuffer, amountTransferable);
+		ItemStack remainder = SlotUtil.fillTankFrom(inventory.extractItem(slot, inventory.getSlotLimit(slot), false), fillBuffer, amountTransferable);
 		InventoryUtilities.insertItemOrDrop(level, position, inventory, slot, remainder);
 			
 		return fillBuffer.getFluidInTank(0).getAmount();		

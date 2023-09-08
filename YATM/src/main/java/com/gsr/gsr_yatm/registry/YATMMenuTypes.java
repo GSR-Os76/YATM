@@ -8,6 +8,7 @@ import com.gsr.gsr_yatm.block.device.current_furnace.FurnacePlusMenu;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorMenu;
 import com.gsr.gsr_yatm.block.device.extruder.ExtruderMenu;
 import com.gsr.gsr_yatm.block.device.grinder.GrinderMenu;
+import com.gsr.gsr_yatm.block.device.injector.InjectorMenu;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelMenu;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelMenu;
 
@@ -30,8 +31,11 @@ public class YATMMenuTypes
 	public static final RegistryObject<MenuType<ExtruderMenu>> EXTRUDER = MENU_TYPES.register("extruder_menu", () -> new MenuType<>(ExtruderMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<FurnacePlusMenu>> FURNACE_PLUS = MENU_TYPES.register("furnace_plus", () -> new MenuType<>(FurnacePlusMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<GrinderMenu>> GRINDER = MENU_TYPES.register("grinder_menu", () -> new MenuType<>(GrinderMenu::new, FeatureFlagSet.of()));
+	public static final RegistryObject<MenuType<InjectorMenu>> INJECTOR = MENU_TYPES.register("injector_menu", () -> new MenuType<>(InjectorMenu::new, FeatureFlagSet.of()));
 	
 	public static final RegistryObject<MenuType<BatterySolarPanelMenu>> BATTERY_SOLAR_PANEL = MENU_TYPES.register("battery_solar_panel", () -> new MenuType<>(BatterySolarPanelMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<SolarPanelMenu>> SOLAR_PANEL = MENU_TYPES.register("solar_panel", () -> new MenuType<>(SolarPanelMenu::new, FeatureFlagSet.of()));
+
+
 	
 } // end class

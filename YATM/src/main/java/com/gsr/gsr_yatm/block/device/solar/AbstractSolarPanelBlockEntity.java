@@ -11,7 +11,7 @@ import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.api.implementation.CurrentUnitHandler;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
-import com.gsr.gsr_yatm.utilities.capability.SlotUtilities;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.current.ExtractOnlyCurrentHandler;
 import com.gsr.gsr_yatm.utilities.network.AccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
@@ -152,7 +152,7 @@ public abstract class AbstractSolarPanelBlockEntity extends DeviceBlockEntity
 	@Override
 	protected boolean itemInsertionValidator(int slot, ItemStack itemStack, boolean simulate)
 	{
-		return slot == POWER_SLOT && SlotUtilities.isValidPowerSlotInsert(itemStack);
+		return slot == POWER_SLOT && SlotUtil.isValidPowerSlotInsert(itemStack);
 	} // end itemInsertionValidator()
 	
 	@Override
@@ -315,7 +315,7 @@ public abstract class AbstractSolarPanelBlockEntity extends DeviceBlockEntity
 			{
 				this.m_slotCap.cast();
 			}
-			LazyOptional<T> c = SlotUtilities.getSlotsCapability(this.m_powerSlotLazyOptional.cast(), cap);
+			LazyOptional<T> c = SlotUtil.getSlotsCapability(this.m_powerSlotLazyOptional.cast(), cap);
 			if(c.isPresent()) 
 			{
 				return c;

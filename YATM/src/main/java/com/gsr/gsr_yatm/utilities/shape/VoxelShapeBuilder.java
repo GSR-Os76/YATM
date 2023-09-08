@@ -151,7 +151,7 @@ public class VoxelShapeBuilder implements IVoxelShapeBuilder
 			VoxelShape base = VoxelShapeBuilder.getBox(shape);
 			for(@NotNull Pair<@NotNull BinaryOperation, @NotNull IVoxelShapeBuilder> pair : shape.getAdditionalParts()) 
 			{
-				base = Shapes.join(base, pair.getB().toMCVoxelShape(), ShapeUtilities.toBooleanOp(pair.getA()));
+				base = Shapes.join(base, pair.getB().toMCVoxelShape(), ShapeUtil.toBooleanOp(pair.getA()));
 			}
 			return base;
 		}

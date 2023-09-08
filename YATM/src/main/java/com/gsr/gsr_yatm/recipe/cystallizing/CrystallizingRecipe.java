@@ -10,7 +10,7 @@ import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.recipe.IngredientUtilities;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.resources.ResourceLocation;
@@ -70,7 +70,7 @@ public class CrystallizingRecipe implements ITimedRecipe<Container>
 	public boolean canBeUsedOn(@NotNull IItemHandler inventory, @NotNull IFluidHandler inputTank)
 	{
 		Fluid f = inputTank.getFluidInTank(0).getFluid();
-		int am = IngredientUtilities.getRequiredAmountFor(f, this.m_input);
+		int am = IngredientUtil.getRequiredAmountFor(f, this.m_input);
 		FluidStack inputDrainSimulated = inputTank.drain(new FluidStack(f, am), FluidAction.SIMULATE);
 		
 		return am != -1 
@@ -82,7 +82,7 @@ public class CrystallizingRecipe implements ITimedRecipe<Container>
 	public void startRecipe(@NotNull IItemHandler inventory, @NotNull IFluidHandler inputTank)
 	{
 		Fluid f = inputTank.getFluidInTank(0).getFluid();
-		inputTank.drain(new FluidStack(f, IngredientUtilities.getRequiredAmountFor(f, this.m_input)), FluidAction.EXECUTE);
+		inputTank.drain(new FluidStack(f, IngredientUtil.getRequiredAmountFor(f, this.m_input)), FluidAction.EXECUTE);
 		if(this.m_consumeSeed) 
 		{
 			inventory.extractItem(CrystallizerBlockEntity.SEED_SLOT, 1, false);
