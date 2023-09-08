@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-10T20:57:30.0721574	Loot Tables
+// 1.20.1	2023-09-08T10:10:12.1403647	Loot Tables
 c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
 e7fbd17d28377f6d02cdd2df79fd21c9ce25491d data/gsr_yatm/loot_tables/blocks/aurum_deminutus.json
@@ -119,6 +119,7 @@ d1e52343f678c8ade42d3dcab0989e696c7a279f data/gsr_yatm/loot_tables/blocks/steel_
 fe6ff42a550ab4e75698d64747d1917614cfae72 data/gsr_yatm/loot_tables/blocks/steel_fluid_conduit.json
 cbe92c65611a7b278a19d35b131b2b12282c1062 data/gsr_yatm/loot_tables/blocks/steel_furnace_plus.json
 f87ea71e51838e9d7ca7983b53bf36a89216cc05 data/gsr_yatm/loot_tables/blocks/steel_grinder.json
+53d077bee919d523501ab2fbbc7c0024f38b145d data/gsr_yatm/loot_tables/blocks/steel_injector.json
 53287117f29c9292f1578d8eea6b817e7e7be9f1 data/gsr_yatm/loot_tables/blocks/stripped_rubber_log.json
 9c24993739cc444163ea48351e3b1a745d9b2cfe data/gsr_yatm/loot_tables/blocks/stripped_rubber_wood.json
 10ba5c51e8e2e053360346f0e40e1e5614088907 data/gsr_yatm/loot_tables/blocks/suns_complement_battery_solar_panel.json

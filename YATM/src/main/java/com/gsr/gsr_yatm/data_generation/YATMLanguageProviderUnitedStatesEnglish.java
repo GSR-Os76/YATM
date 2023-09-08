@@ -31,6 +31,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMMenuTypes.EXTRUDER.get(), "Extruder");		
 		this.add(YATMMenuTypes.EXTRACTOR.get(), "Extractor");		
 		this.add(YATMMenuTypes.GRINDER.get(), "Grinder");		
+		this.add(YATMMenuTypes.INJECTOR.get(), "Injector");		
 		
 		this.add(YATMMenuTypes.BATTERY_SOLAR_PANEL.get(), "Solar Panel");		
 		this.add(YATMMenuTypes.SOLAR_PANEL.get(), "Solar Panel");		
@@ -153,6 +154,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.STEEL_EXTRACTOR.get(), "Steel Extractor");
 		this.add(YATMBlocks.STEEL_EXTRUDER.get(), "Steel Extruder");
 		this.add(YATMBlocks.STEEL_GRINDER.get(), "Steel Grinder");
+		this.add(YATMBlocks.STEEL_INJECTOR.get(), "Steel injector");
 		
 		this.add(YATMBlocks.C_U_F_E_I.get(), "Energy Converter (CU to FE)");
 		

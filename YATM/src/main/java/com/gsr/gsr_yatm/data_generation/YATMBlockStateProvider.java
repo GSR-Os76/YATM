@@ -102,6 +102,9 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile BOILER_WHEN_HAS_TANK_PART_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/boiler_has_tank_multipart"));
 	public static final ModelFile BOILER_TANK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/boiler_tank"));
 	
+	public static final ModelFile INJECTOR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/injector"));
+	
+	
 	public static final ModelFile SOLAR_PANEL_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/solar_panel"));
 	
 	private static final List<Direction> HIGH_DIRECTIONS = ImmutableList.of(Direction.UP, Direction.NORTH, Direction.EAST);
@@ -156,6 +159,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addBiolers();
 		this.addBoilers();
 		this.addBoilerTanks();
+		this.addInjectors();
 		this.createAllBlock(YATMBlocks.C_U_F_E_I.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/energy_converter/energy_converter"));
 		this.addSolarPanels();
 		
@@ -377,6 +381,12 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/steel_boiler_tank_side_has_boiler"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/steel_boiler_tank_top_and_bottom"));
 	} // end addBoilers()
+	
+	private void addInjectors() 
+	{
+		this.createFacingBlock(YATMBlocks.STEEL_INJECTOR.get(), YATMItems.STEEL_INJECTOR_ITEM.get(), YATMBlockStateProvider.INJECTOR_MODEL);
+		
+	} // end addInjectors
 	
 	private void addSolarPanels() 
 	{
@@ -872,7 +882,11 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
 	} // end createHeatSink()
 	
-	
+	private void createFacingBlock(@NotNull Block block, @NotNull Item item, ModelFile model) 
+	{
+		this.getVariantBuilder(block).forAllStates((bs) ->  new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(YATMBlockStateProperties.FACING_HORIZONTAL)).x, rotationForDirectionFromNorth(bs.getValue(YATMBlockStateProperties.FACING_HORIZONTAL)).y, false) });
+		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
+	} // end createFacingBlock()
 	
 	private void createFaceFacingBlock(@NotNull Block block, @NotNull Item item, @NotNull ResourceLocation faceTexture, @NotNull ResourceLocation sideTexture)
 	{
