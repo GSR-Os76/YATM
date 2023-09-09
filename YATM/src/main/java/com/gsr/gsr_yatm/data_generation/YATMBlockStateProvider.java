@@ -102,6 +102,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile BOILER_WHEN_HAS_TANK_PART_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/boiler_has_tank_multipart"));
 	public static final ModelFile BOILER_TANK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/boiler_tank"));
 	
+	public static final ModelFile EXTRACTOR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/extractor"));
 	public static final ModelFile INJECTOR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/injector"));
 	
 	
@@ -159,6 +160,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addBiolers();
 		this.addBoilers();
 		this.addBoilerTanks();
+		this.addExtractors();
 		this.addInjectors();
 		this.createAllBlock(YATMBlocks.C_U_F_E_I.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/energy_converter/energy_converter"));
 		this.addSolarPanels();
@@ -382,11 +384,17 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/steel_boiler_tank_top_and_bottom"));
 	} // end addBoilers()
 	
+	private void addExtractors() 
+	{
+		this.createFacingBlock(YATMBlocks.STEEL_EXTRACTOR.get(), YATMItems.STEEL_EXTRACTOR_ITEM.get(), YATMBlockStateProvider.EXTRACTOR_MODEL);
+		
+	} // end addExtractors()
+	
 	private void addInjectors() 
 	{
 		this.createFacingBlock(YATMBlocks.STEEL_INJECTOR.get(), YATMItems.STEEL_INJECTOR_ITEM.get(), YATMBlockStateProvider.INJECTOR_MODEL);
 		
-	} // end addInjectors
+	} // end addInjectors()
 	
 	private void addSolarPanels() 
 	{
