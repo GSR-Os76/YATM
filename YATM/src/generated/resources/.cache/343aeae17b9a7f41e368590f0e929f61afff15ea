@@ -1,4 +1,4 @@
-// 1.20.1	2023-09-08T21:27:42.6273013	Block States: gsr_yatm
+// 1.20.1	2023-09-09T21:07:19.4832242	Block States: gsr_yatm
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 a2a385d05e4f86cda9dd2c5a246077dac4e32579 assets/gsr_yatm/blockstates/advanced_solar_panel.json
 933660d749d6ccd2fe68c8216e2e98db21104e97 assets/gsr_yatm/blockstates/aurum_deminutus.json
@@ -111,6 +111,7 @@ e203b44732aa0a9fe3292c4ac1785eb491e795d7 assets/gsr_yatm/blockstates/spider_vine
 53be2dad77e6aaecb3b56dca785a115aafaed4f9 assets/gsr_yatm/blockstates/steel_bioler.json
 559e6538aa3e94a892299a305fd8d331e6bd477d assets/gsr_yatm/blockstates/steel_boiler.json
 52d28ca00e6680eed39791ef28e5f619c56a9524 assets/gsr_yatm/blockstates/steel_boiler_tank.json
+7ee7182a0dc1ec41062df71d04cc031d644c6e90 assets/gsr_yatm/blockstates/steel_crystallizer.json
 2d40d2dffe25be9165eb789d38fedfd02d13ea27 assets/gsr_yatm/blockstates/steel_extractor.json
 414fc1d1c85f5e77fdb42f9cd7fad17796f3f561 assets/gsr_yatm/blockstates/steel_injector.json
 470af715e371a15d94a81276628d2225d1523ffb assets/gsr_yatm/blockstates/stripped_rubber_log.json
@@ -427,6 +428,7 @@ af8bd795fc533236b07cb40603e6c274a54a99b2 assets/gsr_yatm/models/item/soul_afflic
 f3dcb27fe4c6a575aede9733524d7e4f0f5f37b2 assets/gsr_yatm/models/item/steel_bioler.json
 f87b904ee69a594d837bf3565db421a86c763b78 assets/gsr_yatm/models/item/steel_boiler.json
 c8727fa0c3489da6abe0f6273cc6635d3b8e88cd assets/gsr_yatm/models/item/steel_boiler_tank.json
+cae289c192ba12d79a64335460fd440fdc956b1c assets/gsr_yatm/models/item/steel_crystallizer.json
 94fe76f66d98230ca594c59701eafa7fef545d69 assets/gsr_yatm/models/item/steel_extractor.json
 3d7943f77daa04f6a567ff1ae38dadb5d69ebe4f assets/gsr_yatm/models/item/steel_injector.json
 e9a14964307461480f82a1adfecf61de9df90ee0 assets/gsr_yatm/models/item/stripped_rubber_log.json
