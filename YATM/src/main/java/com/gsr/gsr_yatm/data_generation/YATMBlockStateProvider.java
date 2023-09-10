@@ -356,12 +356,14 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	private void addBiolers() 
 	{
-		this.createBioler(YATMBlocks.STEEL_BIOLER.get(), YATMItems.STEEL_BIOLER_ITEM.get(),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/steel_bioler_side_ports"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_port_sides"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_bottom"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_top"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_inside"));
+//		this.createBioler(YATMBlocks.STEEL_BIOLER.get(), YATMItems.STEEL_BIOLER_ITEM.get(),
+//				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/steel_bioler_side_ports"), 
+//				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_port_sides"), 
+//				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_bottom"), 
+//				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_top"), 
+//				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_inside"));
+//		
+		this.createFacingBlock(YATMBlocks.STEEL_BIOLER.get(), YATMItems.STEEL_BIOLER_ITEM.get(), YATMBlockStateProvider.BIOLER_MODEL);
 		
 	} // end addBioler()
 	
