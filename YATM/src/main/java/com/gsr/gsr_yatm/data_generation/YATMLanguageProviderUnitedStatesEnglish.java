@@ -167,6 +167,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		
 		
+		this.add(YATMBlocks.CONDUIT_VINES.get(), "Conduit Vines");
+		
 		this.add(YATMBlocks.ONE_CU_WIRE.get(), "1cu Wire");
 		this.add(YATMBlocks.EIGHT_CU_WIRE.get(), "8cu Wire");
 		this.add(YATMBlocks.SIXTYFOUR_CU_WIRE.get(), "64cu Wire");
@@ -242,6 +244,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.IRON_WIRE_DIE.get(), "Iron Die (Wire)");
 		this.add(YATMItems.STEEL_WIRE_DIE.get(), "Steel Die (Wire)");
 		
+		this.add(YATMItems.FOLIAR_STEEL.get(), "Foliar Steel");
 		this.add(YATMItems.SILVER_INGOT.get(), "Silver Ingot");
 		this.add(YATMItems.STEEL_INGOT.get(), "Steel Ingot");
 		this.add(YATMItems.RUBBER_BAR.get(), "Rubber Bar");

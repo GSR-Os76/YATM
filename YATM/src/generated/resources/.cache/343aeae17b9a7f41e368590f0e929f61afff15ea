@@ -1,4 +1,4 @@
-// 1.20.1	2023-09-10T14:24:36.044449	Block States: gsr_yatm
+// 1.20.1	2023-09-11T13:28:55.1094569	Block States: gsr_yatm
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 a2a385d05e4f86cda9dd2c5a246077dac4e32579 assets/gsr_yatm/blockstates/advanced_solar_panel.json
 933660d749d6ccd2fe68c8216e2e98db21104e97 assets/gsr_yatm/blockstates/aurum_deminutus.json
@@ -8,6 +8,7 @@ fbdaaebb7d180764f62e830d5447f4ddc79da814 assets/gsr_yatm/blockstates/brown_shulk
 e52cc8590734cec66205bfa79abdf13bd4b02fab assets/gsr_yatm/blockstates/carcass_root_foliage.json
 57e2392453b5140472749919b02bb7b3a4e64871 assets/gsr_yatm/blockstates/carcass_root_rooted_dirt.json
 ad16a039cbdba2953767cea67ea6b4086d64cd82 assets/gsr_yatm/blockstates/carcass_root_rooted_netherrack.json
+4fdea21dc3befc0c70d511b2b3f4fbda16023c27 assets/gsr_yatm/blockstates/conduit_vines.json
 512f5a51808b33a82c1bdebd911170ebbd958e7d assets/gsr_yatm/blockstates/cotton.json
 910242e32b25f2fff4ad1c68a5eb97fa066dde64 assets/gsr_yatm/blockstates/crude_battery_solar_panel.json
 11599143ade131f4ecd7aa482681588fe08a52b5 assets/gsr_yatm/blockstates/crude_solar_panel.json
@@ -140,6 +141,7 @@ abf77bd975f10242a94ddc521afe1a15f7a92521 assets/gsr_yatm/models/block/carcass_ro
 f914c54c76ca7ca9d2d2feb0c3109143b163f4b0 assets/gsr_yatm/models/block/carcass_root_rooted_dirt_young.json
 190cb50816704135ee94fc386405edaff7509fdd assets/gsr_yatm/models/block/carcass_root_rooted_netherrack_old.json
 a70803cb9769915244f048ea5a3fe185a6e3f052 assets/gsr_yatm/models/block/carcass_root_rooted_netherrack_young.json
+7ec2ccd1bcb0d85778d0e92a5cc7052d0ec0eef1 assets/gsr_yatm/models/block/conduit_vines_face.json
 632b46ac607cae4785a89a823c5061bb23edbbe8 assets/gsr_yatm/models/block/cotton_four.json
 18d55174d6ed8a433cb11007e46070fedbdd9226 assets/gsr_yatm/models/block/cotton_one.json
 75b2d8cabd1cae51ba6252ccf0457ee1a3901501 assets/gsr_yatm/models/block/cotton_three.json

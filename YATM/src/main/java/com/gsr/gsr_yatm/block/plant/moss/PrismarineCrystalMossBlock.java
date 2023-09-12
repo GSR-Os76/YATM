@@ -82,12 +82,12 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 		this.m_shape = shape;
 		
 		BlockState def = this.stateDefinition.any().setValue(PrismarineCrystalMossBlock.WATERLOGGED, false);	
-		def = def.setValue(CAN_SPREAD, true);
-		for(BooleanProperty p : HAS_FACE_PROPERTIES_BY_DIRECTION.values()) 
+		def = def.setValue(PrismarineCrystalMossBlock.CAN_SPREAD, true);
+		for(BooleanProperty p : PrismarineCrystalMossBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.values()) 
 		{
 			def = def.setValue(p, false);
 		}
-		for(IntegerProperty p : AGE_PROPERTIES_BY_DIRECTION.values()) 
+		for(IntegerProperty p : PrismarineCrystalMossBlock.AGE_PROPERTIES_BY_DIRECTION.values()) 
 		{
 			def = def.setValue(p, 0);
 		}
@@ -154,13 +154,13 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 		}
 		
 		BlockState changedTo = level.getBlockState(changedPosition);
-		BooleanProperty faceProp = HAS_FACE_PROPERTIES_BY_DIRECTION.get(twrdsChang);
+		BooleanProperty faceProp = PrismarineCrystalMossBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(twrdsChang);
 		if(state.getValue(faceProp) && !Block.isFaceFull(changedTo.getBlockSupportShape(level, changedPosition), twrdsChang.getOpposite())) 
 		{
-			BlockState updState = state.setValue(faceProp, false).setValue(AGE_PROPERTIES_BY_DIRECTION.get(twrdsChang), 0);
+			BlockState updState = state.setValue(faceProp, false).setValue(PrismarineCrystalMossBlock.AGE_PROPERTIES_BY_DIRECTION.get(twrdsChang), 0);
 			if(!level.isClientSide) 
 			{
-				if(!Direction.stream().anyMatch((d) -> updState.getValue(HAS_FACE_PROPERTIES_BY_DIRECTION.get(d))))
+				if(!Direction.stream().anyMatch((d) -> updState.getValue(PrismarineCrystalMossBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(d))))
 				{
 					level.setBlock(position, Blocks.AIR.defaultBlockState(), 3);
 				}
@@ -184,8 +184,8 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 	{
 		PrismarineCrystalMossBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.values().forEach((p) -> builder.add(p));
 		PrismarineCrystalMossBlock.AGE_PROPERTIES_BY_DIRECTION.values().forEach((p) -> builder.add(p));
-		builder.add(CAN_SPREAD);
-		builder.add(WATERLOGGED);
+		builder.add(PrismarineCrystalMossBlock.CAN_SPREAD);
+		builder.add(PrismarineCrystalMossBlock.WATERLOGGED);
 	} // end createBlockStateDefinition()
 	
 	@Override @Nullable
@@ -227,7 +227,7 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 	@Override
 	public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockStateSecond, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPosSecond)
 	{
-		if (blockState.getValue(WATERLOGGED))
+		if (blockState.getValue(PrismarineCrystalMossBlock.WATERLOGGED))
 		{
 			levelAccessor.scheduleTick(blockPos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
 		}
@@ -238,7 +238,7 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 	@SuppressWarnings("deprecation")
 	public FluidState getFluidState(BlockState updateShape)
 	{
-		return updateShape.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(updateShape);
+		return updateShape.getValue(PrismarineCrystalMossBlock.WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(updateShape);
 	} // end getFluidState
 
 
@@ -309,14 +309,14 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 	
 	protected void tryPropagate(ServerLevel level, BlockState startState, BlockPos pos, RandomSource random) 
 	{
-		if(!startState.getValue(CAN_SPREAD) || !startState.getFluidState().is(Fluids.WATER)) 
+		if(!startState.getValue(PrismarineCrystalMossBlock.CAN_SPREAD) || !startState.getFluidState().is(Fluids.WATER)) 
 		{
 			return;
 		}
 		// attempt multiple times.
 		for(int i = 0; i < 6; i++) 
 		{
-			BlockPos toCheck = pos.offset(SPREADABLE_RELATIVE_POSITIONS.get(random.nextIntBetweenInclusive(0, SPREADABLE_RELATIVE_POSITIONS.size() - 1)));
+			BlockPos toCheck = pos.offset(PrismarineCrystalMossBlock.SPREADABLE_RELATIVE_POSITIONS.get(random.nextIntBetweenInclusive(0, PrismarineCrystalMossBlock.SPREADABLE_RELATIVE_POSITIONS.size() - 1)));
 			if(level.isLoaded(toCheck)); 
 			{
 				BlockState toReplace = level.getBlockState(toCheck);
@@ -327,7 +327,7 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 						BlockState setRes = this.getStateForPlacement(level, toCheck, toReplace, simulatedClickedFace);
 						if(setRes != null) 
 						{
-							level.setBlock(toCheck, setRes.setValue(CAN_SPREAD, PlantData.isHorizontalGrowthUnbound(level)), 3);
+							level.setBlock(toCheck, setRes.setValue(PrismarineCrystalMossBlock.CAN_SPREAD, PlantData.isHorizontalGrowthUnbound(level)), 3);
 							return;
 						}
 					}

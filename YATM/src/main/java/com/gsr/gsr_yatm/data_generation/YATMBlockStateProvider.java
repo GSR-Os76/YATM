@@ -2,6 +2,7 @@ package com.gsr.gsr_yatm.data_generation;
 
 import java.util.List;
 import java.util.function.BiConsumer;
+import java.util.function.Consumer;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -9,6 +10,7 @@ import org.joml.Vector2i;
 
 import com.google.common.collect.ImmutableList;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.block.FaceBlock;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.device.bioler.BiolerBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
@@ -25,6 +27,7 @@ import com.gsr.gsr_yatm.block.plant.tree.SelfLayeringSaplingBlock;
 import com.gsr.gsr_yatm.block.plant.tree.TappedLogBlock;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
+import com.gsr.gsr_yatm.utilities.DirectionUtil;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 
 import net.minecraft.core.Direction;
@@ -50,6 +53,7 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
+import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder.PartBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -108,6 +112,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	
 	public static final ModelFile SOLAR_PANEL_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/solar_panel"));
+	
+	public static final ModelFile CONDUIT_VINES_PARALLEL_CROSSLINK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/conduit_vines_parallel_crosslink"));
 	
 	private static final List<Direction> HIGH_DIRECTIONS = ImmutableList.of(Direction.UP, Direction.NORTH, Direction.EAST);
 	public static final ModelFile WIRE_BRANCH_HIGH_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/wire_branch_high"));
@@ -435,6 +441,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	private void addConduits() 
 	{
+		this.createConduitVine(YATMBlocks.CONDUIT_VINES.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/conduit_vines"), YATMBlockStateProvider.CONDUIT_VINES_PARALLEL_CROSSLINK_MODEL);
+		
 		this.createWire(YATMBlocks.ONE_CU_WIRE.get(), YATMItems.ONE_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/one_cu_wire"));
 		this.createWire(YATMBlocks.EIGHT_CU_WIRE.get(), YATMItems.EIGHT_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/eight_cu_wire"));
 		this.createWire(YATMBlocks.SIXTYFOUR_CU_WIRE.get(), YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/sixtyfour_cu_wire"));
@@ -546,8 +554,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		String nameTwo = name + "_two";
 		//String nameThree = name + "_three";
 		//String nameFour = name + "_four";
-		this.models().getBuilder(nameOne).parent(GLOW_LICHEN).texture("glow_lichen", textureOne).renderType(CUTOUT_RENDER_TYPE);
-		this.models().getBuilder(nameTwo).parent(GLOW_LICHEN).texture("glow_lichen", textureTwo).renderType(CUTOUT_RENDER_TYPE);
+		this.models().getBuilder(nameOne).parent(YATMBlockStateProvider.GLOW_LICHEN).texture("glow_lichen", textureOne).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().getBuilder(nameTwo).parent(YATMBlockStateProvider.GLOW_LICHEN).texture("glow_lichen", textureTwo).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
 		//this.models().getBuilder(nameThree).parent(GLOW_LICHEN).texture("glow_lichen", textureThree).renderType(CUTOUT_RENDER_TYPE);
 		//this.models().getBuilder(nameFour).parent(GLOW_LICHEN).texture("glow_lichen", textureFour).renderType(CUTOUT_RENDER_TYPE);
 		ModelFile modelOne = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameOne));
@@ -921,10 +929,11 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	} // end createFaceFacingBlock()
 	
 	
+	@SuppressWarnings("unused")
 	private void createBioler(@NotNull BiolerBlock block, @NotNull Item item, @NotNull ResourceLocation portTexture, @NotNull ResourceLocation sideTexture, @NotNull ResourceLocation bottomTexture, @NotNull ResourceLocation topTexture, @NotNull ResourceLocation insideTexture) 
 	{
 		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
-		this.models().getBuilder(name).parent(BIOLER_MODEL)
+		this.models().getBuilder(name).parent(YATMBlockStateProvider.BIOLER_MODEL)
 		.texture("0", portTexture)
 		.texture("1", sideTexture)
 		.texture("2", bottomTexture)
@@ -985,6 +994,51 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(unpairedModel);
 	} // end createBoilerTank()
 	
+	
+	private void createConduitVine(@NotNull Block block, @NotNull ResourceLocation faceTexture, @NotNull ModelFile parallelCrosslink) 
+	{
+		String faceName = YATMBlockStateProvider.getModelLocationNameFor(block) + "_face";
+		this.models().getBuilder(faceName).parent(YATMBlockStateProvider.GLOW_LICHEN).texture("glow_lichen", faceTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		ModelFile faceModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, faceName));
+		
+		MultiPartBlockStateBuilder builder = this.getMultipartBuilder(block);
+		IConduit.DIRECTION_PROPERTIES_BY_DIRECTION.forEach(new BiConsumer<>() 
+		{
+			@Override
+			public void accept(Direction dir, BooleanProperty val)
+			{
+				Vector2i rot = YATMBlockStateProvider.rotationForDirectionFromNorth(dir);
+				builder.part()
+				.modelFile(faceModel)
+				.rotationX(rot.x)
+				.rotationY(rot.y)
+				.uvLock(false)
+				.addModel()
+				.condition(val, true);
+				
+			} // end accept()			
+		} // end anonymous type
+		);
+		List.of(Direction.Axis.values()).forEach(new Consumer<>() 
+		{
+			@Override
+			public void accept(Direction.Axis axis)
+			{
+				Vector2i rot = YATMBlockStateProvider.rotationForDirectionFromUp(DirectionUtil.positiveDirectionOnAxis(axis));
+				PartBuilder partBuilder = builder.part()
+				.modelFile(parallelCrosslink)
+				.rotationX(rot.x)
+				.rotationY(rot.y)
+				.uvLock(false)
+				.addModel();
+				List.of(Direction.values()).forEach((d) -> partBuilder.condition(
+						FaceBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(d), 
+						d.getAxis() == axis));
+				
+			} // end accept()	
+		} // end anonymous type
+		);
+	} // end createConduitVines
 	
 	private void createWire(@NotNull Block block, @NotNull Item item, @NotNull ResourceLocation texture) 
 	{

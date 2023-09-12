@@ -1,0 +1,29 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"0": "gsr_yatm:block/device/conduit/current/conduit_vines_crosslink_one",
+		"1": "gsr_yatm:block/device/conduit/current/conduit_vines_crosslink_two",
+		"particle": "#2"
+	},
+	"elements": [
+		{
+			"from": [2, 0, 8],
+			"to": [15, 16, 8],
+			"faces": {
+				"north": {"uv": [13, 0, 0, 16], "texture": "#0"},
+				"south": {"uv": [0, 0, 13, 16], "texture": "#0"}
+			}
+		},
+		{
+			"from": [7, 0, 1],
+			"to": [7, 16, 15],
+			"rotation": {"angle": -22.5, "axis": "y", "origin": [8, 0, 2]},
+			"faces": {
+				"east": {"uv": [14, 0, 0, 16], "texture": "#1"},
+				"west": {"uv": [0, 0, 14, 16], "texture": "#1"}
+			}
+		}
+	]
+}

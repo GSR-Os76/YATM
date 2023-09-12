@@ -66,10 +66,12 @@ public class YATMBlockProperties
 	public static final Properties DATA_DEVICE_PROPERTIES = Properties.of().mapColor(MapColor.METAL).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2.0F, 3.0F).sound(SoundType.FROGLIGHT);
 	
 	public static final Properties STEEL_MACHINE_PROPERTIES = Properties.of().mapColor(MapColor.METAL).instrument(NoteBlockInstrument.IRON_XYLOPHONE).requiresCorrectToolForDrops().strength(6.0F, 8.0F).sound(SoundType.METAL);
-	public static final Properties STEEL_PLANT_MACHINE_PROPERTIES = Properties.of().mapColor(MapColor.METAL).instrument(NoteBlockInstrument.IRON_XYLOPHONE).requiresCorrectToolForDrops().strength(6.0F, 8.0F).sound(SoundType.METAL).noCollission().noOcclusion();
+	public static final Properties STEEL_PLANT_MACHINE_PROPERTIES = Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(6.0F, 8.0F).sound(SoundType.METAL).noCollission().noOcclusion();
 	public static final Properties SOLAR_PANEL_PROPERTIES = Properties.of().mapColor(MapColor.METAL).instrument(NoteBlockInstrument.PLING).requiresCorrectToolForDrops().strength(3.0f).sound(SoundType.METAL);
 	public static final Properties WIRE_PROPERTIES = Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(2.0f).sound(SoundType.METAL);
 	public static final Properties STEEL_PIPE_PROPERTIES = Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(2.0f).sound(SoundType.METAL);
+	
+	public static final Properties CONDUIT_VINES = Properties.of().mapColor(MapColor.METAL)/*.requiresCorrectToolForDrops()*/.strength(2.0F, 3.0F).sound(SoundType.VINE).noCollission().noOcclusion();
 	
 	// TODO, make color customizable by method
 	public static final Properties LIQUID_PROPERTIES = Properties.of()/* .mapColor(MapColor.WATER) */.replaceable().noCollission().strength(100.0F).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY);

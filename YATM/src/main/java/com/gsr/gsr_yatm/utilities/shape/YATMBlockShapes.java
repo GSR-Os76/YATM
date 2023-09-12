@@ -7,6 +7,7 @@ import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
+import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
@@ -266,6 +267,51 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 	
+	
+	public static final ICollisionVoxelShapeProvider CONDUIT_VINES = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape HAS_UP = Block.box(0d, 15d, 0d, 16d, 16d, 16d);
+		private static final VoxelShape HAS_DOWN = Block.box(0d, 0d, 0d, 16d, 1d, 16d);
+		private static final VoxelShape HAS_NORTH = Block.box(0d, 0d, 0d, 16d, 16d, 1d);
+		private static final VoxelShape HAS_SOUTH = Block.box(0d, 0d, 15d, 16d, 16d, 16d);
+		private static final VoxelShape HAS_EAST = Block.box(15d, 0d, 0d, 16d, 16d, 16d);
+		private static final VoxelShape HAS_WEST = Block.box(0d, 0d, 0d, 1d, 16d, 16d);
+
+		@Override
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		{
+			VoxelShape result = Shapes.empty();
+
+			if (blockState.getValue(YATMBlockStateProperties.HAS_UP))
+			{
+				result = Shapes.or(result, HAS_UP);
+			}
+			if (blockState.getValue(YATMBlockStateProperties.HAS_DOWN))
+			{
+				result = Shapes.or(result, HAS_DOWN);
+			}
+			if (blockState.getValue(YATMBlockStateProperties.HAS_NORTH))
+			{
+				result = Shapes.or(result, HAS_NORTH);
+			}
+			if (blockState.getValue(YATMBlockStateProperties.HAS_SOUTH))
+			{
+				result = Shapes.or(result, HAS_SOUTH);
+			}
+			if (blockState.getValue(YATMBlockStateProperties.HAS_EAST))
+			{
+				result = Shapes.or(result, HAS_EAST);
+			}
+			if (blockState.getValue(YATMBlockStateProperties.HAS_WEST))
+			{
+				result = Shapes.or(result, HAS_WEST);
+			}
+			
+			// TODO, add parallel crosslink shapes in once designed
+			
+			return result;
+		} // end getShape()
+	};
 	
 		
 	public static final ICollisionVoxelShapeProvider STEEL_FLUID_CONDUIT_SHAPE = new ICollisionVoxelShapeProvider()

@@ -1,9 +1,11 @@
 package com.gsr.gsr_yatm.data_generation;
 
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.block.FaceBlock;
 import com.gsr.gsr_yatm.block.plant.OnceFruitingPlantStages;
 import com.gsr.gsr_yatm.block.plant.fern.AurumDeminutusBlock;
 import com.gsr.gsr_yatm.block.plant.moss.PrismarineCrystalMossBlock;
@@ -178,6 +180,8 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		
 		
 		
+		this.faceDropSelf(YATMBlocks.CONDUIT_VINES.get());
+		
 		this.dropSelf(YATMBlocks.ONE_CU_WIRE.get());
 		this.dropSelf(YATMBlocks.EIGHT_CU_WIRE.get());
 		this.dropSelf(YATMBlocks.SIXTYFOUR_CU_WIRE.get());
@@ -205,6 +209,62 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		return YATMBlocks.BLOCKS.getEntries().stream().map((ro) -> ro.get()).toList();
 	} // end getKnownBlocks()
 
+	
+	
+	protected void faceDropSelf(@NotNull FaceBlock block) 
+	{
+//		Function<Direction, LootPool.Builder> forFace = (d) -> 
+//		LootPool.lootPool()
+//		.when(
+//				LootItemBlockStatePropertyCondition
+//				.hasBlockStateProperties(block)
+//				.setProperties(StatePropertiesPredicate.Builder.properties()
+//						.hasProperty(FaceBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(d), true)
+//						)
+//				)
+//		.add(LootItem
+//				.lootTableItem(block.asItem())
+//				.apply(
+//						SetItemCountFunction
+//						.setCount(ConstantValue.exactly(1.0f)
+//								)
+//						)
+//				)
+//		;
+//
+//		BiFunction<Direction, LootTable.Builder, LootTable.Builder> addFace = (d, t) -> t.withPool(forFace.apply(d));
+//		
+//		LootTable.Builder table = addFace.apply(Direction.WEST, addFace.apply(Direction.EAST, addFace.apply(Direction.SOUTH, addFace.apply(Direction.NORTH, addFace.apply(Direction.DOWN, addFace.apply(Direction.UP, LootTable.lootTable()))))));
+//		this.add(block, (b) -> table);
+		this.faceDropOther(block, block.asItem());
+	} // end faceDropSelf()
+	
+	protected void faceDropOther(@NotNull FaceBlock block, @NotNull Item item) 
+	{
+		Function<Direction, LootPool.Builder> forFace = (d) -> 
+		LootPool.lootPool()
+		.when(
+				LootItemBlockStatePropertyCondition
+				.hasBlockStateProperties(block)
+				.setProperties(StatePropertiesPredicate.Builder.properties()
+						.hasProperty(FaceBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(d), true)
+						)
+				)
+		.add(LootItem
+				.lootTableItem(item)
+				.apply(
+						SetItemCountFunction
+						.setCount(ConstantValue.exactly(1.0f)
+								)
+						)
+				)
+		;
+
+		BiFunction<Direction, LootTable.Builder, LootTable.Builder> addFace = (d, t) -> t.withPool(forFace.apply(d));
+		
+		LootTable.Builder table = addFace.apply(Direction.WEST, addFace.apply(Direction.EAST, addFace.apply(Direction.SOUTH, addFace.apply(Direction.NORTH, addFace.apply(Direction.DOWN, addFace.apply(Direction.UP, LootTable.lootTable()))))));
+		this.add(block, (b) -> table);
+	} // end faceDropSelf()
 	
 	
 	protected void addShulkwart(@NotNull Block shulkwart, @NotNull Item horn) 

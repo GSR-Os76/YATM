@@ -33,6 +33,7 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.HANGING_POT_HOOK_ITEM.get());
 		
 		
+		this.basicItem(YATMItems.CONDUIT_VINES_ITEM.get());
 		// this.basicItem(YATMItems.STEEL_FLUID_EXCHANGER.get());
 
 		this.basicItem(YATMItems.ONE_CU_CURRENT_REGULATOR.get());
@@ -81,7 +82,7 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.IRON_WIRE_DIE.get());
 		
 		// wheel goes here
-		
+		this.basicItem(YATMItems.FOLIAR_STEEL.get());
 		this.basicItem(YATMItems.SILVER_INGOT.get());
 		this.basicItem(YATMItems.STEEL_INGOT.get());
 		this.basicItem(YATMItems.RUBBER_BAR.get());

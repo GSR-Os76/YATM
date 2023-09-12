@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-03T13:17:41.1045668	Item Models: gsr_yatm
+// 1.20.1	2023-09-11T13:08:02.1021194	Item Models: gsr_yatm
 39dc65663f22bc3413323e63119c165dc4f51c76 assets/gsr_yatm/models/item/aurum_deminutus_fiddle_head.json
 4bab78a47a4fc45a258b74c9012f61de899aee93 assets/gsr_yatm/models/item/aurum_deminutus_frond.json
 b860c72785d969dab4933b80dd6652fa794539bf assets/gsr_yatm/models/item/aurum_fan.json
@@ -9,6 +9,7 @@ e7540048ebe593ee6ab6323cc2f5a0bd0d8ae1cb assets/gsr_yatm/models/item/bio_bottle.
 f6a30b3a697de15d3500b70b6ba416fac0af2251 assets/gsr_yatm/models/item/chorus_bio_bucket.json
 0d66ba15a4235713326dcbcd57771aa5626f31a0 assets/gsr_yatm/models/item/chorus_bottle.json
 93359bca785e8d185d474a22e759f219afad6d63 assets/gsr_yatm/models/item/chorus_bucket.json
+0fb1eae5080f3f9bfb20a4eddd2ddf3d6b268618 assets/gsr_yatm/models/item/conduit_vines.json
 810dbbc752675676f0c7ecb9c2404ce607c708c0 assets/gsr_yatm/models/item/copper_nugget.json
 1bd450dd2572b9b2d59dc14a6b3093238ee8e9d1 assets/gsr_yatm/models/item/cotton_bolls.json
 10d337aee40eaacc52c6bd739483e850a80876ec assets/gsr_yatm/models/item/cotton_seeds.json
@@ -31,6 +32,7 @@ d7d95a23a1602ab2f8388942b90f9a14082f2469 assets/gsr_yatm/models/item/essence_of_
 403833559c190fed01cd860a30335dd9545cba3d assets/gsr_yatm/models/item/fivehundredtwelve_cu_current_breaker_component.json
 00d5286a032b83c1776cfd81385f4233aee6323a assets/gsr_yatm/models/item/fivehundredtwelve_cu_current_fuse_component.json
 dc0d6842adbf21ba5b5330616b224d0686788884 assets/gsr_yatm/models/item/fivehundredtwelve_cu_current_regulator_component.json
+bd6d19cb0497c729df1f59e2634d46a4d22982ec assets/gsr_yatm/models/item/foliar_steel.json
 040c589f90c7240f0e2a43a2fd18cc08362735d7 assets/gsr_yatm/models/item/fourthousandnintysix_cu_current_breaker_component.json
 0f7550228501ab8b3ca5b4945e29dfd24e1ffef7 assets/gsr_yatm/models/item/fourthousandnintysix_cu_current_fuse_component.json
 c302c06f8d16d172aff072633b16327f6e98c883 assets/gsr_yatm/models/item/fourthousandnintysix_cu_current_regulator_component.json
