@@ -83,6 +83,7 @@ public class YATMBlockTags extends BlockTagsProvider
 	@Override
 	protected void addTags(Provider provider)
 	{
+		this.tag(BlockTags.CLIMBABLE).add(YATMBlocks.CONDUIT_VINES.get());
 		this.tag(BlockTags.DIRT).add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get());
 		// TODO, done? separate soul and regular into individual their log tags, add those tags to here, like vanilla does
 		this.tag(BlockTags.FLOWERS).add(YATMBlocks.RUBBER_LEAVES_FLOWERING.get()); // maybe eventually add soul rubber flowers too, but seems like they should be special, and I dunno how to modify minecraft entity beehaviours

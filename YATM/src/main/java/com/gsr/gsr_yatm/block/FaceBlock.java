@@ -2,10 +2,9 @@ package com.gsr.gsr_yatm.block;
 
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
-
-import java.util.Objects;
 
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 
@@ -42,7 +41,7 @@ public class FaceBlock extends Block
 	@Override
 	public boolean canBeReplaced(BlockState state, BlockPlaceContext context)
 	{
-		return state.is(this);
+		return context.getPlayer().getItemInHand(context.getHand()).getItem() == this.asItem();
 	} // end canBeReplaced()
 
 	@Override
@@ -58,18 +57,16 @@ public class FaceBlock extends Block
 		Level level = context.getLevel();
 		BlockPos position = context.getClickedPos();
 		BlockState replacing = level.getBlockState(position);
-		Direction clickedFace = context.getClickedFace().getOpposite();
+		Direction targetFace = context.getClickedFace().getOpposite();
 		
-		
-		
+
 		BlockState result = replacing.is(this) ? replacing : this.defaultBlockState();
-		BlockPos willBeOnPos = position.relative(clickedFace);
+		BlockPos willBeOnPos = position.relative(targetFace);
 		
-		if (this.canPlaceOn(level, willBeOnPos, level.getBlockState(willBeOnPos), clickedFace.getOpposite()) 
-				&& !this.hasFace(result, clickedFace)
-				&& context.getPlayer().getItemInHand(context.getHand()).getItem() == this.asItem())
+		if (this.canPlaceOn(level, willBeOnPos, level.getBlockState(willBeOnPos), targetFace.getOpposite()) 
+				&& !this.hasFace(result, targetFace))
 		{
-			result = result.setValue(FaceBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(clickedFace), true);
+			result = result.setValue(FaceBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(targetFace), true);
 		}
 		else
 		{
@@ -78,9 +75,11 @@ public class FaceBlock extends Block
 		return result;
 	} // end getStateForPlacement()
 	
-	protected boolean canPlaceOn(BlockGetter getter, BlockPos onPosition, BlockState onState, Direction cansface) 
+	// takes in the position and state of the block that's being placed onto, and the face that's being placed on of that specific block.
+	// if you're trying to add a bottom face you're then placing on the below block's top face.
+	protected boolean canPlaceOn(@NotNull BlockGetter getter, @NotNull BlockPos onPosition, @NotNull BlockState onState, @NotNull Direction cansFace) 
 	{
-		return Block.isFaceFull(onState.getBlockSupportShape(getter, onPosition), cansface);
+		return Block.isFaceFull(onState.getBlockSupportShape(getter, onPosition), cansFace);
 	} // end canPlaceOn()
 	
 	protected boolean hasFace(BlockState state, Direction face) 

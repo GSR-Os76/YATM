@@ -1,4 +1,4 @@
-// 1.20.1	2023-08-06T10:51:29.8826244	Tags for minecraft:block mod id gsr_yatm
+// 1.20.1	2023-09-12T11:10:11.3341405	Tags for minecraft:block mod id gsr_yatm
 ea459db540b319f4bdead7b7f1142fc238c09a8e data/forge/tags/blocks/cactuses.json
 ae063a18d6a78c1df2e70286fb1984ffc87c6b2d data/forge/tags/blocks/netherrack.json
 22817fc3a29127b1c1278ea16d671d7c02dbdeb9 data/forge/tags/blocks/rooted_dirt.json
@@ -30,6 +30,7 @@ fdecd6c72772c252a2b8dcc095c7aa6e1685f4d7 data/gsr_yatm/tags/blocks/rubber_tree_l
 ab467479a645246538e49c55790b101c51194caa data/gsr_yatm/tags/blocks/soul_afflicted_rubber_tree_logs.json
 82099984e0c9ea1f3273cdc2edf12e376dacd6db data/gsr_yatm/tags/blocks/soul_rubber_tree_blocks.json
 cabad7018263250a65993dc1bfafd32b2163b2f7 data/gsr_yatm/tags/blocks/unoxidized_copper_blocks.json
+8cf2e7aea7db23031bbd316a2c327021347911b0 data/minecraft/tags/blocks/climbable.json
 952606965aea7b2cabce0eab939614887720ae6a data/minecraft/tags/blocks/dirt.json
 ae88bd8aabf02699bb3fdbf65bd64fc377fbc780 data/minecraft/tags/blocks/flowers.json
 0cccc0067c64f376033bcafd5e27d2d0e947608b data/minecraft/tags/blocks/flower_pots.json
