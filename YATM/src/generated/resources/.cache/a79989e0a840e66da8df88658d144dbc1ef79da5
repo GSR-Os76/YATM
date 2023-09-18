@@ -1,4 +1,4 @@
-// 1.20.1	2023-09-11T13:08:02.1021194	Item Models: gsr_yatm
+// 1.20.1	2023-09-17T13:42:37.703602	Item Models: gsr_yatm
 39dc65663f22bc3413323e63119c165dc4f51c76 assets/gsr_yatm/models/item/aurum_deminutus_fiddle_head.json
 4bab78a47a4fc45a258b74c9012f61de899aee93 assets/gsr_yatm/models/item/aurum_deminutus_frond.json
 b860c72785d969dab4933b80dd6652fa794539bf assets/gsr_yatm/models/item/aurum_fan.json
@@ -29,6 +29,8 @@ d7d95a23a1602ab2f8388942b90f9a14082f2469 assets/gsr_yatm/models/item/essence_of_
 4e30e119fa1f3be06be14a16a308ed013abbb863 assets/gsr_yatm/models/item/essence_of_decay_bucket.json
 1e2a477c18321e5c5b1af6c24a2aab526c4cfbf3 assets/gsr_yatm/models/item/essence_of_souls_bottle.json
 11e0337c2eeb9e872b4531c85ba86f7035baaf9c assets/gsr_yatm/models/item/essence_of_souls_bucket.json
+2bcd9d1bc656eb8a43d251c6eccf352eb395017b assets/gsr_yatm/models/item/fire_eater_lily_bulb.json
+c348743f987ceead060bd01a86c90f96705f7738 assets/gsr_yatm/models/item/fire_eater_lily_foliage.json
 403833559c190fed01cd860a30335dd9545cba3d assets/gsr_yatm/models/item/fivehundredtwelve_cu_current_breaker_component.json
 00d5286a032b83c1776cfd81385f4233aee6323a assets/gsr_yatm/models/item/fivehundredtwelve_cu_current_fuse_component.json
 dc0d6842adbf21ba5b5330616b224d0686788884 assets/gsr_yatm/models/item/fivehundredtwelve_cu_current_regulator_component.json

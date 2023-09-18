@@ -13,13 +13,13 @@
       "model": "gsr_yatm:block/shulkwart_cryptic"
     },
     "age=4": {
-      "model": "gsr_yatm:block/plant/shulkwart/shulkwart_fruit_one"
+      "model": "gsr_yatm:block/shulkwart_fruit_one"
     },
     "age=5": {
-      "model": "gsr_yatm:block/plant/shulkwart/shulkwart_fruit_two"
+      "model": "gsr_yatm:block/shulkwart_fruit_two"
     },
     "age=6": {
-      "model": "gsr_yatm:block/plant/shulkwart/shulkwart_fruit_three"
+      "model": "gsr_yatm:block/shulkwart_fruit_three"
     },
     "age=7": {
       "model": "gsr_yatm:block/magenta_shulkwart_grown"

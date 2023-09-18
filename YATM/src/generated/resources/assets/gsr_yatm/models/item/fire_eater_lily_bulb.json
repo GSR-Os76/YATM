@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gsr_yatm:item/fire_eater_lily_bulb"
+  }
+}

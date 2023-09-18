@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import com.gsr.gsr_yatm.block.FaceBlock;
 import com.gsr.gsr_yatm.block.plant.OnceFruitingPlantStages;
 import com.gsr.gsr_yatm.block.plant.fern.AurumDeminutusBlock;
+import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
 import com.gsr.gsr_yatm.block.plant.moss.PrismarineCrystalMossBlock;
 import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
 import com.gsr.gsr_yatm.block.plant.vine.OnceFruitVineBodyBlock;
@@ -98,18 +99,17 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		
 		this.add(YATMBlocks.AURUM_DEMINUTUS.get(), (b) -> this.createAurumDeminutusTable());
 		this.dropPottedContents(YATMBlocks.POTTED_AURUM_DEMINUTUS.get());
-		
 		this.dropOther(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), YATMItems.CARCASS_ROOT_CUTTING.get());
 		this.dropSelf(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get());
 		this.dropSelf(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get());
 		this.dropPottedContents(YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE.get());
-		
 		this.add(YATMBlocks.COTTON.get(), this.createCropDrops(YATMBlocks.COTTON.get(), YATMItems.COTTON_BOLLS.get(), YATMItems.COTTON_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(YATMBlocks.COTTON.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
-
+		
+		// TODO, add loot table
+		this.add(YATMBlocks.FIRE_EATER_LILY.get(), this.createFireEaterLilyTable());
+		this.dropPottedContents(YATMBlocks.POTTED_FIRE_EATER_LILY.get());
 		this.dropSelf(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get());
-		
 		this.add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), (b) -> this.createPrismarineCrystalMossTable());
-		
 		this.dropOther(YATMBlocks.FALLEN_SHULKWART_SPORES.get(), YATMItems.SHULKWART_SPORES.get());
 		this.addShulkwart(YATMBlocks.SHULKWART.get(), YATMItems.SHULKWART_HORN.get());
 		this.addShulkwart(YATMBlocks.WHITE_SHULKWART.get(), YATMItems.WHITE_SHULKWART_HORN.get());
@@ -213,29 +213,6 @@ public class YATMBlockLoot extends VanillaBlockLoot
 	
 	protected void faceDropSelf(@NotNull FaceBlock block) 
 	{
-//		Function<Direction, LootPool.Builder> forFace = (d) -> 
-//		LootPool.lootPool()
-//		.when(
-//				LootItemBlockStatePropertyCondition
-//				.hasBlockStateProperties(block)
-//				.setProperties(StatePropertiesPredicate.Builder.properties()
-//						.hasProperty(FaceBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(d), true)
-//						)
-//				)
-//		.add(LootItem
-//				.lootTableItem(block.asItem())
-//				.apply(
-//						SetItemCountFunction
-//						.setCount(ConstantValue.exactly(1.0f)
-//								)
-//						)
-//				)
-//		;
-//
-//		BiFunction<Direction, LootTable.Builder, LootTable.Builder> addFace = (d, t) -> t.withPool(forFace.apply(d));
-//		
-//		LootTable.Builder table = addFace.apply(Direction.WEST, addFace.apply(Direction.EAST, addFace.apply(Direction.SOUTH, addFace.apply(Direction.NORTH, addFace.apply(Direction.DOWN, addFace.apply(Direction.UP, LootTable.lootTable()))))));
-//		this.add(block, (b) -> table);
 		this.faceDropOther(block, block.asItem());
 	} // end faceDropSelf()
 	
@@ -265,8 +242,7 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		LootTable.Builder table = addFace.apply(Direction.WEST, addFace.apply(Direction.EAST, addFace.apply(Direction.SOUTH, addFace.apply(Direction.NORTH, addFace.apply(Direction.DOWN, addFace.apply(Direction.UP, LootTable.lootTable()))))));
 		this.add(block, (b) -> table);
 	} // end faceDropSelf()
-	
-	
+		
 	protected void addShulkwart(@NotNull Block shulkwart, @NotNull Item horn) 
 	{
 	      this.add(shulkwart, this.createShulkwartTable(shulkwart, horn));
@@ -356,6 +332,43 @@ public class YATMBlockLoot extends VanillaBlockLoot
 										.setCount(
 												ConstantValue
 												.exactly(4.0f)
+												)
+										)
+								)
+						);
+	} // end createAurumDeminutusTable()
+	
+	
+	protected @NotNull LootTable.Builder createFireEaterLilyTable() 
+	{
+		LootItemCondition.Builder fullGrown = LootItemBlockStatePropertyCondition
+				.hasBlockStateProperties(YATMBlocks.FIRE_EATER_LILY.get())
+				.setProperties(StatePropertiesPredicate.Builder.properties()
+						.hasProperty(FireEaterLilyBlock.AGE, YATMBlocks.FIRE_EATER_LILY.get().getMaxAge()));
+
+		return LootTable.lootTable()
+				.withPool(
+						LootPool.lootPool()
+						.add(LootItem.lootTableItem(YATMItems.FIRE_EATER_LILY_BULB.get())
+								.apply(
+										SetItemCountFunction
+										.setCount(
+												ConstantValue
+												.exactly(1.0f)
+												)
+										)
+								)
+						)
+				// TODO, remeber or deduce how to add chance loot drops, then maybe make the drop count variable and pseudorandom
+				.withPool(
+						LootPool.lootPool()
+						.when(fullGrown)
+						.add(LootItem.lootTableItem(YATMItems.FIRE_EATER_LILY_FOLIAGE.get())
+								.apply(
+										SetItemCountFunction
+										.setCount(
+												ConstantValue
+												.exactly(2.0f)
 												)
 										)
 								)

@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "age=0,lit=false": {
+      "model": "gsr_yatm:block/fire_eater_lily_bulb_unlit"
+    },
+    "age=0,lit=true": {
+      "model": "gsr_yatm:block/fire_eater_lily_bulb_lit"
+    },
+    "age=1,lit=false": {
+      "model": "gsr_yatm:block/fire_eater_lily_bulb_unlit"
+    },
+    "age=1,lit=true": {
+      "model": "gsr_yatm:block/fire_eater_lily_bulb_lit"
+    },
+    "age=2,lit=false": {
+      "model": "gsr_yatm:block/fire_eater_lily_young_unlit"
+    },
+    "age=2,lit=true": {
+      "model": "gsr_yatm:block/fire_eater_lily_young_lit"
+    },
+    "age=3,lit=false": {
+      "model": "gsr_yatm:block/fire_eater_lily_young_unlit"
+    },
+    "age=3,lit=true": {
+      "model": "gsr_yatm:block/fire_eater_lily_young_lit"
+    },
+    "age=4,lit=false": {
+      "model": "gsr_yatm:block/fire_eater_lily_adolescent_unlit"
+    },
+    "age=4,lit=true": {
+      "model": "gsr_yatm:block/fire_eater_lily_adolescent_lit"
+    },
+    "age=5,lit=false": {
+      "model": "gsr_yatm:block/fire_eater_lily_adolescent_unlit"
+    },
+    "age=5,lit=true": {
+      "model": "gsr_yatm:block/fire_eater_lily_adolescent_lit"
+    },
+    "age=6,lit=false": {
+      "model": "gsr_yatm:block/fire_eater_lily_adolescent_unlit"
+    },
+    "age=6,lit=true": {
+      "model": "gsr_yatm:block/fire_eater_lily_adolescent_lit"
+    },
+    "age=7,lit=false": {
+      "model": "gsr_yatm:block/fire_eater_lily_old_unlit"
+    },
+    "age=7,lit=true": {
+      "model": "gsr_yatm:block/fire_eater_lily_old_lit"
+    }
+  }
+}

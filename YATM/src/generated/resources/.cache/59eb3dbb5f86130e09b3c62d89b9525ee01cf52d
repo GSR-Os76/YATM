@@ -1,4 +1,4 @@
-// 1.20.1	2023-09-11T13:08:02.0955899	Loot Tables
+// 1.20.1	2023-09-17T13:42:37.6992346	Loot Tables
 c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
 e7fbd17d28377f6d02cdd2df79fd21c9ce25491d data/gsr_yatm/loot_tables/blocks/aurum_deminutus.json
@@ -26,6 +26,7 @@ e032d71f0fd762c60f7a54a45f395d84644db316 data/gsr_yatm/loot_tables/blocks/data_s
 da98821a5d43236e70e3096c49fba388f188ee83 data/gsr_yatm/loot_tables/blocks/enameled_sixtyfour_cu_wire.json
 fec70c94dede2f9f6fd5673bf0f1974bb150fdaf data/gsr_yatm/loot_tables/blocks/fallen_shulkwart_spores.json
 64868cc841908508f0147f03b3787b19059182fe data/gsr_yatm/loot_tables/blocks/fancy_rubber_planks.json
+3fdb1168447b6486ed6382bd245b87f00b62e737 data/gsr_yatm/loot_tables/blocks/fire_eater_lily.json
 af61b2aad862896558d719c17c12b2236a3b81eb data/gsr_yatm/loot_tables/blocks/fivehundredtwelve_cu_wire.json
 9b7b80c5ee0230577bac03b27bbd05671be4a7a6 data/gsr_yatm/loot_tables/blocks/fourthousandnintysix_cu_wire.json
 38a306a3f7873936b5fdb85752dccecc8579916b data/gsr_yatm/loot_tables/blocks/gray_shulkwart.json
@@ -49,6 +50,7 @@ cb96598e799c3dd5514a6d7b28cc85a86f9de163 data/gsr_yatm/loot_tables/blocks/phanta
 8c96562f9025551c5e3c2acc42c72209e22485f3 data/gsr_yatm/loot_tables/blocks/pink_shulkwart.json
 abaf400b5fefa8b4dd3f5514f468c0a1294c2654 data/gsr_yatm/loot_tables/blocks/potted_aurum_deminutus.json
 f783d5cbbec1d684af81c483dcd0d57bde68e185 data/gsr_yatm/loot_tables/blocks/potted_carcass_root_foliage.json
+8a8963141185c73d1069731a372e1dffa592ea17 data/gsr_yatm/loot_tables/blocks/potted_fire_eater_lily.json
 1495be7ec03a2ad34b031bf151042d6df73910ca data/gsr_yatm/loot_tables/blocks/potted_rubber_meristem.json
 f8ab2b776accbe0f883829583c371794f98ca399 data/gsr_yatm/loot_tables/blocks/potted_soul_afflicted_rubber_meristem.json
 92d1045a89052f81cd93b2d9f27484025b389129 data/gsr_yatm/loot_tables/blocks/potted_variegated_cactus.json

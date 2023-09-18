@@ -38,6 +38,7 @@ import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootFoliageBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootSupplier;
 import com.gsr.gsr_yatm.block.plant.fern.AurumDeminutusBlock;
+import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.moss.PrismarineCrystalMossBlock;
 import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
@@ -186,6 +187,10 @@ public class YATMBlocks
 	// TODO, perhaps adjust hitbox to match stages closer
 	public static final RegistryObject<CustomSeedCropBlock> COTTON = BLOCKS.register("cotton", () -> new CustomSeedCropBlock(YATMBlockProperties.CROP, YATMItems.COTTON_SEEDS::get));
 
+	// TODO, add in property
+	public static final RegistryObject<FireEaterLilyBlock> FIRE_EATER_LILY = BLOCKS.register("fire_eater_lily", () -> new FireEaterLilyBlock(YATMBlockProperties.FIRE_EATER_LILY, YATMBlockShapes.FIRE_EATER_LILY));
+	public static final RegistryObject<FlowerPotBlock> POTTED_FIRE_EATER_LILY = BLOCKS.register("potted_fire_eater_lily", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.FIRE_EATER_LILY.get(), YATMBlockProperties.FLOWER_POT_PROPERTIES));
+	
 	public static final RegistryObject<PhantasmalShelfFungiBlock> PHANTASMAL_SHELF_FUNGUS = BLOCKS.register("phantasmal_shelf_fungus", () -> new PhantasmalShelfFungiBlock(YATMBlockProperties.PHANTASMAL_SHELF_FUNGUS_PROPERTIES, YATMBlockShapes.PHANTASMAL_SHELF_FUNGUS, YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM::get));
 	
 	public static final RegistryObject<PrismarineCrystalMossBlock> PRISMARINE_CRYSTAL_MOSS = BLOCKS.register("prismarine_crystal_moss", () -> new PrismarineCrystalMossBlock(YATMBlockProperties.PRISMARINE_CRYSTAL_MOSS, YATMBlockShapes.PRISMARINE_CRYSTAL_MOSS, () -> YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get()));
@@ -335,9 +340,10 @@ public class YATMBlocks
 		minecraftFlowerPot.addPlant(YATMBlocks.RUBBER_MERISTEM.getKey().location(), YATMBlocks.POTTED_RUBBER_MERISTEM);
 		minecraftFlowerPot.addPlant(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.getKey().location(), YATMBlocks.POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM);
 		minecraftFlowerPot.addPlant(YATMBlocks.AURUM_DEMINUTUS.getKey().location(), YATMBlocks.POTTED_AURUM_DEMINUTUS);
-		minecraftFlowerPot.addPlant(YATMBlocks.VARIEGATED_CACTUS.getKey().location(), YATMBlocks.POTTED_VARIEGATED_CACTUS);
 		minecraftFlowerPot.addPlant(YATMBlocks.CARCASS_ROOT_FOLIAGE.getKey().location(), YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE);
-
+		minecraftFlowerPot.addPlant(YATMBlocks.FIRE_EATER_LILY.getKey().location(), YATMBlocks.POTTED_FIRE_EATER_LILY);
+		minecraftFlowerPot.addPlant(YATMBlocks.VARIEGATED_CACTUS.getKey().location(), YATMBlocks.POTTED_VARIEGATED_CACTUS);
+		
 	} // end addFlowersToPots()
 	
 	public static void addSapCollectorVariants()

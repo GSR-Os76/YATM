@@ -5,6 +5,7 @@ import org.jetbrains.annotations.NotNull;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
+import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
@@ -56,6 +57,30 @@ public class YATMBlockShapes
 			return SHAPE;
 		} // end getShape()
 	};
+	
+	public static final ICollisionVoxelShapeProvider FIRE_EATER_LILY = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape BULB = Block.box(6d, 0d, 6d, 10d, 3d, 10d);
+		private static final VoxelShape YOUNG = Block.box(5d, 0d, 5d, 11d, 4d, 11d);
+		private static final VoxelShape ADOLESCENT_LIT = Block.box(5d, 0d, 5d, 11d, 5d, 11d);
+		private static final VoxelShape ADOLESCENT_UNLIT = Block.box(4d, 0d, 4d, 12d, 5d, 12d);
+		private static final VoxelShape OLD_LIT = Block.box(3d, 0d, 3d, 13d, 10d, 13d);
+		private static final VoxelShape OLD_UNLIT = Block.box(1d, 0d, 1d, 15d, 9d, 15d);
+
+		@Override
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext collisionContext)
+		{
+			boolean lit = state.getValue(FireEaterLilyBlock.LIT);
+			return switch(state.getValue(FireEaterLilyBlock.AGE)) 
+			{
+				case 0, 1 -> BULB;
+				case 2, 3 -> YOUNG;
+				case 4, 5, 6 -> lit ? ADOLESCENT_LIT : ADOLESCENT_UNLIT;
+				case 7 -> lit ? OLD_LIT : OLD_UNLIT;
+				default -> throw new IllegalArgumentException("Unexpected of value: " + state.getValue(FireEaterLilyBlock.AGE));
+			};
+		} // end getShape()
+	};	
 	
 	public static final ICollisionVoxelShapeProvider PHANTASMAL_SHELF_FUNGUS = new ICollisionVoxelShapeProvider() 
 	{

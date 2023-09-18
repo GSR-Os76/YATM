@@ -1,4 +1,4 @@
-// 1.20.1	2023-09-12T11:10:11.3341405	Tags for minecraft:block mod id gsr_yatm
+// 1.20.1	2023-09-17T19:42:47.2296749	Tags for minecraft:block mod id gsr_yatm
 ea459db540b319f4bdead7b7f1142fc238c09a8e data/forge/tags/blocks/cactuses.json
 ae063a18d6a78c1df2e70286fb1984ffc87c6b2d data/forge/tags/blocks/netherrack.json
 22817fc3a29127b1c1278ea16d671d7c02dbdeb9 data/forge/tags/blocks/rooted_dirt.json
@@ -8,6 +8,7 @@ ae063a18d6a78c1df2e70286fb1984ffc87c6b2d data/forge/tags/blocks/netherrack.json
 ae03c7f5a14f674a125f762d1f54c5fc58535fe0 data/gsr_yatm/tags/blocks/conduits/sixtyfour_cu.json
 6f65945173b470070cc3ffbceeb8614d256b81f3 data/gsr_yatm/tags/blocks/form/aurum_deminutus_higher.json
 6ef566e8d366f5028e9f398a20bead05865d2de4 data/gsr_yatm/tags/blocks/form/aurum_deminutus_lower.json
+bc945c3765480852dbee6454f810c6c20b118d35 data/gsr_yatm/tags/blocks/heat_blocks.json
 66ac8055416086c9939359092bb9e6f99b9399d6 data/gsr_yatm/tags/blocks/leaves_litter_on.json
 1a28f00eb34b3c96b745b740247a6eddad28fe15 data/gsr_yatm/tags/blocks/mediums/aerial_rubber_roots_can_grow_on.json
 eaf726d0ca999b963fa5b018a13e9c7f4b2e50cf data/gsr_yatm/tags/blocks/mediums/aerial_rubber_roots_can_grow_through.json
@@ -15,6 +16,7 @@ eaf726d0ca999b963fa5b018a13e9c7f4b2e50cf data/gsr_yatm/tags/blocks/mediums/aeria
 9fe0ec2afc230db7cba58c95080a3787e76de587 data/gsr_yatm/tags/blocks/mediums/carcass_root_grows_on.json
 69c396cb051bbe9a130e6979b67065e5041b179d data/gsr_yatm/tags/blocks/mediums/carcass_root_rooted_dirt_roots_from.json
 68125b8f5883297e885700288831442419c548f8 data/gsr_yatm/tags/blocks/mediums/carcass_root_rooted_netherack_roots_from.json
+f738b99c239d8fa447dd0744af550624426fb4a0 data/gsr_yatm/tags/blocks/mediums/fire_eater_lily_can_grow_on.json
 92ab23be742ef46aea48f9552ff5b96817532ec9 data/gsr_yatm/tags/blocks/mediums/rubber_meristem_can_grow_on.json
 5040076889bd282df7819422d9e990b9415bbb7f data/gsr_yatm/tags/blocks/mediums/rubber_roots_can_grow_in.json
 a211ef41389ec483dc846f2c181f509c5bd2aff3 data/gsr_yatm/tags/blocks/mediums/rubber_trees_naturally_grow_on.json

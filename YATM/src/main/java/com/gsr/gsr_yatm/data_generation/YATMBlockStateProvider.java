@@ -21,6 +21,7 @@ import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootFoliageBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootBlock;
 import com.gsr.gsr_yatm.block.plant.fern.AurumDeminutusBlock;
+import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.moss.PrismarineCrystalMossBlock;
 import com.gsr.gsr_yatm.block.plant.tree.SelfLayeringSaplingBlock;
@@ -144,13 +145,14 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addAurumDeminutus();
 		this.addCarcassRoot();
 		this.createFourStageCrop(YATMBlocks.COTTON.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_germinating"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_flowering"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_maturing"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_mature"));
+		this.addFireEaterLily();
+		this.createPhantasmalShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get());
 		this.createPrismarineCrystalMossLike(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), 
 				//new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_germinating"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_young"), 
 				//new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_maturing"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_mature"));
 		this.addShulkwarts();
-		this.createPhantasmalShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get());
 		this.addSpiderVine();
 		this.addVariegatedCactus();
 		
@@ -295,6 +297,21 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createCarcassRootRooted(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get(), YATMItems.CARCASS_ROOT_ROOTED_NETHERRACK_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_netherrack_young"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_netherrack_old"));
 		
 	} // end addCarcassRoot()
+	
+	private void addFireEaterLily() 
+	{
+		ResourceLocation oldLitTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/fire_eater_lily/fire_eater_lily_old_lit");
+		this.createFireEaterLily(YATMBlocks.FIRE_EATER_LILY.get(), 
+				oldLitTexture, 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/fire_eater_lily/fire_eater_lily_old_unlit"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/fire_eater_lily/fire_eater_lily_adolescent_lit"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/fire_eater_lily/fire_eater_lily_adolescent_unlit"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/fire_eater_lily/fire_eater_lily_young_lit"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/fire_eater_lily/fire_eater_lily_young_unlit"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/fire_eater_lily/fire_eater_lily_bulb_lit"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/fire_eater_lily/fire_eater_lily_bulb_unlit"));
+		this.createPottedCross(YATMBlocks.POTTED_FIRE_EATER_LILY.get(), oldLitTexture);
+	} // end addFireEaterLily()
 	
 	private void addShulkwarts()
 	{
@@ -567,23 +584,23 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		PrismarineCrystalMossBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.forEach((d, p) -> forPrismarineCrystalMossLikeFace(d, builder, modelOne, modelTwo));//, modelThree, modelFour));
 	} // end createCrop()
 	
-	private void createCarcassRootFoliage(CarcassRootFoliageBlock block, ResourceLocation youngTexture, ResourceLocation oldLowerTexture, ResourceLocation oldHigherTexture) 
+	private void createCarcassRootFoliage(@NotNull CarcassRootFoliageBlock block, @NotNull ResourceLocation youngTexture, @NotNull ResourceLocation oldLowerTexture, @NotNull ResourceLocation oldHigherTexture) 
 	{
 		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
 		String nameY = name + "_young";
 		String nameOL = name + "_old_lower";
 		String nameOH = name + "_old_higher";
-		this.models().cross(nameY, youngTexture).renderType(CUTOUT_RENDER_TYPE);
-		this.models().cross(nameOL, oldLowerTexture).renderType(CUTOUT_RENDER_TYPE);
-		this.models().cross(nameOH, oldHigherTexture).renderType(CUTOUT_RENDER_TYPE);
+		this.models().cross(nameY, youngTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameOL, oldLowerTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameOH, oldHigherTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
 		ModelFile modelY = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameY));
 		ModelFile modelOL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameOL));
 		ModelFile modelOH = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameOH));
 		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forCarcassRootFoliage(bs, modelY, modelOL, modelOH));
 		
 	} // end createCarcassRootFoliage()
-	
-	private void createCarcassRootRooted(CarcassRootRootBlock block, Item item, ResourceLocation youngTexture, ResourceLocation oldTexture) 
+		
+	private void createCarcassRootRooted(@NotNull CarcassRootRootBlock block, @NotNull Item item, @NotNull ResourceLocation youngTexture, @NotNull ResourceLocation oldTexture) 
 	{
 		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
 		String nameY = name + "_young";
@@ -596,18 +613,65 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.simpleBlockItem(block, modelY);
 	} // end createCarcassRootRooted()
 	
+	
+	
+	private void createFireEaterLily(@NotNull FireEaterLilyBlock block, 
+			@NotNull ResourceLocation oldLitTexture, 
+			@NotNull ResourceLocation oldUnlitTexture,
+			@NotNull ResourceLocation adolescentLitTexture,
+			@NotNull ResourceLocation adolescentUnlitTexture,
+			@NotNull ResourceLocation youngLitTexture,
+			@NotNull ResourceLocation youngUnlitTexture,
+			@NotNull ResourceLocation bulbLitTexture,
+			@NotNull ResourceLocation bulbUnlitTexture) 
+	{
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
+		String nameOL = name + "_old_lit";
+		String nameOU = name + "_old_unlit";
+		String nameAL = name + "_adolescent_lit";
+		String nameAU = name + "_adolescent_unlit";
+		String nameYL = name + "_young_lit";
+		String nameYU = name + "_young_unlit";
+		String nameBL = name + "_bulb_lit";
+		String nameBU = name + "_bulb_unlit";
+		this.models().cross(nameOL, oldLitTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameOU, oldUnlitTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameAL, adolescentLitTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameAU, adolescentUnlitTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameYL, youngLitTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameYU, youngUnlitTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameBL, bulbLitTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameBU, bulbUnlitTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		ModelFile modelOL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameOL));
+		ModelFile modelOU = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameOU));
+		ModelFile modelAL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameAL));
+		ModelFile modelAU = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameAU));
+		ModelFile modelYL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameYL));
+		ModelFile modelYU = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameYU));
+		ModelFile modelBL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameBL));
+		ModelFile modelBU = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameBU));
+		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forFireEaterLily(bs, modelOL, modelOU, modelAL, modelAU, modelYL, modelYU, modelBL, modelBU));
+		
+	} // end createFireEaterLily()
+	
+	
+	
 	private void initializeShulkwartCommonModels() 
 	{
-		String name = "block/plant/shulkwart/shulkwart_fruit";
+		String name = "block/shulkwart_fruit";
 		String nameOne = name + "_one";
 		String nameTwo = name + "_two";
 		String nameThree = name + "_three";
-		ResourceLocation locationOne = new ResourceLocation(YetAnotherTechMod.MODID, nameOne);
-		ResourceLocation locationTwo = new ResourceLocation(YetAnotherTechMod.MODID, nameTwo);
-		ResourceLocation locationThree = new ResourceLocation(YetAnotherTechMod.MODID, nameThree);
-		this.models().cross(nameOne, locationOne).renderType(CUTOUT_RENDER_TYPE);
-		this.models().cross(nameTwo, locationTwo).renderType(CUTOUT_RENDER_TYPE);
-		this.models().cross(nameThree, locationThree).renderType(CUTOUT_RENDER_TYPE);
+		String textureLocation = "block/plant/shulkwart/shulkwart_fruit";
+		String textureLocationOne = textureLocation + "_one";
+		String textureLocationTwo = textureLocation + "_two";
+		String textureLocationThree = textureLocation + "_three";
+		ResourceLocation locationOne = new ResourceLocation(YetAnotherTechMod.MODID, textureLocationOne);
+		ResourceLocation locationTwo = new ResourceLocation(YetAnotherTechMod.MODID, textureLocationTwo);
+		ResourceLocation locationThree = new ResourceLocation(YetAnotherTechMod.MODID, textureLocationThree);
+		this.models().cross(nameOne, locationOne).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameTwo, locationTwo).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameThree, locationThree).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
 		this.m_shulkwartFruitOneModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameOne));
 		this.m_shulkwartFruitTwoModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameTwo));
 		this.m_shulkwartFruitThreeModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameThree));
@@ -1191,6 +1255,31 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		};
 		return new ConfiguredModel[] {new ConfiguredModel(model)};
 	} // end forCarcassRootRooted()
+	
+	public static ConfiguredModel[] forFireEaterLily(BlockState bs, 
+			ModelFile oldLitModel, 
+			ModelFile oldUnlitModel, 
+			ModelFile adolescentLitModel, 
+			ModelFile adolescentUnlitModel, 
+			ModelFile youngLitModel, 
+			ModelFile youngUnlitModel, 
+			ModelFile bulbLitModel, 
+			ModelFile bulbUnlitModel) 
+	{
+		boolean lit = bs.getValue(FireEaterLilyBlock.LIT);
+		//ModelFile model = ;
+		return new ConfiguredModel[] 
+			{ new ConfiguredModel(
+				switch(bs.getValue(FireEaterLilyBlock.AGE)) 
+				{
+					case 0, 1 -> lit ? bulbLitModel : bulbUnlitModel;
+					case 2, 3 -> lit ? youngLitModel : youngUnlitModel;
+					case 4, 5, 6 -> lit ? adolescentLitModel : adolescentUnlitModel;
+					case 7 -> lit ? oldLitModel : oldUnlitModel;
+					default -> throw new IllegalArgumentException("Unexpected of value: " + bs.getValue(FireEaterLilyBlock.AGE));
+				})
+			};
+	} // end forFireEaterLily()
 	
 	
 	private static ConfiguredModel[] forShelfFungi(BlockState bs, ModelFile smallModel, ModelFile mediumModel, ModelFile largeModel)

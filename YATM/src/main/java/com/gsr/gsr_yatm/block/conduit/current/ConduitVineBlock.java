@@ -10,8 +10,10 @@ import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
@@ -106,13 +108,16 @@ public class ConduitVineBlock extends FaceBlock // implements EntityBlock
 		return this.m_shape.getShape(blockState, blockGetter, blockPos, context);
 	} // end getShape()
 
-
-
-	
 	@Override
 	public boolean propagatesSkylightDown(BlockState state, BlockGetter getter, BlockPos position)
 	{
 		return true;
 	} // end propagatesSkylightDown()
+
+	@Override
+	public boolean isLadder(BlockState state, LevelReader level, BlockPos pos, LivingEntity entity)
+	{
+		return super.isLadder(state, level, pos, entity) && Direction.stream().anyMatch((d) -> (d != Direction.DOWN) && state.getValue(FaceBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(d)));
+	} // end isLadder()
 	
 } // end block
