@@ -157,6 +157,7 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> VARIEGATED_CACTUS_ITEM = generalTabEnqueue(ITEMS.register("variegated_cactus", () -> new BlockItem(YATMBlocks.VARIEGATED_CACTUS.get(), new Item.Properties())));
 	
 	public static final RegistryObject<Item> ENDOTHERMIC_TISSUE = /* generalTabEnqueue */(ITEMS.register("endothermic_tissue", () -> new Item(new Item.Properties())));
+	public static final RegistryObject<Item> EXOTHEMIC_GLAND = /* generalTabEnqueue */(ITEMS.register("exothermic_gland", () -> new Item(new Item.Properties())));
 	
 	
 	
@@ -187,8 +188,6 @@ public class YATMItems
 	
 	public static final RegistryObject<BlockItem> LARGE_COPPER_HEAT_SINK_ITEM = /* generalTabEnqueue */(ITEMS.register("large_copper_heat_sink", () -> new BlockItem(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), new Item.Properties())));
 
-	// make two different texture packs, plant styled machines and metal style machines. data pack too
-	
 	public static final RegistryObject<BlockItem> DATA_STORAGE_BLOCK_ITEM = /* generalTabEnqueue */(ITEMS.register("data_storage_block", () -> new BlockItem(YATMBlocks.DATA_STORAGE_BLOCK.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> DATA_SCAN_COLLECTOR_ITEM = /* generalTabEnqueue */(ITEMS.register("data_scan_collector", () -> new BlockItem(YATMBlocks.DATA_SCAN_COLLECTOR.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> DESTRUCTIVE_DATA_SCANNER_ITEM = /* generalTabEnqueue */(ITEMS.register("destructive_data_scanner", () -> new BlockItem(YATMBlocks.DESTRUCTIVE_DATA_SCANNER.get(), new Item.Properties())));
@@ -197,7 +196,7 @@ public class YATMItems
 	
 	
 	public static final RegistryObject<BlockItem> STEEL_BIOLER_ITEM = generalTabEnqueue(ITEMS.register("steel_bioler", () -> new BlockItem(YATMBlocks.STEEL_BIOLER.get(), new Item.Properties())));
-	public static final RegistryObject<BlockItem> STEEL_BOILER_TANK_ITEM = generalTabEnqueue(ITEMS.register("steel_boiler_tank", () -> new BlockItem(YATMBlocks.STEEL_BOILER_TANK.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> STEEL_BOILER_TANK_ITEM = /* generalTabEnqueue */(ITEMS.register("steel_boiler_tank", () -> new BlockItem(YATMBlocks.STEEL_BOILER_TANK.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_BOILER_ITEM = generalTabEnqueue(ITEMS.register("steel_boiler", () -> new BlockItem(YATMBlocks.STEEL_BOILER.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_CRYSTALLIZER_ITEM = generalTabEnqueue(ITEMS.register("steel_crystallizer", () -> new BlockItem(YATMBlocks.STEEL_CRYSTALLIZER.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> SSTEEL_FURNACE_PLUS_ITEM = generalTabEnqueue(ITEMS.register("steel_furnace_plus", () -> new BlockItem(YATMBlocks.STEEL_FURNACE_PLUS.get(), new Item.Properties())));	

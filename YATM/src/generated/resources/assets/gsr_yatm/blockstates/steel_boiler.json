@@ -1,90 +1,64 @@
 {
-  "multipart": [
-    {
-      "apply": {
-        "model": "gsr_yatm:block/steel_boiler"
-      },
-      "when": {
-        "facing": "north",
-        "lit": "false"
-      }
+  "variants": {
+    "facing=east,has_tank=false,lit=false": {
+      "model": "gsr_yatm:block/boiler",
+      "y": 90
     },
-    {
-      "apply": {
-        "model": "gsr_yatm:block/steel_boiler",
-        "y": 90
-      },
-      "when": {
-        "facing": "east",
-        "lit": "false"
-      }
+    "facing=east,has_tank=false,lit=true": {
+      "model": "gsr_yatm:block/steel_boiler_lit",
+      "y": 90
     },
-    {
-      "apply": {
-        "model": "gsr_yatm:block/steel_boiler",
-        "y": 180
-      },
-      "when": {
-        "facing": "south",
-        "lit": "false"
-      }
+    "facing=east,has_tank=true,lit=false": {
+      "model": "gsr_yatm:block/boiler",
+      "y": 90
     },
-    {
-      "apply": {
-        "model": "gsr_yatm:block/steel_boiler",
-        "y": 270
-      },
-      "when": {
-        "facing": "west",
-        "lit": "false"
-      }
+    "facing=east,has_tank=true,lit=true": {
+      "model": "gsr_yatm:block/steel_boiler_lit",
+      "y": 90
     },
-    {
-      "apply": {
-        "model": "gsr_yatm:block/steel_boiler_lit"
-      },
-      "when": {
-        "facing": "north",
-        "lit": "true"
-      }
+    "facing=north,has_tank=false,lit=false": {
+      "model": "gsr_yatm:block/boiler"
     },
-    {
-      "apply": {
-        "model": "gsr_yatm:block/steel_boiler_lit",
-        "y": 90
-      },
-      "when": {
-        "facing": "east",
-        "lit": "true"
-      }
+    "facing=north,has_tank=false,lit=true": {
+      "model": "gsr_yatm:block/steel_boiler_lit"
     },
-    {
-      "apply": {
-        "model": "gsr_yatm:block/steel_boiler_lit",
-        "y": 180
-      },
-      "when": {
-        "facing": "south",
-        "lit": "true"
-      }
+    "facing=north,has_tank=true,lit=false": {
+      "model": "gsr_yatm:block/boiler"
     },
-    {
-      "apply": {
-        "model": "gsr_yatm:block/steel_boiler_lit",
-        "y": 270
-      },
-      "when": {
-        "facing": "west",
-        "lit": "true"
-      }
+    "facing=north,has_tank=true,lit=true": {
+      "model": "gsr_yatm:block/steel_boiler_lit"
     },
-    {
-      "apply": {
-        "model": "gsr_yatm:block/steel_boiler_has_tank_part"
-      },
-      "when": {
-        "has_tank": "true"
-      }
+    "facing=south,has_tank=false,lit=false": {
+      "model": "gsr_yatm:block/boiler",
+      "y": 180
+    },
+    "facing=south,has_tank=false,lit=true": {
+      "model": "gsr_yatm:block/steel_boiler_lit",
+      "y": 180
+    },
+    "facing=south,has_tank=true,lit=false": {
+      "model": "gsr_yatm:block/boiler",
+      "y": 180
+    },
+    "facing=south,has_tank=true,lit=true": {
+      "model": "gsr_yatm:block/steel_boiler_lit",
+      "y": 180
+    },
+    "facing=west,has_tank=false,lit=false": {
+      "model": "gsr_yatm:block/boiler",
+      "y": 270
+    },
+    "facing=west,has_tank=false,lit=true": {
+      "model": "gsr_yatm:block/steel_boiler_lit",
+      "y": 270
+    },
+    "facing=west,has_tank=true,lit=false": {
+      "model": "gsr_yatm:block/boiler",
+      "y": 270
+    },
+    "facing=west,has_tank=true,lit=true": {
+      "model": "gsr_yatm:block/steel_boiler_lit",
+      "y": 270
     }
-  ]
+  }
 }
