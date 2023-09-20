@@ -43,6 +43,8 @@ public class YATMBlockStateProperties
 			Direction.UP, YATMBlockStateProperties.HAS_UP, 
 			Direction.DOWN, YATMBlockStateProperties.HAS_DOWN);
 	
+	public static final BooleanProperty HAS_TANK = BooleanProperty.create("has_tank");
+	
 	public static final BooleanProperty LIT = BooleanProperty.create("lit");
 	public static final EnumProperty<OnceFruitingPlantStages> ONCE_FRUITING_STAGE =  EnumProperty.create("stage", OnceFruitingPlantStages.class);
 	public static final EnumProperty<DoubleBlockHalf> DOUBLE_BLOCK_HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
