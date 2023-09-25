@@ -1,4 +1,4 @@
-// 1.20.1	2023-09-17T13:42:37.6992346	Loot Tables
+// 1.20.1	2023-09-25T11:47:32.3140576	Loot Tables
 c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
 e7fbd17d28377f6d02cdd2df79fd21c9ce25491d data/gsr_yatm/loot_tables/blocks/aurum_deminutus.json
@@ -48,6 +48,7 @@ d47266dd1bd62f6c20fc74ed84d4ab3faed715da data/gsr_yatm/loot_tables/blocks/insula
 45c259f2acd11421812ecf2988145c970035a21a data/gsr_yatm/loot_tables/blocks/partially_stripped_rubber_log.json
 cb96598e799c3dd5514a6d7b28cc85a86f9de163 data/gsr_yatm/loot_tables/blocks/phantasmal_shelf_fungus.json
 8c96562f9025551c5e3c2acc42c72209e22485f3 data/gsr_yatm/loot_tables/blocks/pink_shulkwart.json
+11c69f2ee5f3ed1bcf82e5b67f9ceb1ef2a80e48 data/gsr_yatm/loot_tables/blocks/pitcher_cluster.json
 abaf400b5fefa8b4dd3f5514f468c0a1294c2654 data/gsr_yatm/loot_tables/blocks/potted_aurum_deminutus.json
 f783d5cbbec1d684af81c483dcd0d57bde68e185 data/gsr_yatm/loot_tables/blocks/potted_carcass_root_foliage.json
 8a8963141185c73d1069731a372e1dffa592ea17 data/gsr_yatm/loot_tables/blocks/potted_fire_eater_lily.json

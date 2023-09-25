@@ -99,22 +99,17 @@ public class YATMItems
 	
 	public static final RegistryObject<ItemNameBlockItem> AURUM_DEMINUTUS_FIDDLE_HEAD = generalTabEnqueue(ITEMS.register("aurum_deminutus_fiddle_head", () -> new ItemNameBlockItem(YATMBlocks.AURUM_DEMINUTUS.get(), new Item.Properties().fireResistant())));
 	public static final RegistryObject<Item> AURUM_DEMINUTUS_FROND = generalTabEnqueue(ITEMS.register("aurum_deminutus_frond", () -> new Item(new Item.Properties().fireResistant())));
-	
 	public static final RegistryObject<ItemNameBlockItem> CARCASS_ROOT_CUTTING = generalTabEnqueue(ITEMS.register("carcass_root_cutting", () -> new ItemNameBlockItem(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), new Item.Properties().fireResistant())));
 	public static final RegistryObject<BlockItem> CARCASS_ROOT_ROOTED_DIRT_ITEM = generalTabEnqueue(ITEMS.register("carcass_root_rooted_dirt", () -> new BlockItem(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> CARCASS_ROOT_ROOTED_NETHERRACK_ITEM = generalTabEnqueue(ITEMS.register("carcass_root_rooted_netherrack", () -> new BlockItem(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get(), new Item.Properties())));
-	
 	public static final RegistryObject<ItemNameBlockItem> COTTON_SEEDS = generalTabEnqueue(ITEMS.register("cotton_seeds", () -> new ItemNameBlockItem(YATMBlocks.COTTON.get(), new Item.Properties())));
 	public static final RegistryObject<Item> COTTON_BOLLS = generalTabEnqueue(ITEMS.register("cotton_bolls", () -> new Item(new Item.Properties().craftRemainder(YATMItems.COTTON_SEEDS.get()))));
 	public static final RegistryObject<Item> RAW_COTTON_FIBER = generalTabEnqueue(ITEMS.register("raw_cotton_fiber", () -> new Item(new Item.Properties())));
-	
 	public static final RegistryObject<ItemNameBlockItem> FIRE_EATER_LILY_BULB = generalTabEnqueue(ITEMS.register("fire_eater_lily_bulb", () -> new ItemNameBlockItem(YATMBlocks.FIRE_EATER_LILY.get(), new Item.Properties())));
 	public static final RegistryObject<Item> FIRE_EATER_LILY_FOLIAGE = generalTabEnqueue(ITEMS.register("fire_eater_lily_foliage", () -> new Item(new Item.Properties())));
-	
 	public static final RegistryObject<BlockItem> PHANTASMAL_SHELF_FUNGUS_ITEM = generalTabEnqueue(ITEMS.register("phantasmal_shelf_fungus", () -> new BlockItem(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), new Item.Properties())));
-	
+	public static final RegistryObject<BlockItem> PITCHER_CLUSTER_ITEM = generalTabEnqueue(ITEMS.register("pitcher_cluster", () -> new BlockItem(YATMBlocks.PITCHER_CLUSTER.get(), new Item.Properties())));
 	public static final RegistryObject<ItemNameBlockItem> PRISMARINE_CRYSTAL_MOSS_SPORES = generalTabEnqueue(ITEMS.register("prismarine_crystal_moss_spores", () -> new ItemNameBlockItem(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), new Item.Properties())));
-	
 	public static final RegistryObject<ShulkwartSporesBlockItem> SHULKWART_SPORES = generalTabEnqueue(ITEMS.register("shulkwart_spores", () -> new ShulkwartSporesBlockItem(new Item.Properties()
 			, YATMBlocks.SHULKWART.get()
 			, YATMBlocks.WHITE_SHULKWART.get()
@@ -133,7 +128,6 @@ public class YATMItems
 			, YATMBlocks.GREEN_SHULKWART.get()
 			, YATMBlocks.RED_SHULKWART.get()
 			, YATMBlocks.BLACK_SHULKWART.get())));
-	
 	public static final RegistryObject<ShulkwartHornItem> SHULKWART_HORN = generalTabEnqueue(ITEMS.register("shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), (DyeColor)null)));
 	public static final RegistryObject<ShulkwartHornItem> WHITE_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("white_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.WHITE)));
 	public static final RegistryObject<ShulkwartHornItem> ORANGE_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("orange_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.ORANGE)));
@@ -151,9 +145,7 @@ public class YATMItems
 	public static final RegistryObject<ShulkwartHornItem> GREEN_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("green_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.GREEN)));
 	public static final RegistryObject<ShulkwartHornItem> RED_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("red_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.RED)));
 	public static final RegistryObject<ShulkwartHornItem> BLACK_SHULKWART_HORN = generalTabEnqueue(ITEMS.register("black_shulkwart_horn", () -> new ShulkwartHornItem(new Item.Properties(), DyeColor.BLACK)));
-	
 	public static final RegistryObject<ItemNameBlockItem> SPIDER_VINE_FRUITS = generalTabEnqueue(ITEMS.register("spider_vine_fruits", () -> new ItemNameBlockItem(YATMBlocks.SPIDER_VINE_MERISTEM.get(), new Item.Properties())));
-	
 	public static final RegistryObject<BlockItem> VARIEGATED_CACTUS_ITEM = generalTabEnqueue(ITEMS.register("variegated_cactus", () -> new BlockItem(YATMBlocks.VARIEGATED_CACTUS.get(), new Item.Properties())));
 	
 	public static final RegistryObject<Item> ENDOTHERMIC_TISSUE = /* generalTabEnqueue */(ITEMS.register("endothermic_tissue", () -> new Item(new Item.Properties())));

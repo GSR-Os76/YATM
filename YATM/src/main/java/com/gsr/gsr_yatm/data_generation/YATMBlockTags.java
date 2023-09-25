@@ -48,6 +48,7 @@ public class YATMBlockTags extends BlockTagsProvider
 	public static final TagKey<Block> HEAT_BLOCKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "heat_blocks"));	
 	public static final TagKey<Block> LEAVES_LITER_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "leaves_litter_on"));
 	public static final TagKey<Block> PHANTASMAL_SHELF_FUNGI_SPREAD_TO_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "phantasmal_shelf_fungi_spread_to"));;
+	public static final TagKey<Block> PITCHER_CLUSTERS_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/pitcher_clusters_can_grow_on"));
 	public static final TagKey<Block> RUBBER_MERISTEM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/rubber_meristem_can_grow_on"));
 	public static final TagKey<Block> RUBBER_ROOTS_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/rubber_roots_can_grow_in"));
 	public static final TagKey<Block> RUBBER_TREE_BLOCKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "rubber_tree_blocks"));
@@ -69,9 +70,9 @@ public class YATMBlockTags extends BlockTagsProvider
 	
 	
 	
-	public static final ITag<Block> RUBBER_MERISTEM_CAN_GROW_ON = TM.getTag(RUBBER_MERISTEM_CAN_GROW_ON_KEY);
-	public static final ITag<Block> SHULKWART_GROWS_ON = TM.getTag(SHULKWART_GROWS_ON_KEY);
-	public static final ITag<Block> SOUL_AFFLICTING_BLOCKS = TM.getTag(SOUL_AFFLICTING_BLOCKS_KEY);
+	public static final ITag<Block> RUBBER_MERISTEM_CAN_GROW_ON = TM.getTag(YATMBlockTags.RUBBER_MERISTEM_CAN_GROW_ON_KEY);
+	public static final ITag<Block> SHULKWART_GROWS_ON = TM.getTag(YATMBlockTags.SHULKWART_GROWS_ON_KEY);
+	public static final ITag<Block> SOUL_AFFLICTING_BLOCKS = TM.getTag(YATMBlockTags.SOUL_AFFLICTING_BLOCKS_KEY);
 	
 	
 	
@@ -131,6 +132,7 @@ public class YATMBlockTags extends BlockTagsProvider
 		this.tag(YATMBlockTags.HEAT_BLOCKS_KEY).add(Blocks.MAGMA_BLOCK).add(Blocks.FIRE).add(Blocks.CAMPFIRE).add(Blocks.LAVA).add(Blocks.LAVA_CAULDRON);
 		this.tag(YATMBlockTags.LEAVES_LITER_ON_KEY).addTag(BlockTags.DIRT).add(Blocks.SOUL_SAND).add(Blocks.SOUL_SOIL);
 		this.tag(YATMBlockTags.PHANTASMAL_SHELF_FUNGI_SPREAD_TO_KEY).addTag(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);
+		this.tag(YATMBlockTags.PITCHER_CLUSTERS_CAN_GROW_ON_KEY).addTag(BlockTags.DIRT);
 		// TODO, fully stripped probably shouldn't be growable on, logically
 		this.tag(YATMBlockTags.RUBBER_MERISTEM_CAN_GROW_ON_KEY).addTag(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_BLOCKS_KEY).addTag(YATMBlockTags.RUBBER_TREE_BLOCKS_KEY).addTag(YATMBlockTags.RUBBER_TREES_NATURALLY_GROW_ON_KEY).addTag(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREES_NATURALLY_GROW_ON_KEY);
 		this.tag(YATMBlockTags.RUBBER_ROOTS_CAN_GROW_IN_KEY).addTag(BlockTags.DIRT).addTag(BlockTags.SAND).add(Blocks.CLAY).add(Blocks.SOUL_SAND).add(Blocks.SOUL_SOIL);

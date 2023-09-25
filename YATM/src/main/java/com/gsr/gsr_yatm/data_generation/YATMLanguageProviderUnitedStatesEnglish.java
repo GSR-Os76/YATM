@@ -109,6 +109,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.FIRE_EATER_LILY.get(), "Fire Eater Lily");		
 		this.add(YATMBlocks.POTTED_FIRE_EATER_LILY.get(), "Potted Fire Eater Lily");		
 		this.add(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), "Phantasmal Shelf Fungi");		
+		this.add(YATMBlocks.PITCHER_CLUSTER.get(), "Pitcher Cluster");
 		this.add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), "Prismarine Crystal Moss");		
 		this.add(YATMBlocks.FALLEN_SHULKWART_SPORES.get(), "Fallen Shulkwart Spores");		
 		this.add(YATMBlocks.SHULKWART.get(), "Shulkwart");		
