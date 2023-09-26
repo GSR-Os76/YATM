@@ -5,12 +5,23 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "condition": "minecraft:survives_explosion"
+          "block": "gsr_yatm:ice_coral",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "7"
+          }
         }
       ],
       "entries": [
         {
           "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 3.0,
+              "function": "minecraft:set_count"
+            }
+          ],
           "name": "gsr_yatm:ice_coral_polyp"
         }
       ],

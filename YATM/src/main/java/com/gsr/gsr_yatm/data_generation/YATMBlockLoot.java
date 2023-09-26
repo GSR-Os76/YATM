@@ -9,6 +9,7 @@ import com.gsr.gsr_yatm.block.FaceBlock;
 import com.gsr.gsr_yatm.block.plant.OnceFruitingPlantStages;
 import com.gsr.gsr_yatm.block.plant.fern.AurumDeminutusBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
+import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
 import com.gsr.gsr_yatm.block.plant.moss.PrismarineCrystalMossBlock;
 import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
 import com.gsr.gsr_yatm.block.plant.vine.OnceFruitVineBodyBlock;
@@ -108,7 +109,7 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropPottedContents(YATMBlocks.POTTED_FIRE_EATER_LILY.get());
 		
 		// TODO, add loot table
-		this.dropSelf(YATMBlocks.ICE_CORAL.get());
+		this.add(YATMBlocks.ICE_CORAL.get(), (b) -> this.createIceCoralTable());
 		
 		this.dropSelf(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get());
 		this.dropSelf(YATMBlocks.PITCHER_CLUSTER.get());
@@ -245,17 +246,6 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		LootTable.Builder table = addFace.apply(Direction.WEST, addFace.apply(Direction.EAST, addFace.apply(Direction.SOUTH, addFace.apply(Direction.NORTH, addFace.apply(Direction.DOWN, addFace.apply(Direction.UP, LootTable.lootTable()))))));
 		this.add(block, (b) -> table);
 	} // end faceDropSelf()
-		
-	protected void addShulkwart(@NotNull Block shulkwart, @NotNull Item horn) 
-	{
-	      this.add(shulkwart, this.createShulkwartTable(shulkwart, horn));
-	} // end add Shulkwart
-	
-	protected @NotNull LootTable.Builder createShulkwartTable(@NotNull Block shulkwart, @NotNull Item horn)
-	{
-		LootItemCondition.Builder dropConditions = LootItemBlockStatePropertyCondition.hasBlockStateProperties(shulkwart).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ShulkwartBlock.AGE, 7));
-		return this.applyExplosionDecay(shulkwart, LootTable.lootTable().withPool(LootPool.lootPool().when(dropConditions).add(LootItem.lootTableItem(horn).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0f, 4.0f))).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 2)))));
-	} // end CreateShulkwartTable()
 	
 	protected @NotNull LootTable.Builder createAurumDeminutusTable() 
 	{
@@ -341,7 +331,6 @@ public class YATMBlockLoot extends VanillaBlockLoot
 						);
 	} // end createAurumDeminutusTable()
 	
-	
 	protected @NotNull LootTable.Builder createFireEaterLilyTable() 
 	{
 		LootItemCondition.Builder fullGrown = LootItemBlockStatePropertyCondition
@@ -372,6 +361,29 @@ public class YATMBlockLoot extends VanillaBlockLoot
 										.setCount(
 												ConstantValue
 												.exactly(2.0f)
+												)
+										)
+								)
+						);
+	} // end createAurumDeminutusTable()
+	
+	protected @NotNull LootTable.Builder createIceCoralTable() 
+	{
+		LootItemCondition.Builder fullGrown = LootItemBlockStatePropertyCondition
+				.hasBlockStateProperties(YATMBlocks.ICE_CORAL.get())
+				.setProperties(StatePropertiesPredicate.Builder.properties()
+						.hasProperty(IceCoralBlock.AGE, YATMBlocks.ICE_CORAL.get().getMaxAge()));
+
+		return LootTable.lootTable()
+				.withPool(
+						LootPool.lootPool()
+						.when(fullGrown)
+						.add(LootItem.lootTableItem(YATMItems.ICE_CORAL_POLYP.get())
+								.apply(
+										SetItemCountFunction
+										.setCount(
+												ConstantValue
+												.exactly(3.0f)
 												)
 										)
 								)
@@ -454,5 +466,16 @@ public class YATMBlockLoot extends VanillaBlockLoot
 			
 			return addFace.apply(Direction.WEST, addFace.apply(Direction.EAST, addFace.apply(Direction.SOUTH, addFace.apply(Direction.NORTH, addFace.apply(Direction.DOWN, addFace.apply(Direction.UP, LootTable.lootTable()))))));
 	} // end createPrismarineCrystalMossTabl()
+	
+	protected void addShulkwart(@NotNull Block shulkwart, @NotNull Item horn) 
+	{
+	      this.add(shulkwart, this.createShulkwartTable(shulkwart, horn));
+	} // end add Shulkwart
+	
+	protected @NotNull LootTable.Builder createShulkwartTable(@NotNull Block shulkwart, @NotNull Item horn)
+	{
+		LootItemCondition.Builder dropConditions = LootItemBlockStatePropertyCondition.hasBlockStateProperties(shulkwart).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ShulkwartBlock.AGE, 7));
+		return this.applyExplosionDecay(shulkwart, LootTable.lootTable().withPool(LootPool.lootPool().when(dropConditions).add(LootItem.lootTableItem(horn).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0f, 4.0f))).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 2)))));
+	} // end CreateShulkwartTable()
 	
 } // end class

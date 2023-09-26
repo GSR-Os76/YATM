@@ -23,6 +23,7 @@ import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootBlock;
 import com.gsr.gsr_yatm.block.plant.fern.AurumDeminutusBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
+import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
 import com.gsr.gsr_yatm.block.plant.moss.PrismarineCrystalMossBlock;
 import com.gsr.gsr_yatm.block.plant.tree.SelfLayeringSaplingBlock;
 import com.gsr.gsr_yatm.block.plant.tree.TappedLogBlock;
@@ -149,6 +150,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addCarcassRoot();
 		this.createFourStageCrop(YATMBlocks.COTTON.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_germinating"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_flowering"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_maturing"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_mature"));
 		this.addFireEaterLily();
+		this.addIceCoral();
 		this.createPhantasmalShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get());
 		this.createBlockWithItem(YATMBlocks.PITCHER_CLUSTER.get(), YATMBlockStateProvider.PITCHER_CLUSTER);
 		this.createPrismarineCrystalMossLike(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), 
@@ -316,6 +318,15 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/fire_eater_lily/fire_eater_lily_bulb_unlit"));
 		this.createPottedCross(YATMBlocks.POTTED_FIRE_EATER_LILY.get(), oldLitTexture);
 	} // end addFireEaterLily()
+
+	private void addIceCoral()
+	{
+		this.createIceCoral(YATMBlocks.ICE_CORAL.get(), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ice_coral/old"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ice_coral/adolescent"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ice_coral/young"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ice_coral/polyp"));
+	} // end addIceCoral()
 	
 	private void addShulkwarts()
 	{
@@ -621,8 +632,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.simpleBlockItem(block, modelY);
 	} // end createCarcassRootRooted()
 	
-	
-	
 	private void createFireEaterLily(@NotNull FireEaterLilyBlock block, 
 			@NotNull ResourceLocation oldLitTexture, 
 			@NotNull ResourceLocation oldUnlitTexture,
@@ -662,7 +671,27 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 	} // end createFireEaterLily()
 	
-	
+	private void createIceCoral(@NotNull IceCoralBlock block, 
+			@NotNull ResourceLocation oldTexture, 
+			@NotNull ResourceLocation adolescentTexture,
+			@NotNull ResourceLocation youngTexture,
+			@NotNull ResourceLocation polypTexture) 
+	{
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
+		String nameO = name + "_old";
+		String nameA = name + "_adolescent";
+		String nameY = name + "_young";
+		String nameP = name + "_polyp";
+		this.models().cross(nameO, oldTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameA, adolescentTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameY, youngTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameP, polypTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		ModelFile modelO = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameO));
+		ModelFile modelA = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameA));
+		ModelFile modelY = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameY));
+		ModelFile modelP = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameP));
+		this.getVariantBuilder(block).forAllStatesExcept((bs) -> YATMBlockStateProvider.forEightAge(bs, modelP, modelP, modelY, modelY, modelA, modelA, modelA, modelO), IceCoralBlock.WATERLOGGED);
+	} // end createIceCoral()
 	
 	private void initializeShulkwartCommonModels() 
 	{
@@ -1176,6 +1205,34 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	
 	
+	private static ConfiguredModel[] forEightAge(BlockState bs, ModelFile ageZeroModel, ModelFile ageOneModel, ModelFile ageTwoModel, ModelFile ageThreeModel, ModelFile ageFourModel, ModelFile ageFiveModel, ModelFile ageSixModel, ModelFile ageSevenModel) 
+	{
+		ModelFile model = switch(bs.getValue(YATMBlockStateProperties.AGE_EIGHT)) 
+		{
+			case 0 -> ageZeroModel;
+			case 1 -> ageOneModel;
+			case 2 -> ageTwoModel;
+			case 3 -> ageThreeModel;
+			case 4 -> ageFourModel;
+			case 5 -> ageFiveModel;
+			case 6 -> ageSixModel;
+			case 7 -> ageSevenModel;
+			default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(YATMBlockStateProperties.AGE_EIGHT));	
+		};
+		return new ConfiguredModel[] {new ConfiguredModel(model)};
+	} // end forOnceFruiting()
+	
+	private static ConfiguredModel[] forOnceFruiting(BlockState bs, ModelFile modelImmature, ModelFile modelFruiting, ModelFile modelHarvested) 
+	{
+		ModelFile model = switch(bs.getValue(YATMBlockStateProperties.ONCE_FRUITING_STAGE)) 
+		{
+			case IMMATURE -> modelImmature;
+			case FRUITING -> modelFruiting;
+			case HARVESTED -> modelHarvested;
+			default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(YATMBlockStateProperties.ONCE_FRUITING_STAGE));	
+		};
+		return new ConfiguredModel[] {new ConfiguredModel(model)};
+	} // end forOnceFruiting()
 	
 	private static ConfiguredModel[] forCrop(BlockState bs, ModelFile ageZeroModel, ModelFile ageOneModel, ModelFile ageTwoModel, ModelFile ageThreeModel, ModelFile ageFourModel, ModelFile ageFiveModel, ModelFile ageSixModel, ModelFile ageSevenModel)
 	{
@@ -1193,6 +1250,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		};
 		return new ConfiguredModel[] {new ConfiguredModel(model)};
 	} // end forCrop()
+	
+	
 	
 	private static void forPrismarineCrystalMossLikeFace(Direction face, MultiPartBlockStateBuilder builder, ModelFile ageZeroModel, ModelFile ageOneModel)//, ModelFile ageTwoModel)//, ModelFile ageThreeModel)
 	{
@@ -1212,18 +1271,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		}
 		
 	} // end forPrismarineCrystalMossLike()
-	
-	private static ConfiguredModel[] forOnceFruiting(BlockState bs, ModelFile modelImmature, ModelFile modelFruiting, ModelFile modelHarvested) 
-	{
-		ModelFile model = switch(bs.getValue(YATMBlockStateProperties.ONCE_FRUITING_STAGE)) 
-		{
-			case IMMATURE -> modelImmature;
-			case FRUITING -> modelFruiting;
-			case HARVESTED -> modelHarvested;
-			default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(YATMBlockStateProperties.ONCE_FRUITING_STAGE));	
-		};
-		return new ConfiguredModel[] {new ConfiguredModel(model)};
-	} // end forOnceFruiting()
 	
 	private static ModelFile getModelForPrismarineCrystalMossLikeAge(int age, ModelFile ageZeroModel, ModelFile ageOneModel)//, ModelFile ageTwoModel, ModelFile ageThreeModel)
 	{
@@ -1299,7 +1346,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				})
 			};
 	} // end forFireEaterLily()
-	
 	
 	private static ConfiguredModel[] forShelfFungi(BlockState bs, ModelFile smallModel, ModelFile mediumModel, ModelFile largeModel)
 	{

@@ -190,11 +190,12 @@ public class YATMBlocks
 	public static final RegistryObject<FireEaterLilyBlock> FIRE_EATER_LILY = BLOCKS.register("fire_eater_lily", () -> new FireEaterLilyBlock(YATMBlockProperties.FIRE_EATER_LILY, YATMBlockShapes.FIRE_EATER_LILY));
 	public static final RegistryObject<FlowerPotBlock> POTTED_FIRE_EATER_LILY = BLOCKS.register("potted_fire_eater_lily", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.FIRE_EATER_LILY.get(), YATMBlockProperties.FLOWER_POT_PROPERTIES));
 	
-	public static final RegistryObject<IceCoralBlock> ICE_CORAL = BLOCKS.register("ice_coral", () -> new IceCoralBlock(YATMBlockProperties.ICE_CORAL_PROPERTIES, YATMBlockShapes.CUBE/*ICE_CORAL*/));
+	public static final RegistryObject<IceCoralBlock> ICE_CORAL = BLOCKS.register("ice_coral", () -> new IceCoralBlock(YATMBlockProperties.ICE_CORAL_PROPERTIES, YATMBlockShapes.ICE_CORAL));
 	
 	public static final RegistryObject<PhantasmalShelfFungiBlock> PHANTASMAL_SHELF_FUNGUS = BLOCKS.register("phantasmal_shelf_fungus", () -> new PhantasmalShelfFungiBlock(YATMBlockProperties.PHANTASMAL_SHELF_FUNGUS_PROPERTIES, YATMBlockShapes.PHANTASMAL_SHELF_FUNGUS, YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM::get));
 	
-	public static final RegistryObject<PitcherClusterBlock> PITCHER_CLUSTER = BLOCKS.register("pitcher_cluster", () -> new PitcherClusterBlock(YATMBlockProperties.PHANTASMAL_SHELF_FUNGUS_PROPERTIES));
+	// TODO, properties
+	public static final RegistryObject<PitcherClusterBlock> PITCHER_CLUSTER = BLOCKS.register("pitcher_cluster", () -> new PitcherClusterBlock(YATMBlockProperties.CROP));
 	
 	public static final RegistryObject<PrismarineCrystalMossBlock> PRISMARINE_CRYSTAL_MOSS = BLOCKS.register("prismarine_crystal_moss", () -> new PrismarineCrystalMossBlock(YATMBlockProperties.PRISMARINE_CRYSTAL_MOSS, YATMBlockShapes.PRISMARINE_CRYSTAL_MOSS, () -> YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get()));
 	
