@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 import com.gsr.gsr_yatm.block.IAgingBlock;
 import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
+import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.utilities.BlockUtilities;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
@@ -22,6 +23,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.SimpleWaterloggedBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
@@ -34,7 +36,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
 
-public class IceCoralBlock extends Block implements IAgingBlock, IYATMPlantableBlock, SimpleWaterloggedBlock
+public class IceCoralBlock extends Block implements IAgingBlock, IYATMPlantableBlock, SimpleWaterloggedBlock, BonemealableBlock
 {
 	public static final @NotNull IntegerProperty AGE = YATMBlockStateProperties.AGE_EIGHT;
 	public static final @NotNull BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -152,9 +154,53 @@ public class IceCoralBlock extends Block implements IAgingBlock, IYATMPlantableB
 	} // end randomTick
 	
 	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos position, CollisionContext context)
+	public VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
 	{
 		return this.m_shape.getShape(state, blockGetter, position, context);
 	} // end getShape()
+
+
+
+	@Override
+	public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos position, @NotNull BlockState state, boolean p_50900_)
+	{
+		return true;
+	} // end isValidBonemealTarget()
+
+	@Override
+	public boolean isBonemealSuccess(@NotNull Level level, @NotNull RandomSource random, @NotNull BlockPos position, @NotNull BlockState state)
+	{
+		return true;
+	} // end isBonemealSuccess()
+	
+	@Override
+	public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos position, @NotNull BlockState state)
+	{
+		BlockPos.MutableBlockPos mPos = new BlockPos.MutableBlockPos().set(position);
+		for(int x = -5; x <= 5; x++) 
+		{
+			for(int z = -5; z <= 5; z++) 
+			{
+				for(int y = -5; y <= 5; y++) 
+				{								
+					mPos.setWithOffset(position, x, y, z);
+					BlockState at = level.getBlockState(mPos);
+					if(at.is(this) && (random.nextInt(((int) (Math.abs(x) + Math.abs(y) + Math.abs(z)) / 2) + 1) == 0) || mPos.equals(position))
+					{
+						BlockState bleachTo = (switch(at.getValue(IceCoralBlock.AGE)) 
+						{
+							case 0, 1 -> YATMBlocks.BLEACHED_ICE_CORAL_POLYP.get();
+							case 2, 3 -> YATMBlocks.BLEACHED_ICE_CORAL_YOUNG.get();
+							case 4, 5, 6 -> YATMBlocks.BLEACHED_ICE_CORAL_ADOLESCENT.get();
+							case 7 -> YATMBlocks.BLEACHED_ICE_CORAL_OLD.get();
+							default -> throw new IllegalArgumentException("Unexpected value of: " + at.getValue(IceCoralBlock.AGE));
+							
+						}).defaultBlockState().setValue(BlockStateProperties.WATERLOGGED, at.getFluidState().getType() == Fluids.WATER);
+						level.setBlock(mPos, bleachTo, Block.UPDATE_CLIENTS);
+					}
+				} // end y loop
+			} // end z loop
+		} // end x loop
+	} // end performBonemeal()
 	
 } // end class

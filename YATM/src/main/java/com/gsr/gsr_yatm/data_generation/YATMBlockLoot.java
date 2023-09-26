@@ -108,8 +108,15 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.add(YATMBlocks.FIRE_EATER_LILY.get(), this.createFireEaterLilyTable());
 		this.dropPottedContents(YATMBlocks.POTTED_FIRE_EATER_LILY.get());
 		
-		// TODO, add loot table
 		this.add(YATMBlocks.ICE_CORAL.get(), (b) -> this.createIceCoralTable());
+		this.dropSelf(YATMBlocks.BLEACHED_ICE_CORAL_OLD.get());
+		this.dropSelf(YATMBlocks.BLEACHED_ICE_CORAL_ADOLESCENT.get());
+		this.dropSelf(YATMBlocks.BLEACHED_ICE_CORAL_YOUNG.get());
+		this.dropSelf(YATMBlocks.BLEACHED_ICE_CORAL_POLYP.get());
+		this.dropPottedContents(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_OLD.get());
+		this.dropPottedContents(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_ADOLESCENT.get());
+		this.dropPottedContents(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_YOUNG.get());
+		this.dropPottedContents(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_POLYP.get());
 		
 		this.dropSelf(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get());
 		this.dropSelf(YATMBlocks.PITCHER_CLUSTER.get());

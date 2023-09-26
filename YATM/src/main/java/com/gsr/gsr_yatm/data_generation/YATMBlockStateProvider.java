@@ -326,6 +326,15 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ice_coral/adolescent"),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ice_coral/young"),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ice_coral/polyp"));
+		
+		this.createCross(YATMBlocks.BLEACHED_ICE_CORAL_OLD.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ice_coral/bleached_old"));
+		this.createCross(YATMBlocks.BLEACHED_ICE_CORAL_ADOLESCENT.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ice_coral/bleached_adolescent"));
+		this.createCross(YATMBlocks.BLEACHED_ICE_CORAL_YOUNG.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ice_coral/bleached_young"));
+		this.createCross(YATMBlocks.BLEACHED_ICE_CORAL_POLYP.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ice_coral/bleached_polyp"));
+		this.createPottedCross(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_OLD.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ice_coral/bleached_old"));
+		this.createPottedCross(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_ADOLESCENT.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ice_coral/bleached_adolescent"));
+		this.createPottedCross(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_YOUNG.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ice_coral/bleached_young"));
+		this.createPottedCross(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_POLYP.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ice_coral/bleached_polyp"));
 	} // end addIceCoral()
 	
 	private void addShulkwarts()

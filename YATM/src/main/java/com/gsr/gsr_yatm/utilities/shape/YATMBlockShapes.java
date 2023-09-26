@@ -22,19 +22,13 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class YATMBlockShapes
 {	
-	
-	public static final ICollisionVoxelShapeProvider SAP_COLLECTOR_SHAPE = new ICollisionVoxelShapeProvider() 
-	{
-		private static final VoxelShape SAP_COLLECTOR_SHAPE = Block.box(0d, 0d, 0d, 16d, 8d, 16d);
+	public static final VoxelShape ICE_CORAL_POLYP = Block.box(5d, 0d, 5d, 11d, 3d, 11d);
+	public static final VoxelShape ICE_CORAL_YOUNG = Block.box(3d, 0d, 3d, 13d, 7d, 13d);
+	public static final VoxelShape ICE_CORAL_ADOLESCENT = Block.box(1d, 0d, 1d, 15d, 9d, 15d);
+	public static final VoxelShape ICE_CORAL_OLD = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
 
-		@Override
-		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
-		{
-			return SAP_COLLECTOR_SHAPE;
-		} // end getShape()
-	};
 	
-
+	
 	public static final ICollisionVoxelShapeProvider CUBE = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape CUBE = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
@@ -82,25 +76,19 @@ public class YATMBlockShapes
 			};
 		} // end getShape()
 	};	
-	
-	
+		
 	public static final ICollisionVoxelShapeProvider ICE_CORAL = new ICollisionVoxelShapeProvider() 
 	{
-		private static final VoxelShape POLYP = Block.box(5d, 0d, 5d, 11d, 3d, 11d);
-		private static final VoxelShape YOUNG = Block.box(3d, 0d, 3d, 13d, 7d, 13d);
-		private static final VoxelShape ADOLESCENT = Block.box(1d, 0d, 1d, 15d, 9d, 15d);
-		private static final VoxelShape OLD = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
-
 		@Override
 		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext collisionContext)
 		{
 			return switch(state.getValue(IceCoralBlock.AGE)) 
 			{
-				case 0, 1 -> POLYP;
-				case 2, 3 -> YOUNG;
-				case 4, 5, 6 -> ADOLESCENT;
-				case 7 -> OLD;
-				default -> throw new IllegalArgumentException("Unexpected of value: " + state.getValue(IceCoralBlock.AGE));
+				case 0, 1 -> ICE_CORAL_POLYP;
+				case 2, 3 -> ICE_CORAL_YOUNG;
+				case 4, 5, 6 -> ICE_CORAL_ADOLESCENT;
+				case 7 -> ICE_CORAL_OLD;
+				default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(IceCoralBlock.AGE));
 			};
 		} // end getShape()
 	};	
@@ -215,8 +203,6 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 	
-	
-	
 	public static final ICollisionVoxelShapeProvider SHULKWART = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape SHAPE_ZERO = Block.box(6, 15d, 6d, 10d, 16d, 10d);
@@ -252,7 +238,16 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 	
-	
+	public static final ICollisionVoxelShapeProvider SAP_COLLECTOR_SHAPE = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape SAP_COLLECTOR_SHAPE = Block.box(0d, 0d, 0d, 16d, 8d, 16d);
+
+		@Override
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		{
+			return SAP_COLLECTOR_SHAPE;
+		} // end getShape()
+	};
 	
 	public static final ICollisionVoxelShapeProvider SPINNING_WHEEL = new ICollisionVoxelShapeProvider() 
 	{

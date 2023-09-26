@@ -112,6 +112,10 @@ public class YATMItems
 	public static final RegistryObject<Item> FIRE_EATER_LILY_FOLIAGE = generalTabEnqueue(ITEMS.register("fire_eater_lily_foliage", () -> new Item(new Item.Properties())));
 
 	public static final RegistryObject<ItemNameBlockItem> ICE_CORAL_POLYP = generalTabEnqueue(ITEMS.register("ice_coral_polyp", () -> new ItemNameBlockItem(YATMBlocks.ICE_CORAL.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> BLEACHED_ICE_CORAL_OLD_ITEM = generalTabEnqueue(ITEMS.register("bleached_ice_coral_old", () -> new BlockItem(YATMBlocks.BLEACHED_ICE_CORAL_OLD.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> BLEACHED_ICE_CORAL_ADOLESCENT_ITEM = generalTabEnqueue(ITEMS.register("bleached_ice_coral_adolescent", () -> new BlockItem(YATMBlocks.BLEACHED_ICE_CORAL_ADOLESCENT.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> BLEACHED_ICE_CORAL_YOUNG_ITEM = generalTabEnqueue(ITEMS.register("bleached_ice_coral_young", () -> new BlockItem(YATMBlocks.BLEACHED_ICE_CORAL_YOUNG.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> BLEACHED_ICE_CORAL_POLYP_ITEM = generalTabEnqueue(ITEMS.register("bleached_ice_coral_polyp", () -> new BlockItem(YATMBlocks.BLEACHED_ICE_CORAL_POLYP.get(), new Item.Properties())));
 	
 	public static final RegistryObject<BlockItem> PHANTASMAL_SHELF_FUNGUS_ITEM = generalTabEnqueue(ITEMS.register("phantasmal_shelf_fungus", () -> new BlockItem(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), new Item.Properties())));
 	

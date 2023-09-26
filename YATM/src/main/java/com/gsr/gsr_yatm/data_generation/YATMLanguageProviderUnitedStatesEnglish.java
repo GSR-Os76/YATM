@@ -108,6 +108,14 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.COTTON.get(), "Cotton");		
 		this.add(YATMBlocks.FIRE_EATER_LILY.get(), "Fire Eater Lily");		
 		this.add(YATMBlocks.ICE_CORAL.get(), "Ice Coral");
+		this.add(YATMBlocks.BLEACHED_ICE_CORAL_OLD.get(), "Bleached Ice Coral (Old)");
+		this.add(YATMBlocks.BLEACHED_ICE_CORAL_ADOLESCENT.get(), "Bleached Ice Coral (Adolescent)");
+		this.add(YATMBlocks.BLEACHED_ICE_CORAL_YOUNG.get(), "Bleached Ice Coral (Young)");
+		this.add(YATMBlocks.BLEACHED_ICE_CORAL_POLYP.get(), "Bleached Ice Coral (Polyp)");
+		this.add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_OLD.get(), "Potted Bleached Ice Coral (Old)");
+		this.add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_ADOLESCENT.get(), "Potted Bleached Ice Coral (Adolescent)");
+		this.add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_YOUNG.get(), "Potted Bleached Ice Coral (Young)");
+		this.add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_POLYP.get(), "Potted Bleached Ice Coral (Polyp)");
 		this.add(YATMBlocks.POTTED_FIRE_EATER_LILY.get(), "Potted Fire Eater Lily");		
 		this.add(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), "Phantasmal Shelf Fungi");		
 		this.add(YATMBlocks.PITCHER_CLUSTER.get(), "Pitcher Cluster");

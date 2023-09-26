@@ -108,6 +108,10 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.FIRE_EATER_LILY_BULB.get());
 		this.basicItem(YATMItems.FIRE_EATER_LILY_FOLIAGE.get());
 		this.basicItem(YATMItems.ICE_CORAL_POLYP.get());
+		this.basicItem(YATMItems.BLEACHED_ICE_CORAL_OLD_ITEM.get());
+		this.basicItem(YATMItems.BLEACHED_ICE_CORAL_ADOLESCENT_ITEM.get());
+		this.basicItem(YATMItems.BLEACHED_ICE_CORAL_YOUNG_ITEM.get());
+		this.basicItem(YATMItems.BLEACHED_ICE_CORAL_POLYP_ITEM.get());
 		this.basicItem(YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get());
 		this.basicItem(YATMItems.SHULKWART_SPORES.get());
 		this.basicItem(YATMItems.SPIDER_VINE_FRUITS.get());

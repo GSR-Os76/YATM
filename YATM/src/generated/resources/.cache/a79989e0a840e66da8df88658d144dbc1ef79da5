@@ -1,9 +1,13 @@
-// 1.20.1	2023-09-26T01:26:19.0377415	Item Models: gsr_yatm
+// 1.20.1	2023-09-26T13:55:39.7435392	Item Models: gsr_yatm
 39dc65663f22bc3413323e63119c165dc4f51c76 assets/gsr_yatm/models/item/aurum_deminutus_fiddle_head.json
 4bab78a47a4fc45a258b74c9012f61de899aee93 assets/gsr_yatm/models/item/aurum_deminutus_frond.json
 b860c72785d969dab4933b80dd6652fa794539bf assets/gsr_yatm/models/item/aurum_fan.json
 e7540048ebe593ee6ab6323cc2f5a0bd0d8ae1cb assets/gsr_yatm/models/item/bio_bottle.json
 7c74b3cad82baaaba12c4ebb84f0b7ef417239e6 assets/gsr_yatm/models/item/bio_bucket.json
+07fe7487b7ebb8bb0106cd2923d036b151fe02f0 assets/gsr_yatm/models/item/bleached_ice_coral_adolescent.json
+475d2723c89b24e21e60974739dc8580b32bf15e assets/gsr_yatm/models/item/bleached_ice_coral_old.json
+9b9571ac3a009696d8b2c56ba9dcb6a24eb26b7e assets/gsr_yatm/models/item/bleached_ice_coral_polyp.json
+c7f17a5afc4950fd2ba02b46bee0e9029b9ab315 assets/gsr_yatm/models/item/bleached_ice_coral_young.json
 27a02805c72ecb20b7557bb77f320f10ff413732 assets/gsr_yatm/models/item/carcass_root_cutting.json
 938d8b0ab1223b09a189deb829870c72c34a472c assets/gsr_yatm/models/item/chorus_bio_bottle.json
 f6a30b3a697de15d3500b70b6ba416fac0af2251 assets/gsr_yatm/models/item/chorus_bio_bucket.json
