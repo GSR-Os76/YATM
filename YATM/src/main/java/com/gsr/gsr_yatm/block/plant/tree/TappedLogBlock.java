@@ -5,7 +5,7 @@ import java.util.function.Supplier;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.block.IDripFillable;
+import com.gsr.gsr_yatm.block.IDripFillableBlock;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 
 import net.minecraft.core.BlockPos;
@@ -113,7 +113,7 @@ public class TappedLogBlock extends RotatedPillarBlock
 			{
 				mbp.move(Direction.DOWN);
 				BlockState toCheckState = level.getBlockState(mbp);
-				if(toCheckState.getBlock() instanceof IDripFillable df) 
+				if(toCheckState.getBlock() instanceof IDripFillableBlock df) 
 				{
 					if(df.canRecieveFluid(this.m_fluid.get()))
 					{

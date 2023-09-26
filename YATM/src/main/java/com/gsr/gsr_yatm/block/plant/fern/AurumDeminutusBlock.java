@@ -6,7 +6,7 @@ import java.util.function.Supplier;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.block.IHarvestable;
+import com.gsr.gsr_yatm.block.IHarvestableBlock;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
@@ -41,7 +41,7 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 
-public class AurumDeminutusBlock extends CropBlock implements IHarvestable
+public class AurumDeminutusBlock extends CropBlock implements IHarvestableBlock
 {
 	public static final int DOUBLES_PAST_THRESHOLD = 2;
 	public static final EnumProperty<DoubleBlockHalf> HALF = YATMBlockStateProperties.DOUBLE_BLOCK_HALF;
@@ -121,7 +121,7 @@ public class AurumDeminutusBlock extends CropBlock implements IHarvestable
 		{
 			this.randomTick(state, sl, position, sl.random);
 		}
-		return IHarvestable.use(this, level, state, position, player, hand, hitResult);
+		return IHarvestableBlock.use(this, level, state, position, player, hand, hitResult);
 	} // end use()
 	
 	

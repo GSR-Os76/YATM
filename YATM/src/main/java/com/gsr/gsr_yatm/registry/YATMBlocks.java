@@ -40,6 +40,7 @@ import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootSupplier;
 import com.gsr.gsr_yatm.block.plant.fern.AurumDeminutusBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
+import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
 import com.gsr.gsr_yatm.block.plant.moss.PrismarineCrystalMossBlock;
 import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
 import com.gsr.gsr_yatm.block.plant.pitcher_cluster.PitcherClusterBlock;
@@ -166,9 +167,6 @@ public class YATMBlocks
 	public static final RegistryObject<YATMWallHangingSignBlock> SOUL_AFFLICTED_RUBBER_WALL_HANGING_SIGN = BLOCKS.register("soul_afflicted_rubber_wall_hanging_sign", () -> new YATMWallHangingSignBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_SIGN, YATMBlocks.SOUL_AFFLICTED_RUBBER_WOOD_TYPE));
 	public static final RegistryObject<CarpetBlock> SOUL_AFFLICTED_LEAF_MULCH = BLOCKS.register("soul_afflicted_leaf_mulch", () -> new CarpetBlock(YATMBlockProperties.LEAF_MULCH_PROPERTIES));
 
-	public static final RegistryObject<AurumDeminutusBlock> AURUM_DEMINUTUS = BLOCKS.register("aurum_deminutus", () -> new AurumDeminutusBlock(YATMBlockProperties.AURUM_SP, YATMBlockShapes.CUBE, YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD::get, () -> new ItemStack(YATMItems.AURUM_DEMINUTUS_FROND.get())));
-	public static final RegistryObject<FlowerPotBlock> POTTED_AURUM_DEMINUTUS = BLOCKS.register("potted_aurum_deminutus", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.AURUM_DEMINUTUS, YATMBlockProperties.FLOWER_POT_PROPERTIES));
-	
 	// TODO, some dripping tree, a small tree with notable extrafloral nectaries, bees will interact with them, they will drip, small feeling tree
 	// TODO, possibly used for making still, if i do end up doing the plant machines
 	
@@ -179,18 +177,20 @@ public class YATMBlocks
 	// possibly if no neighboring buds are present grow to encompass multiple blocks, be much much more lucrative.
 	// tear extraction could limit production of seeds, or extenuate it
 	// extract by bottle as diluted, and boil into a tear, or maybe just smelt bottle.
+	public static final RegistryObject<AurumDeminutusBlock> AURUM_DEMINUTUS = BLOCKS.register("aurum_deminutus", () -> new AurumDeminutusBlock(YATMBlockProperties.AURUM_SP, YATMBlockShapes.CUBE, YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD::get, () -> new ItemStack(YATMItems.AURUM_DEMINUTUS_FROND.get())));
+	public static final RegistryObject<FlowerPotBlock> POTTED_AURUM_DEMINUTUS = BLOCKS.register("potted_aurum_deminutus", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.AURUM_DEMINUTUS, YATMBlockProperties.FLOWER_POT_PROPERTIES));
 	
 	public static final RegistryObject<CarcassRootFoliageBlock> CARCASS_ROOT_FOLIAGE = BLOCKS.register("carcass_root_foliage", () -> new CarcassRootFoliageBlock(YATMBlockProperties.CARCASS_ROOT_FOLIAGE, YATMBlockShapes.CUBE, YATMItems.CARCASS_ROOT_CUTTING::get, () -> new ItemStack(YATMItems.CARCASS_ROOT_CUTTING.get()), new CarcassRootRootSupplier()));
 	public static final RegistryObject<FlowerPotBlock> POTTED_CARCASS_ROOT_FOLIAGE = BLOCKS.register("potted_carcass_root_foliage", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), YATMBlockProperties.FLOWER_POT_PROPERTIES));
 	public static final RegistryObject<CarcassRootRootBlock> CARCASS_ROOT_ROOTED_DIRT = BLOCKS.register("carcass_root_rooted_dirt", () -> new CarcassRootRootBlock(YATMBlockProperties.CARCASS_ROOT_ROOTED_DIRT, YATMBlockShapes.CUBE, () -> YATMBlocks.CARCASS_ROOT_FOLIAGE.get().defaultBlockState()));
 	public static final RegistryObject<CarcassRootRootBlock> CARCASS_ROOT_ROOTED_NETHERRACK = BLOCKS.register("carcass_root_rooted_netherrack", () -> new CarcassRootRootBlock(YATMBlockProperties.CARCASS_ROOT_ROOTED_NETHERRACK, YATMBlockShapes.CUBE, () -> YATMBlocks.CARCASS_ROOT_FOLIAGE.get().defaultBlockState()));
-	
 	// TODO, perhaps adjust hitbox to match stages closer
 	public static final RegistryObject<CustomSeedCropBlock> COTTON = BLOCKS.register("cotton", () -> new CustomSeedCropBlock(YATMBlockProperties.CROP, YATMItems.COTTON_SEEDS::get));
-
 	// TODO, add in property
 	public static final RegistryObject<FireEaterLilyBlock> FIRE_EATER_LILY = BLOCKS.register("fire_eater_lily", () -> new FireEaterLilyBlock(YATMBlockProperties.FIRE_EATER_LILY, YATMBlockShapes.FIRE_EATER_LILY));
 	public static final RegistryObject<FlowerPotBlock> POTTED_FIRE_EATER_LILY = BLOCKS.register("potted_fire_eater_lily", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.FIRE_EATER_LILY.get(), YATMBlockProperties.FLOWER_POT_PROPERTIES));
+	
+	public static final RegistryObject<IceCoralBlock> ICE_CORAL = BLOCKS.register("ice_coral", () -> new IceCoralBlock(YATMBlockProperties.ICE_CORAL_PROPERTIES, YATMBlockShapes.CUBE/*ICE_CORAL*/));
 	
 	public static final RegistryObject<PhantasmalShelfFungiBlock> PHANTASMAL_SHELF_FUNGUS = BLOCKS.register("phantasmal_shelf_fungus", () -> new PhantasmalShelfFungiBlock(YATMBlockProperties.PHANTASMAL_SHELF_FUNGUS_PROPERTIES, YATMBlockShapes.PHANTASMAL_SHELF_FUNGUS, YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM::get));
 	

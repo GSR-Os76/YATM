@@ -107,6 +107,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get(), "Carcass Root Rooted Netherrack");		
 		this.add(YATMBlocks.COTTON.get(), "Cotton");		
 		this.add(YATMBlocks.FIRE_EATER_LILY.get(), "Fire Eater Lily");		
+		this.add(YATMBlocks.ICE_CORAL.get(), "Ice Coral");
 		this.add(YATMBlocks.POTTED_FIRE_EATER_LILY.get(), "Potted Fire Eater Lily");		
 		this.add(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), "Phantasmal Shelf Fungi");		
 		this.add(YATMBlocks.PITCHER_CLUSTER.get(), "Pitcher Cluster");
@@ -269,6 +270,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.RAW_COTTON_FIBER.get(), "Raw Cotton Fiber");
 		this.add(YATMItems.FIRE_EATER_LILY_BULB.get(), "Fire Eater Lily Bulb");
 		this.add(YATMItems.FIRE_EATER_LILY_FOLIAGE.get(), "Fire Eater Lily Foliage");
+		this.add(YATMItems.ICE_CORAL_POLYP.get(), "Ice Coral Polyp");
 		this.add(YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get(), "Prismarine Crystal Moss Spores");
 		this.add(YATMItems.SHULKWART_SPORES.get(), "Shulkwart Spores");
 		this.add(YATMItems.SHULKWART_HORN.get(), "Shulkwart Horn");

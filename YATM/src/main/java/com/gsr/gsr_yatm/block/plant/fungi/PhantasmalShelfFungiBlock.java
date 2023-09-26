@@ -8,7 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Math;
 
-import com.gsr.gsr_yatm.block.IHarvestable;
+import com.gsr.gsr_yatm.block.IHarvestableBlock;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.data_generation.YATMItemTags;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
@@ -41,7 +41,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 
-public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestable
+public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestableBlock
 {
 	private static final int MIN_SPREAD_ATTEMPT_COUNT = 12;
 	private static final int MAX_SPREAD_ATTEMPT_COUNT = 24;
@@ -90,7 +90,7 @@ public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestable
 	@Override
 	public InteractionResult use(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
-		InteractionResult hrvRes = IHarvestable.use(this, level, state, position, player, hand, hitResult);
+		InteractionResult hrvRes = IHarvestableBlock.use(this, level, state, position, player, hand, hitResult);
 		if(hrvRes != InteractionResult.PASS) 
 		{
 			return hrvRes;

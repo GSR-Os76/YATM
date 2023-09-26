@@ -2,7 +2,7 @@ package com.gsr.gsr_yatm;
 
 import java.util.Collection;
 
-import com.gsr.gsr_yatm.block.IHarvestable;
+import com.gsr.gsr_yatm.block.IHarvestableBlock;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.plant.tree.TappedLogBlock;
 import com.gsr.gsr_yatm.command.YATMRuleCommand;
@@ -227,7 +227,7 @@ public class YATMGameEvents
 	private static boolean tryHarvest(BlockToolModificationEvent event)
 	{
 		BlockState state = event.getState();
-		if(state.getBlock() instanceof IHarvestable harvestable && harvestable.allowEventHandling()) 
+		if(state.getBlock() instanceof IHarvestableBlock harvestable && harvestable.allowEventHandling()) 
 		{
 			Level level = event.getContext().getLevel();
 			BlockPos positiion = event.getPos();

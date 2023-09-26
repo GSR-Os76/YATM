@@ -1,6 +1,10 @@
 package com.gsr.gsr_yatm.block.plant.tree;
 
+import java.util.Objects;
+
 import javax.annotation.Nullable;
+
+import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -21,41 +25,40 @@ public class AerialRootsBlock extends Block implements SimpleWaterloggedBlock
 	
 	
 	
-	public AerialRootsBlock(Properties properties)
+	public AerialRootsBlock(@NotNull Properties properties)
 	{
-		super(properties);
-		this.registerDefaultState(this.defaultBlockState().setValue(WATERLOGGED, false));
+		super(Objects.requireNonNull(properties));
+		this.registerDefaultState(this.defaultBlockState().setValue(AerialRootsBlock.WATERLOGGED, false));
 	} // end constructor
 	
 
 
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
+	protected void createBlockStateDefinition(@NotNull StateDefinition.Builder<Block, BlockState> builder)
 	{
-		builder.add(WATERLOGGED);
+		builder.add(AerialRootsBlock.WATERLOGGED);
 	} // end createBlockStateDefinition()
 	
-	@Nullable
-	public BlockState getStateForPlacement(BlockPlaceContext context)
+	public @Nullable BlockState getStateForPlacement(@NotNull BlockPlaceContext context)
 	{
 		FluidState fluidstate = context.getLevel().getFluidState(context.getClickedPos());
-		return super.getStateForPlacement(context).setValue(WATERLOGGED, fluidstate.getType() == Fluids.WATER);
+		return super.getStateForPlacement(context).setValue(AerialRootsBlock.WATERLOGGED, fluidstate.getType() == Fluids.WATER);
 	} // end getStateForPlacement()
 
 	@SuppressWarnings("deprecation")
-	public BlockState updateShape(BlockState blockState, Direction direction, BlockState blockStateSecond, LevelAccessor levelAccessor, BlockPos blockPos, BlockPos blockPosSecond)
+	public @NotNull BlockState updateShape(@NotNull BlockState state, Direction direction, BlockState stateSecond, @NotNull LevelAccessor level, @NotNull BlockPos position, BlockPos positionSecond)
 	{
-		if (blockState.getValue(WATERLOGGED))
+		if (state.getValue(AerialRootsBlock.WATERLOGGED))
 		{
-			levelAccessor.scheduleTick(blockPos, Fluids.WATER, Fluids.WATER.getTickDelay(levelAccessor));
+			level.scheduleTick(position, Fluids.WATER, Fluids.WATER.getTickDelay(level));
 		}
 
-		return super.updateShape(blockState, direction, blockStateSecond, levelAccessor, blockPos, blockPosSecond);
+		return super.updateShape(state, direction, stateSecond, level, position, positionSecond);
 	} // end updateShape()
 
 	@SuppressWarnings("deprecation")
-	public FluidState getFluidState(BlockState updateShape)
+	public @NotNull FluidState getFluidState(@NotNull BlockState state)
 	{
-		return updateShape.getValue(WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(updateShape);
-	} // end getFluidState
+		return state.getValue(AerialRootsBlock.WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
+	} // end getFluidState()
 
 } // end class

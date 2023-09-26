@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.block.IBlockForPlacementByBlockSupplier;
-import com.gsr.gsr_yatm.block.IHarvestable;
+import com.gsr.gsr_yatm.block.IHarvestableBlock;
 import com.gsr.gsr_yatm.block.IOccasionallySpreadableBlock;
 import com.gsr.gsr_yatm.block.ISpreadabilitySettableBlock;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
@@ -45,7 +45,7 @@ import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 
 // TODO, investigate IPlantable interface, and more avoiding extending CropBlock
-public class CarcassRootFoliageBlock extends CropBlock implements IHarvestable, IOccasionallySpreadableBlock, ISpreadabilitySettableBlock
+public class CarcassRootFoliageBlock extends CropBlock implements IHarvestableBlock, IOccasionallySpreadableBlock, ISpreadabilitySettableBlock
 {
 	
 	public static final int ROOTING_DEPTH = 3;
@@ -109,7 +109,7 @@ public class CarcassRootFoliageBlock extends CropBlock implements IHarvestable, 
 	@Override
 	public InteractionResult use(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
-		return IHarvestable.use(this, level, state, position, player, hand, hitResult);
+		return IHarvestableBlock.use(this, level, state, position, player, hand, hitResult);
 	} // end use()
 	
 	

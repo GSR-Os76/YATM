@@ -7,7 +7,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.block.IDripFillable;
+import com.gsr.gsr_yatm.block.IDripFillableBlock;
 import com.gsr.gsr_yatm.utilities.shape.BlockShapesProvider;
 
 import net.minecraft.core.BlockPos;
@@ -19,7 +19,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
-public class SapCollectorBlock extends AbstractSapCollectorBlock implements IDripFillable, ISapCollector, EntityBlock
+public class SapCollectorBlock extends AbstractSapCollectorBlock implements IDripFillableBlock, ISapCollector, EntityBlock
 {
 	private final @NotNull Map<@NotNull Fluid, @NotNull BlockState> m_variantLookup = new HashMap<>();
 

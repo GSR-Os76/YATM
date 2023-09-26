@@ -7,9 +7,9 @@ import java.util.function.Supplier;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.block.IAging;
-import com.gsr.gsr_yatm.block.IHarvestable;
-import com.gsr.gsr_yatm.block.IYATMPlantable;
+import com.gsr.gsr_yatm.block.IAgingBlock;
+import com.gsr.gsr_yatm.block.IHarvestableBlock;
+import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
@@ -40,7 +40,7 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 
-public class ShulkwartBlock extends Block implements IAging, IHarvestable, IYATMPlantable
+public class ShulkwartBlock extends Block implements IAgingBlock, IHarvestableBlock, IYATMPlantableBlock
 {
 	public static final IntegerProperty AGE = YATMBlockStateProperties.AGE_EIGHT;
 	private static final int MAX_SPORE_FALL_DISTANCE = 16;
@@ -98,7 +98,7 @@ public class ShulkwartBlock extends Block implements IAging, IHarvestable, IYATM
 	@Override
 	public InteractionResult use(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
-		return IHarvestable.use(this, level, state, position, player, hand, hitResult);
+		return IHarvestableBlock.use(this, level, state, position, player, hand, hitResult);
 	} // end use()
 
 
@@ -249,7 +249,7 @@ public class ShulkwartBlock extends Block implements IAging, IHarvestable, IYATM
 
 
 	@Override
-	public boolean canPlantOn(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos pos, @NotNull Direction face)
+	public boolean canPlantOn(@NotNull LevelReader level, @NotNull BlockState state, @NotNull BlockPos position, @NotNull Direction face)
 	{
 		return this.canPlantOrSurviveOn(state, face);
 	} // end canPkantOn()

@@ -18,7 +18,7 @@ public class YATMBlockProperties
 	
 	public static final Properties EMPTY = Properties.of();
 	
-	// TODO, work on these
+	// TODO, work on these, alphabetize the chain method calls
 	// public static final BlockBehaviour.Properties BASE_WOOD_PROPERTIES = BlockBehaviour.Properties.of().instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD).ignitedByLava();
 	public static final Properties AERIAL_ROOTS_PROPERTIES = Properties.of().mapColor(MapColor.PODZOL).instrument(NoteBlockInstrument.BASS).strength(0.7F).randomTicks().sound(SoundType.MANGROVE_ROOTS).noOcclusion().isSuffocating(YATMBlockProperties::never).isViewBlocking(YATMBlockProperties::never).noOcclusion().ignitedByLava();
 	public static final Properties FLOWER_POT_PROPERTIES = Properties.of().instabreak().noOcclusion().pushReaction(PushReaction.DESTROY);
@@ -47,6 +47,9 @@ public class YATMBlockProperties
 	public static final Properties CROP = Properties.of().mapColor(MapColor.PLANT).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();
 	public static final Properties FALLEN_SHULKWART_SPORES = Properties.of().mapColor(MapColor.SAND).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();
 	public static final Properties FIRE_EATER_LILY = Properties.of().mapColor(MapColor.COLOR_ORANGE).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();
+	
+	public static final Properties ICE_CORAL_PROPERTIES = Properties.of().mapColor(MapColor.ICE).noCollission().noOcclusion().pushReaction(PushReaction.DESTROY).randomTicks().sound(SoundType.GLASS).strength(0.5F);
+	
 	public static final Properties PHANTASMAL_SHELF_FUNGUS_PROPERTIES = Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(0.5F).sound(SoundType.FUNGUS).pushReaction(PushReaction.DESTROY).noCollission().randomTicks();
 	public static final Properties PRISMARINE_CRYSTAL_MOSS = Properties.of().mapColor(MapColor.COLOR_CYAN).sound(SoundType.MOSS).pushReaction(PushReaction.DESTROY).replaceable()/* .requiresCorrectToolForDrops() */.strength(1.5F, 6.0F).noCollission().randomTicks();
 	public static final Properties SPIDER_VINE = Properties.of().mapColor(MapColor.PLANT).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();;

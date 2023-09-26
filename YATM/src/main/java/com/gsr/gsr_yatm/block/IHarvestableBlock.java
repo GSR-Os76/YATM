@@ -18,7 +18,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.ToolAction;
 
-public interface IHarvestable
+public interface IHarvestableBlock
 {
 	public default boolean allowEventHandling() 
 	{
@@ -48,7 +48,7 @@ public interface IHarvestable
 	
 	
 	// since BlockToolModificationEvent isn't raised consistently for all the ToolActions, e.g. the ToolActions.SHEARS_HARVEST, this default use implementation can be utilized instead when a block is interacted with by a player
-	public static InteractionResult use(IHarvestable harvestable, Level level, BlockState state, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
+	public static InteractionResult use(IHarvestableBlock harvestable, Level level, BlockState state, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
 		ItemStack held = player.getItemInHand(hand);
 		for(ToolAction usable : harvestable.validActions(level, state, position)) 

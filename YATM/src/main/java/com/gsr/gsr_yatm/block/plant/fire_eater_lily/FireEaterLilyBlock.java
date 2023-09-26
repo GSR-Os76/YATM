@@ -5,10 +5,10 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.block.IAging;
-import com.gsr.gsr_yatm.block.IYATMPlantable;
+import com.gsr.gsr_yatm.block.IAgingBlock;
+import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
+import com.gsr.gsr_yatm.utilities.BlockUtilities;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
@@ -32,7 +32,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
 
 // TODO, maybe make FlowerBlock
-public class FireEaterLilyBlock extends Block implements IAging, BonemealableBlock, IYATMPlantable
+public class FireEaterLilyBlock extends Block implements IAgingBlock, BonemealableBlock, IYATMPlantableBlock
 {
 	public static final IntegerProperty AGE = YATMBlockStateProperties.AGE_EIGHT;
 	public static final BooleanProperty LIT = YATMBlockStateProperties.LIT;
@@ -60,12 +60,6 @@ public class FireEaterLilyBlock extends Block implements IAging, BonemealableBlo
 		return FireEaterLilyBlock.AGE;
 	} // end getAgeProperty()
 
-	@Override
-	public boolean canPlantOn(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos pos, @NotNull Direction face)
-	{
-		return state.is(YATMBlockTags.FIRE_EATER_LILY_CAN_GROW_ON_KEY);
-	} // end canPlantOn()
-
 
 	
 	@Override
@@ -84,12 +78,6 @@ public class FireEaterLilyBlock extends Block implements IAging, BonemealableBlo
 	
 	protected @Nullable BlockState getStateForPlacement(@NotNull LevelReader level, @NotNull BlockPos position) 
 	{
-
-		if(!level.getBlockState(position.below()).is(YATMBlockTags.FIRE_EATER_LILY_CAN_GROW_ON_KEY)) 
-		{
-			return null;
-		}
-		
 		return this.defaultBlockState().setValue(FireEaterLilyBlock.LIT, this.shouldBeLit(level, position));
 	} // end getStateForPlacement()
 	
@@ -98,32 +86,30 @@ public class FireEaterLilyBlock extends Block implements IAging, BonemealableBlo
 	@Override
 	public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos position)
 	{
-		YetAnotherTechMod.LOGGER.info("canSurvive: " + level.getBlockState(position.below()).is(YATMBlockTags.FIRE_EATER_LILY_CAN_GROW_ON_KEY));
 		return level.getBlockState(position.below()).is(YATMBlockTags.FIRE_EATER_LILY_CAN_GROW_ON_KEY);
 	} // end canSurvive()
-	
-
-
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public void neighborChanged(BlockState state, Level level, BlockPos position, Block from, BlockPos neighborPos, boolean p_60514_)
+	public void neighborChanged(BlockState state, Level level, BlockPos position, Block formerNeighbor, BlockPos neighborPos, boolean p_60514_)
 	{
 		if(!this.canSurvive(state, level, position)) 
 		{
-			level.setBlock(position, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
-			Block.dropResources(state, level, position);
-			// TODO, particles
-			return;
+			BlockUtilities.breakBlock(level, state, position);
 		}
-		super.neighborChanged(state, level, position, from, neighborPos, p_60514_);
-		
+		super.neighborChanged(state, level, position, formerNeighbor, neighborPos, p_60514_);		
 	} // end neighborChanged()
 	
+	@Override
+	public boolean canPlantOn(@NotNull LevelReader level, @NotNull BlockState state, @NotNull BlockPos position, @NotNull Direction face)
+	{
+		BlockPos above = position.above();
+		return face == Direction.UP 
+				&& this.canSurvive(level.getBlockState(above), level, above) 
+				&& level.getBlockState(position.above()).is(Blocks.AIR);
+	} // end canPlantOn()
 	
 	
-
-
 
 	@Override
 	public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos position, @NotNull RandomSource random)
@@ -165,11 +151,6 @@ public class FireEaterLilyBlock extends Block implements IAging, BonemealableBlo
 		{
 			heatLevel += 4;
 		}
-//		else
-//		{
-//			//check if biome temp unit
-//			heatLevel += Math.round(level.getBiome(position).get().getBaseTemperature() * 2f);
-//		}
 
 		if(level.getBlockState(position.below()).is(YATMBlockTags.HEAT_BLOCKS_KEY)) 
 		{
@@ -177,6 +158,7 @@ public class FireEaterLilyBlock extends Block implements IAging, BonemealableBlo
 		}
 		
 		// TODO, probably, check surrounding blocks against tag, be sure not to load chunks in
+		// TODO, possibly, check biome heat, but probably not this one.
 		
 		return heatLevel;
 	} // end getHeatLevel()

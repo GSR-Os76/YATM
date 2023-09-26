@@ -106,6 +106,10 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.add(YATMBlocks.COTTON.get(), this.createCropDrops(YATMBlocks.COTTON.get(), YATMItems.COTTON_BOLLS.get(), YATMItems.COTTON_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(YATMBlocks.COTTON.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		this.add(YATMBlocks.FIRE_EATER_LILY.get(), this.createFireEaterLilyTable());
 		this.dropPottedContents(YATMBlocks.POTTED_FIRE_EATER_LILY.get());
+		
+		// TODO, add loot table
+		this.dropSelf(YATMBlocks.ICE_CORAL.get());
+		
 		this.dropSelf(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get());
 		this.dropSelf(YATMBlocks.PITCHER_CLUSTER.get());
 		this.add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), (b) -> this.createPrismarineCrystalMossTable());

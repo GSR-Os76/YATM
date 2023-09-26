@@ -3,7 +3,7 @@ package com.gsr.gsr_yatm.block.plant.variegated_cactus;
 import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.block.IYATMPlantable;
+import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 
 import net.minecraft.core.BlockPos;
@@ -12,7 +12,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.tags.FluidTags;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.CactusBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -20,7 +19,7 @@ import net.minecraftforge.common.IPlantable;
 import net.minecraftforge.common.PlantType;
 import net.minecraftforge.common.util.NonNullSupplier;
 
-public class VariegatedCactusBlock extends CactusBlock implements IYATMPlantable
+public class VariegatedCactusBlock extends CactusBlock implements IYATMPlantableBlock
 {
 	private final @NotNull NonNullSupplier<BlockState> m_revertsInto;
 	// private final float m_reversionChance;
@@ -101,13 +100,13 @@ public class VariegatedCactusBlock extends CactusBlock implements IYATMPlantable
 	@Override
 	public PlantType getPlantType(BlockGetter world, BlockPos pos)
 	{
-		return IYATMPlantable.PLANT_TYPE;
+		return IYATMPlantableBlock.PLANT_TYPE;
 	} // end getPlantType()
 
 
 
 	@Override
-	public boolean canPlantOn(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos pos, @NotNull Direction face)
+	public boolean canPlantOn(@NotNull LevelReader level, @NotNull BlockState state, @NotNull BlockPos position, @NotNull Direction face)
 	{
 		return face == Direction.UP && this.canPlantOn(state);
 	} // end canPlantOn()

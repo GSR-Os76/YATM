@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "condition": "minecraft:survives_explosion"
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "name": "gsr_yatm:ice_coral_polyp"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "gsr_yatm:blocks/ice_coral"
+}
