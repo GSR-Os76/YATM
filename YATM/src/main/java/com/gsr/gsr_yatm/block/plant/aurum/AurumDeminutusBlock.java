@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.plant.fern;
+package com.gsr.gsr_yatm.block.plant.aurum;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -166,7 +166,7 @@ public class AurumDeminutusBlock extends CropBlock implements IHarvestableBlock
 	@Override
 	protected boolean mayPlaceOn(BlockState state, BlockGetter blockGetter, BlockPos position)
 	{
-		return state.is(YATMBlockTags.AURUM_GROWS_ON_KEY);
+		return state.is(YATMBlockTags.AURUM_CAN_GROW_ON_KEY);
 	} // end mayPlaceOn()
 
 	@Override

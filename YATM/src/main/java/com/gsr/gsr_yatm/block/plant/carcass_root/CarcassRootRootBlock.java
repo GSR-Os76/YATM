@@ -206,7 +206,7 @@ public class CarcassRootRootBlock extends Block implements BonemealableBlock, IO
 	
 	protected boolean isPositionValid(LevelReader level, BlockPos position) 
 	{
-		return level.getBlockState(position.below()).is(YATMBlockTags.CARCASS_ROOT_GROWS_ON_KEY) && level.getBlockState(position).isAir(); 
+		return level.getBlockState(position.below()).is(YATMBlockTags.CARCASS_ROOT_CAN_GROW_ON_KEY) && level.getBlockState(position).isAir(); 
 	} // end isPositionValid()
 	
 } // end class

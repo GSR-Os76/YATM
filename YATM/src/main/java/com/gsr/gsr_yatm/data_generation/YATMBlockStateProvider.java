@@ -18,13 +18,13 @@ import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
+import com.gsr.gsr_yatm.block.plant.aurum.AurumDeminutusBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootFoliageBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootBlock;
-import com.gsr.gsr_yatm.block.plant.fern.AurumDeminutusBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
-import com.gsr.gsr_yatm.block.plant.moss.PrismarineCrystalMossBlock;
+import com.gsr.gsr_yatm.block.plant.prismarine_crystal_moss.PrismarineCrystalMossBlock;
 import com.gsr.gsr_yatm.block.plant.tree.SelfLayeringSaplingBlock;
 import com.gsr.gsr_yatm.block.plant.tree.TappedLogBlock;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
@@ -147,6 +147,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addSoulAfflictedRubberSet();
 		
 		this.addAurumDeminutus();
+		this.addBasinOfTears();
 		this.addCarcassRoot();
 		this.createFourStageCrop(YATMBlocks.COTTON.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_germinating"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_flowering"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_maturing"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_mature"));
 		this.addFireEaterLily();
@@ -292,6 +293,15 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/mature_double_lower"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/mature_double_higher"));
 		this.createStoneSoilPottedCross(YATMBlocks.POTTED_AURUM_DEMINUTUS.get(), adolescentTexture);
+	} // end addAurumDeminutus()
+	
+	private void addBasinOfTears()
+	{
+		this.createFourAgeCross(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/basin_of_tears/foliage_sprouts"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/basin_of_tears/foliage_young"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/basin_of_tears/foliage_adolescent"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/basin_of_tears/foliage_old"));
 	} // end addAurumDeminutus()
 	
 	private void addCarcassRoot() 
@@ -564,7 +574,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	private void createSolarPanel(Block block, Item item, ResourceLocation sideTexture, ResourceLocation topTexture) 
 	{
 		String name = getModelLocationNameFor(block);
-		this.models().getBuilder(name).parent(SOLAR_PANEL_MODEL).texture("top", topTexture).texture("side", sideTexture);
+		this.models().getBuilder(name).parent(YATMBlockStateProvider.SOLAR_PANEL_MODEL).texture("top", topTexture).texture("side", sideTexture);
 		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
 		this.getVariantBuilder(block).forAllStates((bs) -> 
@@ -573,17 +583,37 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		});
 	} // end createSolarPanel()
 	
-	private void createFourStageCrop(CropBlock block, ResourceLocation textureOne, ResourceLocation textureTwo, ResourceLocation textureThree, ResourceLocation textureFour) 
+	private void createFourAgeCross(@NotNull Block block, @NotNull ResourceLocation ageZero, @NotNull ResourceLocation ageOne, @NotNull ResourceLocation ageTwo, @NotNull ResourceLocation ageThree) 
+	{
+		String name = getModelLocationNameFor(block);
+		String nameZero = name + "_zero";
+		String nameOne = name + "_one";
+		String nameTwo = name + "_two";
+		String nameThree = name + "_three";
+		this.models().cross(nameZero, ageZero).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameOne, ageOne).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameTwo, ageTwo).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameThree, ageThree).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		ModelFile modelZero = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameZero));
+		ModelFile modelOne = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameOne));
+		ModelFile modelTwo = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameTwo));
+		ModelFile modelThree = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameThree));
+		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forFourAge(bs, modelZero, modelOne, modelTwo, modelThree));
+
+	} // end createFourAgeCros()
+	
+	
+	private void createFourStageCrop(@NotNull CropBlock block, @NotNull ResourceLocation textureOne, @NotNull ResourceLocation textureTwo, @NotNull ResourceLocation textureThree, @NotNull ResourceLocation textureFour) 
 	{
 		String name = getModelLocationNameFor(block);
 		String nameOne = name + "_one";
 		String nameTwo = name + "_two";
 		String nameThree = name + "_three";
 		String nameFour = name + "_four";
-		this.models().getBuilder(nameOne).parent(CROP).texture("crop", textureOne).renderType(CUTOUT_RENDER_TYPE);
-		this.models().getBuilder(nameTwo).parent(CROP).texture("crop", textureTwo).renderType(CUTOUT_RENDER_TYPE);
-		this.models().getBuilder(nameThree).parent(CROP).texture("crop", textureThree).renderType(CUTOUT_RENDER_TYPE);
-		this.models().getBuilder(nameFour).parent(CROP).texture("crop", textureFour).renderType(CUTOUT_RENDER_TYPE);
+		this.models().getBuilder(nameOne).parent(YATMBlockStateProvider.CROP).texture("crop", textureOne).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().getBuilder(nameTwo).parent(YATMBlockStateProvider.CROP).texture("crop", textureTwo).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().getBuilder(nameThree).parent(YATMBlockStateProvider.CROP).texture("crop", textureThree).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().getBuilder(nameFour).parent(YATMBlockStateProvider.CROP).texture("crop", textureFour).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
 		ModelFile modelOne = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameOne));
 		ModelFile modelTwo = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameTwo));
 		ModelFile modelThree = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameThree));
@@ -592,7 +622,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.getVariantBuilder(block).forAllStates((bs) -> forCrop(bs, modelOne, modelOne, modelTwo, modelTwo, modelThree, modelThree, modelFour, modelFour));
 	} // end createCrop()
 	
-	private void createPrismarineCrystalMossLike(PrismarineCrystalMossBlock block, ResourceLocation textureOne, ResourceLocation textureTwo)//, ResourceLocation textureThree, ResourceLocation textureFour) 
+	private void createPrismarineCrystalMossLike(@NotNull PrismarineCrystalMossBlock block, @NotNull ResourceLocation textureOne, @NotNull ResourceLocation textureTwo)//, ResourceLocation textureThree, ResourceLocation textureFour) 
 	{
 		String name = getModelLocationNameFor(block);
 		String nameOne = name + "_one";
@@ -747,13 +777,13 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		String nameIm = name + "_immature";
 		String nameFr = name + "_fruiting";
 		String nameHa = name + "_harvested";
-		this.models().cross(nameIm, textureImmature).renderType(CUTOUT_RENDER_TYPE);
-		this.models().cross(nameFr, textureFruiting).renderType(CUTOUT_RENDER_TYPE);
-		this.models().cross(nameHa, textureHarvested).renderType(CUTOUT_RENDER_TYPE);
+		this.models().cross(nameIm, textureImmature).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameFr, textureFruiting).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameHa, textureHarvested).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
 		ModelFile modelIm = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameIm));
 		ModelFile modelFr = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameFr));
 		ModelFile modelHa = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameHa));
-		this.getVariantBuilder(block).forAllStates((bs) -> forOnceFruiting(bs, modelIm, modelFr, modelHa));
+		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forOnceFruiting(bs, modelIm, modelFr, modelHa));
 		//YATMBlockStateProperties.ONCE_FRUITING_STAGE
 	}
 	
@@ -1213,6 +1243,18 @@ public class YATMBlockStateProvider extends BlockStateProvider
 
 	
 	
+	private static ConfiguredModel[] forFourAge(BlockState bs, ModelFile ageZeroModel, ModelFile ageOneModel, ModelFile ageTwoModel, ModelFile ageThreeModel) 
+	{
+		ModelFile model = switch(bs.getValue(YATMBlockStateProperties.AGE_FOUR)) 
+		{
+			case 0 -> ageZeroModel;
+			case 1 -> ageOneModel;
+			case 2 -> ageTwoModel;
+			case 3 -> ageThreeModel;
+			default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(YATMBlockStateProperties.AGE_FOUR));	
+		};
+		return new ConfiguredModel[] {new ConfiguredModel(model)};
+	} // end forOnceFruiting()
 	
 	private static ConfiguredModel[] forEightAge(BlockState bs, ModelFile ageZeroModel, ModelFile ageOneModel, ModelFile ageTwoModel, ModelFile ageThreeModel, ModelFile ageFourModel, ModelFile ageFiveModel, ModelFile ageSixModel, ModelFile ageSevenModel) 
 	{

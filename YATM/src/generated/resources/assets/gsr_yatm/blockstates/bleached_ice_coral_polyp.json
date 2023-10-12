@@ -1,6 +1,9 @@
 {
   "variants": {
-    "": {
+    "waterlogged=false": {
+      "model": "gsr_yatm:block/bleached_ice_coral_polyp"
+    },
+    "waterlogged=true": {
       "model": "gsr_yatm:block/bleached_ice_coral_polyp"
     }
   }

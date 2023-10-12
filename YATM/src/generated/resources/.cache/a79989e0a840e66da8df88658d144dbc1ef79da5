@@ -1,7 +1,8 @@
-// 1.20.1	2023-09-26T13:55:39.7435392	Item Models: gsr_yatm
+// 1.20.1	2023-10-11T22:22:21.6447241	Item Models: gsr_yatm
 39dc65663f22bc3413323e63119c165dc4f51c76 assets/gsr_yatm/models/item/aurum_deminutus_fiddle_head.json
 4bab78a47a4fc45a258b74c9012f61de899aee93 assets/gsr_yatm/models/item/aurum_deminutus_frond.json
 b860c72785d969dab4933b80dd6652fa794539bf assets/gsr_yatm/models/item/aurum_fan.json
+3bea91f080b24cdb89ab4bfe42012e1d2717cd84 assets/gsr_yatm/models/item/basin_of_tears_seed.json
 e7540048ebe593ee6ab6323cc2f5a0bd0d8ae1cb assets/gsr_yatm/models/item/bio_bottle.json
 7c74b3cad82baaaba12c4ebb84f0b7ef417239e6 assets/gsr_yatm/models/item/bio_bucket.json
 07fe7487b7ebb8bb0106cd2923d036b151fe02f0 assets/gsr_yatm/models/item/bleached_ice_coral_adolescent.json
@@ -24,6 +25,7 @@ f6a30b3a697de15d3500b70b6ba416fac0af2251 assets/gsr_yatm/models/item/chorus_bio_
 6d9a1e6272e0cd5673a5b386244dda14787c71ed assets/gsr_yatm/models/item/decaying_soul_adorned_netherite_chestplate.json
 3b8f6311b029b2b76abb69823c4b28cb5e2467c4 assets/gsr_yatm/models/item/decaying_soul_adorned_netherite_helmet.json
 9dc5c080daf7e6ead74dd1541298f047c6751a3d assets/gsr_yatm/models/item/decaying_soul_adorned_netherite_leggings.json
+05643f13edd65fd51899712e8fe49563d98a273e assets/gsr_yatm/models/item/diluted_tear_bottle.json
 05ac79b7c2efbc7e95d97c5bdb6b6ef060aee982 assets/gsr_yatm/models/item/eight_cu_current_breaker_component.json
 8970a16d38b00393ed375c610190321b06d05abb assets/gsr_yatm/models/item/eight_cu_current_fuse_component.json
 bdeb3220c0dd96404d3d83e92749a3da1a16c375 assets/gsr_yatm/models/item/eight_cu_current_regulator_component.json
@@ -85,5 +87,6 @@ d69d2a34a66a87ffa40c333b4044ff722cef8e98 assets/gsr_yatm/models/item/spider_vine
 45642c152e1ddd3e92774129538f19cf2c8a612d assets/gsr_yatm/models/item/star_sprout.json
 3040841c7e1449e5f147a6e29b3e1cd0ddb20d4e assets/gsr_yatm/models/item/steel_ingot.json
 72078e11d2d3ac5311d542edd519b32e110404c9 assets/gsr_yatm/models/item/steel_wire_die.json
+f5f9b01be8343348bb952a05487ec486dbb56059 assets/gsr_yatm/models/item/tear_leaf.json
 710d7c8e7fa55c51471fd15ea29de80eb9fad2ae assets/gsr_yatm/models/item/wax_bit.json
 09cdc82ec961c1b2f251415a781994dfe62a0a86 assets/gsr_yatm/models/item/wood_pulp.json

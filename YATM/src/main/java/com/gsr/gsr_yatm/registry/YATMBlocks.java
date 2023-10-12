@@ -35,16 +35,18 @@ import com.gsr.gsr_yatm.block.device.solar.SolarPanelSettings;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.hanging_pot.HangingPotHookBlock;
 import com.gsr.gsr_yatm.block.plant.CustomSeedCropBlock;
+import com.gsr.gsr_yatm.block.plant.aurum.AurumDeminutusBlock;
+import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsFloralBlock;
+import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsVegetationBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootFoliageBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootSupplier;
-import com.gsr.gsr_yatm.block.plant.fern.AurumDeminutusBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
-import com.gsr.gsr_yatm.block.plant.moss.PrismarineCrystalMossBlock;
 import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
 import com.gsr.gsr_yatm.block.plant.pitcher_cluster.PitcherClusterBlock;
+import com.gsr.gsr_yatm.block.plant.prismarine_crystal_moss.PrismarineCrystalMossBlock;
 import com.gsr.gsr_yatm.block.plant.tree.AerialRootsBlock;
 import com.gsr.gsr_yatm.block.plant.tree.TappedLogBlock;
 import com.gsr.gsr_yatm.block.plant.tree.rubber_bush.RubberBushSaplingBlock;
@@ -181,6 +183,9 @@ public class YATMBlocks
 	public static final RegistryObject<AurumDeminutusBlock> AURUM_DEMINUTUS = BLOCKS.register("aurum_deminutus", () -> new AurumDeminutusBlock(YATMBlockProperties.AURUM_SP, YATMBlockShapes.CUBE, YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD::get, () -> new ItemStack(YATMItems.AURUM_DEMINUTUS_FROND.get())));
 	public static final RegistryObject<FlowerPotBlock> POTTED_AURUM_DEMINUTUS = BLOCKS.register("potted_aurum_deminutus", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.AURUM_DEMINUTUS, YATMBlockProperties.FLOWER_POT));
 	
+	public static final RegistryObject<BasinOfTearsFloralBlock> BASIN_OF_TEARS_FLORAL = BLOCKS.register("basin_of_tears_floral", () -> new BasinOfTearsFloralBlock(YATMBlockProperties.BASIN_OF_TEARS, YATMBlockShapes.CUBE/*BASIN_OF_TEARS_FLORAL*/));
+	public static final RegistryObject<BasinOfTearsVegetationBlock> BASIN_OF_TEARS_VEGETATION = BLOCKS.register("basin_of_tears_vegetation", () -> new BasinOfTearsVegetationBlock(YATMBlockProperties.BASIN_OF_TEARS_VEGETATIVE, YATMBlockShapes.CUBE/*BASIN_OF_TEARS_VEGETATION*/, () -> YATMBlocks.BASIN_OF_TEARS_FLORAL.get().defaultBlockState().setValue(BasinOfTearsFloralBlock.FLOWER_COUNT, RandomSource.create().nextIntBetweenInclusive(1, 4))));
+	
 	public static final RegistryObject<CarcassRootFoliageBlock> CARCASS_ROOT_FOLIAGE = BLOCKS.register("carcass_root_foliage", () -> new CarcassRootFoliageBlock(YATMBlockProperties.CARCASS_ROOT_FOLIAGE, YATMBlockShapes.CUBE, YATMItems.CARCASS_ROOT_CUTTING::get, () -> new ItemStack(YATMItems.CARCASS_ROOT_CUTTING.get()), new CarcassRootRootSupplier()));
 	public static final RegistryObject<FlowerPotBlock> POTTED_CARCASS_ROOT_FOLIAGE = BLOCKS.register("potted_carcass_root_foliage", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), YATMBlockProperties.FLOWER_POT));
 	public static final RegistryObject<CarcassRootRootBlock> CARCASS_ROOT_ROOTED_DIRT = BLOCKS.register("carcass_root_rooted_dirt", () -> new CarcassRootRootBlock(YATMBlockProperties.CARCASS_ROOT_ROOTED_DIRT, YATMBlockShapes.CUBE, () -> YATMBlocks.CARCASS_ROOT_FOLIAGE.get().defaultBlockState()));
@@ -264,7 +269,7 @@ public class YATMBlocks
 	public static final RegistryObject<FilledSapCollectorBlock> SAP_COLLECTOR_SOUL_SAP = BLOCKS.register("sap_collector_soul_sap", () -> new FilledSapCollectorBlock(YATMBlockProperties.SAP_COLLECTOR, YATMBlockShapes.SAP_COLLECTOR_SHAPES, YATMBlocks.SAP_COLLECTOR.get()::defaultBlockState, YATMFluids.SOUL_SAP::get));
 	
 	// TODO, make up properties
-	public static final RegistryObject<SpinningWheelBlock> SPINNING_WHEEL = BLOCKS.register("spinning_wheel", () -> new SpinningWheelBlock(BlockBehaviour.Properties.of(), YATMBlockShapes.SPINNING_WHEEL));
+	public static final RegistryObject<SpinningWheelBlock> SPINNING_WHEEL = BLOCKS.register("spinning_wheel", () -> new SpinningWheelBlock(YATMBlockProperties.EMPTY, YATMBlockShapes.SPINNING_WHEEL));
 	
 	public static final RegistryObject<HeatSinkBlock> LARGE_COPPER_HEAT_SINK = BLOCKS.register("large_copper_heat_sink", () -> new HeatSinkBlock(BlockBehaviour.Properties.of()));
 	

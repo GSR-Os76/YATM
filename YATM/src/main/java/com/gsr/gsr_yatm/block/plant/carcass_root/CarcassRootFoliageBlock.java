@@ -157,7 +157,7 @@ public class CarcassRootFoliageBlock extends CropBlock implements IHarvestableBl
 	@Override
 	protected boolean mayPlaceOn(BlockState state, BlockGetter blockGetter, BlockPos position)
 	{
-		return state.is(YATMBlockTags.CARCASS_ROOT_GROWS_ON_KEY);
+		return state.is(YATMBlockTags.CARCASS_ROOT_CAN_GROW_ON_KEY);
 	} // end mayPlaceOn()
 
 	@Override

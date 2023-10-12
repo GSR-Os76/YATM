@@ -18,4 +18,6 @@ public class YATMFoods
 	public static final FoodProperties SOUL_SAP = new FoodProperties.Builder().nutrition(1).saturationMod(1f).effect(() -> new MobEffectInstance(YATMMobEffects.SOUL_AFFLICTION.get(), 300, 0), 1).build();
 	public static final FoodProperties SOUL_SYRUP = new FoodProperties.Builder().nutrition(3).saturationMod(1.2f).effect(() -> new MobEffectInstance(YATMMobEffects.SOUL_AFFLICTION.get(), 600, 1), 1).build();
 
+	public static final FoodProperties TEAR_LEAF = new FoodProperties.Builder().nutrition(1).saturationMod(.1f).build();
+
 } // end class

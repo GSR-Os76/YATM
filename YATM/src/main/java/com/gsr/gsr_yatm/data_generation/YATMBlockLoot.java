@@ -4,17 +4,20 @@ import java.util.function.BiFunction;
 import java.util.function.Function;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.block.FaceBlock;
 import com.gsr.gsr_yatm.block.plant.OnceFruitingPlantStages;
-import com.gsr.gsr_yatm.block.plant.fern.AurumDeminutusBlock;
+import com.gsr.gsr_yatm.block.plant.aurum.AurumDeminutusBlock;
+import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsFloralBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
-import com.gsr.gsr_yatm.block.plant.moss.PrismarineCrystalMossBlock;
 import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
+import com.gsr.gsr_yatm.block.plant.prismarine_crystal_moss.PrismarineCrystalMossBlock;
 import com.gsr.gsr_yatm.block.plant.vine.OnceFruitVineBodyBlock;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
+
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Direction;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -28,6 +31,7 @@ import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
+import net.minecraft.world.level.storage.loot.entries.LootPoolEntryContainer;
 import net.minecraft.world.level.storage.loot.functions.ApplyBonusCount;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
 import net.minecraft.world.level.storage.loot.predicates.LootItemBlockStatePropertyCondition;
@@ -100,6 +104,10 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		
 		this.add(YATMBlocks.AURUM_DEMINUTUS.get(), (b) -> this.createAurumDeminutusTable());
 		this.dropPottedContents(YATMBlocks.POTTED_AURUM_DEMINUTUS.get());
+				
+		//this.add(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), this.createUniformTable(YATMItems.TEAR_LEAF.get(), 0f, 3f, LootItemBlockStatePropertyCondition.hasBlockStateProperties(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BasinOfTearsVegetationBlock.AGE, YATMBlocks.BASIN_OF_TEARS_VEGETATION.get().getMaxAge()))));
+		this.add(YATMBlocks.BASIN_OF_TEARS_FLORAL.get(), this.createBasinOfTearsFloralTable());
+		
 		this.dropOther(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), YATMItems.CARCASS_ROOT_CUTTING.get());
 		this.dropSelf(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get());
 		this.dropSelf(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get());
@@ -221,6 +229,24 @@ public class YATMBlockLoot extends VanillaBlockLoot
 	} // end getKnownBlocks()
 
 	
+	protected @NotNull LootTable.Builder createUniformTable(@NotNull Item item, float min, float max)
+	{
+		return createUniformTable(item, min, max, null); 					
+	} // end createUniformTable()
+	
+	protected @NotNull LootTable.Builder createUniformTable(@NotNull Item item, float min, float max, @Nullable LootItemCondition.Builder condition)
+	{
+		 LootPoolEntryContainer.Builder<?> l = condition == null 
+				 ?
+				 LootItem.lootTableItem(item)
+				 .apply(SetItemCountFunction.setCount(UniformGenerator.between(min, max)))
+				 :
+				 LootItem.lootTableItem(item)
+				 .when(condition)
+				 .apply(SetItemCountFunction.setCount(UniformGenerator.between(min, max)));
+		 
+		return LootTable.lootTable().withPool(LootPool.lootPool().add(l));
+	} // end createUniformTable()
 	
 	protected void faceDropSelf(@NotNull FaceBlock block) 
 	{
@@ -338,6 +364,29 @@ public class YATMBlockLoot extends VanillaBlockLoot
 						);
 	} // end createAurumDeminutusTable()
 	
+	protected @NotNull LootTable.Builder createBasinOfTearsFloralTable()
+	{
+		
+		Function<Integer, LootPool.Builder> forFlowerCount = (count) -> 
+		LootPool.lootPool()
+				.when(LootItemBlockStatePropertyCondition
+						.hasBlockStateProperties(YATMBlocks.BASIN_OF_TEARS_FLORAL.get())
+						.setProperties(StatePropertiesPredicate.Builder.properties()
+								.hasProperty(BasinOfTearsFloralBlock.AGE, YATMBlocks.BASIN_OF_TEARS_FLORAL.get().getMaxAge())
+								.hasProperty(BasinOfTearsFloralBlock.FLOWER_COUNT, count))
+						)
+				.add(LootItem.lootTableItem(YATMItems.BASIN_OF_TEARS_SEED.get())
+						.apply(SetItemCountFunction.setCount(UniformGenerator.between(0f, 1f * count)))
+						);
+		
+		return LootTable.lootTable()
+				.withPool(forFlowerCount.apply(1))
+				.withPool(forFlowerCount.apply(2))
+				.withPool(forFlowerCount.apply(3))
+				.withPool(forFlowerCount.apply(4));
+		//young enough drop flower count
+	} // end createBasinOfTearsFloralTable()
+	
 	protected @NotNull LootTable.Builder createFireEaterLilyTable() 
 	{
 		LootItemCondition.Builder fullGrown = LootItemBlockStatePropertyCondition
@@ -358,18 +407,11 @@ public class YATMBlockLoot extends VanillaBlockLoot
 										)
 								)
 						)
-				// TODO, remeber or deduce how to add chance loot drops, then maybe make the drop count variable and pseudorandom
 				.withPool(
 						LootPool.lootPool()
 						.when(fullGrown)
 						.add(LootItem.lootTableItem(YATMItems.FIRE_EATER_LILY_FOLIAGE.get())
-								.apply(
-										SetItemCountFunction
-										.setCount(
-												ConstantValue
-												.exactly(2.0f)
-												)
-										)
+								.apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f)))
 								)
 						);
 	} // end createAurumDeminutusTable()

@@ -15,6 +15,7 @@ import net.minecraft.world.level.block.state.properties.IntegerProperty;
 public class YATMBlockStateProperties
 {
 	public static final IntegerProperty AGE_TWO = IntegerProperty.create("age", 0, 1);
+	public static final IntegerProperty AGE_FOUR = IntegerProperty.create("age", 0, 3);
 	public static final IntegerProperty AGE_FIVE = IntegerProperty.create("age", 0, 4);
 	public static final IntegerProperty AGE_EIGHT = IntegerProperty.create("age", 0, 7);
 	
@@ -23,9 +24,13 @@ public class YATMBlockStateProperties
 	public static final BooleanProperty CAN_GROW = BooleanProperty.create("can_grow");	
 	public static final BooleanProperty CAN_SPREAD = BooleanProperty.create("can_spread");	
 
+	public static final EnumProperty<DoubleBlockHalf> DOUBLE_BLOCK_HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
+	
 	public static final DirectionProperty FACING = DirectionProperty.create("facing");
 	public static final DirectionProperty FACING_HORIZONTAL = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);
 	public static final DirectionProperty FACING_NOT_UP = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL.or((d) -> d != null && d == Direction.DOWN));
+	
+	public static final IntegerProperty FLOWER_COUNT_FOUR = IntegerProperty.create("flower_count", 1, 4);
 	
 	public static final BooleanProperty FLOWING = BooleanProperty.create("flowing");
 	
@@ -46,8 +51,9 @@ public class YATMBlockStateProperties
 	public static final BooleanProperty HAS_TANK = BooleanProperty.create("has_tank");
 	
 	public static final BooleanProperty LIT = BooleanProperty.create("lit");
-	public static final EnumProperty<OnceFruitingPlantStages> ONCE_FRUITING_STAGE =  EnumProperty.create("stage", OnceFruitingPlantStages.class);
-	public static final EnumProperty<DoubleBlockHalf> DOUBLE_BLOCK_HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
 	
+	public static final EnumProperty<OnceFruitingPlantStages> ONCE_FRUITING_STAGE =  EnumProperty.create("stage", OnceFruitingPlantStages.class);
+	
+	public static final BooleanProperty NECTAR_FULL = BooleanProperty.create("nectar_full");
 	
 } // end class

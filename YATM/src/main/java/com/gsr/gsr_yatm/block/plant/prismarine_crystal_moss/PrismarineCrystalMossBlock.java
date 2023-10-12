@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.plant.moss;
+package com.gsr.gsr_yatm.block.plant.prismarine_crystal_moss;
 
 import java.util.ArrayList;
 import java.util.List;

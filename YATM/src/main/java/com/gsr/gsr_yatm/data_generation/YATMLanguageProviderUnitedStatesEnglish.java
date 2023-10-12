@@ -100,7 +100,9 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), "Soul Afflicted Leaf Mulch");
 		
 		this.add(YATMBlocks.AURUM_DEMINUTUS.get(), "Aurum Deminutus");		
-		this.add(YATMBlocks.POTTED_AURUM_DEMINUTUS.get(), "Potted Aurum Deminutus");		
+		this.add(YATMBlocks.POTTED_AURUM_DEMINUTUS.get(), "Potted Aurum Deminutus");	
+		this.add(YATMBlocks.BASIN_OF_TEARS_FLORAL.get(), "Crying Flower");	
+		this.add(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), "Crying Plant Vegetation");			
 		this.add(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), "Carcass Root");		
 		this.add(YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE.get(), "Potted Carcass Root");		
 		this.add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get(), "Carcass Root Rooted Dirt");		
@@ -272,6 +274,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get(), "Aurum Deminutus Fiddle Head");
 		this.add(YATMItems.AURUM_DEMINUTUS_FROND.get(), "Aurum Deminutus Frond");
+		this.add(YATMItems.BASIN_OF_TEARS_SEED.get(), "Crying Plant Seeds");
+		this.add(YATMItems.DILUTED_TEAR_BOTTLE.get(), "Diluted Tear Bottle");		
 		this.add(YATMItems.CARCASS_ROOT_CUTTING.get(), "Carcass Root Cutting");
 		this.add(YATMItems.COTTON_SEEDS.get(), "Cotton Seeds");
 		this.add(YATMItems.COTTON_BOLLS.get(), "Cotton Bolls");
