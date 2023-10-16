@@ -6,6 +6,7 @@ import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsVegetationBlock;
+import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
 import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
@@ -72,6 +73,28 @@ public class YATMBlockShapes
 				case 2 -> ADOLESCENT;
 				case 3 -> OLD;
 				default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(BasinOfTearsVegetationBlock.AGE));
+			};
+		} // end getShape()
+	};	
+	
+	
+	public static final ICollisionVoxelShapeProvider CARBUM = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape MERISTEM = Block.box(2d, 0d, 2d, 14d, 7d, 14d);
+		private static final VoxelShape YOUNG = Block.box(0d, 0d, 0d, 16d, 9d, 16d);
+		private static final VoxelShape ADOLESCENT = Block.box(0d, 0d, 0d, 16d, 11d, 16d);
+		private static final VoxelShape OLD = Block.box(0d, 0d, 0d, 16d, 11d, 16d);
+
+		@Override
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext collisionContext)
+		{
+			return switch(state.getValue(CarbumBlock.AGE)) 
+			{
+				case 0, 1 -> MERISTEM;
+				case 2, 3 -> YOUNG;
+				case 4, 5, 6 -> ADOLESCENT;
+				case 7 -> OLD;
+				default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(CarbumBlock.AGE));
 			};
 		} // end getShape()
 	};	

@@ -19,6 +19,7 @@ import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumDeminutusBlock;
+import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootFoliageBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootBlock;
 import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
@@ -149,6 +150,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 		this.addAurumDeminutus();
 		this.addBasinOfTears();
+		this.addCarbum();
 		this.addCarcassRoot();
 		this.createFourStageCrop(YATMBlocks.COTTON.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_germinating"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_flowering"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_maturing"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_mature"));
 		this.addFerrum();
@@ -310,6 +312,17 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/basin_of_tears/foliage_old"));
 	} // end addAurumDeminutus()
 	
+	private void addCarbum() 
+	{
+		ResourceLocation oldTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carbum/old");
+		this.createCarbum(YATMBlocks.CARBUM.get(), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carbum/meristem"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carbum/young"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carbum/adolescent"),
+				oldTexture);
+		this.createStoneSoilPottedCross(YATMBlocks.POTTED_CARBUM.get(), oldTexture);
+	} // end addCarbum()
+	
 	private void addCarcassRoot() 
 	{
 		ResourceLocation youngTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/young");
@@ -330,7 +343,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ferrum/mature_fruiting"),
 				oldTexture);
 		this.createStoneSoilPottedCross(YATMBlocks.POTTED_FERRUM.get(), oldTexture);
-
 	} // end addFerrum()
 	
 	private void addFireEaterLily() 
@@ -660,6 +672,29 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		MultiPartBlockStateBuilder builder = this.getMultipartBuilder(block);
 		PrismarineCrystalMossBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.forEach((d, p) -> forPrismarineCrystalMossLikeFace(d, builder, modelOne, modelTwo));//, modelThree, modelFour));
 	} // end createCrop()
+	
+	
+	private void createCarbum(@NotNull CarbumBlock block, 
+			@NotNull ResourceLocation meristemTexture,
+			@NotNull ResourceLocation youngTexture, 
+			@NotNull ResourceLocation adolescentTexture,
+			@NotNull ResourceLocation oldTexture) 
+	{
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
+		String nameM = name + "_meristem";
+		String nameY = name + "_young";
+		String nameA = name + "_adolescent";
+		String nameO = name + "_old";
+		this.models().cross(nameM, meristemTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameY, youngTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameA, adolescentTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameO, oldTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		ModelFile modelM = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameM));
+		ModelFile modelY = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameY));
+		ModelFile modelA = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameA));
+		ModelFile modelO = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameO));
+		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forEightAge(bs, modelM, modelM, modelY, modelY, modelA, modelA, modelA, modelO));		
+	} // end createCarbum()
 	
 	private void createCarcassRootFoliage(@NotNull CarcassRootFoliageBlock block, @NotNull ResourceLocation youngTexture, @NotNull ResourceLocation oldLowerTexture, @NotNull ResourceLocation oldHigherTexture) 
 	{

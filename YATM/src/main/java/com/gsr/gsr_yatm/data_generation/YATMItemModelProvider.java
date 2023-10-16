@@ -100,11 +100,17 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.WOOD_PULP.get());
 		
 		this.basicItem(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get());
-		this.basicItem(YATMItems.AURUM_DEMINUTUS_FROND.get());		
+		this.basicItem(YATMItems.AURUM_DEMINUTUS_FROND.get());
+		
 		this.basicItem(YATMItems.BASIN_OF_TEARS_SEED.get());
 		this.basicItem(YATMItems.DILUTED_TEAR_BOTTLE.get());
-		this.basicItem(YATMItems.TEAR_LEAF.get());		
+		this.basicItem(YATMItems.TEAR_LEAF.get());	
+		
+		this.basicItem(YATMItems.CARBUM_MERISTEM.get());
+		this.basicItem(YATMItems.CARBUM_LEAF.get());
+		
 		this.basicItem(YATMItems.CARCASS_ROOT_CUTTING.get());
+		
 		this.basicItem(YATMItems.COTTON_BOLLS.get());
 		this.basicItem(YATMItems.RAW_COTTON_FIBER.get());
 		this.basicItem(YATMItems.COTTON_SEEDS.get());

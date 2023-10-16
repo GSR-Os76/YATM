@@ -38,6 +38,7 @@ import com.gsr.gsr_yatm.block.plant.CustomSeedCropBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumDeminutusBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsFloralBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsVegetationBlock;
+import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootFoliageBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootSupplier;
@@ -180,6 +181,9 @@ public class YATMBlocks
 
 	public static final RegistryObject<BasinOfTearsFloralBlock> BASIN_OF_TEARS_FLORAL = BLOCKS.register("basin_of_tears_floral", () -> new BasinOfTearsFloralBlock(YATMBlockProperties.BASIN_OF_TEARS, YATMBlockShapes.CUBE/*BASIN_OF_TEARS_FLORAL*/));
 	public static final RegistryObject<BasinOfTearsVegetationBlock> BASIN_OF_TEARS_VEGETATION = BLOCKS.register("basin_of_tears_vegetation", () -> new BasinOfTearsVegetationBlock(YATMBlockProperties.BASIN_OF_TEARS_VEGETATIVE, YATMBlockShapes.BASIN_OF_TEARS_VEGETATION, () -> YATMBlocks.BASIN_OF_TEARS_FLORAL.get().defaultBlockState().setValue(BasinOfTearsFloralBlock.FLOWER_COUNT, RandomSource.create().nextIntBetweenInclusive(1, 4))));
+	
+	public static final RegistryObject<CarbumBlock> CARBUM = BLOCKS.register("carbum", () -> new CarbumBlock(YATMBlockProperties.CARBUM, YATMBlockShapes.CARBUM));
+	public static final RegistryObject<FlowerPotBlock> POTTED_CARBUM = BLOCKS.register("potted_carbum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.CARBUM, YATMBlockProperties.FLOWER_POT));
 	
 	public static final RegistryObject<CarcassRootFoliageBlock> CARCASS_ROOT_FOLIAGE = BLOCKS.register("carcass_root_foliage", () -> new CarcassRootFoliageBlock(YATMBlockProperties.CARCASS_ROOT_FOLIAGE, YATMBlockShapes.CUBE, YATMItems.CARCASS_ROOT_CUTTING::get, () -> new ItemStack(YATMItems.CARCASS_ROOT_CUTTING.get()), new CarcassRootRootSupplier()));
 	public static final RegistryObject<FlowerPotBlock> POTTED_CARCASS_ROOT_FOLIAGE = BLOCKS.register("potted_carcass_root_foliage", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), YATMBlockProperties.FLOWER_POT));
@@ -359,6 +363,7 @@ public class YATMBlocks
 		minecraftFlowerPot.addPlant(YATMBlocks.RUBBER_MERISTEM.getKey().location(), YATMBlocks.POTTED_RUBBER_MERISTEM);
 		minecraftFlowerPot.addPlant(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.getKey().location(), YATMBlocks.POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM);
 		minecraftFlowerPot.addPlant(YATMBlocks.AURUM_DEMINUTUS.getKey().location(), YATMBlocks.POTTED_AURUM_DEMINUTUS);
+		minecraftFlowerPot.addPlant(YATMBlocks.CARBUM.getKey().location(), YATMBlocks.POTTED_CARBUM);
 		minecraftFlowerPot.addPlant(YATMBlocks.CARCASS_ROOT_FOLIAGE.getKey().location(), YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE);
 		minecraftFlowerPot.addPlant(YATMBlocks.FERRUM.getKey().location(), YATMBlocks.POTTED_FERRUM);
 		minecraftFlowerPot.addPlant(YATMBlocks.FIRE_EATER_LILY.getKey().location(), YATMBlocks.POTTED_FIRE_EATER_LILY);

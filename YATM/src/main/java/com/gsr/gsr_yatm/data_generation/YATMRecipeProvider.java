@@ -87,6 +87,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addOneToNine(writer, YATMItems.FOLIAR_STEEL_BLOCK_ITEM.get(), YATMItems.FOLIAR_STEEL.get(), YetAnotherTechMod.MODID + ":foliar_steel_from_block_shapeless_crafting");
 		this.addNineToOne(writer, YATMItems.FOLIAR_STEEL.get(), YATMItems.FOLIAR_STEEL_BLOCK_ITEM.get(), YetAnotherTechMod.MODID + ":foliar_steel_block_from_bar_shapeless_crafting");
 		
+		this.addXToX(writer, YATMItems.CARBUM_LEAF.get(), Items.COAL, 2, 1, YetAnotherTechMod.MODID + ":coal_from_carbum_leaf");
 		
 		this.addSmelting(writer, new ItemLike[] {YATMItems.VARIEGATED_CACTUS_ITEM.get()}, Items.GREEN_DYE, 1.0f, 100, YetAnotherTechMod.MODID + ":green_dye_from_variegated_cactus_smelting");
 		

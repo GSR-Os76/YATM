@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gsr_yatm:carbum_leaf"
+    },
+    {
+      "item": "gsr_yatm:carbum_leaf"
+    }
+  ],
+  "result": {
+    "item": "minecraft:coal"
+  }
+}

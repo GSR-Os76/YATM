@@ -10,6 +10,7 @@ import com.gsr.gsr_yatm.block.FaceBlock;
 import com.gsr.gsr_yatm.block.plant.OnceFruitingPlantStages;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumDeminutusBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsFloralBlock;
+import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
 import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
@@ -109,10 +110,14 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		//this.add(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), this.createUniformTable(YATMItems.TEAR_LEAF.get(), 0f, 3f, LootItemBlockStatePropertyCondition.hasBlockStateProperties(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BasinOfTearsVegetationBlock.AGE, YATMBlocks.BASIN_OF_TEARS_VEGETATION.get().getMaxAge()))));
 		this.add(YATMBlocks.BASIN_OF_TEARS_FLORAL.get(), this.createBasinOfTearsFloralTable());
 		
+		this.add(YATMBlocks.CARBUM.get(), this.createCarbumTable());		
+		this.dropPottedContents(YATMBlocks.POTTED_CARBUM.get());
+		
 		this.dropOther(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), YATMItems.CARCASS_ROOT_CUTTING.get());
 		this.dropSelf(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get());
 		this.dropSelf(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get());
 		this.dropPottedContents(YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE.get());
+		
 		this.add(YATMBlocks.COTTON.get(), this.createCropDrops(YATMBlocks.COTTON.get(), YATMItems.COTTON_BOLLS.get(), YATMItems.COTTON_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(YATMBlocks.COTTON.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		
 		this.add(YATMBlocks.FERRUM.get(), this.createFerrumTable());		
@@ -236,6 +241,7 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		return YATMBlocks.BLOCKS.getEntries().stream().map((ro) -> ro.get()).toList();
 	} // end getKnownBlocks()
 
+	
 	
 	protected @NotNull LootTable.Builder createUniformTable(@NotNull Item item, float min, float max)
 	{
@@ -395,12 +401,44 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		//young enough drop flower count
 	} // end createBasinOfTearsFloralTable()
 	
+	protected @NotNull LootTable.Builder createCarbumTable() 
+	{
+		Function<Integer, LootPool.Builder> forAge = (age) -> LootPool.lootPool()
+				.add(LootItem.lootTableItem(YATMItems.CARBUM_LEAF.get())
+					.apply(SetItemCountFunction.setCount(
+							ConstantValue.exactly(age == 7 ? 4 : (age / 2)))
+						  )
+					)
+				.when(LootItemBlockStatePropertyCondition
+						.hasBlockStateProperties(YATMBlocks.CARBUM.get())
+						.setProperties(StatePropertiesPredicate.Builder.properties()
+								.hasProperty(FerrumBlock.AGE, age)));
+		
+		
+		
+		LootTable.Builder table = LootTable.lootTable()
+				.withPool(
+						LootPool.lootPool()
+						.add(LootItem.lootTableItem(YATMItems.CARBUM_MERISTEM.get())
+								.apply(
+										SetItemCountFunction
+										.setCount(ConstantValue.exactly(1.0f))
+										)
+								)
+						);
+		for(Integer i : CarbumBlock.AGE.getAllValues().map((i) -> i.value()).toList()) 
+		{
+			table = table.withPool(forAge.apply(i));
+		}		
+		return table;				
+	} // end createCarbumTable()
+	
 	protected @NotNull LootTable.Builder createFerrumTable() 
 	{
 		Function<Integer, LootPool.Builder> forAge = (age) -> LootPool.lootPool()
 				.add(LootItem.lootTableItem(YATMItems.FERRUM_BRANCH.get())
 					.apply(SetItemCountFunction.setCount(
-							ConstantValue.exactly((age / 2)))
+							ConstantValue.exactly(age == 7 ? 4 : (age / 2)))
 						  )
 					)
 				.when(LootItemBlockStatePropertyCondition

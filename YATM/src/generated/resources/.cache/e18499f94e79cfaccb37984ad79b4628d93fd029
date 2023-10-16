@@ -1,4 +1,4 @@
-// 1.20.1	2023-10-16T12:37:10.0197834	Tags for minecraft:block mod id gsr_yatm
+// 1.20.1	2023-10-16T17:15:57.1911211	Tags for minecraft:block mod id gsr_yatm
 ea459db540b319f4bdead7b7f1142fc238c09a8e data/forge/tags/blocks/cactuses.json
 ae063a18d6a78c1df2e70286fb1984ffc87c6b2d data/forge/tags/blocks/netherrack.json
 22817fc3a29127b1c1278ea16d671d7c02dbdeb9 data/forge/tags/blocks/rooted_dirt.json
@@ -7,8 +7,9 @@ d667dcc380181ca7932db9dd892d74671f6a63df data/forge/tags/blocks/storage_blocks.j
 5cde157d29986a1af6fac3eed0972c55ed684ae6 data/forge/tags/blocks/storage_blocks/rubber.json
 ae03c7f5a14f674a125f762d1f54c5fc58535fe0 data/gsr_yatm/tags/blocks/conduits/sixtyfour_cu.json
 4025cca10e3b03e5cf1f371e88a6afed701e7681 data/gsr_yatm/tags/blocks/foliar_steel_ores.json
-6f65945173b470070cc3ffbceeb8614d256b81f3 data/gsr_yatm/tags/blocks/form/aurum_deminutus_higher.json
-6ef566e8d366f5028e9f398a20bead05865d2de4 data/gsr_yatm/tags/blocks/form/aurum_deminutus_lower.json
+6f65945173b470070cc3ffbceeb8614d256b81f3 data/gsr_yatm/tags/blocks/form/aurum_higher.json
+6ef566e8d366f5028e9f398a20bead05865d2de4 data/gsr_yatm/tags/blocks/form/aurum_lower.json
+150da1135a6d5d7b9cb1ec65250c0aceaa835dff data/gsr_yatm/tags/blocks/form/carbum.json
 b5a289b8b3995051da520bf7ce877ab6e03753d8 data/gsr_yatm/tags/blocks/form/ferrum.json
 bc945c3765480852dbee6454f810c6c20b118d35 data/gsr_yatm/tags/blocks/heat_blocks.json
 66ac8055416086c9939359092bb9e6f99b9399d6 data/gsr_yatm/tags/blocks/leaves_litter_on.json
@@ -19,6 +20,7 @@ eaf726d0ca999b963fa5b018a13e9c7f4b2e50cf data/gsr_yatm/tags/blocks/mediums/aeria
 c7cf498dd11b4becfc703ca6d155b77406279d34 data/gsr_yatm/tags/blocks/mediums/basin_of_tears_flowers_can_grow_on.json
 8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/basin_of_tears_vegetation_can_grow_in.json
 c7cf498dd11b4becfc703ca6d155b77406279d34 data/gsr_yatm/tags/blocks/mediums/basin_of_tears_vegetation_can_grow_on.json
+61064ec33852a4a02609c7e6edc2de09c480a0f8 data/gsr_yatm/tags/blocks/mediums/carbum_can_grow_on.json
 9fe0ec2afc230db7cba58c95080a3787e76de587 data/gsr_yatm/tags/blocks/mediums/carcass_root_can_grow_on.json
 69c396cb051bbe9a130e6979b67065e5041b179d data/gsr_yatm/tags/blocks/mediums/carcass_root_rooted_dirt_roots_from.json
 68125b8f5883297e885700288831442419c548f8 data/gsr_yatm/tags/blocks/mediums/carcass_root_rooted_netherack_roots_from.json
@@ -45,7 +47,7 @@ cabad7018263250a65993dc1bfafd32b2163b2f7 data/gsr_yatm/tags/blocks/unoxidized_co
 8cf2e7aea7db23031bbd316a2c327021347911b0 data/minecraft/tags/blocks/climbable.json
 952606965aea7b2cabce0eab939614887720ae6a data/minecraft/tags/blocks/dirt.json
 ae88bd8aabf02699bb3fdbf65bd64fc377fbc780 data/minecraft/tags/blocks/flowers.json
-ab4e30ade04e3420a5f5b18679d08d881082d373 data/minecraft/tags/blocks/flower_pots.json
+3efb058638ad5ee2204c79ef51d44224545805d8 data/minecraft/tags/blocks/flower_pots.json
 205d34972c106978555918bdbb34363a9a669d3e data/minecraft/tags/blocks/logs.json
 1502e7352c79e987a23ba14a77d87817c5e89ff2 data/minecraft/tags/blocks/logs_that_burn.json
 861ac450b90a900a8dbe9dc301248cd0b5ca2f52 data/minecraft/tags/blocks/planks.json

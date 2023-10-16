@@ -104,6 +104,9 @@ public class YATMItems
 	public static final RegistryObject<Item> DILUTED_TEAR_BOTTLE = generalTabEnqueue(ITEMS.register("diluted_tear_bottle", () -> new Item(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE))));
 	public static final RegistryObject<Item> TEAR_LEAF = /* generalTabEnqueue */(ITEMS.register("tear_leaf", () -> new Item(new Item.Properties().food(YATMFoods.TEAR_LEAF))));
 	
+	public static final RegistryObject<ItemNameBlockItem> CARBUM_MERISTEM = generalTabEnqueue(ITEMS.register("carbum_meristem", () -> new ItemNameBlockItem(YATMBlocks.CARBUM.get(), new Item.Properties())));
+	public static final RegistryObject<Item> CARBUM_LEAF = generalTabEnqueue(ITEMS.register("carbum_leaf", () -> new Item(new Item.Properties())));
+	
 	public static final RegistryObject<ItemNameBlockItem> CARCASS_ROOT_CUTTING = generalTabEnqueue(ITEMS.register("carcass_root_cutting", () -> new ItemNameBlockItem(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> CARCASS_ROOT_ROOTED_DIRT_ITEM = generalTabEnqueue(ITEMS.register("carcass_root_rooted_dirt", () -> new BlockItem(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> CARCASS_ROOT_ROOTED_NETHERRACK_ITEM = generalTabEnqueue(ITEMS.register("carcass_root_rooted_netherrack", () -> new BlockItem(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get(), new Item.Properties())));

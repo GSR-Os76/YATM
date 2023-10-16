@@ -13,37 +13,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "gsr_yatm:ferrum_rootstock"
-        }
-      ],
-      "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "conditions": [
-            {
-              "block": "gsr_yatm:ferrum",
-              "condition": "minecraft:block_state_property",
-              "properties": {
-                "has_fruit": "true"
-              }
-            }
-          ],
-          "functions": [
-            {
-              "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
-              },
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "minecraft:iron_nugget"
+          "name": "gsr_yatm:carbum_meristem"
         }
       ],
       "rolls": 1.0
@@ -52,7 +22,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "gsr_yatm:ferrum",
+          "block": "gsr_yatm:carbum",
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "0"
@@ -69,7 +39,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "gsr_yatm:ferrum_branch"
+          "name": "gsr_yatm:carbum_leaf"
         }
       ],
       "rolls": 1.0
@@ -78,7 +48,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "gsr_yatm:ferrum",
+          "block": "gsr_yatm:carbum",
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "1"
@@ -95,7 +65,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "gsr_yatm:ferrum_branch"
+          "name": "gsr_yatm:carbum_leaf"
         }
       ],
       "rolls": 1.0
@@ -104,7 +74,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "gsr_yatm:ferrum",
+          "block": "gsr_yatm:carbum",
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "2"
@@ -121,7 +91,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "gsr_yatm:ferrum_branch"
+          "name": "gsr_yatm:carbum_leaf"
         }
       ],
       "rolls": 1.0
@@ -130,7 +100,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "gsr_yatm:ferrum",
+          "block": "gsr_yatm:carbum",
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "3"
@@ -147,7 +117,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "gsr_yatm:ferrum_branch"
+          "name": "gsr_yatm:carbum_leaf"
         }
       ],
       "rolls": 1.0
@@ -156,7 +126,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "gsr_yatm:ferrum",
+          "block": "gsr_yatm:carbum",
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "4"
@@ -173,7 +143,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "gsr_yatm:ferrum_branch"
+          "name": "gsr_yatm:carbum_leaf"
         }
       ],
       "rolls": 1.0
@@ -182,7 +152,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "gsr_yatm:ferrum",
+          "block": "gsr_yatm:carbum",
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "5"
@@ -199,7 +169,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "gsr_yatm:ferrum_branch"
+          "name": "gsr_yatm:carbum_leaf"
         }
       ],
       "rolls": 1.0
@@ -208,7 +178,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "gsr_yatm:ferrum",
+          "block": "gsr_yatm:carbum",
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "6"
@@ -225,7 +195,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "gsr_yatm:ferrum_branch"
+          "name": "gsr_yatm:carbum_leaf"
         }
       ],
       "rolls": 1.0
@@ -234,7 +204,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "gsr_yatm:ferrum",
+          "block": "gsr_yatm:carbum",
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "7"
@@ -251,11 +221,11 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "gsr_yatm:ferrum_branch"
+          "name": "gsr_yatm:carbum_leaf"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "gsr_yatm:blocks/ferrum"
+  "random_sequence": "gsr_yatm:blocks/carbum"
 }

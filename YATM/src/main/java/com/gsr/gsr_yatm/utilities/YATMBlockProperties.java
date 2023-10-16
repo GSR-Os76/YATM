@@ -39,10 +39,11 @@ public class YATMBlockProperties
 	
 	
 	
-	public static final Properties AURUM_SP = Properties.of().mapColor(MapColor.GOLD).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().sound(SoundType.NETHER_GOLD_ORE).strength(3.0f, 6.0f);
+	public static final Properties AURUM_SP = Properties.of().mapColor(MapColor.GOLD).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().strength(3.0f, 6.0f).sound(SoundType.NETHER_GOLD_ORE);
 	public static final Properties BASIN_OF_TEARS = YATMBlockProperties.basinOfTears();
 	public static final Properties BASIN_OF_TEARS_VEGETATIVE = YATMBlockProperties.basinOfTears().noLootTable();
 	public static final Properties BLEACHED_ICE_CORAL = YATMBlockProperties.iceCoral().mapColor(DyeColor.WHITE);
+	public static final Properties CARBUM = Properties.of().mapColor(MapColor.COLOR_BLACK).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().strength(2.0f, 4.0f);
 	public static final Properties CACTUS = Properties.of().mapColor(MapColor.PLANT).randomTicks().strength(0.4f).sound(SoundType.WOOL).pushReaction(PushReaction.DESTROY);
 	public static final Properties CARCASS_ROOT_FOLIAGE = Properties.of().mapColor(MapColor.PLANT).replaceable().noCollission().instabreak().sound(SoundType.GRASS).ignitedByLava().pushReaction(PushReaction.DESTROY);
 	public static final Properties CARCASS_ROOT_ROOTED_DIRT = Properties.of().mapColor(MapColor.DIRT).strength(1f).sound(SoundType.GRAVEL).randomTicks();
