@@ -1,4 +1,4 @@
-// 1.20.1	2023-10-15T23:35:29.9505716	Loot Tables
+// 1.20.1	2023-10-16T12:37:10.0253198	Loot Tables
 c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
 e7fbd17d28377f6d02cdd2df79fd21c9ce25491d data/gsr_yatm/loot_tables/blocks/aurum_deminutus.json
@@ -22,6 +22,7 @@ c233c266c12b081d0aad6d10f896033167b8d111 data/gsr_yatm/loot_tables/blocks/cyan_s
 fcc87fb58dd3949cdf00dff82b36d92dad88b421 data/gsr_yatm/loot_tables/blocks/data_processor.json
 e032d71f0fd762c60f7a54a45f395d84644db316 data/gsr_yatm/loot_tables/blocks/data_scan_collector.json
 4e0214168b30064d15fc3ccb509fdd99f3d2a661 data/gsr_yatm/loot_tables/blocks/data_storage_block.json
+c645ea266cc5f1e59cec421cf1ecf4cb2cee22f0 data/gsr_yatm/loot_tables/blocks/deepslate_foliar_steel_ore.json
 5843ea129dd62d47a69d0ca1d756cbac7d4b56cd data/gsr_yatm/loot_tables/blocks/destructive_data_scanner.json
 42a244c87f7ee7c58e37d87ebc8e8cb539bc6380 data/gsr_yatm/loot_tables/blocks/eight_cu_wire.json
 75c395418601949e6970a9faf555b89d59abb27c data/gsr_yatm/loot_tables/blocks/enameled_eight_cu_wire.json
@@ -34,6 +35,8 @@ fec70c94dede2f9f6fd5673bf0f1974bb150fdaf data/gsr_yatm/loot_tables/blocks/fallen
 62ee83864e5bec79261f87cd024cfd3f7755e17c data/gsr_yatm/loot_tables/blocks/ferrum.json
 c4edfdcb718f1724076063df7a1557dada3fffd2 data/gsr_yatm/loot_tables/blocks/fire_eater_lily.json
 af61b2aad862896558d719c17c12b2236a3b81eb data/gsr_yatm/loot_tables/blocks/fivehundredtwelve_cu_wire.json
+552828b67c689a8eb8ce68f7cdd7ab2be1727312 data/gsr_yatm/loot_tables/blocks/foliar_steel_block.json
+8a09dd4d3e159377e355865158df551d66f03aa5 data/gsr_yatm/loot_tables/blocks/foliar_steel_ore.json
 9b7b80c5ee0230577bac03b27bbd05671be4a7a6 data/gsr_yatm/loot_tables/blocks/fourthousandnintysix_cu_wire.json
 38a306a3f7873936b5fdb85752dccecc8579916b data/gsr_yatm/loot_tables/blocks/gray_shulkwart.json
 5811cec04ad7d21a3916a67feb0034b162011bd8 data/gsr_yatm/loot_tables/blocks/green_shulkwart.json

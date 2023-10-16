@@ -1,0 +1,6 @@
+{
+	"type": "forge:add_features",
+	"biomes": "#minecraft:is_overworld",
+	"features": "gsr_yatm:ore_foliar_steel",
+	"step": "underground_ores"
+}

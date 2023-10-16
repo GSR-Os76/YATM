@@ -179,7 +179,9 @@ public class YATMItems
 	
 	
 	
-	
+	public static final RegistryObject<BlockItem> FOLIAR_STEEL_ORE_ITEM = generalTabEnqueue(ITEMS.register("foliar_steel_ore", () -> new BlockItem(YATMBlocks.FOLIAR_STEEL_ORE.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> DEEPSLATE_FOLIAR_STEEL_ORE_ITEM = generalTabEnqueue(ITEMS.register("deepslate_foliar_steel_ore", () -> new BlockItem(YATMBlocks.DEEPSLATE_FOLIAR_STEEL_ORE.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> FOLIAR_STEEL_BLOCK_ITEM = generalTabEnqueue(ITEMS.register("foliar_steel_block", () -> new BlockItem(YATMBlocks.FOLIAR_STEEL_BLOCK.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> RUBBER_BLOCK_ITEM = generalTabEnqueue(ITEMS.register("rubber_block", () -> new BlockItem(YATMBlocks.RUBBER_BLOCK.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> ROOTED_SOUL_SOIL_ITEM = generalTabEnqueue(ITEMS.register("rooted_soul_soil", () -> new BlockItem(YATMBlocks.ROOTED_SOUL_SOIL.get(), new Item.Properties())));
 	

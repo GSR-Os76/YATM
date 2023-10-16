@@ -58,7 +58,7 @@ public class YATMBlockProperties
 
 	
 	
-	
+	public static final Properties FOLIAR_STEEL_BLOCK = Properties.of().instrument(NoteBlockInstrument.XYLOPHONE).mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().strength(5.5F, 6.0F).sound(SoundType.METAL);
 	public static final Properties RUBBER_BLOCK = Properties.of().mapColor(MapColor.COLOR_BLACK).strength(2f).sound(SoundType.CANDLE);
 	public static final Properties ROOTED_SOUL_SOIL = Properties.of().mapColor(MapColor.DIRT).strength(0.5f).sound(SoundType.ROOTED_DIRT);
 	
@@ -80,7 +80,6 @@ public class YATMBlockProperties
 	// TODO, make color customizable by method
 	public static final Properties LIQUID = Properties.of()/* .mapColor(MapColor.WATER) */.replaceable().noCollission().strength(100.0f).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY);
 
-	
 	
 	
 	
@@ -118,7 +117,16 @@ public class YATMBlockProperties
 		}
 	} // end shulkwart()
 	
+	public static @NotNull Properties stoneOre()
+	{
+		return Properties.of().instrument(NoteBlockInstrument.BASEDRUM).mapColor(MapColor.STONE).requiresCorrectToolForDrops().strength(3.0F, 3.0F);
+	} // end stoneOre()
 	
+	public static @NotNull Properties deepslateOre()
+	{
+		return YATMBlockProperties.stoneOre().mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE);
+	} // end deepslateOre()
+		
 	
 //	public static @NotNull Properties plankWith(@NotNull MapColor color)
 //	{

@@ -150,6 +150,10 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		
 		this.add(YATMBlocks.HANGING_POT_HOOK.get(), "Hanging Pot");
+	
+		this.add(YATMBlocks.FOLIAR_STEEL_ORE.get(), "Foliar Steel Ore");
+		this.add(YATMBlocks.DEEPSLATE_FOLIAR_STEEL_ORE.get(), "Deepslate Foliar Steel Ore");
+		this.add(YATMBlocks.FOLIAR_STEEL_BLOCK.get(), "Foliar Steel Block");
 		this.add(YATMBlocks.RUBBER_BLOCK.get(), "Rubber Block");
 		this.add(YATMBlocks.ROOTED_SOUL_SOIL.get(), "Rooted Soul Soil");
 		

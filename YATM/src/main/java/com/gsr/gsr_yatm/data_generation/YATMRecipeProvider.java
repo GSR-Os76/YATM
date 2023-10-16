@@ -82,6 +82,10 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addOneToNine(writer, YATMItemTags.FORGE_RUBBER_STORAGE_BLOCK_KEY, YATMItems.RUBBER_BAR.get(), YetAnotherTechMod.MODID + ":rubber_bar_from_block_shapeless_crafting");
 		this.addNineToOne(writer, YATMItemTags.FORGE_RUBBER_INGOTS_KEY, YATMItems.RUBBER_BLOCK_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_block_from_bar_shapeless_crafting");
 		
+		this.addBlasting(writer, YATMItemTags.FOLIAR_STEEL_ORES_KEY, YATMItems.FOLIAR_STEEL.get(), .1f, 100, YetAnotherTechMod.MODID + ":foliar_steel_from_ore_blasting");
+		this.addSmelting(writer, YATMItemTags.FOLIAR_STEEL_ORES_KEY, YATMItems.FOLIAR_STEEL.get(), .1f, 200, YetAnotherTechMod.MODID + ":foliar_steel_from_ore_smelting");
+		this.addOneToNine(writer, YATMItems.FOLIAR_STEEL_BLOCK_ITEM.get(), YATMItems.FOLIAR_STEEL.get(), YetAnotherTechMod.MODID + ":foliar_steel_from_block_shapeless_crafting");
+		this.addNineToOne(writer, YATMItems.FOLIAR_STEEL.get(), YATMItems.FOLIAR_STEEL_BLOCK_ITEM.get(), YetAnotherTechMod.MODID + ":foliar_steel_block_from_bar_shapeless_crafting");
 		
 		
 		this.addSmelting(writer, new ItemLike[] {YATMItems.VARIEGATED_CACTUS_ITEM.get()}, Items.GREEN_DYE, 1.0f, 100, YetAnotherTechMod.MODID + ":green_dye_from_variegated_cactus_smelting");
@@ -401,9 +405,25 @@ public class YATMRecipeProvider extends RecipeProvider
 		.requires(Ingredient.of(ingredient), 9)
 		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);
-	} // end addCompressed()
+	} // end addNineToOne()
+	
+	private void addNineToOne(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, String key) 
+	{
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
+		.requires(Ingredient.of(ingredient), 9)
+		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
+		.save(writer, key);
+	} // end addNineToOne()
 
 	private void addOneToNine(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemLike result, String key) 
+	{
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result, 9)
+		.requires(ingredient)
+		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
+		.save(writer, key);
+	} // end addCompressed()
+	
+	private void addOneToNine(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, String key) 
 	{
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result, 9)
 		.requires(ingredient)
@@ -637,6 +657,20 @@ public class YATMRecipeProvider extends RecipeProvider
 	{
 		SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), RecipeCategory.MISC, result, experience, time)
 		.unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(trigger).build()))
+		.save(writer, key);
+	} // end addSmelting
+	
+	private void addSmelting(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemLike result, float experience, int time, String key) 
+	{
+		SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), RecipeCategory.MISC, result, experience, time)
+		.unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
+		.save(writer, key);
+	} // end addSmelting
+	
+	private void addBlasting(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemLike result, float experience, int time, String key) 
+	{
+		SimpleCookingRecipeBuilder.blasting(Ingredient.of(ingredient), RecipeCategory.MISC, result, experience, time)
+		.unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);
 	} // end addSmelting
 	

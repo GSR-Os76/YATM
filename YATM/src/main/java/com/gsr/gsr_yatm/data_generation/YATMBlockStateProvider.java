@@ -168,6 +168,10 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 		this.createBlock(YATMBlocks.HANGING_POT_HOOK.get(), YATMBlockStateProvider.HANGING_POT_HOOK_MODEL);
 		this.createBlock(YATMBlocks.DEFAULT_HANGING_POT_SUPPORT_CHAINS.get(), YATMBlockStateProvider.DEFAULT_HANGING_POT_SUPPORT_CHAINS_MODEL);
+		
+		this.createAllBlock(YATMBlocks.FOLIAR_STEEL_ORE.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/foliar_steel_ore"));
+		this.createAllBlock(YATMBlocks.DEEPSLATE_FOLIAR_STEEL_ORE.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/deepslate_foliar_steel_ore"));
+		this.createAllBlock(YATMBlocks.FOLIAR_STEEL_BLOCK.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/foliar_steel_block"));
 		this.createAllBlock(YATMBlocks.RUBBER_BLOCK.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rubber_block"));
 		this.createAllBlock(YATMBlocks.ROOTED_SOUL_SOIL.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rooted_soul_soil"));
 		

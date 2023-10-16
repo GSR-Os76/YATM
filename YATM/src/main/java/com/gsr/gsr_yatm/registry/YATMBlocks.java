@@ -74,6 +74,7 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.ButtonBlock;
 import net.minecraft.world.level.block.CarpetBlock;
 import net.minecraft.world.level.block.DoorBlock;
+import net.minecraft.world.level.block.DropExperienceBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
@@ -257,7 +258,9 @@ public class YATMBlocks
 	
 	
 	//TODO, maybe add some sort of soul stone 
-	
+	public static final RegistryObject<DropExperienceBlock> FOLIAR_STEEL_ORE = BLOCKS.register("foliar_steel_ore", () -> new DropExperienceBlock(YATMBlockProperties.stoneOre()));
+	public static final RegistryObject<DropExperienceBlock> DEEPSLATE_FOLIAR_STEEL_ORE = BLOCKS.register("deepslate_foliar_steel_ore", () -> new DropExperienceBlock(YATMBlockProperties.deepslateOre()));
+	public static final RegistryObject<Block> FOLIAR_STEEL_BLOCK = BLOCKS.register("foliar_steel_block", () -> new Block(YATMBlockProperties.FOLIAR_STEEL_BLOCK));
 	public static final RegistryObject<Block> RUBBER_BLOCK = BLOCKS.register("rubber_block", () -> new Block(YATMBlockProperties.RUBBER_BLOCK));
 	public static final RegistryObject<RootedDirtBlock> ROOTED_SOUL_SOIL = BLOCKS.register("rooted_soul_soil", () -> new RootedDirtBlock(YATMBlockProperties.ROOTED_SOUL_SOIL));
 		

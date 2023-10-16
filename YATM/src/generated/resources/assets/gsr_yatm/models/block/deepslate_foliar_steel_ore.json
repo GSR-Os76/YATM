@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:block/cube_all",
+  "textures": {
+    "all": "gsr_yatm:block/deepslate_foliar_steel_ore"
+  }
+}
