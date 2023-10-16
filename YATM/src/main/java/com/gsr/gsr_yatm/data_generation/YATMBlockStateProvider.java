@@ -21,6 +21,7 @@ import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumDeminutusBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootFoliageBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootBlock;
+import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
@@ -150,6 +151,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addBasinOfTears();
 		this.addCarcassRoot();
 		this.createFourStageCrop(YATMBlocks.COTTON.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_germinating"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_flowering"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_maturing"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_mature"));
+		this.addFerrum();
 		this.addFireEaterLily();
 		this.addIceCoral();
 		this.createPhantasmalShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get());
@@ -313,6 +315,19 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createCarcassRootRooted(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get(), YATMItems.CARCASS_ROOT_ROOTED_NETHERRACK_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_netherrack_young"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_netherrack_old"));
 		
 	} // end addCarcassRoot()
+	
+	private void addFerrum() 
+	{
+		ResourceLocation oldTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ferrum/old");
+		this.createFerrum(YATMBlocks.FERRUM.get(), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ferrum/young"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ferrum/adolescent"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ferrum/mature"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/ferrum/mature_fruiting"),
+				oldTexture);
+		this.createStoneSoilPottedCross(YATMBlocks.POTTED_FERRUM.get(), oldTexture);
+
+	} // end addFerrum()
 	
 	private void addFireEaterLily() 
 	{
@@ -671,6 +686,34 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.simpleBlockItem(block, modelY);
 	} // end createCarcassRootRooted()
 	
+	
+	private void createFerrum(@NotNull FerrumBlock block, 
+			@NotNull ResourceLocation youngTexture, 
+			@NotNull ResourceLocation adolescentTexture,
+			@NotNull ResourceLocation matureTexture,
+			@NotNull ResourceLocation matureFruitingTexture,
+			@NotNull ResourceLocation oldTexture) 
+	{
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
+		String nameY = name + "_young";
+		String nameA = name + "_adolescent";
+		String nameM = name + "_mature";
+		String nameMF = name + "_mature_fruiting";
+		String nameO = name + "_old";
+		this.models().cross(nameY, youngTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameA, adolescentTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameM, matureTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameMF, matureFruitingTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameO, oldTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		ModelFile modelY = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameY));
+		ModelFile modelA = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameA));
+		ModelFile modelM = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameM));
+		ModelFile modelMF = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameMF));
+		ModelFile modelO = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameO));
+this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forFerrum(bs, modelY, modelA, modelM, modelMF, modelO));
+		
+	} // end createFerrum()
+	
 	private void createFireEaterLily(@NotNull FireEaterLilyBlock block, 
 			@NotNull ResourceLocation oldLitTexture, 
 			@NotNull ResourceLocation oldUnlitTexture,
@@ -707,7 +750,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		ModelFile modelBL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameBL));
 		ModelFile modelBU = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameBU));
 		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forFireEaterLily(bs, modelOL, modelOU, modelAL, modelAU, modelYL, modelYU, modelBL, modelBU));
-		
 	} // end createFireEaterLily()
 	
 	private void createIceCoral(@NotNull IceCoralBlock block, 
@@ -1393,7 +1435,30 @@ public class YATMBlockStateProvider extends BlockStateProvider
 					case 2, 3 -> lit ? youngLitModel : youngUnlitModel;
 					case 4, 5, 6 -> lit ? adolescentLitModel : adolescentUnlitModel;
 					case 7 -> lit ? oldLitModel : oldUnlitModel;
-					default -> throw new IllegalArgumentException("Unexpected of value: " + bs.getValue(FireEaterLilyBlock.AGE));
+					default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(FireEaterLilyBlock.AGE));
+				})
+			};
+	} // end forFireEaterLily()
+	
+	public static ConfiguredModel[] forFerrum(BlockState bs, 
+			ModelFile youngModel, 
+			ModelFile adolescentModel, 
+			ModelFile matureModel, 
+			ModelFile matureFruitingModel, 
+			ModelFile oldModel) 
+	{
+		boolean fruit = bs.getValue(FerrumBlock.HAS_FRUIT);
+		//ModelFile model = ;
+		return new ConfiguredModel[] 
+			{ new ConfiguredModel(
+				switch(bs.getValue(FerrumBlock.AGE)) 
+				{
+					case 0, 1 -> youngModel;
+					case 2, 3 -> adolescentModel;
+					case 4, 5 -> matureModel; 
+					case 6 -> fruit ? matureFruitingModel : matureModel;
+					case 7 -> oldModel;
+					default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(FerrumBlock.AGE));
 				})
 			};
 	} // end forFireEaterLily()

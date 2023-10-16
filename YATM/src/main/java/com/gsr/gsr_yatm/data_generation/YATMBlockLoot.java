@@ -10,6 +10,7 @@ import com.gsr.gsr_yatm.block.FaceBlock;
 import com.gsr.gsr_yatm.block.plant.OnceFruitingPlantStages;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumDeminutusBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsFloralBlock;
+import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
 import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
@@ -113,6 +114,10 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropSelf(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get());
 		this.dropPottedContents(YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE.get());
 		this.add(YATMBlocks.COTTON.get(), this.createCropDrops(YATMBlocks.COTTON.get(), YATMItems.COTTON_BOLLS.get(), YATMItems.COTTON_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(YATMBlocks.COTTON.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
+		
+		this.add(YATMBlocks.FERRUM.get(), this.createFerrumTable());		
+		this.dropPottedContents(YATMBlocks.POTTED_FERRUM.get());
+		
 		this.add(YATMBlocks.FIRE_EATER_LILY.get(), this.createFireEaterLilyTable());
 		this.dropPottedContents(YATMBlocks.POTTED_FIRE_EATER_LILY.get());
 		
@@ -387,6 +392,51 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		//young enough drop flower count
 	} // end createBasinOfTearsFloralTable()
 	
+	protected @NotNull LootTable.Builder createFerrumTable() 
+	{
+		Function<Integer, LootPool.Builder> forAge = (age) -> LootPool.lootPool()
+				.add(LootItem.lootTableItem(YATMItems.FERRUM_BRANCH.get())
+					.apply(SetItemCountFunction.setCount(
+							ConstantValue.exactly((age / 2)))
+						  )
+					)
+				.when(LootItemBlockStatePropertyCondition
+						.hasBlockStateProperties(YATMBlocks.FERRUM.get())
+						.setProperties(StatePropertiesPredicate.Builder.properties()
+								.hasProperty(FerrumBlock.AGE, age)));
+		
+		
+		
+		LootTable.Builder table = LootTable.lootTable()
+				.withPool(
+						LootPool.lootPool()
+						.add(LootItem.lootTableItem(YATMItems.FERRUM_ROOTSTOCK.get())
+								.apply(
+										SetItemCountFunction
+										.setCount(ConstantValue.exactly(1.0f))
+										)
+								)
+						)
+				.withPool(LootPool.lootPool()
+						.add(LootItem.lootTableItem(Items.IRON_NUGGET)
+								.when(LootItemBlockStatePropertyCondition
+										.hasBlockStateProperties(YATMBlocks.FERRUM.get())
+										.setProperties(StatePropertiesPredicate.Builder.properties()
+												.hasProperty(FerrumBlock.HAS_FRUIT, true))
+									 )
+								.apply(
+										SetItemCountFunction
+										.setCount(UniformGenerator.between(1.0f, (float)FerrumBlock.MAX_FRUIT_COUNT))
+										)
+								)
+						);
+		for(Integer i : FerrumBlock.AGE.getAllValues().map((i) -> i.value()).toList()) 
+		{
+			table = table.withPool(forAge.apply(i));
+		}		
+		return table;				
+	} // end createFerrumTable()
+	
 	protected @NotNull LootTable.Builder createFireEaterLilyTable() 
 	{
 		LootItemCondition.Builder fullGrown = LootItemBlockStatePropertyCondition
@@ -414,7 +464,7 @@ public class YATMBlockLoot extends VanillaBlockLoot
 								.apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f)))
 								)
 						);
-	} // end createAurumDeminutusTable()
+	} // end createFireEaterLilyTable()
 	
 	protected @NotNull LootTable.Builder createIceCoralTable() 
 	{

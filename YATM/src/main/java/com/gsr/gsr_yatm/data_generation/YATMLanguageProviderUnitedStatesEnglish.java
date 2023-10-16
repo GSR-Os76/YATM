@@ -99,8 +99,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_HANGING_SIGN.get(), "Soul Afflicted Rubber Hanging Sign");
 		this.add(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), "Soul Afflicted Leaf Mulch");
 		
-		this.add(YATMBlocks.AURUM_DEMINUTUS.get(), "Aurum Deminutus");		
-		this.add(YATMBlocks.POTTED_AURUM_DEMINUTUS.get(), "Potted Aurum Deminutus");	
+		this.add(YATMBlocks.AURUM_DEMINUTUS.get(), "Aurum");		
+		this.add(YATMBlocks.POTTED_AURUM_DEMINUTUS.get(), "Potted Aurum");	
 		this.add(YATMBlocks.BASIN_OF_TEARS_FLORAL.get(), "Crying Flower");	
 		this.add(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), "Crying Plant Vegetation");			
 		this.add(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), "Carcass Root");		
@@ -108,6 +108,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get(), "Carcass Root Rooted Dirt");		
 		this.add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get(), "Carcass Root Rooted Netherrack");		
 		this.add(YATMBlocks.COTTON.get(), "Cotton");		
+		this.add(YATMBlocks.FERRUM.get(), "Ferrum");			
+		this.add(YATMBlocks.POTTED_FERRUM.get(), "Potted Ferrum");			
 		this.add(YATMBlocks.FIRE_EATER_LILY.get(), "Fire Eater Lily");		
 		this.add(YATMBlocks.ICE_CORAL.get(), "Ice Coral");
 		this.add(YATMBlocks.BLEACHED_ICE_CORAL_OLD.get(), "Bleached Ice Coral (Old)");
@@ -272,14 +274,17 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMItems.WOOD_PULP.get(), "Wood Pulp");
 		
-		this.add(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get(), "Aurum Deminutus Fiddle Head");
-		this.add(YATMItems.AURUM_DEMINUTUS_FROND.get(), "Aurum Deminutus Frond");
+		this.add(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get(), "Aurum Fiddle Head");
+		this.add(YATMItems.AURUM_DEMINUTUS_FROND.get(), "Aurum Frond");
 		this.add(YATMItems.BASIN_OF_TEARS_SEED.get(), "Crying Plant Seeds");
 		this.add(YATMItems.DILUTED_TEAR_BOTTLE.get(), "Diluted Tear Bottle");		
 		this.add(YATMItems.CARCASS_ROOT_CUTTING.get(), "Carcass Root Cutting");
 		this.add(YATMItems.COTTON_SEEDS.get(), "Cotton Seeds");
 		this.add(YATMItems.COTTON_BOLLS.get(), "Cotton Bolls");
 		this.add(YATMItems.RAW_COTTON_FIBER.get(), "Raw Cotton Fiber");
+		this.add(YATMItems.FERRUM_ROOTSTOCK.get(), "Ferrum Rootstock");
+		this.add(YATMItems.FERRUM_BRANCH.get(), "Ferrum Branch");
+		
 		this.add(YATMItems.FIRE_EATER_LILY_BULB.get(), "Fire Eater Lily Bulb");
 		this.add(YATMItems.FIRE_EATER_LILY_FOLIAGE.get(), "Fire Eater Lily Foliage");
 		this.add(YATMItems.ICE_CORAL_POLYP.get(), "Ice Coral Polyp");

@@ -1,6 +1,9 @@
 package com.gsr.gsr_yatm.item.fluid;
 
+import java.util.Objects;
 import java.util.function.Supplier;
+
+import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.data_generation.YATMItemTags;
@@ -23,27 +26,32 @@ import net.minecraft.world.level.material.Fluid;
 public class EssenceOfSoulsBottleItem extends DrinkableFluidBottleItem
 {
 
-	public EssenceOfSoulsBottleItem(Properties properties, Supplier<? extends Fluid> fluid, int useDuration)
+	public EssenceOfSoulsBottleItem(@NotNull Properties properties, @NotNull  Supplier<? extends Fluid> fluid, int useDuration)
 	{
-		super(properties, fluid, useDuration);
+		super(Objects.requireNonNull(properties), Objects.requireNonNull(fluid), useDuration);
 	} // end constuctor
 
 	
 	
 	@Override
-	public InteractionResult useOn(UseOnContext context)
+	public InteractionResult useOn(@NotNull UseOnContext context)
 	{
 		InteractionResult fADResult = EssenceOfSoulsBottleItem.tryFormAurumDeminutus(context);
 		if(fADResult.consumesAction()) 
 		{
 			return fADResult;
 		}
+		InteractionResult fFResult = EssenceOfSoulsBottleItem.tryFormFerrum(context);
+		if(fFResult.consumesAction()) 
+		{
+			return fFResult;
+		}
 		return super.useOn(context);
 	} // end useOn()
 
 	
 	
-	public static InteractionResult tryFormAurumDeminutus(UseOnContext context) 
+	public static InteractionResult tryFormAurumDeminutus(@NotNull UseOnContext context) 
 	{
 		ItemStack held = context.getItemInHand();
 		if (!held.is(YATMItemTags.GOLEM_LIKE_PLANT_FORMERS))
@@ -112,5 +120,54 @@ public class EssenceOfSoulsBottleItem extends DrinkableFluidBottleItem
 		
 		return InteractionResult.PASS;
 	} // end tryFormAurumDeminutus()
+
+	public static InteractionResult tryFormFerrum(@NotNull UseOnContext context) 
+	{
+		ItemStack held = context.getItemInHand();
+		if (!held.is(YATMItemTags.GOLEM_LIKE_PLANT_FORMERS))
+		{
+			return InteractionResult.PASS;
+		}
+		
+		Level level = context.getLevel();
+		BlockPos position = context.getClickedPos();
+		BlockState state = level.getBlockState(position);
+		boolean succeeded = false;
+		
+		if(state.is(YATMBlockTags.FORMS_FERRUM_KEY)) 
+		{
+			succeeded = true;
+			if(!level.isClientSide) 
+			{
+				level.setBlock(position, Blocks.AIR.defaultBlockState(), 3);
+				level.playSound((Entity) null, position, SoundEvents.SOUL_ESCAPE, SoundSource.BLOCKS, 6.0f, 6.0f);
+			}
+		}
+		
+		if (succeeded)
+		{
+			if (!level.isClientSide)
+			{
+				Player player = context.getPlayer();
+				
+				if(player == null || !player.getAbilities().instabuild) 
+				{
+					if(held.hasCraftingRemainingItem())
+					{
+						if (!(player != null && player.getInventory().add(held.getCraftingRemainingItem())))
+						{
+							InventoryUtilities.drop(level, context.getClickedPos(), held.getCraftingRemainingItem());
+						}
+					}
+					held.shrink(1);
+				}
+				// TODO, probably play particles and sounds
+				InventoryUtilities.drop(level, position, new ItemStack(YATMItems.FERRUM_ROOTSTOCK.get()));
+			}
+			return InteractionResult.sidedSuccess(level.isClientSide);
+		}
+		
+		return InteractionResult.PASS;
+	} // end tryFormFerrum()
 	
 } // end class

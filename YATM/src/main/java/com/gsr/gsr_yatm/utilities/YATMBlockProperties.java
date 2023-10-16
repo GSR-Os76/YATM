@@ -49,6 +49,7 @@ public class YATMBlockProperties
 	public static final Properties CARCASS_ROOT_ROOTED_NETHERRACK = Properties.of().mapColor(MapColor.NETHER).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.9f).sound(SoundType.NETHERRACK);
 	public static final Properties CROP = Properties.of().mapColor(MapColor.PLANT).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();
 	public static final Properties FALLEN_SHULKWART_SPORES = Properties.of().mapColor(MapColor.SAND).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();
+	public static final Properties FERRUM = Properties.of().mapColor(MapColor.RAW_IRON).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().sound(SoundType.METAL).strength(5.0F, 6.0F);
 	public static final Properties FIRE_EATER_LILY = Properties.of().mapColor(MapColor.COLOR_ORANGE).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();
 	public static final Properties ICE_CORAL = YATMBlockProperties.iceCoral();
 	public static final Properties PHANTASMAL_SHELF_FUNGUS = Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(0.5f).sound(SoundType.FUNGUS).pushReaction(PushReaction.DESTROY).noCollission().randomTicks();

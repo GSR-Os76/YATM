@@ -38,19 +38,22 @@ public class YATMBlockTags extends BlockTagsProvider
 	public static final TagKey<Block> AERIAL_RUBBER_ROOTS_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/aerial_rubber_roots_can_grow_on"));
 	public static final TagKey<Block> AERIAL_RUBBER_ROOTS_CAN_GROW_THROUGH_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/aerial_rubber_roots_can_grow_through"));
 	public static final TagKey<Block> AURUM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/aurum_can_grow_on"));
-	
 	public static final TagKey<Block> BASIN_OF_TEARS_FLOWERS_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/basin_of_tears_flowers_can_grow_on"));
 	public static final TagKey<Block> BASIN_OF_TEARS_FLOWERS_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/basin_of_tears_flowers_can_grow_in"));
 	public static final TagKey<Block> BASIN_OF_TEARS_VEGETATION_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/basin_of_tears_vegetation_can_grow_on"));
 	public static final TagKey<Block> BASIN_OF_TEARS_VEGETATION_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/basin_of_tears_vegetation_can_grow_in"));
-	
 	public static final TagKey<Block> CARCASS_ROOT_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/carcass_root_can_grow_on"));
 	public static final TagKey<Block> CARCASS_ROOT_ROOTED_DIRT_ROOTS_FROM_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/carcass_root_rooted_dirt_roots_from"));
 	public static final TagKey<Block> CARCASS_ROOT_ROOTED_NETHERRACK_ROOTS_FROM_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/carcass_root_rooted_netherack_roots_from"));
+	
+	public static final TagKey<Block> FERRUM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/ferrum_can_grow_on"));
+	
 	public static final TagKey<Block> FIRE_EATER_LILY_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/fire_eater_lily_can_grow_on"));
 	public static final TagKey<Block> FORMS_AURUM_DEMINUTUS_LOWER_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/aurum_deminutus_lower"));
 	public static final TagKey<Block> FORMS_AURUM_DEMINUTUS_HIGHER_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/aurum_deminutus_higher"));	
-	 /* TODO, possibly make the below forge tag instead */
+	public static final TagKey<Block> FORMS_FERRUM_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/ferrum"));	
+	
+	/* TODO, possibly make the below forge tag instead */
 	public static final TagKey<Block> HEAT_BLOCKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "heat_blocks"));	
 	public static final TagKey<Block> ICE_CORAL_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/ice_coral_can_grow_in"));
 	public static final TagKey<Block> ICE_CORAL_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/ice_coral_can_grow_on"));
@@ -100,7 +103,13 @@ public class YATMBlockTags extends BlockTagsProvider
 		// TODO, done? separate soul and regular into individual their log tags, add those tags to here, like vanilla does
 		this.tag(BlockTags.FLOWERS).add(YATMBlocks.RUBBER_LEAVES_FLOWERING.get()); // maybe eventually add soul rubber flowers too, but seems like they should be special, and I dunno how to modify minecraft entity beehaviours
 		// TODO, should hanging pot be included here too?
-		this.tag(BlockTags.FLOWER_POTS).add(YATMBlocks.POTTED_RUBBER_MERISTEM.get()).add(YATMBlocks.POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM.get()).add(YATMBlocks.POTTED_AURUM_DEMINUTUS.get()).add(YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE.get());
+		this.tag(BlockTags.FLOWER_POTS).add(YATMBlocks.POTTED_RUBBER_MERISTEM.get()).add(YATMBlocks.POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM.get())
+		.add(YATMBlocks.POTTED_AURUM_DEMINUTUS.get())
+		.add(YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE.get())
+		.add(YATMBlocks.POTTED_FERRUM.get())
+		.add(YATMBlocks.FIRE_EATER_LILY.get())
+		.add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_POLYP.get()).add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_YOUNG.get()).add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_ADOLESCENT.get()).add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_OLD.get())
+		.add(YATMBlocks.POTTED_VARIEGATED_CACTUS.get());
 		this.tag(BlockTags.LOGS).addTag(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);
 		this.tag(BlockTags.LOGS_THAT_BURN).addTag(YATMBlockTags.RUBBER_TREE_LOGS_KEY);
 		this.tag(BlockTags.PLANKS).addTag(YATMBlockTags.RUBBER_TREE_PLANKS_KEY).addTag(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY);
@@ -131,18 +140,20 @@ public class YATMBlockTags extends BlockTagsProvider
 		this.tag(YATMBlockTags.AERIAL_RUBBER_ROOTS_CAN_GROW_ON_KEY).addTag(YATMBlockTags.RUBBER_TREE_LOGS_KEY).add(YATMBlocks.RUBBER_LEAVES_OLD.get()).addTag(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_OLD.get());
 		this.tag(YATMBlockTags.AERIAL_RUBBER_ROOTS_CAN_GROW_THROUGH_KEY).add(Blocks.AIR).add(YATMBlocks.RUBBER_LEAVES_FLOWERING.get()).add(YATMBlocks.RUBBER_LEAVES_YOUNG.get()).add(YATMBlocks.RUBBER_MERISTEM.get()).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get()).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG.get()).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get()).add(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get());
 		this.tag(YATMBlockTags.AURUM_CAN_GROW_ON_KEY).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER);
-		
 		this.tag(YATMBlockTags.BASIN_OF_TEARS_FLOWERS_CAN_GROW_ON_KEY).addTag(Tags.Blocks.NETHERRACK).addTag(Tags.Blocks.GRAVEL);
 		this.tag(YATMBlockTags.BASIN_OF_TEARS_FLOWERS_CAN_GROW_IN_KEY).add(Blocks.AIR);
 		this.tag(YATMBlockTags.BASIN_OF_TEARS_VEGETATION_CAN_GROW_ON_KEY).addTag(Tags.Blocks.NETHERRACK).addTag(Tags.Blocks.GRAVEL);
 		this.tag(YATMBlockTags.BASIN_OF_TEARS_VEGETATION_CAN_GROW_IN_KEY).add(Blocks.AIR);
-		
 		this.tag(YATMBlockTags.CARCASS_ROOT_CAN_GROW_ON_KEY)/*.add(Blocks.END_STONE)*/.addTag(Tags.Blocks.NETHERRACK).addTag(BlockTags.DIRT);
 		this.tag(YATMBlockTags.CARCASS_ROOT_ROOTED_DIRT_ROOTS_FROM_KEY).addTag(BlockTags.DIRT);
 		this.tag(YATMBlockTags.CARCASS_ROOT_ROOTED_NETHERRACK_ROOTS_FROM_KEY).addTag(Tags.Blocks.NETHERRACK);
+		this.tag(YATMBlockTags.FERRUM_CAN_GROW_ON_KEY).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER);
 		this.tag(YATMBlockTags.FIRE_EATER_LILY_CAN_GROW_ON_KEY).addTag(BlockTags.DIRT).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER).add(Blocks.MAGMA_BLOCK);
 		this.tag(YATMBlockTags.FORMS_AURUM_DEMINUTUS_LOWER_KEY).add(Blocks.GILDED_BLACKSTONE);
 		this.tag(YATMBlockTags.FORMS_AURUM_DEMINUTUS_HIGHER_KEY).add(Blocks.GOLD_BLOCK);		
+		this.tag(YATMBlockTags.FORMS_FERRUM_KEY).add(Blocks.IRON_BLOCK);		
+		
+		
 		this.tag(YATMBlockTags.HEAT_BLOCKS_KEY).add(Blocks.MAGMA_BLOCK).add(Blocks.FIRE).add(Blocks.CAMPFIRE).add(Blocks.LAVA).add(Blocks.LAVA_CAULDRON);
 		this.tag(YATMBlockTags.LEAVES_LITER_ON_KEY).addTag(BlockTags.DIRT).add(Blocks.SOUL_SAND).add(Blocks.SOUL_SOIL);
 		this.tag(YATMBlockTags.ICE_CORAL_CAN_GROW_IN_KEY).add(Blocks.AIR).add(Blocks.WATER);

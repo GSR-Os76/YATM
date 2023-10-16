@@ -104,7 +104,7 @@ public class BasinOfTearsVegetationBlock extends ShapeBlock implements IAgingBlo
 	
 	
 	@Override
-	public boolean isRandomlyTicking(BlockState state)
+	public boolean isRandomlyTicking(@NotNull BlockState state)
 	{
 		return super.isRandomlyTicking(state) && this.getAge(state) < this.getMaxAge();
 	} // end isRandomlyTicking()

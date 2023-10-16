@@ -112,6 +112,9 @@ public class YATMItems
 	public static final RegistryObject<Item> COTTON_BOLLS = generalTabEnqueue(ITEMS.register("cotton_bolls", () -> new Item(new Item.Properties().craftRemainder(YATMItems.COTTON_SEEDS.get()))));
 	public static final RegistryObject<Item> RAW_COTTON_FIBER = generalTabEnqueue(ITEMS.register("raw_cotton_fiber", () -> new Item(new Item.Properties())));
 	
+	public static final RegistryObject<ItemNameBlockItem> FERRUM_ROOTSTOCK = generalTabEnqueue(ITEMS.register("ferrum_rootstock", () -> new ItemNameBlockItem(YATMBlocks.FERRUM.get(), new Item.Properties())));
+	public static final RegistryObject<Item> FERRUM_BRANCH = generalTabEnqueue(ITEMS.register("ferrum_branch", () -> new Item(new Item.Properties())));
+	
 	public static final RegistryObject<ItemNameBlockItem> FIRE_EATER_LILY_BULB = generalTabEnqueue(ITEMS.register("fire_eater_lily_bulb", () -> new ItemNameBlockItem(YATMBlocks.FIRE_EATER_LILY.get(), new Item.Properties())));
 	public static final RegistryObject<Item> FIRE_EATER_LILY_FOLIAGE = generalTabEnqueue(ITEMS.register("fire_eater_lily_foliage", () -> new Item(new Item.Properties())));
 

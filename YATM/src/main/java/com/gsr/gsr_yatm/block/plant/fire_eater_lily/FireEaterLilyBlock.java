@@ -91,7 +91,7 @@ public class FireEaterLilyBlock extends Block implements IAgingBlock, Bonemealab
 
 	@SuppressWarnings("deprecation")
 	@Override
-	public void neighborChanged(BlockState state, Level level, BlockPos position, Block formerNeighbor, BlockPos neighborPos, boolean p_60514_)
+	public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Block formerNeighbor, @NotNull BlockPos neighborPos, boolean p_60514_)
 	{
 		if(!this.canSurvive(state, level, position)) 
 		{

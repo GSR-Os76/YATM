@@ -5,6 +5,8 @@ import org.jetbrains.annotations.NotNull;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
+import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsVegetationBlock;
+import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
@@ -53,6 +55,48 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 	
+	public static final ICollisionVoxelShapeProvider BASIN_OF_TEARS_VEGETATION = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape SPROUT = Block.box(1d, 0d, 1d, 15d, 6d, 15d);
+		private static final VoxelShape YOUNG = Block.box(0d, 0d, 0d, 16d, 9d, 16d);
+		private static final VoxelShape ADOLESCENT = Block.box(0d, 0d, 0d, 16d, 15d, 16d);
+		private static final VoxelShape OLD = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
+
+		@Override
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext collisionContext)
+		{
+			return switch(state.getValue(BasinOfTearsVegetationBlock.AGE)) 
+			{
+				case 0 -> SPROUT;
+				case 1 -> YOUNG;
+				case 2 -> ADOLESCENT;
+				case 3 -> OLD;
+				default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(BasinOfTearsVegetationBlock.AGE));
+			};
+		} // end getShape()
+	};	
+	
+	public static final ICollisionVoxelShapeProvider FERRUM = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape YOUNG = Block.box(4d, 0d, 4d, 12d, 7d, 12d);
+		private static final VoxelShape ADOLESCENT = Block.box(4d, 0d, 4d, 12d, 8d, 12d);
+		private static final VoxelShape MATURE = Block.box(2d, 0d, 2d, 14d, 9d, 14d);
+		private static final VoxelShape OLD = Block.box(2d, 0d, 2d, 14d, 11d, 14d);
+
+		@Override
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext collisionContext)
+		{
+			return switch(state.getValue(FerrumBlock.AGE)) 
+			{
+				case 0, 1 -> YOUNG;
+				case 2, 3 -> ADOLESCENT;
+				case 4, 5, 6 -> MATURE;
+				case 7 -> OLD;
+				default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(FerrumBlock.AGE));
+			};
+		} // end getShape()
+	};	
+	
 	public static final ICollisionVoxelShapeProvider FIRE_EATER_LILY = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape BULB = Block.box(6d, 0d, 6d, 10d, 3d, 10d);
@@ -77,6 +121,7 @@ public class YATMBlockShapes
 		} // end getShape()
 	};	
 		
+	
 	public static final ICollisionVoxelShapeProvider ICE_CORAL = new ICollisionVoxelShapeProvider() 
 	{
 		@Override
@@ -226,6 +271,7 @@ public class YATMBlockShapes
 
 	
 	
+	
 	public static final ICollisionVoxelShapeProvider HANGING_POT_HOOK = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape TOP_PIECE = Block.box(6d, 15d, 6d, 10d, 16d, 10d);
@@ -248,6 +294,7 @@ public class YATMBlockShapes
 			return SAP_COLLECTOR_SHAPE;
 		} // end getShape()
 	};
+	
 	
 	public static final ICollisionVoxelShapeProvider SPINNING_WHEEL = new ICollisionVoxelShapeProvider() 
 	{

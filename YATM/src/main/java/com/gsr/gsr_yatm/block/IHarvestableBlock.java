@@ -31,6 +31,7 @@ public interface IHarvestableBlock
 		
 	} // end onHarvest()	
 	
+	// could these first two not be consolidated?
 	// should return a list of all the ToolActions that're able to be used on the provided state and situation
 	public @NotNull List<@Nullable ToolAction> validActions(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position);
 	

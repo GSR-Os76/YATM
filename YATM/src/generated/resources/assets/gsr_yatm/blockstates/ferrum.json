@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "age=0,has_fruit=false": {
+      "model": "gsr_yatm:block/ferrum_young"
+    },
+    "age=0,has_fruit=true": {
+      "model": "gsr_yatm:block/ferrum_young"
+    },
+    "age=1,has_fruit=false": {
+      "model": "gsr_yatm:block/ferrum_young"
+    },
+    "age=1,has_fruit=true": {
+      "model": "gsr_yatm:block/ferrum_young"
+    },
+    "age=2,has_fruit=false": {
+      "model": "gsr_yatm:block/ferrum_adolescent"
+    },
+    "age=2,has_fruit=true": {
+      "model": "gsr_yatm:block/ferrum_adolescent"
+    },
+    "age=3,has_fruit=false": {
+      "model": "gsr_yatm:block/ferrum_adolescent"
+    },
+    "age=3,has_fruit=true": {
+      "model": "gsr_yatm:block/ferrum_adolescent"
+    },
+    "age=4,has_fruit=false": {
+      "model": "gsr_yatm:block/ferrum_mature"
+    },
+    "age=4,has_fruit=true": {
+      "model": "gsr_yatm:block/ferrum_mature"
+    },
+    "age=5,has_fruit=false": {
+      "model": "gsr_yatm:block/ferrum_mature"
+    },
+    "age=5,has_fruit=true": {
+      "model": "gsr_yatm:block/ferrum_mature"
+    },
+    "age=6,has_fruit=false": {
+      "model": "gsr_yatm:block/ferrum_mature"
+    },
+    "age=6,has_fruit=true": {
+      "model": "gsr_yatm:block/ferrum_mature_fruiting"
+    },
+    "age=7,has_fruit=false": {
+      "model": "gsr_yatm:block/ferrum_old"
+    },
+    "age=7,has_fruit=true": {
+      "model": "gsr_yatm:block/ferrum_old"
+    }
+  }
+}
