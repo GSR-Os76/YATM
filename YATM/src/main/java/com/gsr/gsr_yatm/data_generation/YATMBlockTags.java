@@ -130,12 +130,13 @@ public class YATMBlockTags extends BlockTagsProvider
 		
 		
 		
-		
 		this.tag(YATMBlockTags.FORGE_CACTUSES_KEY).add(Blocks.CACTUS).add(YATMBlocks.VARIEGATED_CACTUS.get());
 		this.tag(YATMBlockTags.FORGE_ROOTED_DIRT_KEY).add(Blocks.ROOTED_DIRT).add(Blocks.MUDDY_MANGROVE_ROOTS).add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get());
 		this.tag(YATMBlockTags.FORGE_RUBBER_STORAGE_BLOCK_KEY).add(YATMBlocks.RUBBER_BLOCK.get());
 		this.tag(YATMBlockTags.FORGE_SOUL_SOIL_KEY).add(Blocks.SOUL_SOIL).add(YATMBlocks.ROOTED_SOUL_SOIL.get());
 		this.tag(Tags.Blocks.NETHERRACK).add(Blocks.CRIMSON_NYLIUM).add(Blocks.WARPED_NYLIUM).add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get());
+		this.tag(Tags.Blocks.ORES).addTag(YATMBlockTags.FOLIAR_STEEL_ORES_KEY);
+		// TODO, YATMBlockTags.FOLIAR_STEEL_ORES_KEY add to ore rate tag too
 		this.tag(Tags.Blocks.STORAGE_BLOCKS).addTag(YATMBlockTags.FORGE_RUBBER_STORAGE_BLOCK_KEY).add(YATMBlocks.FOLIAR_STEEL_BLOCK.get());
 		
 		
