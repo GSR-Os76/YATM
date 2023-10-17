@@ -52,6 +52,7 @@ public class YATMBlockProperties
 	public static final Properties FALLEN_SHULKWART_SPORES = Properties.of().mapColor(MapColor.SAND).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();
 	public static final Properties FERRUM = Properties.of().mapColor(MapColor.RAW_IRON).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().sound(SoundType.METAL).strength(5.0F, 6.0F);
 	public static final Properties FIRE_EATER_LILY = Properties.of().mapColor(MapColor.COLOR_ORANGE).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();
+	public static final Properties FOLIUM = Properties.of().mapColor(MapColor.COLOR_GREEN).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().sound(SoundType.METAL).strength(5.5F, 6.0F);
 	public static final Properties ICE_CORAL = YATMBlockProperties.iceCoral();
 	public static final Properties PHANTASMAL_SHELF_FUNGUS = Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).strength(0.5f).sound(SoundType.FUNGUS).pushReaction(PushReaction.DESTROY).noCollission().randomTicks();
 	public static final Properties PRISMARINE_CRYSTAL_MOSS = Properties.of().mapColor(MapColor.COLOR_CYAN).sound(SoundType.MOSS).pushReaction(PushReaction.DESTROY).replaceable()/* .requiresCorrectToolForDrops() */.strength(1.5f, 6.0f).noCollission().randomTicks();

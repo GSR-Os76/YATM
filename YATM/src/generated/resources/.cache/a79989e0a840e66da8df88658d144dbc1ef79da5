@@ -1,4 +1,4 @@
-// 1.20.1	2023-10-16T16:40:41.5659871	Item Models: gsr_yatm
+// 1.20.1	2023-10-17T14:21:34.4090423	Item Models: gsr_yatm
 39dc65663f22bc3413323e63119c165dc4f51c76 assets/gsr_yatm/models/item/aurum_deminutus_fiddle_head.json
 4bab78a47a4fc45a258b74c9012f61de899aee93 assets/gsr_yatm/models/item/aurum_deminutus_frond.json
 b860c72785d969dab4933b80dd6652fa794539bf assets/gsr_yatm/models/item/aurum_fan.json
@@ -45,6 +45,7 @@ c348743f987ceead060bd01a86c90f96705f7738 assets/gsr_yatm/models/item/fire_eater_
 00d5286a032b83c1776cfd81385f4233aee6323a assets/gsr_yatm/models/item/fivehundredtwelve_cu_current_fuse_component.json
 dc0d6842adbf21ba5b5330616b224d0686788884 assets/gsr_yatm/models/item/fivehundredtwelve_cu_current_regulator_component.json
 bd6d19cb0497c729df1f59e2634d46a4d22982ec assets/gsr_yatm/models/item/foliar_steel.json
+77feae6f71ee41645ee1f59670e7f82c73461193 assets/gsr_yatm/models/item/folium_rhizome.json
 040c589f90c7240f0e2a43a2fd18cc08362735d7 assets/gsr_yatm/models/item/fourthousandnintysix_cu_current_breaker_component.json
 0f7550228501ab8b3ca5b4945e29dfd24e1ffef7 assets/gsr_yatm/models/item/fourthousandnintysix_cu_current_fuse_component.json
 c302c06f8d16d172aff072633b16327f6e98c883 assets/gsr_yatm/models/item/fourthousandnintysix_cu_current_regulator_component.json

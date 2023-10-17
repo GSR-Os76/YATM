@@ -9,6 +9,7 @@ import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsVegetationBlock;
 import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
 import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
+import com.gsr.gsr_yatm.block.plant.folium.FoliumBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
 import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
@@ -19,6 +20,7 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.PipeBlock;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -55,6 +57,7 @@ public class YATMBlockShapes
 			return SHAPE;
 		} // end getShape()
 	};
+	
 	
 	public static final ICollisionVoxelShapeProvider BASIN_OF_TEARS_VEGETATION = new ICollisionVoxelShapeProvider() 
 	{
@@ -144,6 +147,31 @@ public class YATMBlockShapes
 		} // end getShape()
 	};	
 		
+	public static final ICollisionVoxelShapeProvider FOLIUM = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape SPROUT = Block.box(2d, 0d, 2d, 14d, 7d, 14d);
+		private static final VoxelShape YOUNG = Block.box(1d, 0d, 1d, 15d, 11d, 15d);
+		private static final VoxelShape ADOLESCENT = Block.box(1d, 0d, 1d, 15d, 16d, 15d);
+		private static final VoxelShape MATURE_LOWER = Block.box(1d, 0d, 1d, 15d, 16d, 15d);
+		private static final VoxelShape MATURE_HIGHER = Block.box(2d, 0d, 2d, 14d, 4d, 14d);
+		private static final VoxelShape OLD_LOWER = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
+		private static final VoxelShape OLD_HIGHER = Block.box(0d, 0d, 0d, 16d, 12d, 16d);
+
+		@Override
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext collisionContext)
+		{
+			boolean isLower = state.getValue(FoliumBlock.HALF) == DoubleBlockHalf.LOWER;
+			return switch(state.getValue(FoliumBlock.AGE)) 
+			{
+				case 0 -> SPROUT;
+				case 1 -> YOUNG;
+				case 2 -> ADOLESCENT;
+				case 3 -> isLower ? MATURE_LOWER : MATURE_HIGHER;
+				case 4 -> isLower ? OLD_LOWER : OLD_HIGHER;
+				default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(FoliumBlock.AGE));
+			};
+		} // end getShape()
+	};	
 	
 	public static final ICollisionVoxelShapeProvider ICE_CORAL = new ICollisionVoxelShapeProvider() 
 	{
@@ -160,6 +188,7 @@ public class YATMBlockShapes
 			};
 		} // end getShape()
 	};	
+	
 	
 	public static final ICollisionVoxelShapeProvider PHANTASMAL_SHELF_FUNGUS = new ICollisionVoxelShapeProvider() 
 	{
@@ -317,7 +346,6 @@ public class YATMBlockShapes
 			return SAP_COLLECTOR_SHAPE;
 		} // end getShape()
 	};
-	
 	
 	public static final ICollisionVoxelShapeProvider SPINNING_WHEEL = new ICollisionVoxelShapeProvider() 
 	{

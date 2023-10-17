@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "gsr_yatm:block/plant/aurum_deminutus/adolescent_double_higher"
+    "cross": "gsr_yatm:block/plant/aurum/adolescent_double_higher"
   }
 }

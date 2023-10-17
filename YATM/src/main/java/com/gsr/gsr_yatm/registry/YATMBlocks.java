@@ -35,7 +35,7 @@ import com.gsr.gsr_yatm.block.device.solar.SolarPanelSettings;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.hanging_pot.HangingPotHookBlock;
 import com.gsr.gsr_yatm.block.plant.CustomSeedCropBlock;
-import com.gsr.gsr_yatm.block.plant.aurum.AurumDeminutusBlock;
+import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsFloralBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsVegetationBlock;
 import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
@@ -44,6 +44,7 @@ import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootSupplier;
 import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
+import com.gsr.gsr_yatm.block.plant.folium.FoliumBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
 import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
@@ -176,8 +177,9 @@ public class YATMBlocks
 	// TODO, some dripping tree, a small tree with notable extrafloral nectaries, bees will interact with them, they will drip, small feeling tree
 	// TODO, possibly used for making still, if i do end up doing the plant machines
 	
-	public static final RegistryObject<AurumDeminutusBlock> AURUM_DEMINUTUS = BLOCKS.register("aurum_deminutus", () -> new AurumDeminutusBlock(YATMBlockProperties.AURUM_SP, YATMBlockShapes.CUBE, YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD::get, () -> new ItemStack(YATMItems.AURUM_DEMINUTUS_FROND.get())));
-	public static final RegistryObject<FlowerPotBlock> POTTED_AURUM_DEMINUTUS = BLOCKS.register("potted_aurum_deminutus", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.AURUM_DEMINUTUS, YATMBlockProperties.FLOWER_POT));
+	// TODO, probably needs shapes
+	public static final RegistryObject<AurumBlock> AURUM = BLOCKS.register("aurum_deminutus", () -> new AurumBlock(YATMBlockProperties.AURUM_SP, YATMBlockShapes.CUBE, YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD::get, () -> new ItemStack(YATMItems.AURUM_DEMINUTUS_FROND.get())));
+	public static final RegistryObject<FlowerPotBlock> POTTED_AURUM_DEMINUTUS = BLOCKS.register("potted_aurum_deminutus", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.AURUM, YATMBlockProperties.FLOWER_POT));
 
 	public static final RegistryObject<BasinOfTearsFloralBlock> BASIN_OF_TEARS_FLORAL = BLOCKS.register("basin_of_tears_floral", () -> new BasinOfTearsFloralBlock(YATMBlockProperties.BASIN_OF_TEARS, YATMBlockShapes.CUBE/*BASIN_OF_TEARS_FLORAL*/));
 	public static final RegistryObject<BasinOfTearsVegetationBlock> BASIN_OF_TEARS_VEGETATION = BLOCKS.register("basin_of_tears_vegetation", () -> new BasinOfTearsVegetationBlock(YATMBlockProperties.BASIN_OF_TEARS_VEGETATIVE, YATMBlockShapes.BASIN_OF_TEARS_VEGETATION, () -> YATMBlocks.BASIN_OF_TEARS_FLORAL.get().defaultBlockState().setValue(BasinOfTearsFloralBlock.FLOWER_COUNT, RandomSource.create().nextIntBetweenInclusive(1, 4))));
@@ -198,6 +200,10 @@ public class YATMBlocks
 	// maybe make more like pitcher plants and torch flower, turnable into inert decoration afterwards
 	public static final RegistryObject<FireEaterLilyBlock> FIRE_EATER_LILY = BLOCKS.register("fire_eater_lily", () -> new FireEaterLilyBlock(YATMBlockProperties.FIRE_EATER_LILY, YATMBlockShapes.FIRE_EATER_LILY));
 	public static final RegistryObject<FlowerPotBlock> POTTED_FIRE_EATER_LILY = BLOCKS.register("potted_fire_eater_lily", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.FIRE_EATER_LILY.get(), YATMBlockProperties.FLOWER_POT));
+	
+	public static final RegistryObject<FoliumBlock> FOLIUM = BLOCKS.register("folium", () -> new FoliumBlock(YATMBlockProperties.FOLIUM, YATMBlockShapes.FOLIUM));
+	public static final RegistryObject<FlowerPotBlock> POTTED_FOLIUM = BLOCKS.register("potted_folium", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.FOLIUM, YATMBlockProperties.FLOWER_POT));
+	
 	
 	public static final RegistryObject<IceCoralBlock> ICE_CORAL = BLOCKS.register("ice_coral", () -> new IceCoralBlock(YATMBlockProperties.ICE_CORAL, YATMBlockShapes.ICE_CORAL));
 	public static final RegistryObject<WaterloggableBlock> BLEACHED_ICE_CORAL_OLD = BLOCKS.register("bleached_ice_coral_old", () -> new WaterloggableBlock(YATMBlockProperties.BLEACHED_ICE_CORAL, (bs, bg, bp, cc) -> YATMBlockShapes.ICE_CORAL_OLD));
@@ -362,11 +368,12 @@ public class YATMBlocks
 		FlowerPotBlock minecraftFlowerPot = (FlowerPotBlock)Blocks.FLOWER_POT;
 		minecraftFlowerPot.addPlant(YATMBlocks.RUBBER_MERISTEM.getKey().location(), YATMBlocks.POTTED_RUBBER_MERISTEM);
 		minecraftFlowerPot.addPlant(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.getKey().location(), YATMBlocks.POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM);
-		minecraftFlowerPot.addPlant(YATMBlocks.AURUM_DEMINUTUS.getKey().location(), YATMBlocks.POTTED_AURUM_DEMINUTUS);
+		minecraftFlowerPot.addPlant(YATMBlocks.AURUM.getKey().location(), YATMBlocks.POTTED_AURUM_DEMINUTUS);
 		minecraftFlowerPot.addPlant(YATMBlocks.CARBUM.getKey().location(), YATMBlocks.POTTED_CARBUM);
 		minecraftFlowerPot.addPlant(YATMBlocks.CARCASS_ROOT_FOLIAGE.getKey().location(), YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE);
 		minecraftFlowerPot.addPlant(YATMBlocks.FERRUM.getKey().location(), YATMBlocks.POTTED_FERRUM);
 		minecraftFlowerPot.addPlant(YATMBlocks.FIRE_EATER_LILY.getKey().location(), YATMBlocks.POTTED_FIRE_EATER_LILY);
+		minecraftFlowerPot.addPlant(YATMBlocks.FOLIUM.getKey().location(), YATMBlocks.POTTED_FOLIUM);
 		minecraftFlowerPot.addPlant(YATMBlocks.BLEACHED_ICE_CORAL_OLD.getKey().location(), YATMBlocks.POTTED_BLEACHED_ICE_CORAL_OLD);
 		minecraftFlowerPot.addPlant(YATMBlocks.BLEACHED_ICE_CORAL_ADOLESCENT.getKey().location(), YATMBlocks.POTTED_BLEACHED_ICE_CORAL_ADOLESCENT);
 		minecraftFlowerPot.addPlant(YATMBlocks.BLEACHED_ICE_CORAL_YOUNG.getKey().location(), YATMBlocks.POTTED_BLEACHED_ICE_CORAL_YOUNG);

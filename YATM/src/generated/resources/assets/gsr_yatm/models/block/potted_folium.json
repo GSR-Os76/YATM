@@ -3,6 +3,6 @@
   "render_type": "minecraft:cutout",
   "textures": {
     "dirt": "minecraft:block/stone",
-    "plant": "gsr_yatm:block/plant/aurum/adolescent"
+    "plant": "gsr_yatm:block/plant/folium/adolescent"
   }
 }

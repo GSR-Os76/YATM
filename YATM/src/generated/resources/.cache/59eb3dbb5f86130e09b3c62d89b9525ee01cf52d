@@ -1,4 +1,4 @@
-// 1.20.1	2023-10-16T16:40:41.5629945	Loot Tables
+// 1.20.1	2023-10-17T16:01:38.6023241	Loot Tables
 c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
 e7fbd17d28377f6d02cdd2df79fd21c9ce25491d data/gsr_yatm/loot_tables/blocks/aurum_deminutus.json
@@ -38,6 +38,7 @@ c4edfdcb718f1724076063df7a1557dada3fffd2 data/gsr_yatm/loot_tables/blocks/fire_e
 af61b2aad862896558d719c17c12b2236a3b81eb data/gsr_yatm/loot_tables/blocks/fivehundredtwelve_cu_wire.json
 552828b67c689a8eb8ce68f7cdd7ab2be1727312 data/gsr_yatm/loot_tables/blocks/foliar_steel_block.json
 8a09dd4d3e159377e355865158df551d66f03aa5 data/gsr_yatm/loot_tables/blocks/foliar_steel_ore.json
+8712fd2237ba09507a784a60fa0032f117165a2f data/gsr_yatm/loot_tables/blocks/folium.json
 9b7b80c5ee0230577bac03b27bbd05671be4a7a6 data/gsr_yatm/loot_tables/blocks/fourthousandnintysix_cu_wire.json
 38a306a3f7873936b5fdb85752dccecc8579916b data/gsr_yatm/loot_tables/blocks/gray_shulkwart.json
 5811cec04ad7d21a3916a67feb0034b162011bd8 data/gsr_yatm/loot_tables/blocks/green_shulkwart.json
@@ -69,6 +70,7 @@ b9e36cd114645bdbc82ed60a5c500b2f498580e1 data/gsr_yatm/loot_tables/blocks/potted
 f783d5cbbec1d684af81c483dcd0d57bde68e185 data/gsr_yatm/loot_tables/blocks/potted_carcass_root_foliage.json
 79e9c4f37351357885c7ee3a6bba130a67b74b09 data/gsr_yatm/loot_tables/blocks/potted_ferrum.json
 8a8963141185c73d1069731a372e1dffa592ea17 data/gsr_yatm/loot_tables/blocks/potted_fire_eater_lily.json
+8a6980e1e6e2b1190988e97c485aba721a9567c8 data/gsr_yatm/loot_tables/blocks/potted_folium.json
 1495be7ec03a2ad34b031bf151042d6df73910ca data/gsr_yatm/loot_tables/blocks/potted_rubber_meristem.json
 f8ab2b776accbe0f883829583c371794f98ca399 data/gsr_yatm/loot_tables/blocks/potted_soul_afflicted_rubber_meristem.json
 92d1045a89052f81cd93b2d9f27484025b389129 data/gsr_yatm/loot_tables/blocks/potted_variegated_cactus.json

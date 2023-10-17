@@ -97,14 +97,14 @@ public class YATMItems
 
 	
 	
-	public static final RegistryObject<ItemNameBlockItem> AURUM_DEMINUTUS_FIDDLE_HEAD = generalTabEnqueue(ITEMS.register("aurum_deminutus_fiddle_head", () -> new ItemNameBlockItem(YATMBlocks.AURUM_DEMINUTUS.get(), new Item.Properties().fireResistant())));
+	public static final RegistryObject<ItemNameBlockItem> AURUM_DEMINUTUS_FIDDLE_HEAD = generalTabEnqueue(ITEMS.register("aurum_deminutus_fiddle_head", () -> new ItemNameBlockItem(YATMBlocks.AURUM.get(), new Item.Properties().fireResistant())));
 	public static final RegistryObject<Item> AURUM_DEMINUTUS_FROND = generalTabEnqueue(ITEMS.register("aurum_deminutus_frond", () -> new Item(new Item.Properties().fireResistant())));
 	
 	public static final RegistryObject<ItemNameBlockItem> BASIN_OF_TEARS_SEED = generalTabEnqueue(ITEMS.register("basin_of_tears_seed", () -> new ItemNameBlockItem(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), new Item.Properties())));
 	public static final RegistryObject<Item> DILUTED_TEAR_BOTTLE = generalTabEnqueue(ITEMS.register("diluted_tear_bottle", () -> new Item(new Item.Properties().craftRemainder(Items.GLASS_BOTTLE))));
 	public static final RegistryObject<Item> TEAR_LEAF = /* generalTabEnqueue */(ITEMS.register("tear_leaf", () -> new Item(new Item.Properties().food(YATMFoods.TEAR_LEAF))));
 	
-	public static final RegistryObject<ItemNameBlockItem> CARBUM_MERISTEM = generalTabEnqueue(ITEMS.register("carbum_meristem", () -> new ItemNameBlockItem(YATMBlocks.CARBUM.get(), new Item.Properties())));
+	public static final RegistryObject<ItemNameBlockItem> CARBUM_MERISTEM = generalTabEnqueue(ITEMS.register("carbum_meristem", () -> new ItemNameBlockItem(YATMBlocks.CARBUM.get(), new Item.Properties().fireResistant())));
 	public static final RegistryObject<Item> CARBUM_LEAF = generalTabEnqueue(ITEMS.register("carbum_leaf", () -> new Item(new Item.Properties())));
 	
 	public static final RegistryObject<ItemNameBlockItem> CARCASS_ROOT_CUTTING = generalTabEnqueue(ITEMS.register("carcass_root_cutting", () -> new ItemNameBlockItem(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), new Item.Properties())));
@@ -115,12 +115,14 @@ public class YATMItems
 	public static final RegistryObject<Item> COTTON_BOLLS = generalTabEnqueue(ITEMS.register("cotton_bolls", () -> new Item(new Item.Properties().craftRemainder(YATMItems.COTTON_SEEDS.get()))));
 	public static final RegistryObject<Item> RAW_COTTON_FIBER = generalTabEnqueue(ITEMS.register("raw_cotton_fiber", () -> new Item(new Item.Properties())));
 	
-	public static final RegistryObject<ItemNameBlockItem> FERRUM_ROOTSTOCK = generalTabEnqueue(ITEMS.register("ferrum_rootstock", () -> new ItemNameBlockItem(YATMBlocks.FERRUM.get(), new Item.Properties())));
+	public static final RegistryObject<ItemNameBlockItem> FERRUM_ROOTSTOCK = generalTabEnqueue(ITEMS.register("ferrum_rootstock", () -> new ItemNameBlockItem(YATMBlocks.FERRUM.get(), new Item.Properties().fireResistant())));
 	public static final RegistryObject<Item> FERRUM_BRANCH = generalTabEnqueue(ITEMS.register("ferrum_branch", () -> new Item(new Item.Properties())));
 	
 	public static final RegistryObject<ItemNameBlockItem> FIRE_EATER_LILY_BULB = generalTabEnqueue(ITEMS.register("fire_eater_lily_bulb", () -> new ItemNameBlockItem(YATMBlocks.FIRE_EATER_LILY.get(), new Item.Properties())));
 	public static final RegistryObject<Item> FIRE_EATER_LILY_FOLIAGE = generalTabEnqueue(ITEMS.register("fire_eater_lily_foliage", () -> new Item(new Item.Properties())));
 
+	public static final RegistryObject<ItemNameBlockItem> FOLIUM_RHIZOME = generalTabEnqueue(ITEMS.register("folium_rhizome", () -> new ItemNameBlockItem(YATMBlocks.FOLIUM.get(), new Item.Properties().fireResistant())));
+	
 	public static final RegistryObject<ItemNameBlockItem> ICE_CORAL_POLYP = generalTabEnqueue(ITEMS.register("ice_coral_polyp", () -> new ItemNameBlockItem(YATMBlocks.ICE_CORAL.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> BLEACHED_ICE_CORAL_OLD_ITEM = generalTabEnqueue(ITEMS.register("bleached_ice_coral_old", () -> new BlockItem(YATMBlocks.BLEACHED_ICE_CORAL_OLD.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> BLEACHED_ICE_CORAL_ADOLESCENT_ITEM = generalTabEnqueue(ITEMS.register("bleached_ice_coral_adolescent", () -> new BlockItem(YATMBlocks.BLEACHED_ICE_CORAL_ADOLESCENT.get(), new Item.Properties())));

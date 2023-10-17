@@ -76,7 +76,7 @@ public class FerrumBlock extends ShapeBlock implements IAgingBlock, IHarvestable
 				double vecLength = vector.length();
 				int age = this.getAge(state);
 				
-				float damage = (((float) vecLength) * (6.0f * age));
+				float damage = (((float) vecLength) * (6.0f * (age + 1)));
 				if (vecLength > 0.1d)
 				{
 					// TODO, create custom damage source for this and for aurum

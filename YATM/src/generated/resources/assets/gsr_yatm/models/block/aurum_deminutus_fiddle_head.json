@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "gsr_yatm:block/plant/aurum_deminutus/fiddle_heads"
+    "cross": "gsr_yatm:block/plant/aurum/fiddle_heads"
   }
 }

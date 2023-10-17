@@ -18,12 +18,13 @@ import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
-import com.gsr.gsr_yatm.block.plant.aurum.AurumDeminutusBlock;
+import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
 import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootFoliageBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootBlock;
 import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
+import com.gsr.gsr_yatm.block.plant.folium.FoliumBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
 import com.gsr.gsr_yatm.block.plant.prismarine_crystal_moss.PrismarineCrystalMossBlock;
@@ -148,13 +149,14 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addRubberSet();
 		this.addSoulAfflictedRubberSet();
 		
-		this.addAurumDeminutus();
+		this.addAurum();
 		this.addBasinOfTears();
 		this.addCarbum();
 		this.addCarcassRoot();
 		this.createFourStageCrop(YATMBlocks.COTTON.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_germinating"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_flowering"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_maturing"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_mature"));
 		this.addFerrum();
 		this.addFireEaterLily();
+		this.addFolium();
 		this.addIceCoral();
 		this.createPhantasmalShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get());
 		this.createBlockWithItem(YATMBlocks.PITCHER_CLUSTER.get(), YATMBlockStateProvider.PITCHER_CLUSTER);
@@ -289,17 +291,17 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createCarpet(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_leaf_mulch"));
 	} // end addSoulAfflictedRubberSet()
 
-	private void addAurumDeminutus()
+	private void addAurum()
 	{
-		ResourceLocation adolescentTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/adolescent");
-		this.createAurumDeminutus(YATMBlocks.AURUM_DEMINUTUS.get(), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/fiddle_heads"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/young"), 
+		ResourceLocation adolescentTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum/adolescent");
+		this.createAurumDeminutus(YATMBlocks.AURUM.get(), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum/fiddle_heads"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum/young"), 
 				adolescentTexture, 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/adolescent_double_lower"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/adolescent_double_higher"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/mature_double_lower"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum_deminutus/mature_double_higher"));
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum/adolescent_double_lower"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum/adolescent_double_higher"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum/mature_double_lower"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum/mature_double_higher"));
 		this.createStoneSoilPottedCross(YATMBlocks.POTTED_AURUM_DEMINUTUS.get(), adolescentTexture);
 	} // end addAurumDeminutus()
 	
@@ -360,6 +362,20 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createPottedCross(YATMBlocks.POTTED_FIRE_EATER_LILY.get(), oldLitTexture);
 	} // end addFireEaterLily()
 
+	private void addFolium()
+	{		
+		ResourceLocation adolescentTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/folium/adolescent");
+		this.createFolium(YATMBlocks.FOLIUM.get(), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/folium/sprout"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/folium/young"), 
+				adolescentTexture, 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/folium/mature_lower"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/folium/mature_higher"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/folium/old_lower"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/folium/old_higher"));
+		this.createStoneSoilPottedCross(YATMBlocks.POTTED_FOLIUM.get(), adolescentTexture);
+	} // end addAurumDeminutus()
+	
 	private void addIceCoral()
 	{
 		this.createIceCoral(YATMBlocks.ICE_CORAL.get(), 
@@ -673,7 +689,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		PrismarineCrystalMossBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.forEach((d, p) -> forPrismarineCrystalMossLikeFace(d, builder, modelOne, modelTwo));//, modelThree, modelFour));
 	} // end createCrop()
 	
-	
 	private void createCarbum(@NotNull CarbumBlock block, 
 			@NotNull ResourceLocation meristemTexture,
 			@NotNull ResourceLocation youngTexture, 
@@ -725,7 +740,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.simpleBlockItem(block, modelY);
 	} // end createCarcassRootRooted()
 	
-	
 	private void createFerrum(@NotNull FerrumBlock block, 
 			@NotNull ResourceLocation youngTexture, 
 			@NotNull ResourceLocation adolescentTexture,
@@ -749,7 +763,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		ModelFile modelM = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameM));
 		ModelFile modelMF = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameMF));
 		ModelFile modelO = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameO));
-this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forFerrum(bs, modelY, modelA, modelM, modelMF, modelO));
+		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forFerrum(bs, modelY, modelA, modelM, modelMF, modelO));
 		
 	} // end createFerrum()
 	
@@ -790,6 +804,34 @@ this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forFer
 		ModelFile modelBU = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameBU));
 		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forFireEaterLily(bs, modelOL, modelOU, modelAL, modelAU, modelYL, modelYU, modelBL, modelBU));
 	} // end createFireEaterLily()
+
+	private void createFolium(@NotNull FoliumBlock block, ResourceLocation sproutTexture, ResourceLocation youngTexture, @NotNull ResourceLocation adolescentTexture, @NotNull ResourceLocation matureLowerTexture, @NotNull ResourceLocation matureHigherTexture, @NotNull ResourceLocation oldLowerTexture, @NotNull ResourceLocation oldHigherTexture)
+	{
+		String name = getModelLocationNameFor(block);			
+		String sName = name + "_sprout";
+		String yName = name + "_young";
+		String aName = name + "_adolescent";
+		String mLName = name + "_mature_lower";
+		String mHName = name + "_mature_higher";
+		String oLName = name + "_old_lower";
+		String oHName = name + "_old_higher";
+		
+		this.models().getBuilder(sName).parent(YATMBlockStateProvider.CROSS).texture("cross", sproutTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(yName).parent(YATMBlockStateProvider.CROSS).texture("cross", youngTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(aName).parent(YATMBlockStateProvider.CROSS).texture("cross", adolescentTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(mLName).parent(YATMBlockStateProvider.CROSS).texture("cross", matureLowerTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(mHName).parent(YATMBlockStateProvider.CROSS).texture("cross", matureHigherTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(oLName).parent(YATMBlockStateProvider.CROSS).texture("cross", oldLowerTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(oHName).parent(YATMBlockStateProvider.CROSS).texture("cross", oldHigherTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		ModelFile sModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, sName));
+		ModelFile yModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, yName));
+		ModelFile aModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, aName));
+		ModelFile mLModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, mLName));
+		ModelFile mHModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, mHName));
+		ModelFile oLModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, oLName));
+		ModelFile oHModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, oHName));
+		this.getVariantBuilder(block).forAllStates((bs) -> forAurumLike(bs, sModel, yModel, aModel, mLModel, mHModel, oLModel, oHModel));
+	} // end createFolium()
 	
 	private void createIceCoral(@NotNull IceCoralBlock block, 
 			@NotNull ResourceLocation oldTexture, 
@@ -970,7 +1012,7 @@ this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forFer
 		{ new ConfiguredModel(model) });
 	} // end addPottedPlant()
 	
-	public void createAurumDeminutus(AurumDeminutusBlock block, ResourceLocation fiddleHeadTexture, ResourceLocation youngTexture, ResourceLocation adolescentTexture, ResourceLocation adolescentDoubleLowerTexture, ResourceLocation adolescentDoubleHigherTexture, ResourceLocation matureDoubleLowerTexture, ResourceLocation matureDoubleHigherTexture)
+	public void createAurumDeminutus(AurumBlock block, ResourceLocation fiddleHeadTexture, ResourceLocation youngTexture, ResourceLocation adolescentTexture, ResourceLocation adolescentDoubleLowerTexture, ResourceLocation adolescentDoubleHigherTexture, ResourceLocation matureDoubleLowerTexture, ResourceLocation matureDoubleHigherTexture)
 	{
 		String name = getModelLocationNameFor(block);			
 		String fName = name + "_fiddle_head";
@@ -980,13 +1022,13 @@ this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forFer
 		String aDHName = name + "_adolescent_double_higher";
 		String mDLName = name + "_mature_double_lower";
 		String mDHName = name + "_mature_double_higher";
-		this.models().getBuilder(fName).parent(CROSS).texture("cross", fiddleHeadTexture).renderType(CUTOUT_RENDER_TYPE);		
-		this.models().getBuilder(yName).parent(CROSS).texture("cross", youngTexture).renderType(CUTOUT_RENDER_TYPE);		
-		this.models().getBuilder(aName).parent(CROSS).texture("cross", adolescentTexture).renderType(CUTOUT_RENDER_TYPE);		
-		this.models().getBuilder(aDLName).parent(CROSS).texture("cross", adolescentDoubleLowerTexture).renderType(CUTOUT_RENDER_TYPE);		
-		this.models().getBuilder(aDHName).parent(CROSS).texture("cross", adolescentDoubleHigherTexture).renderType(CUTOUT_RENDER_TYPE);		
-		this.models().getBuilder(mDLName).parent(CROSS).texture("cross", matureDoubleLowerTexture).renderType(CUTOUT_RENDER_TYPE);		
-		this.models().getBuilder(mDHName).parent(CROSS).texture("cross", matureDoubleHigherTexture).renderType(CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(fName).parent(YATMBlockStateProvider.CROSS).texture("cross", fiddleHeadTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(yName).parent(YATMBlockStateProvider.CROSS).texture("cross", youngTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(aName).parent(YATMBlockStateProvider.CROSS).texture("cross", adolescentTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(aDLName).parent(YATMBlockStateProvider.CROSS).texture("cross", adolescentDoubleLowerTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(aDHName).parent(YATMBlockStateProvider.CROSS).texture("cross", adolescentDoubleHigherTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(mDLName).parent(YATMBlockStateProvider.CROSS).texture("cross", matureDoubleLowerTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(mDHName).parent(YATMBlockStateProvider.CROSS).texture("cross", matureDoubleHigherTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
 		ModelFile fModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, fName));
 		ModelFile yModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, yName));
 		ModelFile aModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, aName));
@@ -994,7 +1036,7 @@ this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forFer
 		ModelFile aDHModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, aDHName));
 		ModelFile mDLModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, mDLName));
 		ModelFile mDHModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, mDHName));
-		this.getVariantBuilder(block).forAllStates((bs) -> forAurumDeminutus(bs, fModel, yModel, aModel, aDLModel, aDHModel, mDLModel, mDHModel));
+		this.getVariantBuilder(block).forAllStates((bs) -> forAurumLike(bs, fModel, yModel, aModel, aDLModel, aDHModel, mDLModel, mDHModel));
 	} // end createAurumDeminutus()
 	
 	private void createPhantasmalShelfFungus(PhantasmalShelfFungiBlock block, Item item) 
@@ -1416,17 +1458,22 @@ this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forFer
 		
 	} // end forPrismarineCrystalMossLike()
 	
-	public static ConfiguredModel[] forAurumDeminutus(BlockState bs, ModelFile fiddleHeadModel, ModelFile youngModel, ModelFile adolescentModel, ModelFile adolescentDoubleLowerModel, ModelFile adolescentDoubleHigherModel, ModelFile matureDoubleLowerModel, ModelFile matureDoubleHigherModel) 
+	public static ConfiguredModel[] forAurumLike(BlockState bs, 
+			ModelFile zeroModel, 
+			ModelFile oneModel, 
+			ModelFile twoModel, 
+			ModelFile threeLowerModel, ModelFile threeHigherModel, 
+			ModelFile fourLowerModel, ModelFile fourHigherModel) 
 	{
-		boolean isLower = bs.getValue(AurumDeminutusBlock.HALF) == DoubleBlockHalf.LOWER;
-		ModelFile model = switch(bs.getValue(AurumDeminutusBlock.AGE)) 
+		boolean isLower = bs.getValue(YATMBlockStateProperties.DOUBLE_BLOCK_HALF) == DoubleBlockHalf.LOWER;
+		ModelFile model = switch(bs.getValue(YATMBlockStateProperties.AGE_FIVE)) 
 		{
-			case 0 -> fiddleHeadModel;
-			case 1 -> youngModel;
-			case 2 -> adolescentModel;
-			case 3 -> isLower ? adolescentDoubleLowerModel : adolescentDoubleHigherModel;
-			case 4 -> isLower ? matureDoubleLowerModel : matureDoubleHigherModel;
-			default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(AurumDeminutusBlock.AGE));
+			case 0 -> zeroModel;
+			case 1 -> oneModel;
+			case 2 -> twoModel;
+			case 3 -> isLower ? threeLowerModel : threeHigherModel;
+			case 4 -> isLower ? fourLowerModel : fourHigherModel;
+			default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(YATMBlockStateProperties.AGE_FIVE));
 		};
 		return new ConfiguredModel[] {new ConfiguredModel(model)};
 	} // end forAurumDeminutus()

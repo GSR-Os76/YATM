@@ -8,11 +8,12 @@ import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.block.FaceBlock;
 import com.gsr.gsr_yatm.block.plant.OnceFruitingPlantStages;
-import com.gsr.gsr_yatm.block.plant.aurum.AurumDeminutusBlock;
+import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsFloralBlock;
 import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
 import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
+import com.gsr.gsr_yatm.block.plant.folium.FoliumBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
 import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
 import com.gsr.gsr_yatm.block.plant.prismarine_crystal_moss.PrismarineCrystalMossBlock;
@@ -104,7 +105,7 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropSelf(YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_HANGING_SIGN.get());
 		this.dropSelf(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get());
 		
-		this.add(YATMBlocks.AURUM_DEMINUTUS.get(), (b) -> this.createAurumDeminutusTable());
+		this.add(YATMBlocks.AURUM.get(), (b) -> this.createAurumTable());
 		this.dropPottedContents(YATMBlocks.POTTED_AURUM_DEMINUTUS.get());
 				
 		//this.add(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), this.createUniformTable(YATMItems.TEAR_LEAF.get(), 0f, 3f, LootItemBlockStatePropertyCondition.hasBlockStateProperties(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BasinOfTearsVegetationBlock.AGE, YATMBlocks.BASIN_OF_TEARS_VEGETATION.get().getMaxAge()))));
@@ -125,6 +126,9 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		
 		this.add(YATMBlocks.FIRE_EATER_LILY.get(), this.createFireEaterLilyTable());
 		this.dropPottedContents(YATMBlocks.POTTED_FIRE_EATER_LILY.get());
+		
+		this.add(YATMBlocks.FOLIUM.get(), this.createFoliumTable());		
+		this.dropPottedContents(YATMBlocks.POTTED_FOLIUM.get());
 		
 		this.add(YATMBlocks.ICE_CORAL.get(), (b) -> this.createIceCoralTable());
 		this.dropSelf(YATMBlocks.BLEACHED_ICE_CORAL_OLD.get());
@@ -294,21 +298,21 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.add(block, (b) -> table);
 	} // end faceDropSelf()
 	
-	protected @NotNull LootTable.Builder createAurumDeminutusTable() 
+	protected @NotNull LootTable.Builder createAurumTable() 
 	{
 		LootItemCondition.Builder fiddleHeadConditions 
 		= LootItemBlockStatePropertyCondition
-		.hasBlockStateProperties(YATMBlocks.AURUM_DEMINUTUS.get())
-		.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(AurumDeminutusBlock.HALF, DoubleBlockHalf.LOWER));
+		.hasBlockStateProperties(YATMBlocks.AURUM.get())
+		.setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(AurumBlock.HALF, DoubleBlockHalf.LOWER));
 
 		BiFunction<DoubleBlockHalf, Integer, LootItemCondition.Builder> forHalfAge = (hf, i) -> LootItemBlockStatePropertyCondition
-				.hasBlockStateProperties(YATMBlocks.AURUM_DEMINUTUS.get())
+				.hasBlockStateProperties(YATMBlocks.AURUM.get())
 				.setProperties(StatePropertiesPredicate.Builder.properties()
-						.hasProperty(AurumDeminutusBlock.HALF, hf))
+						.hasProperty(AurumBlock.HALF, hf))
 				.and(LootItemBlockStatePropertyCondition
-						.hasBlockStateProperties(YATMBlocks.AURUM_DEMINUTUS.get())
+						.hasBlockStateProperties(YATMBlocks.AURUM.get())
 						.setProperties(StatePropertiesPredicate.Builder.properties()
-								.hasProperty(AurumDeminutusBlock.AGE, i)));
+								.hasProperty(AurumBlock.AGE, i)));
 
 		return LootTable.lootTable()
 				.withPool(
@@ -506,6 +510,75 @@ public class YATMBlockLoot extends VanillaBlockLoot
 								)
 						);
 	} // end createFireEaterLilyTable()
+	
+	
+	protected @NotNull LootTable.Builder createFoliumTable() 
+	{
+		BiFunction<DoubleBlockHalf, Integer, LootItemCondition.Builder> forHalfAge = (hf, i) -> LootItemBlockStatePropertyCondition
+				.hasBlockStateProperties(YATMBlocks.FOLIUM.get())
+				.setProperties(StatePropertiesPredicate.Builder.properties()
+						.hasProperty(FoliumBlock.HALF, hf).hasProperty(FoliumBlock.AGE, i));
+				/*.and(LootItemBlockStatePropertyCondition
+						.hasBlockStateProperties(YATMBlocks.FOLIUM.get())
+						.setProperties(StatePropertiesPredicate.Builder.properties()
+								.hasProperty(FoliumBlock.AGE, i)))*/
+
+		return LootTable.lootTable()
+				.withPool(
+						LootPool.lootPool()
+						.when(LootItemBlockStatePropertyCondition
+								.hasBlockStateProperties(YATMBlocks.FOLIUM.get())
+								.setProperties(StatePropertiesPredicate.Builder.properties()
+										.hasProperty(FoliumBlock.HALF, DoubleBlockHalf.LOWER)))
+						.add(LootItem.lootTableItem(YATMItems.FOLIUM_RHIZOME.get())
+								.apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0f)))
+								)
+						)
+				.withPool(
+						LootPool.lootPool()
+						.when(forHalfAge.apply(DoubleBlockHalf.LOWER, 1))
+						.add(LootItem.lootTableItem(YATMItems.FOLIAR_STEEL.get())
+								.apply(
+										SetItemCountFunction
+										.setCount(
+												UniformGenerator
+												.between(0.0f, 1.0f)
+												)
+										)
+								)
+						)
+				.withPool(
+						// TODO, verify that this still works identical as the before
+						LootPool.lootPool()
+						.when(forHalfAge.apply(DoubleBlockHalf.LOWER, 2)
+								.or(forHalfAge.apply(DoubleBlockHalf.UPPER, 4))
+								.or(forHalfAge.apply(DoubleBlockHalf.UPPER, 3))
+							 )
+						.add(LootItem.lootTableItem(YATMItems.FOLIAR_STEEL.get())
+								.apply(
+										SetItemCountFunction
+										.setCount(
+												ConstantValue
+												.exactly(1.0f)
+												)
+										)
+								)
+						)
+				.withPool(
+						LootPool.lootPool()
+						.when(forHalfAge.apply(DoubleBlockHalf.LOWER, 4)
+								.or(forHalfAge.apply(DoubleBlockHalf.LOWER, 3)))
+						.add(LootItem.lootTableItem(YATMItems.FOLIAR_STEEL.get())
+								.apply(
+										SetItemCountFunction
+										.setCount(
+												ConstantValue
+												.exactly(2.0f)
+												)
+										)
+								)
+						);
+	} // end createFoliumTable()
 	
 	protected @NotNull LootTable.Builder createIceCoralTable() 
 	{

@@ -99,20 +99,31 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_HANGING_SIGN.get(), "Soul Afflicted Rubber Hanging Sign");
 		this.add(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), "Soul Afflicted Leaf Mulch");
 		
-		this.add(YATMBlocks.AURUM_DEMINUTUS.get(), "Aurum");		
-		this.add(YATMBlocks.POTTED_AURUM_DEMINUTUS.get(), "Potted Aurum");	
+		this.add(YATMBlocks.AURUM.get(), "Aurum");		
+		this.add(YATMBlocks.POTTED_AURUM_DEMINUTUS.get(), "Potted Aurum");
+		
 		this.add(YATMBlocks.BASIN_OF_TEARS_FLORAL.get(), "Crying Flower");	
-		this.add(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), "Crying Plant Vegetation");			
+		this.add(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), "Crying Plant Vegetation");
+		
 		this.add(YATMBlocks.CARBUM.get(), "Carbum");		
-		this.add(YATMBlocks.POTTED_CARBUM.get(), "Potted Carbum");		
+		this.add(YATMBlocks.POTTED_CARBUM.get(), "Potted Carbum");
+		
 		this.add(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), "Carcass Root");		
 		this.add(YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE.get(), "Potted Carcass Root");		
 		this.add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get(), "Carcass Root Rooted Dirt");		
-		this.add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get(), "Carcass Root Rooted Netherrack");		
-		this.add(YATMBlocks.COTTON.get(), "Cotton");		
+		this.add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get(), "Carcass Root Rooted Netherrack");	
+		
+		this.add(YATMBlocks.COTTON.get(), "Cotton");
+		
 		this.add(YATMBlocks.FERRUM.get(), "Ferrum");			
-		this.add(YATMBlocks.POTTED_FERRUM.get(), "Potted Ferrum");			
-		this.add(YATMBlocks.FIRE_EATER_LILY.get(), "Fire Eater Lily");		
+		this.add(YATMBlocks.POTTED_FERRUM.get(), "Potted Ferrum");
+		
+		this.add(YATMBlocks.FIRE_EATER_LILY.get(), "Fire Eater Lily");	
+		this.add(YATMBlocks.POTTED_FIRE_EATER_LILY.get(), "Potted Fire Eater Lily");		
+
+		this.add(YATMBlocks.FOLIUM.get(), "Folium");		
+		this.add(YATMBlocks.POTTED_FOLIUM.get(), "Potted Folium");		
+
 		this.add(YATMBlocks.ICE_CORAL.get(), "Ice Coral");
 		this.add(YATMBlocks.BLEACHED_ICE_CORAL_OLD.get(), "Bleached Ice Coral (Old)");
 		this.add(YATMBlocks.BLEACHED_ICE_CORAL_ADOLESCENT.get(), "Bleached Ice Coral (Adolescent)");
@@ -122,10 +133,13 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_ADOLESCENT.get(), "Potted Bleached Ice Coral (Adolescent)");
 		this.add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_YOUNG.get(), "Potted Bleached Ice Coral (Young)");
 		this.add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_POLYP.get(), "Potted Bleached Ice Coral (Polyp)");
-		this.add(YATMBlocks.POTTED_FIRE_EATER_LILY.get(), "Potted Fire Eater Lily");		
-		this.add(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), "Phantasmal Shelf Fungi");		
+		
+		this.add(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), "Phantasmal Shelf Fungi");
+		
 		this.add(YATMBlocks.PITCHER_CLUSTER.get(), "Pitcher Cluster");
-		this.add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), "Prismarine Crystal Moss");		
+		
+		this.add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), "Prismarine Crystal Moss");	
+		
 		this.add(YATMBlocks.FALLEN_SHULKWART_SPORES.get(), "Fallen Shulkwart Spores");		
 		this.add(YATMBlocks.SHULKWART.get(), "Shulkwart");		
 		this.add(YATMBlocks.WHITE_SHULKWART.get(), "White Shulkwart");		
@@ -143,9 +157,11 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.BROWN_SHULKWART.get(), "Brown Shulkwart");		
 		this.add(YATMBlocks.GREEN_SHULKWART.get(), "Green Shulkwart");		
 		this.add(YATMBlocks.RED_SHULKWART.get(), "Red Shulkwart");		
-		this.add(YATMBlocks.BLACK_SHULKWART.get(), "Black Shulkwart");		
+		this.add(YATMBlocks.BLACK_SHULKWART.get(), "Black Shulkwart");	
+		
 		this.add(YATMBlocks.SPIDER_VINE.get(), "Spider Vine");		
-		this.add(YATMBlocks.SPIDER_VINE_MERISTEM.get(), "Spider Vine Meristem");		
+		this.add(YATMBlocks.SPIDER_VINE_MERISTEM.get(), "Spider Vine Meristem");	
+		
 		this.add(YATMBlocks.VARIEGATED_CACTUS.get(), "Variegated Cactus");
 		this.add(YATMBlocks.POTTED_VARIEGATED_CACTUS.get(), "Potted Variegated Cactus");
 		
@@ -219,6 +235,49 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_BOAT_ITEM.get(), "Soul Afflicted Rubber Boat");
 		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT_ITEM.get(), "Soul Afflicted Rubber Chest Boat");
 		
+		this.add(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get(), "Aurum Fiddle Head");
+		this.add(YATMItems.AURUM_DEMINUTUS_FROND.get(), "Aurum Frond");
+		this.add(YATMItems.BASIN_OF_TEARS_SEED.get(), "Crying Plant Seeds");
+		this.add(YATMItems.DILUTED_TEAR_BOTTLE.get(), "Diluted Tear Bottle");		
+
+		this.add(YATMItems.CARBUM_MERISTEM.get(), "Carbum Meristem");
+		this.add(YATMItems.CARBUM_LEAF.get(), "Carbum Leaf");
+		this.add(YATMItems.CARCASS_ROOT_CUTTING.get(), "Carcass Root Cutting");
+		
+		this.add(YATMItems.COTTON_SEEDS.get(), "Cotton Seeds");
+		this.add(YATMItems.COTTON_BOLLS.get(), "Cotton Bolls");
+		this.add(YATMItems.RAW_COTTON_FIBER.get(), "Raw Cotton Fiber");
+		
+		this.add(YATMItems.FERRUM_ROOTSTOCK.get(), "Ferrum Rootstock");
+		this.add(YATMItems.FERRUM_BRANCH.get(), "Ferrum Branch");
+		
+		this.add(YATMItems.FIRE_EATER_LILY_BULB.get(), "Fire Eater Lily Bulb");
+		this.add(YATMItems.FIRE_EATER_LILY_FOLIAGE.get(), "Fire Eater Lily Foliage");
+		
+		this.add(YATMItems.FOLIUM_RHIZOME.get(), "Folium Rhizome");
+		
+		this.add(YATMItems.ICE_CORAL_POLYP.get(), "Ice Coral Polyp");
+		this.add(YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get(), "Prismarine Crystal Moss Spores");
+		this.add(YATMItems.SHULKWART_SPORES.get(), "Shulkwart Spores");
+		this.add(YATMItems.SHULKWART_HORN.get(), "Shulkwart Horn");
+		this.add(YATMItems.WHITE_SHULKWART_HORN.get(), "White Shulkwart Horn");
+		this.add(YATMItems.ORANGE_SHULKWART_HORN.get(), "Orange Shulkwart Horn");
+		this.add(YATMItems.MAGENTA_SHULKWART_HORN.get(), "Magenta Shulkwart Horn");
+		this.add(YATMItems.LIGHT_BLUE_SHULKWART_HORN.get(), "Light Blue Shulkwart Horn");
+		this.add(YATMItems.YELLOW_SHULKWART_HORN.get(), "Yellow Shulkwart Horn");
+		this.add(YATMItems.LIME_SHULKWART_HORN.get(), "Lime Shulkwart Horn");
+		this.add(YATMItems.PINK_SHULKWART_HORN.get(), "Pink Shulkwart Horn");
+		this.add(YATMItems.GRAY_SHULKWART_HORN.get(), "Gray Shulkwart Horn");
+		this.add(YATMItems.LIGHT_GRAY_SHULKWART_HORN.get(), "Light Gray Shulkwart Horn");
+		this.add(YATMItems.CYAN_SHULKWART_HORN.get(), "Cyan Shulkwart Horn");
+		this.add(YATMItems.PURPLE_SHULKWART_HORN.get(), "Purple Shulkwart Horn");
+		this.add(YATMItems.BLUE_SHULKWART_HORN.get(), "Blue Shulkwart Horn");
+		this.add(YATMItems.BROWN_SHULKWART_HORN.get(), "Brown Shulkwart Horn");
+		this.add(YATMItems.GREEN_SHULKWART_HORN.get(), "Green Shulkwart Horn");
+		this.add(YATMItems.RED_SHULKWART_HORN.get(), "Red Shulkwar Hornt");
+		this.add(YATMItems.BLACK_SHULKWART_HORN.get(), "Black Shulkwart Horn");
+		this.add(YATMItems.SPIDER_VINE_FRUITS.get(), "Branch Of Glaring Fruit");
+		
 		this.add(YATMItems.STEEL_FLUID_EXCHANGER.get(), "Steel Fluid Exchanger");
 		
 		this.add(YATMItems.ONE_CU_CURRENT_REGULATOR.get(), "1cu Current Regulator");
@@ -279,44 +338,6 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.RUBBER_SCRAP.get(), "Rubber Scraps");
 		
 		this.add(YATMItems.WOOD_PULP.get(), "Wood Pulp");
-		
-		this.add(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get(), "Aurum Fiddle Head");
-		this.add(YATMItems.AURUM_DEMINUTUS_FROND.get(), "Aurum Frond");
-		this.add(YATMItems.BASIN_OF_TEARS_SEED.get(), "Crying Plant Seeds");
-		this.add(YATMItems.DILUTED_TEAR_BOTTLE.get(), "Diluted Tear Bottle");		
-
-		this.add(YATMItems.CARBUM_MERISTEM.get(), "Carbum Meristem");
-		this.add(YATMItems.CARBUM_LEAF.get(), "Carbum Leaf");
-		this.add(YATMItems.CARCASS_ROOT_CUTTING.get(), "Carcass Root Cutting");
-		this.add(YATMItems.COTTON_SEEDS.get(), "Cotton Seeds");
-		this.add(YATMItems.COTTON_BOLLS.get(), "Cotton Bolls");
-		this.add(YATMItems.RAW_COTTON_FIBER.get(), "Raw Cotton Fiber");
-		this.add(YATMItems.FERRUM_ROOTSTOCK.get(), "Ferrum Rootstock");
-		this.add(YATMItems.FERRUM_BRANCH.get(), "Ferrum Branch");
-		
-		this.add(YATMItems.FIRE_EATER_LILY_BULB.get(), "Fire Eater Lily Bulb");
-		this.add(YATMItems.FIRE_EATER_LILY_FOLIAGE.get(), "Fire Eater Lily Foliage");
-		this.add(YATMItems.ICE_CORAL_POLYP.get(), "Ice Coral Polyp");
-		this.add(YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get(), "Prismarine Crystal Moss Spores");
-		this.add(YATMItems.SHULKWART_SPORES.get(), "Shulkwart Spores");
-		this.add(YATMItems.SHULKWART_HORN.get(), "Shulkwart Horn");
-		this.add(YATMItems.WHITE_SHULKWART_HORN.get(), "White Shulkwart Horn");
-		this.add(YATMItems.ORANGE_SHULKWART_HORN.get(), "Orange Shulkwart Horn");
-		this.add(YATMItems.MAGENTA_SHULKWART_HORN.get(), "Magenta Shulkwart Horn");
-		this.add(YATMItems.LIGHT_BLUE_SHULKWART_HORN.get(), "Light Blue Shulkwart Horn");
-		this.add(YATMItems.YELLOW_SHULKWART_HORN.get(), "Yellow Shulkwart Horn");
-		this.add(YATMItems.LIME_SHULKWART_HORN.get(), "Lime Shulkwart Horn");
-		this.add(YATMItems.PINK_SHULKWART_HORN.get(), "Pink Shulkwart Horn");
-		this.add(YATMItems.GRAY_SHULKWART_HORN.get(), "Gray Shulkwart Horn");
-		this.add(YATMItems.LIGHT_GRAY_SHULKWART_HORN.get(), "Light Gray Shulkwart Horn");
-		this.add(YATMItems.CYAN_SHULKWART_HORN.get(), "Cyan Shulkwart Horn");
-		this.add(YATMItems.PURPLE_SHULKWART_HORN.get(), "Purple Shulkwart Horn");
-		this.add(YATMItems.BLUE_SHULKWART_HORN.get(), "Blue Shulkwart Horn");
-		this.add(YATMItems.BROWN_SHULKWART_HORN.get(), "Brown Shulkwart Horn");
-		this.add(YATMItems.GREEN_SHULKWART_HORN.get(), "Green Shulkwart Horn");
-		this.add(YATMItems.RED_SHULKWART_HORN.get(), "Red Shulkwar Hornt");
-		this.add(YATMItems.BLACK_SHULKWART_HORN.get(), "Black Shulkwart Horn");
-		this.add(YATMItems.SPIDER_VINE_FRUITS.get(), "Branch Of Glaring Fruit");
 		
 		this.add(YATMItems.STAR_SEED.get(), "Star Seed");
 		this.add(YATMItems.STAR_GERMLING.get(), "Start Germling");

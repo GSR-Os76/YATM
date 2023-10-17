@@ -41,7 +41,7 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 
-public class AurumDeminutusBlock extends CropBlock implements IHarvestableBlock
+public class AurumBlock extends CropBlock implements IHarvestableBlock
 {
 	public static final int DOUBLES_PAST_THRESHOLD = 2;
 	public static final EnumProperty<DoubleBlockHalf> HALF = YATMBlockStateProperties.DOUBLE_BLOCK_HALF;
@@ -52,7 +52,7 @@ public class AurumDeminutusBlock extends CropBlock implements IHarvestableBlock
 	
 	
 	
-	public AurumDeminutusBlock(Properties properties, ICollisionVoxelShapeProvider shape, Supplier<ItemLike> seed, Supplier<ItemStack> harvestResult)
+	public AurumBlock(Properties properties, ICollisionVoxelShapeProvider shape, Supplier<ItemLike> seed, Supplier<ItemStack> harvestResult)
 	{
 		super(properties);
 		
@@ -68,7 +68,7 @@ public class AurumDeminutusBlock extends CropBlock implements IHarvestableBlock
 	@Override
 	protected IntegerProperty getAgeProperty()
 	{
-		return AurumDeminutusBlock.AGE;
+		return AurumBlock.AGE;
 	} // end getAgeProperty()
 
 	@Override
@@ -80,7 +80,7 @@ public class AurumDeminutusBlock extends CropBlock implements IHarvestableBlock
 	@Override
 	protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
 	{
-		builder.add(AurumDeminutusBlock.AGE, AurumDeminutusBlock.HALF);
+		builder.add(AurumBlock.AGE, AurumBlock.HALF);
 	} // end createBlockStateDefinition()
 
 
@@ -105,7 +105,7 @@ public class AurumDeminutusBlock extends CropBlock implements IHarvestableBlock
 				double vecLength = vector.length();
 				int age = this.getAge(state);
 				
-				float damage = (((float) vecLength) * (6.0f * age));
+				float damage = (((float) vecLength) * (6.0f * (age + 1)));
 				if (vecLength > 0.1d)
 				{
 					entity.hurt(level.damageSources().thorns((Entity) null), damage);
@@ -149,11 +149,11 @@ public class AurumDeminutusBlock extends CropBlock implements IHarvestableBlock
 					BlockState above = level.getBlockState(position.above());
 					if(above.is(this)) 
 					{
-						level.setBlock(position.above(), above.setValue(this.getAgeProperty(), goingToAge).setValue(AurumDeminutusBlock.HALF, DoubleBlockHalf.UPPER), 2);
+						level.setBlock(position.above(), above.setValue(this.getAgeProperty(), goingToAge).setValue(AurumBlock.HALF, DoubleBlockHalf.UPPER), 2);
 					}
 					else
 					{
-						level.setBlock(position.above(), this.getStateForAge(goingToAge).setValue(AurumDeminutusBlock.HALF, DoubleBlockHalf.UPPER), 3);
+						level.setBlock(position.above(), this.getStateForAge(goingToAge).setValue(AurumBlock.HALF, DoubleBlockHalf.UPPER), 3);
 					}
 				}
 				ForgeHooks.onCropsGrowPost(level, position, state);
@@ -174,7 +174,7 @@ public class AurumDeminutusBlock extends CropBlock implements IHarvestableBlock
 	{
 		BlockPos check = position.below();
 		BlockState below = level.getBlockState(check);
-		return state.getValue(AurumDeminutusBlock.HALF) == DoubleBlockHalf.LOWER 
+		return state.getValue(AurumBlock.HALF) == DoubleBlockHalf.LOWER 
 				? this.mayPlaceOn(below, level, check)
 				: this.isTopSupport(below);
 	} // end canSurvive()
@@ -206,12 +206,12 @@ public class AurumDeminutusBlock extends CropBlock implements IHarvestableBlock
 		{
 			level.setBlock(above, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
 		}
-		level.setBlock(position, state.setValue(AurumDeminutusBlock.HALF, DoubleBlockHalf.LOWER).setValue(this.getAgeProperty(), 0), Block.UPDATE_CLIENTS);
+		level.setBlock(position, state.setValue(AurumBlock.HALF, DoubleBlockHalf.LOWER).setValue(this.getAgeProperty(), 0), Block.UPDATE_CLIENTS);
 	} // end setToYoungest
 	
 	protected boolean isTopSupport(BlockState state) 
 	{
-		return state.is(this) && state.getValue(AurumDeminutusBlock.HALF) == DoubleBlockHalf.LOWER && this.isPastDoubleBlockThreshold(state);
+		return state.is(this) && state.getValue(AurumBlock.HALF) == DoubleBlockHalf.LOWER && this.isPastDoubleBlockThreshold(state);
 	} // end isTopSupport()
 	
 	protected boolean isPastDoubleBlockThreshold(BlockState state) 
@@ -242,8 +242,8 @@ public class AurumDeminutusBlock extends CropBlock implements IHarvestableBlock
 	{
 		if(!level.isClientSide) 
 		{
-			BlockPos positionOfBottom = state.getValue(AurumDeminutusBlock.HALF) == DoubleBlockHalf.UPPER ? position.below() : position;
-			BlockState bottomPart = state.getValue(AurumDeminutusBlock.HALF) == DoubleBlockHalf.UPPER ? level.getBlockState(positionOfBottom) : state;
+			BlockPos positionOfBottom = state.getValue(AurumBlock.HALF) == DoubleBlockHalf.UPPER ? position.below() : position;
+			BlockState bottomPart = state.getValue(AurumBlock.HALF) == DoubleBlockHalf.UPPER ? level.getBlockState(positionOfBottom) : state;
 	
 			this.setToYoungest(level, bottomPart, positionOfBottom);
 		}
