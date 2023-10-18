@@ -1,7 +1,10 @@
-// 1.20.1	2023-10-17T22:08:31.6349431	Tags for minecraft:block mod id gsr_yatm
+// 1.20.1	2023-10-18T16:18:18.1725752	Tags for minecraft:block mod id gsr_yatm
 ea459db540b319f4bdead7b7f1142fc238c09a8e data/forge/tags/blocks/cactuses.json
+17151221b4b3c6710866d2fc3be4e13ebe8bd72c data/forge/tags/blocks/needs_wood_tool.json
 ae063a18d6a78c1df2e70286fb1984ffc87c6b2d data/forge/tags/blocks/netherrack.json
 07af26afbfb24573997b6045b1603d54792502cf data/forge/tags/blocks/ores.json
+8df48868a50573d41fa8e1ed8156c228f163ea27 data/forge/tags/blocks/ores_in_ground/deepslate.json
+3c80c57e657efa6316228e6dfac241b7f41aead1 data/forge/tags/blocks/ores_in_ground/stone.json
 22817fc3a29127b1c1278ea16d671d7c02dbdeb9 data/forge/tags/blocks/rooted_dirt.json
 1da600bf13ef307c5b8543cdcc0e0283f57172df data/forge/tags/blocks/soul_soil.json
 d667dcc380181ca7932db9dd892d74671f6a63df data/forge/tags/blocks/storage_blocks.json
@@ -13,8 +16,10 @@ d667dcc380181ca7932db9dd892d74671f6a63df data/forge/tags/blocks/storage_blocks.j
 895a4b4829a18f68be30768d5a1118926399527b data/gsr_yatm/tags/blocks/form/ferrum.json
 742490cf54e91e5fb6ef9433e3e7a050041f0a47 data/gsr_yatm/tags/blocks/form/folium_higher.json
 742490cf54e91e5fb6ef9433e3e7a050041f0a47 data/gsr_yatm/tags/blocks/form/folium_lower.json
+d9699ee7e55ceee3d764be8abf78b4c0b22681a7 data/gsr_yatm/tags/blocks/golem_like_plants.json
 bc945c3765480852dbee6454f810c6c20b118d35 data/gsr_yatm/tags/blocks/heat_blocks.json
 66ac8055416086c9939359092bb9e6f99b9399d6 data/gsr_yatm/tags/blocks/leaves_litter_on.json
+669bdda450b3551304652c745a308fe6ebfca55c data/gsr_yatm/tags/blocks/machines.json
 1a28f00eb34b3c96b745b740247a6eddad28fe15 data/gsr_yatm/tags/blocks/mediums/aerial_rubber_roots_can_grow_on.json
 eaf726d0ca999b963fa5b018a13e9c7f4b2e50cf data/gsr_yatm/tags/blocks/mediums/aerial_rubber_roots_can_grow_through.json
 61064ec33852a4a02609c7e6edc2de09c480a0f8 data/gsr_yatm/tags/blocks/mediums/aurum_can_grow_on.json
@@ -44,6 +49,7 @@ c651bb8413acd409c2a842454cce61e44e4517a2 data/gsr_yatm/tags/blocks/mediums/soul_
 dbc7ff55315393ed7b1d401f282d24be3c0e6096 data/gsr_yatm/tags/blocks/rubber_planks.json
 9a0fbf9bed3595f4ca3b021fa65f06e34ae64181 data/gsr_yatm/tags/blocks/rubber_tree_blocks.json
 fdecd6c72772c252a2b8dcc095c7aa6e1685f4d7 data/gsr_yatm/tags/blocks/rubber_tree_logs.json
+a91b872f5cad95f7c8a6412565ffebdc7690bbfe data/gsr_yatm/tags/blocks/sap_collectors.json
 501277475e7f110a254450a8f21524225b471230 data/gsr_yatm/tags/blocks/soul_afflicted_rubber_planks.json
 ab467479a645246538e49c55790b101c51194caa data/gsr_yatm/tags/blocks/soul_afflicted_rubber_tree_logs.json
 82099984e0c9ea1f3273cdc2edf12e376dacd6db data/gsr_yatm/tags/blocks/soul_rubber_tree_blocks.json
@@ -54,6 +60,12 @@ ae88bd8aabf02699bb3fdbf65bd64fc377fbc780 data/minecraft/tags/blocks/flowers.json
 83bbb7d24591be0aa7d8a48e041f3d32b2b9125f data/minecraft/tags/blocks/flower_pots.json
 205d34972c106978555918bdbb34363a9a669d3e data/minecraft/tags/blocks/logs.json
 1502e7352c79e987a23ba14a77d87817c5e89ff2 data/minecraft/tags/blocks/logs_that_burn.json
+08707915fa7733071e44172526005a3134852755 data/minecraft/tags/blocks/mineable/axe.json
+65ff65f5d38acbce6c7b5a5fe3dcb8cc7dbc87c3 data/minecraft/tags/blocks/mineable/hoe.json
+a779d8f0f7aff7da1a77dbf338a0fff33454eb7c data/minecraft/tags/blocks/mineable/pickaxe.json
+fe5385076699557563e54f97ff82706f931b1273 data/minecraft/tags/blocks/mineable/shovel.json
+874a5f292db7843e6f5858c4711cdd3283314857 data/minecraft/tags/blocks/needs_iron_tool.json
+6db0f3960710b0be0a11b07799ef3058edb5c9d4 data/minecraft/tags/blocks/needs_stone_tool.json
 861ac450b90a900a8dbe9dc301248cd0b5ca2f52 data/minecraft/tags/blocks/planks.json
 59d8edfe056f15f3cff621f10b35fa3ba99c9baf data/minecraft/tags/blocks/saplings.json
 81ddfe4bf2b943159b745531339f8d715f7faf6a data/minecraft/tags/blocks/soul_fire_base_blocks.json
