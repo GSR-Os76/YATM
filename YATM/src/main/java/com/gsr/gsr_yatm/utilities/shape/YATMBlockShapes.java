@@ -86,7 +86,7 @@ public class YATMBlockShapes
 		private static final VoxelShape MERISTEM = Block.box(2d, 0d, 2d, 14d, 7d, 14d);
 		private static final VoxelShape YOUNG = Block.box(0d, 0d, 0d, 16d, 9d, 16d);
 		private static final VoxelShape ADOLESCENT = Block.box(0d, 0d, 0d, 16d, 11d, 16d);
-		private static final VoxelShape OLD = Block.box(0d, 0d, 0d, 16d, 11d, 16d);
+		private static final VoxelShape OLD = Block.box(0d, 0d, 0d, 16d, 12d, 16d);
 
 		@Override
 		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext collisionContext)

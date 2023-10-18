@@ -9,7 +9,6 @@ import com.gsr.gsr_yatm.recipe.bioling.BiolingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.boiling.BoilingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.extracting.ExtractingRecipeBuilder;
-import com.gsr.gsr_yatm.recipe.extruding.ExtrudingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.ingredient.FluidStackIngredient;
 import com.gsr.gsr_yatm.recipe.ingredient.ItemStackIngredient;
@@ -50,16 +49,16 @@ public class YATMRecipeProvider extends RecipeProvider
 	@Override
 	protected void buildRecipes(Consumer<FinishedRecipe> writer)
 	{
-		this.addNineToOne(writer, YATMItemTags.FORGE_COPPER_NUGGETS_KEY, Items.COPPER_INGOT, YetAnotherTechMod.MODID + ":copper_ingot_from_shapeless_crafting");
+//		this.addNineToOne(writer, YATMItemTags.FORGE_COPPER_NUGGETS_KEY, Items.COPPER_INGOT, YetAnotherTechMod.MODID + ":copper_ingot_from_shapeless_crafting");
 		this.addNineToOne(writer, YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY, Items.NETHERITE_INGOT, YetAnotherTechMod.MODID + ":netherite_ingot_from_shapeless_crafting");
-		this.addNineToOne(writer, YATMItemTags.FORGE_SILVER_NUGGETS_KEY, YATMItems.SILVER_INGOT.get(), YetAnotherTechMod.MODID + ":silver_ingot_from_shapeless_crafting");
-		this.addOneToNine(writer, Tags.Items.INGOTS_COPPER, YATMItems.COPPER_NUGGET.get(), YetAnotherTechMod.MODID + ":copper_nuggets_from_shapeless_crafting");
+//		this.addNineToOne(writer, YATMItemTags.FORGE_SILVER_NUGGETS_KEY, YATMItems.SILVER_INGOT.get(), YetAnotherTechMod.MODID + ":silver_ingot_from_shapeless_crafting");
+//		this.addOneToNine(writer, Tags.Items.INGOTS_COPPER, YATMItems.COPPER_NUGGET.get(), YetAnotherTechMod.MODID + ":copper_nuggets_from_shapeless_crafting");
 		this.addOneToNine(writer, Tags.Items.INGOTS_NETHERITE, YATMItems.NETHERITE_NUGGET.get(), YetAnotherTechMod.MODID + ":netherite_nuggets_from_shapeless_crafting");
-		this.addOneToNine(writer, YATMItemTags.FORGE_SILVER_INGOTS_KEY, YATMItems.SILVER_NUGGET.get(), YetAnotherTechMod.MODID + ":silver_nuggets_from_shapeless_crafting");
-
-		this.addOneToX(writer, Items.HONEYCOMB, YATMItems.WAX_BIT_ITEM.get(), 8, YetAnotherTechMod.MODID + ":wax_bit_from_shapeless_crafting");
-		this.addXToX(writer, YATMItems.WAX_BIT_ITEM.get(), Items.HONEYCOMB, 8, 1, YetAnotherTechMod.MODID + ":honeycomb_from_shapeless_crafting");
-		
+//		this.addOneToNine(writer, YATMItemTags.FORGE_SILVER_INGOTS_KEY, YATMItems.SILVER_NUGGET.get(), YetAnotherTechMod.MODID + ":silver_nuggets_from_shapeless_crafting");
+//
+//		this.addOneToX(writer, Items.HONEYCOMB, YATMItems.WAX_BIT_ITEM.get(), 8, YetAnotherTechMod.MODID + ":wax_bit_from_shapeless_crafting");
+//		this.addXToX(writer, YATMItems.WAX_BIT_ITEM.get(), Items.HONEYCOMB, 8, 1, YetAnotherTechMod.MODID + ":honeycomb_from_shapeless_crafting");
+//		
 		this.addLargeHeatSink(writer, YetAnotherTechMod.MODID + ":large_copper_heat_sink_from_shape_crafting", YATMItems.LARGE_COPPER_HEAT_SINK_ITEM.get(), Tags.Items.INGOTS_COPPER, YATMItemTags.UNOXIDIXED_COPPER_BLOCKS_KEY);
 
 		
@@ -74,11 +73,11 @@ public class YATMRecipeProvider extends RecipeProvider
 		.unlockedBy("has_pot", inventoryTrigger(ItemPredicate.Builder.item().of(Items.FLOWER_POT).build()))
 		.save(writer, YetAnotherTechMod.MODID + ":hanging_pot_from_shaped_crafting");
 		
-		this.addOneToX(writer, YATMItems.RUBBER_BAR.get(), YATMItems.RUBBER_SCRAP.get(), 4, YetAnotherTechMod.MODID + ":rubber_scrap_from_ingot_shapeless_crafting");
-		this.addOneToX(writer, YATMItems.RUBBER_SCRAP_BALL.get(), YATMItems.RUBBER_SCRAP.get(), 4, YetAnotherTechMod.MODID + ":rubber_scrap_from_scrap_ball_shapeless_crafting");
-		this.addTwoByTwoToOne(writer, YATMItems.RUBBER_SCRAP.get(), YATMItems.RUBBER_SCRAP_BALL.get(), YetAnotherTechMod.MODID + ":rubber_scrap_ball_from_shaped_crafting");
-		this.addSmelting(writer, new ItemLike[] {YATMItems.LATEX_BUCKET.get()}, YATMItems.RUBBER_BLOCK_ITEM.get(), .3f, 20, YetAnotherTechMod.MODID + ":rubber_block_from_latex_smelting");
-		this.addSmelting(writer, new ItemLike[] {YATMItems.RUBBER_SCRAP_BALL.get()}, YATMItems.RUBBER_BAR.get(), new ItemLike[] {YATMItems.RUBBER_SCRAP_BALL.get()}, .3f, 20, YetAnotherTechMod.MODID + ":rubber_bar_from_scrap_ball_smelting");
+//		this.addOneToX(writer, YATMItems.RUBBER_BAR.get(), YATMItems.RUBBER_SCRAP.get(), 4, YetAnotherTechMod.MODID + ":rubber_scrap_from_ingot_shapeless_crafting");
+//		this.addOneToX(writer, YATMItems.RUBBER_SCRAP_BALL.get(), YATMItems.RUBBER_SCRAP.get(), 4, YetAnotherTechMod.MODID + ":rubber_scrap_from_scrap_ball_shapeless_crafting");
+//		this.addTwoByTwoToOne(writer, YATMItems.RUBBER_SCRAP.get(), YATMItems.RUBBER_SCRAP_BALL.get(), YetAnotherTechMod.MODID + ":rubber_scrap_ball_from_shaped_crafting");
+//		this.addSmelting(writer, new ItemLike[] {YATMItems.LATEX_BUCKET.get()}, YATMItems.RUBBER_BLOCK_ITEM.get(), .3f, 20, YetAnotherTechMod.MODID + ":rubber_block_from_latex_smelting");
+//		this.addSmelting(writer, new ItemLike[] {YATMItems.RUBBER_SCRAP_BALL.get()}, YATMItems.RUBBER_BAR.get(), new ItemLike[] {YATMItems.RUBBER_SCRAP_BALL.get()}, .3f, 20, YetAnotherTechMod.MODID + ":rubber_bar_from_scrap_ball_smelting");
 		this.addOneToNine(writer, YATMItemTags.FORGE_RUBBER_STORAGE_BLOCK_KEY, YATMItems.RUBBER_BAR.get(), YetAnotherTechMod.MODID + ":rubber_bar_from_block_shapeless_crafting");
 		this.addNineToOne(writer, YATMItemTags.FORGE_RUBBER_INGOTS_KEY, YATMItems.RUBBER_BLOCK_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_block_from_bar_shapeless_crafting");
 		
@@ -112,7 +111,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 		
 		
-		this.addWireRecipes(writer);
+//		this.addWireRecipes(writer);
 		
 		
 		
@@ -193,57 +192,57 @@ public class YATMRecipeProvider extends RecipeProvider
 
 	} // end addSoulAfflictedRubberWoodCoreRecipes()
 	
-	private void addWireRecipes(Consumer<FinishedRecipe> writer) 
-	{
-		this.addWire(writer, Tags.Items.NUGGETS_IRON, YATMItems.ONE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":one_cu_wire_from_shaped_crafting");
-		this.addWire(writer, YATMItemTags.FORGE_COPPER_NUGGETS_KEY, YATMItems.EIGHT_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":eight_cu_wire_from_shaped_crafting");
-		this.addWire(writer, Tags.Items.NUGGETS_GOLD, YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":sixtyfour_cu_wire_from_shaped_crafting");
-		this.addWire(writer, YATMItemTags.FORGE_SILVER_NUGGETS_KEY, YATMItems.FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":fivehundredtwelve_cu_wire_from_shaped_crafting");
-		this.addWire(writer, YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY, YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":fourthousandnintysix_cu_wire_from_shaped_crafting");
-		
-		this.addManyEnameledWire(writer, YATMItems.ONE_CU_WIRE_ITEM.get(), Items.HONEYCOMB, YATMItems.ENAMELED_ONE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_enameled_one_cu_wire_from_shapeless_crafting");
-		this.addManyEnameledWire(writer, YATMItems.EIGHT_CU_WIRE_ITEM.get(), Items.HONEYCOMB, YATMItems.ENAMELED_EIGHT_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_enameled_eight_cu_wire_from_shapeless_crafting");
-		this.addManyEnameledWire(writer, YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), Items.HONEYCOMB, YATMItems.ENAMELED_SIXTYFOUR_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_enameled_sixtyfour_cu_wire_from_shapeless_crafting");
-		this.addManyEnameledWire(writer, YATMItems.FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), Items.HONEYCOMB, YATMItems.ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_enameled_fivehundredtwelve_cu_wire_from_shapeless_crafting");
-		this.addManyEnameledWire(writer, YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), Items.HONEYCOMB, YATMItems.ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_enameled_fourthousandnintysix_cu_wire_from_shapeless_crafting");
-		
-		this.addSingleEnameledWire(writer, YATMItems.ONE_CU_WIRE_ITEM.get(),  YATMItems.WAX_BIT_ITEM.get(), YATMItems.ENAMELED_ONE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_enameled_one_cu_wire_from_shapeless_crafting");
-		this.addSingleEnameledWire(writer, YATMItems.EIGHT_CU_WIRE_ITEM.get(), YATMItems.WAX_BIT_ITEM.get(), YATMItems.ENAMELED_EIGHT_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_enameled_eight_cu_wire_from_shapeless_crafting");
-		this.addSingleEnameledWire(writer, YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), YATMItems.WAX_BIT_ITEM.get(), YATMItems.ENAMELED_SIXTYFOUR_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_enameled_sixtyfour_cu_wire_from_shapeless_crafting");
-		this.addSingleEnameledWire(writer, YATMItems.FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YATMItems.WAX_BIT_ITEM.get(), YATMItems.ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_enameled_fivehundredtwelve_cu_wire_from_shapeless_crafting");
-		this.addSingleEnameledWire(writer, YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YATMItems.WAX_BIT_ITEM.get(), YATMItems.ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_enameled_fourthousandnintysix_cu_wire_from_shapeless_crafting");
-		
-		this.addManyInsulatedWire(writer, YATMItems.ONE_CU_WIRE_ITEM.get(), YATMItems.RUBBER_BAR.get(), YATMItems.INSULATED_ONE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_insulated_one_cu_wire_from_shapeless_crafting");
-		this.addManyInsulatedWire(writer, YATMItems.EIGHT_CU_WIRE_ITEM.get(), YATMItems.RUBBER_BAR.get(), YATMItems.INSULATED_EIGHT_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_insulated_eight_cu_wire_from_shapeless_crafting");
-		this.addManyInsulatedWire(writer, YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), YATMItems.RUBBER_BAR.get(), YATMItems.INSULATED_SIXTYFOUR_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_insulated_sixtyfour_cu_wire_from_shapeless_crafting");
-		this.addManyInsulatedWire(writer, YATMItems.FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YATMItems.RUBBER_BAR.get(), YATMItems.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_insulated_fivehundredtwelve_cu_wire_from_shapeless_crafting");
-		this.addManyInsulatedWire(writer, YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YATMItems.RUBBER_BAR.get(), YATMItems.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_insulated_fourthousandnintysix_cu_wire_from_shapeless_crafting");
-		
-		this.addSingleInsulatedWire(writer, YATMItems.ONE_CU_WIRE_ITEM.get(),  YATMItems.RUBBER_SCRAP.get(), YATMItems.INSULATED_ONE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_insulated_one_cu_wire_from_shapeless_crafting");
-		this.addSingleInsulatedWire(writer, YATMItems.EIGHT_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItems.INSULATED_EIGHT_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_insulated_eight_cu_wire_from_shapeless_crafting");
-		this.addSingleInsulatedWire(writer, YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItems.INSULATED_SIXTYFOUR_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_insulated_sixtyfour_cu_wire_from_shapeless_crafting");
-		this.addSingleInsulatedWire(writer, YATMItems.FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItems.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_insulated_fivehundredtwelve_cu_wire_from_shapeless_crafting");
-		this.addSingleInsulatedWire(writer, YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItems.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_insulated_fourthousandnintysix_cu_wire_from_shapeless_crafting");
-		
-		// limit which dies can do what with, to reflect strength of materials
-		this.addExtrusion(writer, Tags.Items.INGOTS_IRON, YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.ONE_CU_WIRE_ITEM.get(), 6), 12, 56, YetAnotherTechMod.MODID + ":one_cu_wire_from_ingot_extrusion");
-		this.addExtrusion(writer, Tags.Items.INGOTS_COPPER, YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.EIGHT_CU_WIRE_ITEM.get(), 6), 8, 44, YetAnotherTechMod.MODID + ":eight_cu_wire_from_ingot_extrusion");
-		this.addExtrusion(writer, Tags.Items.INGOTS_GOLD, YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), 6), 4, 34, YetAnotherTechMod.MODID + ":sixtyfour_cu_wire_from_ingot_extrusion");
-		this.addExtrusion(writer, YATMItemTags.FORGE_SILVER_INGOTS_KEY, YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), 6), 6, 49, YetAnotherTechMod.MODID + ":fivehundredtwelve_cu_wire_from_ingot_extrusion");
-		this.addExtrusion(writer, Tags.Items.INGOTS_NETHERITE, YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), 6), 16, 89, YetAnotherTechMod.MODID + ":fourthousandnintysix_cu_wire_from_ingot_extrusion");
-		
-		this.addExtrusion(writer, YATMItems.ENAMELED_ONE_CU_WIRE_ITEM.get(), YATMItems.WAX_BIT_ITEM.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.ONE_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":one_cu_wire_from_enameled_wire_extrusion");
-		this.addExtrusion(writer, YATMItems.ENAMELED_EIGHT_CU_WIRE_ITEM.get(), YATMItems.WAX_BIT_ITEM.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.EIGHT_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":eight_cu_wire_from_enameled_wire_extrusion");
-		this.addExtrusion(writer, YATMItems.ENAMELED_SIXTYFOUR_CU_WIRE_ITEM.get(), YATMItems.WAX_BIT_ITEM.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":sixtyfour_cu_wire_from_enameled_wire_extrusion");
-		this.addExtrusion(writer, YATMItems.ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YATMItems.WAX_BIT_ITEM.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":fivehundredtwelve_cu_wire_from_enameled_wire_extrusion");
-		this.addExtrusion(writer, YATMItems.ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YATMItems.WAX_BIT_ITEM.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":fourthousandnintysix_cu_wire_from_enameled_wire_extrusion");
-		
-		this.addExtrusion(writer, YATMItems.INSULATED_ONE_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.ONE_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":one_cu_wire_from_insulated_wire_extrusion");
-		this.addExtrusion(writer, YATMItems.INSULATED_EIGHT_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.EIGHT_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":eight_cu_wire_from_insulated_wire_extrusion");
-		this.addExtrusion(writer, YATMItems.INSULATED_SIXTYFOUR_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":sixtyfour_cu_wire_from_insulated_wire_extrusion");
-		this.addExtrusion(writer, YATMItems.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":fivehundredtwelve_cu_wire_from_insulated_wire_extrusion");
-		this.addExtrusion(writer, YATMItems.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":fourthousandnintysix_cu_wire_from_insulated_wire_extrusion");
-	} // end addWireRecipes()
+//	private void addWireRecipes(Consumer<FinishedRecipe> writer) 
+//	{
+//		this.addWire(writer, Tags.Items.NUGGETS_IRON, YATMItems.ONE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":one_cu_wire_from_shaped_crafting");
+//		this.addWire(writer, YATMItemTags.FORGE_COPPER_NUGGETS_KEY, YATMItems.EIGHT_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":eight_cu_wire_from_shaped_crafting");
+//		this.addWire(writer, Tags.Items.NUGGETS_GOLD, YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":sixtyfour_cu_wire_from_shaped_crafting");
+//		this.addWire(writer, YATMItemTags.FORGE_SILVER_NUGGETS_KEY, YATMItems.FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":fivehundredtwelve_cu_wire_from_shaped_crafting");
+//		this.addWire(writer, YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY, YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":fourthousandnintysix_cu_wire_from_shaped_crafting");
+//		
+//		this.addManyEnameledWire(writer, YATMItems.ONE_CU_WIRE_ITEM.get(), Items.HONEYCOMB, YATMItems.ENAMELED_ONE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_enameled_one_cu_wire_from_shapeless_crafting");
+//		this.addManyEnameledWire(writer, YATMItems.EIGHT_CU_WIRE_ITEM.get(), Items.HONEYCOMB, YATMItems.ENAMELED_EIGHT_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_enameled_eight_cu_wire_from_shapeless_crafting");
+//		this.addManyEnameledWire(writer, YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), Items.HONEYCOMB, YATMItems.ENAMELED_SIXTYFOUR_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_enameled_sixtyfour_cu_wire_from_shapeless_crafting");
+//		this.addManyEnameledWire(writer, YATMItems.FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), Items.HONEYCOMB, YATMItems.ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_enameled_fivehundredtwelve_cu_wire_from_shapeless_crafting");
+//		this.addManyEnameledWire(writer, YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), Items.HONEYCOMB, YATMItems.ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_enameled_fourthousandnintysix_cu_wire_from_shapeless_crafting");
+//		
+//		this.addSingleEnameledWire(writer, YATMItems.ONE_CU_WIRE_ITEM.get(),  YATMItems.WAX_BIT_ITEM.get(), YATMItems.ENAMELED_ONE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_enameled_one_cu_wire_from_shapeless_crafting");
+//		this.addSingleEnameledWire(writer, YATMItems.EIGHT_CU_WIRE_ITEM.get(), YATMItems.WAX_BIT_ITEM.get(), YATMItems.ENAMELED_EIGHT_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_enameled_eight_cu_wire_from_shapeless_crafting");
+//		this.addSingleEnameledWire(writer, YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), YATMItems.WAX_BIT_ITEM.get(), YATMItems.ENAMELED_SIXTYFOUR_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_enameled_sixtyfour_cu_wire_from_shapeless_crafting");
+//		this.addSingleEnameledWire(writer, YATMItems.FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YATMItems.WAX_BIT_ITEM.get(), YATMItems.ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_enameled_fivehundredtwelve_cu_wire_from_shapeless_crafting");
+//		this.addSingleEnameledWire(writer, YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YATMItems.WAX_BIT_ITEM.get(), YATMItems.ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_enameled_fourthousandnintysix_cu_wire_from_shapeless_crafting");
+//		
+//		this.addManyInsulatedWire(writer, YATMItems.ONE_CU_WIRE_ITEM.get(), YATMItems.RUBBER_BAR.get(), YATMItems.INSULATED_ONE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_insulated_one_cu_wire_from_shapeless_crafting");
+//		this.addManyInsulatedWire(writer, YATMItems.EIGHT_CU_WIRE_ITEM.get(), YATMItems.RUBBER_BAR.get(), YATMItems.INSULATED_EIGHT_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_insulated_eight_cu_wire_from_shapeless_crafting");
+//		this.addManyInsulatedWire(writer, YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), YATMItems.RUBBER_BAR.get(), YATMItems.INSULATED_SIXTYFOUR_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_insulated_sixtyfour_cu_wire_from_shapeless_crafting");
+//		this.addManyInsulatedWire(writer, YATMItems.FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YATMItems.RUBBER_BAR.get(), YATMItems.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_insulated_fivehundredtwelve_cu_wire_from_shapeless_crafting");
+//		this.addManyInsulatedWire(writer, YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YATMItems.RUBBER_BAR.get(), YATMItems.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":many_insulated_fourthousandnintysix_cu_wire_from_shapeless_crafting");
+//		
+//		this.addSingleInsulatedWire(writer, YATMItems.ONE_CU_WIRE_ITEM.get(),  YATMItems.RUBBER_SCRAP.get(), YATMItems.INSULATED_ONE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_insulated_one_cu_wire_from_shapeless_crafting");
+//		this.addSingleInsulatedWire(writer, YATMItems.EIGHT_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItems.INSULATED_EIGHT_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_insulated_eight_cu_wire_from_shapeless_crafting");
+//		this.addSingleInsulatedWire(writer, YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItems.INSULATED_SIXTYFOUR_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_insulated_sixtyfour_cu_wire_from_shapeless_crafting");
+//		this.addSingleInsulatedWire(writer, YATMItems.FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItems.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_insulated_fivehundredtwelve_cu_wire_from_shapeless_crafting");
+//		this.addSingleInsulatedWire(writer, YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItems.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YetAnotherTechMod.MODID + ":single_insulated_fourthousandnintysix_cu_wire_from_shapeless_crafting");
+//		
+//		// limit which dies can do what with, to reflect strength of materials
+//		this.addExtrusion(writer, Tags.Items.INGOTS_IRON, YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.ONE_CU_WIRE_ITEM.get(), 6), 12, 56, YetAnotherTechMod.MODID + ":one_cu_wire_from_ingot_extrusion");
+//		this.addExtrusion(writer, Tags.Items.INGOTS_COPPER, YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.EIGHT_CU_WIRE_ITEM.get(), 6), 8, 44, YetAnotherTechMod.MODID + ":eight_cu_wire_from_ingot_extrusion");
+//		this.addExtrusion(writer, Tags.Items.INGOTS_GOLD, YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), 6), 4, 34, YetAnotherTechMod.MODID + ":sixtyfour_cu_wire_from_ingot_extrusion");
+//		this.addExtrusion(writer, YATMItemTags.FORGE_SILVER_INGOTS_KEY, YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), 6), 6, 49, YetAnotherTechMod.MODID + ":fivehundredtwelve_cu_wire_from_ingot_extrusion");
+//		this.addExtrusion(writer, Tags.Items.INGOTS_NETHERITE, YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), 6), 16, 89, YetAnotherTechMod.MODID + ":fourthousandnintysix_cu_wire_from_ingot_extrusion");
+//		
+//		this.addExtrusion(writer, YATMItems.ENAMELED_ONE_CU_WIRE_ITEM.get(), YATMItems.WAX_BIT_ITEM.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.ONE_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":one_cu_wire_from_enameled_wire_extrusion");
+//		this.addExtrusion(writer, YATMItems.ENAMELED_EIGHT_CU_WIRE_ITEM.get(), YATMItems.WAX_BIT_ITEM.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.EIGHT_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":eight_cu_wire_from_enameled_wire_extrusion");
+//		this.addExtrusion(writer, YATMItems.ENAMELED_SIXTYFOUR_CU_WIRE_ITEM.get(), YATMItems.WAX_BIT_ITEM.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":sixtyfour_cu_wire_from_enameled_wire_extrusion");
+//		this.addExtrusion(writer, YATMItems.ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YATMItems.WAX_BIT_ITEM.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":fivehundredtwelve_cu_wire_from_enameled_wire_extrusion");
+//		this.addExtrusion(writer, YATMItems.ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YATMItems.WAX_BIT_ITEM.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":fourthousandnintysix_cu_wire_from_enameled_wire_extrusion");
+//		
+//		this.addExtrusion(writer, YATMItems.INSULATED_ONE_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.ONE_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":one_cu_wire_from_insulated_wire_extrusion");
+//		this.addExtrusion(writer, YATMItems.INSULATED_EIGHT_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.EIGHT_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":eight_cu_wire_from_insulated_wire_extrusion");
+//		this.addExtrusion(writer, YATMItems.INSULATED_SIXTYFOUR_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":sixtyfour_cu_wire_from_insulated_wire_extrusion");
+//		this.addExtrusion(writer, YATMItems.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":fivehundredtwelve_cu_wire_from_insulated_wire_extrusion");
+//		this.addExtrusion(writer, YATMItems.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), YATMItems.RUBBER_SCRAP.get(), YATMItemTags.WIRE_DIES_KEY, new ItemStack(YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), 1), 1, 12, YetAnotherTechMod.MODID + ":fourthousandnintysix_cu_wire_from_insulated_wire_extrusion");
+//	} // end addWireRecipes()
 
 	private void addCottonRecipes(Consumer<FinishedRecipe> writer) 
 	{
@@ -448,16 +447,17 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addCompressed()
 	
-	private void addTwoByTwoToOne(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, String key) 
-	{
-//		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
-//		.pattern("aa")
-//		.pattern("aa")
-//		.define('a', ingredient)
-//		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
-//		.save(writer, key);
-		this.addTwoByTwoToX(writer, ingredient, result, 1, key);
-	} // end addTwoByTwoToOne()
+//	@SuppressWarnings("unused")
+//	private void addTwoByTwoToOne(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, String key) 
+//	{
+////		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+////		.pattern("aa")
+////		.pattern("aa")
+////		.define('a', ingredient)
+////		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
+////		.save(writer, key);
+//		this.addTwoByTwoToX(writer, ingredient, result, 1, key);
+//	} // end addTwoByTwoToOne()
 	
 	private void addTwoByTwoToX(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, int count, String key) 
 	{
@@ -600,52 +600,52 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	
 
-	private void addWire(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemLike result, String key) 
-	{
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
-		.pattern("   ")
-		.pattern("www")
-		.pattern("   ")
-		.define('w', ingredient)
-		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
-		.save(writer, key);
-	} // end addWire()
+//	private void addWire(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemLike result, String key) 
+//	{
+//		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
+//		.pattern("   ")
+//		.pattern("www")
+//		.pattern("   ")
+//		.define('w', ingredient)
+//		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
+//		.save(writer, key);
+//	} // end addWire()
 	
-	private void addManyEnameledWire(Consumer<FinishedRecipe> writer, ItemLike wire, ItemLike enameler, ItemLike result, String key) 
-	{
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result, 8)
-		.requires(Ingredient.of(wire), 8)
-		.requires(enameler)
-		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(wire).build(), ItemPredicate.Builder.item().of(enameler).build()))
-		.save(writer, key);
-	} // end addManyEnameledWire()
-	
-	private void addSingleEnameledWire(Consumer<FinishedRecipe> writer, ItemLike wire, ItemLike enameler, ItemLike result, String key) 
-	{
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
-		.requires(Ingredient.of(wire))
-		.requires(enameler)
-		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(wire).build(), ItemPredicate.Builder.item().of(enameler).build()))
-		.save(writer, key);
-	} // end addSingleEnameledWire()
-	
-	private void addManyInsulatedWire(Consumer<FinishedRecipe> writer, ItemLike wire, ItemLike insulater, ItemLike result, String key) 
-	{
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result, 4)
-		.requires(Ingredient.of(wire), 4)
-		.requires(insulater)
-		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(wire).build(), ItemPredicate.Builder.item().of(insulater).build()))
-		.save(writer, key);
-	} // end addManyInsulatedWire()
-	
-	private void addSingleInsulatedWire(Consumer<FinishedRecipe> writer, ItemLike wire, ItemLike insulater, ItemLike result, String key) 
-	{
-		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
-		.requires(Ingredient.of(wire))
-		.requires(insulater)
-		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(wire).build(), ItemPredicate.Builder.item().of(insulater).build()))
-		.save(writer, key);
-	} // end addSingleInsulatedWire()
+//	private void addManyEnameledWire(Consumer<FinishedRecipe> writer, ItemLike wire, ItemLike enameler, ItemLike result, String key) 
+//	{
+//		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result, 8)
+//		.requires(Ingredient.of(wire), 8)
+//		.requires(enameler)
+//		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(wire).build(), ItemPredicate.Builder.item().of(enameler).build()))
+//		.save(writer, key);
+//	} // end addManyEnameledWire()
+//	
+//	private void addSingleEnameledWire(Consumer<FinishedRecipe> writer, ItemLike wire, ItemLike enameler, ItemLike result, String key) 
+//	{
+//		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
+//		.requires(Ingredient.of(wire))
+//		.requires(enameler)
+//		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(wire).build(), ItemPredicate.Builder.item().of(enameler).build()))
+//		.save(writer, key);
+//	} // end addSingleEnameledWire()
+//	
+//	private void addManyInsulatedWire(Consumer<FinishedRecipe> writer, ItemLike wire, ItemLike insulater, ItemLike result, String key) 
+//	{
+//		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result, 4)
+//		.requires(Ingredient.of(wire), 4)
+//		.requires(insulater)
+//		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(wire).build(), ItemPredicate.Builder.item().of(insulater).build()))
+//		.save(writer, key);
+//	} // end addManyInsulatedWire()
+//	
+//	private void addSingleInsulatedWire(Consumer<FinishedRecipe> writer, ItemLike wire, ItemLike insulater, ItemLike result, String key) 
+//	{
+//		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
+//		.requires(Ingredient.of(wire))
+//		.requires(insulater)
+//		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(wire).build(), ItemPredicate.Builder.item().of(insulater).build()))
+//		.save(writer, key);
+//	} // end addSingleInsulatedWire()
 	
 	
 	
@@ -714,30 +714,33 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	
 	
-	private void addExtrusion(Consumer<FinishedRecipe> writer, TagKey<Item> input, TagKey<Item> die, ItemStack result, int currentPerTick, int timeInTicks, String key) 
-	{
-		new ExtrudingRecipeBuilder()
-		.input(new ItemTagIngredient(input))
-		.die(new ItemTagIngredient(die))
-		.result(result)
-		.currentPerTick(currentPerTick)
-		.timeInTicks(timeInTicks)
-		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(die).build()))
-		.save(writer, key);
-	} // end addExtrusion()
-	
-	private void addExtrusion(Consumer<FinishedRecipe> writer, ItemLike input, ItemLike inputRemainder, TagKey<Item> die, ItemStack result, int currentPerTick, int timeInTicks, String key) 
-	{
-		new ExtrudingRecipeBuilder()
-		.input(new ItemStackIngredient(input.asItem()))
-		.inputRemainder(new ItemStack(inputRemainder))
-		.die(new ItemTagIngredient(die))
-		.result(result)
-		.currentPerTick(currentPerTick)
-		.timeInTicks(timeInTicks)
-		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(die).build()))
-		.save(writer, key);
-	} // end addExtrusion()
+//	// TODO, probably remove extrusion
+//	@SuppressWarnings("unused")
+//	private void addExtrusion(Consumer<FinishedRecipe> writer, TagKey<Item> input, TagKey<Item> die, ItemStack result, int currentPerTick, int timeInTicks, String key) 
+//	{
+//		new ExtrudingRecipeBuilder()
+//		.input(new ItemTagIngredient(input))
+//		.die(new ItemTagIngredient(die))
+//		.result(result)
+//		.currentPerTick(currentPerTick)
+//		.timeInTicks(timeInTicks)
+//		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(die).build()))
+//		.save(writer, key);
+//	} // end addExtrusion()
+//	
+//	@SuppressWarnings("unused")
+//	private void addExtrusion(Consumer<FinishedRecipe> writer, ItemLike input, ItemLike inputRemainder, TagKey<Item> die, ItemStack result, int currentPerTick, int timeInTicks, String key) 
+//	{
+//		new ExtrudingRecipeBuilder()
+//		.input(new ItemStackIngredient(input.asItem()))
+//		.inputRemainder(new ItemStack(inputRemainder))
+//		.die(new ItemTagIngredient(die))
+//		.result(result)
+//		.currentPerTick(currentPerTick)
+//		.timeInTicks(timeInTicks)
+//		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(die).build()))
+//		.save(writer, key);
+//	} // end addExtrusion()
 	
 	
 	

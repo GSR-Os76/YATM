@@ -3,7 +3,6 @@ package com.gsr.gsr_yatm;
 import java.util.Collection;
 
 import com.gsr.gsr_yatm.block.IHarvestableBlock;
-import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.plant.tree.TappedLogBlock;
 import com.gsr.gsr_yatm.command.YATMRuleCommand;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
@@ -30,7 +29,6 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.state.BlockState;
@@ -70,13 +68,13 @@ public class YATMGameEvents
 			
 			event.setFinalState(resSta);
 		}
-		else if(event.getToolAction() == ToolActions.AXE_WAX_OFF) 
-		{
-			BlockState on = event.getState();
-			BlockState resSta = stripWires(on, event.getContext());
-			
-			event.setFinalState(resSta);
-		}
+//		else if(event.getToolAction() == ToolActions.AXE_WAX_OFF) 
+//		{
+//			BlockState on = event.getState();
+//			BlockState resSta = stripWires(on, event.getContext());
+//			
+//			event.setFinalState(resSta);
+//		}
 		// TODO, do wanna add the harvesting of phantasmal shelf fungus here too.
 		YATMGameEvents.tryHarvest(event);
 	} // end blockToolModification
@@ -154,75 +152,75 @@ public class YATMGameEvents
 		return resSta;
 	} // end stripLogs()
 	
-	private static BlockState stripWires(BlockState toolUsedOn, UseOnContext context) 
-	{
-		BlockState resSta = null;
-		if(toolUsedOn.getBlock() == YATMBlocks.ENAMELED_ONE_CU_WIRE.get()) 
-		{
-			resSta = copyWireInfo(YATMBlocks.ONE_CU_WIRE.get(), toolUsedOn);
-			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.WAX_BIT_ITEM.get()));
-		}
-		else if(toolUsedOn.getBlock() == YATMBlocks.ENAMELED_EIGHT_CU_WIRE.get()) 
-		{
-			resSta = copyWireInfo(YATMBlocks.EIGHT_CU_WIRE.get(), toolUsedOn);
-			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.WAX_BIT_ITEM.get()));
-		}
-		else if(toolUsedOn.getBlock() == YATMBlocks.ENAMELED_SIXTYFOUR_CU_WIRE.get()) 
-		{
-			resSta = copyWireInfo(YATMBlocks.SIXTYFOUR_CU_WIRE.get(), toolUsedOn);
-			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.WAX_BIT_ITEM.get()));
-		}
-		else if(toolUsedOn.getBlock() == YATMBlocks.ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE.get()) 
-		{
-			resSta = copyWireInfo(YATMBlocks.FIVEHUNDREDTWELVE_CU_WIRE.get(), toolUsedOn);
-			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.WAX_BIT_ITEM.get()));
-		}
-		else if(toolUsedOn.getBlock() == YATMBlocks.ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE.get()) 
-		{
-			resSta = copyWireInfo(YATMBlocks.FOURTHOUSANDNINTYSIX_CU_WIRE.get(), toolUsedOn);
-			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.WAX_BIT_ITEM.get()));
-		}
-		
-		
-		
-		else if(toolUsedOn.getBlock() == YATMBlocks.INSULATED_ONE_CU_WIRE.get()) 
-		{
-			resSta = copyWireInfo(YATMBlocks.ONE_CU_WIRE.get(), toolUsedOn);
-			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.RUBBER_SCRAP.get()));
-		}
-		else if(toolUsedOn.getBlock() == YATMBlocks.INSULATED_EIGHT_CU_WIRE.get()) 
-		{
-			resSta = copyWireInfo(YATMBlocks.EIGHT_CU_WIRE.get(), toolUsedOn);
-			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.RUBBER_SCRAP.get()));
-		}
-		else if(toolUsedOn.getBlock() == YATMBlocks.INSULATED_SIXTYFOUR_CU_WIRE.get()) 
-		{
-			resSta = copyWireInfo(YATMBlocks.SIXTYFOUR_CU_WIRE.get(), toolUsedOn);
-			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.RUBBER_SCRAP.get()));
-		}
-		else if(toolUsedOn.getBlock() == YATMBlocks.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE.get()) 
-		{
-			resSta = copyWireInfo(YATMBlocks.FIVEHUNDREDTWELVE_CU_WIRE.get(), toolUsedOn);
-			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.RUBBER_SCRAP.get()));
-		}
-		else if(toolUsedOn.getBlock() == YATMBlocks.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE.get()) 
-		{
-			resSta = copyWireInfo(YATMBlocks.FOURTHOUSANDNINTYSIX_CU_WIRE.get(), toolUsedOn);
-			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.RUBBER_SCRAP.get()));
-		}
-		return resSta;
-	} // end stripLogs()
-	
-	private static BlockState copyWireInfo(Block to, BlockState from) 
-	{
-		return to.defaultBlockState()
-				.setValue(IConduit.UP, from.getValue(IConduit.UP))
-				.setValue(IConduit.DOWN, from.getValue(IConduit.DOWN))
-				.setValue(IConduit.NORTH, from.getValue(IConduit.NORTH))
-				.setValue(IConduit.SOUTH, from.getValue(IConduit.SOUTH))
-				.setValue(IConduit.EAST, from.getValue(IConduit.EAST))
-				.setValue(IConduit.WEST, from.getValue(IConduit.WEST));
-	} // end copyWireInfo()
+//	private static BlockState stripWires(BlockState toolUsedOn, UseOnContext context) 
+//	{
+//		BlockState resSta = null;
+//		if(toolUsedOn.getBlock() == YATMBlocks.ENAMELED_ONE_CU_WIRE.get()) 
+//		{
+//			resSta = copyWireInfo(YATMBlocks.ONE_CU_WIRE.get(), toolUsedOn);
+//			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.WAX_BIT_ITEM.get()));
+//		}
+//		else if(toolUsedOn.getBlock() == YATMBlocks.ENAMELED_EIGHT_CU_WIRE.get()) 
+//		{
+//			resSta = copyWireInfo(YATMBlocks.EIGHT_CU_WIRE.get(), toolUsedOn);
+//			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.WAX_BIT_ITEM.get()));
+//		}
+//		else if(toolUsedOn.getBlock() == YATMBlocks.ENAMELED_SIXTYFOUR_CU_WIRE.get()) 
+//		{
+//			resSta = copyWireInfo(YATMBlocks.SIXTYFOUR_CU_WIRE.get(), toolUsedOn);
+//			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.WAX_BIT_ITEM.get()));
+//		}
+//		else if(toolUsedOn.getBlock() == YATMBlocks.ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE.get()) 
+//		{
+//			resSta = copyWireInfo(YATMBlocks.FIVEHUNDREDTWELVE_CU_WIRE.get(), toolUsedOn);
+//			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.WAX_BIT_ITEM.get()));
+//		}
+//		else if(toolUsedOn.getBlock() == YATMBlocks.ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE.get()) 
+//		{
+//			resSta = copyWireInfo(YATMBlocks.FOURTHOUSANDNINTYSIX_CU_WIRE.get(), toolUsedOn);
+//			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.WAX_BIT_ITEM.get()));
+//		}
+//		
+//		
+//		
+//		else if(toolUsedOn.getBlock() == YATMBlocks.INSULATED_ONE_CU_WIRE.get()) 
+//		{
+//			resSta = copyWireInfo(YATMBlocks.ONE_CU_WIRE.get(), toolUsedOn);
+//			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.RUBBER_SCRAP.get()));
+//		}
+//		else if(toolUsedOn.getBlock() == YATMBlocks.INSULATED_EIGHT_CU_WIRE.get()) 
+//		{
+//			resSta = copyWireInfo(YATMBlocks.EIGHT_CU_WIRE.get(), toolUsedOn);
+//			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.RUBBER_SCRAP.get()));
+//		}
+//		else if(toolUsedOn.getBlock() == YATMBlocks.INSULATED_SIXTYFOUR_CU_WIRE.get()) 
+//		{
+//			resSta = copyWireInfo(YATMBlocks.SIXTYFOUR_CU_WIRE.get(), toolUsedOn);
+//			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.RUBBER_SCRAP.get()));
+//		}
+//		else if(toolUsedOn.getBlock() == YATMBlocks.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE.get()) 
+//		{
+//			resSta = copyWireInfo(YATMBlocks.FIVEHUNDREDTWELVE_CU_WIRE.get(), toolUsedOn);
+//			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.RUBBER_SCRAP.get()));
+//		}
+//		else if(toolUsedOn.getBlock() == YATMBlocks.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE.get()) 
+//		{
+//			resSta = copyWireInfo(YATMBlocks.FOURTHOUSANDNINTYSIX_CU_WIRE.get(), toolUsedOn);
+//			InventoryUtilities.drop(context.getLevel(), context.getClickedPos(), new ItemStack(YATMItems.RUBBER_SCRAP.get()));
+//		}
+//		return resSta;
+//	} // end stripLogs()
+//	
+//	private static BlockState copyWireInfo(Block to, BlockState from) 
+//	{
+//		return to.defaultBlockState()
+//				.setValue(IConduit.UP, from.getValue(IConduit.UP))
+//				.setValue(IConduit.DOWN, from.getValue(IConduit.DOWN))
+//				.setValue(IConduit.NORTH, from.getValue(IConduit.NORTH))
+//				.setValue(IConduit.SOUTH, from.getValue(IConduit.SOUTH))
+//				.setValue(IConduit.EAST, from.getValue(IConduit.EAST))
+//				.setValue(IConduit.WEST, from.getValue(IConduit.WEST));
+//	} // end copyWireInfo()
 	
 	private static boolean tryHarvest(BlockToolModificationEvent event)
 	{

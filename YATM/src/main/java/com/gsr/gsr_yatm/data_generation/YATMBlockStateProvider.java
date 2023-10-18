@@ -8,7 +8,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 import org.joml.Vector2i;
 
-import com.google.common.collect.ImmutableList;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.FaceBlock;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
@@ -123,7 +122,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	public static final ModelFile CONDUIT_VINES_PARALLEL_CROSSLINK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/conduit_vines_parallel_crosslink"));
 	
-	private static final List<Direction> HIGH_DIRECTIONS = ImmutableList.of(Direction.UP, Direction.NORTH, Direction.EAST);
+	// private static final List<Direction> HIGH_DIRECTIONS = ImmutableList.of(Direction.UP, Direction.NORTH, Direction.EAST);
 	public static final ModelFile WIRE_BRANCH_HIGH_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/wire_branch_high"));
 	public static final ModelFile WIRE_BRANCH_LOW_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/wire_branch_low"));
 	public static final ModelFile WIRE_CENTER_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/wire_center"));
@@ -544,25 +543,25 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	private void addConduits() 
 	{
 		this.createConduitVine(YATMBlocks.CONDUIT_VINES.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/conduit_vines"), YATMBlockStateProvider.CONDUIT_VINES_PARALLEL_CROSSLINK_MODEL);
-		
-		this.createWire(YATMBlocks.ONE_CU_WIRE.get(), YATMItems.ONE_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/one_cu_wire"));
-		this.createWire(YATMBlocks.EIGHT_CU_WIRE.get(), YATMItems.EIGHT_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/eight_cu_wire"));
-		this.createWire(YATMBlocks.SIXTYFOUR_CU_WIRE.get(), YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/sixtyfour_cu_wire"));
-		this.createWire(YATMBlocks.FIVEHUNDREDTWELVE_CU_WIRE.get(), YATMItems.FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/fivehundredtwelve_cu_wire"));
-		this.createWire(YATMBlocks.FOURTHOUSANDNINTYSIX_CU_WIRE.get(), YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/fourthousandnintysix_cu_wire"));
-		
-		this.createWire(YATMBlocks.ENAMELED_ONE_CU_WIRE.get(), YATMItems.ENAMELED_ONE_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/one_cu_wire"));
-		this.createWire(YATMBlocks.ENAMELED_EIGHT_CU_WIRE.get(), YATMItems.ENAMELED_EIGHT_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/eight_cu_wire"));
-		this.createWire(YATMBlocks.ENAMELED_SIXTYFOUR_CU_WIRE.get(), YATMItems.ENAMELED_SIXTYFOUR_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/sixtyfour_cu_wire"));
-		this.createWire(YATMBlocks.ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE.get(), YATMItems.ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/fivehundredtwelve_cu_wire"));
-		this.createWire(YATMBlocks.ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE.get(), YATMItems.ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/fourthousandnintysix_cu_wire"));
-		
-		this.createInsulatedWire(YATMBlocks.INSULATED_ONE_CU_WIRE.get(), YATMItems.INSULATED_ONE_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/insulated_one_cu_wire"));
-		this.createInsulatedWire(YATMBlocks.INSULATED_EIGHT_CU_WIRE.get(), YATMItems.INSULATED_EIGHT_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/insulated_eight_cu_wire"));
-		this.createInsulatedWire(YATMBlocks.INSULATED_SIXTYFOUR_CU_WIRE.get(), YATMItems.INSULATED_SIXTYFOUR_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/insulated_sixtyfour_cu_wire"));
-		this.createInsulatedWire(YATMBlocks.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE.get(), YATMItems.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/insulated_fivehundredtwelve_cu_wire"));
-		this.createInsulatedWire(YATMBlocks.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE.get(), YATMItems.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/insulated_fourthousandnintysix_cu_wire"));
-		
+//		
+//		this.createWire(YATMBlocks.ONE_CU_WIRE.get(), YATMItems.ONE_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/one_cu_wire"));
+//		this.createWire(YATMBlocks.EIGHT_CU_WIRE.get(), YATMItems.EIGHT_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/eight_cu_wire"));
+//		this.createWire(YATMBlocks.SIXTYFOUR_CU_WIRE.get(), YATMItems.SIXTYFOUR_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/sixtyfour_cu_wire"));
+//		this.createWire(YATMBlocks.FIVEHUNDREDTWELVE_CU_WIRE.get(), YATMItems.FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/fivehundredtwelve_cu_wire"));
+//		this.createWire(YATMBlocks.FOURTHOUSANDNINTYSIX_CU_WIRE.get(), YATMItems.FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/fourthousandnintysix_cu_wire"));
+//		
+//		this.createWire(YATMBlocks.ENAMELED_ONE_CU_WIRE.get(), YATMItems.ENAMELED_ONE_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/one_cu_wire"));
+//		this.createWire(YATMBlocks.ENAMELED_EIGHT_CU_WIRE.get(), YATMItems.ENAMELED_EIGHT_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/eight_cu_wire"));
+//		this.createWire(YATMBlocks.ENAMELED_SIXTYFOUR_CU_WIRE.get(), YATMItems.ENAMELED_SIXTYFOUR_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/sixtyfour_cu_wire"));
+//		this.createWire(YATMBlocks.ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE.get(), YATMItems.ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/fivehundredtwelve_cu_wire"));
+//		this.createWire(YATMBlocks.ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE.get(), YATMItems.ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/fourthousandnintysix_cu_wire"));
+//		
+//		this.createInsulatedWire(YATMBlocks.INSULATED_ONE_CU_WIRE.get(), YATMItems.INSULATED_ONE_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/insulated_one_cu_wire"));
+//		this.createInsulatedWire(YATMBlocks.INSULATED_EIGHT_CU_WIRE.get(), YATMItems.INSULATED_EIGHT_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/insulated_eight_cu_wire"));
+//		this.createInsulatedWire(YATMBlocks.INSULATED_SIXTYFOUR_CU_WIRE.get(), YATMItems.INSULATED_SIXTYFOUR_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/insulated_sixtyfour_cu_wire"));
+//		this.createInsulatedWire(YATMBlocks.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE.get(), YATMItems.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/insulated_fivehundredtwelve_cu_wire"));
+//		this.createInsulatedWire(YATMBlocks.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE.get(), YATMItems.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/insulated_fourthousandnintysix_cu_wire"));
+//		
 	} // end addConduits()
 	
 	
@@ -1314,55 +1313,55 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		);
 	} // end createConduitVines
 	
-	private void createWire(@NotNull Block block, @NotNull Item item, @NotNull ResourceLocation texture) 
-	{
-		this.createConduit(block, item, texture, YATMBlockStateProvider.WIRE_BRANCH_HIGH_MODEL, YATMBlockStateProvider.WIRE_BRANCH_LOW_MODEL, YATMBlockStateProvider.WIRE_CENTER_MODEL, YATMBlockStateProvider.WIRE_STRAIGHT_VERTICAL_MODEL);
-	} // end addWire()
+//	private void createWire(@NotNull Block block, @NotNull Item item, @NotNull ResourceLocation texture) 
+//	{
+//		this.createConduit(block, item, texture, YATMBlockStateProvider.WIRE_BRANCH_HIGH_MODEL, YATMBlockStateProvider.WIRE_BRANCH_LOW_MODEL, YATMBlockStateProvider.WIRE_CENTER_MODEL, YATMBlockStateProvider.WIRE_STRAIGHT_VERTICAL_MODEL);
+//	} // end addWire()
+//	
+//	private void createInsulatedWire(@NotNull Block block, @NotNull Item item, @NotNull ResourceLocation texture) 
+//	{
+//		this.createConduit(block, item, texture, YATMBlockStateProvider.INSULATED_WIRE_BRANCH_HIGH_MODEL, YATMBlockStateProvider.INSULATED_WIRE_BRANCH_LOW_MODEL, YATMBlockStateProvider.INSULATED_WIRE_CENTER_MODEL, YATMBlockStateProvider.INSULATED_WIRE_STRAIGHT_VERTICAL_MODEL);
+//	} // end addInsulatedWire()
 	
-	private void createInsulatedWire(@NotNull Block block, @NotNull Item item, @NotNull ResourceLocation texture) 
-	{
-		this.createConduit(block, item, texture, YATMBlockStateProvider.INSULATED_WIRE_BRANCH_HIGH_MODEL, YATMBlockStateProvider.INSULATED_WIRE_BRANCH_LOW_MODEL, YATMBlockStateProvider.INSULATED_WIRE_CENTER_MODEL, YATMBlockStateProvider.INSULATED_WIRE_STRAIGHT_VERTICAL_MODEL);
-	} // end addInsulatedWire()
-	
-	private void createConduit(@NotNull Block block, @NotNull Item item, @NotNull ResourceLocation texture, @NotNull ModelFile highBranch, @NotNull ModelFile lowBranch, @NotNull ModelFile center, @NotNull ModelFile straight) 
-	{
-		String baseName = YATMBlockStateProvider.getModelLocationNameFor(block);
-		String highModelName = baseName + "_branch_high";
-		String lowModelName = baseName + "_branch_low";
-		String centerModelName = baseName + "_center";
-		String straightModelName = baseName + "_straight_vertical";
-		this.models().getBuilder(highModelName).parent(highBranch).texture("0", texture);
-		this.models().getBuilder(lowModelName).parent(lowBranch).texture("0", texture);
-		this.models().getBuilder(centerModelName).parent(center).texture("0", texture);
-		this.models().getBuilder(straightModelName).parent(straight).texture("0", texture);
-		ModelFile highModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, highModelName));
-		ModelFile lowModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, lowModelName));
-		ModelFile centerModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, centerModelName));
-		ModelFile straightModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, straightModelName));
-
-		MultiPartBlockStateBuilder builder = this.getMultipartBuilder(block);
-		builder.part().modelFile(centerModel).addModel().end();
-		IConduit.DIRECTION_PROPERTIES_BY_DIRECTION.forEach(new BiConsumer<>() 
-		{
-			@Override
-			public void accept(Direction dir, BooleanProperty val)
-			{
-				boolean high = YATMBlockStateProvider.HIGH_DIRECTIONS.contains(dir);
-				Vector2i rot = YATMBlockStateProvider.rotationForDirectionFromNorth(dir);
-				builder.part()
-				.modelFile(high ? highModel : lowModel)
-				.rotationX(rot.x)
-				.rotationY(rot.y)
-				.uvLock(false)
-				.addModel()
-				.condition(val, true);
-				
-			} // end accept()			
-		} // end anonymous type
-		);
-		
-		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(straightModel);//.texture("0", texture);
-	} // end addConduit()
+//	private void createConduit(@NotNull Block block, @NotNull Item item, @NotNull ResourceLocation texture, @NotNull ModelFile highBranch, @NotNull ModelFile lowBranch, @NotNull ModelFile center, @NotNull ModelFile straight) 
+//	{
+//		String baseName = YATMBlockStateProvider.getModelLocationNameFor(block);
+//		String highModelName = baseName + "_branch_high";
+//		String lowModelName = baseName + "_branch_low";
+//		String centerModelName = baseName + "_center";
+//		String straightModelName = baseName + "_straight_vertical";
+//		this.models().getBuilder(highModelName).parent(highBranch).texture("0", texture);
+//		this.models().getBuilder(lowModelName).parent(lowBranch).texture("0", texture);
+//		this.models().getBuilder(centerModelName).parent(center).texture("0", texture);
+//		this.models().getBuilder(straightModelName).parent(straight).texture("0", texture);
+//		ModelFile highModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, highModelName));
+//		ModelFile lowModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, lowModelName));
+//		ModelFile centerModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, centerModelName));
+//		ModelFile straightModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, straightModelName));
+//
+//		MultiPartBlockStateBuilder builder = this.getMultipartBuilder(block);
+//		builder.part().modelFile(centerModel).addModel().end();
+//		IConduit.DIRECTION_PROPERTIES_BY_DIRECTION.forEach(new BiConsumer<>() 
+//		{
+//			@Override
+//			public void accept(Direction dir, BooleanProperty val)
+//			{
+//				boolean high = YATMBlockStateProvider.HIGH_DIRECTIONS.contains(dir);
+//				Vector2i rot = YATMBlockStateProvider.rotationForDirectionFromNorth(dir);
+//				builder.part()
+//				.modelFile(high ? highModel : lowModel)
+//				.rotationX(rot.x)
+//				.rotationY(rot.y)
+//				.uvLock(false)
+//				.addModel()
+//				.condition(val, true);
+//				
+//			} // end accept()			
+//		} // end anonymous type
+//		);
+//		
+//		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(straightModel);//.texture("0", texture);
+//	} // end addConduit()
 
 	
 	

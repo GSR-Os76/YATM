@@ -68,23 +68,23 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.CONDUIT_VINES_ITEM.get());
 		// this.basicItem(YATMItems.STEEL_FLUID_EXCHANGER.get());
 
-		this.basicItem(YATMItems.ONE_CU_CURRENT_REGULATOR.get());
-		this.basicItem(YATMItems.EIGHT_CU_CURRENT_REGULATOR.get());
-		this.basicItem(YATMItems.SIXTYFOUR_CU_CURRENT_REGULATOR.get());
-		this.basicItem(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_REGULATOR.get());
-		this.basicItem(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_REGULATOR.get());
-
-		this.basicItem(YATMItems.ONE_CU_CURRENT_FUSE.get());
-		this.basicItem(YATMItems.EIGHT_CU_CURRENT_FUSE.get());
-		this.basicItem(YATMItems.SIXTYFOUR_CU_CURRENT_FUSE.get());
-		this.basicItem(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_FUSE.get());
-		this.basicItem(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_FUSE.get());
-
-		this.basicItem(YATMItems.ONE_CU_CURRENT_BREAKER.get());
-		this.basicItem(YATMItems.EIGHT_CU_CURRENT_BREAKER.get());
-		this.basicItem(YATMItems.SIXTYFOUR_CU_CURRENT_BREAKER.get());
-		this.basicItem(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_BREAKER.get());
-		this.basicItem(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_BREAKER.get());
+//		this.basicItem(YATMItems.ONE_CU_CURRENT_REGULATOR.get());
+//		this.basicItem(YATMItems.EIGHT_CU_CURRENT_REGULATOR.get());
+//		this.basicItem(YATMItems.SIXTYFOUR_CU_CURRENT_REGULATOR.get());
+//		this.basicItem(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_REGULATOR.get());
+//		this.basicItem(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_REGULATOR.get());
+//
+//		this.basicItem(YATMItems.ONE_CU_CURRENT_FUSE.get());
+//		this.basicItem(YATMItems.EIGHT_CU_CURRENT_FUSE.get());
+//		this.basicItem(YATMItems.SIXTYFOUR_CU_CURRENT_FUSE.get());
+//		this.basicItem(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_FUSE.get());
+//		this.basicItem(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_FUSE.get());
+//
+//		this.basicItem(YATMItems.ONE_CU_CURRENT_BREAKER.get());
+//		this.basicItem(YATMItems.EIGHT_CU_CURRENT_BREAKER.get());
+//		this.basicItem(YATMItems.SIXTYFOUR_CU_CURRENT_BREAKER.get());
+//		this.basicItem(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_BREAKER.get());
+//		this.basicItem(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_BREAKER.get());
 
 		
 		
@@ -110,22 +110,22 @@ public class YATMItemModelProvider extends ItemModelProvider
 		
 		
 		
-		this.basicItem(YATMItems.STEEL_WIRE_DIE.get());
-		this.basicItem(YATMItems.IRON_WIRE_DIE.get());
-		
+//		this.basicItem(YATMItems.STEEL_WIRE_DIE.get());
+//		this.basicItem(YATMItems.IRON_WIRE_DIE.get());
+//		
 		// wheel goes here
 		this.basicItem(YATMItems.FOLIAR_STEEL.get());
-		this.basicItem(YATMItems.SILVER_INGOT.get());
-		this.basicItem(YATMItems.STEEL_INGOT.get());
+//		this.basicItem(YATMItems.SILVER_INGOT.get());
+//		this.basicItem(YATMItems.STEEL_INGOT.get());
 		this.basicItem(YATMItems.RUBBER_BAR.get());
-		this.basicItem(YATMItems.RUBBER_SCRAP_BALL.get());
+//		this.basicItem(YATMItems.RUBBER_SCRAP_BALL.get());
 		
-		this.basicItem(YATMItems.SILVER_NUGGET.get());
-		this.basicItem(YATMItems.COPPER_NUGGET.get());
+//		this.basicItem(YATMItems.SILVER_NUGGET.get());
+//		this.basicItem(YATMItems.COPPER_NUGGET.get());
 		this.basicItem(YATMItems.NETHERITE_NUGGET.get());
 		
-		this.basicItem(YATMItems.WAX_BIT_ITEM.get());
-		this.basicItem(YATMItems.RUBBER_SCRAP.get());
+//		this.basicItem(YATMItems.WAX_BIT_ITEM.get());
+//		this.basicItem(YATMItems.RUBBER_SCRAP.get());
 		
 		
 		

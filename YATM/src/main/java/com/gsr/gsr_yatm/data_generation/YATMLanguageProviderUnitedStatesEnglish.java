@@ -28,7 +28,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMMenuTypes.BIOLER.get(), "Bioler");		
 		this.add(YATMMenuTypes.BOILER.get(), "Boiler");		
 		this.add(YATMMenuTypes.CRYSTALLIZER.get(), "Crystallizer");		
-		this.add(YATMMenuTypes.EXTRUDER.get(), "Extruder");		
+//		this.add(YATMMenuTypes.EXTRUDER.get(), "Extruder");		
 		this.add(YATMMenuTypes.EXTRACTOR.get(), "Extractor");		
 		this.add(YATMMenuTypes.GRINDER.get(), "Grinder");		
 		this.add(YATMMenuTypes.INJECTOR.get(), "Injector");		
@@ -190,7 +190,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.STEEL_BOILER_TANK.get(), "Steel Boiler Tank");
 		this.add(YATMBlocks.STEEL_CRYSTALLIZER.get(), "Steel Crystallizer");
 		this.add(YATMBlocks.STEEL_EXTRACTOR.get(), "Steel Extractor");
-		this.add(YATMBlocks.STEEL_EXTRUDER.get(), "Steel Extruder");
+//		this.add(YATMBlocks.STEEL_EXTRUDER.get(), "Steel Extruder");
 		this.add(YATMBlocks.STEEL_GRINDER.get(), "Steel Grinder");
 		this.add(YATMBlocks.STEEL_INJECTOR.get(), "Steel injector");
 		
@@ -207,26 +207,26 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMBlocks.CONDUIT_VINES.get(), "Conduit Vines");
 		
-		this.add(YATMBlocks.ONE_CU_WIRE.get(), "1cu Wire");
-		this.add(YATMBlocks.EIGHT_CU_WIRE.get(), "8cu Wire");
-		this.add(YATMBlocks.SIXTYFOUR_CU_WIRE.get(), "64cu Wire");
-		this.add(YATMBlocks.FIVEHUNDREDTWELVE_CU_WIRE.get(), "512cu Wire");
-		this.add(YATMBlocks.FOURTHOUSANDNINTYSIX_CU_WIRE.get(), "4096cu Wire");
-		
-		this.add(YATMBlocks.ENAMELED_ONE_CU_WIRE.get(), "Enameled 1cu Wire");
-		this.add(YATMBlocks.ENAMELED_EIGHT_CU_WIRE.get(), "Enameled 8cu Wire");
-		this.add(YATMBlocks.ENAMELED_SIXTYFOUR_CU_WIRE.get(), "Enameled 64cu Wire");
-		this.add(YATMBlocks.ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE.get(), "Enameled 512cu Wire");
-		this.add(YATMBlocks.ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE.get(), "Enameled 4096cu Wire");
-		
-		this.add(YATMBlocks.INSULATED_ONE_CU_WIRE.get(), "Insulated 1cu Wire");
-		this.add(YATMBlocks.INSULATED_EIGHT_CU_WIRE.get(), "Insulated 8cu Wire");
-		this.add(YATMBlocks.INSULATED_SIXTYFOUR_CU_WIRE.get(), "Insulated 64cu Wire");
-		this.add(YATMBlocks.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE.get(), "Insulated 512cu Wire");
-		this.add(YATMBlocks.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE.get(), "Insulated 4096cu Wire");
-		
-		this.add(YATMBlocks.STEEL_FLUID_CONDUIT.get(), "Steel Fluid Conduit");
-		
+//		this.add(YATMBlocks.ONE_CU_WIRE.get(), "1cu Wire");
+//		this.add(YATMBlocks.EIGHT_CU_WIRE.get(), "8cu Wire");
+//		this.add(YATMBlocks.SIXTYFOUR_CU_WIRE.get(), "64cu Wire");
+//		this.add(YATMBlocks.FIVEHUNDREDTWELVE_CU_WIRE.get(), "512cu Wire");
+//		this.add(YATMBlocks.FOURTHOUSANDNINTYSIX_CU_WIRE.get(), "4096cu Wire");
+//		
+//		this.add(YATMBlocks.ENAMELED_ONE_CU_WIRE.get(), "Enameled 1cu Wire");
+//		this.add(YATMBlocks.ENAMELED_EIGHT_CU_WIRE.get(), "Enameled 8cu Wire");
+//		this.add(YATMBlocks.ENAMELED_SIXTYFOUR_CU_WIRE.get(), "Enameled 64cu Wire");
+//		this.add(YATMBlocks.ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE.get(), "Enameled 512cu Wire");
+//		this.add(YATMBlocks.ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE.get(), "Enameled 4096cu Wire");
+//		
+//		this.add(YATMBlocks.INSULATED_ONE_CU_WIRE.get(), "Insulated 1cu Wire");
+//		this.add(YATMBlocks.INSULATED_EIGHT_CU_WIRE.get(), "Insulated 8cu Wire");
+//		this.add(YATMBlocks.INSULATED_SIXTYFOUR_CU_WIRE.get(), "Insulated 64cu Wire");
+//		this.add(YATMBlocks.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE.get(), "Insulated 512cu Wire");
+//		this.add(YATMBlocks.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE.get(), "Insulated 4096cu Wire");
+//		
+//		this.add(YATMBlocks.STEEL_FLUID_CONDUIT.get(), "Steel Fluid Conduit");
+//		
 		
 		
 		// ITEMS \\
@@ -278,25 +278,25 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.BLACK_SHULKWART_HORN.get(), "Black Shulkwart Horn");
 		this.add(YATMItems.SPIDER_VINE_FRUITS.get(), "Branch Of Glaring Fruit");
 		
-		this.add(YATMItems.STEEL_FLUID_EXCHANGER.get(), "Steel Fluid Exchanger");
-		
-		this.add(YATMItems.ONE_CU_CURRENT_REGULATOR.get(), "1cu Current Regulator");
-		this.add(YATMItems.EIGHT_CU_CURRENT_REGULATOR.get(), "8cu Current Regulator");
-		this.add(YATMItems.SIXTYFOUR_CU_CURRENT_REGULATOR.get(), "64cu Current Regulator");
-		this.add(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_REGULATOR.get(), "512cu Current Regulator");
-		this.add(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_REGULATOR.get(), "4096cu Current Regulator");
-		
-		this.add(YATMItems.ONE_CU_CURRENT_FUSE.get(), "1cu Current Fuse");
-		this.add(YATMItems.EIGHT_CU_CURRENT_FUSE.get(), "8cu Current Fuse");
-		this.add(YATMItems.SIXTYFOUR_CU_CURRENT_FUSE.get(), "64cu Current Fuse");
-		this.add(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_FUSE.get(), "512cu Current Fuse");
-		this.add(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_FUSE.get(), "4096cu Current Fuse");
-		
-		this.add(YATMItems.ONE_CU_CURRENT_BREAKER.get(), "1cu Current Breaker");
-		this.add(YATMItems.EIGHT_CU_CURRENT_BREAKER.get(), "8cu Current Breaker");
-		this.add(YATMItems.SIXTYFOUR_CU_CURRENT_BREAKER.get(), "64cu Current Breaker");
-		this.add(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_BREAKER.get(), "512cu Current Breaker");
-		this.add(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_BREAKER.get(), "4096cu Current Breaker");
+//		this.add(YATMItems.STEEL_FLUID_EXCHANGER.get(), "Steel Fluid Exchanger");
+//		
+//		this.add(YATMItems.ONE_CU_CURRENT_REGULATOR.get(), "1cu Current Regulator");
+//		this.add(YATMItems.EIGHT_CU_CURRENT_REGULATOR.get(), "8cu Current Regulator");
+//		this.add(YATMItems.SIXTYFOUR_CU_CURRENT_REGULATOR.get(), "64cu Current Regulator");
+//		this.add(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_REGULATOR.get(), "512cu Current Regulator");
+//		this.add(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_REGULATOR.get(), "4096cu Current Regulator");
+//		
+//		this.add(YATMItems.ONE_CU_CURRENT_FUSE.get(), "1cu Current Fuse");
+//		this.add(YATMItems.EIGHT_CU_CURRENT_FUSE.get(), "8cu Current Fuse");
+//		this.add(YATMItems.SIXTYFOUR_CU_CURRENT_FUSE.get(), "64cu Current Fuse");
+//		this.add(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_FUSE.get(), "512cu Current Fuse");
+//		this.add(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_FUSE.get(), "4096cu Current Fuse");
+//		
+//		this.add(YATMItems.ONE_CU_CURRENT_BREAKER.get(), "1cu Current Breaker");
+//		this.add(YATMItems.EIGHT_CU_CURRENT_BREAKER.get(), "8cu Current Breaker");
+//		this.add(YATMItems.SIXTYFOUR_CU_CURRENT_BREAKER.get(), "64cu Current Breaker");
+//		this.add(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_BREAKER.get(), "512cu Current Breaker");
+//		this.add(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_BREAKER.get(), "4096cu Current Breaker");
 		
 		
 		
@@ -322,21 +322,21 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 
 				
 		
-		this.add(YATMItems.IRON_WIRE_DIE.get(), "Iron Die (Wire)");
-		this.add(YATMItems.STEEL_WIRE_DIE.get(), "Steel Die (Wire)");
-		
+//		this.add(YATMItems.IRON_WIRE_DIE.get(), "Iron Die (Wire)");
+//		this.add(YATMItems.STEEL_WIRE_DIE.get(), "Steel Die (Wire)");
+//		
 		this.add(YATMItems.FOLIAR_STEEL.get(), "Foliar Steel");
-		this.add(YATMItems.SILVER_INGOT.get(), "Silver Ingot");
-		this.add(YATMItems.STEEL_INGOT.get(), "Steel Ingot");
+//		this.add(YATMItems.SILVER_INGOT.get(), "Silver Ingot");
+//		this.add(YATMItems.STEEL_INGOT.get(), "Steel Ingot");
 		this.add(YATMItems.RUBBER_BAR.get(), "Rubber Bar");
-		this.add(YATMItems.RUBBER_SCRAP_BALL.get(), "Rubber Scrap Ball");
+//		this.add(YATMItems.RUBBER_SCRAP_BALL.get(), "Rubber Scrap Ball");
 		
-		this.add(YATMItems.SILVER_NUGGET.get(), "Silver Nugget");
-		this.add(YATMItems.COPPER_NUGGET.get(), "Copper Nugget");
+//		this.add(YATMItems.SILVER_NUGGET.get(), "Silver Nugget");
+//		this.add(YATMItems.COPPER_NUGGET.get(), "Copper Nugget");
 		this.add(YATMItems.NETHERITE_NUGGET.get(), "Netherite Nugget");
-		this.add(YATMItems.WAX_BIT_ITEM.get(), "Wax Bit");
-		this.add(YATMItems.RUBBER_SCRAP.get(), "Rubber Scraps");
-		
+//		this.add(YATMItems.WAX_BIT_ITEM.get(), "Wax Bit");
+//		this.add(YATMItems.RUBBER_SCRAP.get(), "Rubber Scraps");
+//		
 		this.add(YATMItems.WOOD_PULP.get(), "Wood Pulp");
 		
 		this.add(YATMItems.STAR_SEED.get(), "Star Seed");
