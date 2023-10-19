@@ -14,6 +14,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
@@ -62,9 +63,14 @@ public class CandlelilyBlock extends ShapeBlock implements IYATMPlantableBlock, 
 				&& level.getBlockState(position.above()).is(YATMBlockTags.CANDLELILY_CAN_GROW_IN_KEY);
 	} // end canPlantOn()
 
-	
-	
-	
+	@Override
+	public int getLightEmission(BlockState state, BlockGetter level, BlockPos pos)
+	{
+		return 11;
+	} // end getLightEmission()
+
+
+
 	@Override
 	public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos position, @NotNull BlockState state, boolean p_50900_)
 	{
