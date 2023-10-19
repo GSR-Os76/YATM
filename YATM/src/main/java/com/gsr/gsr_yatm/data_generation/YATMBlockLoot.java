@@ -111,6 +111,9 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		//this.add(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), this.createUniformTable(YATMItems.TEAR_LEAF.get(), 0f, 3f, LootItemBlockStatePropertyCondition.hasBlockStateProperties(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BasinOfTearsVegetationBlock.AGE, YATMBlocks.BASIN_OF_TEARS_VEGETATION.get().getMaxAge()))));
 		this.add(YATMBlocks.BASIN_OF_TEARS_FLORAL.get(), this.createBasinOfTearsFloralTable());
 		
+		this.dropSelf(YATMBlocks.CANDLELILY.get());		
+		this.dropPottedContents(YATMBlocks.POTTED_CANDLELILY.get());
+		
 		this.add(YATMBlocks.CARBUM.get(), this.createCarbumTable());		
 		this.dropPottedContents(YATMBlocks.POTTED_CARBUM.get());
 		

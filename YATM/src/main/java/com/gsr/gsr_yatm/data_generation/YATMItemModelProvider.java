@@ -37,6 +37,8 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.DILUTED_TEAR_BOTTLE.get());
 		this.basicItem(YATMItems.TEAR_LEAF.get());	
 		
+		this.basicItem(YATMItems.CANDLELILY_ITEM.get());
+		
 		this.basicItem(YATMItems.CARBUM_MERISTEM.get());
 		this.basicItem(YATMItems.CARBUM_LEAF.get());
 		

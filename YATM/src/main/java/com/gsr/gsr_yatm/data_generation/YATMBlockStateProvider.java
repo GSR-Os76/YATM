@@ -150,6 +150,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 		this.addAurum();
 		this.addBasinOfTears();
+		this.addCandlelily();
 		this.addCarbum();
 		this.addCarcassRoot();
 		this.createFourStageCrop(YATMBlocks.COTTON.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_germinating"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_flowering"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_maturing"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_mature"));
@@ -302,7 +303,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum/mature_double_lower"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/aurum/mature_double_higher"));
 		this.createStoneSoilPottedCross(YATMBlocks.POTTED_AURUM_DEMINUTUS.get(), adolescentTexture);
-	} // end addAurumDeminutus()
+	} // end addAurum()
 	
 	private void addBasinOfTears()
 	{
@@ -311,7 +312,14 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/basin_of_tears/foliage_young"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/basin_of_tears/foliage_adolescent"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/basin_of_tears/foliage_old"));
-	} // end addAurumDeminutus()
+	} // end addBasinOfTears()
+	
+	private void addCandlelily() 
+	{
+		ResourceLocation texture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/candlelily/candlelily");
+		this.createCross(YATMBlocks.CANDLELILY.get(), texture);
+		this.createStoneSoilPottedCross(YATMBlocks.POTTED_CANDLELILY.get(), texture);
+	} // end addCandlelily()
 	
 	private void addCarbum() 
 	{
@@ -912,7 +920,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	private void createCross(Block block, ResourceLocation texture) 
 	{
 		String name = getModelLocationNameFor(block);
-		this.models().cross(name, texture).renderType(CUTOUT_RENDER_TYPE);
+		this.models().cross(name, texture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
 		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
 		this.getVariantBuilder(block).forAllStates((bs) -> new ConfiguredModel[] {new ConfiguredModel(model)});
 	} // end createCross
@@ -922,10 +930,10 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		// String name = getModelLocationNameFor(block);
 		//this.models().getBuilder(name).parent(SPINNING_WHEEL_MODEL);//.texture("top", topTexture).texture("side", sideTexture);
 		//ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
-		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(SPINNING_WHEEL_MODEL);
+		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(YATMBlockStateProvider.SPINNING_WHEEL_MODEL);
 		this.getVariantBuilder(block).forAllStates((bs) -> 
 		{
-			return new ConfiguredModel[] { new ConfiguredModel(SPINNING_WHEEL_MODEL, rotationForDirectionFromNorth(bs.getValue(SpinningWheelBlock.FACING)).x, rotationForDirectionFromNorth(bs.getValue(SpinningWheelBlock.FACING)).y, false) };
+			return new ConfiguredModel[] { new ConfiguredModel(YATMBlockStateProvider.SPINNING_WHEEL_MODEL, rotationForDirectionFromNorth(bs.getValue(SpinningWheelBlock.FACING)).x, rotationForDirectionFromNorth(bs.getValue(SpinningWheelBlock.FACING)).y, false) };
 		});
 	} // end createSolarPanel()
 	
@@ -935,7 +943,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		String name = getModelLocationNameFor(block);
 		if(cutOut) 
 		{
-			this.models().cubeBottomTop(name, sideTexture, endTexture, endTexture).renderType(CUTOUT_RENDER_TYPE);
+			this.models().cubeBottomTop(name, sideTexture, endTexture, endTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
 		}
 		else
 		{
@@ -957,8 +965,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		if(cutOut) 
 		{
 			//this.models().cubeBottomTop(name, sideTexture, endTexture, endTexture)
-			this.models().getBuilder(name).parent(MANGROVE_ROOTS).texture("side", sideTexture).texture("top", endTexture)
-			.renderType(CUTOUT_RENDER_TYPE);
+			this.models().getBuilder(name).parent(YATMBlockStateProvider.MANGROVE_ROOTS).texture("side", sideTexture).texture("top", endTexture)
+			.renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
 		}
 		else
 		{

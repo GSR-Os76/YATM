@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/flower_pot_cross",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "dirt": "minecraft:block/stone",
+    "plant": "gsr_yatm:block/plant/candlelily/candlelily"
+  }
+}

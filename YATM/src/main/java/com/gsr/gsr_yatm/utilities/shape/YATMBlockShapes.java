@@ -47,6 +47,7 @@ public class YATMBlockShapes
 	
 	
 	
+	
 	public static final ICollisionVoxelShapeProvider DOWNWARD_LICHEN_LIKE = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape SHAPE = Block.box(0d, 0d, 0d, 16d, 1d, 16d);
@@ -57,6 +58,7 @@ public class YATMBlockShapes
 			return SHAPE;
 		} // end getShape()
 	};
+	
 	
 	
 	public static final ICollisionVoxelShapeProvider BASIN_OF_TEARS_VEGETATION = new ICollisionVoxelShapeProvider() 
@@ -80,6 +82,16 @@ public class YATMBlockShapes
 		} // end getShape()
 	};	
 	
+	public static final ICollisionVoxelShapeProvider CANDLELILY = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape SHAPE = Block.box(2d, 0d, 2d, 14d, 13d, 14d);
+
+		@Override
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		{
+			return SHAPE;
+		} // end getShape()
+	};
 	
 	public static final ICollisionVoxelShapeProvider CARBUM = new ICollisionVoxelShapeProvider() 
 	{
@@ -188,6 +200,7 @@ public class YATMBlockShapes
 			};
 		} // end getShape()
 	};	
+	
 	
 	public static final ICollisionVoxelShapeProvider PHANTASMAL_SHELF_FUNGUS = new ICollisionVoxelShapeProvider() 
 	{
@@ -333,7 +346,6 @@ public class YATMBlockShapes
 
 	
 	
-	
 	public static final ICollisionVoxelShapeProvider HANGING_POT_HOOK = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape TOP_PIECE = Block.box(6d, 15d, 6d, 10d, 16d, 10d);
@@ -346,7 +358,7 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 	
-	public static final ICollisionVoxelShapeProvider SAP_COLLECTOR_SHAPE = new ICollisionVoxelShapeProvider() 
+	public static final ICollisionVoxelShapeProvider SAP_COLLECTOR = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape SAP_COLLECTOR_SHAPE = Block.box(0d, 0d, 0d, 16d, 8d, 16d);
 
@@ -386,7 +398,7 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 	
-	public static final ICollisionVoxelShapeProvider BIOLER_SHAPE = new ICollisionVoxelShapeProvider()
+	public static final ICollisionVoxelShapeProvider BIOLER = new ICollisionVoxelShapeProvider()
 	{		
 		private static final VoxelShape SHAPE = Block.box(0d, 0d, 0d, 16d, 4d, 16d);
 
@@ -398,7 +410,7 @@ public class YATMBlockShapes
 
 	};
 	
-	public static final ICollisionVoxelShapeProvider BOILER_SHAPE = new ICollisionVoxelShapeProvider()
+	public static final ICollisionVoxelShapeProvider BOILER = new ICollisionVoxelShapeProvider()
 	{		
 		private static final VoxelShape BASE_SHAPE = Block.box(0d, 0d, 0d, 16d, 10d, 16d);
 		private static final VoxelShape HAS_TANK_SHAPE = Block.box(1d, 14d, 1d, 15d, 16d, 15d);
@@ -474,7 +486,7 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 		
-	public static final ICollisionVoxelShapeProvider STEEL_FLUID_CONDUIT_SHAPE = new ICollisionVoxelShapeProvider()
+	public static final ICollisionVoxelShapeProvider STEEL_FLUID_CONDUIT = new ICollisionVoxelShapeProvider()
 	{		
 		private static final VoxelShape CENTER_SHAPE = Block.box(6d, 6d, 6d, 10d, 10d, 10d);
 		
@@ -518,7 +530,7 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 
-	public static final ICollisionVoxelShapeProvider WIRE_SHAPE = new ICollisionVoxelShapeProvider()
+	public static final ICollisionVoxelShapeProvider WIRE = new ICollisionVoxelShapeProvider()
 	{
 		private static final VoxelShape CENTER_SHAPE = Block.box(7d, 7d, 7d, 9d, 9d, 9d);
 		private static final VoxelShape BRANCH_SHAPE_UP = Block.box(7d, 9d, 7d, 9d, 16d, 9d);
@@ -562,7 +574,7 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 
-	public static final ICollisionVoxelShapeProvider INSULATED_WIRE_SHAPE = new ICollisionVoxelShapeProvider()
+	public static final ICollisionVoxelShapeProvider INSULATED_WIRE = new ICollisionVoxelShapeProvider()
 	{
 		private static final VoxelShape CENTER_SHAPE = Block.box(6d, 6d, 6d, 10d, 10d, 10d);
 		private static final VoxelShape BRANCH_SHAPE_UP = Block.box(6d, 10d, 6d, 10d, 16d, 10d);
@@ -608,6 +620,6 @@ public class YATMBlockShapes
 
 	
 	
-	public static final BlockShapesProvider SAP_COLLECTOR_SHAPES = BlockShapesProvider.Builder.of(YATMBlockShapes.SAP_COLLECTOR_SHAPE).build();
+	public static final BlockShapesProvider SAP_COLLECTOR_SHAPES = BlockShapesProvider.Builder.of(YATMBlockShapes.SAP_COLLECTOR).build();
 
 } // end class

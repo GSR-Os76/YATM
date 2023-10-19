@@ -1,4 +1,4 @@
-// 1.20.1	2023-10-17T22:08:31.6379581	Loot Tables
+// 1.20.1	2023-10-19T00:47:12.7573656	Loot Tables
 c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
 e7fbd17d28377f6d02cdd2df79fd21c9ce25491d data/gsr_yatm/loot_tables/blocks/aurum_deminutus.json
@@ -10,6 +10,7 @@ a4d14960a84b6ce7b0fdcdbef376f87ef85cd2d5 data/gsr_yatm/loot_tables/blocks/bleach
 abdc35abae336bd062d1fb965dfc2007984cac53 data/gsr_yatm/loot_tables/blocks/bleached_ice_coral_young.json
 ab9bc25d5861be53d507195b07c96aa73bdd3138 data/gsr_yatm/loot_tables/blocks/blue_shulkwart.json
 c4b24e2a0b33242c7b6b3d0362ccd147702e7267 data/gsr_yatm/loot_tables/blocks/brown_shulkwart.json
+37461550cf75cd70de129354a2d6fa8900785939 data/gsr_yatm/loot_tables/blocks/candlelily.json
 090b69f68ff96bcbc8a97a4b8bd089094d20c448 data/gsr_yatm/loot_tables/blocks/carbum.json
 f2d8023c175dde7d904bdc776884815838ffe265 data/gsr_yatm/loot_tables/blocks/carcass_root_foliage.json
 6ed3ffb529fc006173eb763634dff9ef80fb5594 data/gsr_yatm/loot_tables/blocks/carcass_root_rooted_dirt.json
@@ -52,6 +53,7 @@ abaf400b5fefa8b4dd3f5514f468c0a1294c2654 data/gsr_yatm/loot_tables/blocks/potted
 292f00552333166ed52ff44f6204b4604389640b data/gsr_yatm/loot_tables/blocks/potted_bleached_ice_coral_old.json
 6214936b7e3178a824ece3885fcd2caa411e6f88 data/gsr_yatm/loot_tables/blocks/potted_bleached_ice_coral_polyp.json
 bc6118908bcadc52d4bb20966dcba63256209fce data/gsr_yatm/loot_tables/blocks/potted_bleached_ice_coral_young.json
+b6a789acd965655ebaf0c0c3230e27eb37947202 data/gsr_yatm/loot_tables/blocks/potted_candlelily.json
 b9e36cd114645bdbc82ed60a5c500b2f498580e1 data/gsr_yatm/loot_tables/blocks/potted_carbum.json
 f783d5cbbec1d684af81c483dcd0d57bde68e185 data/gsr_yatm/loot_tables/blocks/potted_carcass_root_foliage.json
 79e9c4f37351357885c7ee3a6bba130a67b74b09 data/gsr_yatm/loot_tables/blocks/potted_ferrum.json

@@ -1,10 +1,11 @@
-// 1.20.1	2023-10-18T16:18:18.1725752	Tags for minecraft:block mod id gsr_yatm
+// 1.20.1	2023-10-19T00:40:20.3577047	Tags for minecraft:block mod id gsr_yatm
 ea459db540b319f4bdead7b7f1142fc238c09a8e data/forge/tags/blocks/cactuses.json
 17151221b4b3c6710866d2fc3be4e13ebe8bd72c data/forge/tags/blocks/needs_wood_tool.json
 ae063a18d6a78c1df2e70286fb1984ffc87c6b2d data/forge/tags/blocks/netherrack.json
 07af26afbfb24573997b6045b1603d54792502cf data/forge/tags/blocks/ores.json
 8df48868a50573d41fa8e1ed8156c228f163ea27 data/forge/tags/blocks/ores_in_ground/deepslate.json
 3c80c57e657efa6316228e6dfac241b7f41aead1 data/forge/tags/blocks/ores_in_ground/stone.json
+07af26afbfb24573997b6045b1603d54792502cf data/forge/tags/blocks/ore_rates/singular.json
 22817fc3a29127b1c1278ea16d671d7c02dbdeb9 data/forge/tags/blocks/rooted_dirt.json
 1da600bf13ef307c5b8543cdcc0e0283f57172df data/forge/tags/blocks/soul_soil.json
 d667dcc380181ca7932db9dd892d74671f6a63df data/forge/tags/blocks/storage_blocks.json
@@ -27,6 +28,8 @@ eaf726d0ca999b963fa5b018a13e9c7f4b2e50cf data/gsr_yatm/tags/blocks/mediums/aeria
 c7cf498dd11b4becfc703ca6d155b77406279d34 data/gsr_yatm/tags/blocks/mediums/basin_of_tears_flowers_can_grow_on.json
 8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/basin_of_tears_vegetation_can_grow_in.json
 c7cf498dd11b4becfc703ca6d155b77406279d34 data/gsr_yatm/tags/blocks/mediums/basin_of_tears_vegetation_can_grow_on.json
+8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/candlelily_can_grow_in.json
+03df3b0b6d8e637f2243a9fae303db9978522cf8 data/gsr_yatm/tags/blocks/mediums/candlelily_can_grow_on.json
 61064ec33852a4a02609c7e6edc2de09c480a0f8 data/gsr_yatm/tags/blocks/mediums/carbum_can_grow_on.json
 9fe0ec2afc230db7cba58c95080a3787e76de587 data/gsr_yatm/tags/blocks/mediums/carcass_root_can_grow_on.json
 69c396cb051bbe9a130e6979b67065e5041b179d data/gsr_yatm/tags/blocks/mediums/carcass_root_rooted_dirt_roots_from.json
@@ -43,7 +46,7 @@ f738b99c239d8fa447dd0744af550624426fb4a0 data/gsr_yatm/tags/blocks/mediums/fire_
 a211ef41389ec483dc846f2c181f509c5bd2aff3 data/gsr_yatm/tags/blocks/mediums/rubber_trees_naturally_grow_on.json
 52798cc4a1f5aa2b146f297b335ce7f7dca3ed89 data/gsr_yatm/tags/blocks/mediums/shulkwart_grow_on.json
 511d1f627f3a185dd2f417b231ab14a74d06dc1f data/gsr_yatm/tags/blocks/mediums/soul_afflicted_rubber_trees_naturally_grow_on.json
-c651bb8413acd409c2a842454cce61e44e4517a2 data/gsr_yatm/tags/blocks/mediums/soul_afflicting_blocks.json
+df3bc0eb184ddd65ad444f6cec2583eaf31793a4 data/gsr_yatm/tags/blocks/mediums/soul_afflicting_blocks.json
 08add7135753eceb099ab3017af40369af7d5991 data/gsr_yatm/tags/blocks/mediums/veriegated_cactus_can_grow_on.json
 205d34972c106978555918bdbb34363a9a669d3e data/gsr_yatm/tags/blocks/phantasmal_shelf_fungi_spread_to.json
 dbc7ff55315393ed7b1d401f282d24be3c0e6096 data/gsr_yatm/tags/blocks/rubber_planks.json
@@ -52,12 +55,13 @@ fdecd6c72772c252a2b8dcc095c7aa6e1685f4d7 data/gsr_yatm/tags/blocks/rubber_tree_l
 a91b872f5cad95f7c8a6412565ffebdc7690bbfe data/gsr_yatm/tags/blocks/sap_collectors.json
 501277475e7f110a254450a8f21524225b471230 data/gsr_yatm/tags/blocks/soul_afflicted_rubber_planks.json
 ab467479a645246538e49c55790b101c51194caa data/gsr_yatm/tags/blocks/soul_afflicted_rubber_tree_logs.json
+abe2c6338432532e82ba82f66236e62b0cc227a2 data/gsr_yatm/tags/blocks/soul_ground.json
 82099984e0c9ea1f3273cdc2edf12e376dacd6db data/gsr_yatm/tags/blocks/soul_rubber_tree_blocks.json
 cabad7018263250a65993dc1bfafd32b2163b2f7 data/gsr_yatm/tags/blocks/unoxidized_copper_blocks.json
 8cf2e7aea7db23031bbd316a2c327021347911b0 data/minecraft/tags/blocks/climbable.json
 952606965aea7b2cabce0eab939614887720ae6a data/minecraft/tags/blocks/dirt.json
 ae88bd8aabf02699bb3fdbf65bd64fc377fbc780 data/minecraft/tags/blocks/flowers.json
-83bbb7d24591be0aa7d8a48e041f3d32b2b9125f data/minecraft/tags/blocks/flower_pots.json
+47203a87efbaad0a1cf06e0f987106361fd0bcaa data/minecraft/tags/blocks/flower_pots.json
 205d34972c106978555918bdbb34363a9a669d3e data/minecraft/tags/blocks/logs.json
 1502e7352c79e987a23ba14a77d87817c5e89ff2 data/minecraft/tags/blocks/logs_that_burn.json
 08707915fa7733071e44172526005a3134852755 data/minecraft/tags/blocks/mineable/axe.json

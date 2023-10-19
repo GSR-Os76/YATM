@@ -105,6 +105,9 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.BASIN_OF_TEARS_FLORAL.get(), "Crying Flower");	
 		this.add(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), "Crying Plant Vegetation");
 		
+		this.add(YATMBlocks.CANDLELILY.get(), "Candlelily");		
+		this.add(YATMBlocks.POTTED_CANDLELILY.get(), "Potted Candlelily");
+		
 		this.add(YATMBlocks.CARBUM.get(), "Carbum");		
 		this.add(YATMBlocks.POTTED_CARBUM.get(), "Potted Carbum");
 		
