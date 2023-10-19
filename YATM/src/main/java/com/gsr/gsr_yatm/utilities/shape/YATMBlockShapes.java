@@ -189,7 +189,6 @@ public class YATMBlockShapes
 		} // end getShape()
 	};	
 	
-	
 	public static final ICollisionVoxelShapeProvider PHANTASMAL_SHELF_FUNGUS = new ICollisionVoxelShapeProvider() 
 	{
 		private static final IVoxelShapeBuilder SMALL = IVoxelShapeBuilder.MutableWrapper.of((VoxelShapeBuilder
@@ -254,6 +253,17 @@ public class YATMBlockShapes
 				};
 				default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(PhantasmalShelfFungiBlock.AGE));
 			};
+		} // end getShape()
+	};
+	
+	public static final ICollisionVoxelShapeProvider PITCHER_CLUSTER = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape SHAPE = Block.box(2d, 0d, 2d, 14d, 10d, 14d);
+
+		@Override
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		{
+			return SHAPE;
 		} // end getShape()
 	};
 	
@@ -376,9 +386,21 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 	
+	public static final ICollisionVoxelShapeProvider BIOLER_SHAPE = new ICollisionVoxelShapeProvider()
+	{		
+		private static final VoxelShape SHAPE = Block.box(0d, 0d, 0d, 16d, 4d, 16d);
+
+		@Override
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		{			
+			return SHAPE;
+		} // end getShape()
+
+	};
+	
 	public static final ICollisionVoxelShapeProvider BOILER_SHAPE = new ICollisionVoxelShapeProvider()
 	{		
-		private static final VoxelShape BASE_SHAPE = Block.box(0d, 0d, 0d, 16d, 14d, 16d);
+		private static final VoxelShape BASE_SHAPE = Block.box(0d, 0d, 0d, 16d, 10d, 16d);
 		private static final VoxelShape HAS_TANK_SHAPE = Block.box(1d, 14d, 1d, 15d, 16d, 15d);
 
 		@Override
@@ -394,7 +416,6 @@ public class YATMBlockShapes
 
 			return shape;
 		} // end getShape()
-
 	};
 
 	public static final ICollisionVoxelShapeProvider SOLAR_PANEL = new ICollisionVoxelShapeProvider() 
@@ -407,7 +428,6 @@ public class YATMBlockShapes
 			return SOLAR_PANEL;
 		} // end getShape()
 	};
-	
 	
 	public static final ICollisionVoxelShapeProvider CONDUIT_VINES = new ICollisionVoxelShapeProvider() 
 	{
@@ -453,7 +473,6 @@ public class YATMBlockShapes
 			return result;
 		} // end getShape()
 	};
-	
 		
 	public static final ICollisionVoxelShapeProvider STEEL_FLUID_CONDUIT_SHAPE = new ICollisionVoxelShapeProvider()
 	{		

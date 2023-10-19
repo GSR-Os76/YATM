@@ -5,8 +5,10 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
+import com.gsr.gsr_yatm.block.ShapeBlock;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.utilities.BlockUtilities;
+import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -19,16 +21,16 @@ import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.BonemealableBlock;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class PitcherClusterBlock extends Block implements IYATMPlantableBlock, BonemealableBlock
+public class PitcherClusterBlock extends ShapeBlock implements IYATMPlantableBlock, BonemealableBlock
 {
-
-	public PitcherClusterBlock(@NotNull Properties properties)
+	
+	public PitcherClusterBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
-		super(Objects.requireNonNull(properties));
+		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape));
 	} // end constructor
+	
+	
 
-	
-	
 	@Override
 	public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos position)
 	{
