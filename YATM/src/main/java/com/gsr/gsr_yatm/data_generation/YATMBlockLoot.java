@@ -17,6 +17,7 @@ import com.gsr.gsr_yatm.block.plant.folium.FoliumBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
 import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
 import com.gsr.gsr_yatm.block.plant.prismarine_crystal_moss.PrismarineCrystalMossBlock;
+import com.gsr.gsr_yatm.block.plant.vicum.VicumBlock;
 import com.gsr.gsr_yatm.block.plant.vine.OnceFruitVineBodyBlock;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
@@ -170,6 +171,9 @@ public class YATMBlockLoot extends VanillaBlockLoot
 
 		this.dropSelf(YATMBlocks.VARIEGATED_CACTUS.get());
 		this.dropPottedContents(YATMBlocks.POTTED_VARIEGATED_CACTUS.get());
+		
+		this.add(YATMBlocks.VICUM.get(), this.createVicumTable());		
+		this.dropPottedContents(YATMBlocks.POTTED_VICUM.get());
 		
 		
 		
@@ -419,7 +423,7 @@ public class YATMBlockLoot extends VanillaBlockLoot
 				.when(LootItemBlockStatePropertyCondition
 						.hasBlockStateProperties(YATMBlocks.CARBUM.get())
 						.setProperties(StatePropertiesPredicate.Builder.properties()
-								.hasProperty(FerrumBlock.AGE, age)));
+								.hasProperty(CarbumBlock.AGE, age)));
 		
 		
 		
@@ -513,7 +517,6 @@ public class YATMBlockLoot extends VanillaBlockLoot
 								)
 						);
 	} // end createFireEaterLilyTable()
-	
 	
 	protected @NotNull LootTable.Builder createFoliumTable() 
 	{
@@ -694,4 +697,36 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		return this.applyExplosionDecay(shulkwart, LootTable.lootTable().withPool(LootPool.lootPool().when(dropConditions).add(LootItem.lootTableItem(horn).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0f, 4.0f))).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 2)))));
 	} // end CreateShulkwartTable()
 	
+	// TODO, this and createCarbumTable and createFerrumTable are extremely similar and could be combined together
+	protected @NotNull LootTable.Builder createVicumTable() 
+	{
+		Function<Integer, LootPool.Builder> forAge = (age) -> LootPool.lootPool()
+				.add(LootItem.lootTableItem(YATMItems.VICUM_LEAF.get())
+					.apply(SetItemCountFunction.setCount(
+							ConstantValue.exactly(age == 7 ? 4 : (age / 2)))
+						  )
+					)
+				.when(LootItemBlockStatePropertyCondition
+						.hasBlockStateProperties(YATMBlocks.VICUM.get())
+						.setProperties(StatePropertiesPredicate.Builder.properties()
+								.hasProperty(VicumBlock.AGE, age)));
+		
+		
+		
+		LootTable.Builder table = LootTable.lootTable()
+				.withPool(
+						LootPool.lootPool()
+						.add(LootItem.lootTableItem(YATMItems.VICUM_MERISTEM.get())
+								.apply(
+										SetItemCountFunction
+										.setCount(ConstantValue.exactly(1.0f))
+										)
+								)
+						);
+		for(Integer i : VicumBlock.AGE.getAllValues().map((i) -> i.value()).toList()) 
+		{
+			table = table.withPool(forAge.apply(i));
+		}		
+		return table;				
+	} // end createVicumTable()
 } // end class

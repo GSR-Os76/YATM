@@ -13,6 +13,7 @@ import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
@@ -37,7 +38,8 @@ public class EssenceOfSoulsBottleItem extends DrinkableFluidBottleItem
 			(c) -> EssenceOfSoulsBottleItem.tryFormVerticalTwoBlock(c, 
 					YATMBlockTags.FORMS_FOLIUM_HIGHER_KEY, 
 					YATMBlockTags.FORMS_FOLIUM_LOWER_KEY, 
-					YATMItems.FOLIUM_RHIZOME.get())
+					YATMItems.FOLIUM_RHIZOME.get()),
+			EssenceOfSoulsBottleItem::tryFormVicum
 			);
 	
 	public EssenceOfSoulsBottleItem(@NotNull Properties properties, @NotNull  Supplier<? extends Fluid> fluid, int useDuration)
@@ -74,7 +76,6 @@ public class EssenceOfSoulsBottleItem extends DrinkableFluidBottleItem
 		Level level = context.getLevel();
 		BlockPos position = context.getClickedPos();
 		BlockState state = level.getBlockState(position);
-//		RandomSource random = level.getRandom();
 		boolean succeeded = false;
 		
 		// TODO, could make these less repetitive
@@ -124,7 +125,7 @@ public class EssenceOfSoulsBottleItem extends DrinkableFluidBottleItem
 					}
 					held.shrink(1);
 				}
-				// TODO, probably play particles and sounds
+				// TODO, maybe play particles
 				InventoryUtilities.drop(level, position, new ItemStack(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get()));
 			}
 			return InteractionResult.sidedSuccess(level.isClientSide);
@@ -173,7 +174,7 @@ public class EssenceOfSoulsBottleItem extends DrinkableFluidBottleItem
 					}
 					held.shrink(1);
 				}
-				// TODO, probably play particles and sounds
+				// TODO, maybe play particles
 				InventoryUtilities.drop(level, position, new ItemStack(YATMItems.FERRUM_ROOTSTOCK.get()));
 			}
 			return InteractionResult.sidedSuccess(level.isClientSide);
@@ -222,7 +223,7 @@ public class EssenceOfSoulsBottleItem extends DrinkableFluidBottleItem
 					}
 					held.shrink(1);
 				}
-				// TODO, probably play particles and sounds
+				// TODO, maybe play particles
 				InventoryUtilities.drop(level, position, new ItemStack(YATMItems.CARBUM_MERISTEM.get()));
 			}
 			return InteractionResult.sidedSuccess(level.isClientSide);
@@ -291,7 +292,7 @@ public class EssenceOfSoulsBottleItem extends DrinkableFluidBottleItem
 					}
 					held.shrink(1);
 				}
-				// TODO, probably play particles and sounds
+				// TODO, maybe play particles
 				InventoryUtilities.drop(level, position, new ItemStack(result));
 			}
 			return InteractionResult.sidedSuccess(level.isClientSide);
@@ -299,5 +300,78 @@ public class EssenceOfSoulsBottleItem extends DrinkableFluidBottleItem
 		
 		return InteractionResult.PASS;
 	} // end tryFormAurumDeminutus()
+	
+	public static InteractionResult tryFormVicum(@NotNull UseOnContext context) 
+	{
+		ItemStack held = context.getItemInHand();
+		if (!held.is(YATMItemTags.GOLEM_LIKE_PLANT_FORMERS))
+		{
+			return InteractionResult.PASS;
+		}
+		
+		Level level = context.getLevel();
+		BlockPos position = context.getClickedPos();
+		BlockState state = level.getBlockState(position);
+		boolean succeeded = false;
+		
+		if(state.is(YATMBlockTags.FORMS_VICUM_OUTER_KEY)) 
+		{
+			BlockPos.MutableBlockPos mbpos = new BlockPos.MutableBlockPos();
+			for(Direction d : Direction.allShuffled(level.random)) 
+			{
+				if(level.getBlockState(mbpos.set(position.relative(d))).is(YATMBlockTags.FORMS_VICUM_INNER_KEY)) 
+				{
+					succeeded = true;
+					for(Direction d2 : Direction.allShuffled(level.random)) 
+					{
+						if(!level.getBlockState(mbpos.relative(d2)).is(YATMBlockTags.FORMS_VICUM_OUTER_KEY)) 
+						{
+							succeeded = false;
+							break;
+						}
+					}
+					if(succeeded) 
+					{
+						if(!level.isClientSide) 
+						{
+							level.setBlock(mbpos, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+							level.playSound((Entity) null, mbpos, SoundEvents.SOUL_ESCAPE, SoundSource.BLOCKS, 6.0f, 6.0f);
+							for(Direction d2 : Direction.allShuffled(level.random)) 
+							{
+								level.setBlock(mbpos.relative(d2), Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
+								level.playSound((Entity) null, mbpos.relative(d2), SoundEvents.SOUL_ESCAPE, SoundSource.BLOCKS, 6.0f, 6.0f);
+							}
+						}
+						break;
+					}
+				}
+			}
+		}
+		
+		if (succeeded)
+		{
+			if (!level.isClientSide)
+			{
+				Player player = context.getPlayer();				
+				if(player == null || !player.getAbilities().instabuild) 
+				{
+					if(held.hasCraftingRemainingItem())
+					{
+						if (!(player != null && player.getInventory().add(held.getCraftingRemainingItem())))
+						{
+							InventoryUtilities.drop(level, context.getClickedPos(), held.getCraftingRemainingItem());
+						}
+					}
+					held.shrink(1);
+				}
+				// TODO, maybe play particles
+				InventoryUtilities.drop(level, position, new ItemStack(YATMItems.VICUM_MERISTEM.get()));
+			}
+			
+			return InteractionResult.sidedSuccess(level.isClientSide);
+		}
+		
+		return InteractionResult.PASS;
+	} // end tryFormFerrum()
 	
 } // end class

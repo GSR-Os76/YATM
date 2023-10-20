@@ -1,4 +1,4 @@
-// 1.20.1	2023-10-19T00:47:12.7659265	Item Models: gsr_yatm
+// 1.20.1	2023-10-20T00:16:04.0404007	Item Models: gsr_yatm
 39dc65663f22bc3413323e63119c165dc4f51c76 assets/gsr_yatm/models/item/aurum_deminutus_fiddle_head.json
 4bab78a47a4fc45a258b74c9012f61de899aee93 assets/gsr_yatm/models/item/aurum_deminutus_frond.json
 b860c72785d969dab4933b80dd6652fa794539bf assets/gsr_yatm/models/item/aurum_fan.json
@@ -71,4 +71,6 @@ d69d2a34a66a87ffa40c333b4044ff722cef8e98 assets/gsr_yatm/models/item/spider_vine
 0a8e075b8b19dcf12c8c2fc3a2f4f9ef2001989e assets/gsr_yatm/models/item/star_seed.json
 45642c152e1ddd3e92774129538f19cf2c8a612d assets/gsr_yatm/models/item/star_sprout.json
 f5f9b01be8343348bb952a05487ec486dbb56059 assets/gsr_yatm/models/item/tear_leaf.json
+f8283d95e59e845aeea8fa3fbf9e8574208478cf assets/gsr_yatm/models/item/vicum_leaf.json
+07372a855224c45e2e863306276760ddb9e55e82 assets/gsr_yatm/models/item/vicum_meristem.json
 09cdc82ec961c1b2f251415a781994dfe62a0a86 assets/gsr_yatm/models/item/wood_pulp.json

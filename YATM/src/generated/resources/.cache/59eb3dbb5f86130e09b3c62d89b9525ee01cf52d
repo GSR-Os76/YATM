@@ -1,4 +1,4 @@
-// 1.20.1	2023-10-19T00:47:12.7573656	Loot Tables
+// 1.20.1	2023-10-20T00:16:04.0357507	Loot Tables
 c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
 e7fbd17d28377f6d02cdd2df79fd21c9ce25491d data/gsr_yatm/loot_tables/blocks/aurum_deminutus.json
@@ -62,6 +62,7 @@ f783d5cbbec1d684af81c483dcd0d57bde68e185 data/gsr_yatm/loot_tables/blocks/potted
 1495be7ec03a2ad34b031bf151042d6df73910ca data/gsr_yatm/loot_tables/blocks/potted_rubber_meristem.json
 f8ab2b776accbe0f883829583c371794f98ca399 data/gsr_yatm/loot_tables/blocks/potted_soul_afflicted_rubber_meristem.json
 92d1045a89052f81cd93b2d9f27484025b389129 data/gsr_yatm/loot_tables/blocks/potted_variegated_cactus.json
+906b5de3ae0fb8463c0370db4732972da5dc1057 data/gsr_yatm/loot_tables/blocks/potted_vicum.json
 92a698682b1a073fe26e5ce5026c7fb712530e91 data/gsr_yatm/loot_tables/blocks/prismarine_crystal_moss.json
 a3c1f58b7e903792d80542307c1a0e99b4aada4e data/gsr_yatm/loot_tables/blocks/purple_shulkwart.json
 afc1bea35020ea4ccc4a1325eb892573210ac646 data/gsr_yatm/loot_tables/blocks/red_shulkwart.json
@@ -133,5 +134,6 @@ f87ea71e51838e9d7ca7983b53bf36a89216cc05 data/gsr_yatm/loot_tables/blocks/steel_
 10ba5c51e8e2e053360346f0e40e1e5614088907 data/gsr_yatm/loot_tables/blocks/suns_complement_battery_solar_panel.json
 f65f5e32ef63ad3fcfe2e4ff59c4ed88d4c94ac2 data/gsr_yatm/loot_tables/blocks/suns_complement_solar_panel.json
 7f43019907fd0bd0fed5b540663e4c473a7012d2 data/gsr_yatm/loot_tables/blocks/variegated_cactus.json
+6b87c4865cb37d9aee1831f059a193f8bc91bfed data/gsr_yatm/loot_tables/blocks/vicum.json
 1386817c345d6d5cdf0722e43487eeaa1ea41e40 data/gsr_yatm/loot_tables/blocks/white_shulkwart.json
 b52f5c04b3096dce49ef3917806b26e5c41b2f5d data/gsr_yatm/loot_tables/blocks/yellow_shulkwart.json

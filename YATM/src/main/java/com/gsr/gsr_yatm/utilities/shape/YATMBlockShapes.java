@@ -13,6 +13,7 @@ import com.gsr.gsr_yatm.block.plant.folium.FoliumBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
 import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
+import com.gsr.gsr_yatm.block.plant.vicum.VicumBlock;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 
 import net.minecraft.core.BlockPos;
@@ -199,8 +200,7 @@ public class YATMBlockShapes
 				default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(IceCoralBlock.AGE));
 			};
 		} // end getShape()
-	};	
-	
+	};		
 	
 	public static final ICollisionVoxelShapeProvider PHANTASMAL_SHELF_FUNGUS = new ICollisionVoxelShapeProvider() 
 	{
@@ -344,7 +344,26 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 
-	
+	public static final ICollisionVoxelShapeProvider VICUM = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape MERISTEM = Block.box(4d, 0d, 4d, 12d, 5d, 12d);
+		private static final VoxelShape YOUNG = Block.box(3d, 0d, 3d, 13d, 8d, 13d);
+		private static final VoxelShape ADOLESCENT = Block.box(1d, 0d, 1d, 15d, 12d, 15d);
+		private static final VoxelShape OLD = Block.box(0d, 0d, 0d, 16d, 13d, 16d);
+
+		@Override
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext collisionContext)
+		{
+			return switch(state.getValue(VicumBlock.AGE)) 
+			{
+				case 0, 1 -> MERISTEM;
+				case 2, 3 -> YOUNG;
+				case 4, 5, 6 -> ADOLESCENT;
+				case 7 -> OLD;
+				default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(VicumBlock.AGE));
+			};
+		} // end getShape()
+	};	
 	
 	public static final ICollisionVoxelShapeProvider HANGING_POT_HOOK = new ICollisionVoxelShapeProvider() 
 	{

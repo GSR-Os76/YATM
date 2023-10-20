@@ -60,7 +60,7 @@ public class VariegatedCactusBlock extends CactusBlock implements IYATMPlantable
 		{
 			int cactusMaxHeight = 3;
 			int cactusBelow;
-			for (cactusBelow = 1; level.getBlockState(position.below(cactusBelow)).is(YATMBlockTags.FORGE_CACTUSES_KEY) && cactusBelow <= cactusMaxHeight; ++cactusBelow);
+			for (cactusBelow = 1; level.getBlockState(position.below(cactusBelow)).is(YATMBlockTags.FORGE_CACTUS_KEY) && cactusBelow <= cactusMaxHeight; ++cactusBelow);
 
 			if (cactusBelow < cactusMaxHeight)
 			{
@@ -92,7 +92,7 @@ public class VariegatedCactusBlock extends CactusBlock implements IYATMPlantable
 	@Override
 	public boolean canSustainPlant(BlockState state, BlockGetter world, BlockPos pos, Direction facing, IPlantable plantable)
 	{
-		return super.canSustainPlant(state, world, pos, facing, plantable) || state.is(YATMBlockTags.FORGE_CACTUSES_KEY);
+		return super.canSustainPlant(state, world, pos, facing, plantable) || state.is(YATMBlockTags.FORGE_CACTUS_KEY);
 	} // end canSustainPlant
 
 

@@ -174,6 +174,11 @@ public class YATMItems
 	
 	public static final RegistryObject<BlockItem> VARIEGATED_CACTUS_ITEM = generalTabEnqueue(ITEMS.register("variegated_cactus", () -> new BlockItem(YATMBlocks.VARIEGATED_CACTUS.get(), new Item.Properties())));
 	
+	public static final RegistryObject<ItemNameBlockItem> VICUM_MERISTEM = generalTabEnqueue(ITEMS.register("vicum_meristem", () -> new ItemNameBlockItem(YATMBlocks.VICUM.get(), new Item.Properties())));
+	public static final RegistryObject<Item> VICUM_LEAF = generalTabEnqueue(ITEMS.register("vicum_leaf", () -> new Item(new Item.Properties())));
+	
+	
+	
 	public static final RegistryObject<Item> ENDOTHERMIC_TISSUE = /* generalTabEnqueue */(ITEMS.register("endothermic_tissue", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> EXOTHEMIC_GLAND = /* generalTabEnqueue */(ITEMS.register("exothermic_gland", () -> new Item(new Item.Properties())));
 	

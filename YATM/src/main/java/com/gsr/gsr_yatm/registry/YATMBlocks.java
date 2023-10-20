@@ -51,6 +51,7 @@ import com.gsr.gsr_yatm.block.plant.tree.TappedLogBlock;
 import com.gsr.gsr_yatm.block.plant.tree.rubber_bush.RubberBushSaplingBlock;
 import com.gsr.gsr_yatm.block.plant.tree.soul_afflicted_rubber_bush.SoulAfflictedRubberBushSaplingBlock;
 import com.gsr.gsr_yatm.block.plant.variegated_cactus.VariegatedCactusBlock;
+import com.gsr.gsr_yatm.block.plant.vicum.VicumBlock;
 import com.gsr.gsr_yatm.block.plant.vine.OnceFruitVineBodyBlock;
 import com.gsr.gsr_yatm.block.plant.vine.VineMeristemBlock;
 import com.gsr.gsr_yatm.block.sign.YATMCeilingHangingSignBlock;
@@ -247,6 +248,9 @@ public class YATMBlocks
 	public static final RegistryObject<VariegatedCactusBlock> VARIEGATED_CACTUS = BLOCKS.register("variegated_cactus", () -> new VariegatedCactusBlock(YATMBlockProperties.CACTUS, () -> Blocks.CACTUS.defaultBlockState()));
 	public static final RegistryObject<FlowerPotBlock> POTTED_VARIEGATED_CACTUS = BLOCKS.register("potted_variegated_cactus", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.VARIEGATED_CACTUS.get(), YATMBlockProperties.FLOWER_POT));
 
+	public static final RegistryObject<VicumBlock> VICUM = BLOCKS.register("vicum", () -> new VicumBlock(YATMBlockProperties.VICUM, YATMBlockShapes.VICUM));
+	public static final RegistryObject<FlowerPotBlock> POTTED_VICUM = BLOCKS.register("potted_vicum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.VICUM.get(), YATMBlockProperties.FLOWER_POT));
+
 	
 	
 	private static final OnceFruitVineBodyBlock getSpiderVine()
@@ -380,6 +384,7 @@ public class YATMBlocks
 		minecraftFlowerPot.addPlant(YATMBlocks.BLEACHED_ICE_CORAL_YOUNG.getKey().location(), YATMBlocks.POTTED_BLEACHED_ICE_CORAL_YOUNG);
 		minecraftFlowerPot.addPlant(YATMBlocks.BLEACHED_ICE_CORAL_POLYP.getKey().location(), YATMBlocks.POTTED_BLEACHED_ICE_CORAL_POLYP);
 		minecraftFlowerPot.addPlant(YATMBlocks.VARIEGATED_CACTUS.getKey().location(), YATMBlocks.POTTED_VARIEGATED_CACTUS);
+		minecraftFlowerPot.addPlant(YATMBlocks.VICUM.getKey().location(), YATMBlocks.POTTED_VICUM);
 		
 	} // end addFlowersToPots()
 	

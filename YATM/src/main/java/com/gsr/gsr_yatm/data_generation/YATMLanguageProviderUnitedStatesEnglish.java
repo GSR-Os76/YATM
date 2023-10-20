@@ -168,6 +168,9 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.VARIEGATED_CACTUS.get(), "Variegated Cactus");
 		this.add(YATMBlocks.POTTED_VARIEGATED_CACTUS.get(), "Potted Variegated Cactus");
 		
+		this.add(YATMBlocks.VICUM.get(), "Vicum");
+		this.add(YATMBlocks.POTTED_VICUM.get(), "Potted Vicum");
+		
 		
 		
 		this.add(YATMBlocks.HANGING_POT_HOOK.get(), "Hanging Pot");
@@ -279,7 +282,11 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.GREEN_SHULKWART_HORN.get(), "Green Shulkwart Horn");
 		this.add(YATMItems.RED_SHULKWART_HORN.get(), "Red Shulkwar Hornt");
 		this.add(YATMItems.BLACK_SHULKWART_HORN.get(), "Black Shulkwart Horn");
+		
 		this.add(YATMItems.SPIDER_VINE_FRUITS.get(), "Branch Of Glaring Fruit");
+		
+		this.add(YATMItems.VICUM_MERISTEM.get(), "Vicum Meristem");
+		this.add(YATMItems.VICUM_LEAF.get(), "Vicum Leaf");
 		
 //		this.add(YATMItems.STEEL_FLUID_EXCHANGER.get(), "Steel Fluid Exchanger");
 //		

@@ -29,6 +29,7 @@ import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
 import com.gsr.gsr_yatm.block.plant.prismarine_crystal_moss.PrismarineCrystalMossBlock;
 import com.gsr.gsr_yatm.block.plant.tree.SelfLayeringSaplingBlock;
 import com.gsr.gsr_yatm.block.plant.tree.TappedLogBlock;
+import com.gsr.gsr_yatm.block.plant.vicum.VicumBlock;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.utilities.DirectionUtil;
@@ -168,7 +169,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addShulkwarts();
 		this.addSpiderVine();
 		this.addVariegatedCactus();
-		
+		this.addVicum();
 		
 		this.createBlock(YATMBlocks.HANGING_POT_HOOK.get(), YATMBlockStateProvider.HANGING_POT_HOOK_MODEL);
 		this.createBlock(YATMBlocks.DEFAULT_HANGING_POT_SUPPORT_CHAINS.get(), YATMBlockStateProvider.DEFAULT_HANGING_POT_SUPPORT_CHAINS_MODEL);
@@ -381,7 +382,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/folium/old_lower"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/folium/old_higher"));
 		this.createStoneSoilPottedCross(YATMBlocks.POTTED_FOLIUM.get(), adolescentTexture);
-	} // end addAurumDeminutus()
+	} // end addFolium()
 	
 	private void addIceCoral()
 	{
@@ -441,7 +442,16 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createPottedCactus(YATMBlocks.POTTED_VARIEGATED_CACTUS.get(), topTexture, sideTexture);
 	} // end addVariegatedCactus()
 	
-	
+	private void addVicum()
+	{
+		ResourceLocation oldTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/vicum/old");
+		this.createVicum(YATMBlocks.VICUM.get(), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/vicum/meristem"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/vicum/young"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/vicum/adolescent"),
+				oldTexture);
+		this.createStoneSoilPottedCross(YATMBlocks.POTTED_VICUM.get(), oldTexture);
+	} // end addVicum()
 	
 	private void addHeatSinks() 
 	{
@@ -892,6 +902,28 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(horn).toString()).parent(SHULKWART_HORN).texture("0", finalTexture);
 
 	} // end createShulkwart()
+	
+	private void createVicum(@NotNull VicumBlock block, 
+			@NotNull ResourceLocation meristemTexture,
+			@NotNull ResourceLocation youngTexture, 
+			@NotNull ResourceLocation adolescentTexture,
+			@NotNull ResourceLocation oldTexture) 
+	{
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
+		String nameM = name + "_meristem";
+		String nameY = name + "_young";
+		String nameA = name + "_adolescent";
+		String nameO = name + "_old";
+		this.models().cross(nameM, meristemTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameY, youngTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameA, adolescentTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameO, oldTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		ModelFile modelM = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameM));
+		ModelFile modelY = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameY));
+		ModelFile modelA = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameA));
+		ModelFile modelO = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameO));
+		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forEightAge(bs, modelM, modelM, modelY, modelY, modelA, modelA, modelA, modelO));		
+	} // end createCarbum()
 	
 	private void createLichenLike(Block block, ResourceLocation texture) 
 	{
