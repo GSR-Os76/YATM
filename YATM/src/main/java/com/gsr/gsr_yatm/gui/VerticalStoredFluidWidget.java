@@ -99,7 +99,7 @@ public class VerticalStoredFluidWidget extends ImageWidget
 	public void updateTooltip() 
 	{
 		String fluidLevel = (" (" + (this.m_stored + "/" + this.m_capacity)+ ")");
-		MutableComponent tt = Component.translatable(Util.makeDescriptionId("fluid", ForgeRegistries.FLUIDS.getKey(this.m_fluid)).toString());
+		MutableComponent tt = this.m_stored == 0 ? Component.literal("Empty") : Component.translatable(Util.makeDescriptionId("fluid", ForgeRegistries.FLUIDS.getKey(this.m_fluid)).toString());
 		tt.append(fluidLevel);
 		this.setTooltip(Tooltip.create(tt));
 	} // end updateTooltip()

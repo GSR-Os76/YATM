@@ -36,6 +36,7 @@ import net.minecraft.world.Container;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -317,6 +318,12 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 		{
 			this.setChanged();
 		}
+		
+		boolean shouldBeLit = this.m_heatHandler.getTemperature() > 500;
+		if(state.getValue(CrucibleBlock.LIT) ^ shouldBeLit) 
+		{
+			level.setBlock(position, state.setValue(CrucibleBlock.LIT, shouldBeLit), Block.UPDATE_CLIENTS);
+		}
 	} // end serverTick()
 
 	private boolean doHeat()
@@ -349,7 +356,7 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 		}
 		else 
 		{
-			if(this.m_heatComponent != null) 
+			if(this.m_heatComponent == null) 
 			{
 				this.m_heatHandler.heat(IHeatHandler.getAmbientTemp());
 			}

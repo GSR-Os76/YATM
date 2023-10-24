@@ -165,7 +165,7 @@ public class CrucibleMenu extends AbstractContainerMenu
 	
 	public float burnProgress() 
 	{
-		return NetworkUtil.getProgess(CrucibleBlockEntity.ACCESS_SPEC.get(CrucibleBlockEntity.BURN_PROGRESS_SPEC_KEY), this.m_data);
+		return NetworkUtil.getRemainingZeroIfNotRunning(CrucibleBlockEntity.ACCESS_SPEC.get(CrucibleBlockEntity.BURN_PROGRESS_SPEC_KEY), this.m_data);
 	} // end heatProgress()
 	
 	public float resultTankDrainProgress()

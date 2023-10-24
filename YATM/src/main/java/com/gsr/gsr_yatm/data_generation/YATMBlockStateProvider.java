@@ -115,6 +115,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile BOILER_WHEN_HAS_TANK_PART_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/boiler_has_tank_multipart"));
 	public static final ModelFile BOILER_TANK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/boiler_tank"));
 	public static final ModelFile CRUCIBLE_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/crucible"));
+	public static final ModelFile CRUCIBLE_LIT_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/crucible_lit"));
 	public static final ModelFile CRYSTALLIZER_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/crystallizer"));
 	public static final ModelFile EXTRACTOR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/extractor"));
 	public static final ModelFile INJECTOR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/injector"));
@@ -517,7 +518,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	private void addCrucibles() 
 	{
-		this.createFacingBlock(YATMBlocks.STEEL_CRUCIBLE.get(), YATMItems.STEEL_CRUCIBLE_ITEM.get(), YATMBlockStateProvider.CRUCIBLE_MODEL);
+		this.createLitFacingBlock(YATMBlocks.STEEL_CRUCIBLE.get(), YATMItems.STEEL_CRUCIBLE_ITEM.get(), YATMBlockStateProvider.CRUCIBLE_MODEL, YATMBlockStateProvider.CRUCIBLE_LIT_MODEL);
 		
 	} // end addCrystallizers()
 	

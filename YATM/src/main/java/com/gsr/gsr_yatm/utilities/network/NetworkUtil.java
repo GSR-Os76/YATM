@@ -68,7 +68,14 @@ public class NetworkUtil
 		int numerator = data.get(progressAccessSpecification.startIndex());
 		int denominator = data.get(progressAccessSpecification.endIndex());
 		return denominator == 0 ? 1f : (((float) numerator / ((float) denominator)));
-	} // end getProgess()
+	} // end getRemaining()
+	
+	public static float getRemainingZeroIfNotRunning(@NotNull AccessSpecification progressAccessSpecification, @NotNull ContainerData data)
+	{
+		int numerator = data.get(progressAccessSpecification.startIndex());
+		int denominator = data.get(progressAccessSpecification.endIndex());
+		return denominator == 0 ? 0f : (((float) numerator / ((float) denominator)));
+	} // end getRemaining()	
 	
 	public static int getPropertyValue(@NotNull AccessSpecification propertyAccessSpecification, @NotNull ContainerData data)
 	{

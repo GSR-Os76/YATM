@@ -4,7 +4,7 @@
 	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "gsr_yatm:block/device/crucible/drain",
-		"1": "gsr_yatm:block/device/crucible/slope",
+		"1": "gsr_yatm:block/device/crucible/slope_lit",
 		"2": "gsr_yatm:block/device/crucible/slope_outside",
 		"3": "gsr_yatm:block/device/crucible/braces",
 		"4": "gsr_yatm:block/device/crucible/wall",
