@@ -15,6 +15,7 @@ import com.gsr.gsr_yatm.block.device.compute.DataProcessorBlock;
 import com.gsr.gsr_yatm.block.device.compute.DestructiveDataScannerBlock;
 import com.gsr.gsr_yatm.block.device.compute.scan_collector.DataCollectorBlock;
 import com.gsr.gsr_yatm.block.device.compute.storage.DataStorageBlock;
+import com.gsr.gsr_yatm.block.device.crucible.CrucibleBlock;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlock;
 import com.gsr.gsr_yatm.block.device.current_furnace.FurnacePlusBlock;
 import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInterchangerBlock;
@@ -301,6 +302,7 @@ public class YATMBlocks
 	public static final RegistryObject<BiolerBlock> STEEL_BIOLER = BLOCKS.register("steel_bioler", () -> new BiolerBlock(YATMBlockProperties.STEEL_PLANT_MACHINE, YATMBlockShapes.BIOLER, DeviceTierConstants.STEEL_CURRENT_CAPACITY, DeviceTierConstants.STEEL_MAX_CURRENT_TRANSFER, DeviceTierConstants.STEEL_TANK_CAPACITY, DeviceTierConstants.STEEL_MAXIMUM_FLUID_TRANSFER_RATE));
 	public static final RegistryObject<BoilerTankBlock> STEEL_BOILER_TANK = BLOCKS.register("steel_boiler_tank", () -> new BoilerTankBlock(YATMBlockProperties.STEEL_MACHINE, 256, 32000));
 	public static final RegistryObject<BoilerBlock> STEEL_BOILER = BLOCKS.register("steel_boiler", () -> new BoilerBlock(YATMBlockProperties.STEEL_PLANT_MACHINE, YATMBlockShapes.BOILER, DeviceTierConstants.STEEL_DEVICE));
+	public static final RegistryObject<CrucibleBlock> STEEL_CRUCIBLE = BLOCKS.register("steel_crucible", () -> new CrucibleBlock(YATMBlockProperties.STEEL_PLANT_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_DEVICE));
 	public static final RegistryObject<CrystallizerBlock> STEEL_CRYSTALLIZER = BLOCKS.register("steel_crystallizer", () -> new CrystallizerBlock(YATMBlockProperties.STEEL_PLANT_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_TANK_CAPACITY, DeviceTierConstants.STEEL_MAXIMUM_FLUID_TRANSFER_RATE));
 	public static final RegistryObject<FurnacePlusBlock> STEEL_FURNACE_PLUS = BLOCKS.register("steel_furnace_plus", () -> new FurnacePlusBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_DEVICE));
 	public static final RegistryObject<ExtractorBlock> STEEL_EXTRACTOR = BLOCKS.register("steel_extractor", () -> new ExtractorBlock(YATMBlockProperties.STEEL_PLANT_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_CURRENT_CAPACITY, DeviceTierConstants.STEEL_MAX_CURRENT_TRANSFER, DeviceTierConstants.STEEL_TANK_CAPACITY, DeviceTierConstants.STEEL_MAXIMUM_FLUID_TRANSFER_RATE));

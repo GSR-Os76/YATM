@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.block.device.current_furnace;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.gui.TemperatureWidget;
+import com.gsr.gsr_yatm.gui.HorizontalTemperatureWidget;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.gui.GuiGraphics;
@@ -15,7 +15,7 @@ public class FurnacePlusScreen extends AbstractContainerScreen<FurnacePlusMenu>
 	// TODO, this
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/boiler.png");
 
-	private TemperatureWidget m_temperatureWidget;
+	private HorizontalTemperatureWidget m_temperatureWidget;
 
 	
 	
@@ -93,7 +93,7 @@ public class FurnacePlusScreen extends AbstractContainerScreen<FurnacePlusMenu>
 			this.removeWidget(this.m_temperatureWidget);
 		}
 		
-		this.m_temperatureWidget = new TemperatureWidget(this.leftPos + 37, this.topPos + 43, this.menu.getMaxTemperature());
+		this.m_temperatureWidget = new HorizontalTemperatureWidget(this.leftPos + 37, this.topPos + 43, this.menu.getMaxTemperature());
 		this.addRenderableWidget(this.m_temperatureWidget);
 	} // end setWidget()
 } // end class

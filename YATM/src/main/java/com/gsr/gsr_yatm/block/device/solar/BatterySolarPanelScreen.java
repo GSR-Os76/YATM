@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.block.device.solar;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.gui.CurrentWidget;
+import com.gsr.gsr_yatm.gui.HorizontalCurrentWidget;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.gui.GuiGraphics;
@@ -14,7 +14,7 @@ public class BatterySolarPanelScreen extends AbstractContainerScreen<BatterySola
 {
 	public static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/battery_solar_panel.png");
 	
-	private CurrentWidget m_currentWidget;
+	private HorizontalCurrentWidget m_currentWidget;
 	
 	
 	
@@ -68,7 +68,7 @@ public class BatterySolarPanelScreen extends AbstractContainerScreen<BatterySola
 			this.removeWidget(this.m_currentWidget);
 		}
 		
-		this.m_currentWidget = new CurrentWidget(this.leftPos + 43, this.topPos + 21, this.getMenu().currentCapacity());
+		this.m_currentWidget = new HorizontalCurrentWidget(this.leftPos + 43, this.topPos + 21, this.getMenu().currentCapacity());
 		this.addRenderableWidget(this.m_currentWidget);
 	} // end setWidget()
 	

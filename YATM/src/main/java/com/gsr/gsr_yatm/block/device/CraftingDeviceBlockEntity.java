@@ -3,6 +3,8 @@ package com.gsr.gsr_yatm.block.device;
 import java.util.Enumeration;
 import java.util.List;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.utilities.network.Property;
 import com.gsr.gsr_yatm.utilities.network.PropertyContainerData;
@@ -116,9 +118,9 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 		}
 	} // end tryStartNewRecipe()	
 	
-	protected abstract void setRecipeResults(T from);
-	protected abstract boolean canUseRecipe(T from);
-	protected abstract void startRecipe(T from);
+	protected abstract void setRecipeResults(@NotNull T from);
+	protected abstract boolean canUseRecipe(@NotNull T from);
+	protected abstract void startRecipe(@NotNull T from);
 
 	protected void onRecipeLoad() 
 	{

@@ -6,6 +6,7 @@ import com.gsr.gsr_yatm.block.device.boiler.BoilerBlockEntity;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlockEntity;
 import com.gsr.gsr_yatm.block.device.compute.scan_collector.DataScanCollectorBlockEntity;
 import com.gsr.gsr_yatm.block.device.compute.storage.DataStorageBlockEntity;
+import com.gsr.gsr_yatm.block.device.crucible.CrucibleBlockEntity;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlockEntity;
 import com.gsr.gsr_yatm.block.device.current_furnace.FurnacePlusBlockEntity;
 import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInterchangerBlockEntity;
@@ -39,6 +40,7 @@ public class YATMBlockEntityTypes
 	public static final RegistryObject<BlockEntityType<BiolerBlockEntity>> BIOLER = BLOCK_ENTITY_TYPES.register("bioler_block_entity", () -> BlockEntityType.Builder.of(BiolerBlockEntity::new, YATMBlocks.STEEL_BIOLER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<BoilerTankBlockEntity>> BOILER_TANK = BLOCK_ENTITY_TYPES.register("boiler_tank_block_entity", () -> BlockEntityType.Builder.of(BoilerTankBlockEntity::new, YATMBlocks.STEEL_BOILER_TANK.get()).build(null));
 	public static final RegistryObject<BlockEntityType<BoilerBlockEntity>> BOILER = BLOCK_ENTITY_TYPES.register("boiler_block_entity", () -> BlockEntityType.Builder.of(BoilerBlockEntity::new, YATMBlocks.STEEL_BOILER.get()).build(null));
+	public static final RegistryObject<BlockEntityType<CrucibleBlockEntity>> CRUCIBLE = BLOCK_ENTITY_TYPES.register("crucible_block_entity", () -> BlockEntityType.Builder.of(CrucibleBlockEntity::new, YATMBlocks.STEEL_CRUCIBLE.get()).build(null));
 	public static final RegistryObject<BlockEntityType<CrystallizerBlockEntity>> CRYSTALLIZER = BLOCK_ENTITY_TYPES.register("crystallizer_block_entity", () -> BlockEntityType.Builder.of(CrystallizerBlockEntity::new, YATMBlocks.STEEL_CRYSTALLIZER.get()).build(null));
 //	public static final RegistryObject<BlockEntityType<ExtruderBlockEntity>> EXTRUDER = BLOCK_ENTITY_TYPES.register("extruder_block_entity", () -> BlockEntityType.Builder.of(ExtruderBlockEntity::new, YATMBlocks.STEEL_EXTRUDER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<ExtractorBlockEntity>> EXTRACTOR = BLOCK_ENTITY_TYPES.register("extractor_block_entity", () -> BlockEntityType.Builder.of(ExtractorBlockEntity::new, YATMBlocks.STEEL_EXTRACTOR.get()).build(null));

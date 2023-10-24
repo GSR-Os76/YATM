@@ -223,8 +223,9 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> STEEL_BIOLER_ITEM = generalTabEnqueue(ITEMS.register("steel_bioler", () -> new BlockItem(YATMBlocks.STEEL_BIOLER.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_BOILER_TANK_ITEM = /* generalTabEnqueue */(ITEMS.register("steel_boiler_tank", () -> new BlockItem(YATMBlocks.STEEL_BOILER_TANK.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_BOILER_ITEM = generalTabEnqueue(ITEMS.register("steel_boiler", () -> new BlockItem(YATMBlocks.STEEL_BOILER.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> STEEL_CRUCIBLE_ITEM = generalTabEnqueue(ITEMS.register("steel_crucible", () -> new BlockItem(YATMBlocks.STEEL_CRUCIBLE.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_CRYSTALLIZER_ITEM = generalTabEnqueue(ITEMS.register("steel_crystallizer", () -> new BlockItem(YATMBlocks.STEEL_CRYSTALLIZER.get(), new Item.Properties())));
-	public static final RegistryObject<BlockItem> SSTEEL_FURNACE_PLUS_ITEM = generalTabEnqueue(ITEMS.register("steel_furnace_plus", () -> new BlockItem(YATMBlocks.STEEL_FURNACE_PLUS.get(), new Item.Properties())));	
+	public static final RegistryObject<BlockItem> STEEL_FURNACE_PLUS_ITEM = generalTabEnqueue(ITEMS.register("steel_furnace_plus", () -> new BlockItem(YATMBlocks.STEEL_FURNACE_PLUS.get(), new Item.Properties())));	
 	public static final RegistryObject<BlockItem> STEEL_EXTRACTOR_ITEM = generalTabEnqueue(ITEMS.register("steel_extractor", () -> new BlockItem(YATMBlocks.STEEL_EXTRACTOR.get(), new Item.Properties())));
 //	public static final RegistryObject<BlockItem> STEEL_EXTRUDER_ITEM = /* generalTabEnqueue */(ITEMS.register("steel_extruder", () -> new BlockItem(YATMBlocks.STEEL_EXTRUDER.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_GRINDER_ITEM = generalTabEnqueue(ITEMS.register("steel_grinder", () -> new BlockItem(YATMBlocks.STEEL_GRINDER.get(), new Item.Properties())));

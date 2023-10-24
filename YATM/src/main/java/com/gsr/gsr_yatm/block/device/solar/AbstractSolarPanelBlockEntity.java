@@ -174,16 +174,16 @@ public abstract class AbstractSolarPanelBlockEntity extends DeviceBlockEntity
 	
 
 	@Override
-	public void serverTick(Level level, BlockPos pos, BlockState blockState)
+	public void serverTick(Level level, BlockPos position, BlockState state)
 	{
 		if(!hasTriedClaimingSlotCapSinceReload) 
 		{
 			this.tryClaimSlotCap();
 		}
-		super.serverTick(level, pos, blockState);
-		boolean changed = doGenerate(level, pos);
-		changed |= this.doPowerSlot(level, pos);
-		changed |= this.doPowerSides(level, pos);
+		super.serverTick(level, position, state);
+		boolean changed = doGenerate(level, position);
+		changed |= this.doPowerSlot(level, position);
+		changed |= this.doPowerSides(level, position);
 		
 		if(changed) 
 		{

@@ -271,7 +271,7 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 
 
 	@Override
-	public void serverTick(Level level, BlockPos pos, BlockState blockState)
+	public void serverTick(Level level, BlockPos position, BlockState state)
 	{
 		boolean wasLitInitially = this.isLit();
 		boolean changed = doHeat();
@@ -282,7 +282,7 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 		
 		if (wasLitInitially != this.isLit())
 		{
-			level.setBlockAndUpdate(pos, blockState.setValue(BoilerBlock.LIT, this.isLit()));
+			level.setBlockAndUpdate(position, state.setValue(BoilerBlock.LIT, this.isLit()));
 		}
 		if(changed) 
 		{

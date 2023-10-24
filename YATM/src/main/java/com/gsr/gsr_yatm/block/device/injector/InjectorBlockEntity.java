@@ -170,9 +170,9 @@ public class InjectorBlockEntity extends TestCraftingDeviceBlockEntity<Injecting
 
 
 	@Override
-	public void serverTick(Level level, BlockPos blockPos, BlockState blockState)
+	public void serverTick(Level level, BlockPos blockPos, BlockState state)
 	{
-		super.serverTick(level, blockPos, blockState);
+		super.serverTick(level, blockPos, state);
 
 		boolean changed = this.doAcceptPower();
 		changed |= this.doFillInputTank();

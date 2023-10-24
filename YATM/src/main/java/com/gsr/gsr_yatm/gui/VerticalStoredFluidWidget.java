@@ -18,7 +18,7 @@ import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class StoredFluidWidget extends ImageWidget
+public class VerticalStoredFluidWidget extends ImageWidget
 {
 	public static final ResourceLocation WIDGET_THINGS = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/widget_things.png");
 	// tank starts at 0 0, is 18 57 in dimensions
@@ -35,7 +35,7 @@ public class StoredFluidWidget extends ImageWidget
 
 	
 	
-	public StoredFluidWidget(int toX, int toY, int capacity, Fluid fluid) 
+	public VerticalStoredFluidWidget(int toX, int toY, int capacity, Fluid fluid) 
 	{
 		super(toX, toY, 18, 57, WIDGET_THINGS);
 		this.m_capacity = capacity;

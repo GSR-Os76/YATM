@@ -27,6 +27,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMMenuTypes.BIOLER.get(), "Bioler");		
 		this.add(YATMMenuTypes.BOILER.get(), "Boiler");		
+		this.add(YATMMenuTypes.CRUCIBLE.get(), "Crucible");	
 		this.add(YATMMenuTypes.CRYSTALLIZER.get(), "Crystallizer");		
 //		this.add(YATMMenuTypes.EXTRUDER.get(), "Extruder");		
 		this.add(YATMMenuTypes.EXTRACTOR.get(), "Extractor");		
@@ -191,14 +192,15 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), "Large Copper Heat Sink");
 		
-		this.add(YATMBlocks.STEEL_BIOLER.get(), "Steel Bioler");
-		this.add(YATMBlocks.STEEL_BOILER.get(), "Steel Boiler");
-		this.add(YATMBlocks.STEEL_BOILER_TANK.get(), "Steel Boiler Tank");
-		this.add(YATMBlocks.STEEL_CRYSTALLIZER.get(), "Steel Crystallizer");
-		this.add(YATMBlocks.STEEL_EXTRACTOR.get(), "Steel Extractor");
-//		this.add(YATMBlocks.STEEL_EXTRUDER.get(), "Steel Extruder");
-		this.add(YATMBlocks.STEEL_GRINDER.get(), "Steel Grinder");
-		this.add(YATMBlocks.STEEL_INJECTOR.get(), "Steel injector");
+		this.add(YATMBlocks.STEEL_BIOLER.get(), "Foliar Steel Bioler");
+		this.add(YATMBlocks.STEEL_BOILER.get(), "Foliar Steel Boiler");
+		this.add(YATMBlocks.STEEL_BOILER_TANK.get(), "Foliar Steel Boiler Tank");
+		this.add(YATMBlocks.STEEL_CRUCIBLE.get(), "Foliar Steel Crucible");
+		this.add(YATMBlocks.STEEL_CRYSTALLIZER.get(), "Foliar Steel Crystallizer");
+		this.add(YATMBlocks.STEEL_EXTRACTOR.get(), "Foliar Steel Extractor");
+//		this.add(YATMBlocks.STEEL_EXTRUDER.get(), "Foliar Steel Extruder");
+		this.add(YATMBlocks.STEEL_GRINDER.get(), "Foliar Steel Grinder");
+		this.add(YATMBlocks.STEEL_INJECTOR.get(), "Foliar Steel injector");
 		
 		this.add(YATMBlocks.C_U_F_E_I.get(), "Energy Converter (CU to FE)");
 		

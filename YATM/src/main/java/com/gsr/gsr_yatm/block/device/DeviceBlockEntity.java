@@ -97,12 +97,12 @@ public abstract class DeviceBlockEntity extends BlockEntity
 		}
 	} // end tick()
 
-	public void clientTick(Level level, BlockPos pos, BlockState blockState)
+	public void clientTick(Level level, BlockPos position, BlockState state)
 	{
 		
 	} // end clientTick()
 	
-	public void serverTick(Level level, BlockPos pos, BlockState blockState)
+	public void serverTick(Level level, BlockPos position, BlockState state)
 	{
 		this.m_currentTransferedThisTick = 0;
 	} // end serverTick()

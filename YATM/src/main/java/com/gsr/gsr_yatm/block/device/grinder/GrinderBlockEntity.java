@@ -145,7 +145,7 @@ public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe
 	
 	
 	@Override
-	public void serverTick(Level level, BlockPos pos, BlockState blockState)
+	public void serverTick(Level level, BlockPos position, BlockState state)
 	{
 		boolean changed = /* this.m_activeRecipe != null && */this.m_waitingForLoad ? false : this.doCrafting();
 		

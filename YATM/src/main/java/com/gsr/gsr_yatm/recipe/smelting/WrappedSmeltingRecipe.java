@@ -59,7 +59,7 @@ public class WrappedSmeltingRecipe extends SmeltingRecipe implements ITimedRecip
 	public ItemStack getToastSymbol()
 	{
 		// TODO Auto-generated method stub
-		return new ItemStack(YATMItems.SSTEEL_FURNACE_PLUS_ITEM.get());
+		return new ItemStack(YATMItems.STEEL_FURNACE_PLUS_ITEM.get());
 	} // end getToastSymbol()
 	
 } // end class

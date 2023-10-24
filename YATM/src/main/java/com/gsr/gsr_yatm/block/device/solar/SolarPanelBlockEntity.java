@@ -26,11 +26,11 @@ public class SolarPanelBlockEntity extends AbstractSolarPanelBlockEntity
 	
 	
 	@Override
-	public void serverTick(Level level, BlockPos pos, BlockState blockState)
+	public void serverTick(Level level, BlockPos position, BlockState state)
 	{
 		// hopefully this successfully clears it
 		this.m_internalCurrentStorer.extractCurrent(Integer.MAX_VALUE, false);
-		super.serverTick(level, pos, blockState);
+		super.serverTick(level, position, state);
 	} // end serverTick()
 	
 } // end class

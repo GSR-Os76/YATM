@@ -165,7 +165,7 @@ public class FurnacePlusBlockEntity extends CraftingDeviceBlockEntity<WrappedSme
 	
 	
 	@Override
-	public void serverTick(Level level, BlockPos pos, BlockState blockState)
+	public void serverTick(Level level, BlockPos position, BlockState state)
 	{
 		boolean wasLitInitially = this.isLit();
 		boolean changed = doHeat();
@@ -173,7 +173,7 @@ public class FurnacePlusBlockEntity extends CraftingDeviceBlockEntity<WrappedSme
 		
 		if (wasLitInitially != this.isLit())
 		{
-			level.setBlockAndUpdate(pos, blockState.setValue(FurnacePlusBlock.LIT, this.isLit()));
+			level.setBlockAndUpdate(position, state.setValue(FurnacePlusBlock.LIT, this.isLit()));
 		}
 		if(changed) 
 		{

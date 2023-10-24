@@ -7,6 +7,7 @@ import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizingRecipe;
 import com.gsr.gsr_yatm.recipe.extracting.ExtractingRecipe;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipe;
 import com.gsr.gsr_yatm.recipe.injecting.InjectingRecipe;
+import com.gsr.gsr_yatm.recipe.melting.MeltingRecipe;
 import com.gsr.gsr_yatm.recipe.smelting.WrappedSmeltingRecipe;
 import com.gsr.gsr_yatm.recipe.spinning.SpinningRecipe;
 
@@ -29,8 +30,8 @@ public class YATMRecipeTypes
 	public static final RegistryObject<RecipeType<ExtractingRecipe>> EXTRACTING = RECIPE_TYPES.register("extracting", () -> new RecipeType<ExtractingRecipe>(){});
 //	public static final RegistryObject<RecipeType<ExtrudingRecipe>> EXTRUDING = RECIPE_TYPES.register("extruding", () -> new RecipeType<ExtrudingRecipe>(){});
 	public static final RegistryObject<RecipeType<GrindingRecipe>> GRINDING = RECIPE_TYPES.register("grinding", () -> new RecipeType<GrindingRecipe>(){});
-	
 	public static final RegistryObject<RecipeType<InjectingRecipe>> INJECTING = RECIPE_TYPES.register("fluid_injecting", () -> new RecipeType<InjectingRecipe>(){});
+	public static final RegistryObject<RecipeType<MeltingRecipe>> MELTING = RECIPE_TYPES.register("melting_injecting", () -> new RecipeType<MeltingRecipe>(){});
 
 	public static final RegistryObject<RecipeType<WrappedSmeltingRecipe>> SMELTING_PLUS = RECIPE_TYPES.register("smelting_plus", () -> new RecipeType<WrappedSmeltingRecipe>(){});
 

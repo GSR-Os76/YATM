@@ -1,8 +1,8 @@
 package com.gsr.gsr_yatm.block.device.boiler;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.gui.StoredFluidWidget;
-import com.gsr.gsr_yatm.gui.TemperatureWidget;
+import com.gsr.gsr_yatm.gui.VerticalStoredFluidWidget;
+import com.gsr.gsr_yatm.gui.HorizontalTemperatureWidget;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -14,9 +14,9 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 {
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/boiler.png");
 
-	private StoredFluidWidget m_inputTankWidget;
-	private StoredFluidWidget m_resultTankWidget;
-	private TemperatureWidget m_temperatureWidget;
+	private VerticalStoredFluidWidget m_inputTankWidget;
+	private VerticalStoredFluidWidget m_resultTankWidget;
+	private HorizontalTemperatureWidget m_temperatureWidget;
 	// add face configuration, and
 
 	public BoilerScreen(BoilerMenu boilerMenu, Inventory inventory, Component titleComponentMaybe)
@@ -144,7 +144,7 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 			this.m_inputTankWidget.setStoredFluid(this.menu.getInputTankContents().getFluid());
 		}
 		this.m_inputTankWidget.setStoredAmount(this.menu.getInputTankContents().getAmount());
-	} // end updateResultTankWidget()
+	} // end updateInputTankWidget()
 	
 	public void setInputTankWidget() 
 	{
@@ -152,9 +152,9 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 		{			
 			this.removeWidget(this.m_inputTankWidget);
 		}
-		this.m_inputTankWidget = new StoredFluidWidget(this.leftPos + 7, this.topPos + 20, this.menu.getInputTankCapacity(), this.menu.getInputTankContents().getFluid());
+		this.m_inputTankWidget = new VerticalStoredFluidWidget(this.leftPos + 7, this.topPos + 20, this.menu.getInputTankCapacity(), this.menu.getInputTankContents().getFluid());
 		this.addRenderableWidget(this.m_inputTankWidget);
-	} // end setWidget()
+	} // end setInputTankWidget()
 
 	
 	
@@ -179,9 +179,9 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 			this.removeWidget(this.m_resultTankWidget);
 		}
 		
-		this.m_resultTankWidget = new StoredFluidWidget(this.leftPos + 151, this.topPos + 20, this.menu.getOutputTankCapacity(), this.menu.getOutputTankContents().getFluid());
+		this.m_resultTankWidget = new VerticalStoredFluidWidget(this.leftPos + 151, this.topPos + 20, this.menu.getOutputTankCapacity(), this.menu.getOutputTankContents().getFluid());
 		this.addRenderableWidget(this.m_resultTankWidget);
-	} // end setWidget()
+	} // end setResultTankWidget()
 	
 	
 	
@@ -194,7 +194,7 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 		}
 
 		this.m_temperatureWidget.setTemperature(this.menu.getTemperature());
-	} // end updateResultTankWidget()
+	} // end updateTemperatureWidget()
 	
 	public void setTemperatureWidget() 
 	{
@@ -203,9 +203,9 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 			this.removeWidget(this.m_temperatureWidget);
 		}
 		
-		this.m_temperatureWidget = new TemperatureWidget(this.leftPos + 37, this.topPos + 43, this.menu.getMaxTemperature());
+		this.m_temperatureWidget = new HorizontalTemperatureWidget(this.leftPos + 37, this.topPos + 43, this.menu.getMaxTemperature());
 		this.addRenderableWidget(this.m_temperatureWidget);
-	} // end setWidget()
+	} // end setTemperatureWidget()
 
 //	private TemperatureWidget getTemperatureWidget()
 //	{

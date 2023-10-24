@@ -1,5 +1,6 @@
 package com.gsr.gsr_yatm.utilities.network;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -28,6 +29,19 @@ public class CompositeAccessSpecification implements ICompositeAccessSpecificati
 		this.m_count = max + 1;
 		this.m_lookup = builder.build();
 	} // end constructor
+	
+	public static CompositeAccessSpecification of(@NotNull List<Map.Entry<String, Integer>> entries) 
+	{
+		ArrayList<Map.Entry<String, AccessSpecification>> c = new ArrayList<>();
+		int index = 0;
+		for(Map.Entry<String, Integer> m : entries) 
+		{
+			int oldInd = index;
+			index += m.getValue();
+			c.add(Map.entry(m.getKey(), new AccessSpecification(oldInd, index - 1)));
+		}		
+		return new CompositeAccessSpecification(c);
+	} // end of()
 	
 	
 	

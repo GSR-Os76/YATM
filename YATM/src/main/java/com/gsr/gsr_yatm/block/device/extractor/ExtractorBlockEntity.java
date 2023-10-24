@@ -194,7 +194,7 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractingRe
 	
 
 	@Override
-	public void serverTick(Level level, BlockPos blockPos, BlockState blockState)
+	public void serverTick(Level level, BlockPos blockPos, BlockState state)
 	{
 		boolean changed = this.m_waitingForLoad ? false : this.doCrafting();
 		changed |= this.doDrainResultTank();

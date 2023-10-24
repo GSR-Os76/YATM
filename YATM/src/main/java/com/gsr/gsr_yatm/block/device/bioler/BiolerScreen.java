@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.block.device.bioler;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.gui.StoredFluidWidget;
+import com.gsr.gsr_yatm.gui.VerticalStoredFluidWidget;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -12,7 +12,7 @@ public class BiolerScreen extends AbstractContainerScreen<BiolerMenu>
 {
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/bioler.png");
 
-	private StoredFluidWidget m_resultTankWidget;
+	private VerticalStoredFluidWidget m_resultTankWidget;
 	
 	
 
@@ -87,7 +87,7 @@ public class BiolerScreen extends AbstractContainerScreen<BiolerMenu>
 			this.removeWidget(this.m_resultTankWidget);
 		}
 		// fix draw position
-		this.m_resultTankWidget = new StoredFluidWidget(this.leftPos + 97, this.topPos + 20, this.menu.getResultTankCapacity(), this.menu.getResultTankContents().getFluid());//= new StoredFluidWidget(this.leftPos + 7, this.topPos + 20, this.menu.getResultTankCapacity(), this.menu.getResultTankContents().getFluid());
+		this.m_resultTankWidget = new VerticalStoredFluidWidget(this.leftPos + 97, this.topPos + 20, this.menu.getResultTankCapacity(), this.menu.getResultTankContents().getFluid());//= new StoredFluidWidget(this.leftPos + 7, this.topPos + 20, this.menu.getResultTankCapacity(), this.menu.getResultTankContents().getFluid());
 		this.addRenderableWidget(this.m_resultTankWidget);
 	} // end setWidget()
 	

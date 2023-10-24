@@ -2,6 +2,8 @@ package com.gsr.gsr_yatm.utilities.network;
 
 import java.util.Map.Entry;
 
+import org.jetbrains.annotations.NotNull;
+
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.material.Fluid;
@@ -56,16 +58,21 @@ public class NetworkUtil
 
 	
 	
-	public static float getProgess(AccessSpecification progressAccessSpecification, ContainerData data)
+	public static float getProgess(@NotNull AccessSpecification progressAccessSpecification, @NotNull ContainerData data)
 	{
 		return 1f - NetworkUtil.getRemaining(progressAccessSpecification, data);
 	} // end getProgess()
 	
-	public static float getRemaining(AccessSpecification progressAccessSpecification, ContainerData data)
+	public static float getRemaining(@NotNull AccessSpecification progressAccessSpecification, @NotNull ContainerData data)
 	{
 		int numerator = data.get(progressAccessSpecification.startIndex());
 		int denominator = data.get(progressAccessSpecification.endIndex());
-		return denominator == 0 ? 0f : (((float) numerator / ((float) denominator)));
+		return denominator == 0 ? 1f : (((float) numerator / ((float) denominator)));
 	} // end getProgess()
+	
+	public static int getPropertyValue(@NotNull AccessSpecification propertyAccessSpecification, @NotNull ContainerData data)
+	{
+		return data.get(propertyAccessSpecification.startIndex());
+	} // end getPropertyValue()
 	
 } // end class

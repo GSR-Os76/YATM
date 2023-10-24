@@ -8,6 +8,7 @@ import net.minecraft.world.inventory.ContainerData;
 
 public class PropertyContainerData implements ContainerData
 {
+	public static final int LENGTH_PER_PROPERTY = 1;
 	private final List<Property<Integer>> m_properties;
 	
 	
@@ -34,7 +35,7 @@ public class PropertyContainerData implements ContainerData
 	@Override
 	public int getCount()
 	{
-		return this.m_properties.size();
+		return this.m_properties.size() * PropertyContainerData.LENGTH_PER_PROPERTY;
 	} // end getCount()
 
 } // end class

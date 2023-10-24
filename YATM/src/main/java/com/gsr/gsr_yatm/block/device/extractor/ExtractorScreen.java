@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.block.device.extractor;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.gui.StoredFluidWidget;
+import com.gsr.gsr_yatm.gui.VerticalStoredFluidWidget;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -12,7 +12,7 @@ public class ExtractorScreen extends AbstractContainerScreen<ExtractorMenu>
 {
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/extractor.png");
 	
-	private StoredFluidWidget m_fluidTankWidget;
+	private VerticalStoredFluidWidget m_fluidTankWidget;
 	
 	
 	
@@ -96,7 +96,7 @@ public class ExtractorScreen extends AbstractContainerScreen<ExtractorMenu>
 		{			
 			this.removeWidget(this.m_fluidTankWidget);
 		}
-		this.m_fluidTankWidget = new StoredFluidWidget(this.leftPos + 97, this.topPos + 20, this.menu.getFluidCapacity(), this.menu.getFluid());
+		this.m_fluidTankWidget = new VerticalStoredFluidWidget(this.leftPos + 97, this.topPos + 20, this.menu.getFluidCapacity(), this.menu.getFluid());
 		this.addRenderableWidget(this.m_fluidTankWidget);
 	} // end setWidget()
 	

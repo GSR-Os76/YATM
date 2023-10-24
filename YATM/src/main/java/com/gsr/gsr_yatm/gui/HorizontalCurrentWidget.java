@@ -7,7 +7,7 @@ import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
-public class CurrentWidget extends ImageWidget
+public class HorizontalCurrentWidget extends ImageWidget
 {
 	public static final ResourceLocation WIDGET_THINGS = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/widget_things.png");
 	public static final int WIDTH = 90;
@@ -17,7 +17,7 @@ public class CurrentWidget extends ImageWidget
 	private int m_pixelsToDrawOverCount = 0;
 	
 	
-	public CurrentWidget(int toX, int toY, int capacity) 
+	public HorizontalCurrentWidget(int toX, int toY, int capacity) 
 	{
 		super(toX, toY, WIDTH, HEIGHT, WIDGET_THINGS);
 		this.m_capacity = capacity;

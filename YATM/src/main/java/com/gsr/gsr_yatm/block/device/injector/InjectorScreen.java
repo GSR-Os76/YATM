@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.block.device.injector;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.gui.StoredFluidWidget;
+import com.gsr.gsr_yatm.gui.VerticalStoredFluidWidget;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -14,7 +14,7 @@ public class InjectorScreen extends AbstractContainerScreen<InjectorMenu>
 	// TODO, definitely, probably, uniquify
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/crystallizer.png");
 	
-	private StoredFluidWidget m_inputTankWidget;
+	private VerticalStoredFluidWidget m_inputTankWidget;
 	
 	
 	
@@ -127,7 +127,7 @@ public class InjectorScreen extends AbstractContainerScreen<InjectorMenu>
 		{			
 			this.removeWidget(this.m_inputTankWidget);
 		}
-		this.m_inputTankWidget = new StoredFluidWidget(this.leftPos + 115, this.topPos + 20, this.menu.getFluidCapacity(), this.menu.getFluid());
+		this.m_inputTankWidget = new VerticalStoredFluidWidget(this.leftPos + 115, this.topPos + 20, this.menu.getFluidCapacity(), this.menu.getFluid());
 		this.addRenderableWidget(this.m_inputTankWidget);
 	} // end setWidget()
 
