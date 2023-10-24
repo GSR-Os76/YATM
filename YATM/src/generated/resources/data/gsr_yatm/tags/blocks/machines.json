@@ -2,6 +2,7 @@
   "values": [
     "gsr_yatm:steel_bioler",
     "gsr_yatm:steel_boiler",
+    "gsr_yatm:steel_crucible",
     "gsr_yatm:steel_crystallizer",
     "gsr_yatm:steel_furnace_plus",
     "gsr_yatm:steel_extractor",
