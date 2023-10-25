@@ -25,6 +25,7 @@ public class YATMBlockStateProperties
 	public static final BooleanProperty CAN_SPREAD = BooleanProperty.create("can_spread");	
 
 	public static final EnumProperty<DoubleBlockHalf> DOUBLE_BLOCK_HALF = BlockStateProperties.DOUBLE_BLOCK_HALF;
+	public static final BooleanProperty DRAINING = BooleanProperty.create("draining");	
 	
 	public static final DirectionProperty FACING = DirectionProperty.create("facing");
 	public static final DirectionProperty FACING_HORIZONTAL = DirectionProperty.create("facing", Direction.Plane.HORIZONTAL);

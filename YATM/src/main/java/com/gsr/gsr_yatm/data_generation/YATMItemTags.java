@@ -43,6 +43,7 @@ public class YATMItemTags extends ItemTagsProvider
 	
 	
 	public static final TagKey<Item> DECAY_NETHERITE_ARMOR_PIECES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "armor_pieces/decay_netherite"));
+	public static final TagKey<Item> DEVICE_ADJUSTERS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "device_adjusters"));
 	public static final TagKey<Item> FOLIAR_STEEL_ORES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "foliar_steel_ores"));
 	public static final TagKey<Item> GOLEM_LIKE_PLANT_FORMERS = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "golem_like_plant_formers"));
 	public static final TagKey<Item> GROWS_PHANTASMAL_SHELF_FUNGI_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "grows_phantasmal_shelf_fungi"));
@@ -111,6 +112,7 @@ public class YATMItemTags extends ItemTagsProvider
 		
 		
 		this.tag(YATMItemTags.DECAY_NETHERITE_ARMOR_PIECES_KEY).add(YATMItems.DECAY_NETHERITE_HELMET.get()).add(YATMItems.DECAY_NETHERITE_CHESTPLATE.get()).add(YATMItems.DECAY_NETHERITE_LEGGINGS.get()).add(YATMItems.DECAY_NETHERITE_BOOTS.get());
+		this.tag(YATMItemTags.DEVICE_ADJUSTERS_KEY).add(YATMItems.STEEL_WRENCH.get());
 		this.copy(YATMBlockTags.FOLIAR_STEEL_ORES_KEY, YATMItemTags.FOLIAR_STEEL_ORES_KEY);
 		this.tag(YATMItemTags.GOLEM_LIKE_PLANT_FORMERS).add(YATMItems.ESSENCE_OF_SOULS_BOTTLE.get());
 		this.tag(YATMItemTags.GROWS_PHANTASMAL_SHELF_FUNGI_KEY).addTag(YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);		

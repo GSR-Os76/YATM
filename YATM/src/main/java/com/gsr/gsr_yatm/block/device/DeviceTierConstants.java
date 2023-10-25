@@ -6,6 +6,7 @@ public record DeviceTierConstants(@NotNegative int maxTemperature, @NotNegative 
 {
 	public static final DeviceTierConstants EMPTY = new DeviceTierConstants(0, 0, 0, 0, 0, 0);
 	public static final DeviceTierConstants STEEL_DEVICE = new DeviceTierConstants(4000, 4000, 16, 8192, 64, 512);
+	public static final DeviceTierConstants STEEL_TANK = new DeviceTierConstants(4000, 16000, 1000, 0, 0, 0);
 	
 	public static final int STEEL_MAXIMUM_TEMPERATURE = DeviceTierConstants.STEEL_DEVICE.maxTemperature();
 	public static final int STEEL_TANK_CAPACITY = DeviceTierConstants.STEEL_DEVICE.tankCapacity();

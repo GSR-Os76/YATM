@@ -120,7 +120,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile EXTRACTOR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/extractor"));
 	public static final ModelFile INJECTOR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/injector"));
 	
-	
 	public static final ModelFile SOLAR_PANEL_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/solar_panel"));
 	
 	public static final ModelFile CONDUIT_VINES_PARALLEL_CROSSLINK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/conduit_vines_parallel_crosslink"));
@@ -135,6 +134,10 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile INSULATED_WIRE_BRANCH_LOW_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/insulated_wire_branch_low"));
 	public static final ModelFile INSULATED_WIRE_CENTER_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/insulated_wire_center"));
 	public static final ModelFile INSULATED_WIRE_STRAIGHT_VERTICAL_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/insulated_wire_straight_vertical"));
+	
+	public static final ModelFile STEEL_TANK = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/tank"));
+	public static final ModelFile STEEL_TANK_DRAINING = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/tank_draining"));
+	
 	
 	
 	
@@ -195,6 +198,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addInjectors();
 		this.createAllBlock(YATMBlocks.C_U_F_E_I.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/energy_converter/energy_converter"));
 		this.addSolarPanels();
+		this.addTanks();
 		
 		this.addConduits();
 	} // end registerStatesAndModels
@@ -565,8 +569,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 	} // end addSolarPanels()
 	
-	
-	
 	private void addConduits() 
 	{
 		this.createConduitVine(YATMBlocks.CONDUIT_VINES.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/conduit_vines"), YATMBlockStateProvider.CONDUIT_VINES_PARALLEL_CROSSLINK_MODEL);
@@ -591,6 +593,10 @@ public class YATMBlockStateProvider extends BlockStateProvider
 //		
 	} // end addConduits()
 	
+	private void addTanks() 
+	{
+		this.createTank(YATMBlocks.STEEL_TANK.get(), YATMBlockStateProvider.STEEL_TANK, YATMBlockStateProvider.STEEL_TANK_DRAINING);
+	} // end addTanks()
 	
 	
 
@@ -1361,6 +1367,12 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		} // end anonymous type
 		);
 	} // end createConduitVines
+	
+	private void createTank(@NotNull Block block, @NotNull ModelFile tankModel, @NotNull ModelFile tankDrainingModel) 
+	{
+		this.getVariantBuilder(block).forAllStates((bs) -> new ConfiguredModel[] {new ConfiguredModel(bs.getValue(YATMBlockStateProperties.DRAINING) ? tankDrainingModel : tankModel)});
+		this.simpleBlockItem(block, tankModel);
+	} // end createTank()
 	
 //	private void createWire(@NotNull Block block, @NotNull Item item, @NotNull ResourceLocation texture) 
 //	{

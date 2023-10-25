@@ -173,6 +173,8 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 		this.m_maxTemperature = Contract.NotNegative(maxTemperature);
 		this.m_rawResultTank = new FluidTank(Contract.NotNegative(tankCapacity));
 		this.m_resultTank = new ConfigurableTankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);
+		
+		this.m_resultTankLazyOptional.invalidate();
 		this.m_resultTankLazyOptional = LazyOptional.of(() -> CrucibleBlockEntity.this.m_resultTank);
 		
 		ContainerDataBuilder cdb = new ContainerDataBuilder();
@@ -388,7 +390,7 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 
 	private void tryAttachResultTankDrainage(@NotNull Level level, @NotNull BlockPos position) 
 	{
-		BlockEntity be = level.getBlockEntity(position);
+		BlockEntity be = level.getBlockEntity(position.below());
 		if(this.m_resultDrainComponent == null || be == null) 
 		{
 			return;

@@ -73,11 +73,12 @@ public class YATMBlockProperties
 	// TODO, actually design these
 	public static final Properties DATA_DEVICE = Properties.of().mapColor(MapColor.METAL).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2.0f, 3.0f).sound(SoundType.FROGLIGHT);
 	
-	public static final Properties STEEL_MACHINE = Properties.of().mapColor(MapColor.METAL).instrument(NoteBlockInstrument.IRON_XYLOPHONE).requiresCorrectToolForDrops().strength(6.0F, 8.0F).sound(SoundType.METAL);
-	public static final Properties STEEL_PLANT_MACHINE = Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(6.0f, 8.0f).sound(SoundType.METAL).noCollission().noOcclusion();
-	public static final Properties SOLAR_PANEL = Properties.of().mapColor(MapColor.METAL).instrument(NoteBlockInstrument.PLING).requiresCorrectToolForDrops().strength(3.0f).sound(SoundType.METAL);
-	public static final Properties WIRE = Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(2.0f).sound(SoundType.METAL);
-	public static final Properties STEEL_PIPE = Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().strength(2.0f).sound(SoundType.METAL);
+	public static final Properties STEEL_MACHINE = Properties.of().instrument(NoteBlockInstrument.IRON_XYLOPHONE).mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(5.5F, 6.0F);
+	public static final Properties STEEL_PLANT_MACHINE = Properties.of().mapColor(MapColor.COLOR_GREEN).noCollission().noOcclusion().requiresCorrectToolForDrops().sound(SoundType.METAL).strength(5.5F, 6.0F);
+	public static final Properties SOLAR_PANEL = Properties.of().instrument(NoteBlockInstrument.PLING).mapColor(MapColor.METAL).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(3.0f);
+	public static final Properties WIRE = Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2.0f);
+	public static final Properties STEEL_TANK = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2F, 6.0F);
+	public static final Properties STEEL_PIPE = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2F, 6.0F);
 	
 	public static final Properties CONDUIT_VINES = Properties.of().mapColor(MapColor.METAL)/*.requiresCorrectToolForDrops()*/.strength(2.0f, 3.0f).sound(SoundType.VINE).noCollission().noOcclusion();
 	

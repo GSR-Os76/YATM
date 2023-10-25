@@ -52,28 +52,28 @@ public class UseUtilities
 		}
 		
 		
-		
-		int fillFromHeldSim = beHandler.fill(heldHandler.drain(maxTransfer, FluidAction.SIMULATE), FluidAction.SIMULATE);
-		if(fillFromHeldSim > 0) 
+		if(!level.isClientSide) 
 		{
-			beHandler.fill(heldHandler.drain(fillFromHeldSim, FluidAction.EXECUTE), FluidAction.EXECUTE);
-			player.setItemInHand(hand, heldHandler.getContainer());
-			return InteractionResult.sidedSuccess(level.isClientSide);
-		}
-		else 
-		{
-			int drainToHeldSim = heldHandler.fill(beHandler.drain(maxTransfer, FluidAction.SIMULATE), FluidAction.SIMULATE);
-			if(drainToHeldSim > 0) 
+			int fillFromHeldSim = beHandler.fill(heldHandler.drain(maxTransfer, FluidAction.SIMULATE), FluidAction.SIMULATE);
+			if(fillFromHeldSim > 0) 
 			{
-				heldHandler.fill(beHandler.drain(drainToHeldSim, FluidAction.EXECUTE), FluidAction.EXECUTE);
+				beHandler.fill(heldHandler.drain(fillFromHeldSim, FluidAction.EXECUTE), FluidAction.EXECUTE);
 				player.setItemInHand(hand, heldHandler.getContainer());
-				return InteractionResult.sidedSuccess(level.isClientSide);
+				// return InteractionResult.sidedSuccess(level.isClientSide);
+			}
+			else 
+			{
+				int drainToHeldSim = heldHandler.fill(beHandler.drain(maxTransfer, FluidAction.SIMULATE), FluidAction.SIMULATE);
+				if(drainToHeldSim > 0) 
+				{
+					heldHandler.fill(beHandler.drain(drainToHeldSim, FluidAction.EXECUTE), FluidAction.EXECUTE);
+					player.setItemInHand(hand, heldHandler.getContainer());
+					// return InteractionResult.sidedSuccess(level.isClientSide);
+				}
 			}
 		}
-		
-		// TODO, ~ do remainder setting. ~
 				
-		return InteractionResult.PASS;
-	} // end tryFillOrDrainFromHeld
+		return InteractionResult.sidedSuccess(level.isClientSide);
+	} // end tryFillOrDrainFromHeld()
 	
 } // end class

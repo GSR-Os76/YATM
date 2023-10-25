@@ -5,6 +5,7 @@
     "#gsr_yatm:foliar_steel_ores",
     "gsr_yatm:folium",
     "#gsr_yatm:machines",
-    "gsr_yatm:steel_boiler_tank"
+    "gsr_yatm:steel_boiler_tank",
+    "gsr_yatm:steel_tank"
   ]
 }

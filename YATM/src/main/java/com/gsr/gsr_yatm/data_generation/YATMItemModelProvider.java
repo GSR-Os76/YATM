@@ -151,6 +151,8 @@ public class YATMItemModelProvider extends ItemModelProvider
 		
 		this.basicItem(YATMItems.AURUM_FAN.get());
 		
+		this.basicItem(YATMItems.STEEL_WRENCH.get());
+		
 		this.basicItem(YATMItems.SOUL_ADORNED_NETHERITE_HELMET.get());
 		this.basicItem(YATMItems.SOUL_ADORNED_NETHERITE_CHESTPLATE.get());
 		this.basicItem(YATMItems.SOUL_ADORNED_NETHERITE_LEGGINGS.get());

@@ -1,10 +1,11 @@
-// 1.20.1	2023-10-17T22:08:31.6484847	Tags for minecraft:item mod id gsr_yatm
+// 1.20.1	2023-10-24T22:56:22.3557854	Tags for minecraft:item mod id gsr_yatm
 bade3c9b0ab674f2efd3dc51c76e3652a9021029 data/forge/tags/items/ingots/rubber.json
 18795a8c0bcbdd7d7450b4a7ba2b97df86e0d87a data/forge/tags/items/nuggets/netherite.json
 22817fc3a29127b1c1278ea16d671d7c02dbdeb9 data/forge/tags/items/rooted_dirt.json
 5cde157d29986a1af6fac3eed0972c55ed684ae6 data/forge/tags/items/storage_blocks/rubber.json
 af5a440f5c712d3904c6b50819f04f2a58d71861 data/gsr_yatm/tags/items/armor_pieces/decay_netherite.json
 ec857824c3fbff4388d79661bc800d1e9c6b97bf data/gsr_yatm/tags/items/armor_pieces/soul_adorned_netherite.json
+eebcd9ed0e9c3b763459acafdafb1b8fc8df74c7 data/gsr_yatm/tags/items/device_adjusters.json
 4025cca10e3b03e5cf1f371e88a6afed701e7681 data/gsr_yatm/tags/items/foliar_steel_ores.json
 081674171279d64d71a1aa4cbf4c2e3fd9fc2de4 data/gsr_yatm/tags/items/golem_like_plant_formers.json
 205d34972c106978555918bdbb34363a9a669d3e data/gsr_yatm/tags/items/grows_phantasmal_shelf_fungi.json

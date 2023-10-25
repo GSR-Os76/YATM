@@ -211,10 +211,9 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.ADVANCED_SOLAR_PANEL.get(), "Advanced Solar Panel");
 		this.add(YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get(), "Sun's Complement Solar Panel");
 		
-		
-		
 		this.add(YATMBlocks.CONDUIT_VINES.get(), "Conduit Vines");
 		
+		this.add(YATMBlocks.STEEL_TANK.get(), "Foliar Steel Tank");
 //		this.add(YATMBlocks.ONE_CU_WIRE.get(), "1cu Wire");
 //		this.add(YATMBlocks.EIGHT_CU_WIRE.get(), "8cu Wire");
 //		this.add(YATMBlocks.SIXTYFOUR_CU_WIRE.get(), "64cu Wire");
@@ -355,6 +354,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.STAR_GERMLING.get(), "Start Germling");
 		this.add(YATMItems.STAR_SPROUT.get(), "Star Sprout");
 		this.add(YATMItems.STAR_ADOLESCENT.get(), "Star Adolescent");
+		
+		this.add(YATMItems.STEEL_WRENCH.get(), "Foliar Steel Wrench");
 		
 		this.add(YATMItems.SOUL_ADORNED_NETHERITE_HELMET.get(), "Soul Adored Netherite Helmet");
 		this.add(YATMItems.SOUL_ADORNED_NETHERITE_CHESTPLATE.get(), "Soul Adored Netherite Chest Plate");

@@ -240,10 +240,10 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> ADVANCED_SOLAR_PANEL_ITEM = generalTabEnqueue(ITEMS.register("advanced_crude_solar_panel", () -> new BlockItem(YATMBlocks.ADVANCED_SOLAR_PANEL.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> SUNS_COMPLEMENT_SOLAR_PANEL_ITEM = generalTabEnqueue(ITEMS.register("suns_complement_solar_panel", () -> new BlockItem(YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get(), new Item.Properties())));
 
-
-	
 	public static final RegistryObject<BlockItem> CONDUIT_VINES_ITEM = generalTabEnqueue(ITEMS.register("conduit_vines", () -> new BlockItem(YATMBlocks.CONDUIT_VINES.get(), new Item.Properties())));
 	
+	public static final RegistryObject<BlockItem> STEEL_TANK_ITEM = generalTabEnqueue(ITEMS.register("steel_tank", () -> new BlockItem(YATMBlocks.STEEL_TANK.get(), new Item.Properties())));
+		
 //	public static final RegistryObject<BlockItem> ONE_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("one_cu_wire", () -> new BlockItem(YATMBlocks.ONE_CU_WIRE.get(), new Item.Properties())));
 //	public static final RegistryObject<BlockItem> EIGHT_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("eight_cu_wire", () -> new BlockItem(YATMBlocks.EIGHT_CU_WIRE.get(), new Item.Properties())));
 //	public static final RegistryObject<BlockItem> SIXTYFOUR_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("sixtyfour_cu_wire", () -> new BlockItem(YATMBlocks.SIXTYFOUR_CU_WIRE.get(), new Item.Properties())));
@@ -341,6 +341,8 @@ public class YATMItems
 	// TODO, netherite thorns as arrow styled like scraps, and like a great arrow which damages terrain and such styled like the ingot netherite
 	// possible just make aurum fronds throwable and recoverable weapon
 	public static final RegistryObject<Item> AURUM_FAN = /* generalTabEnqueue( */ITEMS.register("aurum_fan", () -> new Item(new Item.Properties().fireResistant()))/* ) */;
+	
+	public static final RegistryObject<Item> STEEL_WRENCH = generalTabEnqueue(ITEMS.register("steel_wrench", () -> new Item(new Item.Properties())));
 	
 	public static final RegistryObject<ArmorItem> SOUL_ADORNED_NETHERITE_HELMET = generalTabEnqueue(ITEMS.register("soul_adorned_netherite_helmet", () -> new ArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.HELMET, new Item.Properties().fireResistant())));
 	public static final RegistryObject<ArmorItem> SOUL_ADORNED_NETHERITE_CHESTPLATE = generalTabEnqueue(ITEMS.register("soul_adorned_netherite_chestplate", () -> new ArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant())));

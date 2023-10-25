@@ -1,0 +1,10 @@
+{
+  "variants": {
+    "draining=false": {
+      "model": "gsr_yatm:block/tank"
+    },
+    "draining=true": {
+      "model": "gsr_yatm:block/tank_draining"
+    }
+  }
+}

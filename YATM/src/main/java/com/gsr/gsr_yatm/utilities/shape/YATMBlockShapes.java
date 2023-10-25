@@ -505,6 +505,18 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 		
+	
+	public static final ICollisionVoxelShapeProvider STEEL_TANK = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape SHAPE = Block.box(2d, 0d, 2d, 14d, 16d, 14d);
+
+		@Override
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		{
+			return SHAPE;
+		} // end getShape()
+	};
+	
 	public static final ICollisionVoxelShapeProvider STEEL_FLUID_CONDUIT = new ICollisionVoxelShapeProvider()
 	{		
 		private static final VoxelShape CENTER_SHAPE = Block.box(6d, 6d, 6d, 10d, 10d, 10d);
