@@ -52,6 +52,62 @@ public class UseUtilities
 		}
 		
 		
+		
+		int fillFromHeldSim = beHandler.fill(heldHandler.drain(maxTransfer, FluidAction.SIMULATE), FluidAction.SIMULATE);
+		if(fillFromHeldSim > 0) 
+		{
+			beHandler.fill(heldHandler.drain(fillFromHeldSim, FluidAction.EXECUTE), FluidAction.EXECUTE);
+			player.setItemInHand(hand, heldHandler.getContainer());
+			return InteractionResult.sidedSuccess(level.isClientSide);
+		}
+		else 
+		{
+			int drainToHeldSim = heldHandler.fill(beHandler.drain(maxTransfer, FluidAction.SIMULATE), FluidAction.SIMULATE);
+			if(drainToHeldSim > 0) 
+			{
+				heldHandler.fill(beHandler.drain(drainToHeldSim, FluidAction.EXECUTE), FluidAction.EXECUTE);
+				player.setItemInHand(hand, heldHandler.getContainer());
+				return InteractionResult.sidedSuccess(level.isClientSide);
+			}
+		}
+						
+		return InteractionResult.PASS;
+	} // end tryFillOrDrainFromHeld()
+	
+	
+	
+	public static InteractionResult tryFillOrDrainFromHeldDesynchronized(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult) 
+	{
+		return UseUtilities.tryFillOrDrainFromHeldDesynchronized(state, level, position, player, hand, hitResult, Integer.MAX_VALUE);
+	} // end tryFillOrDrainFromHeld()
+	
+	public static InteractionResult tryFillOrDrainFromHeldDesynchronized(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult, int maxTransfer) 
+	{
+		ItemStack held = player.getItemInHand(hand);
+		if(held.isEmpty()) 
+		{
+			return InteractionResult.PASS;
+		}
+		@NotNull LazyOptional<IFluidHandlerItem> heldCap = held.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM);
+		IFluidHandlerItem heldHandler = heldCap.orElse((IFluidHandlerItem)null);
+		if(heldHandler == null) 
+		{
+			return InteractionResult.PASS;
+		}
+		
+		BlockEntity be = level.getBlockEntity(position);
+		if(be == null) 
+		{
+			return InteractionResult.PASS;
+		}
+		LazyOptional<IFluidHandler> beCap = be.getCapability(ForgeCapabilities.FLUID_HANDLER);
+		IFluidHandler beHandler = beCap.orElse((IFluidHandler)null);
+		if(beHandler == null) 
+		{
+			return InteractionResult.PASS;
+		}
+		
+		
 		if(!level.isClientSide) 
 		{
 			int fillFromHeldSim = beHandler.fill(heldHandler.drain(maxTransfer, FluidAction.SIMULATE), FluidAction.SIMULATE);

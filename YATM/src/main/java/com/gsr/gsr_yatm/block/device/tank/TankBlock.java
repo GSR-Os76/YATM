@@ -82,8 +82,6 @@ public class TankBlock extends ShapeBlock implements EntityBlock
 		return new TankBlockEntity(position, state, this.m_constants);
 	} // end newBlockEntity
 
-
-
 	@Override
 	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type)
 	{

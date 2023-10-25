@@ -5,15 +5,22 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.utilities.capability.fluid.ConfigurableTankWrapper;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.Connection;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.protocol.game.ClientboundBlockEntityDataPacket;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
@@ -83,7 +90,13 @@ public class TankBlockEntity extends BlockEntity
 	{
 		this.m_maxFluidTransferRate = Contract.NotNegative(maxFluidTransferRate);
 		this.m_rawTank = new FluidTank(Contract.NotNegative(tankCapacity));
-		this.m_tank = ConfigurableTankWrapper.Builder.of(this.m_rawTank).onContentsChanged((f) -> this.setChanged()).maxTransfer(this.m_maxFluidTransferRate).build();
+		this.m_tank = ConfigurableTankWrapper.Builder.of(this.m_rawTank)
+				.onContentsChanged((f) -> 
+				{
+					this.setChanged();
+					this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), Block.UPDATE_CLIENTS);
+				})
+				.maxTransfer(this.m_maxFluidTransferRate).build();
 		
 		this.m_tankLazyOptional.invalidate();
 		this.m_tankLazyOptional = LazyOptional.of(() -> TankBlockEntity.this.m_tank);
@@ -92,6 +105,36 @@ public class TankBlockEntity extends BlockEntity
 	
 	
 	
+	
+	@Override
+	public Packet<ClientGamePacketListener> getUpdatePacket()
+	{
+		YetAnotherTechMod.LOGGER.info("getting a packet");
+		return ClientboundBlockEntityDataPacket.create(this);		
+	} // end getUpdatePacket()
+	
+	@Override
+	public CompoundTag getUpdateTag()
+	{
+		CompoundTag tag = new CompoundTag();
+		tag.put(TankBlockEntity.TANK_TAG_NAME, this.m_rawTank.writeToNBT(new CompoundTag()));		
+		return tag;
+	} // end getUpdateTag()
+
+	@Override
+	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt)
+	{
+		YetAnotherTechMod.LOGGER.info("recieving a packet");
+		super.onDataPacket(net, pkt);
+		CompoundTag tag = pkt.getTag();
+		if(tag.contains(TankBlockEntity.TANK_TAG_NAME)) 
+		{
+			this.m_rawTank.readFromNBT(tag.getCompound(TankBlockEntity.TANK_TAG_NAME));
+		}		
+	} // end onDataPacket()
+	
+	
+
 	public static void tick(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state, @NotNull TankBlockEntity blockEntity)
 	{
 		if (level.isClientSide)
@@ -163,7 +206,10 @@ public class TankBlockEntity extends BlockEntity
 		super.saveAdditional(tag);
 		
 		tag.put(TankBlockEntity.SETUP_TAG_NAME, this.setupToNBT());
-		this.m_rawTank.writeToNBT(tag);
+		if (this.m_rawTank.getFluidAmount() > 0)
+		{
+			tag.put(TankBlockEntity.TANK_TAG_NAME, this.m_rawTank.writeToNBT(new CompoundTag()));
+		}
 	} // end saveAdditional()
 	
 	@Override

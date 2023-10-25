@@ -5,9 +5,9 @@
 	"textures": {
 		"0": "gsr_yatm:block/device/tank/ends",
 		"1": "gsr_yatm:block/device/tank/side",
-		"particle": "#1"
+		"particle": "gsr_yatm:block/device/tank/ends"
 	},
-	"elements": [
+		"elements": [
 		{
 			"from": [2, 0, 2],
 			"to": [14, 1, 14],
@@ -187,17 +187,15 @@
 			"to": [12, 14, 2],
 			"faces": {
 				"north": {"uv": [4, 2, 12, 14], "texture": "#1"},
-				"south": {"uv": [4, 2, 12, 14], "texture": "#1"},
-				"west": {"uv": [0, 0, 0, 12], "texture": "#1"}
+				"south": {"uv": [4, 2, 12, 14], "texture": "#1"}
 			}
 		},
 		{
 			"from": [4, 2, 14],
 			"to": [12, 14, 14],
 			"faces": {
-				"north": {"uv": [4, 2, 12, 15], "texture": "#1"},
-				"south": {"uv": [4, 2, 12, 14], "texture": "#1"},
-				"west": {"uv": [0, 0, 0, 13], "texture": "#1"}
+				"north": {"uv": [4, 2, 12, 14], "texture": "#1"},
+				"south": {"uv": [4, 2, 12, 14], "texture": "#1"}
 			}
 		},
 		{
