@@ -10,6 +10,7 @@ import com.gsr.gsr_yatm.block.device.grinder.GrinderScreen;
 import com.gsr.gsr_yatm.block.device.injector.InjectorScreen;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelScreen;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelScreen;
+import com.gsr.gsr_yatm.block.device.tank.TankRenderer;
 import com.gsr.gsr_yatm.block.hanging_pot.HangingPotHookRenderer;
 import com.gsr.gsr_yatm.data_generation.YATMBiomeTags;
 import com.gsr.gsr_yatm.data_generation.YATMBlockStateProvider;
@@ -210,6 +211,7 @@ public class YATMModEvents
 	private static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
 	{
 		event.registerBlockEntityRenderer(YATMBlockEntityTypes.HANGING_POT_HOOK.get(), HangingPotHookRenderer::new);
+		event.registerBlockEntityRenderer(YATMBlockEntityTypes.TANK.get(), TankRenderer::new);
 		event.registerBlockEntityRenderer(YATMBlockEntityTypes.YATM_HANGING_SIGN.get(), HangingSignRenderer::new);
 		event.registerBlockEntityRenderer(YATMBlockEntityTypes.YATM_SIGN.get(), SignRenderer::new);
 		

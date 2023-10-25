@@ -23,9 +23,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
@@ -104,8 +106,6 @@ public class TankBlockEntity extends BlockEntity
 	
 	
 	
-	
-	
 	@Override
 	public Packet<ClientGamePacketListener> getUpdatePacket()
 	{
@@ -132,6 +132,19 @@ public class TankBlockEntity extends BlockEntity
 			this.m_rawTank.readFromNBT(tag.getCompound(TankBlockEntity.TANK_TAG_NAME));
 		}		
 	} // end onDataPacket()
+	
+	
+	
+	public @Nullable Fluid getFluid()
+	{
+		FluidStack f = this.m_tank.getFluid();
+		return f == null ? null : f.getFluid();
+	} // end getFluid()
+	
+	public float getPercentageFilled() 
+	{
+		return ((float)this.m_tank.getFluidAmount()) / ((float)this.m_tank.getCapacity());
+	} // end getFillPercentage()
 	
 	
 
