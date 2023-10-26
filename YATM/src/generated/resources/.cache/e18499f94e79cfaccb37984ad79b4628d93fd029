@@ -1,4 +1,4 @@
-// 1.20.1	2023-10-24T22:20:15.6032523	Tags for minecraft:block mod id gsr_yatm
+// 1.20.1	2023-10-26T15:33:06.4338512	Tags for minecraft:block mod id gsr_yatm
 c66ff3626edc7c0f108f497fa9aec78cbf9db39f data/forge/tags/blocks/basalt.json
 ea459db540b319f4bdead7b7f1142fc238c09a8e data/forge/tags/blocks/cactus.json
 b3abde7fc2826faf44dd6e6dd87abc76ffa4a612 data/forge/tags/blocks/needs_wood_tool.json
@@ -12,6 +12,7 @@ ae063a18d6a78c1df2e70286fb1984ffc87c6b2d data/forge/tags/blocks/netherrack.json
 d667dcc380181ca7932db9dd892d74671f6a63df data/forge/tags/blocks/storage_blocks.json
 832b7e6675be8ff08fd9a10a451a0f62d2bb9d10 data/forge/tags/blocks/storage_blocks/quartz.json
 5cde157d29986a1af6fac3eed0972c55ed684ae6 data/forge/tags/blocks/storage_blocks/rubber.json
+6126de40a64453ca531e66bfeb15ff34da6d5d8f data/gsr_yatm/tags/blocks/change_neutral_only_attachment.json
 4025cca10e3b03e5cf1f371e88a6afed701e7681 data/gsr_yatm/tags/blocks/foliar_steel_ores.json
 403fe52915c8bfef77e5db96da3f844a7fb9b7c2 data/gsr_yatm/tags/blocks/form/aurum_higher.json
 6ef566e8d366f5028e9f398a20bead05865d2de4 data/gsr_yatm/tags/blocks/form/aurum_lower.json
@@ -72,9 +73,9 @@ ae88bd8aabf02699bb3fdbf65bd64fc377fbc780 data/minecraft/tags/blocks/flowers.json
 1502e7352c79e987a23ba14a77d87817c5e89ff2 data/minecraft/tags/blocks/logs_that_burn.json
 08707915fa7733071e44172526005a3134852755 data/minecraft/tags/blocks/mineable/axe.json
 65ff65f5d38acbce6c7b5a5fe3dcb8cc7dbc87c3 data/minecraft/tags/blocks/mineable/hoe.json
-a779d8f0f7aff7da1a77dbf338a0fff33454eb7c data/minecraft/tags/blocks/mineable/pickaxe.json
+8dee5a4f40878050fe442c48235076be1e9d1543 data/minecraft/tags/blocks/mineable/pickaxe.json
 fe5385076699557563e54f97ff82706f931b1273 data/minecraft/tags/blocks/mineable/shovel.json
-2116b29217021820c4fd570684bb5a9ac909a9e3 data/minecraft/tags/blocks/needs_iron_tool.json
+9dfe8dd0b3afd08f7545acc42ab80e8a531738dc data/minecraft/tags/blocks/needs_iron_tool.json
 6db0f3960710b0be0a11b07799ef3058edb5c9d4 data/minecraft/tags/blocks/needs_stone_tool.json
 861ac450b90a900a8dbe9dc301248cd0b5ca2f52 data/minecraft/tags/blocks/planks.json
 59d8edfe056f15f3cff621f10b35fa3ba99c9baf data/minecraft/tags/blocks/saplings.json

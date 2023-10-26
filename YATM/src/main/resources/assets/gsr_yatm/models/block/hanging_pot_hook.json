@@ -1,5 +1,5 @@
 {
-	"parent": "minecraft:block/blcok",
+	"parent": "minecraft:block/block",
 	"render_type": "minecraft:cutout",
 	"textures": {
 		"0": "gsr_yatm:block/hanging_pot_hook",

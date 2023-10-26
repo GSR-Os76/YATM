@@ -81,6 +81,7 @@ public class YATMBlockProperties
 	public static final Properties STEEL_PIPE = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2F, 6.0F);
 	
 	public static final Properties CONDUIT_VINES = Properties.of().mapColor(MapColor.METAL)/*.requiresCorrectToolForDrops()*/.strength(2.0f, 3.0f).sound(SoundType.VINE).noCollission().noOcclusion();
+	public static final Properties CHANNEL_VINES = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2F, 6.0F);
 	
 	// TODO, make color customizable by method
 	public static final Properties LIQUID = Properties.of()/* .mapColor(MapColor.WATER) */.replaceable().noCollission().strength(100.0f).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY);

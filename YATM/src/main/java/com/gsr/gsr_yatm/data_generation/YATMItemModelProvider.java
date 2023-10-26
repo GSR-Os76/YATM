@@ -75,6 +75,7 @@ public class YATMItemModelProvider extends ItemModelProvider
 		
 		
 		this.basicItem(YATMItems.CONDUIT_VINES_ITEM.get());
+		this.basicItem(YATMItems.CHANNEL_VINES_ITEM.get());
 		// this.basicItem(YATMItems.STEEL_FLUID_EXCHANGER.get());
 
 //		this.basicItem(YATMItems.ONE_CU_CURRENT_REGULATOR.get());

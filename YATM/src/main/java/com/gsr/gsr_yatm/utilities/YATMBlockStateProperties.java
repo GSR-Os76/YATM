@@ -1,7 +1,11 @@
 package com.gsr.gsr_yatm.utilities;
 
+import java.util.Map;
+
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
+import com.google.common.collect.ImmutableMap;
+import com.gsr.gsr_yatm.block.conduit.channel_vine.AttachmentState;
 import com.gsr.gsr_yatm.block.plant.OnceFruitingPlantStages;
 
 import net.minecraft.core.Direction;
@@ -19,6 +23,13 @@ public class YATMBlockStateProperties
 	public static final IntegerProperty AGE_FIVE = IntegerProperty.create("age", 0, 4);
 	public static final IntegerProperty AGE_EIGHT = IntegerProperty.create("age", 0, 7);
 	
+	public static final Map<Direction, EnumProperty<AttachmentState>> BRANCHES_BY_DIRECTION = ImmutableMap.of(
+			Direction.NORTH, EnumProperty.create("north", AttachmentState.class), 
+			Direction.SOUTH, EnumProperty.create("south", AttachmentState.class), 
+			Direction.EAST, EnumProperty.create("east", AttachmentState.class), 
+			Direction.WEST, EnumProperty.create("west", AttachmentState.class), 
+			Direction.UP, EnumProperty.create("up", AttachmentState.class), 
+			Direction.DOWN, EnumProperty.create("down", AttachmentState.class));
 	
 	// TODO, make sure nothing is using this when they mean can spread, semantics are important.
 	public static final BooleanProperty CAN_GROW = BooleanProperty.create("can_grow");	

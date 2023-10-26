@@ -11,6 +11,7 @@ import org.joml.Vector2i;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.FaceBlock;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
+import com.gsr.gsr_yatm.block.conduit.channel_vine.AttachmentState;
 import com.gsr.gsr_yatm.block.device.bioler.BiolerBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlock;
@@ -53,6 +54,7 @@ import net.minecraft.world.level.block.TrapDoorBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -123,6 +125,11 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile SOLAR_PANEL_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/solar_panel"));
 	
 	public static final ModelFile CONDUIT_VINES_PARALLEL_CROSSLINK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/conduit_vines_parallel_crosslink"));
+	
+	public static final ModelFile CHANNEL_VINES_CENTER_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/channel_vine_center"));
+	public static final ModelFile CHANNEL_VINES_BRANCH_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/channel_vine_branch"));
+	public static final ModelFile CHANNEL_VINES_BRANCH_PULL_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/channel_vine_branch_pull"));
+	public static final ModelFile CHANNEL_VINES_BRANCH_PUSH_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/channel_vine_branch_push"));
 	
 	// private static final List<Direction> HIGH_DIRECTIONS = ImmutableList.of(Direction.UP, Direction.NORTH, Direction.EAST);
 	public static final ModelFile WIRE_BRANCH_HIGH_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/wire_branch_high"));
@@ -196,11 +203,14 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addCrystallizers();
 		this.addExtractors();
 		this.addInjectors();
+		
 		this.createAllBlock(YATMBlocks.C_U_F_E_I.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/energy_converter/energy_converter"));
-		this.addSolarPanels();
-		this.addTanks();
+		this.addSolarPanels();		
 		
 		this.addConduits();
+		
+		this.addTanks();
+		this.addChannelVines();
 	} // end registerStatesAndModels
 
 	
@@ -596,7 +606,14 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	private void addTanks() 
 	{
 		this.createTank(YATMBlocks.STEEL_TANK.get(), YATMBlockStateProvider.STEEL_TANK, YATMBlockStateProvider.STEEL_TANK_DRAINING);
+	
 	} // end addTanks()
+	
+	private void addChannelVines() 
+	{
+		this.createChannelVines(YATMBlocks.CHANNEL_VINES.get(), CHANNEL_VINES_CENTER_MODEL, CHANNEL_VINES_BRANCH_MODEL, CHANNEL_VINES_BRANCH_PULL_MODEL, CHANNEL_VINES_BRANCH_PUSH_MODEL);
+	
+	} // end addChannelVines()
 	
 	
 
@@ -1374,56 +1391,44 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.simpleBlockItem(block, tankModel);
 	} // end createTank()
 	
-//	private void createWire(@NotNull Block block, @NotNull Item item, @NotNull ResourceLocation texture) 
-//	{
-//		this.createConduit(block, item, texture, YATMBlockStateProvider.WIRE_BRANCH_HIGH_MODEL, YATMBlockStateProvider.WIRE_BRANCH_LOW_MODEL, YATMBlockStateProvider.WIRE_CENTER_MODEL, YATMBlockStateProvider.WIRE_STRAIGHT_VERTICAL_MODEL);
-//	} // end addWire()
-//	
-//	private void createInsulatedWire(@NotNull Block block, @NotNull Item item, @NotNull ResourceLocation texture) 
-//	{
-//		this.createConduit(block, item, texture, YATMBlockStateProvider.INSULATED_WIRE_BRANCH_HIGH_MODEL, YATMBlockStateProvider.INSULATED_WIRE_BRANCH_LOW_MODEL, YATMBlockStateProvider.INSULATED_WIRE_CENTER_MODEL, YATMBlockStateProvider.INSULATED_WIRE_STRAIGHT_VERTICAL_MODEL);
-//	} // end addInsulatedWire()
+	private void createChannelVines(@NotNull Block block, @NotNull ModelFile center, @NotNull ModelFile branch, @NotNull ModelFile branchPull, @NotNull ModelFile branchPush)
+	{
+		MultiPartBlockStateBuilder builder = this.getMultipartBuilder(block);
+		builder.part().modelFile(center).addModel().end();
+		YATMBlockStateProperties.BRANCHES_BY_DIRECTION.forEach(new BiConsumer<>() 
+		{
+			@Override
+			public void accept(Direction dir, EnumProperty<AttachmentState> val)
+			{
+				for(AttachmentState as : AttachmentState.values()) 
+				{
+					if(as == AttachmentState.NONE) 
+					{
+						continue;
+					}
+					
+					Vector2i rot = YATMBlockStateProvider.rotationForDirectionFromNorth(dir);
+					builder.part()
+					.modelFile(switch(as) 
+					{
+						case NEUTRAL -> branch;
+						case PULL -> branchPull;
+						case PUSH -> branchPush;
+						default -> throw new IllegalArgumentException("Unexpected value of: " + as);
+					})
+					.rotationX(rot.x)
+					.rotationY(rot.y)
+					.uvLock(false)
+					.addModel()
+					.condition(val, as);	
+				}
+				
+				
+			} // end accept()			
+		} // end anonymous type
+		);
+	} // end createChannelVines()
 	
-//	private void createConduit(@NotNull Block block, @NotNull Item item, @NotNull ResourceLocation texture, @NotNull ModelFile highBranch, @NotNull ModelFile lowBranch, @NotNull ModelFile center, @NotNull ModelFile straight) 
-//	{
-//		String baseName = YATMBlockStateProvider.getModelLocationNameFor(block);
-//		String highModelName = baseName + "_branch_high";
-//		String lowModelName = baseName + "_branch_low";
-//		String centerModelName = baseName + "_center";
-//		String straightModelName = baseName + "_straight_vertical";
-//		this.models().getBuilder(highModelName).parent(highBranch).texture("0", texture);
-//		this.models().getBuilder(lowModelName).parent(lowBranch).texture("0", texture);
-//		this.models().getBuilder(centerModelName).parent(center).texture("0", texture);
-//		this.models().getBuilder(straightModelName).parent(straight).texture("0", texture);
-//		ModelFile highModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, highModelName));
-//		ModelFile lowModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, lowModelName));
-//		ModelFile centerModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, centerModelName));
-//		ModelFile straightModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, straightModelName));
-//
-//		MultiPartBlockStateBuilder builder = this.getMultipartBuilder(block);
-//		builder.part().modelFile(centerModel).addModel().end();
-//		IConduit.DIRECTION_PROPERTIES_BY_DIRECTION.forEach(new BiConsumer<>() 
-//		{
-//			@Override
-//			public void accept(Direction dir, BooleanProperty val)
-//			{
-//				boolean high = YATMBlockStateProvider.HIGH_DIRECTIONS.contains(dir);
-//				Vector2i rot = YATMBlockStateProvider.rotationForDirectionFromNorth(dir);
-//				builder.part()
-//				.modelFile(high ? highModel : lowModel)
-//				.rotationX(rot.x)
-//				.rotationY(rot.y)
-//				.uvLock(false)
-//				.addModel()
-//				.condition(val, true);
-//				
-//			} // end accept()			
-//		} // end anonymous type
-//		);
-//		
-//		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(straightModel);//.texture("0", texture);
-//	} // end addConduit()
-
 	
 	
 	private static ConfiguredModel[] forFourAge(BlockState bs, ModelFile ageZeroModel, ModelFile ageOneModel, ModelFile ageTwoModel, ModelFile ageThreeModel) 
@@ -1662,7 +1667,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		{ new ConfiguredModel(f, xRot, yRot, false) };
 	} // end forPillarAxis()
 	
-	
+
 	
 	public static Vector2i rotationForDirectionFromDown(Direction dir) 
 	{

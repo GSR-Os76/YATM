@@ -1,8 +1,12 @@
 package com.gsr.gsr_yatm.utilities.shape;
 
+import java.util.Map;
+
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.block.conduit.IConduit;
+import com.google.common.collect.ImmutableMap;
+import com.gsr.gsr_yatm.block.conduit.channel_vine.AttachmentState;
+import com.gsr.gsr_yatm.block.conduit.channel_vine.ChannelVineBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsVegetationBlock;
@@ -17,6 +21,7 @@ import com.gsr.gsr_yatm.block.plant.vicum.VicumBlock;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.PipeBlock;
@@ -40,7 +45,7 @@ public class YATMBlockShapes
 		private static final VoxelShape CUBE = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
 
 		@Override
-		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{
 			return CUBE;
 		} // end getShape()
@@ -54,7 +59,7 @@ public class YATMBlockShapes
 		private static final VoxelShape SHAPE = Block.box(0d, 0d, 0d, 16d, 1d, 16d);
 
 		@Override
-		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{
 			return SHAPE;
 		} // end getShape()
@@ -70,7 +75,7 @@ public class YATMBlockShapes
 		private static final VoxelShape OLD = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
 
 		@Override
-		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
 		{
 			return switch(state.getValue(BasinOfTearsVegetationBlock.AGE)) 
 			{
@@ -88,7 +93,7 @@ public class YATMBlockShapes
 		private static final VoxelShape SHAPE = Block.box(2d, 0d, 2d, 14d, 13d, 14d);
 
 		@Override
-		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{
 			return SHAPE;
 		} // end getShape()
@@ -102,7 +107,7 @@ public class YATMBlockShapes
 		private static final VoxelShape OLD = Block.box(0d, 0d, 0d, 16d, 12d, 16d);
 
 		@Override
-		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
 		{
 			return switch(state.getValue(CarbumBlock.AGE)) 
 			{
@@ -123,7 +128,7 @@ public class YATMBlockShapes
 		private static final VoxelShape OLD = Block.box(2d, 0d, 2d, 14d, 11d, 14d);
 
 		@Override
-		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
 		{
 			return switch(state.getValue(FerrumBlock.AGE)) 
 			{
@@ -146,7 +151,7 @@ public class YATMBlockShapes
 		private static final VoxelShape OLD_UNLIT = Block.box(1d, 0d, 1d, 15d, 9d, 15d);
 
 		@Override
-		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
 		{
 			boolean lit = state.getValue(FireEaterLilyBlock.LIT);
 			return switch(state.getValue(FireEaterLilyBlock.AGE)) 
@@ -171,7 +176,7 @@ public class YATMBlockShapes
 		private static final VoxelShape OLD_HIGHER = Block.box(0d, 0d, 0d, 16d, 12d, 16d);
 
 		@Override
-		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
 		{
 			boolean isLower = state.getValue(FoliumBlock.HALF) == DoubleBlockHalf.LOWER;
 			return switch(state.getValue(FoliumBlock.AGE)) 
@@ -189,7 +194,7 @@ public class YATMBlockShapes
 	public static final ICollisionVoxelShapeProvider ICE_CORAL = new ICollisionVoxelShapeProvider() 
 	{
 		@Override
-		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
 		{
 			return switch(state.getValue(IceCoralBlock.AGE)) 
 			{
@@ -235,7 +240,7 @@ public class YATMBlockShapes
 		private static final VoxelShape LARGE_EAST = LARGE.yRotateLookingDownCounterClockwise().toMCVoxelShape();
 
 		@Override
-		public @NotNull VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{
 			return switch(state.getValue(PhantasmalShelfFungiBlock.AGE)) 
 			{
@@ -274,7 +279,7 @@ public class YATMBlockShapes
 		private static final VoxelShape SHAPE = Block.box(2d, 0d, 2d, 14d, 10d, 14d);
 
 		@Override
-		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{
 			return SHAPE;
 		} // end getShape()
@@ -290,7 +295,7 @@ public class YATMBlockShapes
 		private static final VoxelShape HAS_WEST = Block.box(0d, 0d, 0d, 1d, 16d, 16d);
 
 		@Override
-		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{
 			VoxelShape res = Shapes.empty();
 
@@ -331,7 +336,7 @@ public class YATMBlockShapes
 		private static final VoxelShape SHAPE_THREE = Block.box(1d, 0d, 1d, 15d, 16d, 15d);
 
 		@Override
-		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{
 			return switch(blockState.getValue(ShulkwartBlock.AGE)) 
 			{
@@ -352,7 +357,7 @@ public class YATMBlockShapes
 		private static final VoxelShape OLD = Block.box(0d, 0d, 0d, 16d, 13d, 16d);
 
 		@Override
-		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
 		{
 			return switch(state.getValue(VicumBlock.AGE)) 
 			{
@@ -371,7 +376,7 @@ public class YATMBlockShapes
 		private static final VoxelShape CHAIN_LINK = Block.box(6.5d, 12d, 6.5d, 9.5d, 15d, 9.5d);//Block.box(6d, 12d, 6d, 9d, 15d, 9d);
 
 		@Override
-		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{
 			return Shapes.or(TOP_PIECE, CHAIN_LINK);
 		} // end getShape()
@@ -382,7 +387,7 @@ public class YATMBlockShapes
 		private static final VoxelShape SAP_COLLECTOR_SHAPE = Block.box(0d, 0d, 0d, 16d, 8d, 16d);
 
 		@Override
-		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{
 			return SAP_COLLECTOR_SHAPE;
 		} // end getShape()
@@ -403,7 +408,7 @@ public class YATMBlockShapes
 		private static final VoxelShape HANDLE_WEST = Block.box(11, 8, 2, 12, 12, 6);
 		
 		@Override
-		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{
 			VoxelShape ret = switch(blockState.getValue(SpinningWheelBlock.FACING)) 
 					{
@@ -422,7 +427,7 @@ public class YATMBlockShapes
 		private static final VoxelShape SHAPE = Block.box(0d, 0d, 0d, 16d, 4d, 16d);
 
 		@Override
-		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{			
 			return SHAPE;
 		} // end getShape()
@@ -435,7 +440,7 @@ public class YATMBlockShapes
 		private static final VoxelShape HAS_TANK_SHAPE = Block.box(1d, 14d, 1d, 15d, 16d, 15d);
 
 		@Override
-		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{
 			
 			VoxelShape shape = BASE_SHAPE;
@@ -454,7 +459,7 @@ public class YATMBlockShapes
 		private static final VoxelShape SOLAR_PANEL = Block.box(0d, 0d, 0d, 16d, 2d, 16d);
 
 		@Override
-		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{
 			return SOLAR_PANEL;
 		} // end getShape()
@@ -470,7 +475,7 @@ public class YATMBlockShapes
 		private static final VoxelShape HAS_WEST = Block.box(0d, 0d, 0d, 1d, 16d, 16d);
 
 		@Override
-		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{
 			VoxelShape result = Shapes.empty();
 
@@ -504,19 +509,89 @@ public class YATMBlockShapes
 			return result;
 		} // end getShape()
 	};
-		
-	
+			
 	public static final ICollisionVoxelShapeProvider STEEL_TANK = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape SHAPE = Block.box(2d, 0d, 2d, 14d, 16d, 14d);
 
 		@Override
-		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext collisionContext)
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{
 			return SHAPE;
 		} // end getShape()
 	};
 	
+	public static final ICollisionVoxelShapeProvider CHANNEL_VINES = new ICollisionVoxelShapeProvider()
+	{		
+		private static final VoxelShape CENTER_SHAPE = Block.box(6d, 6d, 6d, 10d, 10d, 10d);
+		
+		private static final IVoxelShapeBuilder NEUTRAL = IVoxelShapeBuilder.MutableWrapper.of((VoxelShapeBuilder
+				.box(6d, 6d, 0d, 10d, 10d, 7d)));
+		private static final IVoxelShapeBuilder PULL = IVoxelShapeBuilder.MutableWrapper.of((VoxelShapeBuilder
+				.box(6d, 6d, 0d, 10d, 10d, 7d)
+				.or(VoxelShapeBuilder.box(5d, 5d, 0d, 11d, 11d, 4d))));
+		private static final IVoxelShapeBuilder PUSH = IVoxelShapeBuilder.MutableWrapper.of((VoxelShapeBuilder
+				.box(6d, 6d, 0d, 10d, 10d, 7d)
+				.or(VoxelShapeBuilder.box(5d, 5d, 0d, 11d, 11d, 2d))));
+		
+		private static final Map<Direction, Map<AttachmentState, VoxelShape>> SHAPES = ImmutableMap
+				.ofEntries(Map.entry(Direction.NORTH, ImmutableMap
+						.ofEntries(
+								Map.entry(AttachmentState.NEUTRAL, NEUTRAL.toMCVoxelShape()),
+								Map.entry(AttachmentState.PULL, PULL.toMCVoxelShape()),
+								Map.entry(AttachmentState.PUSH, PUSH.toMCVoxelShape())
+								)),
+						Map.entry(Direction.WEST, ImmutableMap
+								.ofEntries(
+										Map.entry(AttachmentState.NEUTRAL, NEUTRAL.yRotateLookingDownCounterClockwise().toMCVoxelShape()),
+										Map.entry(AttachmentState.PULL, PULL.yRotateLookingDownCounterClockwise().toMCVoxelShape()),
+										Map.entry(AttachmentState.PUSH, PUSH.yRotateLookingDownCounterClockwise().toMCVoxelShape())
+										)),
+						Map.entry(Direction.SOUTH, ImmutableMap
+								.ofEntries(
+										Map.entry(AttachmentState.NEUTRAL, NEUTRAL.yRotateLookingDownCounterClockwise().toMCVoxelShape()),
+										Map.entry(AttachmentState.PULL, PULL.yRotateLookingDownCounterClockwise().toMCVoxelShape()),
+										Map.entry(AttachmentState.PUSH, PUSH.yRotateLookingDownCounterClockwise().toMCVoxelShape())
+										)),
+						Map.entry(Direction.EAST, ImmutableMap
+								.ofEntries(
+										Map.entry(AttachmentState.NEUTRAL, NEUTRAL.yRotateLookingDownCounterClockwise().toMCVoxelShape()),
+										Map.entry(AttachmentState.PULL, PULL.yRotateLookingDownCounterClockwise().toMCVoxelShape()),
+										Map.entry(AttachmentState.PUSH, PUSH.yRotateLookingDownCounterClockwise().toMCVoxelShape())
+										)),
+						Map.entry(Direction.UP, ImmutableMap
+								.ofEntries(
+										Map.entry(AttachmentState.NEUTRAL, NEUTRAL.yRotateLookingDownCounterClockwise().xRotateLookingPositiveClockwise().toMCVoxelShape()),
+										Map.entry(AttachmentState.PULL, PULL.yRotateLookingDownCounterClockwise().xRotateLookingPositiveClockwise().toMCVoxelShape()),
+										Map.entry(AttachmentState.PUSH, PUSH.yRotateLookingDownCounterClockwise().xRotateLookingPositiveClockwise().toMCVoxelShape())
+										)),
+						Map.entry(Direction.DOWN, ImmutableMap
+								.ofEntries(
+										Map.entry(AttachmentState.NEUTRAL, NEUTRAL.xRotateLookingPositiveClockwise().xRotateLookingPositiveClockwise().xRotateLookingPositiveClockwise().toMCVoxelShape()),
+										Map.entry(AttachmentState.PULL, PULL.xRotateLookingPositiveClockwise().xRotateLookingPositiveClockwise().xRotateLookingPositiveClockwise().toMCVoxelShape()),
+										Map.entry(AttachmentState.PUSH, PUSH.xRotateLookingPositiveClockwise().xRotateLookingPositiveClockwise().xRotateLookingPositiveClockwise().toMCVoxelShape())
+										))
+						);
+
+		@Override
+		public @NotNull VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos position, CollisionContext context)
+		{
+			VoxelShape shape = CENTER_SHAPE;
+			for(Direction d : Direction.values()) 
+			{
+				AttachmentState as = state.getValue(ChannelVineBlock.BRANCHES_BY_DIRECTION.get(d));
+				if(as != AttachmentState.NONE) 
+				{
+					shape = Shapes.or(shape, SHAPES.get(d).get(as));
+				}
+			}
+
+			return shape;
+		} // end getShape()
+	};
+	
+	
+	/*
 	public static final ICollisionVoxelShapeProvider STEEL_FLUID_CONDUIT = new ICollisionVoxelShapeProvider()
 	{		
 		private static final VoxelShape CENTER_SHAPE = Block.box(6d, 6d, 6d, 10d, 10d, 10d);
@@ -648,7 +723,7 @@ public class YATMBlockShapes
 			return shape;
 		} // end getShape()
 	};
-
+*/
 	
 	
 	public static final BlockShapesProvider SAP_COLLECTOR_SHAPES = BlockShapesProvider.Builder.of(YATMBlockShapes.SAP_COLLECTOR).build();

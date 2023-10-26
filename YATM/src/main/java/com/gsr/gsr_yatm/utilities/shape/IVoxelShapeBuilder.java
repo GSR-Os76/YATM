@@ -51,11 +51,18 @@ public interface IVoxelShapeBuilder
 	// a ninty degree rotation to be specific
 	public default @NotNull IVoxelShapeBuilder yRotateLookingDownCounterClockwise() 
 	{
-		return this.yRotateLookingDownClockwise(IVoxelShapeBuilder.BLOCK_CENTERIC_PIVOT);
-	} // end yRotateLookingDownClockwise
+		return this.yRotateLookingDownCounterClockwise(IVoxelShapeBuilder.BLOCK_CENTERIC_PIVOT);
+	} // end yRotateLookingDownCounterClockwise
 	
-	public @NotNull IVoxelShapeBuilder yRotateLookingDownClockwise(Vector3d pivot);
+	public @NotNull IVoxelShapeBuilder yRotateLookingDownCounterClockwise(Vector3d pivot);
 	
+	// a ninty degree rotation to be specific
+	public default @NotNull IVoxelShapeBuilder xRotateLookingPositiveClockwise() 
+	{
+		return this.xRotateLookingPositiveClockwise(IVoxelShapeBuilder.BLOCK_CENTERIC_PIVOT);
+	} // end yRotateLookingDownCounterClockwise
+		
+	public @NotNull IVoxelShapeBuilder xRotateLookingPositiveClockwise(Vector3d pivot);
 	
 	
 	public @NotNull VoxelShape toMCVoxelShape();	
@@ -110,12 +117,19 @@ public interface IVoxelShapeBuilder
 		} // end binary()
 
 		@Override
-		public IVoxelShapeBuilder yRotateLookingDownClockwise(Vector3d pivot)
+		public IVoxelShapeBuilder yRotateLookingDownCounterClockwise(Vector3d pivot)
 		{
-			this.m_wrapped = this.m_wrapped.yRotateLookingDownClockwise(pivot);
+			this.m_wrapped = this.m_wrapped.yRotateLookingDownCounterClockwise(pivot);
 			return this.m_wrapped;
 		} // end yRotateLookingDownClockwise()
-
+		
+		@Override
+		public IVoxelShapeBuilder xRotateLookingPositiveClockwise(Vector3d pivot)
+		{
+			this.m_wrapped = this.m_wrapped.xRotateLookingPositiveClockwise(pivot);
+			return this.m_wrapped;
+		} // end yRotateLookingPositiveXClockwise()
+		
 		@Override
 		public VoxelShape toMCVoxelShape()
 		{

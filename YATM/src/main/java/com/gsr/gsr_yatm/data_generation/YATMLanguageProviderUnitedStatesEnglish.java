@@ -214,6 +214,9 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.CONDUIT_VINES.get(), "Conduit Vines");
 		
 		this.add(YATMBlocks.STEEL_TANK.get(), "Foliar Steel Tank");
+		
+		this.add(YATMBlocks.CHANNEL_VINES.get(), "Channel Vines");
+		
 //		this.add(YATMBlocks.ONE_CU_WIRE.get(), "1cu Wire");
 //		this.add(YATMBlocks.EIGHT_CU_WIRE.get(), "8cu Wire");
 //		this.add(YATMBlocks.SIXTYFOUR_CU_WIRE.get(), "64cu Wire");

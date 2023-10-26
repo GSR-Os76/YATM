@@ -6,6 +6,7 @@ import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.DecayingBlock;
 import com.gsr.gsr_yatm.block.NoCullBlock;
 import com.gsr.gsr_yatm.block.WaterloggableBlock;
+import com.gsr.gsr_yatm.block.conduit.channel_vine.ChannelVineBlock;
 import com.gsr.gsr_yatm.block.conduit.current.ConduitVineBlock;
 import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
 import com.gsr.gsr_yatm.block.device.bioler.BiolerBlock;
@@ -326,6 +327,8 @@ public class YATMBlocks
 	public static final RegistryObject<ConduitVineBlock> CONDUIT_VINES = BLOCKS.register("conduit_vines", () -> new ConduitVineBlock(YATMBlockProperties.CONDUIT_VINES, YATMBlockShapes.CONDUIT_VINES));
 	
 	public static final RegistryObject<TankBlock> STEEL_TANK = BLOCKS.register("steel_tank", () -> new TankBlock(YATMBlockProperties.STEEL_TANK, YATMBlockShapes.STEEL_TANK, DeviceTierConstants.STEEL_TANK));
+	
+	public static final RegistryObject<ChannelVineBlock> CHANNEL_VINES = BLOCKS.register("channel_vines", () -> new ChannelVineBlock(YATMBlockProperties.CHANNEL_VINES, YATMBlockShapes.CHANNEL_VINES));
 	
 //	public static final RegistryObject<CurrentConduitBlock> ONE_CU_WIRE = BLOCKS.register("one_cu_wire", () -> new CurrentConduitBlock(YATMBlockProperties.WIRE, YATMBlockShapes.WIRE_SHAPE, ConductorProperties.ONE_CU_WIRE_CONDUCTOR_PROPERTIES));
 //	public static final RegistryObject<CurrentConduitBlock> EIGHT_CU_WIRE = BLOCKS.register("eight_cu_wire", () -> new CurrentConduitBlock(YATMBlockProperties.WIRE, YATMBlockShapes.WIRE_SHAPE, ConductorProperties.EIGHT_CU_WIRE_CONDUCTOR_PROPERTIES));

@@ -1,6 +1,7 @@
 package com.gsr.gsr_yatm.registry;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.block.conduit.channel_vine.ChannelVinesBlockEntity;
 import com.gsr.gsr_yatm.block.device.bioler.BiolerBlockEntity;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlockEntity;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlockEntity;
@@ -61,6 +62,9 @@ public class YATMBlockEntityTypes
 	public static final RegistryObject<BlockEntityType<SolarPanelBlockEntity>> SOLAR_PANEL = BLOCK_ENTITY_TYPES.register("solar_panel", () -> BlockEntityType.Builder.of(SolarPanelBlockEntity::new, YATMBlocks.CRUDE_SOLAR_PANEL.get(), YATMBlocks.ADVANCED_SOLAR_PANEL.get(), YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get()).build(null));
 	
 	public static final RegistryObject<BlockEntityType<TankBlockEntity>> TANK = BLOCK_ENTITY_TYPES.register("tank", () -> BlockEntityType.Builder.of(TankBlockEntity::new, YATMBlocks.STEEL_TANK.get()).build(null));
+	
+	public static final RegistryObject<BlockEntityType<ChannelVinesBlockEntity>> CHANNEL_VINES = BLOCK_ENTITY_TYPES.register("channel_vines", () -> BlockEntityType.Builder.of(ChannelVinesBlockEntity::new, YATMBlocks.CHANNEL_VINES.get()).build(null));
+	
 	
 //	public static final RegistryObject<BlockEntityType<CurrentConduitBlockEntity>> CURRENT_CONDUIT = BLOCK_ENTITY_TYPES.register("current_conduit_block_entity", () -> BlockEntityType.Builder.of(CurrentConduitBlockEntity::new, 
 //			YATMBlocks.ONE_CU_WIRE.get(), YATMBlocks.EIGHT_CU_WIRE.get(), YATMBlocks.SIXTYFOUR_CU_WIRE.get(), YATMBlocks.FIVEHUNDREDTWELVE_CU_WIRE.get(), YATMBlocks.FOURTHOUSANDNINTYSIX_CU_WIRE.get(),

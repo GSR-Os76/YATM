@@ -225,6 +225,9 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.faceDropSelf(YATMBlocks.CONDUIT_VINES.get());
 		
 		this.dropSelf(YATMBlocks.STEEL_TANK.get());
+		
+		this.dropSelf(YATMBlocks.CHANNEL_VINES.get());
+//		
 //		this.dropSelf(YATMBlocks.ONE_CU_WIRE.get());
 //		this.dropSelf(YATMBlocks.EIGHT_CU_WIRE.get());
 //		this.dropSelf(YATMBlocks.SIXTYFOUR_CU_WIRE.get());

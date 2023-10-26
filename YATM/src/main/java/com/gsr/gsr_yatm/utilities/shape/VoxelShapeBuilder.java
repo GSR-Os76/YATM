@@ -81,9 +81,15 @@ public class VoxelShapeBuilder implements IVoxelShapeBuilder
 	} // end binary()
 	
 	@Override
-	public @NotNull VoxelShapeBuilder yRotateLookingDownClockwise(Vector3d pivot) 
+	public @NotNull VoxelShapeBuilder yRotateLookingDownCounterClockwise(Vector3d pivot) 
 	{
-		return VoxelShapeBuilder.yRotateLookingDownClockwise(this, pivot);
+		return VoxelShapeBuilder.yRotateLookingDownCounterClockwise(this, pivot);
+	} // end shape;
+	
+	@Override
+	public @NotNull VoxelShapeBuilder xRotateLookingPositiveClockwise(Vector3d pivot) 
+	{
+		return VoxelShapeBuilder.xRotateLookingPositiveClockwise(this, pivot);
 	} // end shape;
 	
 	@Override
@@ -168,7 +174,7 @@ public class VoxelShapeBuilder implements IVoxelShapeBuilder
 	
 	
 	// rotation
-	public static @NotNull VoxelShapeBuilder yRotateLookingDownClockwise(@NotNull VoxelShapeBuilder shape, @NotNull Vector3d pivot) 
+	public static @NotNull VoxelShapeBuilder yRotateLookingDownCounterClockwise(@NotNull VoxelShapeBuilder shape, @NotNull Vector3d pivot) 
 	{
 		// TODO, possibly not pivoting around correctly for pivot where (pivot.x != pivot.z), review
 		Vector3d lVert = shape.getLowVertex();
@@ -182,6 +188,22 @@ public class VoxelShapeBuilder implements IVoxelShapeBuilder
 		double toZ = Math.max(((pivot.x - lVert.x) + pivot.x), ((pivot.x - hVert.x) + pivot.x));
 		
 		return new VoxelShapeBuilder(x, y, z, toX, toY, toZ, shape.getAdditionalParts().stream().map((p) -> new Pair<>(p.getA(), p.getB().yRotateLookingDownCounterClockwise())).toList());
+	} // end shape;
+	
+	public static @NotNull VoxelShapeBuilder xRotateLookingPositiveClockwise(@NotNull VoxelShapeBuilder shape, @NotNull Vector3d pivot) 
+	{
+		// TODO, highly not tested
+		Vector3d lVert = shape.getLowVertex();
+		Vector3d hVert = shape.getHighVertex();
+		
+		double x = lVert.x;
+		double y = Math.min(((pivot.z - lVert.z) + pivot.z), ((pivot.z - hVert.z) + pivot.z));
+		double z = Math.min(lVert.y, hVert.y); 
+		double toX = hVert.x;
+		double toY =Math.max(((pivot.z - lVert.z) + pivot.z), ((pivot.z - hVert.z) + pivot.z));
+		double toZ = Math.max(lVert.y, hVert.y); 
+		
+		return new VoxelShapeBuilder(x, y, z, toX, toY, toZ, shape.getAdditionalParts().stream().map((p) -> new Pair<>(p.getA(), p.getB().xRotateLookingPositiveClockwise())).toList());
 	} // end shape;
 	
 } // end class

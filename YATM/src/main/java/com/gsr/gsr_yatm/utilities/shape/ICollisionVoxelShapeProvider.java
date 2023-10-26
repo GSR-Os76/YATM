@@ -12,6 +12,6 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 public interface ICollisionVoxelShapeProvider
 {
 
-	public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext collisionContext);
+	public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context);
 
 } // end interface

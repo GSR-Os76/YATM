@@ -243,7 +243,9 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> CONDUIT_VINES_ITEM = generalTabEnqueue(ITEMS.register("conduit_vines", () -> new BlockItem(YATMBlocks.CONDUIT_VINES.get(), new Item.Properties())));
 	
 	public static final RegistryObject<BlockItem> STEEL_TANK_ITEM = generalTabEnqueue(ITEMS.register("steel_tank", () -> new BlockItem(YATMBlocks.STEEL_TANK.get(), new Item.Properties())));
-		
+	
+	public static final RegistryObject<BlockItem> CHANNEL_VINES_ITEM = generalTabEnqueue(ITEMS.register("channel_vines", () -> new BlockItem(YATMBlocks.CHANNEL_VINES.get(), new Item.Properties())));
+	
 //	public static final RegistryObject<BlockItem> ONE_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("one_cu_wire", () -> new BlockItem(YATMBlocks.ONE_CU_WIRE.get(), new Item.Properties())));
 //	public static final RegistryObject<BlockItem> EIGHT_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("eight_cu_wire", () -> new BlockItem(YATMBlocks.EIGHT_CU_WIRE.get(), new Item.Properties())));
 //	public static final RegistryObject<BlockItem> SIXTYFOUR_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("sixtyfour_cu_wire", () -> new BlockItem(YATMBlocks.SIXTYFOUR_CU_WIRE.get(), new Item.Properties())));
