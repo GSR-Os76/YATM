@@ -43,6 +43,7 @@ public class TankRenderer implements BlockEntityRenderer<TankBlockEntity>
 		{
 			float heightPercentage = tank.getPercentageFilled();
 			// TODO, textures are rendered as missing or blank
+			// TODO, textures that're usually rendered missing aren't rendered while next to fluids from YATM
 			BlockState fluidToRender = this.m_fluidRenderLookup.computeIfAbsent(contained, (f) -> f.defaultFluidState().createLegacyBlock());
 			BakedModel model = this.m_blockRenderer.getBlockModel(fluidToRender);			
 

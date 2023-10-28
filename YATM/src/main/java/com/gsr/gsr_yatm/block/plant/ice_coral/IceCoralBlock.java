@@ -36,7 +36,7 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
 
-public class IceCoralBlock extends Block implements IAgingBlock, IYATMPlantableBlock, SimpleWaterloggedBlock, BonemealableBlock
+public class IceCoralBlock extends Block implements IAgingBlock, IYATMPlantableBlock, BonemealableBlock, SimpleWaterloggedBlock
 {
 	public static final @NotNull IntegerProperty AGE = YATMBlockStateProperties.AGE_EIGHT;
 	public static final @NotNull BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
