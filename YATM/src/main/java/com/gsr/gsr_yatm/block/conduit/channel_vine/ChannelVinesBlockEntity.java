@@ -47,7 +47,7 @@ public class ChannelVinesBlockEntity extends BlockEntity
 
 	public static void tick(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state, @NotNull ChannelVinesBlockEntity blockEntity)
 	{
-		if(!blockEntity.isRemoved()) 
+		if(!blockEntity.isRemoved() && level.isLoaded(position)) 
 		{
 			if (level.isClientSide)
 			{
@@ -85,10 +85,16 @@ public class ChannelVinesBlockEntity extends BlockEntity
 		for(Direction face : Direction.values())
 		{
 			BlockPos neighborPos = position.relative(face);
-			EnumProperty<AttachmentState> prop = ChannelVineBlock.BRANCHES_BY_DIRECTION.get(face);
+			// TODO, might be unnecessary to check with this, or might not
+			if(!level.isLoaded(neighborPos)) 
+			{
+				this.m_neighborCaps.put(face, null);
+				continue;
+			}				
 			BlockEntity be = level.getBlockEntity(neighborPos);
 			LazyOptional<IFluidHandler> cap = be == null ? null : be.getCapability(ForgeCapabilities.FLUID_HANDLER, face.getOpposite());
 			AttachmentState intended = null;
+			EnumProperty<AttachmentState> prop = ChannelVineBlock.BRANCHES_BY_DIRECTION.get(face);
 			if(cap != null && cap.isPresent()) 
 			{
 				if(cap != this.m_neighborCaps.get(face)) 
@@ -101,8 +107,7 @@ public class ChannelVinesBlockEntity extends BlockEntity
 			else 
 			{
 				intended = AttachmentState.NONE;				
-			}
-			
+			}			
 			// update state if is necessary
 			if(intended != null && state.getValue(prop) != intended) 
 			{
@@ -117,7 +122,7 @@ public class ChannelVinesBlockEntity extends BlockEntity
 	
 	private void removeAttachment(@NotNull Level level, @NotNull BlockPos position, Direction face, LazyOptional<IFluidHandler> la) 
 	{
-		if(this.isRemoved() || !this.getType().isValid(level.getBlockState(position))) 
+		if(this.isRemoved() || !level.isLoaded(position) || !this.getType().isValid(level.getBlockState(position))) 
 		{
 			return;
 		}

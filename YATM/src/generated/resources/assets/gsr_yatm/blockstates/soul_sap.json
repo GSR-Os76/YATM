@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "gsr_yatm:block/soul_sap"
+    },
+    "level=1": {
+      "model": "gsr_yatm:block/soul_sap"
+    },
+    "level=10": {
+      "model": "gsr_yatm:block/soul_sap"
+    },
+    "level=11": {
+      "model": "gsr_yatm:block/soul_sap"
+    },
+    "level=12": {
+      "model": "gsr_yatm:block/soul_sap"
+    },
+    "level=13": {
+      "model": "gsr_yatm:block/soul_sap"
+    },
+    "level=14": {
+      "model": "gsr_yatm:block/soul_sap"
+    },
+    "level=15": {
+      "model": "gsr_yatm:block/soul_sap"
+    },
+    "level=2": {
+      "model": "gsr_yatm:block/soul_sap"
+    },
+    "level=3": {
+      "model": "gsr_yatm:block/soul_sap"
+    },
+    "level=4": {
+      "model": "gsr_yatm:block/soul_sap"
+    },
+    "level=5": {
+      "model": "gsr_yatm:block/soul_sap"
+    },
+    "level=6": {
+      "model": "gsr_yatm:block/soul_sap"
+    },
+    "level=7": {
+      "model": "gsr_yatm:block/soul_sap"
+    },
+    "level=8": {
+      "model": "gsr_yatm:block/soul_sap"
+    },
+    "level=9": {
+      "model": "gsr_yatm:block/soul_sap"
+    }
+  }
+}

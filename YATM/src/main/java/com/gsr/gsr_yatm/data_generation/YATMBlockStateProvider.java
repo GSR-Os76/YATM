@@ -46,6 +46,7 @@ import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.DoorBlock;
 import net.minecraft.world.level.block.FenceBlock;
 import net.minecraft.world.level.block.FenceGateBlock;
+import net.minecraft.world.level.block.LiquidBlock;
 import net.minecraft.world.level.block.PressurePlateBlock;
 import net.minecraft.world.level.block.RotatedPillarBlock;
 import net.minecraft.world.level.block.SlabBlock;
@@ -211,7 +212,9 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 		this.addTanks();
 		this.addChannelVines();
-	} // end registerStatesAndModels
+		
+		this.addFluidBlocks();
+	} // end registerStatesAndModels()
 
 	
 	
@@ -614,6 +617,19 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createChannelVines(YATMBlocks.CHANNEL_VINES.get(), CHANNEL_VINES_CENTER_MODEL, CHANNEL_VINES_BRANCH_MODEL, CHANNEL_VINES_BRANCH_PULL_MODEL, CHANNEL_VINES_BRANCH_PUSH_MODEL);
 	
 	} // end addChannelVines()
+	
+	private void addFluidBlocks() 
+	{
+		this.createFluidBlock(YATMBlocks.BIO_LIQUID_BLOCK.get());
+		this.createFluidBlock(YATMBlocks.CHORUS_LIQUID_BLOCK.get());
+		this.createFluidBlock(YATMBlocks.CHORUS_BIO_LIQUID_BLOCK.get());
+		this.createFluidBlock(YATMBlocks.ENDER_LIQUID_BLOCK.get());
+		this.createFluidBlock(YATMBlocks.ESSENCE_OF_DECAY_LIQUID_BLOCK.get());
+		this.createFluidBlock(YATMBlocks.ESSENCE_OF_SOULS_LIQUID_BLOCK.get());
+		this.createFluidBlock(YATMBlocks.LATEX_LIQUID_BLOCK.get());
+		this.createFluidBlock(YATMBlocks.SOUL_SAP_LIQUID_BLOCK.get());
+		this.createFluidBlock(YATMBlocks.SOUL_SYRUP_LIQUID_BLOCK.get());
+	} // end addFluidBlocks()
 	
 	
 
@@ -1428,6 +1444,14 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		} // end anonymous type
 		);
 	} // end createChannelVines()
+	
+	private void createFluidBlock(@NotNull LiquidBlock block) 
+	{
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
+		this.models().getBuilder(name).texture("particle", name + "_still");
+		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
+		this.getVariantBuilder(block).forAllStates((b) -> new ConfiguredModel[] {new ConfiguredModel(model)});
+	} // end createFluidBlock()
 	
 	
 	

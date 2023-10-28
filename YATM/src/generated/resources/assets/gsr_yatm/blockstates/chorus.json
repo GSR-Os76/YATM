@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "gsr_yatm:block/chorus"
+    },
+    "level=1": {
+      "model": "gsr_yatm:block/chorus"
+    },
+    "level=10": {
+      "model": "gsr_yatm:block/chorus"
+    },
+    "level=11": {
+      "model": "gsr_yatm:block/chorus"
+    },
+    "level=12": {
+      "model": "gsr_yatm:block/chorus"
+    },
+    "level=13": {
+      "model": "gsr_yatm:block/chorus"
+    },
+    "level=14": {
+      "model": "gsr_yatm:block/chorus"
+    },
+    "level=15": {
+      "model": "gsr_yatm:block/chorus"
+    },
+    "level=2": {
+      "model": "gsr_yatm:block/chorus"
+    },
+    "level=3": {
+      "model": "gsr_yatm:block/chorus"
+    },
+    "level=4": {
+      "model": "gsr_yatm:block/chorus"
+    },
+    "level=5": {
+      "model": "gsr_yatm:block/chorus"
+    },
+    "level=6": {
+      "model": "gsr_yatm:block/chorus"
+    },
+    "level=7": {
+      "model": "gsr_yatm:block/chorus"
+    },
+    "level=8": {
+      "model": "gsr_yatm:block/chorus"
+    },
+    "level=9": {
+      "model": "gsr_yatm:block/chorus"
+    }
+  }
+}

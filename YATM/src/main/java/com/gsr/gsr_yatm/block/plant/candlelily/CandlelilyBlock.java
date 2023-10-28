@@ -91,7 +91,7 @@ public class CandlelilyBlock extends ShapeBlock implements IYATMPlantableBlock, 
 		{
 			BlockPos toCheck = position.offset(random.nextIntBetweenInclusive(-CandlelilyBlock.HORIZONTAL_RADIUS, CandlelilyBlock.HORIZONTAL_RADIUS), random.nextIntBetweenInclusive(-CandlelilyBlock.VERICAL_RADIUS, CandlelilyBlock.VERICAL_RADIUS), random.nextIntBetweenInclusive(-CandlelilyBlock.HORIZONTAL_RADIUS, CandlelilyBlock.HORIZONTAL_RADIUS));
 			BlockPos belowToCheck = toCheck.below();
-			if(this.canPlantOn(level, level.getBlockState(belowToCheck), belowToCheck, Direction.UP))
+			if(level.isLoaded(toCheck) && this.canPlantOn(level, level.getBlockState(belowToCheck), belowToCheck, Direction.UP))
 			{
 				level.setBlock(toCheck, this.defaultBlockState(), Block.UPDATE_ALL);
 				placed++;

@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "gsr_yatm:block/latex"
+    },
+    "level=1": {
+      "model": "gsr_yatm:block/latex"
+    },
+    "level=10": {
+      "model": "gsr_yatm:block/latex"
+    },
+    "level=11": {
+      "model": "gsr_yatm:block/latex"
+    },
+    "level=12": {
+      "model": "gsr_yatm:block/latex"
+    },
+    "level=13": {
+      "model": "gsr_yatm:block/latex"
+    },
+    "level=14": {
+      "model": "gsr_yatm:block/latex"
+    },
+    "level=15": {
+      "model": "gsr_yatm:block/latex"
+    },
+    "level=2": {
+      "model": "gsr_yatm:block/latex"
+    },
+    "level=3": {
+      "model": "gsr_yatm:block/latex"
+    },
+    "level=4": {
+      "model": "gsr_yatm:block/latex"
+    },
+    "level=5": {
+      "model": "gsr_yatm:block/latex"
+    },
+    "level=6": {
+      "model": "gsr_yatm:block/latex"
+    },
+    "level=7": {
+      "model": "gsr_yatm:block/latex"
+    },
+    "level=8": {
+      "model": "gsr_yatm:block/latex"
+    },
+    "level=9": {
+      "model": "gsr_yatm:block/latex"
+    }
+  }
+}

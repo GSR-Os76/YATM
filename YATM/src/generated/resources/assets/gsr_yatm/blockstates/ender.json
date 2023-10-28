@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "gsr_yatm:block/ender"
+    },
+    "level=1": {
+      "model": "gsr_yatm:block/ender"
+    },
+    "level=10": {
+      "model": "gsr_yatm:block/ender"
+    },
+    "level=11": {
+      "model": "gsr_yatm:block/ender"
+    },
+    "level=12": {
+      "model": "gsr_yatm:block/ender"
+    },
+    "level=13": {
+      "model": "gsr_yatm:block/ender"
+    },
+    "level=14": {
+      "model": "gsr_yatm:block/ender"
+    },
+    "level=15": {
+      "model": "gsr_yatm:block/ender"
+    },
+    "level=2": {
+      "model": "gsr_yatm:block/ender"
+    },
+    "level=3": {
+      "model": "gsr_yatm:block/ender"
+    },
+    "level=4": {
+      "model": "gsr_yatm:block/ender"
+    },
+    "level=5": {
+      "model": "gsr_yatm:block/ender"
+    },
+    "level=6": {
+      "model": "gsr_yatm:block/ender"
+    },
+    "level=7": {
+      "model": "gsr_yatm:block/ender"
+    },
+    "level=8": {
+      "model": "gsr_yatm:block/ender"
+    },
+    "level=9": {
+      "model": "gsr_yatm:block/ender"
+    }
+  }
+}

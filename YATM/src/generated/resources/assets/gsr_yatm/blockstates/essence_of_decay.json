@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "gsr_yatm:block/essence_of_decay"
+    },
+    "level=1": {
+      "model": "gsr_yatm:block/essence_of_decay"
+    },
+    "level=10": {
+      "model": "gsr_yatm:block/essence_of_decay"
+    },
+    "level=11": {
+      "model": "gsr_yatm:block/essence_of_decay"
+    },
+    "level=12": {
+      "model": "gsr_yatm:block/essence_of_decay"
+    },
+    "level=13": {
+      "model": "gsr_yatm:block/essence_of_decay"
+    },
+    "level=14": {
+      "model": "gsr_yatm:block/essence_of_decay"
+    },
+    "level=15": {
+      "model": "gsr_yatm:block/essence_of_decay"
+    },
+    "level=2": {
+      "model": "gsr_yatm:block/essence_of_decay"
+    },
+    "level=3": {
+      "model": "gsr_yatm:block/essence_of_decay"
+    },
+    "level=4": {
+      "model": "gsr_yatm:block/essence_of_decay"
+    },
+    "level=5": {
+      "model": "gsr_yatm:block/essence_of_decay"
+    },
+    "level=6": {
+      "model": "gsr_yatm:block/essence_of_decay"
+    },
+    "level=7": {
+      "model": "gsr_yatm:block/essence_of_decay"
+    },
+    "level=8": {
+      "model": "gsr_yatm:block/essence_of_decay"
+    },
+    "level=9": {
+      "model": "gsr_yatm:block/essence_of_decay"
+    }
+  }
+}

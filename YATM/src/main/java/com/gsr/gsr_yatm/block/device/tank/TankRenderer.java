@@ -18,8 +18,11 @@ import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.model.data.ModelData;
 
+@OnlyIn(Dist.CLIENT)
 public class TankRenderer implements BlockEntityRenderer<TankBlockEntity>
 {
 	private final @NotNull BlockRenderDispatcher m_blockRenderer;

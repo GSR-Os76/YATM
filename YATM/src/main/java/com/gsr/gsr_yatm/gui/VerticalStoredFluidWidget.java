@@ -77,7 +77,7 @@ public class VerticalStoredFluidWidget extends ImageWidget
 	
 	private void grabFluidTexture() 
 	{
-		if(this.m_fluid.getFluidType().getRenderPropertiesInternal()instanceof IClientFluidTypeExtensions clientFluidTypeExtensions)
+		if(this.m_fluid.getFluidType().getRenderPropertiesInternal() instanceof IClientFluidTypeExtensions clientFluidTypeExtensions)
 			
 		{
 			this.m_fluidStillTexture = clientFluidTypeExtensions.getStillTexture(new FluidStack(this.m_fluid, this.m_stored)).withPrefix("textures/").withSuffix(".png");

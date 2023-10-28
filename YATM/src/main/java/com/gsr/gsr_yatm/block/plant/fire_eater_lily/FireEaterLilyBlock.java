@@ -215,7 +215,7 @@ public class FireEaterLilyBlock extends Block implements IAgingBlock, Bonemealab
 			for(int i = 0; i < 12; i++) 
 			{
 				BlockPos toCheck = position.offset(random.nextIntBetweenInclusive(-2, 2), random.nextIntBetweenInclusive(-1, 1), random.nextIntBetweenInclusive(-2, 2));
-				if(level.getBlockState(toCheck).is(Blocks.AIR) && level.getBlockState(toCheck.below()).is(YATMBlockTags.FIRE_EATER_LILY_CAN_GROW_ON_KEY)) 
+				if(level.isLoaded(toCheck) && level.getBlockState(toCheck).is(Blocks.AIR) && level.getBlockState(toCheck.below()).is(YATMBlockTags.FIRE_EATER_LILY_CAN_GROW_ON_KEY)) 
 				{
 					level.setBlock(toCheck, this.getStateForPlacement(level, toCheck), Block.UPDATE_ALL);
 					placed++;

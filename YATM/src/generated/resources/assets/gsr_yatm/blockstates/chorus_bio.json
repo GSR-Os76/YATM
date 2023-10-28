@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "gsr_yatm:block/chorus_bio"
+    },
+    "level=1": {
+      "model": "gsr_yatm:block/chorus_bio"
+    },
+    "level=10": {
+      "model": "gsr_yatm:block/chorus_bio"
+    },
+    "level=11": {
+      "model": "gsr_yatm:block/chorus_bio"
+    },
+    "level=12": {
+      "model": "gsr_yatm:block/chorus_bio"
+    },
+    "level=13": {
+      "model": "gsr_yatm:block/chorus_bio"
+    },
+    "level=14": {
+      "model": "gsr_yatm:block/chorus_bio"
+    },
+    "level=15": {
+      "model": "gsr_yatm:block/chorus_bio"
+    },
+    "level=2": {
+      "model": "gsr_yatm:block/chorus_bio"
+    },
+    "level=3": {
+      "model": "gsr_yatm:block/chorus_bio"
+    },
+    "level=4": {
+      "model": "gsr_yatm:block/chorus_bio"
+    },
+    "level=5": {
+      "model": "gsr_yatm:block/chorus_bio"
+    },
+    "level=6": {
+      "model": "gsr_yatm:block/chorus_bio"
+    },
+    "level=7": {
+      "model": "gsr_yatm:block/chorus_bio"
+    },
+    "level=8": {
+      "model": "gsr_yatm:block/chorus_bio"
+    },
+    "level=9": {
+      "model": "gsr_yatm:block/chorus_bio"
+    }
+  }
+}

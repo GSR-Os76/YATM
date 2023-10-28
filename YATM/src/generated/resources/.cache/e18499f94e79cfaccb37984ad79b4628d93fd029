@@ -1,6 +1,7 @@
-// 1.20.1	2023-10-26T15:33:06.4338512	Tags for minecraft:block mod id gsr_yatm
+// 1.20.1	2023-10-28T11:30:29.9237855	Tags for minecraft:block mod id gsr_yatm
 c66ff3626edc7c0f108f497fa9aec78cbf9db39f data/forge/tags/blocks/basalt.json
 ea459db540b319f4bdead7b7f1142fc238c09a8e data/forge/tags/blocks/cactus.json
+da1d12f678963493519caaff63a76241b220579f data/forge/tags/blocks/clay.json
 b3abde7fc2826faf44dd6e6dd87abc76ffa4a612 data/forge/tags/blocks/needs_wood_tool.json
 ae063a18d6a78c1df2e70286fb1984ffc87c6b2d data/forge/tags/blocks/netherrack.json
 07af26afbfb24573997b6045b1603d54792502cf data/forge/tags/blocks/ores.json
@@ -43,6 +44,9 @@ c7cf498dd11b4becfc703ca6d155b77406279d34 data/gsr_yatm/tags/blocks/mediums/basin
 f738b99c239d8fa447dd0744af550624426fb4a0 data/gsr_yatm/tags/blocks/mediums/fire_eater_lily_can_grow_on.json
 8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/folium_can_grow_in.json
 61064ec33852a4a02609c7e6edc2de09c480a0f8 data/gsr_yatm/tags/blocks/mediums/folium_can_grow_on.json
+09b1d659c30b44ccacc827733646dd129e8f0b4a data/gsr_yatm/tags/blocks/mediums/hydrea_can_grow_in.json
+2db0b9932509ab771c36b4e042400432986dd916 data/gsr_yatm/tags/blocks/mediums/hydrea_can_grow_on.json
+cf3608bd187922aeb48c566c19e8482b0dca34c7 data/gsr_yatm/tags/blocks/mediums/hydrea_can_plant_in.json
 53824fe697831e12eb6589945965c11cbf765daf data/gsr_yatm/tags/blocks/mediums/ice_coral_can_grow_in.json
 2764ff429307d32a32f0e0a465eba81f9abfb002 data/gsr_yatm/tags/blocks/mediums/ice_coral_can_grow_on.json
 69c396cb051bbe9a130e6979b67065e5041b179d data/gsr_yatm/tags/blocks/mediums/pitcher_clusters_can_grow_on.json

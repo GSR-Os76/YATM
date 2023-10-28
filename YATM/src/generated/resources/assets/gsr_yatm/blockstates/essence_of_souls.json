@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "gsr_yatm:block/essence_of_souls"
+    },
+    "level=1": {
+      "model": "gsr_yatm:block/essence_of_souls"
+    },
+    "level=10": {
+      "model": "gsr_yatm:block/essence_of_souls"
+    },
+    "level=11": {
+      "model": "gsr_yatm:block/essence_of_souls"
+    },
+    "level=12": {
+      "model": "gsr_yatm:block/essence_of_souls"
+    },
+    "level=13": {
+      "model": "gsr_yatm:block/essence_of_souls"
+    },
+    "level=14": {
+      "model": "gsr_yatm:block/essence_of_souls"
+    },
+    "level=15": {
+      "model": "gsr_yatm:block/essence_of_souls"
+    },
+    "level=2": {
+      "model": "gsr_yatm:block/essence_of_souls"
+    },
+    "level=3": {
+      "model": "gsr_yatm:block/essence_of_souls"
+    },
+    "level=4": {
+      "model": "gsr_yatm:block/essence_of_souls"
+    },
+    "level=5": {
+      "model": "gsr_yatm:block/essence_of_souls"
+    },
+    "level=6": {
+      "model": "gsr_yatm:block/essence_of_souls"
+    },
+    "level=7": {
+      "model": "gsr_yatm:block/essence_of_souls"
+    },
+    "level=8": {
+      "model": "gsr_yatm:block/essence_of_souls"
+    },
+    "level=9": {
+      "model": "gsr_yatm:block/essence_of_souls"
+    }
+  }
+}
