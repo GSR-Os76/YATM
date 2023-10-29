@@ -70,6 +70,7 @@ public class ChannelVinesBlockEntity extends BlockEntity
 		if(++this.m_recheckAttachmentsCounter >= ChannelVinesBlockEntity.RECHECK_ATTACHMENTS_PERIOD) 
 		{
 			this.recheckNeighborAttachments(level, position, state);
+			this.m_recheckAttachmentsCounter = 0;
 		}
 			
 	} // end serverTick()

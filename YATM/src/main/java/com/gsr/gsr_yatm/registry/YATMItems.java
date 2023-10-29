@@ -10,6 +10,8 @@ import com.gsr.gsr_yatm.entity.boat.YATMBoatType;
 import com.gsr.gsr_yatm.item.ShulkwartHornItem;
 import com.gsr.gsr_yatm.item.ShulkwartSporesBlockItem;
 import com.gsr.gsr_yatm.item.YATMBoatItem;
+import com.gsr.gsr_yatm.item.component.current_heater.CurrentHeaterItem;
+import com.gsr.gsr_yatm.item.component.fluid_pass_through.FluidPassThroughBlockItem;
 import com.gsr.gsr_yatm.item.fluid.DrinkableFluidBottleItem;
 import com.gsr.gsr_yatm.item.fluid.EssenceOfSoulsBottleItem;
 import com.gsr.gsr_yatm.item.fluid.FluidBottleItem;
@@ -180,7 +182,7 @@ public class YATMItems
 	
 	
 	public static final RegistryObject<Item> ENDOTHERMIC_TISSUE = /* generalTabEnqueue */(ITEMS.register("endothermic_tissue", () -> new Item(new Item.Properties())));
-	public static final RegistryObject<Item> EXOTHEMIC_GLAND = /* generalTabEnqueue */(ITEMS.register("exothermic_gland", () -> new Item(new Item.Properties())));
+	public static final RegistryObject<Item> RAW_EXOTHEMIC_GLAND = generalTabEnqueue(ITEMS.register("raw_exothermic_gland", () -> new Item(new Item.Properties())));
 	
 	
 	
@@ -244,7 +246,11 @@ public class YATMItems
 	
 	public static final RegistryObject<BlockItem> STEEL_TANK_ITEM = generalTabEnqueue(ITEMS.register("steel_tank", () -> new BlockItem(YATMBlocks.STEEL_TANK.get(), new Item.Properties())));
 	
-	public static final RegistryObject<BlockItem> CHANNEL_VINES_ITEM = generalTabEnqueue(ITEMS.register("channel_vines", () -> new BlockItem(YATMBlocks.CHANNEL_VINES.get(), new Item.Properties())));
+	public static final RegistryObject<FluidPassThroughBlockItem> CHANNEL_VINES_ITEM = generalTabEnqueue(ITEMS.register("channel_vines", () -> new FluidPassThroughBlockItem(YATMBlocks.CHANNEL_VINES.get(), new Item.Properties())));
+	
+	public static final RegistryObject<CurrentHeaterItem> EMBER_GLAND = generalTabEnqueue(ITEMS.register("ember_gland", () -> new CurrentHeaterItem(new Item.Properties(), 1000, 12f)));
+	public static final RegistryObject<CurrentHeaterItem> FLAME_GLAND = generalTabEnqueue(ITEMS.register("flame_gland", () -> new CurrentHeaterItem(new Item.Properties(), 2000, 16f)));
+	public static final RegistryObject<CurrentHeaterItem> TORCH_GLAND = generalTabEnqueue(ITEMS.register("torch_gland", () -> new CurrentHeaterItem(new Item.Properties(), 4000, 20f)));
 	
 //	public static final RegistryObject<BlockItem> ONE_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("one_cu_wire", () -> new BlockItem(YATMBlocks.ONE_CU_WIRE.get(), new Item.Properties())));
 //	public static final RegistryObject<BlockItem> EIGHT_CU_WIRE_ITEM = generalTabEnqueue(ITEMS.register("eight_cu_wire", () -> new BlockItem(YATMBlocks.EIGHT_CU_WIRE.get(), new Item.Properties())));
@@ -356,6 +362,8 @@ public class YATMItems
 	public static final RegistryObject<ArmorItem> DECAY_NETHERITE_CHESTPLATE = generalTabEnqueue(ITEMS.register("decaying_soul_adorned_netherite_chestplate", () -> new ArmorItem(YATMArmorMaterials.DECAYING_SOUL_ADORNED_NETHERITE, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant())));
 	public static final RegistryObject<ArmorItem> DECAY_NETHERITE_LEGGINGS = generalTabEnqueue(ITEMS.register("decaying_soul_adorned_netherite_leggings", () -> new ArmorItem(YATMArmorMaterials.DECAYING_SOUL_ADORNED_NETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant())));
 	public static final RegistryObject<ArmorItem> DECAY_NETHERITE_BOOTS = generalTabEnqueue(ITEMS.register("decaying_soul_adorned_netherite_boots", () -> new ArmorItem(YATMArmorMaterials.DECAYING_SOUL_ADORNED_NETHERITE, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant())));
+	
+	// public static final RegistryObject<BlockItem> CREATIVE_CURRENT_SOURCE_ITEM = generalTabEnqueue(ITEMS.register("creative_current_source", () -> new BlockItem(YATMBlocks.CREATIVE_CURRENT_SOURCE.get(), new Item.Properties())));
 	
 	public static final RegistryObject<CreativeFluidVoidItem> CREATIVE_FLUID_VOID = generalTabEnqueue(ITEMS.register("creative_fluid_void", () -> new CreativeFluidVoidItem(new Item.Properties().stacksTo(1))));
 	public static final RegistryObject<CreativeFluidStorerItem> CREATIVE_FLUID_STORER = generalTabEnqueue(ITEMS.register("creative_fluid_storer", () -> new CreativeFluidStorerItem(new Item.Properties().stacksTo(1))));

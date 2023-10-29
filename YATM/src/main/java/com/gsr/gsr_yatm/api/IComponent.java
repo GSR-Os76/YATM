@@ -14,6 +14,7 @@ public interface IComponent
 	// should throw error if invalid's attempt to be attached
 	public <T> void attachRecievingCapability(@NotNull ItemStack itemStack, @NotNull Capability<T> capType, @NotNull LazyOptional<T> cap);
 
+	// TODO, can most likely weaken to a wildcard
 	public <T> void removeRecievingCapability(@NotNull ItemStack itemStack, @NotNull LazyOptional<T> cap);
 
 	

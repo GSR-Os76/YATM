@@ -25,9 +25,9 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	public static final String INVENTORY_TAG_NAME = "inventory";
 	public static final String CURRENT_HANDLER_TAG_NAME = "current";
 	
-	protected ItemStackHandler m_rawInventory;
-	protected ConfigurableInventoryWrapper m_uncheckedInventory;
-	protected ConfigurableInventoryWrapper m_inventory;
+	protected final ItemStackHandler m_rawInventory;
+	protected final ConfigurableInventoryWrapper m_uncheckedInventory;
+	protected final ConfigurableInventoryWrapper m_inventory;
 	
 	protected CurrentUnitHandler m_internalCurrentStorer;	
 	
@@ -51,7 +51,7 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	
 	public @NotNull IItemHandler getInventory()
 	{
-		return m_inventory;
+		return this.m_inventory;
 	} // end getInventory()
 
 	// TODO, sub classes should explicitly declare contract too

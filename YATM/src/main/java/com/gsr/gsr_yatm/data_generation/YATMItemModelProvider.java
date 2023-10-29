@@ -71,11 +71,17 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.VICUM_MERISTEM.get());
 		this.basicItem(YATMItems.VICUM_LEAF.get());
 		
+		this.basicItem(YATMItems.RAW_EXOTHEMIC_GLAND.get());
+		
 		this.basicItem(YATMItems.HANGING_POT_HOOK_ITEM.get());
 		
 		
 		this.basicItem(YATMItems.CONDUIT_VINES_ITEM.get());
 		this.basicItem(YATMItems.CHANNEL_VINES_ITEM.get());
+		
+		this.basicItem(YATMItems.EMBER_GLAND.get());
+		this.basicItem(YATMItems.FLAME_GLAND.get());
+		this.basicItem(YATMItems.TORCH_GLAND.get());
 		// this.basicItem(YATMItems.STEEL_FLUID_EXCHANGER.get());
 
 //		this.basicItem(YATMItems.ONE_CU_CURRENT_REGULATOR.get());

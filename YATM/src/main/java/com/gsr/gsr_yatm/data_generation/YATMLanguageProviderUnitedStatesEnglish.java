@@ -292,25 +292,11 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.VICUM_MERISTEM.get(), "Vicum Meristem");
 		this.add(YATMItems.VICUM_LEAF.get(), "Vicum Leaf");
 		
-//		this.add(YATMItems.STEEL_FLUID_EXCHANGER.get(), "Steel Fluid Exchanger");
-//		
-//		this.add(YATMItems.ONE_CU_CURRENT_REGULATOR.get(), "1cu Current Regulator");
-//		this.add(YATMItems.EIGHT_CU_CURRENT_REGULATOR.get(), "8cu Current Regulator");
-//		this.add(YATMItems.SIXTYFOUR_CU_CURRENT_REGULATOR.get(), "64cu Current Regulator");
-//		this.add(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_REGULATOR.get(), "512cu Current Regulator");
-//		this.add(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_REGULATOR.get(), "4096cu Current Regulator");
-//		
-//		this.add(YATMItems.ONE_CU_CURRENT_FUSE.get(), "1cu Current Fuse");
-//		this.add(YATMItems.EIGHT_CU_CURRENT_FUSE.get(), "8cu Current Fuse");
-//		this.add(YATMItems.SIXTYFOUR_CU_CURRENT_FUSE.get(), "64cu Current Fuse");
-//		this.add(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_FUSE.get(), "512cu Current Fuse");
-//		this.add(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_FUSE.get(), "4096cu Current Fuse");
-//		
-//		this.add(YATMItems.ONE_CU_CURRENT_BREAKER.get(), "1cu Current Breaker");
-//		this.add(YATMItems.EIGHT_CU_CURRENT_BREAKER.get(), "8cu Current Breaker");
-//		this.add(YATMItems.SIXTYFOUR_CU_CURRENT_BREAKER.get(), "64cu Current Breaker");
-//		this.add(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_BREAKER.get(), "512cu Current Breaker");
-//		this.add(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_BREAKER.get(), "4096cu Current Breaker");
+		this.add(YATMItems.RAW_EXOTHEMIC_GLAND.get(), "Raw Exothermal Gland");
+		
+		this.add(YATMItems.EMBER_GLAND.get(), "Ember Gland");
+		this.add(YATMItems.FLAME_GLAND.get(), "Flame Gland");
+		this.add(YATMItems.TORCH_GLAND.get(), "Torch Gland");
 		
 		
 		

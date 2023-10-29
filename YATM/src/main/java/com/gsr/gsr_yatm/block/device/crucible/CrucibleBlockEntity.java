@@ -1,6 +1,7 @@
 package com.gsr.gsr_yatm.block.device.crucible;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -99,8 +100,11 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	private @Nullable ItemStack m_drainResultComponentStack = null;
 	private @Nullable IComponent m_resultDrainComponent = null;
 	private @NotNull List<LazyOptional<?>> m_drainResultAttachments = new ArrayList<>();
+	private boolean m_updateDrainResultComponentQueued = false; 
 	private @Nullable IComponent m_heatComponent = null;
 	private @Nullable LazyOptional<IHeatHandler> m_heatComponentAttachment = null;
+	private boolean m_updateHeatComponentQueued = false;
+	
 	
 	private @NotNull LazyOptional<IItemHandler> m_inventoryLazyOptional = LazyOptional.of(() -> CrucibleBlockEntity.this.m_inventory);
 	private @NotNull LazyOptional<IItemHandler> m_drainResultTankSlotLazyOptional = LazyOptional.of(() -> CrucibleBlockEntity.this.m_drainResultTankSlot);
@@ -109,7 +113,10 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	private @NotNull LazyOptional<IFluidHandler> m_resultTankLazyOptional = LazyOptional.of(() -> CrucibleBlockEntity.this.m_resultTank);
 	private @NotNull LazyOptional<IHeatHandler> m_heatLazyOptional = LazyOptional.of(() -> CrucibleBlockEntity.this.m_heatHandler);
 	
+	//private @NotNull LazyOptional<IFluidHandler> m_deadCapForVisualPurposes = LazyOptional.of(() -> new FluidTank(0));
+	private @NotNull Map<Capability<?>, LazyOptional<?>> m_sterileDrainResultCaps = new HashMap<>();
 	
+
 	
 	public static final ICompositeAccessSpecification ACCESS_SPEC = CompositeAccessSpecification.of(List.of(
 			Map.entry(CraftingDeviceBlockEntity.CRAFT_PROGRESS_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY * 2),
@@ -219,11 +226,13 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 		super.onItemInsertion(slot, stack);
 		if(slot == CrucibleBlockEntity.DRAIN_RESULT_TANK_SLOT) 
 		{
-			this.updateDrainResultComponent();
+			this.m_updateDrainResultComponentQueued = true;
+			// this.updateDrainResultComponent();
 		}
 		else if(slot == CrucibleBlockEntity.HEAT_SLOT) 
 		{
-			this.updateHeatComponent();
+			this.m_updateHeatComponentQueued = true;
+			// this.updateHeatComponent();
 		}
 	} // end onItemInsertion()
 
@@ -233,31 +242,15 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 		super.onItemWithdrawal(slot, stack);
 		if(slot == CrucibleBlockEntity.DRAIN_RESULT_TANK_SLOT) 
 		{
-			this.updateDrainResultComponent();
+			this.m_updateDrainResultComponentQueued = true;
+			// this.updateDrainResultComponent();
 		}
 		else if(slot == CrucibleBlockEntity.HEAT_SLOT) 
 		{
-			this.updateHeatComponent();
+			this.m_updateHeatComponentQueued = true;
+			// this.updateHeatComponent();
 		}
 	} // end onItemWithdrawal()
-	
-	protected void updateDrainResultComponent() 
-	{
-		if(this.m_resultDrainComponent != null) 
-		{
-			this.removeDrainResultAttachments();
-			this.m_resultDrainComponent = null;
-			this.m_drainResultComponentStack = null;
-		}
-		
-		ItemStack drainResultStack = this.m_inventory.getStackInSlot(CrucibleBlockEntity.DRAIN_RESULT_TANK_SLOT);
-		if(drainResultStack.getItem() instanceof IComponent fc) 
-		{
-			this.m_resultDrainComponent = fc;
-			this.m_drainResultComponentStack = drainResultStack;
-		}
-		
-	} // end updateDrainResultComponent()
 
 	protected void updateHeatComponent() 
 	{
@@ -277,6 +270,26 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 		}
 	} // end updateHeatComponent()
 	
+	protected void updateDrainResultComponent() 
+	{
+		if(this.m_resultDrainComponent != null) 
+		{
+			this.removeDrainResultAttachments();
+			this.m_resultDrainComponent = null;
+			this.m_drainResultComponentStack = null;
+			this.m_sterileDrainResultCaps.values().forEach((c) -> c.invalidate());
+			this.m_sterileDrainResultCaps = new HashMap<>();
+		}
+		ItemStack drainResultStack = this.m_inventory.getStackInSlot(CrucibleBlockEntity.DRAIN_RESULT_TANK_SLOT);
+		
+		if(drainResultStack.getItem() instanceof IComponent fc) 
+		{
+			this.m_resultDrainComponent = fc;
+			this.m_drainResultComponentStack = drainResultStack;
+		}
+		
+	} // end updateDrainResultComponent()
+	
 	protected void removeDrainResultAttachments()
 	{
 		for(LazyOptional<?> l : this.m_drainResultAttachments) 
@@ -288,11 +301,11 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	
 	private void removeInvalidatedDrainResultAttachments(LazyOptional<?> lazyOptional)
 	{
-			if(this.m_drainResultAttachments.contains(lazyOptional)) 
-			{
-				this.m_drainResultAttachments.remove(lazyOptional);
-				this.m_resultDrainComponent.removeRecievingCapability(this.m_drainResultComponentStack, lazyOptional);
-			}
+		if(this.m_drainResultAttachments.contains(lazyOptional)) 
+		{
+			this.m_drainResultAttachments.remove(lazyOptional);
+			this.m_resultDrainComponent.removeRecievingCapability(this.m_drainResultComponentStack, lazyOptional);
+		}
 	} // removeInvalidatedDrainResultAttachments()
 	
 	
@@ -301,7 +314,17 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	public void serverTick(Level level, BlockPos position, BlockState state)
 	{
 		super.serverTick(level, position, state);
-
+		
+		if(this.m_updateDrainResultComponentQueued) 
+		{
+			this.updateDrainResultComponent();
+			this.m_updateDrainResultComponentQueued = false;
+		}
+		if(this.m_updateHeatComponentQueued) 
+		{
+			this.updateHeatComponent();
+			this.m_updateHeatComponentQueued = false;			
+		}
 		boolean changed = this.doHeat();
 		changed |= this.m_waitingForLoad 
 				|| (this.m_activeRecipe != null 
@@ -425,7 +448,7 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	@Override
 	protected boolean canUseRecipe(@NotNull MeltingRecipe from)
 	{
-		return from.canBeUsedOn(this.m_uncheckedInventory, this.m_resultTank);
+		return from.canBeUsedOn(this.m_uncheckedInventory, this.m_resultTank, this.m_heatHandler);
 	} // end canUseRecipe()
 
 	@Override
@@ -529,9 +552,17 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 				return this.m_heatingSlotLazyOptional.cast();
 			}
 		}
-		else if(side == Direction.DOWN && cap == ForgeCapabilities.ITEM_HANDLER) 
+		else if(side == Direction.DOWN) 
 		{
-			return this.m_drainResultTankSlotLazyOptional.cast();
+			// YetAnotherTechMod.LOGGER.info("about to check before attach to downwards, a: " + (this.m_resultDrainComponent != null) + ", and, b: " + (this.m_resultDrainComponent != null && this.m_resultDrainComponent.getValidCapabilities().contains(cap)));
+			if(this.m_resultDrainComponent != null && this.m_resultDrainComponent.getValidCapabilities().contains(cap)) 
+			{
+				return this.m_sterileDrainResultCaps.computeIfAbsent(cap, SlotUtil::createSterileCapability).cast();
+			}
+			else if (cap == ForgeCapabilities.ITEM_HANDLER) 
+			{
+				return this.m_drainResultTankSlotLazyOptional.cast();
+			}
 		}
 		else if(cap == YATMCapabilities.HEAT) 
 		{
@@ -551,6 +582,8 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 		this.m_heatingSlotLazyOptional.invalidate();
 		this.m_resultTankLazyOptional.invalidate();
 		this.m_heatLazyOptional.invalidate();
+		this.m_sterileDrainResultCaps.values().forEach((c) -> c.invalidate());
+		this.m_sterileDrainResultCaps = new HashMap<>();
 		
 		this.removeDrainResultAttachments();
 		if(this.m_heatComponentAttachment != null) 

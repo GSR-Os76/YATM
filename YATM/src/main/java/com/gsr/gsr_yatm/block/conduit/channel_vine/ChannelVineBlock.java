@@ -77,11 +77,8 @@ public class ChannelVineBlock extends ShapeBlock implements EntityBlock
 
 	@Override
 	public void neighborChanged(BlockState state, Level level, BlockPos position, Block changeFrom, BlockPos changePosition, boolean p_60514_)
-	{
-		if(position.below().equals(changePosition)) 
-		{
-			((ChannelVinesBlockEntity)level.getBlockEntity(position)).recheckNeighborAttachments(level, position, state);;
-		}
+	{		
+		((ChannelVinesBlockEntity)level.getBlockEntity(position)).recheckNeighborAttachments(level, position, state);
 	} // end neighborChanged()
 
 

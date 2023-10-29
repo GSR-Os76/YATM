@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.block.device.crucible.CrucibleBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
@@ -73,10 +74,11 @@ public class MeltingRecipe implements ITimedRecipe<Container>
 
 
 
-	public boolean canBeUsedOn(@NotNull IItemHandler inventory, @NotNull IFluidHandler tank)
+	public boolean canBeUsedOn(@NotNull IItemHandler inventory, @NotNull IFluidHandler tank, @NotNull IHeatHandler heat)
 	{
 		return this.m_input.test(inventory.getStackInSlot(CrucibleBlockEntity.INPUT_SLOT)) 
-				&& tank.fill(this.m_result.copy(), FluidAction.SIMULATE) == this.m_result.getAmount();
+				&& tank.fill(this.m_result.copy(), FluidAction.SIMULATE) == this.m_result.getAmount()
+				&& this.m_temperature >= heat.getTemperature();
 	} // end canBeUsedOn()
 
 	public void startRecipe(@NotNull IItemHandler inventory)

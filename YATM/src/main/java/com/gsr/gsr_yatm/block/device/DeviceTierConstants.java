@@ -5,6 +5,7 @@ import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 public record DeviceTierConstants(@NotNegative int maxTemperature, @NotNegative int tankCapacity, @NotNegative int maxFluidTransferRate, @NotNegative int currentCapacity, @NotNegative int maxSafeCurrentTransfer, @NotNegative int maxCurrentTransfer)
 {
 	public static final DeviceTierConstants EMPTY = new DeviceTierConstants(0, 0, 0, 0, 0, 0);
+	// TODO, maybe lower temp to 2000K, when it;s appropriate
 	public static final DeviceTierConstants STEEL_DEVICE = new DeviceTierConstants(4000, 4000, 16, 8192, 64, 512);
 	public static final DeviceTierConstants STEEL_TANK = new DeviceTierConstants(4000, 16000, 1000, 0, 0, 0);
 	

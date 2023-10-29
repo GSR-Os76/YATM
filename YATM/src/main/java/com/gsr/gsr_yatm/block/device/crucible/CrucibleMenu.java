@@ -33,9 +33,10 @@ public class CrucibleMenu extends AbstractContainerMenu
 	public static final int PLAYER_HOTBAR_END = PLAYER_HOTBAR_START + 8;
 	
 	private final @NotNull ContainerLevelAccess m_access;
-	private final @NotNull /* IEvent */ContainerData m_data;
+	private final @NotNull ContainerData m_data;
 	private final @Nullable Block m_openingBlock;
 	private final @NotNull FluidTankDataReader m_tankReader;
+	
 	
 	
 	// client side constructor
@@ -144,7 +145,7 @@ public class CrucibleMenu extends AbstractContainerMenu
 			}
 		
 			quickMovedSlot.onTake(player, quickMovedStack);
-		} // end slot usability check
+		} // end slot check
 
 		return quickMovedStack;
 	} // end quickMoveStack()

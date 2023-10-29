@@ -47,13 +47,13 @@ public class ConfigurableInventoryWrapper implements IItemHandler, IItemHandlerM
 	@Override
 	public int getSlots()
 	{
-		return m_slots.length;
+		return this.m_slots.length;
 	} // end getSlots()
 
 	@Override
 	public @NotNull ItemStack getStackInSlot(int slot)
 	{		
-		return m_inventory.getStackInSlot(m_slots[slot]);
+		return m_inventory.getStackInSlot(this.m_slots[slot]);
 	} // end getStackInSlot()
 
 	@Override
@@ -64,9 +64,10 @@ public class ConfigurableInventoryWrapper implements IItemHandler, IItemHandlerM
 			return stack;
 		}
 		
-		ItemStack result = m_inventory.insertItem(m_slots[slot], stack, simulate);
+		ItemStack result = m_inventory.insertItem(this.m_slots[slot], stack, simulate);
 		if(!simulate && !(stack.equals(result))) 
 		{
+			// TODO, verify is called after change, isn't being for the crucibleBlockEntity
 			this.m_onItemInsertion.accept(slot, result);
 		}
 		return result;
@@ -75,7 +76,7 @@ public class ConfigurableInventoryWrapper implements IItemHandler, IItemHandlerM
 	@Override
 	public @NotNull ItemStack extractItem(int slot, int amount, boolean simulate)
 	{
-		ItemStack result = m_inventory.extractItem(m_slots[slot], amount, simulate);
+		ItemStack result = m_inventory.extractItem(this.m_slots[slot], amount, simulate);
 		if(!simulate && !result.isEmpty()) 
 		{
 			this.m_onItemWithdrawal.accept(slot, result);
@@ -86,13 +87,13 @@ public class ConfigurableInventoryWrapper implements IItemHandler, IItemHandlerM
 	@Override
 	public int getSlotLimit(int slot)
 	{
-		return this.m_inventory.getSlotLimit(m_slots[slot]);
+		return this.m_inventory.getSlotLimit(this.m_slots[slot]);
 	} // end getSlotLimit()
 
 	@Override
 	public boolean isItemValid(int slot, @NotNull ItemStack stack)
 	{
-		return this.m_inventory.isItemValid(m_slots[slot], stack);
+		return this.m_inventory.isItemValid(this.m_slots[slot], stack);
 	} // end isItemValid()
 
 	

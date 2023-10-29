@@ -46,6 +46,7 @@ import com.gsr.gsr_yatm.registry.custom.YATMIngredientDeserializers;
 import com.gsr.gsr_yatm.registry.custom.YATMRegistries;
 import com.gsr.gsr_yatm.utilities.YATMModelLayers;
 import com.gsr.gsr_yatm.utilities.YATMParticleProviders;
+import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtil;
 
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -65,8 +66,11 @@ import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
 import net.minecraftforge.common.BiomeManager;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.data.event.GatherDataEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
+import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -147,6 +151,14 @@ public class YATMModEvents
 		event.enqueueWork(() -> RecipeUtil.addDynamicRecipeProvider(new CompostableBiolingRecipeProvider()));
 		event.enqueueWork(() -> RecipeUtil.addDynamicRecipeProvider(new WrappedSmeltingRecipeProvider()));
 		event.enqueueWork(() -> YATMBlocks.addSapCollectorVariants());
+		// TODO, add for all types supported by default or situation
+		event.enqueueWork(() -> {
+			if(!SlotUtil.isSterileCapProviderRegister(ForgeCapabilities.FLUID_HANDLER)) 
+			{
+				SlotUtil.registerSterileCapProvider(ForgeCapabilities.FLUID_HANDLER, () -> LazyOptional.of(() -> new FluidTank(0)));
+			}
+		});
+		
 		
 		// TODO, add biome to the nether, biome manager seems to only support the
 		// overworld currently, and I wish to not break compatibility

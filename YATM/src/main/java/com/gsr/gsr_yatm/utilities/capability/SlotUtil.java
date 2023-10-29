@@ -1,12 +1,17 @@
 package com.gsr.gsr_yatm.utilities.capability;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Objects;
+import java.util.function.Supplier;
+
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Range;
 
 import com.gsr.gsr_yatm.api.IComponent;
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
@@ -23,8 +28,45 @@ import net.minecraftforge.items.IItemHandler;
 
 public class SlotUtil
 {
+	private static final Map<Capability<?>, Supplier<LazyOptional<?>>> STERILE_CAP_PROVIDERS = new HashMap<>();
+
+	/** returns a capability of the given type which does as little as's possible*/
+	public static <T> LazyOptional<T> createSterileCapability(@NotNull Capability<T> capType) 
+	{
+		return SlotUtil.STERILE_CAP_PROVIDERS.get(capType).get().cast();
+	} // end createSterileCapability()
+	
+	public static <T> void registerSterileCapProvider(@NotNull Capability<T> capType, @NotNull Supplier<LazyOptional<?>> provider) 
+	{
+		if(SlotUtil.isSterileCapProviderRegister(capType)) 
+		{
+			throw new UnsupportedOperationException("A provider of the type: " + capType + ", has already been register here.");
+		}
+		try 
+		{
+			LazyOptional<T> t = provider.get().cast();
+			if(t == null || !t.isPresent()) 
+			{
+				throw new ClassCastException();
+			}
+		}
+		catch (ClassCastException e)
+		{
+			throw new UnsupportedOperationException("The Capability type arguement and the provided Supplier<LazyOptional> must be compatible, and not null or empty");
+		}
+		
+		SlotUtil.STERILE_CAP_PROVIDERS.put(capType, provider);
+	} // end registerSterileCapProvider()
+	
+	public static boolean isSterileCapProviderRegister(@NotNull Capability<?> capType) 
+	{
+		return SlotUtil.STERILE_CAP_PROVIDERS.containsKey(Objects.requireNonNull(capType));
+	} // end isSterileCapProviderRegister()
+
+	
+	
 	// TODO, maybe should be min 1
-	public static int[] defaultTranslationTable(@Range(from = 0, to = Integer.MAX_VALUE) int length) 
+	public static int[] defaultTranslationTable(@NotNegative int length) 
 	{
 		int[] t = new int[length];
 		for(int i = 0; i < length; i++) 
@@ -36,24 +78,25 @@ public class SlotUtil
 	
 	
 	
-	
-	public static int getHeatingBurnTime(ItemStack itemStack) 
+	public static int getHeatingBurnTime(@NotNull ItemStack itemStack) 
 	{
 		return ForgeHooks.getBurnTime(itemStack, RecipeType.SMELTING);
 	} // getHeatingBurnTime()
 	
-	public static int getHeatingTemperature(ItemStack itemStack) 
+	public static int getHeatingTemperature(@NotNull ItemStack itemStack) 
 	{
-		// TODO, implement or remove
+		// TODO, implement
 		return 1024;
 	} // end getHeatingTemperature()
 	
 	
 	
-	public static boolean isValidHeatingSlotInsert(ItemStack itemStack) 
+	public static boolean isValidHeatingSlotInsert(@NotNull ItemStack itemStack) 
 	{
 		// TODO, implement actual logic, create recipe type for heating
-		return getHeatingBurnTime(itemStack) > 0;
+		return getHeatingBurnTime(itemStack) > 0 
+				|| itemStack.getCapability(YATMCapabilities.HEAT).isPresent() 
+				|| (itemStack.getItem() instanceof IComponent component && component.getValidCapabilities().contains(YATMCapabilities.HEAT));
 	} // end isValidHeatingSlotInsert()
 
 	
