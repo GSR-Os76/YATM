@@ -21,14 +21,4 @@ public interface ICurrentHandler
 	// the amount currently being contained
 	public int stored();
 
-	// info
-	// gets the total number of virtual ICurrentHandlers in the given device
-//	public int getVirtualDeviceCount();
-	
-	// info
-	// gets which virtual device a given face connects too
-//	public int getVirtualDeviceId(boolean simulate);
-
-	
-	// add virtual devices
 } // end interface

@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.api.implementation;
+package com.gsr.gsr_yatm.utilities.capability.current;
 
 import java.util.function.Consumer;
 
@@ -7,7 +7,7 @@ import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.util.INBTSerializable;
 
-public class CurrentUnitHandler implements ICurrentHandler, INBTSerializable<CompoundTag>
+public class CurrentHandler implements ICurrentHandler, INBTSerializable<CompoundTag>
 {
 	private static final String STORED_AMOUNT_TAG_NAME = "stored";
 	private static final String CAPACITY_TAG_NAME = "capacity";
@@ -21,7 +21,7 @@ public class CurrentUnitHandler implements ICurrentHandler, INBTSerializable<Com
 	
 	
 	
-	public CurrentUnitHandler(int capacity) 
+	public CurrentHandler(int capacity) 
 	{
 		this.m_capacity = capacity;
 	} // end constructor
@@ -86,16 +86,16 @@ public class CurrentUnitHandler implements ICurrentHandler, INBTSerializable<Com
 	public CompoundTag serializeNBT()
 	{
 		CompoundTag tag = new CompoundTag();
-		tag.putInt(CurrentUnitHandler.STORED_AMOUNT_TAG_NAME, this.m_storedUnits);
-		tag.putInt(CurrentUnitHandler.CAPACITY_TAG_NAME, this.m_capacity);
+		tag.putInt(CurrentHandler.STORED_AMOUNT_TAG_NAME, this.m_storedUnits);
+		tag.putInt(CurrentHandler.CAPACITY_TAG_NAME, this.m_capacity);
 		return tag;
 	} // end serializeNBT()
 
 	@Override
 	public void deserializeNBT(CompoundTag nbt)
 	{
-		this.m_storedUnits = nbt.getInt(CurrentUnitHandler.STORED_AMOUNT_TAG_NAME);
-		this.m_capacity = nbt.getInt(CurrentUnitHandler.CAPACITY_TAG_NAME);
+		this.m_storedUnits = nbt.getInt(CurrentHandler.STORED_AMOUNT_TAG_NAME);
+		this.m_capacity = nbt.getInt(CurrentHandler.CAPACITY_TAG_NAME);
 	} // end deserializeNBT()
 	
 	
@@ -143,9 +143,9 @@ public class CurrentUnitHandler implements ICurrentHandler, INBTSerializable<Com
 		
 		
 		
-		public CurrentUnitHandler build() 
+		public CurrentHandler build() 
 		{
-			CurrentUnitHandler temp = new CurrentUnitHandler(this.m_capacity);
+			CurrentHandler temp = new CurrentHandler(this.m_capacity);
 			temp.m_onCurrentRecieved = this.m_onCurrentRecieved;
 			temp.m_onCurrentExtracted = this.m_onCurrentExtracted;
 			temp.m_canRecieve = this.m_canRecieve;

@@ -1,5 +1,6 @@
 package com.gsr.gsr_yatm;
 
+import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.bioler.BiolerScreen;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerScreen;
 import com.gsr.gsr_yatm.block.device.crucible.CrucibleScreen;
@@ -47,6 +48,7 @@ import com.gsr.gsr_yatm.registry.custom.YATMRegistries;
 import com.gsr.gsr_yatm.utilities.YATMModelLayers;
 import com.gsr.gsr_yatm.utilities.YATMParticleProviders;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
+import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtil;
 
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -151,11 +153,17 @@ public class YATMModEvents
 		event.enqueueWork(() -> RecipeUtil.addDynamicRecipeProvider(new CompostableBiolingRecipeProvider()));
 		event.enqueueWork(() -> RecipeUtil.addDynamicRecipeProvider(new WrappedSmeltingRecipeProvider()));
 		event.enqueueWork(() -> YATMBlocks.addSapCollectorVariants());
-		// TODO, add for all types supported by default or situation
+		// TODO, add for all types supported by default or situation if appropriate
 		event.enqueueWork(() -> {
 			if(!SlotUtil.isSterileCapProviderRegister(ForgeCapabilities.FLUID_HANDLER)) 
 			{
 				SlotUtil.registerSterileCapProvider(ForgeCapabilities.FLUID_HANDLER, () -> LazyOptional.of(() -> new FluidTank(0)));
+			}
+		});
+		event.enqueueWork(() -> {
+			if(!SlotUtil.isSterileCapProviderRegister(YATMCapabilities.CURRENT)) 
+			{
+				SlotUtil.registerSterileCapProvider(YATMCapabilities.CURRENT, () -> LazyOptional.of(() -> new CurrentHandler(0)));
 			}
 		});
 		

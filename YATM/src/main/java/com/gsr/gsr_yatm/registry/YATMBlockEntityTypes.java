@@ -7,6 +7,7 @@ import com.gsr.gsr_yatm.block.device.boiler.BoilerBlockEntity;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlockEntity;
 import com.gsr.gsr_yatm.block.device.compute.scan_collector.DataScanCollectorBlockEntity;
 import com.gsr.gsr_yatm.block.device.compute.storage.DataStorageBlockEntity;
+import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceBlockEntity;
 import com.gsr.gsr_yatm.block.device.crucible.CrucibleBlockEntity;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlockEntity;
 import com.gsr.gsr_yatm.block.device.current_furnace.FurnacePlusBlockEntity;
@@ -65,12 +66,7 @@ public class YATMBlockEntityTypes
 	
 	public static final RegistryObject<BlockEntityType<ChannelVinesBlockEntity>> CHANNEL_VINES = BLOCK_ENTITY_TYPES.register("channel_vines", () -> BlockEntityType.Builder.of(ChannelVinesBlockEntity::new, YATMBlocks.CHANNEL_VINES.get()).build(null));
 	
+	public static final RegistryObject<BlockEntityType<CreativeCurrentSourceBlockEntity>> CREATIVE_CURRENT_SOURCE = BLOCK_ENTITY_TYPES.register("current_source", () -> BlockEntityType.Builder.of(CreativeCurrentSourceBlockEntity::new, YATMBlocks.CREATIVE_CURRENT_SOURCE.get()).build(null));
 	
-//	public static final RegistryObject<BlockEntityType<CurrentConduitBlockEntity>> CURRENT_CONDUIT = BLOCK_ENTITY_TYPES.register("current_conduit_block_entity", () -> BlockEntityType.Builder.of(CurrentConduitBlockEntity::new, 
-//			YATMBlocks.ONE_CU_WIRE.get(), YATMBlocks.EIGHT_CU_WIRE.get(), YATMBlocks.SIXTYFOUR_CU_WIRE.get(), YATMBlocks.FIVEHUNDREDTWELVE_CU_WIRE.get(), YATMBlocks.FOURTHOUSANDNINTYSIX_CU_WIRE.get(),
-//			YATMBlocks.ENAMELED_ONE_CU_WIRE.get(), YATMBlocks.ENAMELED_EIGHT_CU_WIRE.get(), YATMBlocks.ENAMELED_SIXTYFOUR_CU_WIRE.get(), YATMBlocks.ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE.get(), YATMBlocks.ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE.get(),
-//			YATMBlocks.INSULATED_ONE_CU_WIRE.get(), YATMBlocks.INSULATED_EIGHT_CU_WIRE.get(), YATMBlocks.INSULATED_SIXTYFOUR_CU_WIRE.get(), YATMBlocks.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE.get(), YATMBlocks.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE.get()
-//			).build(null));
-//	public static final RegistryObject<BlockEntityType<FluidConduitBlockEntity>> FLUID_CONDUIT = BLOCK_ENTITY_TYPES.register("fluid_conduit_block_entity", () -> BlockEntityType.Builder.of(FluidConduitBlockEntity::new, YATMBlocks.STEEL_FLUID_CONDUIT.get()).build(null));
-
+	
 } // end class

@@ -82,11 +82,8 @@ public class YATMBlockProperties
 	
 	public static final Properties CONDUIT_VINES = Properties.of().mapColor(MapColor.METAL)/*.requiresCorrectToolForDrops()*/.strength(2.0f, 3.0f).sound(SoundType.VINE).noCollission().noOcclusion();
 	public static final Properties CHANNEL_VINES = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2F, 6.0F);
-	
-	// TODO, make color customizable by method
-	public static final Properties LIQUID = Properties.of()/* .mapColor(MapColor.WATER) */.replaceable().noCollission().strength(100.0f).pushReaction(PushReaction.DESTROY).noLootTable().liquid().sound(SoundType.EMPTY);
 
-	
+	public static final Properties CREATIVE = Properties.of().instrument(NoteBlockInstrument.BASEDRUM).mapColor(MapColor.COLOR_PURPLE).noOcclusion().pushReaction(PushReaction.BLOCK).strength(Float.MAX_VALUE);
 	
 	
 	
@@ -133,6 +130,10 @@ public class YATMBlockProperties
 		return YATMBlockProperties.stoneOre().mapColor(MapColor.DEEPSLATE).strength(4.5F, 3.0F).sound(SoundType.DEEPSLATE);
 	} // end deepslateOre()
 		
+	public static @NotNull Properties liquid(MapColor color) 
+	{
+		return Properties.of().liquid().mapColor(color).noCollission().noLootTable().pushReaction(PushReaction.DESTROY).replaceable().sound(SoundType.EMPTY).strength(100.0f);
+	} // end liquid()
 	
 //	public static @NotNull Properties plankWith(@NotNull MapColor color)
 //	{

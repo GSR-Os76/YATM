@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.api;
+package com.gsr.gsr_yatm.item.component;
 
 import java.util.List;
 

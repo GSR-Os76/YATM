@@ -62,6 +62,7 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 	public static final IntegerProperty EAST_AGE = IntegerProperty.create("east_age", 0, MAX_AGE);
 	public static final IntegerProperty WEST_AGE = IntegerProperty.create("west_age", 0, MAX_AGE);
 	
+	// TODO, could back tighter into enum, allow more ages in the same space
 	public static final Map<Direction, BooleanProperty> HAS_FACE_PROPERTIES_BY_DIRECTION = PipeBlock.PROPERTY_BY_DIRECTION;
 	public static final Map<Direction, IntegerProperty> AGE_PROPERTIES_BY_DIRECTION = ImmutableMap.copyOf(Util.make(Maps.newEnumMap(Direction.class), (em) -> {
 		em.put(Direction.UP, UP_AGE);

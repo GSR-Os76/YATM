@@ -25,9 +25,7 @@ public abstract class BasicBlockEntity extends BlockEntity
 	
 	
 	
-	
-	
-	public static void tick(Level level, BlockPos pos, BlockState blockState, BasicBlockEntity blockEntity)
+	public static void tick(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState blockState, @NotNull BasicBlockEntity blockEntity)
 	{
 		if (level.isClientSide)
 		{
@@ -39,19 +37,15 @@ public abstract class BasicBlockEntity extends BlockEntity
 		}
 	} // end tick()
 
-	public void clientTick(Level level, BlockPos pos, BlockState blockState)
+	public void clientTick(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState blockState)
 	{
 		
 	} // end clientTick()
 	
-	public void serverTick(Level level, BlockPos pos, BlockState blockState)
+	public void serverTick(@NotNull Level level, @NotNull BlockPos position,  @NotNull BlockState state)
 	{
 
 	} // end serverTick()
-	
-	
-	
-	
 	
 	
 	

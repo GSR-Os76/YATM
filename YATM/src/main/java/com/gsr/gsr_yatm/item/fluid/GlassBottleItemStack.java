@@ -3,7 +3,7 @@ package com.gsr.gsr_yatm.item.fluid;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.api.IBottleable;
+import com.gsr.gsr_yatm.fluid.IBottleableFluid;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
@@ -64,7 +64,7 @@ public class GlassBottleItemStack implements IFluidHandlerItem, ICapabilityProvi
 	@Override
 	public boolean isFluidValid(int tank, @NotNull FluidStack stack)
 	{
-		return stack.getFluid() instanceof IBottleable;// || stack.getFluid() == Fluids.WATER;
+		return stack.getFluid() instanceof IBottleableFluid;// || stack.getFluid() == Fluids.WATER;
 	} // end isFluidValid()
 
 	@Override
@@ -81,7 +81,7 @@ public class GlassBottleItemStack implements IFluidHandlerItem, ICapabilityProvi
 		{
 			this.m_container = 
 					//resource.getFluid() == Fluids.WATER ? Items.POTION :
-						new ItemStack(((IBottleable)resource.getFluid()).getBottle());
+						new ItemStack(((IBottleableFluid)resource.getFluid()).getBottle());
 		}
 		
 		return FluidBottleItem.BOTTLE_CAPACITY;

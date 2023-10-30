@@ -2,8 +2,8 @@ package com.gsr.gsr_yatm.block.device;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.api.implementation.CurrentUnitHandler;
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
+import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
 import com.gsr.gsr_yatm.utilities.capability.item.ConfigurableInventoryWrapper;
 
 import net.minecraft.core.BlockPos;
@@ -29,7 +29,7 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	protected final ConfigurableInventoryWrapper m_uncheckedInventory;
 	protected final ConfigurableInventoryWrapper m_inventory;
 	
-	protected CurrentUnitHandler m_internalCurrentStorer;	
+	protected CurrentHandler m_internalCurrentStorer;	
 	
 	protected int m_maxSafeCurrentTransfer;
 	protected int m_currentTransferedThisTick = 0;

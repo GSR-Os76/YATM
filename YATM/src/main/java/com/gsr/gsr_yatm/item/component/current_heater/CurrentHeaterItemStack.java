@@ -36,6 +36,11 @@ public class CurrentHeaterItemStack implements ICapabilityProvider,  ICurrentHan
 	@Override
 	public int recieveCurrent(int amount, boolean simulate)
 	{
+		if(this.m_attachment == null) 
+		{
+			return 0;
+		}
+		
 		int maxUsable = Math.max(this.getMaxUsableCurrent(), amount);
 		if(!simulate) 
 		{

@@ -1,8 +1,8 @@
-package com.gsr.gsr_yatm.api;
+package com.gsr.gsr_yatm.fluid;
 
 import net.minecraft.world.item.Item;
 
-public interface IBottleable
+public interface IBottleableFluid
 {
 	public Item getBottle();
 } // end interface

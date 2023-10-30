@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.conduit.channel_vine;
+package com.gsr.gsr_yatm.block.device;
 
 import java.util.Objects;
 

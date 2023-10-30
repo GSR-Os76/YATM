@@ -9,9 +9,9 @@ import org.jetbrains.annotations.Nullable;
 import com.google.common.collect.ImmutableList;
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
-import com.gsr.gsr_yatm.api.implementation.CurrentUnitHandler;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
+import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
 import com.gsr.gsr_yatm.utilities.capability.current.ExtractOnlyCurrentHandler;
 import com.gsr.gsr_yatm.utilities.network.AccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
@@ -126,7 +126,7 @@ public abstract class AbstractSolarPanelBlockEntity extends DeviceBlockEntity
 	
 	private void setup(int currentCapacity, int maxSafeCurrentTransfer, int maxCurrentTransfer, SolarPanelSettings settings) 
 	{
-		this.m_internalCurrentStorer = new CurrentUnitHandler.Builder().capacity(currentCapacity).onCurrentExtracted(this::onCurrentExchanged).onCurrentRecieved((i) -> this.setChanged()).build();
+		this.m_internalCurrentStorer = new CurrentHandler.Builder().capacity(currentCapacity).onCurrentExtracted(this::onCurrentExchanged).onCurrentRecieved((i) -> this.setChanged()).build();
 		this.m_maxSafeCurrentTransfer = maxSafeCurrentTransfer;		
 		this.m_maxCurrentTransfer = maxCurrentTransfer;
 		this.m_settings = settings;

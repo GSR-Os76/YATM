@@ -363,11 +363,11 @@ public class YATMItems
 	public static final RegistryObject<ArmorItem> DECAY_NETHERITE_LEGGINGS = generalTabEnqueue(ITEMS.register("decaying_soul_adorned_netherite_leggings", () -> new ArmorItem(YATMArmorMaterials.DECAYING_SOUL_ADORNED_NETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant())));
 	public static final RegistryObject<ArmorItem> DECAY_NETHERITE_BOOTS = generalTabEnqueue(ITEMS.register("decaying_soul_adorned_netherite_boots", () -> new ArmorItem(YATMArmorMaterials.DECAYING_SOUL_ADORNED_NETHERITE, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant())));
 	
-	// public static final RegistryObject<BlockItem> CREATIVE_CURRENT_SOURCE_ITEM = generalTabEnqueue(ITEMS.register("creative_current_source", () -> new BlockItem(YATMBlocks.CREATIVE_CURRENT_SOURCE.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> CREATIVE_CURRENT_SOURCE_ITEM = generalTabEnqueue(ITEMS.register("creative_current_source", () -> new BlockItem(YATMBlocks.CREATIVE_CURRENT_SOURCE.get(), new Item.Properties())));
 	
-	public static final RegistryObject<CreativeFluidVoidItem> CREATIVE_FLUID_VOID = generalTabEnqueue(ITEMS.register("creative_fluid_void", () -> new CreativeFluidVoidItem(new Item.Properties().stacksTo(1))));
-	public static final RegistryObject<CreativeFluidStorerItem> CREATIVE_FLUID_STORER = generalTabEnqueue(ITEMS.register("creative_fluid_storer", () -> new CreativeFluidStorerItem(new Item.Properties().stacksTo(1))));
 	public static final RegistryObject<CreativeFluidSourceItem> CREATIVE_FLUID_SOURCE = generalTabEnqueue(ITEMS.register("creative_fluid_source", () -> new CreativeFluidSourceItem(new Item.Properties().stacksTo(1))));
+	public static final RegistryObject<CreativeFluidStorerItem> CREATIVE_FLUID_STORER = generalTabEnqueue(ITEMS.register("creative_fluid_storer", () -> new CreativeFluidStorerItem(new Item.Properties().stacksTo(1))));
+	public static final RegistryObject<CreativeFluidVoidItem> CREATIVE_FLUID_VOID = generalTabEnqueue(ITEMS.register("creative_fluid_void", () -> new CreativeFluidVoidItem(new Item.Properties().stacksTo(1))));
 	
 	
 	

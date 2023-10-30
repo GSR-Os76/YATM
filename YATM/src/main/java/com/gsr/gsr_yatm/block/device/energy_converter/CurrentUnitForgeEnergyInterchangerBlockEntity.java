@@ -5,8 +5,8 @@ import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
-import com.gsr.gsr_yatm.api.implementation.CurrentUnitForgeEnergyInterchanger;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
+import com.gsr.gsr_yatm.utilities.capability.current.CurrentUnitForgeEnergyInterchanger;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

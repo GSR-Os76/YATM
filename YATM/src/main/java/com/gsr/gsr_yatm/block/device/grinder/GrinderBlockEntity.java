@@ -2,12 +2,12 @@ package com.gsr.gsr_yatm.block.device.grinder;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.api.implementation.CurrentUnitHandler;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
+import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -38,7 +38,7 @@ public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe
 	
 	
 	
-	private CurrentUnitHandler m_internalCurrentStorer;	
+	private CurrentHandler m_internalCurrentStorer;	
 	
 	protected ContainerData m_dataAccessor = new ContainerData()
 	{
@@ -114,7 +114,7 @@ public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe
 	
 	private void setup(int currentCapacity, int maxCurrentTransfer) 
 	{
-		this.m_internalCurrentStorer = new CurrentUnitHandler.Builder().capacity(currentCapacity).onCurrentExtracted(this::onCurrentExchanged).onCurrentRecieved(this::onCurrentExchanged).build();
+		this.m_internalCurrentStorer = new CurrentHandler.Builder().capacity(currentCapacity).onCurrentExtracted(this::onCurrentExchanged).onCurrentRecieved(this::onCurrentExchanged).build();
 		this.m_maxSafeCurrentTransfer = maxCurrentTransfer;		
 	} // end setup()
 	

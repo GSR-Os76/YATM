@@ -49,9 +49,9 @@ public class DataStorageBlockEntity extends BasicBlockEntity
 
 	
 	@Override
-	public void serverTick(Level level, BlockPos pos, BlockState blockState)
+	public void serverTick(Level level, BlockPos position, BlockState state)
 	{
-		this.broadcastPackets(this.m_dataTicker.process(level, pos, blockState));
+		this.broadcastPackets(this.m_dataTicker.process(level, position, state));
 	} // end serverTick()
 
 	protected void broadcastPackets(@Nullable List<DataPacket> packets) 

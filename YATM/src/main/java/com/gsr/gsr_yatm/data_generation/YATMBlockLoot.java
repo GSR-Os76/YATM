@@ -227,26 +227,8 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropSelf(YATMBlocks.STEEL_TANK.get());
 		
 		this.dropSelf(YATMBlocks.CHANNEL_VINES.get());
-//		
-//		this.dropSelf(YATMBlocks.ONE_CU_WIRE.get());
-//		this.dropSelf(YATMBlocks.EIGHT_CU_WIRE.get());
-//		this.dropSelf(YATMBlocks.SIXTYFOUR_CU_WIRE.get());
-//		this.dropSelf(YATMBlocks.FIVEHUNDREDTWELVE_CU_WIRE.get());
-//		this.dropSelf(YATMBlocks.FOURTHOUSANDNINTYSIX_CU_WIRE.get());
-//			
-//		this.dropSelf(YATMBlocks.ENAMELED_ONE_CU_WIRE.get());
-//		this.dropSelf(YATMBlocks.ENAMELED_EIGHT_CU_WIRE.get());
-//		this.dropSelf(YATMBlocks.ENAMELED_SIXTYFOUR_CU_WIRE.get());
-//		this.dropSelf(YATMBlocks.ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE.get());
-//		this.dropSelf(YATMBlocks.ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE.get());
-//		
-//		this.dropSelf(YATMBlocks.INSULATED_ONE_CU_WIRE.get());
-//		this.dropSelf(YATMBlocks.INSULATED_EIGHT_CU_WIRE.get());
-//		this.dropSelf(YATMBlocks.INSULATED_SIXTYFOUR_CU_WIRE.get());
-//		this.dropSelf(YATMBlocks.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE.get());
-//		this.dropSelf(YATMBlocks.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE.get());
-//		
-//		this.dropSelf(YATMBlocks.STEEL_FLUID_CONDUIT.get());
+
+		this.dropNothing(YATMBlocks.CREATIVE_CURRENT_SOURCE.get());
 	} // end generate()
 
 	@Override
@@ -256,6 +238,11 @@ public class YATMBlockLoot extends VanillaBlockLoot
 	} // end getKnownBlocks()
 
 	
+	
+	protected void dropNothing(@NotNull Block block) 
+	{
+		this.dropOther(block, Items.AIR);
+	} // end dropNothing()
 	
 	protected @NotNull LootTable.Builder createUniformTable(@NotNull Item item, float min, float max)
 	{

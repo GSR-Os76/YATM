@@ -1,0 +1,22 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"textures": {
+		"plate": "gsr_yatm:block/device/creative/output_plate",
+		"particle": "#plate"
+	},
+	"elements": [
+		{
+			"from": [5, 15, 5],
+			"to": [11, 16, 11],
+			"faces": {
+				"north": {"uv": [5, 5, 11, 6], "texture": "#plate"},
+				"east": {"uv": [10, 5, 11, 11], "rotation": 270, "texture": "#plate"},
+				"south": {"uv": [5, 10, 11, 11], "texture": "#plate"},
+				"west": {"uv": [5, 5, 6, 11], "rotation": 90, "texture": "#plate"},
+				"up": {"uv": [5, 5, 11, 11], "texture": "#plate"},
+				"down": {"uv": [5, 5, 11, 11], "texture": "#plate"}
+			}
+		}
+	]
+}

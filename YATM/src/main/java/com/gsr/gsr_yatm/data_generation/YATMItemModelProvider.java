@@ -170,6 +170,7 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.DECAY_NETHERITE_LEGGINGS.get());
 		this.basicItem(YATMItems.DECAY_NETHERITE_BOOTS.get());
 		
+		this.basicItem(YATMItems.CREATIVE_CURRENT_SOURCE_ITEM.get());
 		this.basicItem(YATMItems.CREATIVE_FLUID_VOID.get());
 		this.basicItem(YATMItems.CREATIVE_FLUID_STORER.get());
 		this.basicItem(YATMItems.CREATIVE_FLUID_SOURCE.get());

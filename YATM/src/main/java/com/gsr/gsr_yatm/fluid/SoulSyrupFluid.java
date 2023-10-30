@@ -1,6 +1,5 @@
 package com.gsr.gsr_yatm.fluid;
 
-import com.gsr.gsr_yatm.api.IBottleable;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMFluidTypes;
 import com.gsr.gsr_yatm.registry.YATMFluids;
@@ -27,7 +26,7 @@ import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.LavaFluid;
 import net.minecraftforge.fluids.FluidType;
 
-public abstract class SoulSyrupFluid extends FlowingFluid implements IBottleable
+public abstract class SoulSyrupFluid extends FlowingFluid implements IBottleableFluid
 {
 	// TODO, figure out how to set that up close fog effect lava and water have when you're submerged in them.
 	// TODO, figure out how to give constant soul affliction to entities which're in content.

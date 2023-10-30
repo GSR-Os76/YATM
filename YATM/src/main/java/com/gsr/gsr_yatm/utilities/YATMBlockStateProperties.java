@@ -5,7 +5,7 @@ import java.util.Map;
 import com.google.common.collect.BiMap;
 import com.google.common.collect.ImmutableBiMap;
 import com.google.common.collect.ImmutableMap;
-import com.gsr.gsr_yatm.block.conduit.channel_vine.AttachmentState;
+import com.gsr.gsr_yatm.block.device.AttachmentState;
 import com.gsr.gsr_yatm.block.plant.OnceFruitingPlantStages;
 
 import net.minecraft.core.Direction;
@@ -22,6 +22,9 @@ public class YATMBlockStateProperties
 	public static final IntegerProperty AGE_FOUR = IntegerProperty.create("age", 0, 3);
 	public static final IntegerProperty AGE_FIVE = IntegerProperty.create("age", 0, 4);
 	public static final IntegerProperty AGE_EIGHT = IntegerProperty.create("age", 0, 7);
+	
+	public static final IntegerProperty AGE_EIGHT_MAJOR = IntegerProperty.create("major_age", 0, 7);
+	
 	
 	public static final Map<Direction, EnumProperty<AttachmentState>> BRANCHES_BY_DIRECTION = ImmutableMap.of(
 			Direction.NORTH, EnumProperty.create("north", AttachmentState.class), 
@@ -63,10 +66,12 @@ public class YATMBlockStateProperties
 	public static final BooleanProperty HAS_FRUIT = BooleanProperty.create("has_fruit");
 	public static final BooleanProperty HAS_TANK = BooleanProperty.create("has_tank");
 	
+	public static final BooleanProperty IS_STEM = BooleanProperty.create("is_stem");
+	
 	public static final BooleanProperty LIT = BooleanProperty.create("lit");
 	
-	public static final EnumProperty<OnceFruitingPlantStages> ONCE_FRUITING_STAGE =  EnumProperty.create("stage", OnceFruitingPlantStages.class);
-	
 	public static final BooleanProperty NECTAR_FULL = BooleanProperty.create("nectar_full");
+	
+	public static final EnumProperty<OnceFruitingPlantStages> ONCE_FRUITING_STAGE =  EnumProperty.create("stage", OnceFruitingPlantStages.class);
 	
 } // end class

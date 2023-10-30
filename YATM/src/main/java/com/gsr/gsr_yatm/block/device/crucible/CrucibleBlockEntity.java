@@ -9,11 +9,11 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.api.IComponent;
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
+import com.gsr.gsr_yatm.item.component.IComponent;
 import com.gsr.gsr_yatm.recipe.melting.MeltingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
@@ -73,10 +73,10 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	private static final String RESULT_TANK_TAG_NAME = "resultTank";
 	private static final String TEMPERAURE_TAG_NAME = "temperature";
 	
-
+	private static final float AMBIENT_COOLING_FACTOR = .013f;	
+	private static final int MINIMUM_CHANGE_PER_AMBIENT_COOLING = 6;	
 	
 	private static final int DRAIN_RECHECK_PERIOD = 40;
-	
 	
 	
 	// TODO, force recheck when neighbor changes
@@ -355,6 +355,11 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	{
 		boolean changed = false;
 		
+		int amb = IHeatHandler.getAmbientTemp();
+		// TODO, using this heat equation means the current heat handler will still race down when a less heat porviding component heats it.
+		// TODO, provide the heat handler with a custom anisometric heat equation for consistent behavior.
+		this.m_heatHandler.heat(Math.max(amb, this.m_heatHandler.getTemperature() - Math.max(CrucibleBlockEntity.MINIMUM_CHANGE_PER_AMBIENT_COOLING, ((int)((this.m_heatHandler.getTemperature() - amb) * CrucibleBlockEntity.AMBIENT_COOLING_FACTOR)))));//amb + ((int)(diff * CrucibleBlockEntity.AMBIENT_COOLING_FACTOR)));
+		
 		if (this.m_burnProgress != 0)
 		{
 			if (--this.m_burnProgress <= 0)
@@ -378,13 +383,6 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 			this.m_burnProgress = this.m_burnTime;
 			this.m_burnTemperature = SlotUtil.getHeatingTemperature(i);
 			changed = true;
-		}
-		else 
-		{
-			if(this.m_heatComponent == null) 
-			{
-				this.m_heatHandler.heat(IHeatHandler.getAmbientTemp());
-			}
 		}
 		return changed;
 	} // end doAcceptPower()

@@ -217,26 +217,22 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMBlocks.CHANNEL_VINES.get(), "Channel Vines");
 		
-//		this.add(YATMBlocks.ONE_CU_WIRE.get(), "1cu Wire");
-//		this.add(YATMBlocks.EIGHT_CU_WIRE.get(), "8cu Wire");
-//		this.add(YATMBlocks.SIXTYFOUR_CU_WIRE.get(), "64cu Wire");
-//		this.add(YATMBlocks.FIVEHUNDREDTWELVE_CU_WIRE.get(), "512cu Wire");
-//		this.add(YATMBlocks.FOURTHOUSANDNINTYSIX_CU_WIRE.get(), "4096cu Wire");
-//		
-//		this.add(YATMBlocks.ENAMELED_ONE_CU_WIRE.get(), "Enameled 1cu Wire");
-//		this.add(YATMBlocks.ENAMELED_EIGHT_CU_WIRE.get(), "Enameled 8cu Wire");
-//		this.add(YATMBlocks.ENAMELED_SIXTYFOUR_CU_WIRE.get(), "Enameled 64cu Wire");
-//		this.add(YATMBlocks.ENAMELED_FIVEHUNDREDTWELVE_CU_WIRE.get(), "Enameled 512cu Wire");
-//		this.add(YATMBlocks.ENAMELED_FOURTHOUSANDNINTYSIX_CU_WIRE.get(), "Enameled 4096cu Wire");
-//		
-//		this.add(YATMBlocks.INSULATED_ONE_CU_WIRE.get(), "Insulated 1cu Wire");
-//		this.add(YATMBlocks.INSULATED_EIGHT_CU_WIRE.get(), "Insulated 8cu Wire");
-//		this.add(YATMBlocks.INSULATED_SIXTYFOUR_CU_WIRE.get(), "Insulated 64cu Wire");
-//		this.add(YATMBlocks.INSULATED_FIVEHUNDREDTWELVE_CU_WIRE.get(), "Insulated 512cu Wire");
-//		this.add(YATMBlocks.INSULATED_FOURTHOUSANDNINTYSIX_CU_WIRE.get(), "Insulated 4096cu Wire");
-//		
-//		this.add(YATMBlocks.STEEL_FLUID_CONDUIT.get(), "Steel Fluid Conduit");
-//		
+		this.add(YATMBlocks.BIO_LIQUID_BLOCK.get(), "Biofluid");
+		this.add(YATMBlocks.CHORUS_LIQUID_BLOCK.get(), "Chorus");
+		this.add(YATMBlocks.CHORUS_BIO_LIQUID_BLOCK.get(), "Chorus Biofluid");
+		this.add(YATMBlocks.ENDER_LIQUID_BLOCK.get(), "Ender");		
+		this.add(YATMBlocks.ESSENCE_OF_DECAY_LIQUID_BLOCK.get(), "Essence Of Decay");
+		this.add(YATMBlocks.ESSENCE_OF_SOULS_LIQUID_BLOCK.get(), "Essence Of Souls");
+		this.add(YATMBlocks.LATEX_LIQUID_BLOCK.get(), "Latex");
+		this.add(YATMBlocks.SOUL_SAP_LIQUID_BLOCK.get(), "Soul Sap");
+		this.add(YATMBlocks.SOUL_SYRUP_LIQUID_BLOCK.get(), "Soul Syrup");
+		
+		this.add(YATMBlocks.CELESTIAL_LIGHT_LIQUID_BLOCK.get(), "Celestial Light");
+		this.add(YATMBlocks.LUNAR_LIGHT_LIQUID_BLOCK.get(), "Lunar light");
+		this.add(YATMBlocks.SOLAR_LIGHT_LIQUID_BLOCK.get(), "Solar Light");
+		
+		this.add(YATMBlocks.CREATIVE_CURRENT_SOURCE.get(), "Create Current Source");
+		
 		
 		
 		// ITEMS \\

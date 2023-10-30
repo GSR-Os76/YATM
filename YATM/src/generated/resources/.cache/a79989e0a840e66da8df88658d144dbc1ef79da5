@@ -1,4 +1,4 @@
-// 1.20.1	2023-10-28T21:05:30.7987501	Item Models: gsr_yatm
+// 1.20.1	2023-10-29T15:47:31.4785901	Item Models: gsr_yatm
 39dc65663f22bc3413323e63119c165dc4f51c76 assets/gsr_yatm/models/item/aurum_deminutus_fiddle_head.json
 4bab78a47a4fc45a258b74c9012f61de899aee93 assets/gsr_yatm/models/item/aurum_deminutus_frond.json
 b860c72785d969dab4933b80dd6652fa794539bf assets/gsr_yatm/models/item/aurum_fan.json
@@ -21,6 +21,7 @@ f6a30b3a697de15d3500b70b6ba416fac0af2251 assets/gsr_yatm/models/item/chorus_bio_
 0fb1eae5080f3f9bfb20a4eddd2ddf3d6b268618 assets/gsr_yatm/models/item/conduit_vines.json
 1bd450dd2572b9b2d59dc14a6b3093238ee8e9d1 assets/gsr_yatm/models/item/cotton_bolls.json
 10d337aee40eaacc52c6bd739483e850a80876ec assets/gsr_yatm/models/item/cotton_seeds.json
+c05f1937632979e7015f25ced9e8264e03850cfb assets/gsr_yatm/models/item/creative_current_source.json
 91eead2815d19e357eab933d2fa5e7723b918850 assets/gsr_yatm/models/item/creative_fluid_source.json
 921585145831110f3e82cabd5136c114439da91f assets/gsr_yatm/models/item/creative_fluid_storer.json
 7a0fe11fc88a632fc358b9370641588c1416d4dc assets/gsr_yatm/models/item/creative_fluid_void.json

@@ -1,4 +1,4 @@
-// 1.20.1	2023-10-25T20:46:54.2506308	Loot Tables
+// 1.20.1	2023-10-29T15:27:46.1283491	Loot Tables
 c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
 e7fbd17d28377f6d02cdd2df79fd21c9ce25491d data/gsr_yatm/loot_tables/blocks/aurum_deminutus.json
@@ -18,6 +18,7 @@ ef49b5b4540027511d185481c837b4e7a8e4b85e data/gsr_yatm/loot_tables/blocks/carcas
 12246b48cb772bdb04e627f2dd8878b690085fac data/gsr_yatm/loot_tables/blocks/channel_vines.json
 1b6194397c6ff3617261322bb2115cc87fb99adc data/gsr_yatm/loot_tables/blocks/conduit_vines.json
 72e5ecaa82a07ad4853f3c63ad4aab0564aa5327 data/gsr_yatm/loot_tables/blocks/cotton.json
+dc316981c06f00bd5e9cf9467ec77f86f9ab9333 data/gsr_yatm/loot_tables/blocks/creative_current_source.json
 5294109aa1241c3bb507be4f25ab94d76d8ca6e5 data/gsr_yatm/loot_tables/blocks/crude_battery_solar_panel.json
 93d6b5c4f4cf084d4909b3fc7745118e5536fbfc data/gsr_yatm/loot_tables/blocks/crude_solar_panel.json
 bf2097dc70064e8f3dc8fde9ed16d7bd87383b3e data/gsr_yatm/loot_tables/blocks/current_unit_forge_energy_interchanger.json

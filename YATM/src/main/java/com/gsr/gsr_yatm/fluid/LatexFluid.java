@@ -1,6 +1,5 @@
 package com.gsr.gsr_yatm.fluid;
 
-import com.gsr.gsr_yatm.api.IBottleable;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMFluidTypes;
 import com.gsr.gsr_yatm.registry.YATMFluids;
@@ -22,7 +21,7 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraftforge.fluids.FluidType;
 
-public abstract class LatexFluid extends FlowingFluid implements IBottleable
+public abstract class LatexFluid extends FlowingFluid implements IBottleableFluid
 {
 
 	@Override

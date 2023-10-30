@@ -5,8 +5,8 @@ import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.ImmutableMap;
-import com.gsr.gsr_yatm.block.conduit.channel_vine.AttachmentState;
 import com.gsr.gsr_yatm.block.conduit.channel_vine.ChannelVineBlock;
+import com.gsr.gsr_yatm.block.device.AttachmentState;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsVegetationBlock;
