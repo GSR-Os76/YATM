@@ -7,16 +7,23 @@ import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.block.ShapeBlock;
 import com.gsr.gsr_yatm.block.device.AttachmentState;
-import com.gsr.gsr_yatm.data_generation.YATMItemTags;
+import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
+import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
+import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -27,6 +34,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraftforge.network.NetworkHooks;
 
 public class CreativeCurrentSourceBlock extends ShapeBlock implements EntityBlock
 {
@@ -61,14 +69,17 @@ public class CreativeCurrentSourceBlock extends ShapeBlock implements EntityBloc
 	@Override
 	public InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult)
 	{
-		// Create UseUtil utility method for attachment adjustment
-		if(player.getItemInHand(hand).is(YATMItemTags.DEVICE_ADJUSTERS_KEY)) 
+		// TODO, Create UseUtil utility method for attachment adjustment
+//		if(player.getItemInHand(hand).is(YATMItemTags.DEVICE_ADJUSTERS_KEY)) 
+//		{
+//			return InteractionResult.sidedSuccess(level.isClientSide);
+//		}
+
+		if(!level.isClientSide && player instanceof ServerPlayer serverPlayer) 
 		{
-			// TODO, toggle given face
-			hitResult.getDirection();
-			return InteractionResult.sidedSuccess(level.isClientSide);
+			NetworkHooks.openScreen(serverPlayer, state.getMenuProvider(level, position));
 		}
-		return InteractionResult.PASS;
+		return InteractionResult.sidedSuccess(level.isClientSide);
 	} // end use()
 	
 	
@@ -85,4 +96,32 @@ public class CreativeCurrentSourceBlock extends ShapeBlock implements EntityBloc
 		return type == YATMBlockEntityTypes.CREATIVE_CURRENT_SOURCE.get() ? (l, bp, bs, be) -> CreativeCurrentSourceBlockEntity.tick(l, bp, bs, (CreativeCurrentSourceBlockEntity)be) : null;
 	} // end getTicker()
 	
+	@SuppressWarnings("deprecation")
+	@Override
+	public void onRemove(@NotNull BlockState fromState, @NotNull Level level, @NotNull BlockPos blockPos, @NotNull BlockState toState, boolean dunno)
+	{
+		if(!fromState.is(toState.getBlock())) 
+		{
+			BlockEntity be = level.getBlockEntity(blockPos);
+			if(be instanceof DeviceBlockEntity dbe && level instanceof ServerLevel) 
+			{
+				dbe.blockBroken();
+			}
+		}
+		super.onRemove(fromState, level, blockPos, toState, dunno);;
+	} // end onRemove()
+	
+	@Override
+	public MenuProvider getMenuProvider(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos)
+	{
+		CreativeCurrentSourceBlockEntity blockEntity = (CreativeCurrentSourceBlockEntity) level.getBlockEntity(blockPos);
+		return new SimpleMenuProvider((containerId, playerInventory, player) -> new CreativeCurrentSourceMenu(
+				containerId, 
+				playerInventory, 
+				ContainerLevelAccess.create(level, blockPos), 
+				blockState.getBlock(), 
+				blockEntity.getInventory(), 
+				blockEntity.getDataAccessor()), 
+		YATMLanguageProvider.getTranslatableTitleNameFor(YATMMenuTypes.CREATIVE_CURRENT_SOURCE.get()));
+	} // end getMenuProvider()
 } // end class

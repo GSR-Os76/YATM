@@ -3,6 +3,7 @@ package com.gsr.gsr_yatm.registry;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.device.bioler.BiolerMenu;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerMenu;
+import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceMenu;
 import com.gsr.gsr_yatm.block.device.crucible.CrucibleMenu;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerMenu;
 import com.gsr.gsr_yatm.block.device.current_furnace.FurnacePlusMenu;
@@ -36,5 +37,7 @@ public class YATMMenuTypes
 	
 	public static final RegistryObject<MenuType<BatterySolarPanelMenu>> BATTERY_SOLAR_PANEL = MENU_TYPES.register("battery_solar_panel", () -> new MenuType<>(BatterySolarPanelMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<SolarPanelMenu>> SOLAR_PANEL = MENU_TYPES.register("solar_panel", () -> new MenuType<>(SolarPanelMenu::new, FeatureFlagSet.of()));
+
+	public static final RegistryObject<MenuType<CreativeCurrentSourceMenu>> CREATIVE_CURRENT_SOURCE = MENU_TYPES.register("creative_current_source", () -> new MenuType<>(CreativeCurrentSourceMenu::new, FeatureFlagSet.of()));
 
 } // end class

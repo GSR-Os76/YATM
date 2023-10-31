@@ -3,6 +3,7 @@ package com.gsr.gsr_yatm;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.bioler.BiolerScreen;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerScreen;
+import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceScreen;
 import com.gsr.gsr_yatm.block.device.crucible.CrucibleScreen;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerScreen;
 import com.gsr.gsr_yatm.block.device.current_furnace.FurnacePlusScreen;
@@ -127,6 +128,8 @@ public class YATMModEvents
 		
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BATTERY_SOLAR_PANEL.get(), BatterySolarPanelScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.SOLAR_PANEL.get(), SolarPanelScreen::new));
+		
+		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.CREATIVE_CURRENT_SOURCE.get(), CreativeCurrentSourceScreen::new));
 		
 		
 		

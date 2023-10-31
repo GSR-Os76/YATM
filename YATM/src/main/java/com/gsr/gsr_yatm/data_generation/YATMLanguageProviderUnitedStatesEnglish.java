@@ -37,6 +37,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMMenuTypes.BATTERY_SOLAR_PANEL.get(), "Solar Panel");		
 		this.add(YATMMenuTypes.SOLAR_PANEL.get(), "Solar Panel");		
 		
+		this.add(YATMMenuTypes.CREATIVE_CURRENT_SOURCE.get(), "Creative Current Source");		
+		
 		
 		
 		this.add("biome.gsr_yatm.old_growth_soul_sand_valley", "Old Growth Soul Sand Valley");

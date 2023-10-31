@@ -82,4 +82,9 @@ public class NetworkUtil
 		return data.get(propertyAccessSpecification.startIndex());
 	} // end getPropertyValue()
 	
+	public static void setPropertyValue(@NotNull AccessSpecification propertyAccessSpecification, @NotNull ContainerData data, int to)
+	{
+		data.set(propertyAccessSpecification.startIndex(), to);
+	} // end getPropertyValue()
+	
 } // end class

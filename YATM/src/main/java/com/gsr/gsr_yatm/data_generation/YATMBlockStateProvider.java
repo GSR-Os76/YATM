@@ -11,10 +11,11 @@ import org.joml.Vector2i;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.FaceBlock;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
-import com.gsr.gsr_yatm.block.conduit.channel_vine.AttachmentState;
+import com.gsr.gsr_yatm.block.device.AttachmentState;
 import com.gsr.gsr_yatm.block.device.bioler.BiolerBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlock;
+import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
@@ -146,6 +147,10 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile STEEL_TANK = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/tank"));
 	public static final ModelFile STEEL_TANK_DRAINING = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/tank_draining"));
 	
+	public static final ModelFile CREATIVE_CURRENT_SOURCE = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/creative_current_source"));
+	public static final ModelFile CREATIVE_INPUT_PLATE = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/creative_input_plate"));
+	public static final ModelFile CREATIVE_NEUTRAL_PLATE = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/creative_neutral_plate"));
+	public static final ModelFile CREATIVE_OUTPUT_PLATE = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/creative_output_plate"));
 	
 	
 	
@@ -214,6 +219,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addChannelVines();
 		
 		this.addFluidBlocks();
+		
+		this.addCreativeBlocks();
 	} // end registerStatesAndModels()
 
 	
@@ -614,7 +621,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	private void addChannelVines() 
 	{
-		this.createChannelVines(YATMBlocks.CHANNEL_VINES.get(), CHANNEL_VINES_CENTER_MODEL, CHANNEL_VINES_BRANCH_MODEL, CHANNEL_VINES_BRANCH_PULL_MODEL, CHANNEL_VINES_BRANCH_PUSH_MODEL);
+		this.createChannelVines(YATMBlocks.CHANNEL_VINES.get(), YATMBlockStateProvider.CHANNEL_VINES_CENTER_MODEL, YATMBlockStateProvider.CHANNEL_VINES_BRANCH_MODEL, YATMBlockStateProvider.CHANNEL_VINES_BRANCH_PULL_MODEL, YATMBlockStateProvider.CHANNEL_VINES_BRANCH_PUSH_MODEL);
 	
 	} // end addChannelVines()
 	
@@ -630,6 +637,11 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createFluidBlock(YATMBlocks.SOUL_SAP_LIQUID_BLOCK.get());
 		this.createFluidBlock(YATMBlocks.SOUL_SYRUP_LIQUID_BLOCK.get());
 	} // end addFluidBlocks()
+	
+	private void addCreativeBlocks() 
+	{
+		this.createCreativeCurrentSource(YATMBlocks.CREATIVE_CURRENT_SOURCE.get(), YATMBlockStateProvider.CREATIVE_CURRENT_SOURCE, YATMBlockStateProvider.CREATIVE_NEUTRAL_PLATE, YATMBlockStateProvider.CREATIVE_OUTPUT_PLATE);
+	} // end addCreativeBlocks()
 	
 	
 
@@ -1453,6 +1465,40 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.getVariantBuilder(block).forAllStates((b) -> new ConfiguredModel[] {new ConfiguredModel(model)});
 	} // end createFluidBlock()
 	
+	private void createCreativeCurrentSource(@NotNull Block block, @NotNull ModelFile model, @NotNull ModelFile neutralPlate, @NotNull ModelFile outputPlate)
+	{
+		MultiPartBlockStateBuilder builder = this.getMultipartBuilder(block);
+		builder.part().modelFile(model).addModel().end();
+		CreativeCurrentSourceBlock.ATTACHMENT_STATE_BY_FACE.forEach(new BiConsumer<>() 
+		{
+			@Override
+			public void accept(Direction dir, EnumProperty<AttachmentState> p)
+			{
+				for(AttachmentState as : AttachmentState.values()) 
+				{
+					if(as == AttachmentState.NONE || as == AttachmentState.PULL) 
+					{
+						continue;
+					}
+					
+					Vector2i rot = YATMBlockStateProvider.rotationForDirectionFromUp(dir);
+					builder.part()
+					.modelFile(switch(as) 
+					{
+						case NEUTRAL -> neutralPlate;
+						case PUSH -> outputPlate;
+						default -> throw new IllegalArgumentException("Unexpected value of: " + as);
+					})
+					.rotationX(rot.x)
+					.rotationY(rot.y)
+					.uvLock(false)
+					.addModel()
+					.condition(p, as);
+					}
+			} // end accept()			
+		} // end anonymous type
+		);
+	}
 	
 	
 	private static ConfiguredModel[] forFourAge(BlockState bs, ModelFile ageZeroModel, ModelFile ageOneModel, ModelFile ageTwoModel, ModelFile ageThreeModel) 
