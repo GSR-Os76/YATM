@@ -117,10 +117,6 @@ public class AurumBlock extends CropBlock implements IHarvestableBlock
 	@Override
 	public InteractionResult use(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
-		if(level instanceof ServerLevel sl) 
-		{
-			this.randomTick(state, sl, position, sl.random);
-		}
 		return IHarvestableBlock.use(this, level, state, position, player, hand, hitResult);
 	} // end use()
 	

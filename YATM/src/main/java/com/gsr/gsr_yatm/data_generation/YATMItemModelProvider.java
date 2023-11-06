@@ -30,6 +30,8 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.SOUL_AFFLICTED_RUBBER_BOAT_ITEM.get());
 		this.basicItem(YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT_ITEM.get());
 		
+		this.basicItem(YATMItems.ADAMUM_MERISTEM.get());
+		
 		this.basicItem(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get());
 		this.basicItem(YATMItems.AURUM_DEMINUTUS_FROND.get());
 		
@@ -48,6 +50,8 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.RAW_COTTON_FIBER.get());
 		this.basicItem(YATMItems.COTTON_SEEDS.get());
 		
+		this.basicItem(YATMItems.CUPRUM_BULB.get());		
+		
 		this.basicItem(YATMItems.FERRUM_ROOTSTOCK.get());
 		this.basicItem(YATMItems.FERRUM_BRANCH.get());
 		
@@ -62,11 +66,19 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.BLEACHED_ICE_CORAL_YOUNG_ITEM.get());
 		this.basicItem(YATMItems.BLEACHED_ICE_CORAL_POLYP_ITEM.get());
 		
+		this.basicItem(YATMItems.INFERNALUM_RHIZOME.get());		
+		
+		this.basicItem(YATMItems.LAPUM_MERISTEM.get());		
+		
 		this.basicItem(YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get());
+		
+		this.basicItem(YATMItems.RUBERUM_CORM.get());		
+		
+		this.basicItem(YATMItems.SAMARAGDUM_NODULE.get());		
 		
 		this.basicItem(YATMItems.SHULKWART_SPORES.get());
 		
-		this.basicItem(YATMItems.SPIDER_VINE_FRUITS.get());
+		this.basicItem(YATMItems.SPIDER_VINE_FRUITS.get());	
 		
 		this.basicItem(YATMItems.VICUM_MERISTEM.get());
 		this.basicItem(YATMItems.VICUM_LEAF.get());
@@ -75,7 +87,7 @@ public class YATMItemModelProvider extends ItemModelProvider
 		
 		this.basicItem(YATMItems.HANGING_POT_HOOK_ITEM.get());
 		
-		
+	
 		this.basicItem(YATMItems.CONDUIT_VINES_ITEM.get());
 		this.basicItem(YATMItems.CHANNEL_VINES_ITEM.get());
 		

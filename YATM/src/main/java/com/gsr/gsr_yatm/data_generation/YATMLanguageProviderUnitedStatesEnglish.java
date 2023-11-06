@@ -102,8 +102,11 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.SOUL_AFFLICTED_RUBBER_HANGING_SIGN.get(), "Soul Afflicted Rubber Hanging Sign");
 		this.add(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), "Soul Afflicted Leaf Mulch");
 		
+		this.add(YATMBlocks.ADAMUM.get(), "Adamum");		
+		this.add(YATMBlocks.POTTED_ADAMUM.get(), "Potted Adamum");
+		
 		this.add(YATMBlocks.AURUM.get(), "Aurum");		
-		this.add(YATMBlocks.POTTED_AURUM_DEMINUTUS.get(), "Potted Aurum");
+		this.add(YATMBlocks.POTTED_AURUM.get(), "Potted Aurum");
 		
 		this.add(YATMBlocks.BASIN_OF_TEARS_FLORAL.get(), "Crying Flower");	
 		this.add(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), "Crying Plant Vegetation");
@@ -120,6 +123,9 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get(), "Carcass Root Rooted Netherrack");	
 		
 		this.add(YATMBlocks.COTTON.get(), "Cotton");
+		
+		this.add(YATMBlocks.CUPRUM.get(), "Cuprum");		
+		this.add(YATMBlocks.POTTED_CUPRUM.get(), "Potted Cuprum");
 		
 		this.add(YATMBlocks.FERRUM.get(), "Ferrum");			
 		this.add(YATMBlocks.POTTED_FERRUM.get(), "Potted Ferrum");
@@ -140,11 +146,23 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_YOUNG.get(), "Potted Bleached Ice Coral (Young)");
 		this.add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_POLYP.get(), "Potted Bleached Ice Coral (Polyp)");
 		
+		this.add(YATMBlocks.INFERNALUM.get(), "Infernalum");		
+		this.add(YATMBlocks.POTTED_INFERNALUM.get(), "Potted Infernalum");
+		
+		this.add(YATMBlocks.LAPUM.get(), "Lapum");		
+		this.add(YATMBlocks.POTTED_LAPUM.get(), "Potted Lapum");
+		
 		this.add(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), "Phantasmal Shelf Fungi");
 		
 		this.add(YATMBlocks.PITCHER_CLUSTER.get(), "Pitcher Cluster");
 		
 		this.add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), "Prismarine Crystal Moss");	
+		
+		this.add(YATMBlocks.RUBERUM.get(), "Ruberum");		
+		this.add(YATMBlocks.POTTED_RUBERUM.get(), "Potted Ruberum");
+		
+		this.add(YATMBlocks.SAMARAGDUM.get(), "Samaragdum");		
+		this.add(YATMBlocks.POTTED_SAMARAGDUM.get(), "Potted Samaragdum");
 		
 		this.add(YATMBlocks.FALLEN_SHULKWART_SPORES.get(), "Fallen Shulkwart Spores");		
 		this.add(YATMBlocks.SHULKWART.get(), "Shulkwart");		
@@ -243,6 +261,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_BOAT_ITEM.get(), "Soul Afflicted Rubber Boat");
 		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT_ITEM.get(), "Soul Afflicted Rubber Chest Boat");
 		
+		this.add(YATMItems.ADAMUM_MERISTEM.get(), "Adamum Meristem");
 		this.add(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get(), "Aurum Fiddle Head");
 		this.add(YATMItems.AURUM_DEMINUTUS_FROND.get(), "Aurum Frond");
 		this.add(YATMItems.BASIN_OF_TEARS_SEED.get(), "Crying Plant Seeds");
@@ -256,6 +275,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.COTTON_BOLLS.get(), "Cotton Bolls");
 		this.add(YATMItems.RAW_COTTON_FIBER.get(), "Raw Cotton Fiber");
 		
+		this.add(YATMItems.CUPRUM_BULB.get(), "Cuprum Bulb");
+		
 		this.add(YATMItems.FERRUM_ROOTSTOCK.get(), "Ferrum Rootstock");
 		this.add(YATMItems.FERRUM_BRANCH.get(), "Ferrum Branch");
 		
@@ -265,7 +286,17 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.FOLIUM_RHIZOME.get(), "Folium Rhizome");
 		
 		this.add(YATMItems.ICE_CORAL_POLYP.get(), "Ice Coral Polyp");
+		
+		this.add(YATMItems.INFERNALUM_RHIZOME.get(), "Infernalum Rhizome");
+		
+		this.add(YATMItems.LAPUM_MERISTEM.get(), "Lapum Meristem");		
+		
 		this.add(YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get(), "Prismarine Crystal Moss Spores");
+
+		this.add(YATMItems.RUBERUM_CORM.get(), "Ruberum Corm");
+		
+		this.add(YATMItems.SAMARAGDUM_NODULE.get(), "Samaragdum Nodule");		
+		
 		this.add(YATMItems.SHULKWART_SPORES.get(), "Shulkwart Spores");
 		this.add(YATMItems.SHULKWART_HORN.get(), "Shulkwart Horn");
 		this.add(YATMItems.WHITE_SHULKWART_HORN.get(), "White Shulkwart Horn");

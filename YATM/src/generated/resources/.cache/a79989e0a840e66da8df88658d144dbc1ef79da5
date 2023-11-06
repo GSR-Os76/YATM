@@ -1,4 +1,5 @@
-// 1.20.1	2023-10-29T15:47:31.4785901	Item Models: gsr_yatm
+// 1.20.1	2023-11-06T00:32:24.8252037	Item Models: gsr_yatm
+c2ea606d991a81e423cce1d89391873c41111adb assets/gsr_yatm/models/item/adamum_meristem.json
 39dc65663f22bc3413323e63119c165dc4f51c76 assets/gsr_yatm/models/item/aurum_deminutus_fiddle_head.json
 4bab78a47a4fc45a258b74c9012f61de899aee93 assets/gsr_yatm/models/item/aurum_deminutus_frond.json
 b860c72785d969dab4933b80dd6652fa794539bf assets/gsr_yatm/models/item/aurum_fan.json
@@ -25,6 +26,7 @@ c05f1937632979e7015f25ced9e8264e03850cfb assets/gsr_yatm/models/item/creative_cu
 91eead2815d19e357eab933d2fa5e7723b918850 assets/gsr_yatm/models/item/creative_fluid_source.json
 921585145831110f3e82cabd5136c114439da91f assets/gsr_yatm/models/item/creative_fluid_storer.json
 7a0fe11fc88a632fc358b9370641588c1416d4dc assets/gsr_yatm/models/item/creative_fluid_void.json
+e800b2a819414acbd4151cd6d7618904ae5ede64 assets/gsr_yatm/models/item/cuprum_bulb.json
 6d4c6ec3e07858d329b824cb0549aa0fc31dd0e2 assets/gsr_yatm/models/item/decaying_soul_adorned_netherite_boots.json
 6d9a1e6272e0cd5673a5b386244dda14787c71ed assets/gsr_yatm/models/item/decaying_soul_adorned_netherite_chestplate.json
 3b8f6311b029b2b76abb69823c4b28cb5e2467c4 assets/gsr_yatm/models/item/decaying_soul_adorned_netherite_helmet.json
@@ -46,6 +48,8 @@ bd6d19cb0497c729df1f59e2634d46a4d22982ec assets/gsr_yatm/models/item/foliar_stee
 77feae6f71ee41645ee1f59670e7f82c73461193 assets/gsr_yatm/models/item/folium_rhizome.json
 4ecb9bcdbfaf0729e97f13aaa2aaa5b6fcc1f4fc assets/gsr_yatm/models/item/hanging_pot_hook.json
 524422e6a17e9238f676fabab26e0eb61868a73b assets/gsr_yatm/models/item/ice_coral_polyp.json
+075c5789750c6ae07faea955720f0bd2447a9089 assets/gsr_yatm/models/item/infernalum_rhizome.json
+b83c20efb63100f8d72e14cb0b408c4786eb1dbe assets/gsr_yatm/models/item/lapum_meristem.json
 130079ff0bfb9fca9d683d4af51b13482817774b assets/gsr_yatm/models/item/latex_bottle.json
 0ae36a420f6db4a61dc357a25874a67a9b43081b assets/gsr_yatm/models/item/latex_bucket.json
 a2a001a07e39d290aa114078362ced25ff7f5fdb assets/gsr_yatm/models/item/netherite_nugget.json
@@ -57,6 +61,8 @@ a2a001a07e39d290aa114078362ced25ff7f5fdb assets/gsr_yatm/models/item/netherite_n
 567260d72b0d231b8d736cf872d85ced259298d9 assets/gsr_yatm/models/item/rubber_chest_boat.json
 ab152784180f56534434c0872a37bf784dbd9c10 assets/gsr_yatm/models/item/rubber_hanging_sign.json
 652b86dd987c76ecd1fa42b64eda249e9a90584e assets/gsr_yatm/models/item/rubber_sign.json
+d1beab1cd64b26473c025ad3919aabcfab96bf3e assets/gsr_yatm/models/item/ruberum_corm.json
+a997fb9bedbed4e90ebc34f5c00dd7fd5a82646f assets/gsr_yatm/models/item/samaragdum_nodule.json
 04cbe77a5d5c6767e44563cf23654dff80a577ca assets/gsr_yatm/models/item/shulkwart_spores.json
 e43a2ba4bb83cceb66680e29dd824fe75e96b3d9 assets/gsr_yatm/models/item/soul_adorned_netherite_boots.json
 b9918ca0343b8f0eb7784d50a5c3902aad4bd90c assets/gsr_yatm/models/item/soul_adorned_netherite_chestplate.json

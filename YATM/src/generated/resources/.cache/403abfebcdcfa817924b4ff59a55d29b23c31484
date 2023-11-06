@@ -1,7 +1,8 @@
-// 1.20.1	2023-10-24T22:56:22.3557854	Tags for minecraft:item mod id gsr_yatm
+// 1.20.1	2023-11-06T00:32:24.8275291	Tags for minecraft:item mod id gsr_yatm
 bade3c9b0ab674f2efd3dc51c76e3652a9021029 data/forge/tags/items/ingots/rubber.json
 18795a8c0bcbdd7d7450b4a7ba2b97df86e0d87a data/forge/tags/items/nuggets/netherite.json
 22817fc3a29127b1c1278ea16d671d7c02dbdeb9 data/forge/tags/items/rooted_dirt.json
+742490cf54e91e5fb6ef9433e3e7a050041f0a47 data/forge/tags/items/storage_blocks/foliar_steel.json
 5cde157d29986a1af6fac3eed0972c55ed684ae6 data/forge/tags/items/storage_blocks/rubber.json
 af5a440f5c712d3904c6b50819f04f2a58d71861 data/gsr_yatm/tags/items/armor_pieces/decay_netherite.json
 ec857824c3fbff4388d79661bc800d1e9c6b97bf data/gsr_yatm/tags/items/armor_pieces/soul_adorned_netherite.json

@@ -1,5 +1,6 @@
 package com.gsr.gsr_yatm.data_generation;
 
+import java.util.List;
 import java.util.function.BiFunction;
 import java.util.function.Function;
 
@@ -8,15 +9,21 @@ import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.block.FaceBlock;
 import com.gsr.gsr_yatm.block.plant.OnceFruitingPlantStages;
+import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsFloralBlock;
 import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
+import com.gsr.gsr_yatm.block.plant.cuprum.CuprumBlock;
 import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
 import com.gsr.gsr_yatm.block.plant.folium.FoliumBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
+import com.gsr.gsr_yatm.block.plant.infernalum.InfernalumBlock;
+import com.gsr.gsr_yatm.block.plant.lapum.LapumBlock;
 import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
 import com.gsr.gsr_yatm.block.plant.prismarine_crystal_moss.PrismarineCrystalMossBlock;
+import com.gsr.gsr_yatm.block.plant.ruberum.RuberumBlock;
+import com.gsr.gsr_yatm.block.plant.samaragdum.SamaragdumBlock;
 import com.gsr.gsr_yatm.block.plant.vicum.VicumBlock;
 import com.gsr.gsr_yatm.block.plant.vine.OnceFruitVineBodyBlock;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
@@ -106,8 +113,11 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropSelf(YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_HANGING_SIGN.get());
 		this.dropSelf(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get());
 		
+		this.add(YATMBlocks.ADAMUM.get(), (b) -> this.createAdamumTable());
+		this.dropPottedContents(YATMBlocks.POTTED_ADAMUM.get());
+		
 		this.add(YATMBlocks.AURUM.get(), (b) -> this.createAurumTable());
-		this.dropPottedContents(YATMBlocks.POTTED_AURUM_DEMINUTUS.get());
+		this.dropPottedContents(YATMBlocks.POTTED_AURUM.get());
 				
 		//this.add(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), this.createUniformTable(YATMItems.TEAR_LEAF.get(), 0f, 3f, LootItemBlockStatePropertyCondition.hasBlockStateProperties(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BasinOfTearsVegetationBlock.AGE, YATMBlocks.BASIN_OF_TEARS_VEGETATION.get().getMaxAge()))));
 		this.add(YATMBlocks.BASIN_OF_TEARS_FLORAL.get(), this.createBasinOfTearsFloralTable());
@@ -124,6 +134,9 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropPottedContents(YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE.get());
 		
 		this.add(YATMBlocks.COTTON.get(), this.createCropDrops(YATMBlocks.COTTON.get(), YATMItems.COTTON_BOLLS.get(), YATMItems.COTTON_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(YATMBlocks.COTTON.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
+		
+		this.add(YATMBlocks.CUPRUM.get(), (b) -> this.createCuprumTable());
+		this.dropPottedContents(YATMBlocks.POTTED_CUPRUM.get());
 		
 		this.add(YATMBlocks.FERRUM.get(), this.createFerrumTable());		
 		this.dropPottedContents(YATMBlocks.POTTED_FERRUM.get());
@@ -143,6 +156,12 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropPottedContents(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_ADOLESCENT.get());
 		this.dropPottedContents(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_YOUNG.get());
 		this.dropPottedContents(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_POLYP.get());
+		
+		this.add(YATMBlocks.INFERNALUM.get(), (b) -> this.createInfernalumTable());
+		this.dropPottedContents(YATMBlocks.POTTED_INFERNALUM.get());
+		
+		this.add(YATMBlocks.LAPUM.get(), (b) -> this.createLapumTable());
+		this.dropPottedContents(YATMBlocks.POTTED_LAPUM.get());
 		
 		this.dropSelf(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get());
 		this.dropSelf(YATMBlocks.PITCHER_CLUSTER.get());
@@ -166,6 +185,12 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.addShulkwart(YATMBlocks.RED_SHULKWART.get(), YATMItems.RED_SHULKWART_HORN.get());
 		this.addShulkwart(YATMBlocks.BLACK_SHULKWART.get(), YATMItems.BLACK_SHULKWART_HORN.get());
 		
+		this.add(YATMBlocks.RUBERUM.get(), (b) -> this.createRuberumTable());
+		this.dropPottedContents(YATMBlocks.POTTED_RUBERUM.get());
+		
+		this.add(YATMBlocks.SAMARAGDUM.get(), (b) -> this.createSamaragdumTable());
+		this.dropPottedContents(YATMBlocks.POTTED_SAMARAGDUM.get());
+		
 		this.add(YATMBlocks.SPIDER_VINE.get(), (b) -> LootTable.lootTable().withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(b).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(OnceFruitVineBodyBlock.FRUITING_STAGE, OnceFruitingPlantStages.FRUITING))).add(LootItem.lootTableItem(YATMItems.SPIDER_VINE_FRUITS.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0f))))));
 		this.add(YATMBlocks.SPIDER_VINE_MERISTEM.get(), BlockLootSubProvider.noDrop());
 
@@ -175,7 +200,7 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.add(YATMBlocks.VICUM.get(), this.createVicumTable());		
 		this.dropPottedContents(YATMBlocks.POTTED_VICUM.get());
 		
-		
+
 		
 		this.dropOther(YATMBlocks.HANGING_POT_HOOK.get(), Items.CHAIN);
 		
@@ -295,6 +320,63 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.add(block, (b) -> table);
 	} // end faceDropSelf()
 	
+	
+	
+	protected @NotNull LootTable.Builder createAdamumTable() 
+	{
+		Function<Integer, LootPool.Builder> forAge = (age) -> LootPool.lootPool()
+				.add(LootItem.lootTableItem(Items.OBSIDIAN)
+						.apply(SetItemCountFunction.setCount(
+								UniformGenerator.between(Math.min(1f, ((float)((age / 3))) - 1f), Math.min(1f, (float)((age / 3)))))
+							  )
+						)
+				.when(LootItemBlockStatePropertyCondition
+						.hasBlockStateProperties(YATMBlocks.ADAMUM.get())
+						.setProperties(StatePropertiesPredicate.Builder.properties()
+								.hasProperty(AdamumBlock.AGE, age)));
+		
+		
+		
+		LootTable.Builder table = LootTable.lootTable().withPool(LootPool.lootPool()
+				.add(LootItem.lootTableItem(Items.DIAMOND)
+						.apply(SetItemCountFunction.setCount(
+								UniformGenerator.between(1f, 2f))
+							  )
+						)
+				.when(LootItemBlockStatePropertyCondition
+						.hasBlockStateProperties(YATMBlocks.ADAMUM.get())
+						.setProperties(StatePropertiesPredicate.Builder.properties()
+								.hasProperty(AdamumBlock.HAS_FRUIT, true)))
+				
+				);
+		List<Integer> ages = AdamumBlock.AGE.getAllValues().map((i) -> i.value()).toList();
+		for(Integer age : ages) 
+		{
+			if(age == YATMBlocks.ADAMUM.get().getMaxAge()) 
+			{
+				continue;
+			}
+			table = table.withPool(LootPool.lootPool()
+					.add(LootItem.lootTableItem(YATMItems.ADAMUM_MERISTEM.get())
+							.apply(
+									SetItemCountFunction
+									.setCount(ConstantValue.exactly(1.0f))
+									)
+							)
+					.when(LootItemBlockStatePropertyCondition
+							.hasBlockStateProperties(YATMBlocks.ADAMUM.get())
+							.setProperties(StatePropertiesPredicate.Builder.properties()
+									.hasProperty(AdamumBlock.AGE, age))));
+		}	
+		for(Integer i : ages) 
+		{
+			table = table.withPool(forAge.apply(i));
+		}		
+		
+		
+		return table;				
+	} // end createAdamumTable()
+	
 	protected @NotNull LootTable.Builder createAurumTable() 
 	{
 		LootItemCondition.Builder fiddleHeadConditions 
@@ -327,59 +409,34 @@ public class YATMBlockLoot extends VanillaBlockLoot
 						)
 				.withPool(
 						LootPool.lootPool()
-						.when(forHalfAge.apply(DoubleBlockHalf.LOWER, 1))
-						.add(LootItem.lootTableItem(YATMItems.AURUM_DEMINUTUS_FROND.get())
-								.apply(
-										SetItemCountFunction
-										.setCount(
-												ConstantValue
-												.exactly(1.0f)
-												)
-										)
-								)
-						)
-				.withPool(
-						LootPool.lootPool()
 						.when(forHalfAge.apply(DoubleBlockHalf.LOWER, 2).or(forHalfAge.apply(DoubleBlockHalf.LOWER, 3).or(forHalfAge.apply(DoubleBlockHalf.LOWER, 4))))
-						.add(LootItem.lootTableItem(YATMItems.AURUM_DEMINUTUS_FROND.get())
-								.apply(
-										SetItemCountFunction
-										.setCount(
-												ConstantValue
-												.exactly(2.0f)
-												)
-										)
+						.add(LootItem.lootTableItem(Items.RAW_GOLD)
+								.apply(SetItemCountFunction.setCount(
+										UniformGenerator.between(0f, 2f))
+									  )
 								)
 						)
 				.withPool(
 						LootPool.lootPool()
 						.when(forHalfAge.apply(DoubleBlockHalf.UPPER, 3))
-						.add(LootItem.lootTableItem(YATMItems.AURUM_DEMINUTUS_FROND.get())
-								.apply(
-										SetItemCountFunction
-										.setCount(
-												ConstantValue
-												.exactly(2.0f)
-												)
-										)
+						.add(LootItem.lootTableItem(Items.RAW_GOLD)
+								.apply(SetItemCountFunction.setCount(
+										UniformGenerator.between(0f, 1f))
+									  )
 								)
 						)
 				.withPool(
 						LootPool.lootPool()
 						.when(forHalfAge.apply(DoubleBlockHalf.UPPER, 4))
-						.add(LootItem.lootTableItem(YATMItems.AURUM_DEMINUTUS_FROND.get())
-								.apply(
-										SetItemCountFunction
-										.setCount(
-												ConstantValue
-												.exactly(4.0f)
-												)
-										)
-								)
+						.add(LootItem.lootTableItem(Items.RAW_GOLD)
+								.apply(SetItemCountFunction.setCount(
+										UniformGenerator.between(0f, 2f))
+									  )
+							)
 						);
 	} // end createAurumDeminutusTable()
 	
-	protected @NotNull LootTable.Builder createBasinOfTearsFloralTable()
+	protected @NotNull LootTable.Builder createBasinOfTearsFloralTable() 
 	{
 		
 		Function<Integer, LootPool.Builder> forFlowerCount = (count) -> 
@@ -405,7 +462,7 @@ public class YATMBlockLoot extends VanillaBlockLoot
 	protected @NotNull LootTable.Builder createCarbumTable() 
 	{
 		Function<Integer, LootPool.Builder> forAge = (age) -> LootPool.lootPool()
-				.add(LootItem.lootTableItem(YATMItems.CARBUM_LEAF.get())
+				.add(LootItem.lootTableItem(Items.COAL)
 					.apply(SetItemCountFunction.setCount(
 							ConstantValue.exactly(age == 7 ? 4 : (age / 2)))
 						  )
@@ -434,12 +491,44 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		return table;				
 	} // end createCarbumTable()
 	
+	protected @NotNull LootTable.Builder createCuprumTable() 
+	{
+		Function<Integer, LootPool.Builder> forAge = (age) -> LootPool.lootPool()
+				.add(LootItem.lootTableItem(Items.RAW_COPPER)
+					.apply(SetItemCountFunction.setCount(
+							UniformGenerator.between(Math.min(0f, ((float)(age == 7 ? 4 : (age / 2))) - 2f), (float)(age == 7 ? 4 : (age / 2))))
+						  )
+					)
+				.when(LootItemBlockStatePropertyCondition
+						.hasBlockStateProperties(YATMBlocks.CUPRUM.get())
+						.setProperties(StatePropertiesPredicate.Builder.properties()
+								.hasProperty(CuprumBlock.AGE, age)));
+		
+		
+		
+		LootTable.Builder table = LootTable.lootTable()
+				.withPool(
+						LootPool.lootPool()
+						.add(LootItem.lootTableItem(YATMItems.CUPRUM_BULB.get())
+								.apply(
+										SetItemCountFunction
+										.setCount(ConstantValue.exactly(1.0f))
+										)
+								)
+						);
+		for(Integer i : CuprumBlock.AGE.getAllValues().map((i) -> i.value()).toList()) 
+		{
+			table = table.withPool(forAge.apply(i));
+		}		
+		return table;				
+	} // end createCuprumTable()
+	
 	protected @NotNull LootTable.Builder createFerrumTable() 
 	{
 		Function<Integer, LootPool.Builder> forAge = (age) -> LootPool.lootPool()
-				.add(LootItem.lootTableItem(YATMItems.FERRUM_BRANCH.get())
+				.add(LootItem.lootTableItem(Items.RAW_IRON))
 					.apply(SetItemCountFunction.setCount(
-							ConstantValue.exactly(age == 7 ? 4 : (age / 2)))
+							UniformGenerator.between(Math.min(0f, ((float)(Math.ceil(((float)age) / 3f))) - 2f), (float)(Math.ceil(((float)age) / 3f)))
 						  )
 					)
 				.when(LootItemBlockStatePropertyCondition
@@ -599,6 +688,90 @@ public class YATMBlockLoot extends VanillaBlockLoot
 						);
 	} // end createAurumDeminutusTable()
 	
+	protected @NotNull LootTable.Builder createInfernalumTable() 
+	{
+		Function<Integer, LootPool.Builder> forAge = (age) -> LootPool.lootPool()
+				.add(LootItem.lootTableItem(YATMItems.NETHERITE_NUGGET.get())
+						.apply(SetItemCountFunction.setCount(
+								UniformGenerator.between(0f, Math.min(1f, (float)((age / 2)))))
+							  )
+						)
+				.add(LootItem.lootTableItem(Items.ANCIENT_DEBRIS)
+						.apply(SetItemCountFunction.setCount(
+								UniformGenerator.between(0f, Math.min(1f, (float)((age / 3)))))
+							  )
+						)
+				.when(LootItemBlockStatePropertyCondition
+						.hasBlockStateProperties(YATMBlocks.INFERNALUM.get())
+						.setProperties(StatePropertiesPredicate.Builder.properties()
+								.hasProperty(InfernalumBlock.AGE, age)));
+		
+		
+		
+		LootTable.Builder table = LootTable.lootTable();
+		List<Integer> ages = InfernalumBlock.AGE.getAllValues().map((i) -> i.value()).toList();
+		for(Integer age : ages) 
+		{
+			if(age == YATMBlocks.INFERNALUM.get().getMaxAge()) 
+			{
+				continue;
+			}
+			table = table.withPool(LootPool.lootPool()
+					.add(LootItem.lootTableItem(YATMItems.INFERNALUM_RHIZOME.get())
+							.apply(
+									SetItemCountFunction
+									.setCount(ConstantValue.exactly(1.0f))
+									)
+							)
+					.when(LootItemBlockStatePropertyCondition
+							.hasBlockStateProperties(YATMBlocks.INFERNALUM.get())
+							.setProperties(StatePropertiesPredicate.Builder.properties()
+									.hasProperty(InfernalumBlock.AGE, age))));
+		}	
+		for(Integer i : ages) 
+		{
+			table = table.withPool(forAge.apply(i));
+		}			
+		return table;				
+	} // end createAdamumTable()
+	
+	protected @NotNull LootTable.Builder createLapumTable() 
+	{
+		Function<Integer, LootPool.Builder> forAge = (age) -> LootPool.lootPool()
+				.add(LootItem.lootTableItem(Items.LAPIS_LAZULI)
+					.apply(SetItemCountFunction.setCount(
+							UniformGenerator.between(Math.min(0f, ((float)(age == 7 ? 4 : (age / 2))) - 2f), (float)(age == 7 ? 3 : (age / 3))))
+						  )
+					)
+				.add(LootItem.lootTableItem(Items.CALCITE)
+						.apply(SetItemCountFunction.setCount(
+								UniformGenerator.between(Math.min(1f, ((float)((age / 3))) - 1f), Math.min(1f, (float)((age / 3)))))
+							  )
+						)
+				.when(LootItemBlockStatePropertyCondition
+						.hasBlockStateProperties(YATMBlocks.LAPUM.get())
+						.setProperties(StatePropertiesPredicate.Builder.properties()
+								.hasProperty(LapumBlock.AGE, age)));
+		
+		
+		
+		LootTable.Builder table = LootTable.lootTable()
+				.withPool(
+						LootPool.lootPool()
+						.add(LootItem.lootTableItem(YATMItems.LAPUM_MERISTEM.get())
+								.apply(
+										SetItemCountFunction
+										.setCount(ConstantValue.exactly(1.0f))
+										)
+								)
+						);
+		for(Integer i : LapumBlock.AGE.getAllValues().map((i) -> i.value()).toList()) 
+		{
+			table = table.withPool(forAge.apply(i));
+		}		
+		return table;				
+	} // end createLapumTable()
+	
 	protected @NotNull LootTable.Builder createPrismarineCrystalMossTable()
 	{
 			LootItemCondition.Builder tideTemplateConditions 
@@ -676,6 +849,70 @@ public class YATMBlockLoot extends VanillaBlockLoot
 			return addFace.apply(Direction.WEST, addFace.apply(Direction.EAST, addFace.apply(Direction.SOUTH, addFace.apply(Direction.NORTH, addFace.apply(Direction.DOWN, addFace.apply(Direction.UP, LootTable.lootTable()))))));
 	} // end createPrismarineCrystalMossTabl()
 	
+	protected @NotNull LootTable.Builder createRuberumTable() 
+	{
+		Function<Integer, LootPool.Builder> forAge = (age) -> LootPool.lootPool()
+				.add(LootItem.lootTableItem(Items.REDSTONE)
+					.apply(SetItemCountFunction.setCount(
+							UniformGenerator.between(Math.min(0f, ((float)((age == 7 ? 4 : (age / 2)) * 2f)) - 6f), (float)((age == 7 ? 4 : (age / 2)) * 2f)))
+						  )
+					)
+				.when(LootItemBlockStatePropertyCondition
+						.hasBlockStateProperties(YATMBlocks.RUBERUM.get())
+						.setProperties(StatePropertiesPredicate.Builder.properties()
+								.hasProperty(RuberumBlock.AGE, age)));
+		
+		
+		
+		LootTable.Builder table = LootTable.lootTable()
+				.withPool(
+						LootPool.lootPool()
+						.add(LootItem.lootTableItem(YATMItems.RUBERUM_CORM.get())
+								.apply(
+										SetItemCountFunction
+										.setCount(ConstantValue.exactly(1.0f))
+										)
+								)
+						);
+		for(Integer i : RuberumBlock.AGE.getAllValues().map((i) -> i.value()).toList()) 
+		{
+			table = table.withPool(forAge.apply(i));
+		}		
+		return table;				
+	} // end createRuberumTable()
+	
+	protected @NotNull LootTable.Builder createSamaragdumTable() 
+	{
+		Function<Integer, LootPool.Builder> forAge = (age) -> LootPool.lootPool()
+				.add(LootItem.lootTableItem(Items.EMERALD)
+					.apply(SetItemCountFunction.setCount(
+							UniformGenerator.between(Math.min(0f, ((float)(age == 7 ? 2 : (age / 4))) - 1f), (float)(age == 7 ? 2 : (age / 4))))
+						  )
+					)
+				.when(LootItemBlockStatePropertyCondition
+						.hasBlockStateProperties(YATMBlocks.SAMARAGDUM.get())
+						.setProperties(StatePropertiesPredicate.Builder.properties()
+								.hasProperty(SamaragdumBlock.AGE, age)));
+		
+		
+		
+		LootTable.Builder table = LootTable.lootTable()
+				.withPool(
+						LootPool.lootPool()
+						.add(LootItem.lootTableItem(YATMItems.SAMARAGDUM_NODULE.get())
+								.apply(
+										SetItemCountFunction
+										.setCount(ConstantValue.exactly(1.0f))
+										)
+								)
+						);
+		for(Integer i : SamaragdumBlock.AGE.getAllValues().map((i) -> i.value()).toList()) 
+		{
+			table = table.withPool(forAge.apply(i));
+		}		
+		return table;				
+	} // end createSamaragdumTable()
+	
 	protected void addShulkwart(@NotNull Block shulkwart, @NotNull Item horn) 
 	{
 	      this.add(shulkwart, this.createShulkwartTable(shulkwart, horn));
@@ -687,15 +924,19 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		return this.applyExplosionDecay(shulkwart, LootTable.lootTable().withPool(LootPool.lootPool().when(dropConditions).add(LootItem.lootTableItem(horn).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0f, 4.0f))).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 2)))));
 	} // end CreateShulkwartTable()
 	
-	// TODO, this and createCarbumTable and createFerrumTable are extremely similar and could be combined together
 	protected @NotNull LootTable.Builder createVicumTable() 
 	{
 		Function<Integer, LootPool.Builder> forAge = (age) -> LootPool.lootPool()
-				.add(LootItem.lootTableItem(YATMItems.VICUM_LEAF.get())
+				.add(LootItem.lootTableItem(Items.QUARTZ)
 					.apply(SetItemCountFunction.setCount(
-							ConstantValue.exactly(age == 7 ? 4 : (age / 2)))
+							UniformGenerator.between(Math.min(0f, ((float)(age == 7 ? 4 : (age / 2))) - 2f), (float)(age == 7 ? 4 : (age / 2))))
 						  )
 					)
+				.add(LootItem.lootTableItem(Items.BASALT)
+						.apply(SetItemCountFunction.setCount(
+								UniformGenerator.between(Math.min(1f, ((float)((age / 3))) - 1f), Math.min(1f, (float)((age / 3)))))
+							  )
+						)
 				.when(LootItemBlockStatePropertyCondition
 						.hasBlockStateProperties(YATMBlocks.VICUM.get())
 						.setProperties(StatePropertiesPredicate.Builder.properties()
@@ -719,4 +960,5 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		}		
 		return table;				
 	} // end createVicumTable()
+	
 } // end class

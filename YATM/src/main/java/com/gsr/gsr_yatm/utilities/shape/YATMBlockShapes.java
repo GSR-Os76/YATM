@@ -9,14 +9,20 @@ import com.gsr.gsr_yatm.block.conduit.channel_vine.ChannelVineBlock;
 import com.gsr.gsr_yatm.block.device.AttachmentState;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
+import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsVegetationBlock;
 import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
+import com.gsr.gsr_yatm.block.plant.cuprum.CuprumBlock;
 import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
 import com.gsr.gsr_yatm.block.plant.folium.FoliumBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
+import com.gsr.gsr_yatm.block.plant.infernalum.InfernalumBlock;
+import com.gsr.gsr_yatm.block.plant.lapum.LapumBlock;
 import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
+import com.gsr.gsr_yatm.block.plant.ruberum.RuberumBlock;
+import com.gsr.gsr_yatm.block.plant.samaragdum.SamaragdumBlock;
 import com.gsr.gsr_yatm.block.plant.vicum.VicumBlock;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 
@@ -45,7 +51,7 @@ public class YATMBlockShapes
 		private static final VoxelShape CUBE = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
 
 		@Override
-		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
 		{
 			return CUBE;
 		} // end getShape()
@@ -59,13 +65,32 @@ public class YATMBlockShapes
 		private static final VoxelShape SHAPE = Block.box(0d, 0d, 0d, 16d, 1d, 16d);
 
 		@Override
-		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
 		{
 			return SHAPE;
 		} // end getShape()
 	};
 	
-	
+	public static final ICollisionVoxelShapeProvider ADAMUM = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape MERISTEM = Block.box(6d, 9d, 6d, 10d, 16d, 10d);
+		private static final VoxelShape YOUNG = Block.box(0d, 2d, 0d, 16d, 14d, 16d);
+		private static final VoxelShape ADOLESCENT = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
+		private static final VoxelShape OLD = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
+
+		@Override
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
+		{
+			return switch(state.getValue(AdamumBlock.AGE)) 
+					{
+						case 0, 1 -> MERISTEM;
+						case 2, 3 -> YOUNG;
+						case 4, 5, 6 -> ADOLESCENT;
+						case 7 -> OLD;
+						default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(AdamumBlock.AGE));
+					};
+		} // end getShape()
+	};
 	
 	public static final ICollisionVoxelShapeProvider BASIN_OF_TEARS_VEGETATION = new ICollisionVoxelShapeProvider() 
 	{
@@ -119,6 +144,29 @@ public class YATMBlockShapes
 			};
 		} // end getShape()
 	};	
+	
+	public static final ICollisionVoxelShapeProvider CUPRUM = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape SPROUT = Block.box(5d, 0d, 5d, 11d, 7d, 11d);
+		private static final VoxelShape YOUNG = Block.box(4d, 0d, 4d, 12d, 10d, 12d);
+		private static final VoxelShape ADOLESCENT = Block.box(3d, 0d, 3d, 13d, 15d, 13d); // leaves one pixel cut out, horizontally
+		private static final VoxelShape OLD_LOWER = Block.box(1d, 0d, 1d, 15d, 16d, 15d); // leaves one pixel cut out, horizontally
+		private static final VoxelShape OLD_HIGHER = Block.box(3d, 0d, 3d, 13d, 8d, 13d); // leaves one pixel cut out, horizontally
+
+		@Override
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
+		{
+			Boolean lower = state.getValue(CuprumBlock.HALF) == DoubleBlockHalf.LOWER;
+			return switch(state.getValue(CuprumBlock.AGE)) 
+					{
+						case 0, 1 -> SPROUT;
+						case 2, 3 -> YOUNG;
+						case 4, 5, 6 -> ADOLESCENT;
+						case 7 -> lower ? OLD_LOWER : OLD_HIGHER;
+						default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(CuprumBlock.AGE));
+					};
+		} // end getShape()
+	};
 	
 	public static final ICollisionVoxelShapeProvider FERRUM = new ICollisionVoxelShapeProvider() 
 	{
@@ -206,6 +254,48 @@ public class YATMBlockShapes
 			};
 		} // end getShape()
 	};		
+	
+	public static final ICollisionVoxelShapeProvider INFERNALUM = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape SPROUTS = Block.box(1d, 0d, 1d, 15d, 5d, 15d);
+		private static final VoxelShape YOUNG = Block.box(0d, 0d, 0d, 16d, 12d, 16d);
+		private static final VoxelShape ADOLESCENT = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
+		private static final VoxelShape OLD = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
+
+		@Override
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
+		{
+			return switch(state.getValue(InfernalumBlock.AGE)) 
+			{
+				case 0, 1 -> SPROUTS;
+				case 2, 3 -> YOUNG;
+				case 4, 5, 6 -> ADOLESCENT;
+				case 7 -> OLD;
+				default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(InfernalumBlock.AGE));
+			};
+		} // end getShape()
+	};	
+	
+	public static final ICollisionVoxelShapeProvider LAPUM = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape MERISTEM = Block.box(5d, 0d, 5d, 11d, 8d, 11d);
+		private static final VoxelShape YOUNG = Block.box(1d, 2d, 1d, 15d, 10d, 15d);
+		private static final VoxelShape ADOLESCENT = Block.box(0d, 0d, 0d, 16d, 11d, 16d);
+		private static final VoxelShape OLD = Block.box(0d, 0d, 0d, 16d, 13d, 16d);
+
+		@Override
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
+		{
+			return switch(state.getValue(LapumBlock.AGE)) 
+					{
+						case 0, 1 -> MERISTEM;
+						case 2, 3 -> YOUNG;
+						case 4, 5, 6 -> ADOLESCENT;
+						case 7 -> OLD;
+						default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(LapumBlock.AGE));
+					};
+		} // end getShape()
+	};
 	
 	public static final ICollisionVoxelShapeProvider PHANTASMAL_SHELF_FUNGUS = new ICollisionVoxelShapeProvider() 
 	{
@@ -328,6 +418,54 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 	
+	public static final ICollisionVoxelShapeProvider RUBERUM = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape SPROUT = Block.box(6d, 0d, 6d, 10d, 3d, 10d);
+		private static final VoxelShape YOUNG = Block.box(3d, 0d, 3d, 13d, 6d, 13d);
+		private static final VoxelShape YOUNG_OFF = Block.box(5d, 0d, 5d, 11d, 4d, 11d);
+		private static final VoxelShape ADOLESCENT = Block.box(2d, 0d, 2d, 14d, 10d, 14d);
+		private static final VoxelShape ADOLESCENT_OFF = Block.box(4d, 0d, 4d, 12d, 5d, 12d);
+		private static final VoxelShape OLD = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
+		private static final VoxelShape OLD_OFF = Block.box(2d, 0d, 2d, 14d, 7d, 14d);
+
+		@Override
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
+		{
+			Boolean lit = state.getValue(RuberumBlock.LIT);
+			return switch(state.getValue(RuberumBlock.AGE)) 
+					{
+						case 0, 1 -> SPROUT;
+						case 2, 3 -> lit ? YOUNG : YOUNG_OFF;
+						case 4, 5, 6 -> lit ? ADOLESCENT : ADOLESCENT_OFF;
+						case 7 -> lit ? OLD : OLD_OFF;
+						default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(RuberumBlock.AGE));
+					};
+		} // end getShape()
+	};
+	
+	// SamaragdumBlock(YATMBlockProperties.SAMARAGDUM
+	public static final ICollisionVoxelShapeProvider SAMARAGDUM = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape DOWN_PLANE = Block.box(0d, 0d, 0d, 16d, 1d, 16d);
+		private static final VoxelShape GERMINATING = DOWN_PLANE;
+		private static final VoxelShape YOUNG = Block.box(3d, 0d, 3d, 13d, 3d, 13d);
+		private static final VoxelShape ADOLESCENT = Block.box(1d, 0d, 1d, 15d, 7d, 15d);
+		private static final VoxelShape OLD = Block.box(0d, 0d, 0d, 16d, 8d, 16d);
+
+		@Override
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
+		{
+			return Shapes.or(DOWN_PLANE, switch(state.getValue(SamaragdumBlock.AGE)) 
+					{
+						case 0, 1 -> GERMINATING;
+						case 2, 3 -> YOUNG;
+						case 4, 5, 6 -> ADOLESCENT;
+						case 7 -> OLD;
+						default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(SamaragdumBlock.AGE));
+					});
+		} // end getShape()
+	};
+	
 	public static final ICollisionVoxelShapeProvider SHULKWART = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape SHAPE_ZERO = Block.box(6, 15d, 6d, 10d, 16d, 10d);
@@ -369,6 +507,8 @@ public class YATMBlockShapes
 			};
 		} // end getShape()
 	};	
+	
+	
 	
 	public static final ICollisionVoxelShapeProvider HANGING_POT_HOOK = new ICollisionVoxelShapeProvider() 
 	{

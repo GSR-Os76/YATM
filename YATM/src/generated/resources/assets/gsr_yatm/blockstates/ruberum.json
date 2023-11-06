@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "age=0,lit=false": {
+      "model": "gsr_yatm:block/ruberum_sprout"
+    },
+    "age=0,lit=true": {
+      "model": "gsr_yatm:block/ruberum_sprout_on"
+    },
+    "age=1,lit=false": {
+      "model": "gsr_yatm:block/ruberum_sprout"
+    },
+    "age=1,lit=true": {
+      "model": "gsr_yatm:block/ruberum_sprout_on"
+    },
+    "age=2,lit=false": {
+      "model": "gsr_yatm:block/ruberum_young"
+    },
+    "age=2,lit=true": {
+      "model": "gsr_yatm:block/ruberum_young_on"
+    },
+    "age=3,lit=false": {
+      "model": "gsr_yatm:block/ruberum_young"
+    },
+    "age=3,lit=true": {
+      "model": "gsr_yatm:block/ruberum_young_on"
+    },
+    "age=4,lit=false": {
+      "model": "gsr_yatm:block/ruberum_adolescent"
+    },
+    "age=4,lit=true": {
+      "model": "gsr_yatm:block/ruberum_adolescent_on"
+    },
+    "age=5,lit=false": {
+      "model": "gsr_yatm:block/ruberum_adolescent"
+    },
+    "age=5,lit=true": {
+      "model": "gsr_yatm:block/ruberum_adolescent_on"
+    },
+    "age=6,lit=false": {
+      "model": "gsr_yatm:block/ruberum_adolescent"
+    },
+    "age=6,lit=true": {
+      "model": "gsr_yatm:block/ruberum_adolescent_on"
+    },
+    "age=7,lit=false": {
+      "model": "gsr_yatm:block/ruberum_old"
+    },
+    "age=7,lit=true": {
+      "model": "gsr_yatm:block/ruberum_old_on"
+    }
+  }
+}

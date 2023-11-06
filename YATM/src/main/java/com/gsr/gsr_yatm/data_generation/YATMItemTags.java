@@ -32,11 +32,13 @@ public class YATMItemTags extends ItemTagsProvider
 	// it should be better insured copies have the same resource locations where appropriate.
 	
 //	public static final TagKey<Item> FORGE_COPPER_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "nuggets/copper"));
-	public static final TagKey<Item> FORGE_NETHERITE_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "nuggets/netherite"));
-	public static final TagKey<Item> FORGE_ROOTED_DIRT_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "rooted_dirt"));
-	public static final TagKey<Item> FORGE_RUBBER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/rubber"));
-	public static final TagKey<Item> FORGE_RUBBER_STORAGE_BLOCK_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "storage_blocks/rubber"));
-//	public static final TagKey<Item> FORGE_SILVER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/silver"));
+	public static final TagKey<Item> FORGE_NETHERITE_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "nuggets/netherite"));
+	public static final TagKey<Item> FORGE_ROOTED_DIRT_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "rooted_dirt"));
+	public static final TagKey<Item> FORGE_RUBBER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "ingots/rubber"));
+	public static final TagKey<Item> FORGE_STORAGE_BLOCKS_RUBBER_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "storage_blocks/rubber"));
+	public static final TagKey<Item> FORGE_STORAGE_BLOCKS_FOLIAR_STEEL_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "storage_blocks/foliar_steel"));
+	
+	//	public static final TagKey<Item> FORGE_SILVER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/silver"));
 //	public static final TagKey<Item> FORGE_SILVER_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "nuggets/silver"));
 //	public static final TagKey<Item> FORGE_STEEL_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/steel"));
 
@@ -101,7 +103,8 @@ public class YATMItemTags extends ItemTagsProvider
 		
 		
 		this.copy(YATMBlockTags.FORGE_ROOTED_DIRT_KEY, YATMItemTags.FORGE_ROOTED_DIRT_KEY);
-		this.copy(YATMBlockTags.FORGE_RUBBER_STORAGE_BLOCK_KEY, YATMItemTags.FORGE_RUBBER_STORAGE_BLOCK_KEY);
+		this.copy(YATMBlockTags.FORGE_STORAGE_BLOCKS_RUBBER_KEY, YATMItemTags.FORGE_STORAGE_BLOCKS_RUBBER_KEY);
+		this.copy(YATMBlockTags.FORGE_STORAGE_BLOCKS_FOLIAR_STEEL_KEY, YATMItemTags.FORGE_STORAGE_BLOCKS_FOLIAR_STEEL_KEY);
 		this.tag(YATMItemTags.FORGE_RUBBER_INGOTS_KEY).add(YATMItems.RUBBER_BAR.get());
 //		this.tag(YATMItemTags.FORGE_SILVER_INGOTS_KEY).add(YATMItems.SILVER_INGOT.get());
 //		this.tag(YATMItemTags.FORGE_STEEL_INGOTS_KEY).add(YATMItems.STEEL_INGOT.get());

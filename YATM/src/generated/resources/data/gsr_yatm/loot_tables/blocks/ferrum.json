@@ -62,14 +62,18 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": 0.0,
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "gsr_yatm:ferrum_branch"
+          "name": "minecraft:raw_iron"
+        }
+      ],
+      "functions": [
+        {
+          "add": false,
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 0.0,
+            "min": -2.0
+          },
+          "function": "minecraft:set_count"
         }
       ],
       "rolls": 1.0
@@ -88,14 +92,18 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": 0.0,
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "gsr_yatm:ferrum_branch"
+          "name": "minecraft:raw_iron"
+        }
+      ],
+      "functions": [
+        {
+          "add": false,
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 1.0,
+            "min": -1.0
+          },
+          "function": "minecraft:set_count"
         }
       ],
       "rolls": 1.0
@@ -114,14 +122,18 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": 1.0,
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "gsr_yatm:ferrum_branch"
+          "name": "minecraft:raw_iron"
+        }
+      ],
+      "functions": [
+        {
+          "add": false,
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 1.0,
+            "min": -1.0
+          },
+          "function": "minecraft:set_count"
         }
       ],
       "rolls": 1.0
@@ -140,14 +152,18 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": 1.0,
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "gsr_yatm:ferrum_branch"
+          "name": "minecraft:raw_iron"
+        }
+      ],
+      "functions": [
+        {
+          "add": false,
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 1.0,
+            "min": -1.0
+          },
+          "function": "minecraft:set_count"
         }
       ],
       "rolls": 1.0
@@ -166,14 +182,18 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": 2.0,
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "gsr_yatm:ferrum_branch"
+          "name": "minecraft:raw_iron"
+        }
+      ],
+      "functions": [
+        {
+          "add": false,
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 2.0,
+            "min": 0.0
+          },
+          "function": "minecraft:set_count"
         }
       ],
       "rolls": 1.0
@@ -192,14 +212,18 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": 2.0,
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "gsr_yatm:ferrum_branch"
+          "name": "minecraft:raw_iron"
+        }
+      ],
+      "functions": [
+        {
+          "add": false,
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 2.0,
+            "min": 0.0
+          },
+          "function": "minecraft:set_count"
         }
       ],
       "rolls": 1.0
@@ -218,14 +242,18 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": 3.0,
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "gsr_yatm:ferrum_branch"
+          "name": "minecraft:raw_iron"
+        }
+      ],
+      "functions": [
+        {
+          "add": false,
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 2.0,
+            "min": 0.0
+          },
+          "function": "minecraft:set_count"
         }
       ],
       "rolls": 1.0
@@ -244,14 +272,18 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": 4.0,
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "gsr_yatm:ferrum_branch"
+          "name": "minecraft:raw_iron"
+        }
+      ],
+      "functions": [
+        {
+          "add": false,
+          "count": {
+            "type": "minecraft:uniform",
+            "max": 3.0,
+            "min": 0.0
+          },
+          "function": "minecraft:set_count"
         }
       ],
       "rolls": 1.0

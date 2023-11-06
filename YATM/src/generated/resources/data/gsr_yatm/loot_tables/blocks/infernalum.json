@@ -1,0 +1,548 @@
+{
+  "type": "minecraft:block",
+  "pools": [
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:infernalum",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "0"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:infernalum_rhizome"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:infernalum",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "1"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:infernalum_rhizome"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:infernalum",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "2"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:infernalum_rhizome"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:infernalum",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "3"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:infernalum_rhizome"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:infernalum",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "4"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:infernalum_rhizome"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:infernalum",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "5"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:infernalum_rhizome"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:infernalum",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "6"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": 1.0,
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:infernalum_rhizome"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:infernalum",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "0"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 0.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:netherite_nugget"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 0.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:ancient_debris"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:infernalum",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "1"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 0.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:netherite_nugget"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 0.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:ancient_debris"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:infernalum",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "2"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:netherite_nugget"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 0.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:ancient_debris"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:infernalum",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "3"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:netherite_nugget"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:ancient_debris"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:infernalum",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "4"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:netherite_nugget"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:ancient_debris"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:infernalum",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "5"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:netherite_nugget"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:ancient_debris"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:infernalum",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "6"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:netherite_nugget"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:ancient_debris"
+        }
+      ],
+      "rolls": 1.0
+    },
+    {
+      "bonus_rolls": 0.0,
+      "conditions": [
+        {
+          "block": "gsr_yatm:infernalum",
+          "condition": "minecraft:block_state_property",
+          "properties": {
+            "age": "7"
+          }
+        }
+      ],
+      "entries": [
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "gsr_yatm:netherite_nugget"
+        },
+        {
+          "type": "minecraft:item",
+          "functions": [
+            {
+              "add": false,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 1.0,
+                "min": 0.0
+              },
+              "function": "minecraft:set_count"
+            }
+          ],
+          "name": "minecraft:ancient_debris"
+        }
+      ],
+      "rolls": 1.0
+    }
+  ],
+  "random_sequence": "gsr_yatm:blocks/infernalum"
+}

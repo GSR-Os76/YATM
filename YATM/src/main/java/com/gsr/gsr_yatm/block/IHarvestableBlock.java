@@ -35,8 +35,12 @@ public interface IHarvestableBlock
 	// should return a list of all the ToolActions that're able to be used on the provided state and situation
 	public @NotNull List<@Nullable ToolAction> validActions(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position);
 	
+	// TODO, probably remove current manual implementations
 	// should cause not state changes
-	public boolean isHarvestable(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action);
+	public default boolean isHarvestable(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
+	{
+		return this.validActions(level, state, position).contains(action);
+	} // end isHarvestable()
 	
 	// should cause not state changes
 	// null result means action failed, or wasn't performable. should never return null immediately after isHarvestable returned true.

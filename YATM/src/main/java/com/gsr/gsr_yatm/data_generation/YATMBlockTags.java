@@ -31,12 +31,16 @@ public class YATMBlockTags extends BlockTagsProvider
 	public static final TagKey<Block> FORGE_BASALT_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "basalt"));
 	// maybe this should be "cactus" not "cactuses"
 	public static final TagKey<Block> FORGE_CACTUS_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "cactus"));
+	public static final TagKey<Block> FORGE_CALCITE_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "calcite"));
 	public static final TagKey<Block> FORGE_ROOTED_DIRT_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "rooted_dirt"));
-	public static final TagKey<Block> FORGE_RUBBER_STORAGE_BLOCK_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "storage_blocks/rubber"));
 	public static final TagKey<Block> FORGE_SOUL_SOIL_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "soul_soil"));
+	public static final TagKey<Block> FORGE_STORAGE_BLOCKS_RUBBER_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "storage_blocks/rubber"));
+	public static final TagKey<Block> FORGE_STORAGE_BLOCKS_FOLIAR_STEEL_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "storage_blocks/foliar_steel"));
+	
+	
 
-	
-	
+	public static final TagKey<Block> ADAMUM_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/adamum_can_grow_in"));
+	public static final TagKey<Block> ADAMUM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/adamum_can_grow_on"));	
 	public static final TagKey<Block> AERIAL_RUBBER_ROOTS_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/aerial_rubber_roots_can_grow_on"));
 	public static final TagKey<Block> AERIAL_RUBBER_ROOTS_CAN_GROW_THROUGH_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/aerial_rubber_roots_can_grow_through"));
 	public static final TagKey<Block> AURUM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/aurum_can_grow_on"));
@@ -51,17 +55,32 @@ public class YATMBlockTags extends BlockTagsProvider
 	public static final TagKey<Block> CARCASS_ROOT_ROOTED_DIRT_ROOTS_FROM_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/carcass_root_rooted_dirt_roots_from"));
 	public static final TagKey<Block> CARCASS_ROOT_ROOTED_NETHERRACK_ROOTS_FROM_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/carcass_root_rooted_netherack_roots_from"));
 	public static final TagKey<Block> CHANNEL_NEUTRAL_ONLY_ATTACHMENT_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "change_neutral_only_attachment"));
+	public static final TagKey<Block> CUPRUM_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/cuprum_can_grow_in"));
+	public static final TagKey<Block> CUPRUM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/cuprum_can_grow_on"));
 	public static final TagKey<Block> FERRUM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/ferrum_can_grow_on"));
 	public static final TagKey<Block> FIRE_EATER_LILY_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/fire_eater_lily_can_grow_on"));
 	public static final TagKey<Block> FOLIAR_STEEL_ORES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "foliar_steel_ores"));
 	public static final TagKey<Block> FOLIUM_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/folium_can_grow_in"));
 	public static final TagKey<Block> FOLIUM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/folium_can_grow_on"));	
+	public static final TagKey<Block> FORMS_ADAMUM_TOP_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/adamum_top"));	
+	public static final TagKey<Block> FORMS_ADAMUM_MIDDLE_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/adamum_middle"));	
+	public static final TagKey<Block> FORMS_ADAMUM_BOTTOM_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/adamum_bottom"));	
 	public static final TagKey<Block> FORMS_AURUM_HIGHER_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/aurum_higher"));	
 	public static final TagKey<Block> FORMS_AURUM_LOWER_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/aurum_lower"));
-	public static final TagKey<Block> FORMS_CARBUM_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/carbum"));	
+	public static final TagKey<Block> FORMS_BUDDING_AMETHYST_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/budding_amethyst"));	
+	public static final TagKey<Block> FORMS_CARBUM_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/carbum"));
+	public static final TagKey<Block> FORMS_CUPRUM_HIGHER_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/cuprum_higher"));	
+	public static final TagKey<Block> FORMS_CUPRUM_LOWER_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/cuprum_lower"));	
 	public static final TagKey<Block> FORMS_FERRUM_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/ferrum"));	
 	public static final TagKey<Block> FORMS_FOLIUM_HIGHER_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/folium_higher"));	
 	public static final TagKey<Block> FORMS_FOLIUM_LOWER_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/folium_lower"));
+	public static final TagKey<Block> FORMS_INFERNALUM_TOP_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/infernalum_top"));	
+	public static final TagKey<Block> FORMS_INFERNALUM_MIDDLE_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/infernalum_middle"));	
+	public static final TagKey<Block> FORMS_INFERNALUM_BOTTOM_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/infernalum_bottom"));	
+	public static final TagKey<Block> FORMS_LAPUM_INNER_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/lapum_inner"));	
+	public static final TagKey<Block> FORMS_LAPUM_OUTER_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/lapum_outer"));	
+	public static final TagKey<Block> FORMS_RUBERUM_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/ruberum"));	
+	public static final TagKey<Block> FORMS_SAMARAGDUM_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/samaragdum"));	
 	public static final TagKey<Block> FORMS_VICUM_INNER_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/vicum_inner"));	
 	public static final TagKey<Block> FORMS_VICUM_OUTER_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/vicum_outer"));	
 	public static final TagKey<Block> GOLEM_LIKE_PLANTS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "golem_like_plants"));
@@ -69,6 +88,10 @@ public class YATMBlockTags extends BlockTagsProvider
 	public static final TagKey<Block> HEAT_BLOCKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "heat_blocks"));	
 	public static final TagKey<Block> ICE_CORAL_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/ice_coral_can_grow_in"));
 	public static final TagKey<Block> ICE_CORAL_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/ice_coral_can_grow_on"));
+	public static final TagKey<Block> INFERNALUM_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/infernalum_can_grow_in"));
+	public static final TagKey<Block> INFERNALUM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/infernalum_can_grow_on"));	
+	public static final TagKey<Block> LAPUM_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/lapum_can_grow_in"));
+	public static final TagKey<Block> LAPUM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/lapum_can_grow_on"));	
 	public static final TagKey<Block> LEAVES_LITER_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "leaves_litter_on"));
 	public static final TagKey<Block> MACHINES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "machines"));
 	public static final TagKey<Block> PHANTASMAL_SHELF_FUNGI_SPREAD_TO_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "phantasmal_shelf_fungi_spread_to"));;
@@ -79,6 +102,10 @@ public class YATMBlockTags extends BlockTagsProvider
 	public static final TagKey<Block> RUBBER_TREE_LOGS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "rubber_tree_logs"));
 	public static final TagKey<Block> RUBBER_TREE_PLANKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "rubber_planks"));
 	public static final TagKey<Block> RUBBER_TREES_NATURALLY_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/rubber_trees_naturally_grow_on"));
+	public static final TagKey<Block> RUBERUM_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/lapum_can_grow_in"));
+	public static final TagKey<Block> RUBERUM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/lapum_can_grow_on"));	
+	public static final TagKey<Block> SAMARAGDUM_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/samaragdum_can_grow_in"));
+	public static final TagKey<Block> SAMARAGDUM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/samaragdum_can_grow_on"));
 	public static final TagKey<Block> SAP_COLLECTORS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "sap_collectors"));
 	public static final TagKey<Block> SHULKWART_GROWS_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/shulkwart_grow_on"));
 	public static final TagKey<Block> SOUL_AFFLICTING_BLOCKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/soul_afflicting_blocks"));
@@ -112,18 +139,24 @@ public class YATMBlockTags extends BlockTagsProvider
 	@Override
 	protected void addTags(Provider provider)
 	{
-		this.tag(BlockTags.CLIMBABLE).add(YATMBlocks.CONDUIT_VINES.get());
+		this.tag(BlockTags.CLIMBABLE).add(YATMBlocks.CONDUIT_VINES.get()).add(YATMBlocks.SPIDER_VINE.get());
 		this.tag(BlockTags.DIRT).add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get());
 		this.tag(BlockTags.FLOWERS).add(YATMBlocks.RUBBER_LEAVES_FLOWERING.get()); // maybe eventually add soul rubber flowers too, but seems like they should be special, and I dunno how to modify minecraft entity beehaviours
 		this.tag(BlockTags.FLOWER_POTS).add(YATMBlocks.POTTED_RUBBER_MERISTEM.get()).add(YATMBlocks.POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM.get())
-		.add(YATMBlocks.POTTED_AURUM_DEMINUTUS.get())
+		.add(YATMBlocks.POTTED_ADAMUM.get())
+		.add(YATMBlocks.POTTED_AURUM.get())
 		.add(YATMBlocks.POTTED_CANDLELILY.get())
 		.add(YATMBlocks.POTTED_CARBUM.get())
 		.add(YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE.get())
+		.add(YATMBlocks.POTTED_CUPRUM.get())
 		.add(YATMBlocks.POTTED_FERRUM.get())
 		.add(YATMBlocks.FIRE_EATER_LILY.get())
 		.add(YATMBlocks.POTTED_FOLIUM.get())
 		.add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_POLYP.get()).add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_YOUNG.get()).add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_ADOLESCENT.get()).add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_OLD.get())
+		.add(YATMBlocks.POTTED_INFERNALUM.get())
+		.add(YATMBlocks.POTTED_LAPUM.get())
+		.add(YATMBlocks.POTTED_RUBERUM.get())
+		.add(YATMBlocks.POTTED_SAMARAGDUM.get())		
 		.add(YATMBlocks.POTTED_VARIEGATED_CACTUS.get())
 		.add(YATMBlocks.POTTED_VICUM.get());
 		this.tag(BlockTags.LOGS).addTag(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);
@@ -131,10 +164,11 @@ public class YATMBlockTags extends BlockTagsProvider
 		// TODO, maybe add misc plants to axe tag		
 		this.tag(BlockTags.MINEABLE_WITH_AXE).addTag(YATMBlockTags.SAP_COLLECTORS_KEY).add(YATMBlocks.SPINNING_WHEEL.get());
 		this.tag(BlockTags.MINEABLE_WITH_HOE).add(YATMBlocks.RUBBER_LEAVES_YOUNG.get()).add(YATMBlocks.RUBBER_LEAVES_FLOWERING.get()).add(YATMBlocks.RUBBER_LEAVES_OLD.get()).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG.get()).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get()).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_OLD.get());
-		this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get()).addTag(YATMBlockTags.FOLIAR_STEEL_ORES_KEY).add(YATMBlocks.FOLIAR_STEEL_BLOCK.get()).addTag(YATMBlockTags.GOLEM_LIKE_PLANTS_KEY).add(YATMBlocks.LARGE_COPPER_HEAT_SINK.get()).addTag(YATMBlockTags.MACHINES_KEY).add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get()).add(YATMBlocks.STEEL_BOILER_TANK.get()).add(YATMBlocks.STEEL_TANK.get()).add(YATMBlocks.CHANNEL_VINES.get());
+		this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get()).addTag(YATMBlockTags.FOLIAR_STEEL_ORES_KEY).add(YATMBlocks.FOLIAR_STEEL_BLOCK.get()).addTag(YATMBlockTags.GOLEM_LIKE_PLANTS_KEY).add(YATMBlocks.LARGE_COPPER_HEAT_SINK.get()).addTag(YATMBlockTags.MACHINES_KEY).add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get()).add(YATMBlocks.STEEL_BOILER_TANK.get()).add(YATMBlocks.STEEL_TANK.get()).add(YATMBlocks.CHANNEL_VINES.get()).add(YATMBlocks.ADAMUM.get()).add(YATMBlocks.CUPRUM.get()).add(YATMBlocks.INFERNALUM.get()).add(YATMBlocks.LAPUM.get()).add(YATMBlocks.RUBERUM.get()).add(YATMBlocks.SAMARAGDUM.get());
 		this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get()).add(YATMBlocks.ROOTED_SOUL_SOIL.get());
-		this.tag(BlockTags.NEEDS_IRON_TOOL).add(YATMBlocks.AURUM.get()).add(YATMBlocks.FOLIAR_STEEL_BLOCK.get()).addTag(YATMBlockTags.FOLIAR_STEEL_ORES_KEY).add(YATMBlocks.FOLIUM.get()).addTag(YATMBlockTags.MACHINES_KEY).add(YATMBlocks.STEEL_BOILER_TANK.get()).add(YATMBlocks.STEEL_TANK.get()).add(YATMBlocks.CHANNEL_VINES.get());
+		this.tag(BlockTags.NEEDS_IRON_TOOL).add(YATMBlocks.AURUM.get()).add(YATMBlocks.FOLIAR_STEEL_BLOCK.get()).addTag(YATMBlockTags.FOLIAR_STEEL_ORES_KEY).add(YATMBlocks.FOLIUM.get()).addTag(YATMBlockTags.MACHINES_KEY).add(YATMBlocks.STEEL_BOILER_TANK.get()).add(YATMBlocks.STEEL_TANK.get()).add(YATMBlocks.CHANNEL_VINES.get()).add(YATMBlocks.RUBERUM.get()).add(YATMBlocks.SAMARAGDUM.get());
 		this.tag(BlockTags.NEEDS_STONE_TOOL).add(YATMBlocks.FERRUM.get()).add(YATMBlocks.LARGE_COPPER_HEAT_SINK.get());
+		this.tag(BlockTags.NEEDS_DIAMOND_TOOL).add(YATMBlocks.ADAMUM.get()).add(YATMBlocks.INFERNALUM.get());
 		this.tag(BlockTags.PLANKS).addTag(YATMBlockTags.RUBBER_TREE_PLANKS_KEY).addTag(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY);
 		this.tag(BlockTags.SAPLINGS).add(YATMBlocks.RUBBER_MERISTEM.get()).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get());
 		// TODO, maybe remove those blocks without solid tops at all the times?
@@ -151,20 +185,25 @@ public class YATMBlockTags extends BlockTagsProvider
 		
 		this.tag(YATMBlockTags.FORGE_BASALT_KEY).add(Blocks.BASALT).add(Blocks.POLISHED_BASALT).add(Blocks.SMOOTH_BASALT);
 		this.tag(YATMBlockTags.FORGE_CACTUS_KEY).add(Blocks.CACTUS).add(YATMBlocks.VARIEGATED_CACTUS.get());
+		this.tag(YATMBlockTags.FORGE_CALCITE_KEY).add(Blocks.CALCITE);
 		this.tag(YATMBlockTags.FORGE_ROOTED_DIRT_KEY).add(Blocks.ROOTED_DIRT).add(Blocks.MUDDY_MANGROVE_ROOTS).add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get());
-		this.tag(YATMBlockTags.FORGE_RUBBER_STORAGE_BLOCK_KEY).add(YATMBlocks.RUBBER_BLOCK.get());
 		this.tag(YATMBlockTags.FORGE_SOUL_SOIL_KEY).add(Blocks.SOUL_SOIL).add(YATMBlocks.ROOTED_SOUL_SOIL.get());
+		this.tag(YATMBlockTags.FORGE_STORAGE_BLOCKS_RUBBER_KEY).add(YATMBlocks.RUBBER_BLOCK.get());
+		this.tag(YATMBlockTags.FORGE_STORAGE_BLOCKS_FOLIAR_STEEL_KEY).add(YATMBlocks.FOLIAR_STEEL_BLOCK.get());
 		this.tag(Tags.Blocks.NETHERRACK).add(Blocks.CRIMSON_NYLIUM).add(Blocks.WARPED_NYLIUM).add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get());
 		this.tag(Tags.Blocks.ORES).addTag(YATMBlockTags.FOLIAR_STEEL_ORES_KEY);
 		this.tag(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE).add(YATMBlocks.DEEPSLATE_FOLIAR_STEEL_ORE.get());
 		this.tag(Tags.Blocks.ORES_IN_GROUND_STONE).add(YATMBlocks.FOLIAR_STEEL_ORE.get());
 		this.tag(Tags.Blocks.ORE_RATES_SINGULAR).addTag(YATMBlockTags.FOLIAR_STEEL_ORES_KEY);
-		this.tag(Tags.Blocks.STORAGE_BLOCKS).addTag(YATMBlockTags.FORGE_RUBBER_STORAGE_BLOCK_KEY).add(YATMBlocks.FOLIAR_STEEL_BLOCK.get());
+		this.tag(Tags.Blocks.STORAGE_BLOCKS).addTag(YATMBlockTags.FORGE_STORAGE_BLOCKS_RUBBER_KEY).addTag(YATMBlockTags.FORGE_STORAGE_BLOCKS_FOLIAR_STEEL_KEY);
+		this.tag(Tags.Blocks.STORAGE_BLOCKS_COPPER).add(Blocks.CUT_COPPER).add(Blocks.EXPOSED_COPPER).add(Blocks.EXPOSED_CUT_COPPER).add(Blocks.WEATHERED_COPPER).add(Blocks.WEATHERED_CUT_COPPER).add(Blocks.OXIDIZED_COPPER).add(Blocks.OXIDIZED_CUT_COPPER);
 		this.tag(Tags.Blocks.STORAGE_BLOCKS_QUARTZ).add(Blocks.CHISELED_QUARTZ_BLOCK).add(Blocks.QUARTZ_BRICKS).add(Blocks.QUARTZ_PILLAR).add(Blocks.SMOOTH_QUARTZ);
-		this.tag(Tags.Blocks.NEEDS_WOOD_TOOL).add(YATMBlocks.CARBUM.get()).add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get()).add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get()).add(YATMBlocks.VICUM.get());
+		this.tag(Tags.Blocks.NEEDS_WOOD_TOOL).add(YATMBlocks.CARBUM.get()).add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get()).add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get()).add(YATMBlocks.VICUM.get()).add(YATMBlocks.CUPRUM.get()).add(YATMBlocks.LAPUM.get());
 				
 		
 		
+		this.tag(YATMBlockTags.ADAMUM_CAN_GROW_IN_KEY).add(Blocks.AIR);
+		this.tag(YATMBlockTags.ADAMUM_CAN_GROW_ON_KEY).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER);
 		this.tag(YATMBlockTags.AERIAL_RUBBER_ROOTS_CAN_GROW_ON_KEY).addTag(YATMBlockTags.RUBBER_TREE_LOGS_KEY).add(YATMBlocks.RUBBER_LEAVES_OLD.get()).addTag(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_OLD.get());
 		this.tag(YATMBlockTags.AERIAL_RUBBER_ROOTS_CAN_GROW_THROUGH_KEY).add(Blocks.AIR).add(YATMBlocks.RUBBER_LEAVES_FLOWERING.get()).add(YATMBlocks.RUBBER_LEAVES_YOUNG.get()).add(YATMBlocks.RUBBER_MERISTEM.get()).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get()).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG.get()).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get()).add(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get());
 		this.tag(YATMBlockTags.AURUM_CAN_GROW_ON_KEY).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER);
@@ -179,24 +218,43 @@ public class YATMBlockTags extends BlockTagsProvider
 		this.tag(YATMBlockTags.CARCASS_ROOT_ROOTED_DIRT_ROOTS_FROM_KEY).addTag(BlockTags.DIRT);
 		this.tag(YATMBlockTags.CARCASS_ROOT_ROOTED_NETHERRACK_ROOTS_FROM_KEY).addTag(Tags.Blocks.NETHERRACK);
 		this.tag(YATMBlockTags.CHANNEL_NEUTRAL_ONLY_ATTACHMENT_KEY).add(YATMBlocks.CHANNEL_VINES.get());
+		this.tag(YATMBlockTags.CUPRUM_CAN_GROW_IN_KEY).add(Blocks.AIR);
+		this.tag(YATMBlockTags.CUPRUM_CAN_GROW_ON_KEY).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER);
 		// this.tag(YATMBlockTags.DATA_BLOCKS).add(YATMBlocks.DATA_STORAGE_BLOCK.get()).add(YATMBlocks.DATA_SCAN_COLLECTOR.get()).add(YATMBlocks.DESTRUCTIVE_DATA_SCANNER.get()).add(YATMBlocks.DATA_PROCESSOR.get())
 		this.tag(YATMBlockTags.FERRUM_CAN_GROW_ON_KEY).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER);
 		this.tag(YATMBlockTags.FIRE_EATER_LILY_CAN_GROW_ON_KEY).addTag(BlockTags.DIRT).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER).add(Blocks.MAGMA_BLOCK);
 		this.tag(YATMBlockTags.FOLIAR_STEEL_ORES_KEY).add(YATMBlocks.FOLIAR_STEEL_ORE.get()).add(YATMBlocks.DEEPSLATE_FOLIAR_STEEL_ORE.get());	
 		this.tag(YATMBlockTags.FOLIUM_CAN_GROW_IN_KEY).add(Blocks.AIR);
 		this.tag(YATMBlockTags.FOLIUM_CAN_GROW_ON_KEY).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER);
-		this.tag(YATMBlockTags.FORMS_AURUM_HIGHER_KEY).add(Blocks.GOLD_BLOCK).add(Blocks.RAW_GOLD_BLOCK);		
+		this.tag(YATMBlockTags.FORMS_ADAMUM_TOP_KEY).addTag(Tags.Blocks.OBSIDIAN);		
+		this.tag(YATMBlockTags.FORMS_ADAMUM_MIDDLE_KEY).addTag(Tags.Blocks.STORAGE_BLOCKS_DIAMOND);
+		this.tag(YATMBlockTags.FORMS_ADAMUM_BOTTOM_KEY).addTag(Tags.Blocks.OBSIDIAN);		
+		this.tag(YATMBlockTags.FORMS_AURUM_HIGHER_KEY).addTag(Tags.Blocks.STORAGE_BLOCKS_GOLD).addTag(Tags.Blocks.STORAGE_BLOCKS_RAW_GOLD);		
 		this.tag(YATMBlockTags.FORMS_AURUM_LOWER_KEY).add(Blocks.GILDED_BLACKSTONE);
-		this.tag(YATMBlockTags.FORMS_CARBUM_KEY).add(Blocks.COAL_BLOCK);
-		this.tag(YATMBlockTags.FORMS_FERRUM_KEY).add(Blocks.IRON_BLOCK).add(Blocks.RAW_IRON_BLOCK);		
-		this.tag(YATMBlockTags.FORMS_FOLIUM_HIGHER_KEY).add(YATMBlocks.FOLIAR_STEEL_BLOCK.get());	
-		this.tag(YATMBlockTags.FORMS_FOLIUM_LOWER_KEY).add(YATMBlocks.FOLIAR_STEEL_BLOCK.get());		
+		this.tag(YATMBlockTags.FORMS_BUDDING_AMETHYST_KEY).addTag(Tags.Blocks.STORAGE_BLOCKS_AMETHYST);
+		this.tag(YATMBlockTags.FORMS_CARBUM_KEY).addTag(Tags.Blocks.STORAGE_BLOCKS_COAL);
+		this.tag(YATMBlockTags.FORMS_CUPRUM_HIGHER_KEY).addTag(Tags.Blocks.STORAGE_BLOCKS_COPPER).addTag(Tags.Blocks.STORAGE_BLOCKS_RAW_COPPER);
+		this.tag(YATMBlockTags.FORMS_CUPRUM_LOWER_KEY).addTag(Tags.Blocks.STORAGE_BLOCKS_COPPER).addTag(Tags.Blocks.STORAGE_BLOCKS_RAW_COPPER);
+		this.tag(YATMBlockTags.FORMS_FERRUM_KEY).addTag(Tags.Blocks.STORAGE_BLOCKS_IRON).addTag(Tags.Blocks.STORAGE_BLOCKS_RAW_IRON);		
+		this.tag(YATMBlockTags.FORMS_FOLIUM_HIGHER_KEY).addTag(YATMBlockTags.FORGE_STORAGE_BLOCKS_FOLIAR_STEEL_KEY);	
+		this.tag(YATMBlockTags.FORMS_FOLIUM_LOWER_KEY).addTag(YATMBlockTags.FORGE_STORAGE_BLOCKS_FOLIAR_STEEL_KEY);		
+		this.tag(YATMBlockTags.FORMS_INFERNALUM_TOP_KEY).addTag(Tags.Blocks.ORES_NETHERITE_SCRAP);		
+		this.tag(YATMBlockTags.FORMS_INFERNALUM_MIDDLE_KEY).addTag(Tags.Blocks.STORAGE_BLOCKS_NETHERITE);
+		this.tag(YATMBlockTags.FORMS_INFERNALUM_BOTTOM_KEY).addTag(Tags.Blocks.ORES_NETHERITE_SCRAP);		
+		this.tag(YATMBlockTags.FORMS_LAPUM_INNER_KEY).addTag(Tags.Blocks.STORAGE_BLOCKS_LAPIS);
+		this.tag(YATMBlockTags.FORMS_LAPUM_OUTER_KEY).addTag(YATMBlockTags.FORGE_CALCITE_KEY);	
+		this.tag(YATMBlockTags.FORMS_RUBERUM_KEY).addTag(Tags.Blocks.STORAGE_BLOCKS_REDSTONE);		
+		this.tag(YATMBlockTags.FORMS_SAMARAGDUM_KEY).addTag(Tags.Blocks.STORAGE_BLOCKS_EMERALD);
 		this.tag(YATMBlockTags.FORMS_VICUM_INNER_KEY).addTag(Tags.Blocks.STORAGE_BLOCKS_QUARTZ);
-		this.tag(YATMBlockTags.FORMS_VICUM_OUTER_KEY).addTag(YATMBlockTags.FORGE_BASALT_KEY);		
+		this.tag(YATMBlockTags.FORMS_VICUM_OUTER_KEY).addTag(YATMBlockTags.FORGE_BASALT_KEY);	
 		this.tag(YATMBlockTags.GOLEM_LIKE_PLANTS_KEY).add(YATMBlocks.AURUM.get()).add(YATMBlocks.CARBUM.get()).add(YATMBlocks.FERRUM.get()).add(YATMBlocks.FOLIUM.get()).add(YATMBlocks.VICUM.get());		
 		this.tag(YATMBlockTags.HEAT_BLOCKS_KEY).add(Blocks.MAGMA_BLOCK).add(Blocks.FIRE).add(Blocks.CAMPFIRE).add(Blocks.LAVA).add(Blocks.LAVA_CAULDRON);
 		this.tag(YATMBlockTags.ICE_CORAL_CAN_GROW_IN_KEY).add(Blocks.AIR).add(Blocks.WATER);
 		this.tag(YATMBlockTags.ICE_CORAL_CAN_GROW_ON_KEY).addTag(BlockTags.DIRT).addTag(BlockTags.SAND).addTag(Tags.Blocks.GRAVEL);
+		this.tag(YATMBlockTags.INFERNALUM_CAN_GROW_IN_KEY).add(Blocks.AIR);
+		this.tag(YATMBlockTags.INFERNALUM_CAN_GROW_ON_KEY).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER);
+		this.tag(YATMBlockTags.LAPUM_CAN_GROW_IN_KEY).add(Blocks.AIR);
+		this.tag(YATMBlockTags.LAPUM_CAN_GROW_ON_KEY).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER);
 		this.tag(YATMBlockTags.LEAVES_LITER_ON_KEY).addTag(BlockTags.DIRT).add(Blocks.SOUL_SAND).add(Blocks.SOUL_SOIL);
 		this.tag(YATMBlockTags.MACHINES_KEY).add(YATMBlocks.STEEL_BIOLER.get()).add(YATMBlocks.STEEL_BOILER.get()).add(YATMBlocks.STEEL_CRUCIBLE.get()).add(YATMBlocks.STEEL_CRYSTALLIZER.get()).add(YATMBlocks.STEEL_FURNACE_PLUS.get()).add(YATMBlocks.STEEL_EXTRACTOR.get()).add(YATMBlocks.STEEL_GRINDER.get()).add(YATMBlocks.STEEL_INJECTOR.get());
 		this.tag(YATMBlockTags.PHANTASMAL_SHELF_FUNGI_SPREAD_TO_KEY).addTag(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);
@@ -208,6 +266,10 @@ public class YATMBlockTags extends BlockTagsProvider
 		this.tag(YATMBlockTags.RUBBER_TREE_LOGS_KEY).add(YATMBlocks.RUBBER_LOG.get()).add(YATMBlocks.RUBBER_WOOD.get()).add(YATMBlocks.PARTIALLY_STRIPPED_RUBBER_LOG.get()).add(YATMBlocks.STRIPPED_RUBBER_LOG.get()).add(YATMBlocks.STRIPPED_RUBBER_WOOD.get());
 		this.tag(YATMBlockTags.RUBBER_TREE_PLANKS_KEY).add(YATMBlocks.RUBBER_PLANKS.get()).add(YATMBlocks.FANCY_RUBBER_PLANKS.get());
 		this.tag(YATMBlockTags.RUBBER_TREES_NATURALLY_GROW_ON_KEY).add(Blocks.DIRT).add(Blocks.GRASS_BLOCK).add(Blocks.FARMLAND).add(Blocks.MUD).add(Blocks.CLAY);
+		this.tag(YATMBlockTags.RUBERUM_CAN_GROW_IN_KEY).add(Blocks.AIR);
+		this.tag(YATMBlockTags.RUBERUM_CAN_GROW_ON_KEY).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER);
+		this.tag(YATMBlockTags.SAMARAGDUM_CAN_GROW_IN_KEY).add(Blocks.AIR);
+		this.tag(YATMBlockTags.SAMARAGDUM_CAN_GROW_ON_KEY).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER);
 		this.tag(YATMBlockTags.SAP_COLLECTORS_KEY).add(YATMBlocks.SAP_COLLECTOR.get()).add(YATMBlocks.SAP_COLLECTOR_LATEX.get()).add(YATMBlocks.SAP_COLLECTOR_SOUL_SAP.get());
 		this.tag(YATMBlockTags.SHULKWART_GROWS_ON_KEY).add(Blocks.CHORUS_PLANT);
 		this.tag(YATMBlockTags.SOUL_AFFLICTING_BLOCKS_KEY).addTag(SOUL_AFFLICTED_RUBBER_TREE_BLOCKS_KEY).addTag(YATMBlockTags.SOUL_GROUND_KEY);

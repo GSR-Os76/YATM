@@ -34,6 +34,7 @@ import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.device.tank.TankBlock;
 import com.gsr.gsr_yatm.block.hanging_pot.HangingPotHookBlock;
 import com.gsr.gsr_yatm.block.plant.CustomSeedCropBlock;
+import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsFloralBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsVegetationBlock;
@@ -42,14 +43,19 @@ import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootFoliageBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootSupplier;
+import com.gsr.gsr_yatm.block.plant.cuprum.CuprumBlock;
 import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
 import com.gsr.gsr_yatm.block.plant.folium.FoliumBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
+import com.gsr.gsr_yatm.block.plant.infernalum.InfernalumBlock;
+import com.gsr.gsr_yatm.block.plant.lapum.LapumBlock;
 import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
 import com.gsr.gsr_yatm.block.plant.pitcher_cluster.PitcherClusterBlock;
 import com.gsr.gsr_yatm.block.plant.prismarine_crystal_moss.PrismarineCrystalMossBlock;
+import com.gsr.gsr_yatm.block.plant.ruberum.RuberumBlock;
+import com.gsr.gsr_yatm.block.plant.samaragdum.SamaragdumBlock;
 import com.gsr.gsr_yatm.block.plant.tree.AerialRootsBlock;
 import com.gsr.gsr_yatm.block.plant.tree.TappedLogBlock;
 import com.gsr.gsr_yatm.block.plant.tree.rubber_bush.RubberBushSaplingBlock;
@@ -109,7 +115,7 @@ public class YATMBlocks
 	// TODO, consider by some mean letting roots root into cracked blocks, and or break them further, or to break crackable blocks
 	// TODO, make rubber tree decorate occasionally with bees.
 	// TODO, design lateral growth, add lateral meristems to apically grown tree, maybe	
-	// TODO, probably add in more potted plant things.
+	// TODO, probably add in more potted plant things, or possibly less.
 	
 	
 	private static final BlockSetType RUBBER_BLOCK_SET_TYPE = /* BlockSetType.register( */new BlockSetType("gsr_yatm:rubber")/* ) */;
@@ -179,9 +185,12 @@ public class YATMBlocks
 	// TODO, some dripping tree, a small tree with notable extrafloral nectaries, bees will interact with them, they will drip, small feeling tree
 	// TODO, possibly used for making still, if i do end up doing the plant machines
 	
+	public static final RegistryObject<AdamumBlock> ADAMUM = BLOCKS.register("adamum", () -> new AdamumBlock(YATMBlockProperties.ADAMUM, YATMBlockShapes.ADAMUM));
+	public static final RegistryObject<FlowerPotBlock> POTTED_ADAMUM = BLOCKS.register("potted_adamum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.ADAMUM.get(), YATMBlockProperties.FLOWER_POT));
+	
 	// TODO, probably needs shapes
 	public static final RegistryObject<AurumBlock> AURUM = BLOCKS.register("aurum_deminutus", () -> new AurumBlock(YATMBlockProperties.AURUM_SP, YATMBlockShapes.CUBE, YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD::get, () -> new ItemStack(YATMItems.AURUM_DEMINUTUS_FROND.get())));
-	public static final RegistryObject<FlowerPotBlock> POTTED_AURUM_DEMINUTUS = BLOCKS.register("potted_aurum_deminutus", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.AURUM, YATMBlockProperties.FLOWER_POT));
+	public static final RegistryObject<FlowerPotBlock> POTTED_AURUM = BLOCKS.register("potted_aurum_deminutus", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.AURUM, YATMBlockProperties.FLOWER_POT));
 
 	public static final RegistryObject<BasinOfTearsFloralBlock> BASIN_OF_TEARS_FLORAL = BLOCKS.register("basin_of_tears_floral", () -> new BasinOfTearsFloralBlock(YATMBlockProperties.BASIN_OF_TEARS, YATMBlockShapes.CUBE/*BASIN_OF_TEARS_FLORAL*/));
 	public static final RegistryObject<BasinOfTearsVegetationBlock> BASIN_OF_TEARS_VEGETATION = BLOCKS.register("basin_of_tears_vegetation", () -> new BasinOfTearsVegetationBlock(YATMBlockProperties.BASIN_OF_TEARS_VEGETATIVE, YATMBlockShapes.BASIN_OF_TEARS_VEGETATION, () -> YATMBlocks.BASIN_OF_TEARS_FLORAL.get().defaultBlockState().setValue(BasinOfTearsFloralBlock.FLOWER_COUNT, RandomSource.create().nextIntBetweenInclusive(1, 4))));
@@ -200,6 +209,9 @@ public class YATMBlocks
 	// TODO, perhaps adjust hitbox to match stages closer
 	public static final RegistryObject<CustomSeedCropBlock> COTTON = BLOCKS.register("cotton", () -> new CustomSeedCropBlock(YATMBlockProperties.CROP, YATMItems.COTTON_SEEDS::get));
 	
+	public static final RegistryObject<CuprumBlock> CUPRUM = BLOCKS.register("cuprum", () -> new CuprumBlock(YATMBlockProperties.CUPRUM, YATMBlockShapes.CUPRUM));
+	public static final RegistryObject<FlowerPotBlock> POTTED_CUPRUM = BLOCKS.register("potted_cuprum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.CUPRUM.get(), YATMBlockProperties.FLOWER_POT));
+	
 	public static final RegistryObject<FerrumBlock> FERRUM = BLOCKS.register("ferrum", () -> new FerrumBlock(YATMBlockProperties.FERRUM, YATMBlockShapes.FERRUM));
 	public static final RegistryObject<FlowerPotBlock> POTTED_FERRUM = BLOCKS.register("potted_ferrum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.FERRUM, YATMBlockProperties.FLOWER_POT));
 	
@@ -209,7 +221,6 @@ public class YATMBlocks
 	
 	public static final RegistryObject<FoliumBlock> FOLIUM = BLOCKS.register("folium", () -> new FoliumBlock(YATMBlockProperties.FOLIUM, YATMBlockShapes.FOLIUM));
 	public static final RegistryObject<FlowerPotBlock> POTTED_FOLIUM = BLOCKS.register("potted_folium", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.FOLIUM, YATMBlockProperties.FLOWER_POT));
-	
 	
 	public static final RegistryObject<IceCoralBlock> ICE_CORAL = BLOCKS.register("ice_coral", () -> new IceCoralBlock(YATMBlockProperties.ICE_CORAL, YATMBlockShapes.ICE_CORAL));
 	public static final RegistryObject<WaterloggableBlock> BLEACHED_ICE_CORAL_OLD = BLOCKS.register("bleached_ice_coral_old", () -> new WaterloggableBlock(YATMBlockProperties.BLEACHED_ICE_CORAL, (bs, bg, bp, cc) -> YATMBlockShapes.ICE_CORAL_OLD));
@@ -221,6 +232,12 @@ public class YATMBlocks
 	public static final RegistryObject<FlowerPotBlock> POTTED_BLEACHED_ICE_CORAL_YOUNG = BLOCKS.register("potted_bleached_ice_coral_young", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.BLEACHED_ICE_CORAL_YOUNG.get(), YATMBlockProperties.FLOWER_POT));
 	public static final RegistryObject<FlowerPotBlock> POTTED_BLEACHED_ICE_CORAL_POLYP = BLOCKS.register("potted_bleached_ice_coral_polyp", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.BLEACHED_ICE_CORAL_POLYP.get(), YATMBlockProperties.FLOWER_POT));
 	
+	public static final RegistryObject<InfernalumBlock> INFERNALUM = BLOCKS.register("infernalum", () -> new InfernalumBlock(YATMBlockProperties.INFERNALUM, YATMBlockShapes.INFERNALUM));
+	public static final RegistryObject<FlowerPotBlock> POTTED_INFERNALUM = BLOCKS.register("potted_infernalum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.INFERNALUM, YATMBlockProperties.FLOWER_POT));
+	
+	public static final RegistryObject<LapumBlock> LAPUM = BLOCKS.register("lapum", () -> new LapumBlock(YATMBlockProperties.LAPUM, YATMBlockShapes.LAPUM));
+	public static final RegistryObject<FlowerPotBlock> POTTED_LAPUM = BLOCKS.register("potted_lapum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.LAPUM, YATMBlockProperties.FLOWER_POT));
+
 	public static final RegistryObject<PhantasmalShelfFungiBlock> PHANTASMAL_SHELF_FUNGUS = BLOCKS.register("phantasmal_shelf_fungus", () -> new PhantasmalShelfFungiBlock(YATMBlockProperties.PHANTASMAL_SHELF_FUNGUS, YATMBlockShapes.PHANTASMAL_SHELF_FUNGUS, YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM::get));
 	
 	// TODO, properties
@@ -228,6 +245,12 @@ public class YATMBlocks
 	
 	public static final RegistryObject<PrismarineCrystalMossBlock> PRISMARINE_CRYSTAL_MOSS = BLOCKS.register("prismarine_crystal_moss", () -> new PrismarineCrystalMossBlock(YATMBlockProperties.PRISMARINE_CRYSTAL_MOSS, YATMBlockShapes.PRISMARINE_CRYSTAL_MOSS, () -> YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get()));
 	
+	public static final RegistryObject<RuberumBlock> RUBERUM = BLOCKS.register("ruberum", () -> new RuberumBlock(YATMBlockProperties.RUBERUM, YATMBlockShapes.RUBERUM));
+	public static final RegistryObject<FlowerPotBlock> POTTED_RUBERUM = BLOCKS.register("potted_ruberum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.RUBERUM, YATMBlockProperties.FLOWER_POT));
+
+	public static final RegistryObject<SamaragdumBlock> SAMARAGDUM = BLOCKS.register("samaragdum", () -> new SamaragdumBlock(YATMBlockProperties.SAMARAGDUM, YATMBlockShapes.SAMARAGDUM));
+	public static final RegistryObject<FlowerPotBlock> POTTED_SAMARAGDUM = BLOCKS.register("potted_samaragdum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.SAMARAGDUM, YATMBlockProperties.FLOWER_POT));
+
 	public static final RegistryObject<DecayingBlock> FALLEN_SHULKWART_SPORES = BLOCKS.register("fallen_shulkwart_spores", () -> new DecayingBlock(YATMBlockProperties.FALLEN_SHULKWART_SPORES, YATMBlockShapes.DOWNWARD_LICHEN_LIKE, 64));
 	public static final RegistryObject<ShulkwartBlock> SHULKWART = YATMBlocks.shulkwart("shulkwart", (DyeColor)null, () -> YATMItems.SHULKWART_HORN.get());
 	public static final RegistryObject<ShulkwartBlock> WHITE_SHULKWART = YATMBlocks.shulkwart("white_shulkwart", DyeColor.WHITE, () -> YATMItems.WHITE_SHULKWART_HORN.get());
@@ -384,17 +407,23 @@ public class YATMBlocks
 		FlowerPotBlock minecraftFlowerPot = (FlowerPotBlock)Blocks.FLOWER_POT;
 		minecraftFlowerPot.addPlant(YATMBlocks.RUBBER_MERISTEM.getKey().location(), YATMBlocks.POTTED_RUBBER_MERISTEM);
 		minecraftFlowerPot.addPlant(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.getKey().location(), YATMBlocks.POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM);
-		minecraftFlowerPot.addPlant(YATMBlocks.AURUM.getKey().location(), YATMBlocks.POTTED_AURUM_DEMINUTUS);
+		minecraftFlowerPot.addPlant(YATMBlocks.ADAMUM.getKey().location(), YATMBlocks.POTTED_ADAMUM);
+		minecraftFlowerPot.addPlant(YATMBlocks.AURUM.getKey().location(), YATMBlocks.POTTED_AURUM);
 		minecraftFlowerPot.addPlant(YATMBlocks.CANDLELILY.getKey().location(), YATMBlocks.POTTED_CANDLELILY);
 		minecraftFlowerPot.addPlant(YATMBlocks.CARBUM.getKey().location(), YATMBlocks.POTTED_CARBUM);
 		minecraftFlowerPot.addPlant(YATMBlocks.CARCASS_ROOT_FOLIAGE.getKey().location(), YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE);
+		minecraftFlowerPot.addPlant(YATMBlocks.CUPRUM.getKey().location(), YATMBlocks.POTTED_CUPRUM);
 		minecraftFlowerPot.addPlant(YATMBlocks.FERRUM.getKey().location(), YATMBlocks.POTTED_FERRUM);
 		minecraftFlowerPot.addPlant(YATMBlocks.FIRE_EATER_LILY.getKey().location(), YATMBlocks.POTTED_FIRE_EATER_LILY);
 		minecraftFlowerPot.addPlant(YATMBlocks.FOLIUM.getKey().location(), YATMBlocks.POTTED_FOLIUM);
 		minecraftFlowerPot.addPlant(YATMBlocks.BLEACHED_ICE_CORAL_OLD.getKey().location(), YATMBlocks.POTTED_BLEACHED_ICE_CORAL_OLD);
 		minecraftFlowerPot.addPlant(YATMBlocks.BLEACHED_ICE_CORAL_ADOLESCENT.getKey().location(), YATMBlocks.POTTED_BLEACHED_ICE_CORAL_ADOLESCENT);
 		minecraftFlowerPot.addPlant(YATMBlocks.BLEACHED_ICE_CORAL_YOUNG.getKey().location(), YATMBlocks.POTTED_BLEACHED_ICE_CORAL_YOUNG);
-		minecraftFlowerPot.addPlant(YATMBlocks.BLEACHED_ICE_CORAL_POLYP.getKey().location(), YATMBlocks.POTTED_BLEACHED_ICE_CORAL_POLYP);
+		minecraftFlowerPot.addPlant(YATMBlocks.BLEACHED_ICE_CORAL_POLYP.getKey().location(), YATMBlocks.POTTED_BLEACHED_ICE_CORAL_POLYP);		
+		minecraftFlowerPot.addPlant(YATMBlocks.INFERNALUM.getKey().location(), YATMBlocks.POTTED_INFERNALUM);
+		minecraftFlowerPot.addPlant(YATMBlocks.LAPUM.getKey().location(), YATMBlocks.POTTED_LAPUM);		
+		minecraftFlowerPot.addPlant(YATMBlocks.RUBERUM.getKey().location(), YATMBlocks.POTTED_RUBERUM);
+		minecraftFlowerPot.addPlant(YATMBlocks.SAMARAGDUM.getKey().location(), YATMBlocks.POTTED_SAMARAGDUM);		
 		minecraftFlowerPot.addPlant(YATMBlocks.VARIEGATED_CACTUS.getKey().location(), YATMBlocks.POTTED_VARIEGATED_CACTUS);
 		minecraftFlowerPot.addPlant(YATMBlocks.VICUM.getKey().location(), YATMBlocks.POTTED_VICUM);
 		

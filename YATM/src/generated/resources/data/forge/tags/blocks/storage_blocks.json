@@ -1,6 +1,6 @@
 {
   "values": [
     "#forge:storage_blocks/rubber",
-    "gsr_yatm:foliar_steel_block"
+    "#forge:storage_blocks/foliar_steel"
   ]
 }

@@ -1,0 +1,388 @@
+{
+  "variants": {
+    "age=0,has_fruit=false,major_age=0": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=0,has_fruit=false,major_age=1": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=0,has_fruit=false,major_age=2": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=0,has_fruit=false,major_age=3": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=0,has_fruit=false,major_age=4": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=0,has_fruit=false,major_age=5": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=0,has_fruit=false,major_age=6": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=0,has_fruit=false,major_age=7": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=0,has_fruit=true,major_age=0": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=0,has_fruit=true,major_age=1": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=0,has_fruit=true,major_age=2": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=0,has_fruit=true,major_age=3": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=0,has_fruit=true,major_age=4": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=0,has_fruit=true,major_age=5": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=0,has_fruit=true,major_age=6": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=0,has_fruit=true,major_age=7": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=1,has_fruit=false,major_age=0": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=1,has_fruit=false,major_age=1": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=1,has_fruit=false,major_age=2": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=1,has_fruit=false,major_age=3": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=1,has_fruit=false,major_age=4": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=1,has_fruit=false,major_age=5": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=1,has_fruit=false,major_age=6": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=1,has_fruit=false,major_age=7": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=1,has_fruit=true,major_age=0": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=1,has_fruit=true,major_age=1": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=1,has_fruit=true,major_age=2": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=1,has_fruit=true,major_age=3": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=1,has_fruit=true,major_age=4": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=1,has_fruit=true,major_age=5": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=1,has_fruit=true,major_age=6": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=1,has_fruit=true,major_age=7": {
+      "model": "gsr_yatm:block/adamum_meristem"
+    },
+    "age=2,has_fruit=false,major_age=0": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=2,has_fruit=false,major_age=1": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=2,has_fruit=false,major_age=2": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=2,has_fruit=false,major_age=3": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=2,has_fruit=false,major_age=4": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=2,has_fruit=false,major_age=5": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=2,has_fruit=false,major_age=6": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=2,has_fruit=false,major_age=7": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=2,has_fruit=true,major_age=0": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=2,has_fruit=true,major_age=1": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=2,has_fruit=true,major_age=2": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=2,has_fruit=true,major_age=3": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=2,has_fruit=true,major_age=4": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=2,has_fruit=true,major_age=5": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=2,has_fruit=true,major_age=6": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=2,has_fruit=true,major_age=7": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=3,has_fruit=false,major_age=0": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=3,has_fruit=false,major_age=1": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=3,has_fruit=false,major_age=2": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=3,has_fruit=false,major_age=3": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=3,has_fruit=false,major_age=4": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=3,has_fruit=false,major_age=5": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=3,has_fruit=false,major_age=6": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=3,has_fruit=false,major_age=7": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=3,has_fruit=true,major_age=0": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=3,has_fruit=true,major_age=1": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=3,has_fruit=true,major_age=2": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=3,has_fruit=true,major_age=3": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=3,has_fruit=true,major_age=4": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=3,has_fruit=true,major_age=5": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=3,has_fruit=true,major_age=6": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=3,has_fruit=true,major_age=7": {
+      "model": "gsr_yatm:block/adamum_young"
+    },
+    "age=4,has_fruit=false,major_age=0": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=4,has_fruit=false,major_age=1": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=4,has_fruit=false,major_age=2": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=4,has_fruit=false,major_age=3": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=4,has_fruit=false,major_age=4": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=4,has_fruit=false,major_age=5": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=4,has_fruit=false,major_age=6": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=4,has_fruit=false,major_age=7": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=4,has_fruit=true,major_age=0": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=4,has_fruit=true,major_age=1": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=4,has_fruit=true,major_age=2": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=4,has_fruit=true,major_age=3": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=4,has_fruit=true,major_age=4": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=4,has_fruit=true,major_age=5": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=4,has_fruit=true,major_age=6": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=4,has_fruit=true,major_age=7": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=5,has_fruit=false,major_age=0": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=5,has_fruit=false,major_age=1": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=5,has_fruit=false,major_age=2": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=5,has_fruit=false,major_age=3": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=5,has_fruit=false,major_age=4": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=5,has_fruit=false,major_age=5": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=5,has_fruit=false,major_age=6": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=5,has_fruit=false,major_age=7": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=5,has_fruit=true,major_age=0": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=5,has_fruit=true,major_age=1": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=5,has_fruit=true,major_age=2": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=5,has_fruit=true,major_age=3": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=5,has_fruit=true,major_age=4": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=5,has_fruit=true,major_age=5": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=5,has_fruit=true,major_age=6": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=5,has_fruit=true,major_age=7": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=6,has_fruit=false,major_age=0": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=6,has_fruit=false,major_age=1": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=6,has_fruit=false,major_age=2": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=6,has_fruit=false,major_age=3": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=6,has_fruit=false,major_age=4": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=6,has_fruit=false,major_age=5": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=6,has_fruit=false,major_age=6": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=6,has_fruit=false,major_age=7": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=6,has_fruit=true,major_age=0": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=6,has_fruit=true,major_age=1": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=6,has_fruit=true,major_age=2": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=6,has_fruit=true,major_age=3": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=6,has_fruit=true,major_age=4": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=6,has_fruit=true,major_age=5": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=6,has_fruit=true,major_age=6": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=6,has_fruit=true,major_age=7": {
+      "model": "gsr_yatm:block/adamum_adolescent"
+    },
+    "age=7,has_fruit=false,major_age=0": {
+      "model": "gsr_yatm:block/adamum_old"
+    },
+    "age=7,has_fruit=false,major_age=1": {
+      "model": "gsr_yatm:block/adamum_old"
+    },
+    "age=7,has_fruit=false,major_age=2": {
+      "model": "gsr_yatm:block/adamum_old"
+    },
+    "age=7,has_fruit=false,major_age=3": {
+      "model": "gsr_yatm:block/adamum_old"
+    },
+    "age=7,has_fruit=false,major_age=4": {
+      "model": "gsr_yatm:block/adamum_old"
+    },
+    "age=7,has_fruit=false,major_age=5": {
+      "model": "gsr_yatm:block/adamum_old"
+    },
+    "age=7,has_fruit=false,major_age=6": {
+      "model": "gsr_yatm:block/adamum_old"
+    },
+    "age=7,has_fruit=false,major_age=7": {
+      "model": "gsr_yatm:block/adamum_old"
+    },
+    "age=7,has_fruit=true,major_age=0": {
+      "model": "gsr_yatm:block/adamum_old_tuber"
+    },
+    "age=7,has_fruit=true,major_age=1": {
+      "model": "gsr_yatm:block/adamum_old_tuber"
+    },
+    "age=7,has_fruit=true,major_age=2": {
+      "model": "gsr_yatm:block/adamum_old_tuber"
+    },
+    "age=7,has_fruit=true,major_age=3": {
+      "model": "gsr_yatm:block/adamum_old_tuber"
+    },
+    "age=7,has_fruit=true,major_age=4": {
+      "model": "gsr_yatm:block/adamum_old_tuber"
+    },
+    "age=7,has_fruit=true,major_age=5": {
+      "model": "gsr_yatm:block/adamum_old_tuber"
+    },
+    "age=7,has_fruit=true,major_age=6": {
+      "model": "gsr_yatm:block/adamum_old_tuber"
+    },
+    "age=7,has_fruit=true,major_age=7": {
+      "model": "gsr_yatm:block/adamum_old_tuber"
+    }
+  }
+}

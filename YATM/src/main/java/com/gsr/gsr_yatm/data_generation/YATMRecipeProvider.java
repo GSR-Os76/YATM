@@ -78,7 +78,7 @@ public class YATMRecipeProvider extends RecipeProvider
 //		this.addTwoByTwoToOne(writer, YATMItems.RUBBER_SCRAP.get(), YATMItems.RUBBER_SCRAP_BALL.get(), YetAnotherTechMod.MODID + ":rubber_scrap_ball_from_shaped_crafting");
 //		this.addSmelting(writer, new ItemLike[] {YATMItems.LATEX_BUCKET.get()}, YATMItems.RUBBER_BLOCK_ITEM.get(), .3f, 20, YetAnotherTechMod.MODID + ":rubber_block_from_latex_smelting");
 //		this.addSmelting(writer, new ItemLike[] {YATMItems.RUBBER_SCRAP_BALL.get()}, YATMItems.RUBBER_BAR.get(), new ItemLike[] {YATMItems.RUBBER_SCRAP_BALL.get()}, .3f, 20, YetAnotherTechMod.MODID + ":rubber_bar_from_scrap_ball_smelting");
-		this.addOneToNine(writer, YATMItemTags.FORGE_RUBBER_STORAGE_BLOCK_KEY, YATMItems.RUBBER_BAR.get(), YetAnotherTechMod.MODID + ":rubber_bar_from_block_shapeless_crafting");
+		this.addOneToNine(writer, YATMItemTags.FORGE_STORAGE_BLOCKS_RUBBER_KEY, YATMItems.RUBBER_BAR.get(), YetAnotherTechMod.MODID + ":rubber_bar_from_block_shapeless_crafting");
 		this.addNineToOne(writer, YATMItemTags.FORGE_RUBBER_INGOTS_KEY, YATMItems.RUBBER_BLOCK_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_block_from_bar_shapeless_crafting");
 		
 		this.addBlasting(writer, YATMItemTags.FOLIAR_STEEL_ORES_KEY, YATMItems.FOLIAR_STEEL.get(), .1f, 100, YetAnotherTechMod.MODID + ":foliar_steel_from_ore_blasting");
