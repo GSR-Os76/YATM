@@ -56,8 +56,8 @@ public class InjectingRecipe implements ITimedRecipe<Container>
 		this.m_input = Objects.requireNonNull(input);
 		this.m_substrate = Objects.requireNonNull(substrate);
 		this.m_result = Objects.requireNonNull(result.copy());
-		this.m_currentPerTick = Contract.NotNegative(currentPerTick);
-		this.m_timeInTicks = Contract.NotNegative(timeInTicks);
+		this.m_currentPerTick = Contract.notNegative(currentPerTick);
+		this.m_timeInTicks = Contract.notNegative(timeInTicks);
 		this.m_group = Objects.requireNonNull(group);
 	} // end constructor
 

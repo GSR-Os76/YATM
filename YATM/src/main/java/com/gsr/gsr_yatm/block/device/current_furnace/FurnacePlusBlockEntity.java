@@ -103,11 +103,11 @@ public class FurnacePlusBlockEntity extends CraftingDeviceBlockEntity<WrappedSme
 				List<Map.Entry<String, AccessSpecification>> specs = new ArrayList<>();
 				ContainerDataBuilder builder = new ContainerDataBuilder();
 				specs.add(Map.entry(CRAFT_PROGRESS_SPEC_KEY, builder.addContainerData(t.m_craftProgressC)));
-				AccessSpecification burnP = builder.addPropety(() -> t.m_burnProgress, (i) -> {});
-				AccessSpecification burnT = builder.addPropety(() -> t.m_burnTime, (i) -> {});
+				AccessSpecification burnP = builder.addProperty(() -> t.m_burnProgress, (i) -> {});
+				AccessSpecification burnT = builder.addProperty(() -> t.m_burnTime, (i) -> {});
 				specs.add(Map.entry(BURN_PROGRESS_SPEC_KEY, AccessSpecification.join(burnP, burnT)));
-				AccessSpecification curTemp = builder.addPropety(() -> t.m_temperature, (i) -> {});
-				AccessSpecification maxTemp = builder.addPropety(() -> t.m_maxTemperature, (i) -> {});
+				AccessSpecification curTemp = builder.addProperty(() -> t.m_temperature, (i) -> {});
+				AccessSpecification maxTemp = builder.addProperty(() -> t.m_maxTemperature, (i) -> {});
 				specs.add(Map.entry(TEMPERATURE_DATA_SPEC_KEY, AccessSpecification.join(curTemp, maxTemp)));
 				if(this.m_spec == null) 
 				{

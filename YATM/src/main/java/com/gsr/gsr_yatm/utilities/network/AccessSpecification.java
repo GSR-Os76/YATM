@@ -10,7 +10,7 @@ public record AccessSpecification(@NotNegative int startIndex, @NotNegative int 
 
 	public AccessSpecification(@NotNegative int startIndex, @NotNegative int endIndex) 
 	{
-		this.endIndex = Math.max(Contract.NotNegative(startIndex), Contract.NotNegative(endIndex));
+		this.endIndex = Math.max(Contract.notNegative(startIndex), Contract.notNegative(endIndex));
 		this.startIndex = Math.min(startIndex, endIndex);		
 	} // end constructor
 	

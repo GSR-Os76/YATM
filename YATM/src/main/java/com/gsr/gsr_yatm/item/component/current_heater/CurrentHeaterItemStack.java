@@ -27,7 +27,7 @@ public class CurrentHeaterItemStack implements ICapabilityProvider,  ICurrentHan
 	
 	public CurrentHeaterItemStack(@NotNegative int maxTemperature, float kelvinPerCurrent)
 	{
-		this.m_maxTemperature = Contract.NotNegative(maxTemperature);
+		this.m_maxTemperature = Contract.notNegative(maxTemperature);
 		this.m_kelvinPerCurrent = kelvinPerCurrent;
 	} // end constructor 
 	

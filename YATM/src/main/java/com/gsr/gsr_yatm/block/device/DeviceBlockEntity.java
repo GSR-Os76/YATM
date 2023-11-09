@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
 import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
-import com.gsr.gsr_yatm.utilities.capability.item.ConfigurableInventoryWrapper;
+import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -26,8 +26,8 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	public static final String CURRENT_HANDLER_TAG_NAME = "current";
 	
 	protected final ItemStackHandler m_rawInventory;
-	protected final ConfigurableInventoryWrapper m_uncheckedInventory;
-	protected final ConfigurableInventoryWrapper m_inventory;
+	protected final InventoryWrapper m_uncheckedInventory;
+	protected final InventoryWrapper m_inventory;
 	
 	protected CurrentHandler m_internalCurrentStorer;	
 	
@@ -40,8 +40,8 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	{
 		super(type, blockPos, blockState);
 		this.m_rawInventory = new ItemStackHandler(inventorySlotCount);
-		this.m_uncheckedInventory = ConfigurableInventoryWrapper.Builder.of(this.m_rawInventory).onInsertion(this::onItemInsertion).onWithdrawal(this::onItemWithdrawal).build();
-		this.m_inventory = ConfigurableInventoryWrapper.Builder.of(this.m_uncheckedInventory).slotValidator(this::itemInsertionValidator).build();
+		this.m_uncheckedInventory = InventoryWrapper.Builder.of(this.m_rawInventory).onInsertion(this::onItemInsertion).onWithdrawal(this::onItemWithdrawal).build();
+		this.m_inventory = InventoryWrapper.Builder.of(this.m_uncheckedInventory).slotValidator(this::itemInsertionValidator).build();
 	} // end constructor
 	
 	protected abstract @NotNull CompoundTag setupToNBT();

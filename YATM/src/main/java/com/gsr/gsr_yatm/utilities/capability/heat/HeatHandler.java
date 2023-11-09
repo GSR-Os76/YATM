@@ -14,7 +14,7 @@ public class HeatHandler implements IHeatHandler
 	
 	public HeatHandler(@NotNegative int temperature) 
 	{
-		this.m_temperature = Contract.NotNegative(temperature);
+		this.m_temperature = Contract.notNegative(temperature);
 	} // end constructor()
 	
 	
@@ -37,7 +37,7 @@ public class HeatHandler implements IHeatHandler
 	@Override
 	public void setTemperature(@NotNegative int temperature)
 	{
-		this.m_temperature = Contract.NotNegative(temperature);
+		this.m_temperature = Contract.notNegative(temperature);
 	} // end setTemperature()
 	
 } // end class

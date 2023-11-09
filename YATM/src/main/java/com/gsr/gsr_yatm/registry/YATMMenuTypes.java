@@ -12,6 +12,7 @@ import com.gsr.gsr_yatm.block.device.grinder.GrinderMenu;
 import com.gsr.gsr_yatm.block.device.injector.InjectorMenu;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelMenu;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelMenu;
+import com.gsr.gsr_yatm.item.tool.PoweredToolMenu;
 
 import net.minecraft.world.flag.FeatureFlagSet;
 import net.minecraft.world.inventory.MenuType;
@@ -40,4 +41,6 @@ public class YATMMenuTypes
 
 	public static final RegistryObject<MenuType<CreativeCurrentSourceMenu>> CREATIVE_CURRENT_SOURCE = MENU_TYPES.register("creative_current_source", () -> new MenuType<>(CreativeCurrentSourceMenu::new, FeatureFlagSet.of()));
 
+	public static final RegistryObject<MenuType<PoweredToolMenu>> POWERED_TOOL = MENU_TYPES.register("powered_tool", () -> new MenuType<>(PoweredToolMenu::new, FeatureFlagSet.of()));
+	
 } // end class

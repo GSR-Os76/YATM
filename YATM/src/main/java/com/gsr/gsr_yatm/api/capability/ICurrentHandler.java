@@ -1,5 +1,7 @@
 package com.gsr.gsr_yatm.api.capability;
 
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+
 import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 
 @AutoRegisterCapability
@@ -7,11 +9,12 @@ public interface ICurrentHandler
 {
 	// function
 	// recieve in current, actually, or see what would happen.
-	public int recieveCurrent(int amount, boolean simulate);
+	// probably returns accepted
+	public int recieveCurrent(@NotNegative int amount, boolean simulate);
 	
 	// function
 	// from implementers perspective
-	public int extractCurrent(int amount, boolean simulate);
+	public int extractCurrent(@NotNegative int amount, boolean simulate);
 	
 	// info
 	// the maximum amount that's containable

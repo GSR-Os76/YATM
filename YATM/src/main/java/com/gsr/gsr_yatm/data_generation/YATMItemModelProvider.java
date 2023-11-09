@@ -94,25 +94,6 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.EMBER_GLAND.get());
 		this.basicItem(YATMItems.FLAME_GLAND.get());
 		this.basicItem(YATMItems.TORCH_GLAND.get());
-		// this.basicItem(YATMItems.STEEL_FLUID_EXCHANGER.get());
-
-//		this.basicItem(YATMItems.ONE_CU_CURRENT_REGULATOR.get());
-//		this.basicItem(YATMItems.EIGHT_CU_CURRENT_REGULATOR.get());
-//		this.basicItem(YATMItems.SIXTYFOUR_CU_CURRENT_REGULATOR.get());
-//		this.basicItem(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_REGULATOR.get());
-//		this.basicItem(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_REGULATOR.get());
-//
-//		this.basicItem(YATMItems.ONE_CU_CURRENT_FUSE.get());
-//		this.basicItem(YATMItems.EIGHT_CU_CURRENT_FUSE.get());
-//		this.basicItem(YATMItems.SIXTYFOUR_CU_CURRENT_FUSE.get());
-//		this.basicItem(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_FUSE.get());
-//		this.basicItem(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_FUSE.get());
-//
-//		this.basicItem(YATMItems.ONE_CU_CURRENT_BREAKER.get());
-//		this.basicItem(YATMItems.EIGHT_CU_CURRENT_BREAKER.get());
-//		this.basicItem(YATMItems.SIXTYFOUR_CU_CURRENT_BREAKER.get());
-//		this.basicItem(YATMItems.FIVEHUNDREDTWELVE_CU_CURRENT_BREAKER.get());
-//		this.basicItem(YATMItems.FOURTHOUSANDNINTYSIX_CU_CURRENT_BREAKER.get());
 
 		
 		
@@ -138,10 +119,7 @@ public class YATMItemModelProvider extends ItemModelProvider
 		
 		
 		
-//		this.basicItem(YATMItems.STEEL_WIRE_DIE.get());
-//		this.basicItem(YATMItems.IRON_WIRE_DIE.get());
-//		
-		// wheel goes here
+		// wheel goes here, TODO, figure out what this meant
 		this.basicItem(YATMItems.FOLIAR_STEEL.get());
 //		this.basicItem(YATMItems.SILVER_INGOT.get());
 //		this.basicItem(YATMItems.STEEL_INGOT.get());
@@ -168,7 +146,18 @@ public class YATMItemModelProvider extends ItemModelProvider
 		
 		
 		
-		this.basicItem(YATMItems.AURUM_FAN.get());
+		// this.basicItem(YATMItems.AURUM_FAN.get());
+		
+		this.basicItem(YATMItems.STEEL_DRILL_BIT.get());
+		this.basicItem(YATMItems.NETHERITE_DRILL_BIT.get());
+		this.basicItem(YATMItems.STEEL_SAW_BLADE.get());
+		this.basicItem(YATMItems.NETHERITE_SAW_BLADE.get());
+		
+		this.basicItem(YATMItems.STEEL_DRILL_STEEL.get());
+		this.basicItem(YATMItems.STEEL_DRILL_NETHERITE.get());
+		
+		this.basicItem(YATMItems.STEEL_SAW_STEEL.get());
+		this.basicItem(YATMItems.STEEL_SAW_NETHERITE.get());
 		
 		this.basicItem(YATMItems.STEEL_WRENCH.get());
 		

@@ -39,7 +39,7 @@ public class ConfigurableTankWrapper implements IFluidHandler, IFluidTank
 		
 		this.m_canDrain = Objects.requireNonNull(canDrain);
 		this.m_fillValidator = Objects.requireNonNull(fillValidator);
-		this.m_maxTransfer = Contract.NotNegative(maxTransfer);
+		this.m_maxTransfer = Contract.notNegative(maxTransfer);
 		this.m_onContentsDrain = Objects.requireNonNull(onContentsDrain);
 		this.m_onContentsFill = Objects.requireNonNull(onContentsFill);		
 	} // end constructor
@@ -223,7 +223,7 @@ public class ConfigurableTankWrapper implements IFluidHandler, IFluidTank
 		
 		public Builder maxTransfer(@NotNegative int maxTransfer) 
 		{
-			this.m_maxTransfer = Contract.NotNegative(maxTransfer);
+			this.m_maxTransfer = Contract.notNegative(maxTransfer);
 			return this;
 		} // end onContentsFill()
 		

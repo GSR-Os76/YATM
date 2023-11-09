@@ -16,7 +16,7 @@ import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.current.CurrentSource;
-import com.gsr.gsr_yatm.utilities.capability.item.ConfigurableInventoryWrapper;
+import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.network.CompositeAccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
@@ -57,7 +57,7 @@ public class CreativeCurrentSourceBlockEntity extends BlockEntity
 	private final Map<Direction, LazyOptional<ICurrentHandler>> m_neighborCaps = new EnumMap<>(Direction.class);
 	
 	private final ItemStackHandler m_rawInventory;
-	private final ConfigurableInventoryWrapper m_inventory;
+	private final InventoryWrapper m_inventory;
 	 
 	public static final ICompositeAccessSpecification ACCESS_SPEC = CompositeAccessSpecification.of(List.of(
 			Map.entry(CreativeCurrentSourceBlockEntity.OUTPUT_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY)
@@ -70,7 +70,7 @@ public class CreativeCurrentSourceBlockEntity extends BlockEntity
 	{
 		super(YATMBlockEntityTypes.CREATIVE_CURRENT_SOURCE.get(), Objects.requireNonNull(position), Objects.requireNonNull(state));
 		this.m_rawInventory = new ItemStackHandler(CreativeCurrentSourceBlockEntity.INVENTORY_SLOT_COUNT);
-		this.m_inventory = ConfigurableInventoryWrapper.Builder.of(this.m_rawInventory)
+		this.m_inventory = InventoryWrapper.Builder.of(this.m_rawInventory)
 				.onInsertion((s, is) -> this.setChanged())
 				.onWithdrawal((s, is) -> this.setChanged())
 				.slotValidator((s, is, sim) -> SlotUtil.isValidPowerSlotInsert(is)).build();
@@ -79,7 +79,7 @@ public class CreativeCurrentSourceBlockEntity extends BlockEntity
 		this.m_sourceCap = LazyOptional.of(() -> this.m_source);
 		
 		ContainerDataBuilder cdb = new ContainerDataBuilder();
-		cdb.addPropety(() -> this.m_source.capacity(), (i) -> this.m_source.setOutput(i));
+		cdb.addProperty(() -> this.m_source.capacity(), (i) -> this.m_source.setOutput(i));
 		this.m_data = cdb.build();
 	} // end constructor()
 	

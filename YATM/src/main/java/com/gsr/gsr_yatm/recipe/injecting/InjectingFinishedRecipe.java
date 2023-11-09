@@ -39,8 +39,8 @@ public class InjectingFinishedRecipe implements FinishedRecipe
 		this.m_result = Objects.requireNonNull(result);
 		this.m_input = Objects.requireNonNull(input);
 		this.m_substrate = Objects.requireNonNull(substrate);
-		this.m_currentPerTick = Contract.NotNegative(currentPerTick);
-		this.m_timeInTicks = Contract.NotNegative(timeInTicks);
+		this.m_currentPerTick = Contract.notNegative(currentPerTick);
+		this.m_timeInTicks = Contract.notNegative(timeInTicks);
 		this.m_group = Objects.requireNonNull(group);
 		this.m_advancementIdentifier = Objects.requireNonNull(advancementIdentifier);
 		this.m_advancement = Objects.requireNonNull(advancement);

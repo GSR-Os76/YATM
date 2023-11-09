@@ -21,7 +21,7 @@ import com.gsr.gsr_yatm.utilities.InventoryUtilities;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.fluid.ConfigurableTankWrapper;
 import com.gsr.gsr_yatm.utilities.capability.heat.OnChangedHeatHandler;
-import com.gsr.gsr_yatm.utilities.capability.item.ConfigurableInventoryWrapper;
+import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.network.CompositeAccessSpecification;
@@ -90,9 +90,9 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	private int m_drainResultTankInitialTransferSize = 0;	
 	
 	// TODO, might need next three to be in the constructor
-	private final IItemHandler m_drainResultTankSlot = ConfigurableInventoryWrapper.Builder.of().inventory(this.m_inventory).slotTranslationTable(new int[] {CrucibleBlockEntity.DRAIN_RESULT_TANK_SLOT}).build();
-	private final IItemHandler m_inputSlot = ConfigurableInventoryWrapper.Builder.of().inventory(this.m_inventory).slotTranslationTable(new int[] {CrucibleBlockEntity.INPUT_SLOT}).build();;
-	private final IItemHandler m_heatingSlot = ConfigurableInventoryWrapper.Builder.of().inventory(this.m_inventory).slotTranslationTable(new int[] {CrucibleBlockEntity.HEAT_SLOT}).build();;
+	private final IItemHandler m_drainResultTankSlot = InventoryWrapper.Builder.of().inventory(this.m_inventory).slotTranslationTable(new int[] {CrucibleBlockEntity.DRAIN_RESULT_TANK_SLOT}).build();
+	private final IItemHandler m_inputSlot = InventoryWrapper.Builder.of().inventory(this.m_inventory).slotTranslationTable(new int[] {CrucibleBlockEntity.INPUT_SLOT}).build();;
+	private final IItemHandler m_heatingSlot = InventoryWrapper.Builder.of().inventory(this.m_inventory).slotTranslationTable(new int[] {CrucibleBlockEntity.HEAT_SLOT}).build();;
 	private FluidTank m_rawResultTank;
 	private ConfigurableTankWrapper m_resultTank;	
 	private OnChangedHeatHandler m_heatHandler = new OnChangedHeatHandler(IHeatHandler.getAmbientTemp(), (i) -> this.setChanged());
@@ -176,24 +176,24 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 
 	private void setup(@NotNegative int maxFluidTransferRate, @NotNegative int maxTemperature, @NotNegative int tankCapacity)
 	{
-		this.m_maxFluidTransferRate = Contract.NotNegative(maxFluidTransferRate);
-		this.m_maxTemperature = Contract.NotNegative(maxTemperature);
-		this.m_rawResultTank = new FluidTank(Contract.NotNegative(tankCapacity));
+		this.m_maxFluidTransferRate = Contract.notNegative(maxFluidTransferRate);
+		this.m_maxTemperature = Contract.notNegative(maxTemperature);
+		this.m_rawResultTank = new FluidTank(Contract.notNegative(tankCapacity));
 		this.m_resultTank = new ConfigurableTankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);
 		
 		this.m_resultTankLazyOptional.invalidate();
 		this.m_resultTankLazyOptional = LazyOptional.of(() -> CrucibleBlockEntity.this.m_resultTank);
 		
 		ContainerDataBuilder cdb = new ContainerDataBuilder();
-		cdb.addPropety(() -> this.m_craftProgress, (i) -> {});
-		cdb.addPropety(() -> this.m_craftTime, (i) -> {});		
-		cdb.addPropety(() -> this.m_burnProgress, (i) -> {});
-		cdb.addPropety(() -> this.m_burnTime, (i) -> {});		
-		cdb.addPropety(() -> this.m_drainResultTankCountDown, (i) -> {});
-		cdb.addPropety(() -> this.m_drainResultTankInitialTransferSize, (i) -> {});
+		cdb.addProperty(() -> this.m_craftProgress, (i) -> {});
+		cdb.addProperty(() -> this.m_craftTime, (i) -> {});		
+		cdb.addProperty(() -> this.m_burnProgress, (i) -> {});
+		cdb.addProperty(() -> this.m_burnTime, (i) -> {});		
+		cdb.addProperty(() -> this.m_drainResultTankCountDown, (i) -> {});
+		cdb.addProperty(() -> this.m_drainResultTankInitialTransferSize, (i) -> {});
 		cdb.addContainerData(new FluidHandlerContainerData(this.m_rawResultTank, 0));
-		cdb.addPropety(() -> this.m_heatHandler.getTemperature(), (i) -> {});
-		cdb.addPropety(() -> this.m_maxTemperature, (i) -> {});
+		cdb.addProperty(() -> this.m_heatHandler.getTemperature(), (i) -> {});
+		cdb.addProperty(() -> this.m_maxTemperature, (i) -> {});
 		this.m_data = cdb.build();
 	} // end setup()
 	

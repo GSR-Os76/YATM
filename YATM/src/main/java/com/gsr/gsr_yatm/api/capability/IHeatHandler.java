@@ -35,8 +35,8 @@ public interface IHeatHandler
 	
 	public static @NotNull Pair<Integer, Integer> levelTemperatures(@NotNegative int temperatureA, @NotNegative int temperatureB)
 	{
-		Contract.NotNegative(temperatureA);
-		Contract.NotNegative(temperatureB);
+		Contract.notNegative(temperatureA);
+		Contract.notNegative(temperatureB);
 		if(temperatureA == temperatureB) 
 		{
 			return new Pair<>(temperatureA, temperatureB);

@@ -1,8 +1,7 @@
-// 1.20.1	2023-11-06T00:32:24.8252037	Item Models: gsr_yatm
+// 1.20.1	2023-11-07T09:20:43.7521723	Item Models: gsr_yatm
 c2ea606d991a81e423cce1d89391873c41111adb assets/gsr_yatm/models/item/adamum_meristem.json
 39dc65663f22bc3413323e63119c165dc4f51c76 assets/gsr_yatm/models/item/aurum_deminutus_fiddle_head.json
 4bab78a47a4fc45a258b74c9012f61de899aee93 assets/gsr_yatm/models/item/aurum_deminutus_frond.json
-b860c72785d969dab4933b80dd6652fa794539bf assets/gsr_yatm/models/item/aurum_fan.json
 3bea91f080b24cdb89ab4bfe42012e1d2717cd84 assets/gsr_yatm/models/item/basin_of_tears_seed.json
 e7540048ebe593ee6ab6323cc2f5a0bd0d8ae1cb assets/gsr_yatm/models/item/bio_bottle.json
 7c74b3cad82baaaba12c4ebb84f0b7ef417239e6 assets/gsr_yatm/models/item/bio_bucket.json
@@ -52,7 +51,9 @@ bd6d19cb0497c729df1f59e2634d46a4d22982ec assets/gsr_yatm/models/item/foliar_stee
 b83c20efb63100f8d72e14cb0b408c4786eb1dbe assets/gsr_yatm/models/item/lapum_meristem.json
 130079ff0bfb9fca9d683d4af51b13482817774b assets/gsr_yatm/models/item/latex_bottle.json
 0ae36a420f6db4a61dc357a25874a67a9b43081b assets/gsr_yatm/models/item/latex_bucket.json
+b305f190a1a902bee2c2163d5e87ff5082885391 assets/gsr_yatm/models/item/netherite_drill_bit.json
 a2a001a07e39d290aa114078362ced25ff7f5fdb assets/gsr_yatm/models/item/netherite_nugget.json
+b15bc03e497501d3cbe082d395c1d81f9106fdd9 assets/gsr_yatm/models/item/netherite_saw_blade.json
 3549c6054d48ef10d3ff9a0eab370c6d811aebba assets/gsr_yatm/models/item/prismarine_crystal_moss_spores.json
 355d4eb859be03cc27e5f02ee9d4dddce2c8a8fc assets/gsr_yatm/models/item/raw_cotton_fiber.json
 52de07726f8522bfedbf5f89926fa418734b7196 assets/gsr_yatm/models/item/raw_exothermic_gland.json
@@ -81,6 +82,12 @@ d69d2a34a66a87ffa40c333b4044ff722cef8e98 assets/gsr_yatm/models/item/spider_vine
 131b31c7b1a9d9a2c01a1e680e141d2b08dee756 assets/gsr_yatm/models/item/star_germling.json
 0a8e075b8b19dcf12c8c2fc3a2f4f9ef2001989e assets/gsr_yatm/models/item/star_seed.json
 45642c152e1ddd3e92774129538f19cf2c8a612d assets/gsr_yatm/models/item/star_sprout.json
+bc13518e8d050485bae876f7db29af6f90689634 assets/gsr_yatm/models/item/steel_drill_bit.json
+e6b4dcf1ef84d6a505e957dfc6878c107166c563 assets/gsr_yatm/models/item/steel_drill_netherite.json
+4a572195c366089f1320a10d514debc131ce1215 assets/gsr_yatm/models/item/steel_drill_steel.json
+5c27ec54517f98b04c22c31b81992167bdd7af0b assets/gsr_yatm/models/item/steel_saw_blade.json
+a233c055f5c93d07d53f56732ea74c6eb3de80a7 assets/gsr_yatm/models/item/steel_saw_netherite.json
+93396b808b6077b0866485768cfcc36c01da1fd0 assets/gsr_yatm/models/item/steel_saw_steel.json
 1a25d45b5917760e51393b876593bfa8b4494b2f assets/gsr_yatm/models/item/steel_wrench.json
 f5f9b01be8343348bb952a05487ec486dbb56059 assets/gsr_yatm/models/item/tear_leaf.json
 37c5fd2cca45e5a93b21cf2bbacca665ad6ac58f assets/gsr_yatm/models/item/torch_gland.json

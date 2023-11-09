@@ -20,9 +20,9 @@ public class SimpleEventContainerData implements IEventContainerData
 	
 	public SimpleEventContainerData(int slotCount)
 	{
-		this.m_values = new int[Contract.NotNegative(slotCount)];
+		this.m_values = new int[Contract.notNegative(slotCount)];
 		ImmutableList.Builder<Event<Integer>> b = new ImmutableList.Builder<>();
-		for (int i = 0; i < Contract.NotNegative(slotCount); i++)
+		for (int i = 0; i < Contract.notNegative(slotCount); i++)
 		{
 			b.add(new Event<>());
 		}

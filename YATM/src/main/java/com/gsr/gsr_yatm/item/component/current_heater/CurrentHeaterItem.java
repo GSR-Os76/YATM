@@ -29,7 +29,7 @@ public class CurrentHeaterItem extends Item implements IComponent
 	public CurrentHeaterItem(@NotNull Properties properties, @NotNegative int maxTemperature, float kelvinPerCurrent)
 	{
 		super(Objects.requireNonNull(properties));
-		this.m_maxTemperature = Contract.NotNegative(maxTemperature);
+		this.m_maxTemperature = Contract.notNegative(maxTemperature);
 		this.m_kelvinPerCurrent = kelvinPerCurrent;
 	} // end constructor
 	

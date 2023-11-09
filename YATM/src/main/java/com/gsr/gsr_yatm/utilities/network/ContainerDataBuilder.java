@@ -27,7 +27,7 @@ public class ContainerDataBuilder
 		return new AccessSpecification(oldCount, m_count - 1);		
 	} // end addContainerData()
 
-	public @NotNull AccessSpecification addPropety(@NotNull Supplier<Integer> getter, @NotNull Consumer<Integer> setter) 
+	public @NotNull AccessSpecification addProperty(@NotNull Supplier<Integer> getter, @NotNull Consumer<Integer> setter) 
 	{
 		this.m_properties.add(new Property<>(getter, setter));
 		

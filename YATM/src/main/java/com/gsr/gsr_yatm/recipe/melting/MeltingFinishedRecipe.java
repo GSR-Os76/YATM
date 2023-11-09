@@ -37,8 +37,8 @@ public class MeltingFinishedRecipe implements FinishedRecipe
 		this.m_identifier = Objects.requireNonNull(identifier);
 		this.m_result = Objects.requireNonNull(result);
 		this.m_input = Objects.requireNonNull(input);
-		this.m_temperature = Contract.NotNegative(temperature);
-		this.m_timeInTicks = Contract.NotNegative(timeInTicks);
+		this.m_temperature = Contract.notNegative(temperature);
+		this.m_timeInTicks = Contract.notNegative(timeInTicks);
 		this.m_group = Objects.requireNonNull(group);
 		this.m_advancementIdentifier = Objects.requireNonNull(advancementIdentifier);
 		this.m_advancement = Objects.requireNonNull(advancement);

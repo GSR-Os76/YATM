@@ -16,6 +16,9 @@ import com.gsr.gsr_yatm.item.fluid.DrinkableFluidBottleItem;
 import com.gsr.gsr_yatm.item.fluid.EssenceOfSoulsBottleItem;
 import com.gsr.gsr_yatm.item.fluid.FluidBottleItem;
 import com.gsr.gsr_yatm.item.fluid.SoulSapBucketItem;
+import com.gsr.gsr_yatm.item.tool.DrillItem;
+import com.gsr.gsr_yatm.item.tool.PoweredToolItemStack;
+import com.gsr.gsr_yatm.item.tool.SawItem;
 
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
@@ -26,6 +29,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemNameBlockItem;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.SignItem;
+import net.minecraft.world.item.Tiers;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -355,12 +359,18 @@ public class YATMItems
 	public static final RegistryObject<Item> STAR_SPROUT = generalTabEnqueue(ITEMS.register("star_sprout", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> STAR_ADOLESCENT = generalTabEnqueue(ITEMS.register("star_adolescent", () -> new Item(new Item.Properties())));
 	
-	// TODO, carcass root plant, pretty standard plant above ground, roots ground underneat, roots grow nodules which can drop mundane animal parts
-	
-	// TODO, netherite like thorns, grow in height but only from a very specifc growing block, growing points can't reproduce naturally.
-	// TODO, netherite thorns as arrow styled like scraps, and like a great arrow which damages terrain and such styled like the ingot netherite
-	// possible just make aurum fronds throwable and recoverable weapon
 	public static final RegistryObject<Item> AURUM_FAN = /* generalTabEnqueue( */ITEMS.register("aurum_fan", () -> new Item(new Item.Properties().fireResistant()))/* ) */;
+	
+	public static final RegistryObject<Item> STEEL_DRILL_BIT = generalTabEnqueue(ITEMS.register("steel_drill_bit", () -> new Item(new Item.Properties())));
+	public static final RegistryObject<Item> NETHERITE_DRILL_BIT = generalTabEnqueue(ITEMS.register("netherite_drill_bit", () -> new Item(new Item.Properties())));
+	public static final RegistryObject<Item> STEEL_SAW_BLADE = generalTabEnqueue(ITEMS.register("steel_saw_blade", () -> new Item(new Item.Properties())));
+	public static final RegistryObject<Item> NETHERITE_SAW_BLADE = generalTabEnqueue(ITEMS.register("netherite_saw_blade", () -> new Item(new Item.Properties())));
+	
+	public static final RegistryObject<DrillItem> STEEL_DRILL_STEEL = generalTabEnqueue(ITEMS.register("steel_drill_steel", () -> new DrillItem(Tiers.IRON, new Item.Properties().craftRemainder(YATMItems.STEEL_DRILL_BIT.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 8, 8)));
+	public static final RegistryObject<DrillItem> STEEL_DRILL_NETHERITE = generalTabEnqueue(ITEMS.register("steel_drill_netherite", () -> new DrillItem(Tiers.NETHERITE, new Item.Properties().craftRemainder(YATMItems.NETHERITE_DRILL_BIT.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 6, 6)));
+	
+	public static final RegistryObject<SawItem> STEEL_SAW_STEEL = generalTabEnqueue(ITEMS.register("steel_saw_steel", () -> new SawItem(Tiers.IRON, new Item.Properties().craftRemainder(YATMItems.STEEL_SAW_BLADE.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 8, 8)));
+	public static final RegistryObject<SawItem> STEEL_SAW_NETHERITE = generalTabEnqueue(ITEMS.register("steel_saw_netherite", () -> new SawItem(Tiers.NETHERITE, new Item.Properties().craftRemainder(YATMItems.NETHERITE_SAW_BLADE.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 6, 6)));
 	
 	public static final RegistryObject<Item> STEEL_WRENCH = generalTabEnqueue(ITEMS.register("steel_wrench", () -> new Item(new Item.Properties())));
 	

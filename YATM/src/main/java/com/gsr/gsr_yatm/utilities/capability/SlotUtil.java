@@ -9,6 +9,8 @@ import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
+import com.gsr.gsr_yatm.item.IEfficiencyUpgradeItem;
+import com.gsr.gsr_yatm.item.ISpeedUpgradeItem;
 import com.gsr.gsr_yatm.item.component.IComponent;
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
@@ -91,46 +93,37 @@ public class SlotUtil
 	
 	
 	
+	// TODO, review and revise the validators
 	public static boolean isValidHeatingSlotInsert(@NotNull ItemStack itemStack) 
 	{
-		// TODO, implement actual logic, create recipe type for heating
+		// TODO, maybe, create recipe type for heating
 		return getHeatingBurnTime(itemStack) > 0 
 				|| itemStack.getCapability(YATMCapabilities.HEAT).isPresent() 
 				|| (itemStack.getItem() instanceof IComponent component && component.getValidCapabilities().contains(YATMCapabilities.HEAT));
 	} // end isValidHeatingSlotInsert()
-
-	
 		
 	public static boolean isValidTankFillSlotInsert(ItemStack itemStack)
 	{
-		return 
-//				(itemStack.getItem() instanceof BucketItem || 
-//				itemStack.getItem() instanceof MilkBucketItem ||
-				itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent()
-//				) 
-//				&& 
-//				itemStack.getItem() != Items.BUCKET &&
-//				// maybe eventually handler mob buckets, take the fluid, and spawn the creature nearby
-//				!(itemStack.getItem() instanceof MobBucketItem)
-				;
+		return itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent() || itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER).isPresent()
+				|| (itemStack.getItem() instanceof IComponent component && (component.getValidCapabilities().contains(ForgeCapabilities.FLUID_HANDLER) || component.getValidCapabilities().contains(ForgeCapabilities.FLUID_HANDLER_ITEM)));
 	} // end isValidTankFillSlotInsert()
 	
 	public static boolean isValidTankDrainSlotInsert(ItemStack itemStack)
 	{
-		return 
-//				itemStack.getItem() instanceof BucketItem 
-//				? itemStack.getItem() == Items.BUCKET 
-//				: 
-					itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent();
+		return itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent() || itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER).isPresent();
 	} // end isValidTankDrainSlotInsert()
-	
-	
 	
 	public static boolean isValidPowerSlotInsert(ItemStack itemStack) 
 	{
-		// TODO, implement
-		return true;
-	}
+		return itemStack.getCapability(YATMCapabilities.CURRENT).isPresent() 
+				|| (itemStack.getItem() instanceof IComponent component && component.getValidCapabilities().contains(YATMCapabilities.CURRENT));
+	} // end isValidPowerSlotInsert()
+	
+	public static boolean isValidUpgradeSlotInsert(ItemStack itemStack) 
+	{
+		return itemStack.getItem() instanceof ISpeedUpgradeItem 
+				|| itemStack.getItem() instanceof IEfficiencyUpgradeItem;
+	} // end isValidUpgradeSlotInsert()
 	
 	
 	

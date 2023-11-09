@@ -10,7 +10,7 @@ import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.InventoryUtilities;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.fluid.ConfigurableTankWrapper;
-import com.gsr.gsr_yatm.utilities.capability.item.ConfigurableInventoryWrapper;
+import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
 import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
 
 import net.minecraft.core.BlockPos;
@@ -89,19 +89,19 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 	
 	private LazyOptional<IItemHandler> m_inventoryLazyOptional = LazyOptional.of(() -> m_inventory);
 
-	private ConfigurableInventoryWrapper m_fillInputTankSlot = new ConfigurableInventoryWrapper(m_inventory, new int[]
+	private InventoryWrapper m_fillInputTankSlot = new InventoryWrapper(m_inventory, new int[]
 	{ FILL_INPUT_TANK_SLOT });
 	private LazyOptional<IItemHandler> m_fillInputTankSlotLazyOptional = LazyOptional.of(() -> m_fillInputTankSlot);
 
-	private ConfigurableInventoryWrapper m_drainInputTankSlot = new ConfigurableInventoryWrapper(m_inventory, new int[]
+	private InventoryWrapper m_drainInputTankSlot = new InventoryWrapper(m_inventory, new int[]
 	{ DRAIN_INPUT_TANK_SLOT });
 	private LazyOptional<IItemHandler> m_drainInputTankSlotLazyOptional = LazyOptional.of(() -> m_drainInputTankSlot);
 
-	private ConfigurableInventoryWrapper m_drainResultTankSlot = new ConfigurableInventoryWrapper(m_inventory, new int[]
+	private InventoryWrapper m_drainResultTankSlot = new InventoryWrapper(m_inventory, new int[]
 	{ DRAIN_RESULT_TANK_SLOT });
 	private LazyOptional<IItemHandler> m_drainResultTankSlotLazyOptional = LazyOptional.of(() -> m_drainResultTankSlot);
 
-	private ConfigurableInventoryWrapper m_heatingSlot = new ConfigurableInventoryWrapper(m_inventory, new int[]
+	private InventoryWrapper m_heatingSlot = new InventoryWrapper(m_inventory, new int[]
 	{ HEAT_SLOT });
 	private LazyOptional<IItemHandler> m_heatingSlotLazyOptional = LazyOptional.of(() -> m_heatingSlot);
 

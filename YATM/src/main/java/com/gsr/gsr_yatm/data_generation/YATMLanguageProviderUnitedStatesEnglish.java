@@ -37,7 +37,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMMenuTypes.BATTERY_SOLAR_PANEL.get(), "Solar Panel");		
 		this.add(YATMMenuTypes.SOLAR_PANEL.get(), "Solar Panel");		
 		
-		this.add(YATMMenuTypes.CREATIVE_CURRENT_SOURCE.get(), "Creative Current Source");		
+		this.add(YATMMenuTypes.CREATIVE_CURRENT_SOURCE.get(), "Creative Current Source");
 		
 		
 		
@@ -350,10 +350,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.SOUL_SYRUP_BOTTLE.get(), "Soul Syrup Bottle");
 
 				
-		
-//		this.add(YATMItems.IRON_WIRE_DIE.get(), "Iron Die (Wire)");
-//		this.add(YATMItems.STEEL_WIRE_DIE.get(), "Steel Die (Wire)");
-//		
+			
 		this.add(YATMItems.FOLIAR_STEEL.get(), "Foliar Steel");
 //		this.add(YATMItems.SILVER_INGOT.get(), "Silver Ingot");
 //		this.add(YATMItems.STEEL_INGOT.get(), "Steel Ingot");
@@ -372,6 +369,17 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.STAR_GERMLING.get(), "Start Germling");
 		this.add(YATMItems.STAR_SPROUT.get(), "Star Sprout");
 		this.add(YATMItems.STAR_ADOLESCENT.get(), "Star Adolescent");
+		
+		this.add(YATMItems.STEEL_DRILL_BIT.get(), "Foliar Steel Drill Bit");
+		this.add(YATMItems.NETHERITE_DRILL_BIT.get(), "Netherite Drill Bit");
+		this.add(YATMItems.STEEL_SAW_BLADE.get(), "Foliar Steel Saw Blade");
+		this.add(YATMItems.NETHERITE_SAW_BLADE.get(), "Netherite Saw Blade");
+		
+		this.add(YATMItems.STEEL_DRILL_STEEL.get(), "Foliar Steel Drill (Foliar Steel)");
+		this.add(YATMItems.STEEL_DRILL_NETHERITE.get(), "Foliar Steel Drill (Netherite)");
+		
+		this.add(YATMItems.STEEL_SAW_STEEL.get(), "Foliar Steel Saw (Foliar Steel)");
+		this.add(YATMItems.STEEL_SAW_NETHERITE.get(), "Foliar Steel Saw (Netherite)");
 		
 		this.add(YATMItems.STEEL_WRENCH.get(), "Foliar Steel Wrench");
 		

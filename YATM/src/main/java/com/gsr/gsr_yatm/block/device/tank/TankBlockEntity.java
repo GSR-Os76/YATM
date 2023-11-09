@@ -90,8 +90,8 @@ public class TankBlockEntity extends BlockEntity
 
 	private void setup(@NotNegative int maxFluidTransferRate, @NotNegative int tankCapacity)
 	{
-		this.m_maxFluidTransferRate = Contract.NotNegative(maxFluidTransferRate);
-		this.m_rawTank = new FluidTank(Contract.NotNegative(tankCapacity));
+		this.m_maxFluidTransferRate = Contract.notNegative(maxFluidTransferRate);
+		this.m_rawTank = new FluidTank(Contract.notNegative(tankCapacity));
 		this.m_tank = ConfigurableTankWrapper.Builder.of(this.m_rawTank)
 				.onContentsChanged((f) -> 
 				{

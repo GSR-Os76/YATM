@@ -127,11 +127,11 @@ public class InjectorBlockEntity extends TestCraftingDeviceBlockEntity<Injecting
 				ContainerDataBuilder builder = new ContainerDataBuilder();
 				specs.add(Map.entry(CraftingDeviceBlockEntity.CRAFT_PROGRESS_SPEC_KEY, builder.addContainerData(t.m_craftProgressC)));
 				specs.add(Map.entry(InjectorBlockEntity.TANK_DATA_SPEC_KEY, builder.addContainerData(new FluidHandlerContainerData(t.m_inputTank, 0))));
-				AccessSpecification fillPrg = builder.addPropety(() -> t.m_fillInputTankBuffer.getFluidAmount(), (i) -> {});
-				AccessSpecification fillInit = builder.addPropety(() -> t.m_fillInputTankInitialTransferSize, (i) -> {});
+				AccessSpecification fillPrg = builder.addProperty(() -> t.m_fillInputTankBuffer.getFluidAmount(), (i) -> {});
+				AccessSpecification fillInit = builder.addProperty(() -> t.m_fillInputTankInitialTransferSize, (i) -> {});
 				specs.add(Map.entry(InjectorBlockEntity.FILL_PROGRESS_SPEC_KEY, AccessSpecification.join(fillPrg, fillInit)));
-				AccessSpecification drainPrg = builder.addPropety(() -> t.m_drainInputTankCountDown, (i) -> {});
-				AccessSpecification drainInit = builder.addPropety(() -> t.m_drainInputTankInitialTransferSize, (i) -> {});
+				AccessSpecification drainPrg = builder.addProperty(() -> t.m_drainInputTankCountDown, (i) -> {});
+				AccessSpecification drainInit = builder.addProperty(() -> t.m_drainInputTankInitialTransferSize, (i) -> {});
 				specs.add(Map.entry(InjectorBlockEntity.DRAIN_PROGRESS_SPEC_KEY, AccessSpecification.join(drainPrg, drainInit)));
 				if(this.m_spec == null) 
 				{

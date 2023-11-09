@@ -12,7 +12,7 @@ import net.minecraftforge.common.util.TriPredicate;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.IItemHandlerModifiable;
 
-public class ConfigurableInventoryWrapper implements IItemHandler, IItemHandlerModifiable
+public class InventoryWrapper implements IItemHandler, IItemHandlerModifiable
 {
 	private final @NotNull IItemHandler m_inventory;
 	private final @NotNull int[] m_slots;
@@ -23,17 +23,17 @@ public class ConfigurableInventoryWrapper implements IItemHandler, IItemHandlerM
 	
 	
 	
-	public ConfigurableInventoryWrapper(@NotNull IItemHandler inventory, @NotNull int[] slots) 
+	public InventoryWrapper(@NotNull IItemHandler inventory, @NotNull int[] slots) 
 	{
 		this(inventory, slots, (s, i, sim) -> true);
 	} // end constructor
 	
-	public ConfigurableInventoryWrapper(@NotNull IItemHandler inventory, @NotNull int[] slots, @NotNull TriPredicate<Integer, ItemStack, Boolean> validator) 
+	public InventoryWrapper(@NotNull IItemHandler inventory, @NotNull int[] slots, @NotNull TriPredicate<Integer, ItemStack, Boolean> validator) 
 	{
 		this(inventory, slots, validator, (i, is) -> {}, (i, a) -> {});
 	} // end construct
 	
-	public ConfigurableInventoryWrapper(@NotNull IItemHandler inventory, @NotNull int[] slots, @NotNull TriPredicate<Integer, ItemStack, Boolean> validator, @NotNull BiConsumer<Integer, ItemStack> onItemInsertion, @NotNull BiConsumer<Integer, ItemStack> onItemWithdrawal) 
+	public InventoryWrapper(@NotNull IItemHandler inventory, @NotNull int[] slots, @NotNull TriPredicate<Integer, ItemStack, Boolean> validator, @NotNull BiConsumer<Integer, ItemStack> onItemInsertion, @NotNull BiConsumer<Integer, ItemStack> onItemWithdrawal) 
 	{
 		this.m_inventory = Objects.requireNonNull(inventory);
 		this.m_slots = Objects.requireNonNull(slots);
@@ -93,7 +93,8 @@ public class ConfigurableInventoryWrapper implements IItemHandler, IItemHandlerM
 	@Override
 	public boolean isItemValid(int slot, @NotNull ItemStack stack)
 	{
-		return this.m_inventory.isItemValid(this.m_slots[slot], stack);
+		return this.m_validator.test(slot, stack, true) 
+				&& this.m_inventory.isItemValid(this.m_slots[slot], stack);
 	} // end isItemValid()
 
 	
@@ -182,9 +183,9 @@ public class ConfigurableInventoryWrapper implements IItemHandler, IItemHandlerM
 			return this;
 		} // end slotValidator()
 		
-		public ConfigurableInventoryWrapper build() 
+		public InventoryWrapper build() 
 		{
-			return new ConfigurableInventoryWrapper(this.m_inventory, this.m_slots, this.m_validator, this.m_onItemInsertion, this.m_onItemWithdrawal);
+			return new InventoryWrapper(this.m_inventory, this.m_slots, this.m_validator, this.m_onItemInsertion, this.m_onItemWithdrawal);
 		} // end build()
 		
 	} // end inner class

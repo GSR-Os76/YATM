@@ -20,7 +20,7 @@ public class OnChangedHeatHandler implements IHeatHandler
 	
 	public OnChangedHeatHandler(@NotNegative int temperature, @NotNull Consumer<Integer> onChanged) 
 	{
-		this.m_temperature = Contract.NotNegative(temperature);
+		this.m_temperature = Contract.notNegative(temperature);
 		this.m_onChanged = Objects.requireNonNull(onChanged);
 	} // end constructor()
 	
@@ -43,7 +43,7 @@ public class OnChangedHeatHandler implements IHeatHandler
 	@Override
 	public void setTemperature(@NotNegative int temperature)
 	{
-		this.m_temperature = Contract.NotNegative(temperature);
+		this.m_temperature = Contract.notNegative(temperature);
 		this.m_onChanged.accept(this.m_temperature);
 	} // end setTemperature()
 	
