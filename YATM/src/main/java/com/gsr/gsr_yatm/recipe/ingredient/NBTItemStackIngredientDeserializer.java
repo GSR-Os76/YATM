@@ -4,6 +4,7 @@ import org.jetbrains.annotations.NotNull;
 
 import com.google.gson.JsonObject;
 
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.common.crafting.CraftingHelper;
 
 public class NBTItemStackIngredientDeserializer implements IIngredientDeserializer<NBTItemStackIngredient>
@@ -13,5 +14,17 @@ public class NBTItemStackIngredientDeserializer implements IIngredientDeserializ
 	{
 		return new NBTItemStackIngredient(CraftingHelper.getItemStack(jsonObject, true, false));
 	} // end deserialize()
+
+	@Override
+	public @NotNull NBTItemStackIngredient fromNetwork(@NotNull FriendlyByteBuf buffer)
+	{
+		return new NBTItemStackIngredient(buffer.readItem());
+	} // end fromNetwork()
+
+	@Override
+	public void toNetwork(@NotNull NBTItemStackIngredient ingredient, @NotNull FriendlyByteBuf buffer)
+	{
+		buffer.writeItem(ingredient.getValues().get(0));
+	} // end toNetwork()
 	
 } // end class

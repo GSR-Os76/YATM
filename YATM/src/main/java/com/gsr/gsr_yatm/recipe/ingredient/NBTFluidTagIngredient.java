@@ -8,6 +8,8 @@ import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonObject;
 import com.gsr.gsr_yatm.registry.custom.YATMIngredientDeserializers;
+import com.gsr.gsr_yatm.utilities.contract.Contract;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.nbt.CompoundTag;
@@ -25,14 +27,28 @@ public class NBTFluidTagIngredient implements IIngredient<FluidStack>
 	private final @Nullable CompoundTag m_nbt;
 	
 	
-	public NBTFluidTagIngredient(@NotNull TagKey<Fluid> tag, int amount, @Nullable CompoundTag nbt) 
+	public NBTFluidTagIngredient(@NotNull TagKey<Fluid> tag, @NotNegative int amount, @Nullable CompoundTag nbt) 
 	{
-		Objects.requireNonNull(tag);
-		this.m_tagKey = tag;
+		this.m_tagKey = Objects.requireNonNull(tag);
 		this.m_tag = ForgeRegistries.FLUIDS.tags().getTag(tag);
-		this.m_amount = amount;
+		this.m_amount = Contract.notNegative(amount);
 		this.m_nbt = nbt;
 	} // end constructor()
+	
+	public @NotNull TagKey<Fluid> getTag()
+	{
+		return this.m_tagKey;
+	} // end getTag()
+	
+	public @NotNegative int getAmount()
+	{
+		return this.m_amount;
+	} // end getAmount()
+	
+	public @Nullable CompoundTag getNBT()
+	{
+		return this.m_nbt;
+	} // end getNBT()
 	
 	
 	

@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonObject;
 import com.gsr.gsr_yatm.registry.custom.YATMIngredientDeserializers;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.tags.TagKey;
@@ -38,6 +39,16 @@ public class ItemTagIngredient implements IIngredient<ItemStack>
 		this.m_tag = ForgeRegistries.ITEMS.tags().getTag(this.m_tagKey);
 		this.m_count = count;
 	} // end constructor
+	
+	public @NotNull TagKey<Item> getTag()
+	{
+		return this.m_tagKey;
+	} // end getTag()
+	
+	public @NotNegative int getCount()
+	{
+		return this.m_count;
+	} // end getCount()
 	
 	
 	

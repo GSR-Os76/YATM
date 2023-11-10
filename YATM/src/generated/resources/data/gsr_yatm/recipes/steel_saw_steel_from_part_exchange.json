@@ -1,0 +1,22 @@
+{
+  "type": "gsr_yatm:tool_part_exchange",
+  "category": "equipment",
+  "group": "saw_blade_adjustment",
+  "input": {
+    "part": {
+      "type": "gsr_yatm:item_stack_ingredient",
+      "count": 1,
+      "item": "gsr_yatm:steel_saw_blade"
+    },
+    "tool": {
+      "type": "gsr_yatm:item_tag_ingredient",
+      "count": 1,
+      "tag": "gsr_yatm:saws"
+    }
+  },
+  "result": {
+    "count": 1,
+    "item": "gsr_yatm:steel_saw_steel",
+    "nbt": "{Damage:0}"
+  }
+}

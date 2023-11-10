@@ -5,6 +5,8 @@ import com.gsr.gsr_yatm.recipe.bioling.BiolingRecipe;
 import com.gsr.gsr_yatm.recipe.bioling.BiolingRecipeSerializer;
 import com.gsr.gsr_yatm.recipe.boiling.BoilingRecipe;
 import com.gsr.gsr_yatm.recipe.boiling.BoilingRecipeSerializer;
+import com.gsr.gsr_yatm.recipe.crafting.tool_part_exchange.ToolPartExchangeRecipe;
+import com.gsr.gsr_yatm.recipe.crafting.tool_part_exchange.ToolPartExchangeRecipeSerializer;
 import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizingRecipe;
 import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizingRecipeSerializer;
 import com.gsr.gsr_yatm.recipe.extracting.ExtractingRecipe;
@@ -38,5 +40,6 @@ public class YATMRecipeSerializers
 	public static final RegistryObject<RecipeSerializer<InjectingRecipe>> INJECTING = RECIPE_SERIALIZERS.register("fluid_injecting", () -> new InjectingRecipeSerializer());
 	public static final RegistryObject<RecipeSerializer<MeltingRecipe>> MELTING = RECIPE_SERIALIZERS.register("melting", () -> new MeltingRecipeSerializer());
 	public static final RegistryObject<RecipeSerializer<SpinningRecipe>> SPINNING = RECIPE_SERIALIZERS.register("spinning", () -> new SpinningRecipeSerializer());
+	public static final RegistryObject<RecipeSerializer<ToolPartExchangeRecipe>> TOOL_PART_EXCHANGE = RECIPE_SERIALIZERS.register("tool_part_exchange", () -> new ToolPartExchangeRecipeSerializer());
 	
 } // end class

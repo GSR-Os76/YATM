@@ -8,6 +8,7 @@ import com.gsr.gsr_yatm.recipe.ingredient.IIngredientDeserializer;
 import com.gsr.gsr_yatm.registry.custom.YATMRegistries;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
@@ -32,12 +33,14 @@ public class IngredientUtil
 	public static final String CONSUME_SEED_KEY = "consume";
 	public static final String CURRENT_PER_TICK_KEY = "cost";
 	public static final String DIE_KEY = "die";
+	public static final String PART_KEY = "part";
 	public static final String SEED_KEY = "seed";
 	public static final String SUBSTRATE_KEY = "substrate";
 	public static final String TIME_IN_TICKS_KEY = "time";
-			
+	public static final String TOOL_KEY = "tool";
 	
 	public static final String AMOUNT_KEY = "amount";
+	public static final String CATEGORY_KEY = "category";
 	public static final String COUNT_KEY = "count";
 	public static final String FLUID_KEY = "fluid";
 	public static final String INGREDIENT_KEY = "ingedient";
@@ -54,17 +57,31 @@ public class IngredientUtil
 	
 	public static @NotNull IIngredient<?> readIngredient(@NotNull JsonObject object)
 	{
-		IIngredientDeserializer<?> deserializer = YATMRegistries.INGREDIENT_DESERIALIZERS.get().getValue(new ResourceLocation(object.get(TYPE_KEY).getAsString()));
+		IIngredientDeserializer<?> deserializer = YATMRegistries.INGREDIENT_DESERIALIZERS.get().getValue(new ResourceLocation(object.get(IngredientUtil.TYPE_KEY).getAsString()));
 		return deserializer.deserialize(object);
 	} // end readIngredient()
 	
 	public static @NotNull JsonObject writeIngredient(@NotNull IIngredient<?> ingredient)
 	{
 		JsonObject jsObj = ingredient.serialize();
-		jsObj.addProperty(TYPE_KEY, YATMRegistries.INGREDIENT_DESERIALIZERS.get().getKey(ingredient.deserializer()).toString());
+		jsObj.addProperty(IngredientUtil.TYPE_KEY, YATMRegistries.INGREDIENT_DESERIALIZERS.get().getKey(ingredient.deserializer()).toString());
 		return jsObj;
 	} // end writeIngredient()
-
+	
+	
+	
+	public static <T> @NotNull IIngredient<T> fromNetwork(@NotNull FriendlyByteBuf buffer) 
+	{
+		return YATMRegistries.INGREDIENT_DESERIALIZERS.get().getValue(new ResourceLocation(buffer.readUtf())).fromNetwork(buffer).cast();
+	} // end toNetwork()
+	
+	@SuppressWarnings("unchecked")
+	public static <T> void toNetwork(@NotNull IIngredient<T> ingredient, @NotNull FriendlyByteBuf buffer) 
+	{
+		buffer.writeUtf(YATMRegistries.INGREDIENT_DESERIALIZERS.get().getKey(ingredient.deserializer()).toString());
+		((IIngredientDeserializer<IIngredient<T>>)ingredient.deserializer()).toNetwork(ingredient, buffer);
+	} // end toNetwork()
+	
 	
 	
 	public static int getReqiuredCountFor(@NotNull Item item, @NotNull IIngredient<ItemStack> in)
@@ -130,6 +147,50 @@ public class IngredientUtil
 	} // end getTagKey()
 
 	// getFluidTagKey
+	
+	
+	
+	public static void fluidStackToNetwork(@NotNull FluidStack stack, @NotNull FriendlyByteBuf buffer) 
+	{
+		buffer.writeUtf(ForgeRegistries.FLUIDS.getKey(stack.getFluid()).toString());
+		buffer.writeVarInt(stack.getAmount());
+	} // end fluidStackToNetwork()
+	
+	public static void itemStackToNetwork(@NotNull ItemStack stack, @NotNull FriendlyByteBuf buffer) 
+	{
+		buffer.writeUtf(ForgeRegistries.ITEMS.getKey(stack.getItem()).toString());
+		buffer.writeVarInt(stack.getCount());
+	} // end fluidStackToNetwork()
+	
+	public static void nbtFluidStackToNetwork(@NotNull FluidStack stack, @NotNull FriendlyByteBuf buffer) 
+	{
+		buffer.writeUtf(ForgeRegistries.FLUIDS.getKey(stack.getFluid()).toString());
+		buffer.writeVarInt(stack.getAmount());
+		buffer.writeBoolean(stack.hasTag());
+		if(stack.hasTag()) 
+		{
+			buffer.writeNbt(stack.getTag());
+		}
+	} // end nbtFluidStackToNetwork()
+	
+	
+	
+	public static @NotNull FluidStack fluidStackFromNetwork(@NotNull FriendlyByteBuf buffer)
+	{
+		return new FluidStack(ForgeRegistries.FLUIDS.getValue(new ResourceLocation(buffer.readUtf())), buffer.readVarInt());
+	} // end fluidStackFromNetwork()
+	
+	public static @NotNull ItemStack itemStackFromNetwork(@NotNull FriendlyByteBuf buffer)
+	{
+		return new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation(buffer.readUtf())), buffer.readVarInt());
+	} // end fluidStackFromNetwork()
+	
+	public static @NotNull FluidStack nbtFluidStackFromNetwork(@NotNull FriendlyByteBuf buffer)
+	{
+		return new FluidStack(ForgeRegistries.FLUIDS.getValue(new ResourceLocation(buffer.readUtf())), buffer.readVarInt(), buffer.readBoolean() ? buffer.readNbt() : null);
+	} // end nbtFluidStackFromNetwork()
+	
+	
 	
 	
 	

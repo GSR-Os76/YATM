@@ -326,9 +326,14 @@ public class YATMItems
 	
 	
 	
+	// public static final RegistryObject<CurrentBatteryItem> CURRENT_BATTERY = generalTabEnqueue(ITEMS.register("current_battery", () -> new CurrentBatteryItem(new Item.Properties().stacksTo(4))));
+	// public static final RegistryObject<CurrentBatteryItem> ADVANCED_CURRENT_BATTERY = generalTabEnqueue(ITEMS.register("advanced_current_battery", () -> new CurrentBatteryItem(new Item.Properties().stacksTo(4))));
+	
+	// TODO, should maybe be compatible with some other mods if they use similar upgrades
 	public static final RegistryObject<SpeedUpgradeItem> SPEED_UPGRADE = generalTabEnqueue(ITEMS.register("speed_upgrade", () -> new SpeedUpgradeItem(new Item.Properties().stacksTo(4), 1f, BonusType.ADDITIVE)));
 	public static final RegistryObject<EfficiencyUpgradeItem> EFFICIENCY_UPGRADE = generalTabEnqueue(ITEMS.register("efficiency_upgrade", () -> new EfficiencyUpgradeItem(new Item.Properties().stacksTo(4), 1f, BonusType.ADDITIVE)));
 	
+	// TODO, possibly add variants for all of the vanilla types, and eventually other mods materials and tiers
 	public static final RegistryObject<Item> STEEL_DRILL_BIT = generalTabEnqueue(ITEMS.register("steel_drill_bit", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> NETHERITE_DRILL_BIT = generalTabEnqueue(ITEMS.register("netherite_drill_bit", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> STEEL_SAW_BLADE = generalTabEnqueue(ITEMS.register("steel_saw_blade", () -> new Item(new Item.Properties())));

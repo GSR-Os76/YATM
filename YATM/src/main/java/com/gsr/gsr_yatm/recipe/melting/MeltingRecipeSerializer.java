@@ -37,7 +37,7 @@ public class MeltingRecipeSerializer implements RecipeSerializer<MeltingRecipe>
 	}
 
 	@Override
-	public void toNetwork(FriendlyByteBuf resourceLocation, MeltingRecipe recipe)
+	public void toNetwork(FriendlyByteBuf friendlyByteBuf, MeltingRecipe recipe)
 	{
 		// TODO Auto-generated method stub		
 	}

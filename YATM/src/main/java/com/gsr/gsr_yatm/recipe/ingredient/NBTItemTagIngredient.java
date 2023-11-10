@@ -8,6 +8,8 @@ import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonObject;
 import com.gsr.gsr_yatm.registry.custom.YATMIngredientDeserializers;
+import com.gsr.gsr_yatm.utilities.contract.Contract;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.nbt.CompoundTag;
@@ -28,18 +30,31 @@ public class NBTItemTagIngredient implements IIngredient<ItemStack>
 	
 	public NBTItemTagIngredient(@NotNull TagKey<Item> tag) 
 	{
-		this(tag, 1, null);
+		this(Objects.requireNonNull(tag), 1, null);
 	} // end constructor
 	
-	public NBTItemTagIngredient(@NotNull TagKey<Item> tag, int count, @Nullable CompoundTag nbt) 
+	public NBTItemTagIngredient(@NotNull TagKey<Item> tag, @NotNegative int count, @Nullable CompoundTag nbt) 
 	{
-		Objects.nonNull(tag);
-		
-		this.m_tagKey = tag;
+		this.m_tagKey = Objects.requireNonNull(tag);
 		this.m_tag = ForgeRegistries.ITEMS.tags().getTag(this.m_tagKey);
-		this.m_count = count;
+		this.m_count = Contract.notNegative(count);
 		this.m_nbt = nbt;
 	} // end constructor
+	
+	public @NotNull TagKey<Item> getTag()
+	{
+		return this.m_tagKey;
+	} // end getTag()
+	
+	public @NotNegative int getCount()
+	{
+		return this.m_count;
+	} // end getCount()
+	
+	public @Nullable CompoundTag getNBT()
+	{
+		return this.m_nbt;
+	} // end getNBT()
 	
 	
 	

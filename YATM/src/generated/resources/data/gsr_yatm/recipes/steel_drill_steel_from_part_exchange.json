@@ -1,0 +1,22 @@
+{
+  "type": "gsr_yatm:tool_part_exchange",
+  "category": "equipment",
+  "group": "drill_tip_adjustment",
+  "input": {
+    "part": {
+      "type": "gsr_yatm:item_stack_ingredient",
+      "count": 1,
+      "item": "gsr_yatm:steel_drill_bit"
+    },
+    "tool": {
+      "type": "gsr_yatm:item_tag_ingredient",
+      "count": 1,
+      "tag": "gsr_yatm:drills"
+    }
+  },
+  "result": {
+    "count": 1,
+    "item": "gsr_yatm:steel_drill_steel",
+    "nbt": "{Damage:0}"
+  }
+}

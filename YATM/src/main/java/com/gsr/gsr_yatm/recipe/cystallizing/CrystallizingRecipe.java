@@ -40,15 +40,10 @@ public class CrystallizingRecipe implements ITimedRecipe<Container>
 	
 	public CrystallizingRecipe(@NotNull ResourceLocation identifier, @NotNull IIngredient<FluidStack> input, @NotNull IIngredient<ItemStack> seed, @NotNull ItemStack result) 
 	{
-		Objects.requireNonNull(identifier);
-		Objects.requireNonNull(input);
-		Objects.requireNonNull(seed);
-		Objects.requireNonNull(result);
-
-		this.m_identifier = identifier;
-		this.m_input = input;
-		this.m_seed = seed;
-		this.m_result = result.copy();
+		this.m_identifier = Objects.requireNonNull(identifier);
+		this.m_input = Objects.requireNonNull(input);
+		this.m_seed = Objects.requireNonNull(seed);
+		this.m_result = Objects.requireNonNull(result);
 	} // end constructor
 	
 	
