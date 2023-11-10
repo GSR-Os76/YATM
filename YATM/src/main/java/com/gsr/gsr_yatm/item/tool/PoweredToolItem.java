@@ -58,7 +58,7 @@ public abstract class PoweredToolItem extends DiggerItem
 	@Override
 	public float getDestroySpeed(ItemStack stack, BlockState state)
 	{		
-		return this.hasPowerToMine(stack, state) ? super.getDestroySpeed(stack, state) + 1f : 1f;
+		return this.hasPowerToMine(stack, state) ? (super.getDestroySpeed(stack, state) + 1f) * this.getSpeedMultiplier(stack) : 1f;
 	} // end getDestroySpeed()
 	
 	@Override
@@ -131,6 +131,17 @@ public abstract class PoweredToolItem extends DiggerItem
 		}
 		return InteractionResult.PASS;
 	} // end useOn()
+	
+	
+
+//	@Override
+//	public Component getName(@NotNull ItemStack stack)
+//	{
+//		return Component.translatable(this.getDescriptionId(stack))
+//				.append(Component.literal("(" + this.getPower(stack) + "cu/" + this.getMaxPower(stack)+ "cu)"));
+//	} // end getName()
+	
+	
 
 	@Override
 	public boolean canPerformAction(@NotNull ItemStack stack, ToolAction toolAction)
@@ -148,9 +159,14 @@ public abstract class PoweredToolItem extends DiggerItem
 	
 	
 	
+//	public int getMaxPower(@NotNull ItemStack stack) 
+//	{
+//		return this.getToolProvider(stack).capacity();
+//	} // end getPower()
+	
 	public int getPower(@NotNull ItemStack stack) 
 	{
-		return this.getToolProvider(stack).stored();
+		return this.getToolProvider(stack).getStoredCurrent();
 	} // end getPower()
 	
 	public void setPower(@NotNull ItemStack stack, @NotNegative int power) 

@@ -97,32 +97,32 @@ public class SlotUtil
 	public static boolean isValidHeatingSlotInsert(@NotNull ItemStack itemStack) 
 	{
 		// TODO, maybe, create recipe type for heating
-		return getHeatingBurnTime(itemStack) > 0 
+		return itemStack.isEmpty() || (getHeatingBurnTime(itemStack) > 0 
 				|| itemStack.getCapability(YATMCapabilities.HEAT).isPresent() 
-				|| (itemStack.getItem() instanceof IComponent component && component.getValidCapabilities().contains(YATMCapabilities.HEAT));
+				|| (itemStack.getItem() instanceof IComponent component && component.getValidCapabilities().contains(YATMCapabilities.HEAT)));
 	} // end isValidHeatingSlotInsert()
 		
 	public static boolean isValidTankFillSlotInsert(ItemStack itemStack)
 	{
-		return itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent() || itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER).isPresent()
-				|| (itemStack.getItem() instanceof IComponent component && (component.getValidCapabilities().contains(ForgeCapabilities.FLUID_HANDLER) || component.getValidCapabilities().contains(ForgeCapabilities.FLUID_HANDLER_ITEM)));
+		return itemStack.isEmpty() || (itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent() || itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER).isPresent()
+				|| (itemStack.getItem() instanceof IComponent component && (component.getValidCapabilities().contains(ForgeCapabilities.FLUID_HANDLER) || component.getValidCapabilities().contains(ForgeCapabilities.FLUID_HANDLER_ITEM))));
 	} // end isValidTankFillSlotInsert()
 	
 	public static boolean isValidTankDrainSlotInsert(ItemStack itemStack)
 	{
-		return itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent() || itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER).isPresent();
+		return itemStack.isEmpty() || (itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent() || itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER).isPresent());
 	} // end isValidTankDrainSlotInsert()
 	
 	public static boolean isValidPowerSlotInsert(ItemStack itemStack) 
 	{
-		return itemStack.getCapability(YATMCapabilities.CURRENT).isPresent() 
-				|| (itemStack.getItem() instanceof IComponent component && component.getValidCapabilities().contains(YATMCapabilities.CURRENT));
+		return itemStack.isEmpty() || (itemStack.getCapability(YATMCapabilities.CURRENT).isPresent() 
+				|| (itemStack.getItem() instanceof IComponent component && component.getValidCapabilities().contains(YATMCapabilities.CURRENT)));
 	} // end isValidPowerSlotInsert()
 	
 	public static boolean isValidUpgradeSlotInsert(ItemStack itemStack) 
 	{
-		return itemStack.getItem() instanceof ISpeedUpgradeItem 
-				|| itemStack.getItem() instanceof IEfficiencyUpgradeItem;
+		return itemStack.isEmpty() || (itemStack.getItem() instanceof ISpeedUpgradeItem 
+				|| itemStack.getItem() instanceof IEfficiencyUpgradeItem);
 	} // end isValidUpgradeSlotInsert()
 	
 	

@@ -79,8 +79,8 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 		this.m_batteryCap = LazyOptional.of(() -> this.m_builtInBattery);
 		
 		ContainerDataBuilder cdb = new ContainerDataBuilder();
-		cdb.addProperty(() -> this.m_builtInBattery.stored(), (i) -> {});
-		cdb.addProperty(() -> this.m_builtInBattery.capacity(), (i) -> {});
+		cdb.addProperty(() -> /*PoweredToolItemStack.this.stored(), (i) -> {});//*/PoweredToolItemStack.this.m_builtInBattery.stored(), (i) -> {});
+		cdb.addProperty(() -> /*PoweredToolItemStack.this.capacity(), (i) -> {});//*/PoweredToolItemStack.this.m_builtInBattery.capacity(), (i) -> {});
 		this.m_data = cdb.build();
 		
 		this.updateDamage();
@@ -172,8 +172,10 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 			{
 				case ADDITIVE:
 					bonus += (u.getBonus() * s1.getCount());
+					break;
 				case MULTIPLICATIVE:
 					bonus *= (u.getBonus() * s1.getCount());
+					break;
 				default:
 					throw new IllegalArgumentException("Unexpected value of: " + u.getBonusType());
 			}
@@ -185,8 +187,10 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 			{
 				case ADDITIVE:
 					bonus += (u.getBonus() * s2.getCount());
+					break;
 				case MULTIPLICATIVE:
 					bonus *= (u.getBonus() * s2.getCount());
+					break;
 				default:
 					throw new IllegalArgumentException("Unexpected value of: " + u.getBonusType());
 			}
@@ -205,8 +209,10 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 			{
 				case ADDITIVE:
 					bonus += (u.getBonus() * s1.getCount());
+					break;
 				case MULTIPLICATIVE:
 					bonus *= (u.getBonus() * s1.getCount());
+					break;
 				default:
 					throw new IllegalArgumentException("Unexpected value of: " + u.getBonusType());
 			}
@@ -218,8 +224,10 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 			{
 				case ADDITIVE:
 					bonus += (u.getBonus() * s2.getCount());
+					break;
 				case MULTIPLICATIVE:
 					bonus *= (u.getBonus() * s2.getCount());
+					break;
 				default:
 					throw new IllegalArgumentException("Unexpected value of: " + u.getBonusType());
 			}
@@ -254,6 +262,11 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 	{
 		return this.m_builtInBattery.stored() + (this.m_cComponentCHandler != null ? this.m_cComponentCHandler.stored() : 0);
 	} // end stored()
+	
+	public int getStoredCurrent() 
+	{
+		return this.m_builtInBattery.stored();
+	} // end getStoredCurrent()
 	
 	public void setStoredCurrent(int to) 
 	{

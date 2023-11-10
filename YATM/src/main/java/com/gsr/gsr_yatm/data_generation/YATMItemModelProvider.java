@@ -147,6 +147,8 @@ public class YATMItemModelProvider extends ItemModelProvider
 		
 		
 		// this.basicItem(YATMItems.AURUM_FAN.get());
+		this.basicItem(YATMItems.SPEED_UPGRADE.get());
+		this.basicItem(YATMItems.EFFICIENCY_UPGRADE.get());
 		
 		this.basicItem(YATMItems.STEEL_DRILL_BIT.get());
 		this.basicItem(YATMItems.NETHERITE_DRILL_BIT.get());

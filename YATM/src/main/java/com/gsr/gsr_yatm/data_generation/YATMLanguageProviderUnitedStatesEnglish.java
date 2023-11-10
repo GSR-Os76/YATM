@@ -370,6 +370,9 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.STAR_SPROUT.get(), "Star Sprout");
 		this.add(YATMItems.STAR_ADOLESCENT.get(), "Star Adolescent");
 		
+		this.add(YATMItems.EFFICIENCY_UPGRADE.get(), "Efficiency Upgrade (+100%)");
+		this.add(YATMItems.SPEED_UPGRADE.get(), "Speed Upgrade (+100%)");
+		
 		this.add(YATMItems.STEEL_DRILL_BIT.get(), "Foliar Steel Drill Bit");
 		this.add(YATMItems.NETHERITE_DRILL_BIT.get(), "Netherite Drill Bit");
 		this.add(YATMItems.STEEL_SAW_BLADE.get(), "Foliar Steel Saw Blade");

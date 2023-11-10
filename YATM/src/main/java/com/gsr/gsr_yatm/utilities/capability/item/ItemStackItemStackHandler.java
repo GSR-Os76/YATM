@@ -3,6 +3,7 @@ package com.gsr.gsr_yatm.utilities.capability.item;
 import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 

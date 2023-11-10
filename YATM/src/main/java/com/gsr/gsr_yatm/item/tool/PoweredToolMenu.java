@@ -69,6 +69,7 @@ public class PoweredToolMenu extends AbstractContainerMenu
 		if (quickMovedSlot != null && quickMovedSlot.hasItem())
 		{
 			ItemStack slotsStack = quickMovedSlot.getItem();
+			ItemStack slotsStackInit = slotsStack.copy();			
 			if (quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END)
 			{		
 				boolean moved = false;
@@ -93,16 +94,20 @@ public class PoweredToolMenu extends AbstractContainerMenu
 					return ItemStack.EMPTY;
 				}
 			}
-			else if (!this.moveItemStackTo(slotsStack, PoweredToolMenu.PLAYER_INVENTORY_START, PoweredToolMenu.PLAYER_HOTBAR_END + 1, false))
+			if (this.moveItemStackTo(slotsStack, PoweredToolMenu.PLAYER_INVENTORY_START, PoweredToolMenu.PLAYER_HOTBAR_END + 1, false))
+			{
+				quickMovedSlot.set(slotsStack);
+			}
+			else
 			{
 				return ItemStack.EMPTY;
 			}
 			
 			
 			
-			if(slotsStack.isEmpty())
+			if(!ItemStack.matches(slotsStack, slotsStackInit))
 			{
-				quickMovedSlot.set(ItemStack.EMPTY);
+				quickMovedSlot.set(slotsStack);
 			}
 			else 
 			{

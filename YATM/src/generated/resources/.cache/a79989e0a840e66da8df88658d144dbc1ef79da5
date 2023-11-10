@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-07T09:20:43.7521723	Item Models: gsr_yatm
+// 1.20.1	2023-11-09T17:24:33.3411784	Item Models: gsr_yatm
 c2ea606d991a81e423cce1d89391873c41111adb assets/gsr_yatm/models/item/adamum_meristem.json
 39dc65663f22bc3413323e63119c165dc4f51c76 assets/gsr_yatm/models/item/aurum_deminutus_fiddle_head.json
 4bab78a47a4fc45a258b74c9012f61de899aee93 assets/gsr_yatm/models/item/aurum_deminutus_frond.json
@@ -31,6 +31,7 @@ e800b2a819414acbd4151cd6d7618904ae5ede64 assets/gsr_yatm/models/item/cuprum_bulb
 3b8f6311b029b2b76abb69823c4b28cb5e2467c4 assets/gsr_yatm/models/item/decaying_soul_adorned_netherite_helmet.json
 9dc5c080daf7e6ead74dd1541298f047c6751a3d assets/gsr_yatm/models/item/decaying_soul_adorned_netherite_leggings.json
 05643f13edd65fd51899712e8fe49563d98a273e assets/gsr_yatm/models/item/diluted_tear_bottle.json
+a5261ed5c1a53de9c6caedf9f7a50a8e4dcdedaf assets/gsr_yatm/models/item/efficiency_upgrade.json
 256173b073a8b8f57a0e7e302368e6e0050506cc assets/gsr_yatm/models/item/ember_gland.json
 80c00d4cd6e94955d8eeba5146b7b689432317fc assets/gsr_yatm/models/item/ender_bottle.json
 195ca7783fb16d2d211e79246f0e939383097359 assets/gsr_yatm/models/item/ender_bucket.json
@@ -77,6 +78,7 @@ b771520aabcbbfb0aaa9cd09f414a14b757db3a8 assets/gsr_yatm/models/item/soul_afflic
 0cc7b42a714aa8622b56bead2b47197c35c3453e assets/gsr_yatm/models/item/soul_sap_bucket.json
 f32efdc0dc70938bfaee67081dba1ac58f296262 assets/gsr_yatm/models/item/soul_syrup_bottle.json
 c1d7a49d254a35fc37edf6d4a137b6f78ec04ba9 assets/gsr_yatm/models/item/soul_syrup_bucket.json
+86e9f3fd9d06e11f1a54e219efcc11355365d8d4 assets/gsr_yatm/models/item/speed_upgrade.json
 d69d2a34a66a87ffa40c333b4044ff722cef8e98 assets/gsr_yatm/models/item/spider_vine_fruits.json
 8757ab83fab4645d6fc3f6c3481094de90eec8e6 assets/gsr_yatm/models/item/star_adolescent.json
 131b31c7b1a9d9a2c01a1e680e141d2b08dee756 assets/gsr_yatm/models/item/star_germling.json

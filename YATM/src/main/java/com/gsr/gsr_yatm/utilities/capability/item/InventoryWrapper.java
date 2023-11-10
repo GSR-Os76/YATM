@@ -102,16 +102,16 @@ public class InventoryWrapper implements IItemHandler, IItemHandlerModifiable
 	@Override
 	public void setStackInSlot(int slot, @NotNull ItemStack stack)
 	{
+		// TODO, maybe remove this for consistency with forge provided implementations.
 		if(!m_validator.test(slot, stack, false)) 
 		{
 			return;
 		}
 
-		this.m_onItemInsertion.accept(slot, stack);
-		
 		if(m_inventory instanceof IItemHandlerModifiable iItemHandlerModifiable) 
 		{
 			iItemHandlerModifiable.setStackInSlot(m_slots[slot], stack);
+			this.m_onItemInsertion.accept(slot, stack);		
 		}		
 	} // end setStackInSlot()
 	
