@@ -144,11 +144,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addOneToX(writer, YATMItems.SPIDER_VINE_FRUITS.get(), Items.SPIDER_EYE, 3, YetAnotherTechMod.MODID + ":spider_eyes_from_spider_vine_fruits_shapeless_crafting");
 		
 		
-		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.STEEL_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_STEEL.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_steel_from_part_exchange");
-		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.NETHERITE_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_NETHERITE.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_netherite_from_part_exchange");
-		
-		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.STEEL_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_STEEL.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_steel_from_part_exchange");
-		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.NETHERITE_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_NETHERITE.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_netherite_from_part_exchange");
+		this.addPoweredToolRecipes(writer);
 		
 	} // end buildRecipes()
 	
@@ -350,6 +346,28 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addBiolingRecipe(writer, Items.PURPUR_STAIRS, new FluidStack(YATMFluids.CHORUS_BIO.get(), 720), 6, 144, YetAnotherTechMod.MODID + ":chorus_biofluid_from_purpur_stairs_bioling");
 
 	} // end addChorusBiolings()
+	
+	
+	
+	private void addPoweredToolRecipes(Consumer<FinishedRecipe> writer) 
+	{
+//		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.WOODEN_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_WOOD.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_wood_from_part_exchange");
+//		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.STONE_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_STONE.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_stone_from_part_exchange");
+//		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.IRON_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_IRON.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_iron_from_part_exchange");
+		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.STEEL_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_STEEL.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_steel_from_part_exchange");
+//		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.GOLD_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_GOLD.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_gold_from_part_exchange");
+//		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.DIAMOND_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_DIAMOND.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_diamond_from_part_exchange");
+		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.NETHERITE_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_NETHERITE.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_netherite_from_part_exchange");
+		
+//		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.WOODEN_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_WOOD.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_wood_from_part_exchange");
+//		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.STONE_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_STONE.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_stone_from_part_exchange");
+//		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.IRON_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_IRON.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_iron_from_part_exchange");
+		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.STEEL_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_STEEL.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_steel_from_part_exchange");
+//		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.GOLD_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_GOLD.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_gold_from_part_exchange");
+//		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.DIAMOND_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_DIAMOND.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_diamond_from_part_exchange");
+		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.NETHERITE_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_NETHERITE.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_netherite_from_part_exchange");
+		
+	} // end addPoweredToolRecipes()
 	
 	
 	

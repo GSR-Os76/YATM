@@ -35,6 +35,8 @@ import net.minecraftforge.network.NetworkHooks;
 
 public abstract class PoweredToolItem extends DiggerItem
 {
+	private final @NotNull TagKey<Block> m_mineables;
+	
 	private final @NotNegative int m_actionCost;
 	private final @NotNegative int m_attackCost;
 	private final @NotNegative int m_mineCost;
@@ -46,6 +48,8 @@ public abstract class PoweredToolItem extends DiggerItem
 	{
 		super(baseDamage, attackSpeed, Objects.requireNonNull(tier), Objects.requireNonNull(mineables), Objects.requireNonNull(properties));
 	
+		this.m_mineables = Objects.requireNonNull(mineables);
+		
 		this.m_actionCost = Contract.notNegative(actionCost);
 		this.m_attackCost = Contract.notNegative(attackCost);
 		this.m_mineCost = Contract.notNegative(mineCost);
@@ -176,7 +180,7 @@ public abstract class PoweredToolItem extends DiggerItem
 	
 	public float getEfficiency(@NotNull ItemStack stack) 
 	{
-		return this.getToolProvider(stack).getEfficiency();
+		return this.getToolProvider(stack).getEfficiencyMultiplier();
 	} // end getEfficiency()
 	
 	public float getSpeedMultiplier(@NotNull ItemStack stack) 
@@ -203,7 +207,7 @@ public abstract class PoweredToolItem extends DiggerItem
 	
 	public @NotNegative int mineCost(@NotNull ItemStack stack, @NotNull BlockState target)
 	{
-		return (int)(Math.max(1, ((float)this.m_mineCost) / this.getEfficiency(stack)));
+		return ((int)(Math.max(1, ((float)this.m_mineCost) / this.getEfficiency(stack)))) * (target.is(this.m_mineables) ? 1 : 2);
 	} // end getCostForAction()
 	
 	

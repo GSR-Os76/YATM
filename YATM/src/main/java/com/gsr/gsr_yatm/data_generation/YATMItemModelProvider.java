@@ -150,15 +150,36 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.SPEED_UPGRADE.get());
 		this.basicItem(YATMItems.EFFICIENCY_UPGRADE.get());
 		
+		this.basicItem(YATMItems.WOODEN_DRILL_BIT.get());
+		this.basicItem(YATMItems.STONE_DRILL_BIT.get());
+		this.basicItem(YATMItems.IRON_DRILL_BIT.get());
 		this.basicItem(YATMItems.STEEL_DRILL_BIT.get());
+		this.basicItem(YATMItems.GOLD_DRILL_BIT.get());
+		this.basicItem(YATMItems.DIAMOND_DRILL_BIT.get());
 		this.basicItem(YATMItems.NETHERITE_DRILL_BIT.get());
+		
+		this.basicItem(YATMItems.WOODEN_SAW_BLADE.get());
+		this.basicItem(YATMItems.STONE_SAW_BLADE.get());
+		this.basicItem(YATMItems.IRON_SAW_BLADE.get());
 		this.basicItem(YATMItems.STEEL_SAW_BLADE.get());
+		this.basicItem(YATMItems.GOLD_SAW_BLADE.get());
+		this.basicItem(YATMItems.DIAMOND_SAW_BLADE.get());
 		this.basicItem(YATMItems.NETHERITE_SAW_BLADE.get());
 		
+		this.basicItem(YATMItems.STEEL_DRILL_WOOD.get());
+		this.basicItem(YATMItems.STEEL_DRILL_STONE.get());
+		this.basicItem(YATMItems.STEEL_DRILL_IRON.get());
 		this.basicItem(YATMItems.STEEL_DRILL_STEEL.get());
+		this.basicItem(YATMItems.STEEL_DRILL_GOLD.get());
+		this.basicItem(YATMItems.STEEL_DRILL_DIAMOND.get());
 		this.basicItem(YATMItems.STEEL_DRILL_NETHERITE.get());
 		
+		this.basicItem(YATMItems.STEEL_SAW_WOOD.get());
+		this.basicItem(YATMItems.STEEL_SAW_STONE.get());
+		this.basicItem(YATMItems.STEEL_SAW_IRON.get());
 		this.basicItem(YATMItems.STEEL_SAW_STEEL.get());
+		this.basicItem(YATMItems.STEEL_SAW_GOLD.get());
+		this.basicItem(YATMItems.STEEL_SAW_DIAMOND.get());
 		this.basicItem(YATMItems.STEEL_SAW_NETHERITE.get());
 		
 		this.basicItem(YATMItems.STEEL_WRENCH.get());

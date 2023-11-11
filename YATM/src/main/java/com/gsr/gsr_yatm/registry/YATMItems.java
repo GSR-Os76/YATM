@@ -334,15 +334,36 @@ public class YATMItems
 	public static final RegistryObject<EfficiencyUpgradeItem> EFFICIENCY_UPGRADE = generalTabEnqueue(ITEMS.register("efficiency_upgrade", () -> new EfficiencyUpgradeItem(new Item.Properties().stacksTo(4), 1f, BonusType.ADDITIVE)));
 	
 	// TODO, possibly add variants for all of the vanilla types, and eventually other mods materials and tiers
+	public static final RegistryObject<Item> WOODEN_DRILL_BIT = /* generalTabEnqueue */(ITEMS.register("wooden_drill_bit", () -> new Item(new Item.Properties())));
+	public static final RegistryObject<Item> STONE_DRILL_BIT = /* generalTabEnqueue */(ITEMS.register("stone_drill_bit", () -> new Item(new Item.Properties())));
+	public static final RegistryObject<Item> IRON_DRILL_BIT = /* generalTabEnqueue */(ITEMS.register("iron_drill_bit", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> STEEL_DRILL_BIT = generalTabEnqueue(ITEMS.register("steel_drill_bit", () -> new Item(new Item.Properties())));
+	public static final RegistryObject<Item> GOLD_DRILL_BIT = /* generalTabEnqueue */(ITEMS.register("gold_drill_bit", () -> new Item(new Item.Properties())));
+	public static final RegistryObject<Item> DIAMOND_DRILL_BIT = /* generalTabEnqueue */(ITEMS.register("diamond_drill_bit", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> NETHERITE_DRILL_BIT = generalTabEnqueue(ITEMS.register("netherite_drill_bit", () -> new Item(new Item.Properties())));
+	
+	public static final RegistryObject<Item> WOODEN_SAW_BLADE = /* generalTabEnqueue */(ITEMS.register("wooden_saw_blade", () -> new Item(new Item.Properties())));
+	public static final RegistryObject<Item> STONE_SAW_BLADE = /* generalTabEnqueue */(ITEMS.register("stone_saw_blade", () -> new Item(new Item.Properties())));
+	public static final RegistryObject<Item> IRON_SAW_BLADE = /* generalTabEnqueue */(ITEMS.register("iron_saw_blade", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> STEEL_SAW_BLADE = generalTabEnqueue(ITEMS.register("steel_saw_blade", () -> new Item(new Item.Properties())));
+	public static final RegistryObject<Item> GOLD_SAW_BLADE = /* generalTabEnqueue */(ITEMS.register("gold_saw_blade", () -> new Item(new Item.Properties())));
+	public static final RegistryObject<Item> DIAMOND_SAW_BLADE = /* generalTabEnqueue */(ITEMS.register("diamond_saw_blade", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> NETHERITE_SAW_BLADE = generalTabEnqueue(ITEMS.register("netherite_saw_blade", () -> new Item(new Item.Properties())));
 	
+	public static final RegistryObject<DrillItem> STEEL_DRILL_WOOD = /* generalTabEnqueue */(ITEMS.register("steel_drill_wood", () -> new DrillItem(Tiers.WOOD, new Item.Properties().craftRemainder(YATMItems.WOODEN_DRILL_BIT.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 8, 8)));
+	public static final RegistryObject<DrillItem> STEEL_DRILL_STONE = /* generalTabEnqueue */(ITEMS.register("steel_drill_stone", () -> new DrillItem(Tiers.STONE, new Item.Properties().craftRemainder(YATMItems.STONE_DRILL_BIT.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 8, 8)));
+	public static final RegistryObject<DrillItem> STEEL_DRILL_IRON = /* generalTabEnqueue */(ITEMS.register("steel_drill_iron", () -> new DrillItem(Tiers.IRON, new Item.Properties().craftRemainder(YATMItems.IRON_DRILL_BIT.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 8, 8)));
 	public static final RegistryObject<DrillItem> STEEL_DRILL_STEEL = generalTabEnqueue(ITEMS.register("steel_drill_steel", () -> new DrillItem(Tiers.IRON, new Item.Properties().craftRemainder(YATMItems.STEEL_DRILL_BIT.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 8, 8)));
+	public static final RegistryObject<DrillItem> STEEL_DRILL_GOLD = /* generalTabEnqueue */(ITEMS.register("steel_drill_gold", () -> new DrillItem(Tiers.GOLD, new Item.Properties().craftRemainder(YATMItems.GOLD_DRILL_BIT.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 8, 8)));
+	public static final RegistryObject<DrillItem> STEEL_DRILL_DIAMOND = /* generalTabEnqueue */(ITEMS.register("steel_drill_diamond", () -> new DrillItem(Tiers.DIAMOND, new Item.Properties().craftRemainder(YATMItems.DIAMOND_DRILL_BIT.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 8, 8)));
 	public static final RegistryObject<DrillItem> STEEL_DRILL_NETHERITE = generalTabEnqueue(ITEMS.register("steel_drill_netherite", () -> new DrillItem(Tiers.NETHERITE, new Item.Properties().craftRemainder(YATMItems.NETHERITE_DRILL_BIT.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 6, 6)));
 	
+	public static final RegistryObject<SawItem> STEEL_SAW_WOOD = /* generalTabEnqueue */(ITEMS.register("steel_saw_wood", () -> new SawItem(Tiers.WOOD, new Item.Properties().craftRemainder(YATMItems.WOODEN_SAW_BLADE.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 8, 8)));
+	public static final RegistryObject<SawItem> STEEL_SAW_STONE = /* generalTabEnqueue */(ITEMS.register("steel_saw_stone", () -> new SawItem(Tiers.STONE, new Item.Properties().craftRemainder(YATMItems.STONE_SAW_BLADE.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 8, 8)));
+	public static final RegistryObject<SawItem> STEEL_SAW_IRON = /* generalTabEnqueue */(ITEMS.register("steel_saw_iron", () -> new SawItem(Tiers.IRON, new Item.Properties().craftRemainder(YATMItems.IRON_SAW_BLADE.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 8, 8)));
 	public static final RegistryObject<SawItem> STEEL_SAW_STEEL = generalTabEnqueue(ITEMS.register("steel_saw_steel", () -> new SawItem(Tiers.IRON, new Item.Properties().craftRemainder(YATMItems.STEEL_SAW_BLADE.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 8, 8)));
+	public static final RegistryObject<SawItem> STEEL_SAW_GOLD = /* generalTabEnqueue */(ITEMS.register("steel_saw_gold", () -> new SawItem(Tiers.GOLD, new Item.Properties().craftRemainder(YATMItems.GOLD_SAW_BLADE.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 8, 8)));
+	public static final RegistryObject<SawItem> STEEL_SAW_DIAMOND = /* generalTabEnqueue */(ITEMS.register("steel_saw_diamond", () -> new SawItem(Tiers.DIAMOND, new Item.Properties().craftRemainder(YATMItems.DIAMOND_SAW_BLADE.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 8, 8)));
 	public static final RegistryObject<SawItem> STEEL_SAW_NETHERITE = generalTabEnqueue(ITEMS.register("steel_saw_netherite", () -> new SawItem(Tiers.NETHERITE, new Item.Properties().craftRemainder(YATMItems.NETHERITE_SAW_BLADE.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 6, 6)));
 	
 	public static final RegistryObject<Item> STEEL_WRENCH = generalTabEnqueue(ITEMS.register("steel_wrench", () -> new Item(new Item.Properties())));

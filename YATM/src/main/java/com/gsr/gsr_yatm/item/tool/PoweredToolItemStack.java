@@ -161,7 +161,7 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 	
 	
 	
-	public float getEfficiency() 
+	public float getEfficiencyMultiplier() 
 	{
 		float bonus = 1f;
 		// TODO, possibly make into a loop based system

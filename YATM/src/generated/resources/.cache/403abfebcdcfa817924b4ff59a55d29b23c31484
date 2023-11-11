@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-10T13:53:47.9720803	Tags for minecraft:item mod id gsr_yatm
+// 1.20.1	2023-11-10T19:24:38.7598321	Tags for minecraft:item mod id gsr_yatm
 bade3c9b0ab674f2efd3dc51c76e3652a9021029 data/forge/tags/items/ingots/rubber.json
 18795a8c0bcbdd7d7450b4a7ba2b97df86e0d87a data/forge/tags/items/nuggets/netherite.json
 22817fc3a29127b1c1278ea16d671d7c02dbdeb9 data/forge/tags/items/rooted_dirt.json
@@ -7,14 +7,14 @@ bade3c9b0ab674f2efd3dc51c76e3652a9021029 data/forge/tags/items/ingots/rubber.jso
 af5a440f5c712d3904c6b50819f04f2a58d71861 data/gsr_yatm/tags/items/armor_pieces/decay_netherite.json
 ec857824c3fbff4388d79661bc800d1e9c6b97bf data/gsr_yatm/tags/items/armor_pieces/soul_adorned_netherite.json
 eebcd9ed0e9c3b763459acafdafb1b8fc8df74c7 data/gsr_yatm/tags/items/device_adjusters.json
-2fafa18e275729fc6225beb9ef000a778107c1bd data/gsr_yatm/tags/items/drills.json
+6e8c40d6f0703efad1b1f9622155c03c57d7ba09 data/gsr_yatm/tags/items/drills.json
 4025cca10e3b03e5cf1f371e88a6afed701e7681 data/gsr_yatm/tags/items/foliar_steel_ores.json
 081674171279d64d71a1aa4cbf4c2e3fd9fc2de4 data/gsr_yatm/tags/items/golem_like_plant_formers.json
 205d34972c106978555918bdbb34363a9a669d3e data/gsr_yatm/tags/items/grows_phantasmal_shelf_fungi.json
 880e9f05ac2c3d06c0607e851c510d369f5ed86a data/gsr_yatm/tags/items/latex_extractable_logs.json
 dbc7ff55315393ed7b1d401f282d24be3c0e6096 data/gsr_yatm/tags/items/rubber_planks.json
 fdecd6c72772c252a2b8dcc095c7aa6e1685f4d7 data/gsr_yatm/tags/items/rubber_tree_logs.json
-514e877f75c675714ff8447ef86dfbdfc4e44feb data/gsr_yatm/tags/items/saws.json
+91d7a33207ac5e56042d675d375d4dab93abd11b data/gsr_yatm/tags/items/saws.json
 501277475e7f110a254450a8f21524225b471230 data/gsr_yatm/tags/items/soul_afflicted_rubber_planks.json
 ab467479a645246538e49c55790b101c51194caa data/gsr_yatm/tags/items/soul_afflicted_rubber_tree_logs.json
 6d7f0b1bcc037a4d235864d0803f04b421b7daa9 data/gsr_yatm/tags/items/soul_sap_extractable_logs.json

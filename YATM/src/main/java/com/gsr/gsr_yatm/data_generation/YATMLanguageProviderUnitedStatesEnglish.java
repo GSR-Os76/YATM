@@ -373,15 +373,36 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.EFFICIENCY_UPGRADE.get(), "Efficiency Upgrade (+100%)");
 		this.add(YATMItems.SPEED_UPGRADE.get(), "Speed Upgrade (+100%)");
 		
+		this.add(YATMItems.WOODEN_DRILL_BIT.get(), "Wooden Drill Bit");
+		this.add(YATMItems.STONE_DRILL_BIT.get(), "Stone Drill Bit");
+		this.add(YATMItems.IRON_DRILL_BIT.get(), "Iron Drill Bit");
 		this.add(YATMItems.STEEL_DRILL_BIT.get(), "Foliar Steel Drill Bit");
+		this.add(YATMItems.GOLD_DRILL_BIT.get(), "Gold Drill Bit");
+		this.add(YATMItems.DIAMOND_DRILL_BIT.get(), "Diamond Drill Bit");
 		this.add(YATMItems.NETHERITE_DRILL_BIT.get(), "Netherite Drill Bit");
+		
+		this.add(YATMItems.WOODEN_SAW_BLADE.get(), "Wooden Saw Blade");
+		this.add(YATMItems.STONE_SAW_BLADE.get(), "Stone Saw Blade");
+		this.add(YATMItems.IRON_SAW_BLADE.get(), "Iron Saw Blade");
 		this.add(YATMItems.STEEL_SAW_BLADE.get(), "Foliar Steel Saw Blade");
+		this.add(YATMItems.GOLD_SAW_BLADE.get(), "Gold Saw Blade");
+		this.add(YATMItems.DIAMOND_SAW_BLADE.get(), "Diamond Saw Blade");
 		this.add(YATMItems.NETHERITE_SAW_BLADE.get(), "Netherite Saw Blade");
 		
+		this.add(YATMItems.STEEL_DRILL_WOOD.get(), "Foliar Steel Drill (Wood)");
+		this.add(YATMItems.STEEL_DRILL_STONE.get(), "Foliar Steel Drill (Stone)");
+		this.add(YATMItems.STEEL_DRILL_IRON.get(), "Foliar Steel Drill (Iron)");
 		this.add(YATMItems.STEEL_DRILL_STEEL.get(), "Foliar Steel Drill (Foliar Steel)");
+		this.add(YATMItems.STEEL_DRILL_GOLD.get(), "Foliar Steel Drill (Gold)");
+		this.add(YATMItems.STEEL_DRILL_DIAMOND.get(), "Foliar Steel Drill (Diamond)");
 		this.add(YATMItems.STEEL_DRILL_NETHERITE.get(), "Foliar Steel Drill (Netherite)");
 		
+		this.add(YATMItems.STEEL_SAW_WOOD.get(), "Foliar Steel Saw (Wood)");
+		this.add(YATMItems.STEEL_SAW_STONE.get(), "Foliar Steel Saw (Stone)");
+		this.add(YATMItems.STEEL_SAW_IRON.get(), "Foliar Steel Saw (Iron)");
 		this.add(YATMItems.STEEL_SAW_STEEL.get(), "Foliar Steel Saw (Foliar Steel)");
+		this.add(YATMItems.STEEL_SAW_GOLD.get(), "Foliar Steel Saw (Gold)");
+		this.add(YATMItems.STEEL_SAW_DIAMOND.get(), "Foliar Steel Saw (Diamond)");
 		this.add(YATMItems.STEEL_SAW_NETHERITE.get(), "Foliar Steel Saw (Netherite)");
 		
 		this.add(YATMItems.STEEL_WRENCH.get(), "Foliar Steel Wrench");
