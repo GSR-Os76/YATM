@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.IAgingBlock;
 import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
 import com.gsr.gsr_yatm.block.ShapeBlock;
@@ -32,8 +33,6 @@ public class CarbumBlock extends ShapeBlock implements IAgingBlock, IYATMPlantab
 {
 	public static final IntegerProperty AGE = YATMBlockStateProperties.AGE_EIGHT;
 	
-	public static final int GROWTH_RARITY = 36;
-	
 	
 	
 	public CarbumBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
@@ -58,12 +57,11 @@ public class CarbumBlock extends ShapeBlock implements IAgingBlock, IYATMPlantab
 		{
 			if (!level.isClientSide)
 			{
-				Vec3 vector = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld));
-				double vecLength = vector.length();
-				int age = this.getAge(state);
-				
-				float damage = (((float) vecLength) * (2.0f * (age + 1)));
-				if (vecLength > 0.1d)
+				double speed = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld)).length();
+
+				double damageFactor = YATMConfigs.CARBUM_DAMAGE_FACTOR.get();
+				float damage = (((float) speed) * (((float)damageFactor) * (this.getAge(state) + 1)));
+				if (speed > YATMConfigs.CARBUM_DAMAGE_TRIGGER_TOLERANCE.get())
 				{
 					// TODO, create custom damage source for this too
 					entity.hurt(level.damageSources().thorns((Entity) null), damage);
@@ -121,7 +119,7 @@ public class CarbumBlock extends ShapeBlock implements IAgingBlock, IYATMPlantab
 		int maxAge = this.getMaxAge();
 		if(age < maxAge)
 		{
-			if (ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(CarbumBlock.GROWTH_RARITY) == 0)) 
+			if (ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(YATMConfigs.CARBUM_GROWTH_RARITY.get()) == 0)) 
 			{
 				level.setBlock(position, this.getStateForAge(state, age + 1), Block.UPDATE_CLIENTS);
 				ForgeHooks.onCropsGrowPost(level, position, state);

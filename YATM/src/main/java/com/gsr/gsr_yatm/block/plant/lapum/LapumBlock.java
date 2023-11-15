@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.IAgingBlock;
 import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
 import com.gsr.gsr_yatm.block.ShapeBlock;
@@ -31,10 +32,6 @@ public class LapumBlock extends ShapeBlock implements IAgingBlock, IYATMPlantabl
 {
 	public static final IntegerProperty AGE = YATMBlockStateProperties.AGE_EIGHT;
 	
-	public static final float DAMAGE_FACTOR = 0.0f;
-	public static final double DAMAGE_TRIGGER_TOLERANCE = Float.MAX_VALUE;
-	public static final int GROWTH_RARITY = 36;
-	
 	
 	
 	public LapumBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
@@ -59,12 +56,11 @@ public class LapumBlock extends ShapeBlock implements IAgingBlock, IYATMPlantabl
 		{
 			if (!level.isClientSide)
 			{
-				Vec3 vector = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld));
-				double vecLength = vector.length();
-				int age = this.getAge(state);
-				
-				float damage = (((float) vecLength) * (LapumBlock.DAMAGE_FACTOR * (age + 1)));
-				if (vecLength > LapumBlock.DAMAGE_TRIGGER_TOLERANCE)
+				double speed = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld)).length();
+
+				double damageFactor = YATMConfigs.LAPUM_DAMAGE_FACTOR.get();
+				float damage = (((float) speed) * (((float)damageFactor) * (this.getAge(state) + 1)));
+				if (speed > YATMConfigs.LAPUM_DAMAGE_TRIGGER_TOLERANCE.get())
 				{
 					// TODO, create custom damage source for this too
 					entity.hurt(level.damageSources().thorns((Entity) null), damage);
@@ -122,7 +118,7 @@ public class LapumBlock extends ShapeBlock implements IAgingBlock, IYATMPlantabl
 		int maxAge = this.getMaxAge();
 		if(age < maxAge)
 		{
-			if (ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(LapumBlock.GROWTH_RARITY) == 0)) 
+			if (ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(YATMConfigs.LAPUM_GROWTH_RARITY.get()) == 0)) 
 			{
 				level.setBlock(position, this.getStateForAge(state, age + 1), Block.UPDATE_CLIENTS);
 				ForgeHooks.onCropsGrowPost(level, position, state);

@@ -3,8 +3,8 @@ package com.gsr.gsr_yatm.block.plant.infernalum;
 import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Range;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.IAgingBlock;
 import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
 import com.gsr.gsr_yatm.block.ShapeBlock;
@@ -37,12 +37,6 @@ public class InfernalumBlock extends ShapeBlock implements IAgingBlock, IYATMPla
 	
 	public static final int MAX_MAJOR_AGE = 7;
 	
-	public static final float DAMAGE_FACTOR = 8.0f;
-	public static final double DAMAGE_TRIGGER_TOLERANCE = 0.1d;
-	public static final int GROWTH_RARITY = 64;
-	
-	public static final @Range(from = 1, to = Integer.MAX_VALUE) int MAX_MAJOR_AGE_INCREASE = 2;
-	
 	
 	public InfernalumBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
@@ -66,12 +60,11 @@ public class InfernalumBlock extends ShapeBlock implements IAgingBlock, IYATMPla
 		{
 			if (!level.isClientSide)
 			{
-				Vec3 vector = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld));
-				double vecLength = vector.length();
-				int age = this.getAge(state);
-				
-				float damage = (((float) vecLength) * (InfernalumBlock.DAMAGE_FACTOR * (age + 1)));
-				if (vecLength > InfernalumBlock.DAMAGE_TRIGGER_TOLERANCE)
+				double speed = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld)).length();
+
+				double damageFactor = YATMConfigs.INFERNALUM_DAMAGE_FACTOR.get();
+				float damage = (((float) speed) * (((float)damageFactor) * (this.getAge(state) + 1)));
+				if (speed > YATMConfigs.INFERNALUM_DAMAGE_TRIGGER_TOLERANCE.get())
 				{
 					// TODO, create custom damage source for this too
 					entity.hurt(level.damageSources().thorns((Entity) null), damage);
@@ -139,13 +132,13 @@ public class InfernalumBlock extends ShapeBlock implements IAgingBlock, IYATMPla
 			{
 				return;
 			} 
-			if (ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(InfernalumBlock.GROWTH_RARITY) == 0)) 
+			if (ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(YATMConfigs.INFERNALUM_GROWTH_RARITY.get()) == 0)) 
 			{
 				level.setBlock(position, dState, Block.UPDATE_CLIENTS);
 				ForgeHooks.onCropsGrowPost(level, position, state);
 				if(dAge == maxAge) 
 				{
-					level.setBlock(position.above(), this.getStateForAge(dState.setValue(InfernalumBlock.MAJOR_AGE, Math.min(InfernalumBlock.MAX_MAJOR_AGE, dState.getValue(InfernalumBlock.MAJOR_AGE) + (1 + random.nextInt(0, InfernalumBlock.MAX_MAJOR_AGE_INCREASE - 1)))), 0), Block.UPDATE_ALL);
+					level.setBlock(position.above(), this.getStateForAge(dState.setValue(InfernalumBlock.MAJOR_AGE, Math.min(InfernalumBlock.MAX_MAJOR_AGE, dState.getValue(InfernalumBlock.MAJOR_AGE) + (1 + random.nextIntBetweenInclusive(YATMConfigs.INFERNALUM_MIN_MAJOR_AGE_INCREASE.get(), YATMConfigs.INFERNALUM_MAX_MAJOR_AGE_INCREASE.get())))), 0), Block.UPDATE_ALL);
 				}
 			}
 		}

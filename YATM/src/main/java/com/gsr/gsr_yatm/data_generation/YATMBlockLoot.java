@@ -557,7 +557,7 @@ public class YATMBlockLoot extends VanillaBlockLoot
 									 )
 								.apply(
 										SetItemCountFunction
-										.setCount(UniformGenerator.between(1.0f, (float)FerrumBlock.MAX_FRUIT_COUNT))
+										.setCount(UniformGenerator.between(1f, 3f))
 										)
 								)
 						);

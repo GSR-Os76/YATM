@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-06T00:32:24.8137334	Tags for minecraft:block mod id gsr_yatm
+// 1.20.1	2023-11-15T12:24:21.6752201	Tags for minecraft:block mod id gsr_yatm
 c66ff3626edc7c0f108f497fa9aec78cbf9db39f data/forge/tags/blocks/basalt.json
 ea459db540b319f4bdead7b7f1142fc238c09a8e data/forge/tags/blocks/cactus.json
 ebcf7881dcf42cb3d8c8b5c2e92ebf16fd9d7284 data/forge/tags/blocks/calcite.json
@@ -46,6 +46,7 @@ d23c08013f8abe52922dae7906a9c5699130e7e4 data/gsr_yatm/tags/blocks/machines.json
 61064ec33852a4a02609c7e6edc2de09c480a0f8 data/gsr_yatm/tags/blocks/mediums/adamum_can_grow_on.json
 1a28f00eb34b3c96b745b740247a6eddad28fe15 data/gsr_yatm/tags/blocks/mediums/aerial_rubber_roots_can_grow_on.json
 eaf726d0ca999b963fa5b018a13e9c7f4b2e50cf data/gsr_yatm/tags/blocks/mediums/aerial_rubber_roots_can_grow_through.json
+8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/aurum_can_grow_in.json
 61064ec33852a4a02609c7e6edc2de09c480a0f8 data/gsr_yatm/tags/blocks/mediums/aurum_can_grow_on.json
 8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/basin_of_tears_flowers_can_grow_in.json
 c7cf498dd11b4becfc703ca6d155b77406279d34 data/gsr_yatm/tags/blocks/mediums/basin_of_tears_flowers_can_grow_on.json

@@ -1,18 +1,18 @@
 package com.gsr.gsr_yatm.block.plant.aurum;
 
-import java.util.List;
-import java.util.function.Supplier;
-
+import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
-import com.gsr.gsr_yatm.block.IHarvestableBlock;
+import com.gsr.gsr_yatm.YATMConfigs;
+import com.gsr.gsr_yatm.block.IAgingBlock;
+import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
+import com.gsr.gsr_yatm.block.ShapeBlock;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
+import com.gsr.gsr_yatm.utilities.BlockUtilities;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.NonNullList;
+import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
@@ -20,14 +20,10 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.CropBlock;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.DoubleBlockHalf;
@@ -35,64 +31,30 @@ import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ForgeHooks;
-import net.minecraftforge.common.ToolAction;
-import net.minecraftforge.common.ToolActions;
 
-public class AurumBlock extends CropBlock implements IHarvestableBlock
+public class AurumBlock extends ShapeBlock implements IAgingBlock, IYATMPlantableBlock
 {
 	public static final int DOUBLES_PAST_THRESHOLD = 2;
 	public static final EnumProperty<DoubleBlockHalf> HALF = YATMBlockStateProperties.DOUBLE_BLOCK_HALF;
 	public static final IntegerProperty AGE = YATMBlockStateProperties.AGE_FIVE;
-	private final ICollisionVoxelShapeProvider m_shape;
-	private final Supplier<ItemLike> m_seed;
-	private final Supplier<ItemStack> m_harvestResult;
 	
 	
 	
-	public AurumBlock(Properties properties, ICollisionVoxelShapeProvider shape, Supplier<ItemLike> seed, Supplier<ItemStack> harvestResult)
+	public AurumBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
-		super(properties);
+		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape));
 		
-		this.registerDefaultState(this.defaultBlockState().setValue(HALF, DoubleBlockHalf.LOWER));
-		
-		this.m_shape = shape;
-		this.m_seed = seed;
-		this.m_harvestResult = harvestResult;
+		this.registerDefaultState(this.defaultBlockState().setValue(this.getAgeProperty(), 0).setValue(AurumBlock.HALF, DoubleBlockHalf.LOWER));
 	} // end constructor
 
 	
 	
 	@Override
-	protected IntegerProperty getAgeProperty()
+	public IntegerProperty getAgeProperty()
 	{
 		return AurumBlock.AGE;
 	} // end getAgeProperty()
-
-	@Override
-	public int getMaxAge()
-	{
-		return 4;
-	} // end getMaxAge()
-
-	@Override
-	protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
-	{
-		builder.add(AurumBlock.AGE, AurumBlock.HALF);
-	} // end createBlockStateDefinition()
-
-
-
-
-
-
-	@Override
-	protected ItemLike getBaseSeedId()
-	{
-		return this.m_seed.get();
-	} // end getBaseSeedId()
 	
 	@Override
 	public void entityInside(BlockState state, Level level, BlockPos position, Entity entity)
@@ -101,13 +63,13 @@ public class AurumBlock extends CropBlock implements IHarvestableBlock
 		{
 			if (!level.isClientSide)
 			{
-				Vec3 vector = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld));
-				double vecLength = vector.length();
-				int age = this.getAge(state);
-				
-				float damage = (((float) vecLength) * (6.0f * (age + 1)));
-				if (vecLength > 0.1d)
+				double speed = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld)).length();
+
+				double damageFactor = YATMConfigs.AURUM_DAMAGE_FACTOR.get();
+				float damage = (((float) speed) * (((float)damageFactor) * (this.getAge(state) + 1)));
+				if (speed > YATMConfigs.AURUM_DAMAGE_TRIGGER_TOLERANCE.get())
 				{
+					// TODO, create custom damage source for this too
 					entity.hurt(level.damageSources().thorns((Entity) null), damage);
 				}
 			}
@@ -115,20 +77,50 @@ public class AurumBlock extends CropBlock implements IHarvestableBlock
 	} // end entityInside()
 
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
+	protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
 	{
-		return IHarvestableBlock.use(this, level, state, position, player, hand, hitResult);
-	} // end use()
+		builder.add(AurumBlock.AGE, AurumBlock.HALF);
+	} // end createBlockStateDefinition()
 	
 	
 	
+	@Override
+	public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos position)
+	{	
+		BlockState below = level.getBlockState(position.below());
+		return state.getValue(AurumBlock.HALF) == DoubleBlockHalf.LOWER 
+				? below.is(YATMBlockTags.AURUM_CAN_GROW_ON_KEY)
+				: (			below.is(this) 
+						&& (below.getValue(AurumBlock.HALF) == DoubleBlockHalf.LOWER) 
+						&& (this.getAge(below) == this.getAge(state)));
+	} // end canSurvive()
+
+	@SuppressWarnings("deprecation")
+	@Override
+	public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Block formerNeighbor, @NotNull BlockPos neighborPos, boolean p_60514_)
+	{
+		if(!this.canSurvive(state, level, position)) 
+		{
+			BlockUtilities.breakBlock(level, state, position);
+		}
+		super.neighborChanged(state, level, position, formerNeighbor, neighborPos, p_60514_);		
+	} // end neighborChanged()
+	
+	@Override
+	public boolean canPlantOn(@NotNull LevelReader level, @NotNull BlockState state, @NotNull BlockPos position, @NotNull Direction face)
+	{
+		BlockPos above = position.above();
+		return face == Direction.UP 
+				&& this.canSurvive(level.getBlockState(above), level, above) 
+				&& level.getBlockState(position.above()).is(YATMBlockTags.AURUM_CAN_GROW_IN_KEY);
+	} // end canPlantOn()
 
 
 
 	@Override
 	public boolean isRandomlyTicking(BlockState state)
 	{
-		return super.isRandomlyTicking(state) && state.getValue(HALF) == DoubleBlockHalf.LOWER;
+		return super.isRandomlyTicking(state) && state.getValue(AurumBlock.HALF) == DoubleBlockHalf.LOWER;
 	} // end isRandomlyTicking()
 
 	@Override
@@ -137,10 +129,10 @@ public class AurumBlock extends CropBlock implements IHarvestableBlock
 		int goingToAge = this.getAge(state) + 1;				
 		if (goingToAge <= this.getMaxAge() && !this.isGrowthBlocked(level, state, position))
 		{
-			if (ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(36) == 0))
+			if (ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(YATMConfigs.AURUM_GROWTH_RARITY.get()) == 0))
 			{
-				level.setBlock(position, this.getStateForAge(goingToAge), 2);
-				if(goingToAge > DOUBLES_PAST_THRESHOLD) 
+				level.setBlock(position, this.getStateForAge(state, goingToAge), 2);
+				if(goingToAge > AurumBlock.DOUBLES_PAST_THRESHOLD) 
 				{
 					BlockState above = level.getBlockState(position.above());
 					if(above.is(this)) 
@@ -149,7 +141,7 @@ public class AurumBlock extends CropBlock implements IHarvestableBlock
 					}
 					else
 					{
-						level.setBlock(position.above(), this.getStateForAge(goingToAge).setValue(AurumBlock.HALF, DoubleBlockHalf.UPPER), 3);
+						level.setBlock(position.above(), this.getStateForAge(state, goingToAge).setValue(AurumBlock.HALF, DoubleBlockHalf.UPPER), 3);
 					}
 				}
 				ForgeHooks.onCropsGrowPost(level, position, state);
@@ -158,36 +150,6 @@ public class AurumBlock extends CropBlock implements IHarvestableBlock
 	} // end randomTick()
 
 
-
-	@Override
-	protected boolean mayPlaceOn(BlockState state, BlockGetter blockGetter, BlockPos position)
-	{
-		return state.is(YATMBlockTags.AURUM_CAN_GROW_ON_KEY);
-	} // end mayPlaceOn()
-
-	@Override
-	public boolean canSurvive(BlockState state, LevelReader level, BlockPos position)
-	{
-		BlockPos check = position.below();
-		BlockState below = level.getBlockState(check);
-		return state.getValue(AurumBlock.HALF) == DoubleBlockHalf.LOWER 
-				? this.mayPlaceOn(below, level, check)
-				: this.isTopSupport(below);
-	} // end canSurvive()
-
-	@Override
-	public boolean isValidBonemealTarget(LevelReader p_255715_, BlockPos p_52259_, BlockState p_52260_, boolean p_52261_)
-	{
-		return false;
-	} // end isValidBonemealTarget()
-
-
-
-	@Override
-	public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
-	{		
-		return this.m_shape.getShape(blockState, blockGetter, blockPos, context);
-	} // end getShape()
 
 	// should only be called with lower state
 	protected void setToYoungest(Level level, BlockState state, BlockPos position) 
@@ -221,75 +183,5 @@ public class AurumBlock extends CropBlock implements IHarvestableBlock
 		BlockState abvState = level.getBlockState(position.above());
 		return this.isPastDoubleBlockThreshold(state.setValue(this.getAgeProperty(), nextAgeUp)) && !(abvState.canBeReplaced() || abvState.is(this)); 
 	} // end isGrowthBlocked()
-	
-
-	
-	@Override
-	public boolean allowEventHandling()
-	{
-		return false;
-	} // end allowEventHandling()
-	
-
-
-
-	@Override
- 	public void onHarvest(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
-	{
-		if(!level.isClientSide) 
-		{
-			BlockPos positionOfBottom = state.getValue(AurumBlock.HALF) == DoubleBlockHalf.UPPER ? position.below() : position;
-			BlockState bottomPart = state.getValue(AurumBlock.HALF) == DoubleBlockHalf.UPPER ? level.getBlockState(positionOfBottom) : state;
-	
-			this.setToYoungest(level, bottomPart, positionOfBottom);
-		}
-	} // end onHarvest
-
-	@Override
-	public @NotNull List<@Nullable ToolAction> validActions(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position)
-	{
-		return state.getValue(this.getAgeProperty()) > 0 ? List.of(ToolActions.PICKAXE_DIG) : List.of();
-	} // end validActions()
-
-	@Override
-	public boolean isHarvestable(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
-	{
-		return state.getValue(this.getAgeProperty()) > 0;
-	} // end isHarvestable()
-
-	@Override
-	public @Nullable BlockState getResultingState(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
-	{
-		if (this.isHarvestable(level, state, position, action))
-		{
-			return state.setValue(this.getAgeProperty(), 0);
-		}
-		return null;
-	} // end getResultingState()
-
-	@Override
-	public @Nullable NonNullList<ItemStack> getResults(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
-	{
-		if(this.isHarvestable(level, state, position, action)) 
-		{
-			ItemStack res = this.m_harvestResult.get();
-			res.grow(this.getBonusFrondsPerAge(state));
-			return NonNullList.of(ItemStack.EMPTY, res);
-		}
-		return null;
-	} // end getResults()
-	
-	private int getBonusFrondsPerAge(BlockState state) 
-	{
-		return switch(state.getValue(this.getAgeProperty())) 
-		{
-			case 0 -> 0;
-			case 1 -> 0;
-			case 2 -> 1;
-			case 3 -> 3;
-			case 4 -> 5;
-			default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(this.getAgeProperty()));
-		};
-	} // end getBonusFrondsPerAge()
 	
 } // end class

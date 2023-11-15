@@ -6,6 +6,7 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.IAgingBlock;
 import com.gsr.gsr_yatm.block.IHarvestableBlock;
 import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
@@ -46,9 +47,7 @@ public class FerrumBlock extends ShapeBlock implements IAgingBlock, IHarvestable
 	public static final IntegerProperty AGE = YATMBlockStateProperties.AGE_EIGHT;
 	public static final BooleanProperty HAS_FRUIT = YATMBlockStateProperties.HAS_FRUIT;
 	
-	public static final int FRUIT_RARITY = 3;
-	public static final int GROWTH_RARITY = 36;
-	public static final int MAX_FRUIT_COUNT = 3;
+	
 	
 	public FerrumBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
@@ -72,14 +71,13 @@ public class FerrumBlock extends ShapeBlock implements IAgingBlock, IHarvestable
 		{
 			if (!level.isClientSide)
 			{
-				Vec3 vector = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld));
-				double vecLength = vector.length();
-				int age = this.getAge(state);
-				
-				float damage = (((float) vecLength) * (6.0f * (age + 1)));
-				if (vecLength > 0.1d)
+				double speed = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld)).length();
+
+				double damageFactor = YATMConfigs.FERRUM_DAMAGE_FACTOR.get();
+				float damage = (((float) speed) * (((float)damageFactor) * (this.getAge(state) + 1)));
+				if (speed > YATMConfigs.FERRUM_DAMAGE_TRIGGER_TOLERANCE.get())
 				{
-					// TODO, create custom damage source for this and for aurum
+					// TODO, create custom damage source for this too
 					entity.hurt(level.damageSources().thorns((Entity) null), damage);
 				}
 			}
@@ -143,12 +141,12 @@ public class FerrumBlock extends ShapeBlock implements IAgingBlock, IHarvestable
 		int maxAge = this.getMaxAge();
 		if(age < maxAge && !state.getValue(FerrumBlock.HAS_FRUIT))
 		{
-			if(age + 1 == maxAge && ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(FerrumBlock.FRUIT_RARITY) == 0)) 
+			if(age + 1 == maxAge && ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(YATMConfigs.FERRUM_FRUIT_RARITY.get()) == 0)) 
 			{
 				level.setBlock(position, state.setValue(FerrumBlock.HAS_FRUIT, true), Block.UPDATE_CLIENTS);
 				ForgeHooks.onCropsGrowPost(level, position, state);
 			}
-			else if (ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(FerrumBlock.GROWTH_RARITY) == 0)) 
+			else if (ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(YATMConfigs.FERRUM_GROWTH_RARITY.get()) == 0)) 
 			{
 				level.setBlock(position, this.getStateForAge(state, age + 1), Block.UPDATE_CLIENTS);
 				ForgeHooks.onCropsGrowPost(level, position, state);
@@ -165,12 +163,6 @@ public class FerrumBlock extends ShapeBlock implements IAgingBlock, IHarvestable
 	} // end validActions()
 
 	@Override
-	public boolean isHarvestable(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
-	{
-		return state.getValue(FerrumBlock.HAS_FRUIT);
-	} // end isHarvestable()
-
-	@Override
 	public @Nullable BlockState getResultingState(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
 	{
 		return state.setValue(FerrumBlock.HAS_FRUIT, false);
@@ -184,7 +176,7 @@ public class FerrumBlock extends ShapeBlock implements IAgingBlock, IHarvestable
 	
 	protected @NotNull ItemStack getHarvestResult()
 	{
-		return new ItemStack(Items.IRON_NUGGET, RandomSource.create().nextIntBetweenInclusive(1, FerrumBlock.MAX_FRUIT_COUNT));
+		return new ItemStack(Items.IRON_NUGGET, RandomSource.create().nextIntBetweenInclusive(YATMConfigs.FERRUM_MIN_FRUIT_COUNT.get(), YATMConfigs.FERRUM_MAX_FRUIT_COUNT.get()));
 	} // end getHarvestResult()
 
 } // end class

@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.IAgingBlock;
 import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
 import com.gsr.gsr_yatm.block.ShapeBlock;
@@ -16,19 +17,20 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.common.ForgeHooks;
 
 public class VicumBlock extends ShapeBlock implements IAgingBlock, IYATMPlantableBlock
 {
 	public static final IntegerProperty AGE = YATMBlockStateProperties.AGE_EIGHT;
-	
-	public static final int GROWTH_RARITY = 36;
 	
 	
 	
@@ -46,6 +48,26 @@ public class VicumBlock extends ShapeBlock implements IAgingBlock, IYATMPlantabl
 	{
 		return VicumBlock.AGE;
 	} // end getAgeProperty()
+	
+	@Override
+	public void entityInside(BlockState state, Level level, BlockPos position, Entity entity)
+	{
+		if (entity instanceof LivingEntity)
+		{
+			if (!level.isClientSide)
+			{
+				double speed = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld)).length();
+
+				double damageFactor = YATMConfigs.VICUM_DAMAGE_FACTOR.get();
+				float damage = (((float) speed) * (((float)damageFactor) * (this.getAge(state) + 1)));
+				if (speed > YATMConfigs.VICUM_DAMAGE_TRIGGER_TOLERANCE.get())
+				{
+					// TODO, create custom damage source for this too
+					entity.hurt(level.damageSources().thorns((Entity) null), damage);
+				}
+			}
+		}
+	} // end entityInside()
 	
 	@Override
 	protected void createBlockStateDefinition(@NotNull Builder<Block, BlockState> builder)
@@ -96,7 +118,7 @@ public class VicumBlock extends ShapeBlock implements IAgingBlock, IYATMPlantabl
 		int maxAge = this.getMaxAge();
 		if(age < maxAge)
 		{
-			if (ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(VicumBlock.GROWTH_RARITY) == 0)) 
+			if (ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(YATMConfigs.VICUM_GROWTH_RARITY.get()) == 0)) 
 			{
 				level.setBlock(position, this.getStateForAge(state, age + 1), Block.UPDATE_CLIENTS);
 				ForgeHooks.onCropsGrowPost(level, position, state);

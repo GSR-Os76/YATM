@@ -5,8 +5,8 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
-import org.jetbrains.annotations.Range;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.IAgingBlock;
 import com.gsr.gsr_yatm.block.IHarvestableBlock;
 import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
@@ -49,11 +49,6 @@ public class AdamumBlock extends ShapeBlock implements IAgingBlock, IHarvestable
 	
 	public static final int MAX_MAJOR_AGE = 7;
 	
-	public static final float DAMAGE_FACTOR = 8.0f;
-	public static final double DAMAGE_TRIGGER_TOLERANCE = 0.1d;
-	public static final int FRUITING_RARITY = 3;
-	public static final int GROWTH_RARITY = 64;	
-	public static final @Range(from = 1, to = Integer.MAX_VALUE) int MAX_MAJOR_AGE_INCREASE = 2;
 	
 	
 	public AdamumBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
@@ -78,12 +73,11 @@ public class AdamumBlock extends ShapeBlock implements IAgingBlock, IHarvestable
 		{
 			if (!level.isClientSide)
 			{
-				Vec3 vector = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld));
-				double vecLength = vector.length();
-				int age = this.getAge(state);
+				double speed = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld)).length();
 				
-				float damage = (((float) vecLength) * (AdamumBlock.DAMAGE_FACTOR * (age + 1)));
-				if (vecLength > AdamumBlock.DAMAGE_TRIGGER_TOLERANCE)
+				double damageFactor = YATMConfigs.ADAMUM_DAMAGE_FACTOR.get();
+				float damage = (((float) speed) * (((float)damageFactor) * (this.getAge(state))));
+				if (speed > YATMConfigs.ADAMUM_DAMAGE_TRIGGER_TOLERANCE.get())
 				{
 					// TODO, create custom damage source for this too
 					entity.hurt(level.damageSources().thorns((Entity) null), damage);
@@ -130,7 +124,7 @@ public class AdamumBlock extends ShapeBlock implements IAgingBlock, IHarvestable
 	@Override
 	public boolean canPlantOn(@NotNull LevelReader level, @NotNull BlockState state, @NotNull BlockPos position, @NotNull Direction face)
 	{
-		BlockPos below = position.above();
+		BlockPos below = position.below();
 		return face == Direction.DOWN 
 				&& this.canSurvive(level.getBlockState(below), level, below) 
 				&& level.getBlockState(position.below()).is(YATMBlockTags.ADAMUM_CAN_GROW_IN_KEY);
@@ -154,18 +148,18 @@ public class AdamumBlock extends ShapeBlock implements IAgingBlock, IHarvestable
 		{
 			int dAge = age + 1;
 			BlockState dState = this.getStateForAge(state, dAge);
-			// don't grow up if blocked.
+			// don't grow down if blocked.
 			if(dAge == maxAge && !level.getBlockState(position.below()).is(YATMBlockTags.ADAMUM_CAN_GROW_IN_KEY))
 			{
 				return;
 			} 
-			if (ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(AdamumBlock.GROWTH_RARITY) == 0)) 
+			if (ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(YATMConfigs.ADAMUM_GROWTH_RARITY.get()) == 0)) 
 			{
 				level.setBlock(position, dState, Block.UPDATE_CLIENTS);
 				ForgeHooks.onCropsGrowPost(level, position, state);
 				if(dAge == maxAge) 
 				{
-					level.setBlock(position.below(), this.getStateForAge(dState.setValue(AdamumBlock.MAJOR_AGE, Math.min(AdamumBlock.MAX_MAJOR_AGE, dState.getValue(AdamumBlock.MAJOR_AGE) + (1 + random.nextInt(0, AdamumBlock.MAX_MAJOR_AGE_INCREASE - 1)))), 0).setValue(AdamumBlock.HAS_FRUIT, random.nextInt(AdamumBlock.FRUITING_RARITY) == 0), Block.UPDATE_ALL);
+					level.setBlock(position.below(), this.getStateForAge(dState.setValue(AdamumBlock.MAJOR_AGE, Math.min(AdamumBlock.MAX_MAJOR_AGE, dState.getValue(AdamumBlock.MAJOR_AGE) + (1 + random.nextIntBetweenInclusive(YATMConfigs.ADAMUM_MIN_MAJOR_AGE_INCREASE.get(), YATMConfigs.ADAMUM_MAX_MAJOR_AGE_INCREASE.get())))), 0).setValue(AdamumBlock.HAS_FRUIT, random.nextInt(YATMConfigs.ADAMUM_FRUITING_RARITY.get()) == 0), Block.UPDATE_ALL);
 				}
 			}
 		}

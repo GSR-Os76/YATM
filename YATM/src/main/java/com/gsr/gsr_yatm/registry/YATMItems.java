@@ -326,6 +326,7 @@ public class YATMItems
 	
 	
 	
+	// public static final RegistryObject<CurrentBatteryItem> CURRENT_TUBER = generalTabEnqueue(ITEMS.register("current_tuber", () -> new CurrentBatteryItem(new Item.Properties().stacksTo(4))));
 	// public static final RegistryObject<CurrentBatteryItem> CURRENT_BATTERY = generalTabEnqueue(ITEMS.register("current_battery", () -> new CurrentBatteryItem(new Item.Properties().stacksTo(4))));
 	// public static final RegistryObject<CurrentBatteryItem> ADVANCED_CURRENT_BATTERY = generalTabEnqueue(ITEMS.register("advanced_current_battery", () -> new CurrentBatteryItem(new Item.Properties().stacksTo(4))));
 	
@@ -416,7 +417,7 @@ public class YATMItems
 	
 	public static <T extends Item> RegistryObject<T> generalTabEnqueue(RegistryObject<T> item) 
 	{
-		return YATMCreativeModTabs.generalTabEnqueue(item);
+		return YATMCreativeModeTabs.generalTabEnqueue(item);
 	} // end generalTabEnqueue()
 	
 } // end class

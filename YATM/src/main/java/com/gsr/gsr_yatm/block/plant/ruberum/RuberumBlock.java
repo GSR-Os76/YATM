@@ -3,7 +3,9 @@ package com.gsr.gsr_yatm.block.plant.ruberum;
 import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
+import org.joml.Math;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.IAgingBlock;
 import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
 import com.gsr.gsr_yatm.block.ShapeBlock;
@@ -35,14 +37,6 @@ public class RuberumBlock extends ShapeBlock implements IAgingBlock, IYATMPlanta
 {
 	public static final IntegerProperty AGE = YATMBlockStateProperties.AGE_EIGHT;
 	public static final BooleanProperty LIT = YATMBlockStateProperties.LIT;
-	
-	public static final float DAMAGE_FACTOR = 0.0f;
-	public static final double DAMAGE_TRIGGER_TOLERANCE = 0.1d;
-	public static final int GROWTH_RARITY = 36;
-	public static final int MAX_PARTICLES = 3;
-	public static final int PARTICLE_RARITY = 6;
-	public static final int SIGNAL_FACTOR = 2;
-	public static final double SIGNAL_TRIGGER_TOLERANCE = 0.1d;
 	
 	
 	
@@ -86,38 +80,37 @@ public class RuberumBlock extends ShapeBlock implements IAgingBlock, IYATMPlanta
 		if (!level.isClientSide)
 		{
 			double speed = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld)).length();
-			int age = this.getAge(state);
 
 			if (entity instanceof LivingEntity)
 			{
-				float damage = (((float) speed) * (RuberumBlock.DAMAGE_FACTOR * (age + 1)));
-				if (speed > RuberumBlock.DAMAGE_TRIGGER_TOLERANCE)
+				double damageFactor = YATMConfigs.RUBERUM_DAMAGE_FACTOR.get();
+				float damage = (((float) speed) * (((float)damageFactor) * (this.getAge(state) + 1)));
+				if (speed > YATMConfigs.RUBERUM_DAMAGE_TRIGGER_TOLERANCE.get())
 				{
 					// TODO, create custom damage source for this too
 					entity.hurt(level.damageSources().thorns((Entity) null), damage);
 				}
 			}
 			
-			if(!state.getValue(RuberumBlock.LIT) && (speed > RuberumBlock.SIGNAL_TRIGGER_TOLERANCE)) 
+			if(!state.getValue(RuberumBlock.LIT) && (speed > YATMConfigs.RUBERUM_SIGNAL_TRIGGER_TOLERANCE.get())) 
 			{
 				level.setBlock(position, state.setValue(RuberumBlock.LIT, true), Block.UPDATE_ALL);
 			}			
-		}
-		
+		}		
 	} // end entityInside()
 	
 	@Override
 	public int getSignal(BlockState state, BlockGetter level, BlockPos position, Direction d)
 	{
-		return state.getValue(RuberumBlock.LIT) ? (state.getValue(RuberumBlock.AGE) + 1) * RuberumBlock.SIGNAL_FACTOR : 0;
+		return state.getValue(RuberumBlock.LIT) ? (state.getValue(RuberumBlock.AGE) + 1) * YATMConfigs.RUBERUM_SIGNAL_FACTOR.get() : 0;
 	} // end randomTick()
 	
 	@Override
 	public void animateTick(BlockState state, Level level, BlockPos position, RandomSource random)
 	{
-		if(state.getValue(RuberumBlock.LIT) && random.nextInt(RuberumBlock.PARTICLE_RARITY) == 0) 
+		if(state.getValue(RuberumBlock.LIT) && random.nextInt(YATMConfigs.RUBERUM_PARTICLE_RARITY.get()) == 0) 
 		{
-			for(int i = 0; i < random.nextIntBetweenInclusive(1, RuberumBlock.MAX_PARTICLES); i++) 
+			for(int i = 0; i < random.nextIntBetweenInclusive(YATMConfigs.RUBERUM_MIN_PARTICLES.get(), YATMConfigs.RUBERUM_MAX_PARTICLES.get()); i++) 
 			{
 				int age = this.getAge(state);
 				int hAgeFactor = age + 2;
@@ -130,9 +123,6 @@ public class RuberumBlock extends ShapeBlock implements IAgingBlock, IYATMPlanta
 		}
 	} // end animateTick()
 	
-	
-	
-
 
 
 	@Override
@@ -182,15 +172,12 @@ public class RuberumBlock extends ShapeBlock implements IAgingBlock, IYATMPlanta
 		int maxAge = this.getMaxAge();
 		if(age < maxAge)
 		{
-			if (ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(RuberumBlock.GROWTH_RARITY) == 0)) 
+			if (ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(YATMConfigs.RUBERUM_GROWTH_RARITY.get()) == 0)) 
 			{
 				level.setBlock(position, this.getStateForAge(state, age + 1), Block.UPDATE_CLIENTS);
 				ForgeHooks.onCropsGrowPost(level, position, state);
 			}
 		}
-	}
-
-
-
+	} // end randomTick()
 	
 } // end class

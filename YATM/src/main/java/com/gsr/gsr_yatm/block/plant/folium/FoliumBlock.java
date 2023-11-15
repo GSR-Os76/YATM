@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.IAgingBlock;
 import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
 import com.gsr.gsr_yatm.block.ShapeBlock;
@@ -34,8 +35,6 @@ public class FoliumBlock extends ShapeBlock implements IAgingBlock, IYATMPlantab
 	public static final IntegerProperty AGE = YATMBlockStateProperties.AGE_FIVE;
 	public static final EnumProperty<DoubleBlockHalf> HALF = YATMBlockStateProperties.DOUBLE_BLOCK_HALF;
 	
-	public static final int GROWTH_RARITY = 36;
-	
 	
 	
 	public FoliumBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
@@ -60,12 +59,11 @@ public class FoliumBlock extends ShapeBlock implements IAgingBlock, IYATMPlantab
 		{
 			if (!level.isClientSide)
 			{
-				Vec3 vector = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld));
-				double vecLength = vector.length();
-				int age = this.getAge(state);
-				
-				float damage = (((float) vecLength) * (6.0f * (age + 1)));
-				if (vecLength > 0.1d)
+				double speed = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld)).length();
+
+				double damageFactor = YATMConfigs.FOLIUM_DAMAGE_FACTOR.get();
+				float damage = (((float) speed) * (((float)damageFactor) * (this.getAge(state) + 1)));
+				if (speed > YATMConfigs.FOLIUM_DAMAGE_TRIGGER_TOLERANCE.get())
 				{
 					// TODO, create custom damage source for this too
 					entity.hurt(level.damageSources().thorns((Entity) null), damage);
@@ -132,7 +130,7 @@ public class FoliumBlock extends ShapeBlock implements IAgingBlock, IYATMPlantab
 			BlockPos abovePos = position.above();
 			BlockState above = level.getBlockState(abovePos);
 			if ((!shouldBeDouble || (above.is(YATMBlockTags.FOLIUM_CAN_GROW_IN_KEY) || above.is(this)))
-					&& ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(FoliumBlock.GROWTH_RARITY) == 0)) 
+					&& ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(YATMConfigs.FOLIUM_GROWTH_RARITY.get()) == 0)) 
 			{
 				BlockState nextAge = this.getStateForAge(state, age + 1);
 				level.setBlock(position, nextAge, Block.UPDATE_CLIENTS);

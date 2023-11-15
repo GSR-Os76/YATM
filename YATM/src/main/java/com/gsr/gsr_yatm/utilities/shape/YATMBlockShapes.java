@@ -10,6 +10,7 @@ import com.gsr.gsr_yatm.block.device.AttachmentState;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
+import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsVegetationBlock;
 import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
 import com.gsr.gsr_yatm.block.plant.cuprum.CuprumBlock;
@@ -91,6 +92,32 @@ public class YATMBlockShapes
 					};
 		} // end getShape()
 	};
+	
+	public static final ICollisionVoxelShapeProvider AURUM = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape SPROUT = Block.box(1d, 0d, 1d, 15d, 12d, 15d);
+		private static final VoxelShape YOUNG = Block.box(0d, 0d, 0d, 16d, 15d, 16d);
+		private static final VoxelShape ADOLESCENT = Block.box(0d, 0d, 0d, 16d, 15d, 16d);
+		private static final VoxelShape MATURE_LOWER = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
+		private static final VoxelShape MATURE_HIGHER = Block.box(0d, 0d, 0d, 16d, 14d, 16d);
+		private static final VoxelShape OLD_LOWER = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
+		private static final VoxelShape OLD_HIGHER = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
+
+		@Override
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
+		{
+			boolean isLower = state.getValue(AurumBlock.HALF) == DoubleBlockHalf.LOWER;
+			return switch(state.getValue(AurumBlock.AGE)) 
+			{
+				case 0 -> SPROUT;
+				case 1 -> YOUNG;
+				case 2 -> ADOLESCENT;
+				case 3 -> isLower ? MATURE_LOWER : MATURE_HIGHER;
+				case 4 -> isLower ? OLD_LOWER : OLD_HIGHER;
+				default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(AurumBlock.AGE));
+			};
+		} // end getShape()
+	};	
 	
 	public static final ICollisionVoxelShapeProvider BASIN_OF_TEARS_VEGETATION = new ICollisionVoxelShapeProvider() 
 	{

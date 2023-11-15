@@ -4,10 +4,10 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.IAgingBlock;
 import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
 import com.gsr.gsr_yatm.block.ShapeBlock;
-import com.gsr.gsr_yatm.block.plant.infernalum.InfernalumBlock;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.utilities.BlockUtilities;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
@@ -35,10 +35,6 @@ public class CuprumBlock extends ShapeBlock implements IAgingBlock, IYATMPlantab
 	public static final IntegerProperty AGE = YATMBlockStateProperties.AGE_EIGHT;
 	public static final EnumProperty<DoubleBlockHalf> HALF = YATMBlockStateProperties.DOUBLE_BLOCK_HALF;
 	
-	public static final float DAMAGE_FACTOR = 8.0f;
-	public static final double DAMAGE_TRIGGER_TOLERANCE = 0.1d;
-	public static final int GROWTH_RARITY = 36;
-	
 	
 	
 	public CuprumBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
@@ -63,12 +59,11 @@ public class CuprumBlock extends ShapeBlock implements IAgingBlock, IYATMPlantab
 		{
 			if (!level.isClientSide)
 			{
-				Vec3 vector = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld));
-				double vecLength = vector.length();
-				int age = this.getAge(state);
-				
-				float damage = (((float) vecLength) * (InfernalumBlock.DAMAGE_FACTOR * (age + 1)));
-				if (vecLength > InfernalumBlock.DAMAGE_TRIGGER_TOLERANCE)
+				double speed = new Vec3(Math.abs(entity.getX() - entity.xOld), Math.abs(entity.getY() - entity.yOld), Math.abs(entity.getZ() - entity.zOld)).length();
+
+				double damageFactor = YATMConfigs.CUPRUM_DAMAGE_FACTOR.get();
+				float damage = (((float) speed) * (((float)damageFactor) * (this.getAge(state) + 1)));
+				if (speed > YATMConfigs.CUPRUM_DAMAGE_TRIGGER_TOLERANCE.get())
 				{
 					// TODO, create custom damage source for this too
 					entity.hurt(level.damageSources().thorns((Entity) null), damage);
@@ -135,7 +130,7 @@ public class CuprumBlock extends ShapeBlock implements IAgingBlock, IYATMPlantab
 			BlockPos abovePos = position.above();
 			BlockState above = level.getBlockState(abovePos);
 			if ((!shouldBeDouble || (above.is(YATMBlockTags.CUPRUM_CAN_GROW_IN_KEY) || above.is(this)))
-					&& ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(CuprumBlock.GROWTH_RARITY) == 0)) 
+					&& ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(YATMConfigs.CUPRUM_GROWTH_RARITY.get()) == 0)) 
 			{
 				BlockState nextAge = this.getStateForAge(state, age + 1);
 				level.setBlock(position, nextAge, Block.UPDATE_CLIENTS);

@@ -2,7 +2,7 @@ package com.gsr.gsr_yatm.data_generation;
 
 import com.gsr.gsr_yatm.command.YATMRuleCommand;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
-import com.gsr.gsr_yatm.registry.YATMCreativeModTabs;
+import com.gsr.gsr_yatm.registry.YATMCreativeModeTabs;
 import com.gsr.gsr_yatm.registry.YATMFluids;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
@@ -23,7 +23,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 	@Override
 	protected void addTranslations()
 	{
-		this.add(YATMCreativeModTabs.YATM_GENERAL, "Yet Another Tech Mod General");
+		this.add(YATMCreativeModeTabs.YATM_GENERAL, "Yet Another Tech Mod General");
 		
 		this.add(YATMMenuTypes.BIOLER.get(), "Bioler");		
 		this.add(YATMMenuTypes.BOILER.get(), "Boiler");		

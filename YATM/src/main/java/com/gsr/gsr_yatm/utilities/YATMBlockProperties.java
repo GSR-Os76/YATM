@@ -40,7 +40,7 @@ public class YATMBlockProperties
 	
 	
 	public static final Properties ADAMUM = Properties.of().mapColor(MapColor.COLOR_BLACK).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().strength(6.0F, 1200.0F);
-	public static final Properties AURUM_SP = Properties.of().mapColor(MapColor.GOLD).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.NETHER_GOLD_ORE);
+	public static final Properties AURUM = Properties.of().mapColor(MapColor.GOLD).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.NETHER_GOLD_ORE);
 	public static final Properties BASIN_OF_TEARS = YATMBlockProperties.basinOfTears();
 	public static final Properties BASIN_OF_TEARS_VEGETATIVE = YATMBlockProperties.basinOfTears().noLootTable();
 	public static final Properties BLEACHED_ICE_CORAL = YATMBlockProperties.iceCoral().mapColor(DyeColor.WHITE);
