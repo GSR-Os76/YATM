@@ -22,6 +22,7 @@ import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlock;
 import com.gsr.gsr_yatm.block.device.current_furnace.FurnacePlusBlock;
 import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInterchangerBlock;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlock;
+import com.gsr.gsr_yatm.block.device.grafting.GraftingTableBlock;
 import com.gsr.gsr_yatm.block.device.grinder.GrinderBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
 import com.gsr.gsr_yatm.block.device.injector.InjectorBlock;
@@ -306,6 +307,8 @@ public class YATMBlocks
 	public static final RegistryObject<RootedDirtBlock> ROOTED_SOUL_SOIL = BLOCKS.register("rooted_soul_soil", () -> new RootedDirtBlock(YATMBlockProperties.ROOTED_SOUL_SOIL));
 		
 	
+	
+	public static final RegistryObject<GraftingTableBlock> GRAFTING_TABLE = BLOCKS.register("grafting_table", () -> new GraftingTableBlock(YATMBlockProperties.GRAFTING_TABLE, YATMBlockShapes.CUBE));
 	
 	public static final RegistryObject<SapCollectorBlock> SAP_COLLECTOR = BLOCKS.register("sap_collector", () -> new SapCollectorBlock(YATMBlockProperties.SAP_COLLECTOR, YATMBlockShapes.SAP_COLLECTOR_SHAPES));
 	public static final RegistryObject<FilledSapCollectorBlock> SAP_COLLECTOR_LATEX = BLOCKS.register("sap_collector_latex", () -> new FilledSapCollectorBlock(YATMBlockProperties.SAP_COLLECTOR, YATMBlockShapes.SAP_COLLECTOR_SHAPES, YATMBlocks.SAP_COLLECTOR.get()::defaultBlockState, YATMFluids.LATEX::get));

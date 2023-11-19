@@ -11,7 +11,7 @@ import org.jetbrains.annotations.NotNull;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.data_generation.YATMItemTags;
 import com.gsr.gsr_yatm.registry.YATMItems;
-import com.gsr.gsr_yatm.utilities.InventoryUtilities;
+import com.gsr.gsr_yatm.utilities.InventoryUtil;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -543,7 +543,7 @@ public class EssenceOfSoulsBottleItem extends DrinkableFluidBottleItem
 	private static InteractionResult formSucceeded(@NotNull UseOnContext context, @NotNull ItemStack held, @NotNull Item result) 
 	{
 		// TODO, maybe play particles			
-		return EssenceOfSoulsBottleItem.formSucceeded(context, held, (l, bp) -> InventoryUtilities.drop(l, bp, new ItemStack(result)));
+		return EssenceOfSoulsBottleItem.formSucceeded(context, held, (l, bp) -> InventoryUtil.drop(l, bp, new ItemStack(result)));
 	} // end formSucceeded()
 	
 	private static InteractionResult formSucceeded(@NotNull UseOnContext context, @NotNull ItemStack held, @NotNull BiConsumer<Level, BlockPos> f) 
@@ -560,7 +560,7 @@ public class EssenceOfSoulsBottleItem extends DrinkableFluidBottleItem
 				{
 					if (!(player != null && player.getInventory().add(held.getCraftingRemainingItem())))
 					{
-						InventoryUtilities.drop(level, position, held.getCraftingRemainingItem());
+						InventoryUtil.drop(level, position, held.getCraftingRemainingItem());
 					}
 				}
 				held.shrink(1);

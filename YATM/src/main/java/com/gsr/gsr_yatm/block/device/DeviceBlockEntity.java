@@ -2,7 +2,7 @@ package com.gsr.gsr_yatm.block.device;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.utilities.InventoryUtilities;
+import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
 import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
 
@@ -117,7 +117,7 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	
 	public void blockBroken() 
 	{
-		InventoryUtilities.drop(this.level, this.worldPosition, this.getDropInventory());
+		InventoryUtil.drop(this.level, this.worldPosition, this.getDropInventory());
 	} // end blockBroken()
 
 	

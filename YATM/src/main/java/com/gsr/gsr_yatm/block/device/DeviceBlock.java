@@ -1,6 +1,9 @@
 package com.gsr.gsr_yatm.block.device;
 
+import java.util.Objects;
 import java.util.function.Supplier;
+
+import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
@@ -38,26 +41,26 @@ public abstract class DeviceBlock extends Block implements EntityBlock
 	
 	
 	
-	public DeviceBlock(Properties properties, Supplier<BlockEntityType<? extends DeviceBlockEntity>> type, ICollisionVoxelShapeProvider shape)
+	public DeviceBlock(@NotNull Properties properties, @NotNull Supplier<BlockEntityType<? extends DeviceBlockEntity>> type, @NotNull ICollisionVoxelShapeProvider shape)
 	{
-		super(properties);
-		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
-		this.m_type = type;
-		this.m_shape = shape;
+		super(Objects.requireNonNull(properties));
+		this.registerDefaultState(this.defaultBlockState().setValue(DeviceBlock.FACING, Direction.NORTH));
+		this.m_type = Objects.requireNonNull(type);
+		this.m_shape = Objects.requireNonNull(shape);
 	} // end constructor
 
 	
 	
 	@Override
-	protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
+	protected void createBlockStateDefinition(@NotNull Builder<Block, BlockState> builder)
 	{
-		super.createBlockStateDefinition(builder.add(FACING));
+		super.createBlockStateDefinition(builder.add(DeviceBlock.FACING));
 	} // createBlockStateDefinition()
 
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext blockPlaceContext)
+	public BlockState getStateForPlacement(@NotNull BlockPlaceContext context)
 	{
-		return this.defaultBlockState().setValue(FACING, blockPlaceContext.getHorizontalDirection().getOpposite());
+		return this.defaultBlockState().setValue(DeviceBlock.FACING, context.getHorizontalDirection().getOpposite());
 	} // end getStateForPlacement()
 	
 	

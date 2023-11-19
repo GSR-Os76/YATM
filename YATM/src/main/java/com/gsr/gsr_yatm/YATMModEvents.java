@@ -8,6 +8,7 @@ import com.gsr.gsr_yatm.block.device.crucible.CrucibleScreen;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerScreen;
 import com.gsr.gsr_yatm.block.device.current_furnace.FurnacePlusScreen;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorScreen;
+import com.gsr.gsr_yatm.block.device.grafting.GraftingScreen;
 import com.gsr.gsr_yatm.block.device.grinder.GrinderScreen;
 import com.gsr.gsr_yatm.block.device.injector.InjectorScreen;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelScreen;
@@ -118,6 +119,8 @@ public class YATMModEvents
 	
 	private static void clientSetup(FMLClientSetupEvent event)
 	{
+		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.GRAFTING_TABLE.get(), GraftingScreen::new));
+
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BIOLER.get(), BiolerScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BOILER.get(), BoilerScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.CRUCIBLE.get(), CrucibleScreen::new));

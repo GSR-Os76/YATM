@@ -5,7 +5,7 @@ import java.util.List;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.utilities.InventoryUtilities;
+import com.gsr.gsr_yatm.utilities.InventoryUtil;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
@@ -62,7 +62,7 @@ public interface IHarvestableBlock
 			{
 				if(!level.isClientSide) 
 				{				
-					InventoryUtilities.drop(level, position, harvestable.getResults(level, state, position, usable));
+					InventoryUtil.drop(level, position, harvestable.getResults(level, state, position, usable));
 					level.setBlock(position, harvestable.getResultingState(level, state, position, usable), 3);
 				}
 				harvestable.onHarvest(level, state, position, usable);

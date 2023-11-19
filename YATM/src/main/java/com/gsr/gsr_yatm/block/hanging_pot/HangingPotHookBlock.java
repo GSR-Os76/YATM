@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.utilities.InventoryUtilities;
+import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
@@ -164,7 +164,7 @@ public class HangingPotHookBlock extends Block implements EntityBlock
 					}
 					else if (!player.addItem(toDrop))
 					{
-						InventoryUtilities.drop(level, position, toDrop);
+						InventoryUtil.drop(level, position, toDrop);
 					}
 					hphbe.setPot(null);
 					level.playSound(player, position, SoundEvents.CHAIN_BREAK, SoundSource.BLOCKS);
@@ -196,7 +196,7 @@ public class HangingPotHookBlock extends Block implements EntityBlock
 						}
 						else if (!player.addItem(potContent))
 						{
-							InventoryUtilities.drop(level, position, potContent);
+							InventoryUtil.drop(level, position, potContent);
 						}
 						FlowerPotBlock emptyPot = pot.getEmptyPot();
 						FlowerPotBlock newPot = emptyPot == pot ? null : emptyPot;

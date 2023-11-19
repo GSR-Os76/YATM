@@ -115,6 +115,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile HANGING_POT_HOOK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/hanging_pot_hook"));
 	public static final ModelFile DEFAULT_HANGING_POT_SUPPORT_CHAINS_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/default_hanging_pot_support_chains"));
 	
+	public static final ModelFile GRAFTING_TABLE_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/grafting_table"));
+	
 	public static final ModelFile SAP_COLLECTOR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/sap_collector"));
 	public static final ModelFile SAP_COLLECTOR_FILLED_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/sap_collector_filled"));
 	
@@ -211,6 +213,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createAllBlock(YATMBlocks.RUBBER_BLOCK.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rubber_block"));
 		this.createAllBlock(YATMBlocks.ROOTED_SOUL_SOIL.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rooted_soul_soil"));
 		
+		this.createFacingBlock(YATMBlocks.GRAFTING_TABLE.get(), YATMItems.GRAFTING_TABLE_ITEM.get(), YATMBlockStateProvider.GRAFTING_TABLE_MODEL);
 		this.addSapCollectors();
 		this.createSpinningWheel(YATMBlocks.SPINNING_WHEEL.get(), YATMItems.SPINNING_WHEEL_ITEM.get());
 		this.addHeatSinks();

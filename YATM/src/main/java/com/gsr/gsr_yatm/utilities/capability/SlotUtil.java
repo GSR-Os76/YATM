@@ -12,7 +12,7 @@ import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.item.IEfficiencyUpgradeItem;
 import com.gsr.gsr_yatm.item.ISpeedUpgradeItem;
 import com.gsr.gsr_yatm.item.component.IComponent;
-import com.gsr.gsr_yatm.utilities.InventoryUtilities;
+import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
 import net.minecraft.core.BlockPos;
@@ -277,7 +277,7 @@ public class SlotUtil
 			if (SlotUtil.canDrainTankto(inventory.getStackInSlot(slot), toDrain, transferSize))
 			{
 					ItemStack remainder = SlotUtil.drainTankTo(inventory.extractItem(slot, inventory.getSlotLimit(slot), false), toDrain, transferSize);
-					InventoryUtilities.insertItemOrDrop(level, position, inventory, slot, remainder);
+					InventoryUtil.insertItemOrDrop(level, position, inventory, slot, remainder);
 			}
 		}		
 		return countDownTime;
@@ -298,7 +298,7 @@ public class SlotUtil
 		int amountTransferableToTank = Math.max(minDrainTankTo(toFill, stackInSlot), drainClosestToFavoringLow(toFill, stackInSlot, favoredTransferSize));
 		int amountTransferable = Math.min(amountTransferableToBuffer, amountTransferableToTank);
 		ItemStack remainder = SlotUtil.fillTankFrom(inventory.extractItem(slot, inventory.getSlotLimit(slot), false), fillBuffer, amountTransferable);
-		InventoryUtilities.insertItemOrDrop(level, position, inventory, slot, remainder);
+		InventoryUtil.insertItemOrDrop(level, position, inventory, slot, remainder);
 			
 		return fillBuffer.getFluidInTank(0).getAmount();		
 	} // end queueToFillFromSlot()

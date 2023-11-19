@@ -75,6 +75,14 @@ public class YATMRecipeProvider extends RecipeProvider
 		.unlockedBy("has_pot", inventoryTrigger(ItemPredicate.Builder.item().of(Items.FLOWER_POT).build()))
 		.save(writer, YetAnotherTechMod.MODID + ":hanging_pot_from_shaped_crafting");
 		
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.GRAFTING_TABLE_ITEM.get(), 1)
+		.pattern("f ")
+		.pattern("t ")
+		.define('f', YATMItems.FOLIAR_STEEL.get())
+		.define('t', Items.CRAFTING_TABLE)
+		.unlockedBy("has_pot", inventoryTrigger(ItemPredicate.Builder.item().of(Items.CRAFTING_TABLE).build()))
+		.save(writer, YetAnotherTechMod.MODID + ":grafting_from_shaped_crafting");
+		
 //		this.addOneToX(writer, YATMItems.RUBBER_BAR.get(), YATMItems.RUBBER_SCRAP.get(), 4, YetAnotherTechMod.MODID + ":rubber_scrap_from_ingot_shapeless_crafting");
 //		this.addOneToX(writer, YATMItems.RUBBER_SCRAP_BALL.get(), YATMItems.RUBBER_SCRAP.get(), 4, YetAnotherTechMod.MODID + ":rubber_scrap_from_scrap_ball_shapeless_crafting");
 //		this.addTwoByTwoToOne(writer, YATMItems.RUBBER_SCRAP.get(), YATMItems.RUBBER_SCRAP_BALL.get(), YetAnotherTechMod.MODID + ":rubber_scrap_ball_from_shaped_crafting");

@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-06T11:27:18.1253627	Block States: gsr_yatm
+// 1.20.1	2023-11-16T23:41:14.196498	Block States: gsr_yatm
 11aad184ca6aaadbd7319a44c5a1985f7c029a1c assets/gsr_yatm/blockstates/adamum.json
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 a2a385d05e4f86cda9dd2c5a246077dac4e32579 assets/gsr_yatm/blockstates/advanced_solar_panel.json
@@ -41,6 +41,7 @@ fa5ee499a28de4ee8a41b31219ca490278fa72b1 assets/gsr_yatm/blockstates/default_han
 868eb3526aa6ef7c8eff5201a513fafbbe4bd644 assets/gsr_yatm/blockstates/foliar_steel_block.json
 cbaff819d866745c2dfe08739a8d8d199512a1d6 assets/gsr_yatm/blockstates/foliar_steel_ore.json
 5f0a06d65ea315e6cf1edb4cb6e15b5806393509 assets/gsr_yatm/blockstates/folium.json
+aa40cdb5d4aaf437a001b01304514a82e537fe7c assets/gsr_yatm/blockstates/grafting_table.json
 e3a7df22014df7047fa32f5cfd481b8a7e057683 assets/gsr_yatm/blockstates/gray_shulkwart.json
 ac17b95c71a35b3c9f224ac2605d3a6e68f7bd96 assets/gsr_yatm/blockstates/green_shulkwart.json
 5ebe2a2a009ba0311897c5b083f9e970feae107b assets/gsr_yatm/blockstates/hanging_pot_hook.json
@@ -428,6 +429,7 @@ ce8a8d835d5ef2385138513b853f3c858109b957 assets/gsr_yatm/models/item/data_scan_c
 274ee5f5103c5f7169b2a4f10f6a2a65c6b738fe assets/gsr_yatm/models/item/fancy_rubber_planks.json
 e79893cfc6d5a124f4a684994d61fb570ed4c151 assets/gsr_yatm/models/item/foliar_steel_block.json
 48dc54673e3aca5aee67e725b78cc3270f09cecc assets/gsr_yatm/models/item/foliar_steel_ore.json
+68a437ee4666bd36e991aa401b1a70ab79e88b56 assets/gsr_yatm/models/item/grafting_table.json
 99e35853bdef5346e2e5e455a51259b075abde98 assets/gsr_yatm/models/item/gray_shulkwart_horn.json
 9157c88264ffb2446ef7b3714e07c08b5453a783 assets/gsr_yatm/models/item/green_shulkwart_horn.json
 1a10d27afb904a49400f91a9110bd8e2d327d343 assets/gsr_yatm/models/item/large_copper_heat_sink.json

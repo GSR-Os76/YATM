@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-06T11:27:18.1143924	Loot Tables
+// 1.20.1	2023-11-16T23:41:14.1823894	Loot Tables
 3447f366126fe84e5d7fe101ca492c681d974485 data/gsr_yatm/loot_tables/blocks/adamum.json
 c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
@@ -37,6 +37,7 @@ c4edfdcb718f1724076063df7a1557dada3fffd2 data/gsr_yatm/loot_tables/blocks/fire_e
 552828b67c689a8eb8ce68f7cdd7ab2be1727312 data/gsr_yatm/loot_tables/blocks/foliar_steel_block.json
 8a09dd4d3e159377e355865158df551d66f03aa5 data/gsr_yatm/loot_tables/blocks/foliar_steel_ore.json
 8712fd2237ba09507a784a60fa0032f117165a2f data/gsr_yatm/loot_tables/blocks/folium.json
+466690d03bcb745444fc5003d92e63cbb7d72ba3 data/gsr_yatm/loot_tables/blocks/grafting_table.json
 38a306a3f7873936b5fdb85752dccecc8579916b data/gsr_yatm/loot_tables/blocks/gray_shulkwart.json
 5811cec04ad7d21a3916a67feb0034b162011bd8 data/gsr_yatm/loot_tables/blocks/green_shulkwart.json
 741e0989f12e6cd5c1a8d4c5d4e6b995319d9d94 data/gsr_yatm/loot_tables/blocks/hanging_pot_hook.json

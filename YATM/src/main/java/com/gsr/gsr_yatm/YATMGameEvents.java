@@ -11,7 +11,7 @@ import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMMobEffects;
 import com.gsr.gsr_yatm.registry.custom.YATMRegistries;
-import com.gsr.gsr_yatm.utilities.InventoryUtilities;
+import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtil;
 
 import net.minecraft.core.BlockPos;
@@ -235,7 +235,7 @@ public class YATMGameEvents
 				event.setFinalState(harvestable.getResultingState(level, state, positiion, action));
 				if(!event.isSimulated()) 
 				{
-					InventoryUtilities.drop(level, positiion, harvestable.getResults(level, state, positiion, action));
+					InventoryUtil.drop(level, positiion, harvestable.getResults(level, state, positiion, action));
 					harvestable.onHarvest(level, state, positiion, action);
 				}
 				return true;

@@ -11,7 +11,7 @@ import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.utilities.BlockUtilities;
-import com.gsr.gsr_yatm.utilities.InventoryUtilities;
+import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
@@ -104,7 +104,7 @@ public class BasinOfTearsFloralBlock extends ShapeBlock implements IAgingBlock, 
 				ItemStack toDrop = new ItemStack(YATMItems.DILUTED_TEAR_BOTTLE.get());
 				if (!player.addItem(toDrop))
 				{
-					InventoryUtilities.drop(level, position, toDrop);
+					InventoryUtil.drop(level, position, toDrop);
 				}
 			}
 			return InteractionResult.sidedSuccess(level.isClientSide);

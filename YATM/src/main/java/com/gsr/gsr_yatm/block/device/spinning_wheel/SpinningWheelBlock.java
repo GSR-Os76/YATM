@@ -2,7 +2,7 @@ package com.gsr.gsr_yatm.block.device.spinning_wheel;
 
 import com.gsr.gsr_yatm.recipe.spinning.SpinningRecipe;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.InventoryUtilities;
+import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtil;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
@@ -66,7 +66,7 @@ public class SpinningWheelBlock extends Block
 			if(!level.isClientSide) 
 			{
 				held.shrink(recipe.getInputCount(held.getItem()));
-				InventoryUtilities.drop(level, pos, recipe.getResultItem(level.registryAccess()).copy());
+				InventoryUtil.drop(level, pos, recipe.getResultItem(level.registryAccess()).copy());
 			}
 			return InteractionResult.sidedSuccess(level.isClientSide);
 		}

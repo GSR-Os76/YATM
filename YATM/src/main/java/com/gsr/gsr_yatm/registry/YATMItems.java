@@ -215,7 +215,7 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> RUBBER_BLOCK_ITEM = generalTabEnqueue(ITEMS.register("rubber_block", () -> new BlockItem(YATMBlocks.RUBBER_BLOCK.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> ROOTED_SOUL_SOIL_ITEM = generalTabEnqueue(ITEMS.register("rooted_soul_soil", () -> new BlockItem(YATMBlocks.ROOTED_SOUL_SOIL.get(), new Item.Properties())));
 	
-	
+	public static final RegistryObject<BlockItem> GRAFTING_TABLE_ITEM = generalTabEnqueue(ITEMS.register("grafting_table", () -> new BlockItem(YATMBlocks.GRAFTING_TABLE.get(), new Item.Properties())));
 	
 	public static final RegistryObject<BlockItem> SAP_COLLECTOR_ITEM = generalTabEnqueue(ITEMS.register("sap_collector", () -> new BlockItem(YATMBlocks.SAP_COLLECTOR.get(), new Item.Properties())));
 	// public static final RegistryObject<BlockItem> SAP_COLLECTOR_LATEX_ITEM = generalTabEnqueue(ITEMS.register("sap_collector_latex", () -> new BlockItem(YATMBlocks.SAP_COLLECTOR_LATEX.get(), new Item.Properties())));

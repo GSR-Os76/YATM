@@ -43,6 +43,7 @@
   "block.gsr_yatm.foliar_steel_block": "Foliar Steel Block",
   "block.gsr_yatm.foliar_steel_ore": "Foliar Steel Ore",
   "block.gsr_yatm.folium": "Folium",
+  "block.gsr_yatm.grafting_table": "Grafting Table",
   "block.gsr_yatm.gray_shulkwart": "Gray Shulkwart",
   "block.gsr_yatm.green_shulkwart": "Green Shulkwart",
   "block.gsr_yatm.hanging_pot_hook": "Hanging Pot",
@@ -310,6 +311,7 @@
   "menu.title.gsr_yatm.crucible_menu": "Crucible",
   "menu.title.gsr_yatm.crystallizer_menu": "Crystallizer",
   "menu.title.gsr_yatm.extractor_menu": "Extractor",
+  "menu.title.gsr_yatm.grafting_menu": "Grafting Table",
   "menu.title.gsr_yatm.grinder_menu": "Grinder",
   "menu.title.gsr_yatm.injector_menu": "Injector",
   "menu.title.gsr_yatm.solar_panel": "Solar Panel"

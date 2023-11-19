@@ -7,7 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.IItemHandler;
 
-public class InventoryUtilities
+public class InventoryUtil
 {
 	public static void drop(Level level, BlockPos position, NonNullList<ItemStack> drops)
 	{

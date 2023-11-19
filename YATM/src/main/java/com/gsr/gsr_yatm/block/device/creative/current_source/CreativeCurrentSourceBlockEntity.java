@@ -13,7 +13,7 @@ import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.AttachmentState;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
-import com.gsr.gsr_yatm.utilities.InventoryUtilities;
+import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.current.CurrentSource;
 import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
@@ -195,7 +195,7 @@ public class CreativeCurrentSourceBlockEntity extends BlockEntity
 	
 	public void blockBroken() 
 	{
-		InventoryUtilities.drop(this.level, this.worldPosition, this.m_rawInventory);
+		InventoryUtil.drop(this.level, this.worldPosition, this.m_rawInventory);
 	} // end blockBroken()
 	
 	

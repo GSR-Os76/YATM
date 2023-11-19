@@ -163,7 +163,7 @@ public class YATMBlockTags extends BlockTagsProvider
 		this.tag(BlockTags.LOGS).addTag(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);
 		this.tag(BlockTags.LOGS_THAT_BURN).addTag(YATMBlockTags.RUBBER_TREE_LOGS_KEY);
 		// TODO, maybe add misc plants to axe tag		
-		this.tag(BlockTags.MINEABLE_WITH_AXE).addTag(YATMBlockTags.SAP_COLLECTORS_KEY).add(YATMBlocks.SPINNING_WHEEL.get());
+		this.tag(BlockTags.MINEABLE_WITH_AXE).add(YATMBlocks.GRAFTING_TABLE.get()).addTag(YATMBlockTags.SAP_COLLECTORS_KEY).add(YATMBlocks.SPINNING_WHEEL.get());
 		this.tag(BlockTags.MINEABLE_WITH_HOE).add(YATMBlocks.RUBBER_LEAVES_YOUNG.get()).add(YATMBlocks.RUBBER_LEAVES_FLOWERING.get()).add(YATMBlocks.RUBBER_LEAVES_OLD.get()).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG.get()).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get()).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_OLD.get());
 		this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get()).addTag(YATMBlockTags.FOLIAR_STEEL_ORES_KEY).add(YATMBlocks.FOLIAR_STEEL_BLOCK.get()).addTag(YATMBlockTags.GOLEM_LIKE_PLANTS_KEY).add(YATMBlocks.LARGE_COPPER_HEAT_SINK.get()).addTag(YATMBlockTags.MACHINES_KEY).add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get()).add(YATMBlocks.STEEL_BOILER_TANK.get()).add(YATMBlocks.STEEL_TANK.get()).add(YATMBlocks.CHANNEL_VINES.get()).add(YATMBlocks.ADAMUM.get()).add(YATMBlocks.CUPRUM.get()).add(YATMBlocks.INFERNALUM.get()).add(YATMBlocks.LAPUM.get()).add(YATMBlocks.RUBERUM.get()).add(YATMBlocks.SAMARAGDUM.get());
 		this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get()).add(YATMBlocks.ROOTED_SOUL_SOIL.get());

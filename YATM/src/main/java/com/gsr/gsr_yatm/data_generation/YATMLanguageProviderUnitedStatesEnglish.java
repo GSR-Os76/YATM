@@ -25,6 +25,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 	{
 		this.add(YATMCreativeModeTabs.YATM_GENERAL, "Yet Another Tech Mod General");
 		
+		this.add(YATMMenuTypes.GRAFTING_TABLE.get(), "Grafting Table");		
+		
 		this.add(YATMMenuTypes.BIOLER.get(), "Bioler");		
 		this.add(YATMMenuTypes.BOILER.get(), "Boiler");		
 		this.add(YATMMenuTypes.CRUCIBLE.get(), "Crucible");	
@@ -203,6 +205,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.ROOTED_SOUL_SOIL.get(), "Rooted Soul Soil");
 		
 		
+		
+		this.add(YATMBlocks.GRAFTING_TABLE.get(), "Grafting Table");
 		
 		this.add(YATMBlocks.SAP_COLLECTOR.get(), "Sap Collector");
 		this.add(YATMBlocks.SAP_COLLECTOR_LATEX.get(), "Sap Collector (Latex)");

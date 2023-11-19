@@ -8,6 +8,7 @@ import com.google.common.collect.ImmutableMap;
 import com.gsr.gsr_yatm.block.conduit.channel_vine.ChannelVineBlock;
 import com.gsr.gsr_yatm.block.device.AttachmentState;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
+import com.gsr.gsr_yatm.block.device.grafting.GraftingTableBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
@@ -546,6 +547,30 @@ public class YATMBlockShapes
 		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{
 			return Shapes.or(TOP_PIECE, CHAIN_LINK);
+		} // end getShape()
+	};
+	
+	public static final ICollisionVoxelShapeProvider GRAFTING_TABLE = new ICollisionVoxelShapeProvider() 
+	{
+		private static final IVoxelShapeBuilder SMALL = IVoxelShapeBuilder.MutableWrapper.of((VoxelShapeBuilder
+				.box(0d, 0d, 0d, 16d, 12d, 16d)
+		/* .or(VoxelShapeBuilder.box(11d, 12d, 11d, 16d, 15d, 16d)) */));
+		private static final VoxelShape NORTH = SMALL.toMCVoxelShape();
+		private static final VoxelShape WEST = SMALL.yRotateLookingDownCounterClockwise().toMCVoxelShape();
+		private static final VoxelShape SOUTH = SMALL.yRotateLookingDownCounterClockwise().toMCVoxelShape();
+		private static final VoxelShape EAST = SMALL.yRotateLookingDownCounterClockwise().toMCVoxelShape();
+		
+		@Override
+		public @NotNull VoxelShape getShape(BlockState state, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
+		{
+			return switch (state.getValue(GraftingTableBlock.FACING)) 
+				{
+					case NORTH -> NORTH;
+					case WEST -> WEST;
+					case SOUTH -> SOUTH;
+					case EAST -> EAST;
+					default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(PhantasmalShelfFungiBlock.FACING));	
+				};
 		} // end getShape()
 	};
 	

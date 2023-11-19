@@ -17,7 +17,7 @@ import com.gsr.gsr_yatm.item.component.IComponent;
 import com.gsr.gsr_yatm.recipe.melting.MeltingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.InventoryUtilities;
+import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.fluid.ConfigurableTankWrapper;
 import com.gsr.gsr_yatm.utilities.capability.heat.OnChangedHeatHandler;
@@ -376,7 +376,7 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 			ItemStack i = this.m_inventory.extractItem(CrucibleBlockEntity.HEAT_SLOT, 1, false);
 			if (i.hasCraftingRemainingItem())
 			{
-				InventoryUtilities.insertItemOrDrop(this.level, this.worldPosition, this.m_inventory, HEAT_SLOT, i.getCraftingRemainingItem());
+				InventoryUtil.insertItemOrDrop(this.level, this.worldPosition, this.m_inventory, HEAT_SLOT, i.getCraftingRemainingItem());
 			}
 
 			this.m_burnTime = SlotUtil.getHeatingBurnTime(i);

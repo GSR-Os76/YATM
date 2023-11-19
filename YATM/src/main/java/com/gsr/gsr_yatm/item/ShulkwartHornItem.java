@@ -5,7 +5,7 @@ import java.util.Optional;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.registry.YATMMobEffects;
-import com.gsr.gsr_yatm.utilities.InventoryUtilities;
+import com.gsr.gsr_yatm.utilities.InventoryUtil;
 
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -55,7 +55,7 @@ public class ShulkwartHornItem extends Item
 			level.playSound(player, shulker.blockPosition(), SoundEvents.SHULKER_BOX_OPEN, SoundSource.PLAYERS, 1.0f, 1.0f);
 			level.playSound(player, shulker.blockPosition(), SoundEvents.SHULKER_BOX_CLOSE, SoundSource.PLAYERS, 1.0f, 1.0f);
 			
-			InventoryUtilities.drop(level, shulker.blockPosition(), new ItemStack(Items.SHULKER_SHELL, 2));
+			InventoryUtil.drop(level, shulker.blockPosition(), new ItemStack(Items.SHULKER_SHELL, 2));
 			held.shrink(1);
 			return InteractionResult.sidedSuccess(level.isClientSide);
 		}			

@@ -2,7 +2,7 @@ package com.gsr.gsr_yatm.item.fluid;
 
 import java.util.function.Supplier;
 
-import com.gsr.gsr_yatm.utilities.InventoryUtilities;
+import com.gsr.gsr_yatm.utilities.InventoryUtil;
 
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -43,7 +43,7 @@ public class DrinkableFluidBottleItem extends FluidBottleItem
 		{
 			if (!(entity instanceof Player player && player.getInventory().add(rem)))
 			{
-				InventoryUtilities.drop(level, entity.blockPosition(), itemStack);
+				InventoryUtil.drop(level, entity.blockPosition(), itemStack);
 			}
 
 			return itemStack;

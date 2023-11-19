@@ -71,6 +71,9 @@ public class YATMBlockProperties
 	public static final Properties ROOTED_SOUL_SOIL = Properties.of().mapColor(MapColor.DIRT).strength(0.5f).sound(SoundType.ROOTED_DIRT);
 	
 	public static final Properties HANGING_POT_HOOK = Properties.of().instabreak().noCollission().noOcclusion().pushReaction(PushReaction.DESTROY);
+	
+	public static final Properties GRAFTING_TABLE = Properties.of().ignitedByLava().mapColor(MapColor.WOOD).sound(SoundType.WOOD).strength(2.5F);
+	
 	// TODO, this
 	public static final Properties SAP_COLLECTOR = Properties.of().ignitedByLava().mapColor(MapColor.WOOD).sound(SoundType.WOOD).strength(0.6f);
 
