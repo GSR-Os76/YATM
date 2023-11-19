@@ -2,6 +2,8 @@ package com.gsr.gsr_yatm.utilities;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.block.candle_lantern.CandleLanternBlock;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.DyeColor;
@@ -71,6 +73,8 @@ public class YATMBlockProperties
 	public static final Properties ROOTED_SOUL_SOIL = Properties.of().mapColor(MapColor.DIRT).strength(0.5f).sound(SoundType.ROOTED_DIRT);
 	
 	public static final Properties HANGING_POT_HOOK = Properties.of().instabreak().noCollission().noOcclusion().pushReaction(PushReaction.DESTROY);
+	
+	public static final Properties CANDLE_LANTERN = Properties.of().forceSolidOn().lightLevel((s) -> (s.getValue(CandleLanternBlock.LIT) ? 9 : 0)).mapColor(MapColor.METAL).noOcclusion().pushReaction(PushReaction.DESTROY).requiresCorrectToolForDrops().strength(3.5F).sound(SoundType.LANTERN);
 	
 	public static final Properties GRAFTING_TABLE = Properties.of().ignitedByLava().mapColor(MapColor.WOOD).sound(SoundType.WOOD).strength(2.5F);
 	

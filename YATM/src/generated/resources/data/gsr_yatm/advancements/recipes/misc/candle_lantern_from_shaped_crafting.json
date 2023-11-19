@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_pot": {
+    "has_item": {
       "conditions": {
         "items": [
           {
             "items": [
-              "minecraft:crafting_table"
+              "minecraft:candle"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gsr_yatm:grafting_from_shaped_crafting"
+        "recipe": "gsr_yatm:candle_lantern_from_shaped_crafting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_pot",
+      "has_item",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "gsr_yatm:grafting_from_shaped_crafting"
+      "gsr_yatm:candle_lantern_from_shaped_crafting"
     ]
   },
   "sends_telemetry_event": false

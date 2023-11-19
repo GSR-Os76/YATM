@@ -6,6 +6,7 @@ import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.DecayingBlock;
 import com.gsr.gsr_yatm.block.NoCullBlock;
 import com.gsr.gsr_yatm.block.WaterloggableBlock;
+import com.gsr.gsr_yatm.block.candle_lantern.CandleLanternBlock;
 import com.gsr.gsr_yatm.block.conduit.channel_vine.ChannelVineBlock;
 import com.gsr.gsr_yatm.block.conduit.current.ConduitVineBlock;
 import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
@@ -298,6 +299,8 @@ public class YATMBlocks
 	public static final RegistryObject<HangingPotHookBlock> HANGING_POT_HOOK = BLOCKS.register("hanging_pot_hook", () -> new HangingPotHookBlock(YATMBlockProperties.HANGING_POT_HOOK, YATMBlockShapes.HANGING_POT_HOOK));
 	
 	
+	
+	public static final RegistryObject<CandleLanternBlock> CANDLE_LANTERN = BLOCKS.register("candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
 	
 	//TODO, maybe add some sort of soul stone 
 	public static final RegistryObject<DropExperienceBlock> FOLIAR_STEEL_ORE = BLOCKS.register("foliar_steel_ore", () -> new DropExperienceBlock(YATMBlockProperties.stoneOre()));

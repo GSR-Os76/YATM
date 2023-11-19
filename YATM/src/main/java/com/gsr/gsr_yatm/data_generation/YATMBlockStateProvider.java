@@ -10,6 +10,7 @@ import org.joml.Vector2i;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.FaceBlock;
+import com.gsr.gsr_yatm.block.candle_lantern.CandleLanternBlock;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.device.AttachmentState;
 import com.gsr.gsr_yatm.block.device.bioler.BiolerBlock;
@@ -115,6 +116,10 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile HANGING_POT_HOOK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/hanging_pot_hook"));
 	public static final ModelFile DEFAULT_HANGING_POT_SUPPORT_CHAINS_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/default_hanging_pot_support_chains"));
 	
+	public static final ModelFile LANTERN_CHAIN_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/lantern_chain"));
+	public static final ModelFile TEMPLATE_CANDLE_LANTERN_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/template_candle_lantern"));
+	public static final ModelFile TEMPLATE_CANDLE_LANTERN_HANGING_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/template_candle_lantern_hanging"));
+	
 	public static final ModelFile GRAFTING_TABLE_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/grafting_table"));
 	
 	public static final ModelFile SAP_COLLECTOR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/sap_collector"));
@@ -206,6 +211,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 		this.createBlock(YATMBlocks.HANGING_POT_HOOK.get(), YATMBlockStateProvider.HANGING_POT_HOOK_MODEL);
 		this.createBlock(YATMBlocks.DEFAULT_HANGING_POT_SUPPORT_CHAINS.get(), YATMBlockStateProvider.DEFAULT_HANGING_POT_SUPPORT_CHAINS_MODEL);
+		
+		this.addCandleLanterns();
 		
 		this.createAllBlock(YATMBlocks.FOLIAR_STEEL_ORE.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/foliar_steel_ore"));
 		this.createAllBlock(YATMBlocks.DEEPSLATE_FOLIAR_STEEL_ORE.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/deepslate_foliar_steel_ore"));
@@ -574,6 +581,13 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				oldTexture);
 		this.createStoneSoilPottedCross(YATMBlocks.POTTED_VICUM.get(), oldTexture);
 	} // end addVicum()
+	
+	private void addCandleLanterns() 
+	{
+		this.createCandleLantern(YATMBlocks.CANDLE_LANTERN.get(), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/candle_lantern/plain"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/candle_lantern/plain_lit"));
+	} // end addCandleLanterns()
 	
 	private void addHeatSinks() 
 	{
@@ -1522,7 +1536,33 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.getVariantBuilder(block).forAllStates((bs) -> new ConfiguredModel[] {new ConfiguredModel(model)});
 	} // end createFilledSapCollector()
 	
-	
+	private void createCandleLantern(@NotNull CandleLanternBlock block,@NotNull ResourceLocation texture, @NotNull ResourceLocation litTexture) 
+	{
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
+		String lName = name + "_lit";
+		String hName = name + "_hanging";
+		String lhName = lName + "_hanging";
+		
+		this.models().getBuilder(name).parent(YATMBlockStateProvider.TEMPLATE_CANDLE_LANTERN_MODEL).texture("lantern", texture);
+		this.models().getBuilder(lName).parent(YATMBlockStateProvider.TEMPLATE_CANDLE_LANTERN_MODEL).texture("lantern", litTexture);
+		this.models().getBuilder(hName).parent(YATMBlockStateProvider.TEMPLATE_CANDLE_LANTERN_HANGING_MODEL).texture("lantern", texture);
+		this.models().getBuilder(lhName).parent(YATMBlockStateProvider.TEMPLATE_CANDLE_LANTERN_HANGING_MODEL).texture("lantern", litTexture);
+		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
+		ModelFile lModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, lName));
+		ModelFile hModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, hName));
+		ModelFile lhModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, lhName));
+		
+		this.getVariantBuilder(block).forAllStates((bs) -> new ConfiguredModel[] 
+				{new ConfiguredModel(bs.getValue(CandleLanternBlock.LIT) 
+					? bs.getValue(CandleLanternBlock.HANGING)
+						? lhModel
+						: lModel
+					: bs.getValue(CandleLanternBlock.HANGING)
+						? hModel
+						: model
+						)
+				});
+	} // end createCandleLantern()
 	
 	private void createLargeHeatSink(@NotNull HeatSinkBlock block, @NotNull Item item, @NotNull ResourceLocation oneTexture, @NotNull ResourceLocation twoTexture) 
 	{

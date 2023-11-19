@@ -209,6 +209,8 @@ public class YATMItems
 	
 	
 	
+	public static final RegistryObject<BlockItem> CANDLE_LANTERN_ITEM = generalTabEnqueue(ITEMS.register("candle_lantern", () -> new BlockItem(YATMBlocks.CANDLE_LANTERN.get(), new Item.Properties())));
+	
 	public static final RegistryObject<BlockItem> FOLIAR_STEEL_ORE_ITEM = generalTabEnqueue(ITEMS.register("foliar_steel_ore", () -> new BlockItem(YATMBlocks.FOLIAR_STEEL_ORE.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> DEEPSLATE_FOLIAR_STEEL_ORE_ITEM = generalTabEnqueue(ITEMS.register("deepslate_foliar_steel_ore", () -> new BlockItem(YATMBlocks.DEEPSLATE_FOLIAR_STEEL_ORE.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> FOLIAR_STEEL_BLOCK_ITEM = generalTabEnqueue(ITEMS.register("foliar_steel_block", () -> new BlockItem(YATMBlocks.FOLIAR_STEEL_BLOCK.get(), new Item.Properties())));
@@ -218,19 +220,11 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> GRAFTING_TABLE_ITEM = generalTabEnqueue(ITEMS.register("grafting_table", () -> new BlockItem(YATMBlocks.GRAFTING_TABLE.get(), new Item.Properties())));
 	
 	public static final RegistryObject<BlockItem> SAP_COLLECTOR_ITEM = generalTabEnqueue(ITEMS.register("sap_collector", () -> new BlockItem(YATMBlocks.SAP_COLLECTOR.get(), new Item.Properties())));
-	// public static final RegistryObject<BlockItem> SAP_COLLECTOR_LATEX_ITEM = generalTabEnqueue(ITEMS.register("sap_collector_latex", () -> new BlockItem(YATMBlocks.SAP_COLLECTOR_LATEX.get(), new Item.Properties())));
-	// public static final RegistryObject<BlockItem> SAP_COLLECTOR_SOUL_SAP_ITEM = generalTabEnqueue(ITEMS.register("sap_collector_soul_sap", () -> new BlockItem(YATMBlocks.SAP_COLLECTOR_SOUL_SAP.get(), new Item.Properties())));
-	
 	// add celestial altar
 	// add liquid celestial light, liquid lunar light, and the liquid solar liquids;
-	// add their ingots from alloying them with molten netherite
-	// for these at least tools I feel are worthy to make
-	
-	// TODO, possibly add spools of colored thread for trimming leather armor all different ways
-	// TODO, check if leather armor's trimmable in vanilla at all
 	public static final RegistryObject<BlockItem> SPINNING_WHEEL_ITEM = generalTabEnqueue(ITEMS.register("spinning_wheel", () -> new BlockItem(YATMBlocks.SPINNING_WHEEL.get(), new Item.Properties())));
 
-	// TODO, possibly move away from wires and current and GUIs, they bore me and are kinda tedious, make machines not inventory based, don't break immersion
+	
 	
 	public static final RegistryObject<BlockItem> LARGE_COPPER_HEAT_SINK_ITEM = /* generalTabEnqueue */(ITEMS.register("large_copper_heat_sink", () -> new BlockItem(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), new Item.Properties())));
 

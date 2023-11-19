@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-16T23:41:14.1761546	Tags for minecraft:block mod id gsr_yatm
+// 1.20.1	2023-11-19T15:58:18.8045793	Tags for minecraft:block mod id gsr_yatm
 c66ff3626edc7c0f108f497fa9aec78cbf9db39f data/forge/tags/blocks/basalt.json
 ea459db540b319f4bdead7b7f1142fc238c09a8e data/forge/tags/blocks/cactus.json
 ebcf7881dcf42cb3d8c8b5c2e92ebf16fd9d7284 data/forge/tags/blocks/calcite.json
@@ -15,6 +15,7 @@ ae063a18d6a78c1df2e70286fb1984ffc87c6b2d data/forge/tags/blocks/netherrack.json
 742490cf54e91e5fb6ef9433e3e7a050041f0a47 data/forge/tags/blocks/storage_blocks/foliar_steel.json
 832b7e6675be8ff08fd9a10a451a0f62d2bb9d10 data/forge/tags/blocks/storage_blocks/quartz.json
 5cde157d29986a1af6fac3eed0972c55ed684ae6 data/forge/tags/blocks/storage_blocks/rubber.json
+781fa8f284be5a0bb4a5d69e70b8e244b6985c85 data/gsr_yatm/tags/blocks/candle_lanterns.json
 6126de40a64453ca531e66bfeb15ff34da6d5d8f data/gsr_yatm/tags/blocks/change_neutral_only_attachment.json
 4025cca10e3b03e5cf1f371e88a6afed701e7681 data/gsr_yatm/tags/blocks/foliar_steel_ores.json
 6f0da433ae2e95c61d4c05568e3e8c4efebdb9e9 data/gsr_yatm/tags/blocks/form/adamum_bottom.json
@@ -92,6 +93,7 @@ ab467479a645246538e49c55790b101c51194caa data/gsr_yatm/tags/blocks/soul_afflicte
 abe2c6338432532e82ba82f66236e62b0cc227a2 data/gsr_yatm/tags/blocks/soul_ground.json
 82099984e0c9ea1f3273cdc2edf12e376dacd6db data/gsr_yatm/tags/blocks/soul_rubber_tree_blocks.json
 cabad7018263250a65993dc1bfafd32b2163b2f7 data/gsr_yatm/tags/blocks/unoxidized_copper_blocks.json
+79057f85eba21895cb92edf14c38ba39cb22bc3e data/minecraft/tags/blocks/candles.json
 b176ca972464b67b2f1adc3de58dd6133ae56ed8 data/minecraft/tags/blocks/climbable.json
 952606965aea7b2cabce0eab939614887720ae6a data/minecraft/tags/blocks/dirt.json
 ae88bd8aabf02699bb3fdbf65bd64fc377fbc780 data/minecraft/tags/blocks/flowers.json
@@ -100,7 +102,7 @@ ae88bd8aabf02699bb3fdbf65bd64fc377fbc780 data/minecraft/tags/blocks/flowers.json
 1502e7352c79e987a23ba14a77d87817c5e89ff2 data/minecraft/tags/blocks/logs_that_burn.json
 af3a4ed4904e324e4709eb531023fdf9e9503aee data/minecraft/tags/blocks/mineable/axe.json
 65ff65f5d38acbce6c7b5a5fe3dcb8cc7dbc87c3 data/minecraft/tags/blocks/mineable/hoe.json
-035a4c666ba71df00550f44ebb6a34acaf39c6cd data/minecraft/tags/blocks/mineable/pickaxe.json
+39e614e4e72824abd5baf047df570ceb8c886105 data/minecraft/tags/blocks/mineable/pickaxe.json
 fe5385076699557563e54f97ff82706f931b1273 data/minecraft/tags/blocks/mineable/shovel.json
 553472f364f8dc1a6e55accd268a7c6b736b3779 data/minecraft/tags/blocks/needs_diamond_tool.json
 94c4cde0cd402842c87c944bafa1668df37ac1b7 data/minecraft/tags/blocks/needs_iron_tool.json

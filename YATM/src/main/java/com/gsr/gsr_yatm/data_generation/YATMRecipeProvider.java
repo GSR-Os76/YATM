@@ -2,6 +2,7 @@ package com.gsr.gsr_yatm.data_generation;
 
 import java.util.function.Consumer;
 
+import org.apache.logging.log4j.util.TriConsumer;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
@@ -75,13 +76,15 @@ public class YATMRecipeProvider extends RecipeProvider
 		.unlockedBy("has_pot", inventoryTrigger(ItemPredicate.Builder.item().of(Items.FLOWER_POT).build()))
 		.save(writer, YetAnotherTechMod.MODID + ":hanging_pot_from_shaped_crafting");
 		
+		this.addCandleLanterns(writer);
+		
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.GRAFTING_TABLE_ITEM.get(), 1)
 		.pattern("f ")
 		.pattern("t ")
 		.define('f', YATMItems.FOLIAR_STEEL.get())
 		.define('t', Items.CRAFTING_TABLE)
 		.unlockedBy("has_pot", inventoryTrigger(ItemPredicate.Builder.item().of(Items.CRAFTING_TABLE).build()))
-		.save(writer, YetAnotherTechMod.MODID + ":grafting_from_shaped_crafting");
+		.save(writer, YetAnotherTechMod.MODID + ":grafting_table_from_shaped_crafting");
 		
 //		this.addOneToX(writer, YATMItems.RUBBER_BAR.get(), YATMItems.RUBBER_SCRAP.get(), 4, YetAnotherTechMod.MODID + ":rubber_scrap_from_ingot_shapeless_crafting");
 //		this.addOneToX(writer, YATMItems.RUBBER_SCRAP_BALL.get(), YATMItems.RUBBER_SCRAP.get(), 4, YetAnotherTechMod.MODID + ":rubber_scrap_from_scrap_ball_shapeless_crafting");
@@ -95,8 +98,6 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addSmelting(writer, YATMItemTags.FOLIAR_STEEL_ORES_KEY, YATMItems.FOLIAR_STEEL.get(), .1f, 200, YetAnotherTechMod.MODID + ":foliar_steel_from_ore_smelting");
 		this.addOneToNine(writer, YATMItems.FOLIAR_STEEL_BLOCK_ITEM.get(), YATMItems.FOLIAR_STEEL.get(), YetAnotherTechMod.MODID + ":foliar_steel_from_block_shapeless_crafting");
 		this.addNineToOne(writer, YATMItems.FOLIAR_STEEL.get(), YATMItems.FOLIAR_STEEL_BLOCK_ITEM.get(), YetAnotherTechMod.MODID + ":foliar_steel_block_from_bar_shapeless_crafting");
-		
-		this.addXToX(writer, YATMItems.CARBUM_LEAF.get(), Items.COAL, 2, 1, YetAnotherTechMod.MODID + ":coal_from_carbum_leaf");
 		
 		this.addSmelting(writer, new ItemLike[] {YATMItems.VARIEGATED_CACTUS_ITEM.get()}, Items.GREEN_DYE, 1.0f, 100, YetAnotherTechMod.MODID + ":green_dye_from_variegated_cactus_smelting");
 		
@@ -205,6 +206,20 @@ public class YATMRecipeProvider extends RecipeProvider
 
 	} // end addSoulAfflictedRubberWoodCoreRecipes()
 
+	private void addCandleLanterns(@NotNull Consumer<FinishedRecipe> writer) 
+	{
+		TriConsumer<Item, String, Item> forCandle = (candle, color, lantern) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, lantern, 1)
+		.pattern("iii")
+		.pattern("ici")
+		.pattern("iii")
+		.define('i', Tags.Items.NUGGETS_IRON)
+		.define('c', candle)
+		.unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(candle).build()))
+		.save(writer, YetAnotherTechMod.MODID + ":" + color + "candle_lantern_from_shaped_crafting");
+		
+		forCandle.accept(Items.CANDLE, "", YATMItems.CANDLE_LANTERN_ITEM.get());
+	} // end addCandleLanterns()
+	
 	private void addCottonRecipes(Consumer<FinishedRecipe> writer) 
 	{
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.SPINNING_WHEEL_ITEM.get(), 1)
@@ -452,6 +467,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addTwoByTwoToOne()
 	
+	@SuppressWarnings("unused")
 	private void addXToX(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, int ingredientCount, int resultCount, String key) 
 	{
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result, resultCount)

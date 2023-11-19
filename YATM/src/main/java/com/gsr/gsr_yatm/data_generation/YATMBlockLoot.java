@@ -204,6 +204,8 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		
 		this.dropOther(YATMBlocks.HANGING_POT_HOOK.get(), Items.CHAIN);
 		
+		this.dropSelf(YATMBlocks.CANDLE_LANTERN.get());
+		
 		this.add(YATMBlocks.FOLIAR_STEEL_ORE.get(), this.createOreDrop(YATMBlocks.FOLIAR_STEEL_ORE.get(), YATMItems.FOLIAR_STEEL.get()));
 		this.add(YATMBlocks.DEEPSLATE_FOLIAR_STEEL_ORE.get(), this.createOreDrop(YATMBlocks.DEEPSLATE_FOLIAR_STEEL_ORE.get(), YATMItems.FOLIAR_STEEL.get()));
 		this.dropSelf(YATMBlocks.FOLIAR_STEEL_BLOCK.get());

@@ -550,6 +550,17 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 	
+	public static final ICollisionVoxelShapeProvider CANDLE_LANTERN = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape SHAPE = Shapes.or(Block.box(6d, 0d, 6d, 10d, 1d, 10d), Shapes.or(Block.box(5d, 1d, 5d, 11d, 8d, 11d), Block.box(6d, 8d, 6d, 10d, 10d, 10d)));
+		
+		@Override
+		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
+		{
+			return SHAPE;
+		} // end getShape()
+	};
+	
 	public static final ICollisionVoxelShapeProvider GRAFTING_TABLE = new ICollisionVoxelShapeProvider() 
 	{
 		private static final IVoxelShapeBuilder SMALL = IVoxelShapeBuilder.MutableWrapper.of((VoxelShapeBuilder

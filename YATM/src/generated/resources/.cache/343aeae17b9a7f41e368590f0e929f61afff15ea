@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-16T23:41:14.196498	Block States: gsr_yatm
+// 1.20.1	2023-11-19T15:58:18.8127246	Block States: gsr_yatm
 11aad184ca6aaadbd7319a44c5a1985f7c029a1c assets/gsr_yatm/blockstates/adamum.json
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 a2a385d05e4f86cda9dd2c5a246077dac4e32579 assets/gsr_yatm/blockstates/advanced_solar_panel.json
@@ -13,6 +13,7 @@ e1a8898e148615dc98e1fcc106e5fc45574626ab assets/gsr_yatm/blockstates/bleached_ic
 8a5746f14b01595c8568eafc724cc3029e864312 assets/gsr_yatm/blockstates/blue_shulkwart.json
 1d2aae7e3d6b8258b21d12717f0d1f90677fa05a assets/gsr_yatm/blockstates/brown_shulkwart.json
 f3ca480c670db8fc0e70654096ecaf6772a86d1e assets/gsr_yatm/blockstates/candlelily.json
+fe4d0ec9fe45c2b00262b2b3a4643fdf152a176a assets/gsr_yatm/blockstates/candle_lantern.json
 1b6e6c5d73b6504806b87877507f0a56a832cf5e assets/gsr_yatm/blockstates/carbum.json
 e52cc8590734cec66205bfa79abdf13bd4b02fab assets/gsr_yatm/blockstates/carcass_root_foliage.json
 57e2392453b5140472749919b02bb7b3a4e64871 assets/gsr_yatm/blockstates/carcass_root_rooted_dirt.json
@@ -185,6 +186,10 @@ d48003c00eed9f0f7e21838c94729e08886aa720 assets/gsr_yatm/models/block/black_shul
 353e983e553e86ff8d773a05d197c6e42835b3b3 assets/gsr_yatm/models/block/blue_shulkwart_grown.json
 df8e6e703a6db521fd4d10b17498a38dc47ce2c9 assets/gsr_yatm/models/block/brown_shulkwart_grown.json
 777259bc7e347d50af3cf7a6ed9f662626a30656 assets/gsr_yatm/models/block/candlelily.json
+b6cec573cc197e73c1dcebc24286f67aa61757bf assets/gsr_yatm/models/block/candle_lantern.json
+6e149391ff8ec1021b192a59579a87ab5c6908f8 assets/gsr_yatm/models/block/candle_lantern_hanging.json
+6a609584e1ed4b19e2be117db86298dfbd151d43 assets/gsr_yatm/models/block/candle_lantern_lit.json
+a7da20a3206920d91263499dd78026be93071def assets/gsr_yatm/models/block/candle_lantern_lit_hanging.json
 7e5579a6a0f3e69f7833ca5b08ba2aac1b415aef assets/gsr_yatm/models/block/carbum_adolescent.json
 68cdd2bc404ce5ff2fac308b528c24281bbb923c assets/gsr_yatm/models/block/carbum_meristem.json
 887220c0f1feaf18cd6885f89881fd65bfddc371 assets/gsr_yatm/models/block/carbum_old.json

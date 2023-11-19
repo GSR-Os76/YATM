@@ -87,6 +87,9 @@ public class YATMItemModelProvider extends ItemModelProvider
 		
 		this.basicItem(YATMItems.HANGING_POT_HOOK_ITEM.get());
 		
+		this.basicItem(YATMItems.CANDLE_LANTERN_ITEM.get());
+		
+		
 	
 		this.basicItem(YATMItems.CONDUIT_VINES_ITEM.get());
 		this.basicItem(YATMItems.CHANNEL_VINES_ITEM.get());

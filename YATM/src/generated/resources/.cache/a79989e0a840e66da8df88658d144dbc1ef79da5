@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-10T19:24:38.7568412	Item Models: gsr_yatm
+// 1.20.1	2023-11-19T13:17:38.4636645	Item Models: gsr_yatm
 c2ea606d991a81e423cce1d89391873c41111adb assets/gsr_yatm/models/item/adamum_meristem.json
 39dc65663f22bc3413323e63119c165dc4f51c76 assets/gsr_yatm/models/item/aurum_deminutus_fiddle_head.json
 4bab78a47a4fc45a258b74c9012f61de899aee93 assets/gsr_yatm/models/item/aurum_deminutus_frond.json
@@ -10,6 +10,7 @@ e7540048ebe593ee6ab6323cc2f5a0bd0d8ae1cb assets/gsr_yatm/models/item/bio_bottle.
 9b9571ac3a009696d8b2c56ba9dcb6a24eb26b7e assets/gsr_yatm/models/item/bleached_ice_coral_polyp.json
 c7f17a5afc4950fd2ba02b46bee0e9029b9ab315 assets/gsr_yatm/models/item/bleached_ice_coral_young.json
 3a42584ee5159eeba62ede3de77dc460c6eb1fa5 assets/gsr_yatm/models/item/candlelily.json
+4ce17bb0aca9f4c623ffbb5c52947efb4143eb71 assets/gsr_yatm/models/item/candle_lantern.json
 3868620d8338ce345ddf7c926f510dc23b947b51 assets/gsr_yatm/models/item/carbum_leaf.json
 47e9a9831f60eea56a4e5836c458675faf8ab93b assets/gsr_yatm/models/item/carbum_meristem.json
 27a02805c72ecb20b7557bb77f320f10ff413732 assets/gsr_yatm/models/item/carcass_root_cutting.json

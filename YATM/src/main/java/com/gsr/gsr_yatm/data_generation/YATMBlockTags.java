@@ -49,6 +49,7 @@ public class YATMBlockTags extends BlockTagsProvider
 	public static final TagKey<Block> BASIN_OF_TEARS_FLOWERS_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/basin_of_tears_flowers_can_grow_on"));
 	public static final TagKey<Block> BASIN_OF_TEARS_VEGETATION_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/basin_of_tears_vegetation_can_grow_in"));
 	public static final TagKey<Block> BASIN_OF_TEARS_VEGETATION_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/basin_of_tears_vegetation_can_grow_on"));
+	public static final TagKey<Block> CANDLE_LANTERNS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "candle_lanterns"));	
 	public static final TagKey<Block> CANDLELILY_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/candlelily_can_grow_in"));	
 	public static final TagKey<Block> CANDLELILY_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/candlelily_can_grow_on"));
 	public static final TagKey<Block> CARBUM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/carbum_can_grow_on"));	
@@ -140,6 +141,7 @@ public class YATMBlockTags extends BlockTagsProvider
 	@Override
 	protected void addTags(Provider provider)
 	{
+		this.tag(BlockTags.CANDLES).addTag(YATMBlockTags.CANDLE_LANTERNS_KEY);
 		this.tag(BlockTags.CLIMBABLE).add(YATMBlocks.CONDUIT_VINES.get()).add(YATMBlocks.SPIDER_VINE.get());
 		this.tag(BlockTags.DIRT).add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get());
 		this.tag(BlockTags.FLOWERS).add(YATMBlocks.RUBBER_LEAVES_FLOWERING.get()); // maybe eventually add soul rubber flowers too, but seems like they should be special, and I dunno how to modify minecraft entity beehaviours
@@ -165,7 +167,7 @@ public class YATMBlockTags extends BlockTagsProvider
 		// TODO, maybe add misc plants to axe tag		
 		this.tag(BlockTags.MINEABLE_WITH_AXE).add(YATMBlocks.GRAFTING_TABLE.get()).addTag(YATMBlockTags.SAP_COLLECTORS_KEY).add(YATMBlocks.SPINNING_WHEEL.get());
 		this.tag(BlockTags.MINEABLE_WITH_HOE).add(YATMBlocks.RUBBER_LEAVES_YOUNG.get()).add(YATMBlocks.RUBBER_LEAVES_FLOWERING.get()).add(YATMBlocks.RUBBER_LEAVES_OLD.get()).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG.get()).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get()).add(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_OLD.get());
-		this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get()).addTag(YATMBlockTags.FOLIAR_STEEL_ORES_KEY).add(YATMBlocks.FOLIAR_STEEL_BLOCK.get()).addTag(YATMBlockTags.GOLEM_LIKE_PLANTS_KEY).add(YATMBlocks.LARGE_COPPER_HEAT_SINK.get()).addTag(YATMBlockTags.MACHINES_KEY).add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get()).add(YATMBlocks.STEEL_BOILER_TANK.get()).add(YATMBlocks.STEEL_TANK.get()).add(YATMBlocks.CHANNEL_VINES.get()).add(YATMBlocks.ADAMUM.get()).add(YATMBlocks.CUPRUM.get()).add(YATMBlocks.INFERNALUM.get()).add(YATMBlocks.LAPUM.get()).add(YATMBlocks.RUBERUM.get()).add(YATMBlocks.SAMARAGDUM.get());
+		this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get()).addTag(YATMBlockTags.FOLIAR_STEEL_ORES_KEY).add(YATMBlocks.FOLIAR_STEEL_BLOCK.get()).addTag(YATMBlockTags.GOLEM_LIKE_PLANTS_KEY).add(YATMBlocks.LARGE_COPPER_HEAT_SINK.get()).addTag(YATMBlockTags.MACHINES_KEY).add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get()).add(YATMBlocks.STEEL_BOILER_TANK.get()).add(YATMBlocks.STEEL_TANK.get()).add(YATMBlocks.CHANNEL_VINES.get()).add(YATMBlocks.ADAMUM.get()).add(YATMBlocks.CUPRUM.get()).add(YATMBlocks.INFERNALUM.get()).add(YATMBlocks.LAPUM.get()).add(YATMBlocks.RUBERUM.get()).add(YATMBlocks.SAMARAGDUM.get()).add(YATMBlocks.CANDLE_LANTERN.get());
 		this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get()).add(YATMBlocks.ROOTED_SOUL_SOIL.get());
 		this.tag(BlockTags.NEEDS_IRON_TOOL).add(YATMBlocks.AURUM.get()).add(YATMBlocks.FOLIAR_STEEL_BLOCK.get()).addTag(YATMBlockTags.FOLIAR_STEEL_ORES_KEY).add(YATMBlocks.FOLIUM.get()).addTag(YATMBlockTags.MACHINES_KEY).add(YATMBlocks.STEEL_BOILER_TANK.get()).add(YATMBlocks.STEEL_TANK.get()).add(YATMBlocks.CHANNEL_VINES.get()).add(YATMBlocks.RUBERUM.get()).add(YATMBlocks.SAMARAGDUM.get());
 		this.tag(BlockTags.NEEDS_STONE_TOOL).add(YATMBlocks.FERRUM.get()).add(YATMBlocks.LARGE_COPPER_HEAT_SINK.get());
@@ -213,6 +215,7 @@ public class YATMBlockTags extends BlockTagsProvider
 		this.tag(YATMBlockTags.BASIN_OF_TEARS_FLOWERS_CAN_GROW_ON_KEY).addTag(Tags.Blocks.NETHERRACK).addTag(Tags.Blocks.GRAVEL);
 		this.tag(YATMBlockTags.BASIN_OF_TEARS_VEGETATION_CAN_GROW_IN_KEY).add(Blocks.AIR);
 		this.tag(YATMBlockTags.BASIN_OF_TEARS_VEGETATION_CAN_GROW_ON_KEY).addTag(Tags.Blocks.NETHERRACK).addTag(Tags.Blocks.GRAVEL);
+		this.tag(YATMBlockTags.CANDLE_LANTERNS_KEY).add(YATMBlocks.CANDLE_LANTERN.get());
 		this.tag(YATMBlockTags.CANDLELILY_CAN_GROW_IN_KEY).add(Blocks.AIR);
 		this.tag(YATMBlockTags.CANDLELILY_CAN_GROW_ON_KEY).addTag(YATMBlockTags.SOUL_GROUND_KEY);
 		this.tag(YATMBlockTags.CARBUM_CAN_GROW_ON_KEY).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER);

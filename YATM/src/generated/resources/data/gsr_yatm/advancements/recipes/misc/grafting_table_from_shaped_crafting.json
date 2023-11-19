@@ -1,12 +1,12 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "has_item": {
+    "has_pot": {
       "conditions": {
         "items": [
           {
             "items": [
-              "gsr_yatm:carbum_leaf"
+              "minecraft:crafting_table"
             ]
           }
         ]
@@ -15,20 +15,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gsr_yatm:coal_from_carbum_leaf"
+        "recipe": "gsr_yatm:grafting_table_from_shaped_crafting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "has_item",
+      "has_pot",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "gsr_yatm:coal_from_carbum_leaf"
+      "gsr_yatm:grafting_table_from_shaped_crafting"
     ]
   },
   "sends_telemetry_event": false

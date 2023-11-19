@@ -29,7 +29,7 @@ public class ShapeBlock extends Block
 
 
 	@Override
-	public VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
+	public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
 	{
 		return this.m_shape.getShape(state, blockGetter, position, context);
 	} // end getShape()
