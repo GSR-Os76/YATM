@@ -2,6 +2,7 @@ package com.gsr.gsr_yatm.utilities.network;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -17,24 +18,43 @@ public class ContainerDataBuilder
 	
 	
 	
-	public @NotNull AccessSpecification addContainerData(@NotNull ContainerData adding) 
+	public @NotNull ContainerDataBuilder addContainerData(@NotNull ContainerData adding) 
 	{
 		this.tryPushProperties();
-		this.m_containers.add(adding);
+		this.m_containers.add(Objects.requireNonNull(adding));
+		
+		this.m_count += adding.getCount();
+		return this;		
+	} // end addContainerData()
+
+	public @NotNull ContainerDataBuilder addProperty(@NotNull Supplier<Integer> getter, @NotNull Consumer<Integer> setter) 
+	{
+		this.m_properties.add(new Property<>(Objects.requireNonNull(getter), Objects.requireNonNull(setter)));
+		
+		this.m_count += 1;
+		return this;
+	} // and addProperty()
+	
+	
+	
+	public @NotNull AccessSpecification addContainerDataS(@NotNull ContainerData adding) 
+	{
+		this.tryPushProperties();
+		this.m_containers.add(Objects.requireNonNull(adding));
 		
 		int oldCount = m_count;
 		m_count += adding.getCount();
 		return new AccessSpecification(oldCount, m_count - 1);		
-	} // end addContainerData()
+	} // end addContainerDataS()
 
-	public @NotNull AccessSpecification addProperty(@NotNull Supplier<Integer> getter, @NotNull Consumer<Integer> setter) 
+	public @NotNull AccessSpecification addPropertyS(@NotNull Supplier<Integer> getter, @NotNull Consumer<Integer> setter) 
 	{
-		this.m_properties.add(new Property<>(getter, setter));
+		this.m_properties.add(new Property<>(Objects.requireNonNull(getter), Objects.requireNonNull(setter)));
 		
 		int oldCount = m_count;
 		m_count += 1;
 		return new AccessSpecification(oldCount, m_count - 1);
-	} // and addProperty()
+	} // and addPropertyS()
 	
 	
 	

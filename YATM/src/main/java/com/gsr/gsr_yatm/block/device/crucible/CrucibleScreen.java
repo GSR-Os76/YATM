@@ -45,6 +45,7 @@ public class CrucibleScreen extends AbstractContainerScreen<CrucibleMenu>
 	{
 		super.renderBackground(graphics);
 		this.renderBg(graphics, partialTick, mouseX, mouseY);
+		// TODO, fluid is not displaying correctly at all
 		this.updateResultTankWidget();
 		this.updateTemperatureWidget();
 		super.render(graphics, mouseX, mouseY, partialTick);
@@ -59,7 +60,8 @@ public class CrucibleScreen extends AbstractContainerScreen<CrucibleMenu>
 		float cP = this.menu.craftProgress();
 		if(cP > 0) 
 		{			
-			graphics.blit(CrucibleScreen.BACKGROUND, this.leftPos + 63, this.topPos + 51, 176, 20, 14, (int)(50f * cP));	
+			YetAnotherTechMod.LOGGER.info("cP: " + cP);
+			graphics.blit(CrucibleScreen.BACKGROUND, this.leftPos + 63, this.topPos + 51, 176, 20, (int)(50f * cP), 14);	
 		}
 		
 		float bP = this.menu.burnProgress();

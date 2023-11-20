@@ -136,7 +136,7 @@ public abstract class AbstractSolarPanelBlockEntity extends DeviceBlockEntity
 	protected ContainerData createContainerData() 
 	{
 		ContainerDataBuilder builder = new ContainerDataBuilder();
-		AbstractSolarPanelBlockEntity.s_currentData = builder.addContainerData(new CurrentHandlerContainerData(this.m_internalCurrentStorer));
+		AbstractSolarPanelBlockEntity.s_currentData = builder.addContainerDataS(new CurrentHandlerContainerData(this.m_internalCurrentStorer));
 		AbstractSolarPanelBlockEntity.s_dataSlotCount = builder.getCount();
 		return builder.build();
 	} // end createContainerData()

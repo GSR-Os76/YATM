@@ -79,8 +79,8 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 		this.m_batteryCap = LazyOptional.of(() -> this.m_builtInBattery);
 		
 		ContainerDataBuilder cdb = new ContainerDataBuilder();
-		cdb.addProperty(() -> /*PoweredToolItemStack.this.stored(), (i) -> {});//*/PoweredToolItemStack.this.m_builtInBattery.stored(), (i) -> {});
-		cdb.addProperty(() -> /*PoweredToolItemStack.this.capacity(), (i) -> {});//*/PoweredToolItemStack.this.m_builtInBattery.capacity(), (i) -> {});
+		cdb.addPropertyS(() -> /*PoweredToolItemStack.this.stored(), (i) -> {});//*/PoweredToolItemStack.this.m_builtInBattery.stored(), (i) -> {});
+		cdb.addPropertyS(() -> /*PoweredToolItemStack.this.capacity(), (i) -> {});//*/PoweredToolItemStack.this.m_builtInBattery.capacity(), (i) -> {});
 		this.m_data = cdb.build();
 		
 		this.updateDamage();

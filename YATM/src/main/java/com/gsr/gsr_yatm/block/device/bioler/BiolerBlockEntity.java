@@ -144,11 +144,11 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 	protected ContainerData createContainerData() 
 	{
 		ContainerDataBuilder builder = new ContainerDataBuilder();
-		BiolerBlockEntity.s_craftData = builder.addContainerData(this.m_craftProgressC);
-		BiolerBlockEntity.s_resultTankData = builder.addContainerData(new FluidHandlerContainerData(this.m_resultTank, 0));
-		BiolerBlockEntity.s_currentData = builder.addContainerData(new CurrentHandlerContainerData(this.m_internalCurrentStorer));
-		AccessSpecification cd = builder.addProperty(() -> this.m_resultTankDrainCountDown, (i) -> {});
-		AccessSpecification ts = builder.addProperty(() -> this.m_initialDrainResultTankTransferSize, (i) -> {});
+		BiolerBlockEntity.s_craftData = builder.addContainerDataS(this.m_craftProgressC);
+		BiolerBlockEntity.s_resultTankData = builder.addContainerDataS(new FluidHandlerContainerData(this.m_resultTank, 0));
+		BiolerBlockEntity.s_currentData = builder.addContainerDataS(new CurrentHandlerContainerData(this.m_internalCurrentStorer));
+		AccessSpecification cd = builder.addPropertyS(() -> this.m_resultTankDrainCountDown, (i) -> {});
+		AccessSpecification ts = builder.addPropertyS(() -> this.m_initialDrainResultTankTransferSize, (i) -> {});
 		BiolerBlockEntity.s_drainResultTankData = new AccessSpecification(cd.startIndex(), ts.endIndex());
 		return builder.build();
 	} // end createContainerData()

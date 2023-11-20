@@ -3,9 +3,11 @@ package com.gsr.gsr_yatm.block.device.current_furnace;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.smelting.WrappedSmeltingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
@@ -29,6 +31,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<WrappedSmeltingRecipe, Container>
 {
+	// TODO, allow placing food items on top to cook them, rend them too. NOTE: campfires might have this functionality as well, refrenceable
 	public static final int INVENTORY_SLOT_COUNT = 3;
 	
 	public static final int INPUT_SLOT = 0;
@@ -38,8 +41,6 @@ public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<Wrapped
 	public static final String CRAFT_PROGRESS_SPEC_KEY = "craftProgress";
 	public static final String BURN_PROGRESS_SPEC_KEY = "burnProgress";
 	public static final String TEMPERATURE_DATA_SPEC_KEY = "temperatureData";
-
-	private static final String MAX_TEMPERATURE_TAG_NAME = "maxTemperature";
 	
 	private static final String BURN_TIME_ELAPSED_TAG_NAME = "burnTimeElapsed";
 	private static final String BURN_TIME_INITIAL_TAG_NAME = "burnTimeInitial";
@@ -48,7 +49,7 @@ public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<Wrapped
 	private int m_burnProgress = 0;
 	private int m_burnTime = 0;
 	private int m_temperature = 0;
-	private int m_maxTemperature = 0;
+	private final int m_maxTemperature = YATMConfigs.CURRENT_FURNACE_MAX_TEMPERATURE.get();
 	
 	private static final IContainerDataProvider<CurrentFurnaceBlockEntity> CONTAINER_DATA_PROVIDER = CurrentFurnaceBlockEntity.createContainerDataProvider();
 	public static final ICompositeAccessSpecification ACCESS_SPEC = CONTAINER_DATA_PROVIDER.createSpec();
@@ -56,40 +57,42 @@ public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<Wrapped
 	
 	
 	
- 	public CurrentFurnaceBlockEntity(BlockPos blockPos, BlockState blockState)
+// 	public CurrentFurnaceBlockEntity(BlockPos position, BlockState state)
+//	{
+//		this(Objects.requireNonNull(position), Objects.requireNonNull(state), DeviceTierConstants.EMPTY);
+//	} // end constructor()
+//	
+	public CurrentFurnaceBlockEntity(BlockPos position, BlockState state)//, DeviceTierConstants constants)
 	{
-		this(blockPos, blockState, 0);
+		super(YATMBlockEntityTypes.FURNACE_PLUS.get(), Objects.requireNonNull(position), Objects.requireNonNull(state), CurrentFurnaceBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.SMELTING_PLUS.get());
+		// this.setup(Contract.notNegative(constants.maxTemperature()));
 	} // end constructor()
+//	
+//	@Override
+//	protected @NotNull CompoundTag setupToNBT()
+//	{
+//		CompoundTag tag = new CompoundTag();
+//		tag.putInt(CurrentFurnaceBlockEntity.MAX_TEMPERATURE_TAG_NAME, this.m_maxTemperature);
+//		return tag;
+//	} // end setupToNBT()
+//
+//	@Override
+//	protected void setupFromNBT(@NotNull CompoundTag tag)
+//	{
+//		int maxTemperature = 0;
+//		if(tag.contains(CurrentFurnaceBlockEntity.MAX_TEMPERATURE_TAG_NAME)) 
+//		{
+//			maxTemperature = tag.getInt(CurrentFurnaceBlockEntity.MAX_TEMPERATURE_TAG_NAME);
+//		}
+//		this.setup(maxTemperature < 0 ? 0 : maxTemperature);
+//	} // end setupFromNBT()
+//
+//	private void setup(@NotNegative int maxTemperature) 
+//	{
+//		this.m_maxTemperature = maxTemperature;
+//	} // end setup()
 	
-	public CurrentFurnaceBlockEntity(BlockPos blockPos, BlockState blockState, int maxTemperature)
-	{
-		super(YATMBlockEntityTypes.FURNACE_PLUS.get(), blockPos, blockState, INVENTORY_SLOT_COUNT, YATMRecipeTypes.SMELTING_PLUS.get());
-		this.setup(maxTemperature);
-	} // end constructor()
 	
-	@Override
-	protected @NotNull CompoundTag setupToNBT()
-	{
-		CompoundTag tag = new CompoundTag();
-		tag.putInt(MAX_TEMPERATURE_TAG_NAME, this.m_maxTemperature);
-		return tag;
-	} // end setupToNBT()
-
-	@Override
-	protected void setupFromNBT(@NotNull CompoundTag tag)
-	{
-		int maxTemperature = 0;
-		if(tag.contains(MAX_TEMPERATURE_TAG_NAME)) 
-		{
-			maxTemperature = tag.getInt(MAX_TEMPERATURE_TAG_NAME);
-		}
-		this.setup(maxTemperature);
-	} // end setupFromNBT()
-
-	private void setup(int maxTemperature) 
-	{
-		this.m_maxTemperature = maxTemperature;
-	} // end setup()
 
 	private static IContainerDataProvider<CurrentFurnaceBlockEntity> createContainerDataProvider()
 	{
@@ -102,12 +105,12 @@ public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<Wrapped
 			{
 				List<Map.Entry<String, AccessSpecification>> specs = new ArrayList<>();
 				ContainerDataBuilder builder = new ContainerDataBuilder();
-				specs.add(Map.entry(CRAFT_PROGRESS_SPEC_KEY, builder.addContainerData(t.m_craftProgressC)));
-				AccessSpecification burnP = builder.addProperty(() -> t.m_burnProgress, (i) -> {});
-				AccessSpecification burnT = builder.addProperty(() -> t.m_burnTime, (i) -> {});
+				specs.add(Map.entry(CRAFT_PROGRESS_SPEC_KEY, builder.addContainerDataS(t.m_craftProgressC)));
+				AccessSpecification burnP = builder.addPropertyS(() -> t.m_burnProgress, (i) -> {});
+				AccessSpecification burnT = builder.addPropertyS(() -> t.m_burnTime, (i) -> {});
 				specs.add(Map.entry(BURN_PROGRESS_SPEC_KEY, AccessSpecification.join(burnP, burnT)));
-				AccessSpecification curTemp = builder.addProperty(() -> t.m_temperature, (i) -> {});
-				AccessSpecification maxTemp = builder.addProperty(() -> t.m_maxTemperature, (i) -> {});
+				AccessSpecification curTemp = builder.addPropertyS(() -> t.m_temperature, (i) -> {});
+				AccessSpecification maxTemp = builder.addPropertyS(() -> t.m_maxTemperature, (i) -> {});
 				specs.add(Map.entry(TEMPERATURE_DATA_SPEC_KEY, AccessSpecification.join(curTemp, maxTemp)));
 				if(this.m_spec == null) 
 				{
@@ -132,7 +135,7 @@ public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<Wrapped
 	
 	
 	@Override
-	public ContainerData getDataAccessor()
+	public @NotNull ContainerData getDataAccessor()
 	{
 		return this.m_data;
 	} // end getDataAccessor()
@@ -152,11 +155,6 @@ public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<Wrapped
 	
 	
 	
-	
-	
-
-	
-	
 	public boolean isLit()
 	{
 		return this.m_burnProgress > 0;
@@ -165,7 +163,7 @@ public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<Wrapped
 	
 	
 	@Override
-	public void serverTick(Level level, BlockPos position, BlockState state)
+	public void serverTick(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state)
 	{
 		boolean wasLitInitially = this.isLit();
 		boolean changed = doHeat();

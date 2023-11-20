@@ -78,7 +78,7 @@ public class MeltingRecipe implements ITimedRecipe<Container>
 	{
 		return this.m_input.test(inventory.getStackInSlot(CrucibleBlockEntity.INPUT_SLOT)) 
 				&& tank.fill(this.m_result.copy(), FluidAction.SIMULATE) == this.m_result.getAmount()
-				&& this.m_temperature >= heat.getTemperature();
+				&& this.m_temperature <= heat.getTemperature();
 	} // end canBeUsedOn()
 
 	public void startRecipe(@NotNull IItemHandler inventory)

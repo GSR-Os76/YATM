@@ -6,7 +6,6 @@ import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.block.device.DeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
-import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
@@ -30,17 +29,14 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 public class CrucibleBlock extends DeviceBlock
 {
 	public static final BooleanProperty LIT = YATMBlockStateProperties.LIT;
-	private final @NotNull DeviceTierConstants m_constants;
 	
 	
 	
-	public CrucibleBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, @NotNull DeviceTierConstants constants)
+	public CrucibleBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
 		super(Objects.requireNonNull(properties), YATMBlockEntityTypes.CRUCIBLE::get, Objects.requireNonNull(shape));
 		
 		this.registerDefaultState(this.defaultBlockState().setValue(CrucibleBlock.LIT, false));
-		
-		this.m_constants = Objects.requireNonNull(constants);
 	} // end constructor
 
 
@@ -82,20 +78,20 @@ public class CrucibleBlock extends DeviceBlock
 
 
 	@Override
-	public DeviceBlockEntity newDeviceBlockEntity(BlockPos blockPos, BlockState blockState)
+	public DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		return new CrucibleBlockEntity(blockPos, blockState, this.m_constants);
+		return new CrucibleBlockEntity(position, state);
 	} // end newBlockEntity()
 	
 	@Override
-	public MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos)
+	public MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position)
 	{
-		CrucibleBlockEntity blockEntity = (CrucibleBlockEntity) level.getBlockEntity(blockPos);
+		CrucibleBlockEntity blockEntity = (CrucibleBlockEntity) level.getBlockEntity(position);
 		return new SimpleMenuProvider((containerId, playerInventory, player) -> new CrucibleMenu(
 				containerId, 
 				playerInventory, 
-				ContainerLevelAccess.create(level, blockPos), 
-				blockState.getBlock(), 
+				ContainerLevelAccess.create(level, position), 
+				state.getBlock(), 
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
 		YATMLanguageProvider.getTranslatableTitleNameFor(YATMMenuTypes.CRUCIBLE.get()));

@@ -2,10 +2,13 @@ package com.gsr.gsr_yatm.block.device;
 
 import java.util.Enumeration;
 import java.util.List;
+import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
+import com.gsr.gsr_yatm.utilities.contract.Contract;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.network.Property;
 import com.gsr.gsr_yatm.utilities.network.PropertyContainerData;
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtil;
@@ -42,10 +45,10 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 	
 	
 	
-	public CraftingDeviceBlockEntity(BlockEntityType<?> type, BlockPos blockPos, BlockState blockState, int inventorySlotCount, RecipeType<T> recipeType)
+	public CraftingDeviceBlockEntity(@NotNull BlockEntityType<?> type, @NotNull BlockPos position, @NotNull BlockState state, @NotNegative int inventorySlotCount, @NotNull RecipeType<T> recipeType)
 	{
-		super(type, blockPos, blockState, inventorySlotCount);
-		this.m_recipeType = recipeType;
+		super(Objects.requireNonNull(type), Objects.requireNonNull(position), Objects.requireNonNull(state), Contract.notNegative(inventorySlotCount));
+		this.m_recipeType = Objects.requireNonNull(recipeType);
 	} // end Constructor
 
 	

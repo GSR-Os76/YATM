@@ -1,6 +1,7 @@
 package com.gsr.gsr_yatm.block.device;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
@@ -44,8 +45,8 @@ public abstract class DeviceBlockEntity extends BlockEntity
 		this.m_inventory = InventoryWrapper.Builder.of(this.m_uncheckedInventory).slotValidator(this::itemInsertionValidator).build();
 	} // end constructor
 	
-	protected abstract @NotNull CompoundTag setupToNBT();
-	protected abstract void setupFromNBT(@NotNull CompoundTag tag);
+	protected @Nullable CompoundTag setupToNBT() {return null;}
+	protected void setupFromNBT(@NotNull CompoundTag tag) {}
 	
 	
 	
@@ -123,11 +124,14 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	
 	
 	@Override
-	protected void saveAdditional(CompoundTag tag)
+	protected void saveAdditional(@NotNull CompoundTag tag)
 	{
 		super.saveAdditional(tag);
-		
-		tag.put(DeviceBlockEntity.SETUP_TAG_NAME, this.setupToNBT());
+		CompoundTag setup = this.setupToNBT();
+		if(setup != null) 
+		{
+			tag.put(DeviceBlockEntity.SETUP_TAG_NAME, setup);
+		}
 		tag.put(DeviceBlockEntity.INVENTORY_TAG_NAME, this.m_rawInventory.serializeNBT());
 		if(this.m_internalCurrentStorer != null && this.m_internalCurrentStorer.stored() > 0) 
 		{
@@ -136,7 +140,7 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	} // end saveAdditional()
 	
 	@Override
-	public void load(CompoundTag tag)
+	public void load(@NotNull CompoundTag tag)
 	{
 		super.load(tag);
 		

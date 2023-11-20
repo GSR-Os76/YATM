@@ -14,12 +14,17 @@ import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.extracting.ExtractingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.ingredient.FluidStackIngredient;
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.recipe.ingredient.ItemStackIngredient;
 import com.gsr.gsr_yatm.recipe.ingredient.ItemTagIngredient;
+import com.gsr.gsr_yatm.recipe.melting.MeltingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.spinning.SpinningRecipeBuilder;
 import com.gsr.gsr_yatm.registry.YATMFluids;
 import com.gsr.gsr_yatm.registry.YATMItems;
+import com.gsr.gsr_yatm.utilities.contract.Contract;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
+import net.minecraft.advancements.CriterionTriggerInstance;
 import net.minecraft.advancements.critereon.ItemPredicate;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.FinishedRecipe;
@@ -37,6 +42,7 @@ import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -152,7 +158,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		
 		this.addCottonRecipes(writer);
 		this.addOneToX(writer, YATMItems.SPIDER_VINE_FRUITS.get(), Items.SPIDER_EYE, 3, YetAnotherTechMod.MODID + ":spider_eyes_from_spider_vine_fruits_shapeless_crafting");
-		
+		this.addMeltingRecipes(writer);
 		
 		this.addPoweredToolRecipes(writer);
 		
@@ -387,9 +393,14 @@ public class YATMRecipeProvider extends RecipeProvider
 
 	} // end addChorusBiolings()
 	
+	private void addMeltingRecipes(@NotNull Consumer<FinishedRecipe> writer) 
+	{
+		this.addMeltingRecipe(writer, new ItemStackIngredient(new ItemStack(Items.ICE)), new FluidStack(Fluids.WATER, 1000), 273, 360, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Items.ICE).build()), YetAnotherTechMod.MODID + ":water_from_ice_melting");
+	} // end addMeltingRecipes()
 	
 	
-	private void addPoweredToolRecipes(Consumer<FinishedRecipe> writer) 
+	
+	private void addPoweredToolRecipes(@NotNull Consumer<FinishedRecipe> writer) 
 	{
 //		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.WOODEN_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_WOOD.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_wood_from_part_exchange");
 //		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.STONE_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_STONE.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_stone_from_part_exchange");
@@ -883,6 +894,17 @@ public class YATMRecipeProvider extends RecipeProvider
 		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(input).build()))
 		.save(writer, key);
 	} // end addGrindRecipe()
+	
+	
+	private void addMeltingRecipe(@NotNull Consumer<FinishedRecipe> writer, @NotNull IIngredient<ItemStack> input, @NotNull FluidStack result, @NotNegative int temperature, @NotNegative int ticks, CriterionTriggerInstance unlockedBy, String key)
+	{
+		new MeltingRecipeBuilder()
+		.result(result)
+		.input(input)
+		.temperature(Contract.notNegative(temperature))
+		.timeInTicks(Contract.notNegative(ticks)).unlockedBy("has_ingredient", unlockedBy)
+		.save(writer, key);
+	} // end addMeltingRecipe()
 	
 	
 	

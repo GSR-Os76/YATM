@@ -68,13 +68,13 @@ public abstract class DeviceBlock extends Block implements EntityBlock
 	public abstract DeviceBlockEntity newDeviceBlockEntity(BlockPos blockPos, BlockState blockState);
 	
 	@Override
-	public final BlockEntity newBlockEntity(BlockPos blockPos, BlockState blockState)
+	public final BlockEntity newBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState)
 	{
 		return this.newDeviceBlockEntity(blockPos, blockState);
 	} // end newBlockEntity()
 
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState blockState, BlockEntityType<T> blockEntityType)
+	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState blockState, @NotNull BlockEntityType<T> blockEntityType)
 	{
 		return blockEntityType == this.m_type.get() ? (l, bp, bs, be) -> DeviceBlockEntity.tick(l, bp, bs, (DeviceBlockEntity)be) : null;
 	} // end getTicker()

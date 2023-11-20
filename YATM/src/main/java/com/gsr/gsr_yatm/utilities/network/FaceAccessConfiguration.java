@@ -54,13 +54,13 @@ public class FaceAccessConfiguration implements ContainerData
 		this.m_allowedFaces = new BooleanFlagHandler();
 		this.m_allowedFaces.setContainerDataSettableMask(0b1111_1111_1111_1111_1111_1111_1111_1111);
 		FaceAccessConfiguration.DIRECTION_INDICES_BY_DIRECTION.forEach((d, i) -> FaceAccessConfiguration.this.m_allowedFaces.setValue(i, configurableFaces.contains(d)));
-		builder.addContainerData(this.m_allowedFaces.getData());
+		builder.addContainerDataS(this.m_allowedFaces.getData());
 		// count += this.m_allowedFaces.getData().getCount();
 		
 		this.m_slots = new BooleanFlagHandler();
 		this.m_slots.setContainerDataSettableMask(0b1111_1111_1111_1111_1111_1111_1111_1111);
 		slots.forEach((si) -> this.m_slots.setValue(si, true));
-		builder.addContainerData(this.m_slots.getData());
+		builder.addContainerDataS(this.m_slots.getData());
 		// count += this.m_slots.getData().getCount();
 		
 		// Map<Integer, Direction> indexFaceLookup = new HashMap<>();
@@ -73,7 +73,7 @@ public class FaceAccessConfiguration implements ContainerData
 				BooleanFlagHandler n = new BooleanFlagHandler();
 				n.setContainerDataSettableMask(0b1111_1111_1111_1111_1111_1111_1111_1111);
 				this.m_slotFaceMap.put(e.getKey(), n);
-				builder.addContainerData(n.getData());
+				builder.addContainerDataS(n.getData());
 				// count++;
 			}
 		}

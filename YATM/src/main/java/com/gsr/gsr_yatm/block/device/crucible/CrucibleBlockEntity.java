@@ -9,10 +9,10 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
-import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
 import com.gsr.gsr_yatm.item.component.IComponent;
 import com.gsr.gsr_yatm.recipe.melting.MeltingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
@@ -22,8 +22,6 @@ import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.fluid.ConfigurableTankWrapper;
 import com.gsr.gsr_yatm.utilities.capability.heat.OnChangedHeatHandler;
 import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
-import com.gsr.gsr_yatm.utilities.contract.Contract;
-import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.network.CompositeAccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
 import com.gsr.gsr_yatm.utilities.network.FluidHandlerContainerData;
@@ -61,10 +59,6 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	public static final String TEMPERATURE_SPEC_KEY = "temperature";
 	public static final String MAX_TEMPERATURE_SPEC_KEY = "maxTemperature";
 	
-	private static final String MAX_FLUID_TRANSFER_RATE_TAG_NAME = "maxFluidTransferRate";
-	private static final String MAX_TEMPERATURE_TAG_NAME = "maxTemperature";
-	private static final String TANK_CAPACITY_TAG_NAME = "tankCapacity";
-	
 	private static final String BURN_TIME_ELAPSED_TAG_NAME = "burnTimeElapsed";
 	private static final String BURN_TIME_INITIAL_TAG_NAME = "burnTimeInitial";
 	private static final String BURN_TEMP_TAG_NAME = "burnTemperature";
@@ -72,6 +66,9 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	private static final String DRAIN_RESULT_TRANSFER_INITIAL_TAG_NAME = "drainResultInitial";
 	private static final String RESULT_TANK_TAG_NAME = "resultTank";
 	private static final String TEMPERAURE_TAG_NAME = "temperature";
+	private static final String TICKS_PERFORMED_TAG_NAME = "ticksPerformed";
+	private static final String TICKS_SCHEDULED_TAG_NAME = "ticksScheduled";
+	
 	
 	private static final float AMBIENT_COOLING_FACTOR = .013f;	
 	private static final int MINIMUM_CHANGE_PER_AMBIENT_COOLING = 6;	
@@ -79,13 +76,16 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	private static final int DRAIN_RECHECK_PERIOD = 40;
 	
 	
+	private int m_ticksPerformed = 0;
+	private float m_ticksScheduled = 0f;	
+	
 	// TODO, force recheck when neighbor changes
+	private final int m_maxTemperature = YATMConfigs.CRUCIBLE_MAX_TEMPERATURE.get();
+	private final int m_maxFluidTransferRate = YATMConfigs.CRUCIBLE_MAX_FLUID_TRANSFER_RATE.get();
 	private int drainRecheckCounter = 0;
 	private int m_burnProgress = 0;
 	private int m_burnTime = 0;
 	private int m_burnTemperature;
-	private int m_maxTemperature;
-	private int m_maxFluidTransferRate;
 	private int m_drainResultTankCountDown = 0;
 	private int m_drainResultTankInitialTransferSize = 0;	
 	
@@ -93,8 +93,8 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	private final IItemHandler m_drainResultTankSlot = InventoryWrapper.Builder.of().inventory(this.m_inventory).slotTranslationTable(new int[] {CrucibleBlockEntity.DRAIN_RESULT_TANK_SLOT}).build();
 	private final IItemHandler m_inputSlot = InventoryWrapper.Builder.of().inventory(this.m_inventory).slotTranslationTable(new int[] {CrucibleBlockEntity.INPUT_SLOT}).build();;
 	private final IItemHandler m_heatingSlot = InventoryWrapper.Builder.of().inventory(this.m_inventory).slotTranslationTable(new int[] {CrucibleBlockEntity.HEAT_SLOT}).build();;
-	private FluidTank m_rawResultTank;
-	private ConfigurableTankWrapper m_resultTank;	
+	private FluidTank m_rawResultTank = new FluidTank(YATMConfigs.CRUCIBLE_RESULT_TANK_CAPACITY.get());
+	private ConfigurableTankWrapper m_resultTank = new ConfigurableTankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);	
 	private OnChangedHeatHandler m_heatHandler = new OnChangedHeatHandler(IHeatHandler.getAmbientTemp(), (i) -> this.setChanged());
 	
 	private @Nullable ItemStack m_drainResultComponentStack = null;
@@ -113,7 +113,6 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	private @NotNull LazyOptional<IFluidHandler> m_resultTankLazyOptional = LazyOptional.of(() -> CrucibleBlockEntity.this.m_resultTank);
 	private @NotNull LazyOptional<IHeatHandler> m_heatLazyOptional = LazyOptional.of(() -> CrucibleBlockEntity.this.m_heatHandler);
 	
-	//private @NotNull LazyOptional<IFluidHandler> m_deadCapForVisualPurposes = LazyOptional.of(() -> new FluidTank(0));
 	private @NotNull Map<Capability<?>, LazyOptional<?>> m_sterileDrainResultCaps = new HashMap<>();
 	
 
@@ -126,76 +125,23 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 			Map.entry(CrucibleBlockEntity.TEMPERATURE_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY),
 			Map.entry(CrucibleBlockEntity.MAX_TEMPERATURE_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY)
 			));
-	protected @NotNull ContainerData m_data;
-	
-	
+	protected final @NotNull ContainerData m_data = new ContainerDataBuilder()
+			.addProperty(() -> this.m_craftProgress, (i) -> {})
+			.addProperty(() -> this.m_craftTime, (i) -> {})
+			.addProperty(() -> this.m_burnProgress, (i) -> {})
+			.addProperty(() -> this.m_burnTime, (i) -> {})
+			.addProperty(() -> this.m_drainResultTankCountDown, (i) -> {})
+			.addProperty(() -> this.m_drainResultTankInitialTransferSize, (i) -> {})
+			.addContainerData(new FluidHandlerContainerData(this.m_rawResultTank, 0))
+			.addProperty(() -> this.m_heatHandler.getTemperature(), (i) -> {})
+			.addProperty(() -> this.m_maxTemperature, (i) -> {})
+			.build();
+
 
 	public CrucibleBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState)
 	{
-		this(Objects.requireNonNull(blockPos), Objects.requireNonNull(blockState), DeviceTierConstants.EMPTY);
-	} // end constructor
-
-	public CrucibleBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState, @NotNull DeviceTierConstants constants)
-	{
 		super(YATMBlockEntityTypes.CRUCIBLE.get(), Objects.requireNonNull(blockPos), Objects.requireNonNull(blockState), CrucibleBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.MELTING.get());
-		this.setup(constants.maxFluidTransferRate(), constants.maxTemperature(), constants.tankCapacity());
 	} // end constructor
-
-	@Override
-	protected @NotNull CompoundTag setupToNBT()
-	{
-		CompoundTag tag = new CompoundTag();
-		tag.putInt(CrucibleBlockEntity.MAX_FLUID_TRANSFER_RATE_TAG_NAME, this.m_maxFluidTransferRate);
-		tag.putInt(CrucibleBlockEntity.MAX_TEMPERATURE_TAG_NAME, this.m_maxTemperature);
-		tag.putInt(CrucibleBlockEntity.TANK_CAPACITY_TAG_NAME, this.m_rawResultTank.getCapacity());
-		return tag;
-	} // end setupToNBT()
-
-	@Override
-	protected void setupFromNBT(@NotNull CompoundTag tag)
-	{
-		int tankCapacity = 0;
-		int maxFluidTransferRate = 0;
-		int maxTemperature = 0;
-		
-		if (tag.contains(CrucibleBlockEntity.MAX_FLUID_TRANSFER_RATE_TAG_NAME))
-		{
-			maxFluidTransferRate = tag.getInt(CrucibleBlockEntity.MAX_FLUID_TRANSFER_RATE_TAG_NAME);
-		}
-		if (tag.contains(CrucibleBlockEntity.MAX_TEMPERATURE_TAG_NAME))
-		{
-			maxTemperature = tag.getInt(CrucibleBlockEntity.MAX_TEMPERATURE_TAG_NAME);
-		}
-		if (tag.contains(CrucibleBlockEntity.TANK_CAPACITY_TAG_NAME))
-		{
-			tankCapacity = tag.getInt(CrucibleBlockEntity.TANK_CAPACITY_TAG_NAME);
-		}
-		
-		this.setup(maxFluidTransferRate, maxTemperature, tankCapacity);
-	} // end setupFromNBT()
-
-	private void setup(@NotNegative int maxFluidTransferRate, @NotNegative int maxTemperature, @NotNegative int tankCapacity)
-	{
-		this.m_maxFluidTransferRate = Contract.notNegative(maxFluidTransferRate);
-		this.m_maxTemperature = Contract.notNegative(maxTemperature);
-		this.m_rawResultTank = new FluidTank(Contract.notNegative(tankCapacity));
-		this.m_resultTank = new ConfigurableTankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);
-		
-		this.m_resultTankLazyOptional.invalidate();
-		this.m_resultTankLazyOptional = LazyOptional.of(() -> CrucibleBlockEntity.this.m_resultTank);
-		
-		ContainerDataBuilder cdb = new ContainerDataBuilder();
-		cdb.addProperty(() -> this.m_craftProgress, (i) -> {});
-		cdb.addProperty(() -> this.m_craftTime, (i) -> {});		
-		cdb.addProperty(() -> this.m_burnProgress, (i) -> {});
-		cdb.addProperty(() -> this.m_burnTime, (i) -> {});		
-		cdb.addProperty(() -> this.m_drainResultTankCountDown, (i) -> {});
-		cdb.addProperty(() -> this.m_drainResultTankInitialTransferSize, (i) -> {});
-		cdb.addContainerData(new FluidHandlerContainerData(this.m_rawResultTank, 0));
-		cdb.addProperty(() -> this.m_heatHandler.getTemperature(), (i) -> {});
-		cdb.addProperty(() -> this.m_maxTemperature, (i) -> {});
-		this.m_data = cdb.build();
-	} // end setup()
 	
 	
 	
@@ -326,12 +272,29 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 			this.m_updateHeatComponentQueued = false;			
 		}
 		boolean changed = this.doHeat();
-		changed |= this.m_waitingForLoad 
-				|| (this.m_activeRecipe != null 
-					&& (this.m_heatHandler.getTemperature() < this.m_activeRecipe.getTemperature())
-					)
-					? false 
-					: this.doCrafting();
+		if(!this.m_waitingForLoad) 
+		{
+			if(this.m_activeRecipe == null || (this.m_heatHandler.getTemperature() >= this.m_activeRecipe.getTemperature())) 
+			{
+				this.doCrafting();
+				if(this.m_activeRecipe != null) 
+				{
+					this.m_ticksPerformed += 1;
+					this.m_ticksScheduled += ((float)this.m_heatHandler.getTemperature()) / ((float)this.m_activeRecipe.getTemperature());
+					int bonusTicks = ((int)this.m_ticksScheduled) - this.m_ticksPerformed;
+					for(int i = 0; (this.m_activeRecipe != null) && (i < bonusTicks); i++) 
+					{
+						this.doCrafting();
+					}
+				}
+			}		
+		}
+//		changed |= (this.m_waitingForLoad 
+//				|| (this.m_activeRecipe != null 
+//					&& (this.m_heatHandler.getTemperature() < this.m_activeRecipe.getTemperature())
+//					))
+//					? false
+//					: this.doCrafting();
 		changed |= this.doDrainResultTank();
 		
 		if(++drainRecheckCounter >= CrucibleBlockEntity.DRAIN_RECHECK_PERIOD) 
@@ -441,6 +404,8 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	protected void setRecipeResults(@NotNull MeltingRecipe from)
 	{
 		from.setResults(this.m_rawResultTank);
+		this.m_ticksPerformed = 0;
+		this.m_ticksScheduled = 0f;
 	} // end setRecipeResults()
 
 	@Override
@@ -453,6 +418,8 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	protected void startRecipe(@NotNull MeltingRecipe from)
 	{
 		from.startRecipe(this.m_uncheckedInventory);
+		this.m_ticksPerformed = 0;
+		this.m_ticksScheduled = 0f;
 	} // end startRecipe()
 
 
@@ -462,6 +429,11 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	{
 		super.saveAdditional(tag);
 
+		if(this.m_activeRecipe != null) 
+		{
+			tag.putInt(CrucibleBlockEntity.TICKS_PERFORMED_TAG_NAME, this.m_ticksPerformed);
+			tag.putFloat(CrucibleBlockEntity.TICKS_SCHEDULED_TAG_NAME, this.m_ticksScheduled);
+		}
 		tag.putInt(CrucibleBlockEntity.TEMPERAURE_TAG_NAME, this.m_heatHandler.getTemperature());
 		if(this.m_burnProgress > 0 && this.m_burnTime > 0) 
 		{
@@ -486,6 +458,11 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	{
 		super.load(tag);
 		
+		if (tag.contains(CrucibleBlockEntity.TICKS_PERFORMED_TAG_NAME) && tag.contains(CrucibleBlockEntity.TICKS_SCHEDULED_TAG_NAME))
+		{
+			this.m_ticksPerformed = tag.getInt(CrucibleBlockEntity.TICKS_PERFORMED_TAG_NAME);
+			this.m_ticksScheduled = tag.getFloat(CrucibleBlockEntity.TICKS_SCHEDULED_TAG_NAME);
+		}
 		if (tag.contains(CrucibleBlockEntity.TEMPERAURE_TAG_NAME))
 		{
 			this.m_heatHandler.setTemperature(tag.getInt(CrucibleBlockEntity.TEMPERAURE_TAG_NAME));

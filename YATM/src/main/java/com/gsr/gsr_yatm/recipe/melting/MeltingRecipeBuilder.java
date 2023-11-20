@@ -26,7 +26,7 @@ public class MeltingRecipeBuilder implements RecipeBuilder
 	private @NotNegative int m_timeInTicks = 20;
 	private @NotNull String m_group = "";
 	
-	private @NotNull Advancement.Builder m_advancement;
+	private final@NotNull Advancement.Builder m_advancement = Advancement.Builder.advancement();
 
 
 	

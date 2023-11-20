@@ -79,7 +79,7 @@ public class CreativeCurrentSourceBlockEntity extends BlockEntity
 		this.m_sourceCap = LazyOptional.of(() -> this.m_source);
 		
 		ContainerDataBuilder cdb = new ContainerDataBuilder();
-		cdb.addProperty(() -> this.m_source.capacity(), (i) -> this.m_source.setOutput(i));
+		cdb.addPropertyS(() -> this.m_source.capacity(), (i) -> this.m_source.setOutput(i));
 		this.m_data = cdb.build();
 	} // end constructor()
 	

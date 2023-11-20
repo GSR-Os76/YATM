@@ -1,8 +1,11 @@
 package com.gsr.gsr_yatm.block.device.current_furnace;
 
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.block.device.DeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
-import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
@@ -18,31 +21,24 @@ import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
 public class CurrentFurnaceBlock extends DeviceBlock
 {
-	public static final DirectionProperty FACING = YATMBlockStateProperties.FACING_HORIZONTAL;
 	public static final BooleanProperty LIT = YATMBlockStateProperties.LIT;
 
-	private final DeviceTierConstants m_constants;
-	
 
 	
-	public CurrentFurnaceBlock(Properties properties, ICollisionVoxelShapeProvider shape, DeviceTierConstants constants)
+	public CurrentFurnaceBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
-		super(properties, YATMBlockEntityTypes.FURNACE_PLUS::get, shape);
+		super(Objects.requireNonNull(properties), YATMBlockEntityTypes.FURNACE_PLUS::get, Objects.requireNonNull(shape));
 		
-		this.registerDefaultState(this.defaultBlockState().setValue(LIT, false));
-		
-		this.m_constants = constants;
-		
+		this.registerDefaultState(this.defaultBlockState().setValue(CurrentFurnaceBlock.LIT, false));		
 	} // end constructor
 
 
 
 	@Override
-	protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
+	protected void createBlockStateDefinition(@NotNull Builder<Block, BlockState> builder)
 	{
 		super.createBlockStateDefinition(builder.add(LIT));
 	} // createBlockStateDefinition()
@@ -50,20 +46,20 @@ public class CurrentFurnaceBlock extends DeviceBlock
 
 	
 	@Override
-	public DeviceBlockEntity newDeviceBlockEntity(BlockPos blockPos, BlockState blockState)
+	public DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		return new CurrentFurnaceBlockEntity(blockPos, blockState, this.m_constants.maxTemperature());
+		return new CurrentFurnaceBlockEntity(position, state);
 	} // end newDeviceBlockEntity()
 
 	@Override
-	public MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos)
+	public MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position)
 	{		
-		CurrentFurnaceBlockEntity blockEntity = (CurrentFurnaceBlockEntity)level.getBlockEntity(blockPos);
+		CurrentFurnaceBlockEntity blockEntity = (CurrentFurnaceBlockEntity)level.getBlockEntity(position);
 		return new SimpleMenuProvider((containerId, playerInventory, player) -> new CurrentFurnaceMenu(
 				containerId, 
 				playerInventory, 
-				ContainerLevelAccess.create(level, blockPos), 
-				blockState.getBlock(),
+				ContainerLevelAccess.create(level, position), 
+				state.getBlock(),
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()),
 		YATMLanguageProvider.getTranslatableTitleNameFor(YATMMenuTypes.CURRENT_FURNACE.get())
