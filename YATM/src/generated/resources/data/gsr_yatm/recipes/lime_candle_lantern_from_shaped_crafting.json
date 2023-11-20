@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "c": {
+      "item": "minecraft:lime_candle"
+    },
+    "i": {
+      "tag": "forge:nuggets/iron"
+    }
+  },
+  "pattern": [
+    "iii",
+    "ici",
+    "iii"
+  ],
+  "result": {
+    "item": "gsr_yatm:lime_candle_lantern"
+  },
+  "show_notification": true
+}

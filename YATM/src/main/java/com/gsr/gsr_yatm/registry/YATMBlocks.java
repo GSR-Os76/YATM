@@ -20,7 +20,7 @@ import com.gsr.gsr_yatm.block.device.compute.storage.DataStorageBlock;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceBlock;
 import com.gsr.gsr_yatm.block.device.crucible.CrucibleBlock;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlock;
-import com.gsr.gsr_yatm.block.device.current_furnace.FurnacePlusBlock;
+import com.gsr.gsr_yatm.block.device.current_furnace.CurrentFurnaceBlock;
 import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInterchangerBlock;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlock;
 import com.gsr.gsr_yatm.block.device.grafting.GraftingTableBlock;
@@ -301,6 +301,22 @@ public class YATMBlocks
 	
 	
 	public static final RegistryObject<CandleLanternBlock> CANDLE_LANTERN = BLOCKS.register("candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> WHITE_CANDLE_LANTERN = BLOCKS.register("white_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> ORANGE_CANDLE_LANTERN = BLOCKS.register("orange_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> MAGENTA_CANDLE_LANTERN = BLOCKS.register("magenta_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> LIGHT_BLUE_CANDLE_LANTERN = BLOCKS.register("light_blue_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> YELLOW_CANDLE_LANTERN = BLOCKS.register("yellow_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> LIME_CANDLE_LANTERN = BLOCKS.register("lime_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> PINK_CANDLE_LANTERN = BLOCKS.register("pink_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> GRAY_CANDLE_LANTERN = BLOCKS.register("gray_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> LIGHT_GRAY_CANDLE_LANTERN = BLOCKS.register("light_gray_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> CYAN_CANDLE_LANTERN = BLOCKS.register("cyan_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> PURPLE_CANDLE_LANTERN = BLOCKS.register("purple_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> BLUE_CANDLE_LANTERN = BLOCKS.register("blue_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> BROWN_CANDLE_LANTERN = BLOCKS.register("brown_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> GREEN_CANDLE_LANTERN = BLOCKS.register("green_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> RED_CANDLE_LANTERN = BLOCKS.register("red_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> BLACK_CANDLE_LANTERN = BLOCKS.register("black_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
 	
 	//TODO, maybe add some sort of soul stone 
 	public static final RegistryObject<DropExperienceBlock> FOLIAR_STEEL_ORE = BLOCKS.register("foliar_steel_ore", () -> new DropExperienceBlock(YATMBlockProperties.stoneOre()));
@@ -336,7 +352,7 @@ public class YATMBlocks
 	public static final RegistryObject<BoilerBlock> STEEL_BOILER = BLOCKS.register("steel_boiler", () -> new BoilerBlock(YATMBlockProperties.STEEL_PLANT_MACHINE, YATMBlockShapes.BOILER, DeviceTierConstants.STEEL_DEVICE));
 	public static final RegistryObject<CrucibleBlock> STEEL_CRUCIBLE = BLOCKS.register("steel_crucible", () -> new CrucibleBlock(YATMBlockProperties.STEEL_PLANT_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_DEVICE));
 	public static final RegistryObject<CrystallizerBlock> STEEL_CRYSTALLIZER = BLOCKS.register("steel_crystallizer", () -> new CrystallizerBlock(YATMBlockProperties.STEEL_PLANT_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_TANK_CAPACITY, DeviceTierConstants.STEEL_MAXIMUM_FLUID_TRANSFER_RATE));
-	public static final RegistryObject<FurnacePlusBlock> STEEL_FURNACE_PLUS = BLOCKS.register("steel_furnace_plus", () -> new FurnacePlusBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_DEVICE));
+	public static final RegistryObject<CurrentFurnaceBlock> STEEL_CURRENT_FURNACE = BLOCKS.register("steel_current_furnace", () -> new CurrentFurnaceBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_DEVICE));
 	public static final RegistryObject<ExtractorBlock> STEEL_EXTRACTOR = BLOCKS.register("steel_extractor", () -> new ExtractorBlock(YATMBlockProperties.STEEL_PLANT_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_CURRENT_CAPACITY, DeviceTierConstants.STEEL_MAX_CURRENT_TRANSFER, DeviceTierConstants.STEEL_TANK_CAPACITY, DeviceTierConstants.STEEL_MAXIMUM_FLUID_TRANSFER_RATE));
 //	public static final RegistryObject<ExtruderBlock> STEEL_EXTRUDER = BLOCKS.register("steel_extruder", () -> new ExtruderBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_CURRENT_CAPACITY, DeviceTierConstants.STEEL_MAX_CURRENT_TRANSFER));
 	public static final RegistryObject<GrinderBlock> STEEL_GRINDER = BLOCKS.register("steel_grinder", () -> new GrinderBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_CURRENT_CAPACITY, DeviceTierConstants.STEEL_MAX_CURRENT_TRANSFER));

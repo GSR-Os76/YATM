@@ -1,5 +1,6 @@
 package com.gsr.gsr_yatm.data_generation;
 
+import java.util.Objects;
 import java.util.function.Consumer;
 
 import org.apache.logging.log4j.util.TriConsumer;
@@ -42,9 +43,9 @@ import net.minecraftforge.fluids.FluidStack;
 public class YATMRecipeProvider extends RecipeProvider
 {
 
-	public YATMRecipeProvider(PackOutput output)
+	public YATMRecipeProvider(@NotNull PackOutput output)
 	{
-		super(output);
+		super(Objects.requireNonNull(output));
 	} // end constructor
 	
 	
@@ -218,6 +219,22 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, YetAnotherTechMod.MODID + ":" + color + "candle_lantern_from_shaped_crafting");
 		
 		forCandle.accept(Items.CANDLE, "", YATMItems.CANDLE_LANTERN_ITEM.get());
+		forCandle.accept(Items.WHITE_CANDLE, "white_", YATMItems.WHITE_CANDLE_LANTERN_ITEM.get());
+		forCandle.accept(Items.ORANGE_CANDLE, "orange_", YATMItems.ORANGE_CANDLE_LANTERN_ITEM.get());
+		forCandle.accept(Items.MAGENTA_CANDLE, "magenta_", YATMItems.MAGENTA_CANDLE_LANTERN_ITEM.get());
+		forCandle.accept(Items.LIGHT_BLUE_CANDLE, "light_blue_", YATMItems.LIGHT_BLUE_CANDLE_LANTERN_ITEM.get());
+		forCandle.accept(Items.YELLOW_CANDLE, "yellow_", YATMItems.YELLOW_CANDLE_LANTERN_ITEM.get());
+		forCandle.accept(Items.LIME_CANDLE, "lime_", YATMItems.LIME_CANDLE_LANTERN_ITEM.get());
+		forCandle.accept(Items.PINK_CANDLE, "pink_", YATMItems.PINK_CANDLE_LANTERN_ITEM.get());
+		forCandle.accept(Items.GRAY_CANDLE, "gray_", YATMItems.GRAY_CANDLE_LANTERN_ITEM.get());
+		forCandle.accept(Items.LIGHT_GRAY_CANDLE, "light_gray_", YATMItems.LIGHT_GRAY_CANDLE_LANTERN_ITEM.get());
+		forCandle.accept(Items.CYAN_CANDLE, "cyan_", YATMItems.CYAN_CANDLE_LANTERN_ITEM.get());
+		forCandle.accept(Items.PURPLE_CANDLE, "purple_", YATMItems.PURPLE_CANDLE_LANTERN_ITEM.get());
+		forCandle.accept(Items.BLUE_CANDLE, "blue_", YATMItems.BLUE_CANDLE_LANTERN_ITEM.get());
+		forCandle.accept(Items.BROWN_CANDLE, "brown_", YATMItems.BROWN_CANDLE_LANTERN_ITEM.get());
+		forCandle.accept(Items.GREEN_CANDLE, "green_", YATMItems.GREEN_CANDLE_LANTERN_ITEM.get());
+		forCandle.accept(Items.RED_CANDLE, "red_", YATMItems.RED_CANDLE_LANTERN_ITEM.get());
+		forCandle.accept(Items.BLACK_CANDLE, "black_", YATMItems.BLACK_CANDLE_LANTERN_ITEM.get());		
 	} // end addCandleLanterns()
 	
 	private void addCottonRecipes(Consumer<FinishedRecipe> writer) 

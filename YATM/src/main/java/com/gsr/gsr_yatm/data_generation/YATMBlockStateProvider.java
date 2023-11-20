@@ -1,6 +1,7 @@
 package com.gsr.gsr_yatm.data_generation;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
@@ -135,6 +136,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile CRUCIBLE_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/crucible"));
 	public static final ModelFile CRUCIBLE_LIT_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/crucible_lit"));
 	public static final ModelFile CRYSTALLIZER_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/crystallizer"));
+	public static final ModelFile CURRENT_FURNACE_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/current_furnace"));
 	public static final ModelFile EXTRACTOR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/extractor"));
 	public static final ModelFile INJECTOR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/injector"));
 	
@@ -168,9 +170,9 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	
 	
-	public YATMBlockStateProvider(PackOutput output, String modid, ExistingFileHelper exFileHelper)
+	public YATMBlockStateProvider(@NotNull PackOutput output, @NotNull String modid, @NotNull ExistingFileHelper exFileHelper)
 	{
-		super(output, modid, exFileHelper);
+		super(Objects.requireNonNull(output), Objects.requireNonNull(modid), Objects.requireNonNull(exFileHelper));
 	} // end constructor
 
 
@@ -230,6 +232,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addBoilerTanks();
 		this.addCrucibles();
 		this.addCrystallizers();
+		this.addCurrentFurnaces();
 		this.addExtractors();
 		this.addInjectors();
 		
@@ -584,9 +587,28 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	private void addCandleLanterns() 
 	{
-		this.createCandleLantern(YATMBlocks.CANDLE_LANTERN.get(), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/candle_lantern/plain"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/candle_lantern/plain_lit"));
+		BiConsumer<CandleLanternBlock, String> creator = (b, color) -> 
+		YATMBlockStateProvider.this.createCandleLantern(b, 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/candle_lantern/" + color), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/candle_lantern/" + color + "_lit"));
+		
+		creator.accept(YATMBlocks.CANDLE_LANTERN.get(), "plain");
+		creator.accept(YATMBlocks.WHITE_CANDLE_LANTERN.get(), "white");
+		creator.accept(YATMBlocks.ORANGE_CANDLE_LANTERN.get(), "orange");
+		creator.accept(YATMBlocks.MAGENTA_CANDLE_LANTERN.get(), "magenta");
+		creator.accept(YATMBlocks.LIGHT_BLUE_CANDLE_LANTERN.get(), "light_blue");
+		creator.accept(YATMBlocks.YELLOW_CANDLE_LANTERN.get(), "yellow");
+		creator.accept(YATMBlocks.LIME_CANDLE_LANTERN.get(), "lime");
+		creator.accept(YATMBlocks.PINK_CANDLE_LANTERN.get(), "pink");
+		creator.accept(YATMBlocks.GRAY_CANDLE_LANTERN.get(), "gray");
+		creator.accept(YATMBlocks.LIGHT_GRAY_CANDLE_LANTERN.get(), "light_gray");
+		creator.accept(YATMBlocks.CYAN_CANDLE_LANTERN.get(), "cyan");
+		creator.accept(YATMBlocks.PURPLE_CANDLE_LANTERN.get(), "purple");
+		creator.accept(YATMBlocks.BLUE_CANDLE_LANTERN.get(), "blue");
+		creator.accept(YATMBlocks.BROWN_CANDLE_LANTERN.get(), "brown");
+		creator.accept(YATMBlocks.GREEN_CANDLE_LANTERN.get(), "green");
+		creator.accept(YATMBlocks.RED_CANDLE_LANTERN.get(), "red");
+		creator.accept(YATMBlocks.BLACK_CANDLE_LANTERN.get(), "black");
 	} // end addCandleLanterns()
 	
 	private void addHeatSinks() 
@@ -653,13 +675,19 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	{
 		this.createLitFacingBlock(YATMBlocks.STEEL_CRUCIBLE.get(), YATMItems.STEEL_CRUCIBLE_ITEM.get(), YATMBlockStateProvider.CRUCIBLE_MODEL, YATMBlockStateProvider.CRUCIBLE_LIT_MODEL);
 		
-	} // end addCrystallizers()
+	} // end addCrucibles()
 	
 	private void addCrystallizers() 
 	{
 		this.createFacingBlock(YATMBlocks.STEEL_CRYSTALLIZER.get(), YATMItems.STEEL_CRYSTALLIZER_ITEM.get(), YATMBlockStateProvider.CRYSTALLIZER_MODEL);
 		
 	} // end addCrystallizers()
+	
+	private void addCurrentFurnaces() 
+	{
+		this.createFacingBlock(YATMBlocks.STEEL_CURRENT_FURNACE.get(), YATMItems.STEEL_CURRENT_FURNACE_ITEM.get(), YATMBlockStateProvider.CURRENT_FURNACE_MODEL);
+		
+	} // end addCurrentFurnaces()
 	
 	private void addExtractors() 
 	{

@@ -199,6 +199,23 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.HANGING_POT_HOOK.get(), "Hanging Pot");
 	
 		this.add(YATMBlocks.CANDLE_LANTERN.get(), "Candle Lantern");
+
+		this.add(YATMBlocks.WHITE_CANDLE_LANTERN.get(), "White Candle Lantern");
+		this.add(YATMBlocks.ORANGE_CANDLE_LANTERN.get(), "Orange Candle Lantern");
+		this.add(YATMBlocks.MAGENTA_CANDLE_LANTERN.get(), "Magenta Candle Lantern");
+		this.add(YATMBlocks.LIGHT_BLUE_CANDLE_LANTERN.get(), "Light Blue Candle Lantern");
+		this.add(YATMBlocks.YELLOW_CANDLE_LANTERN.get(), "Yellow Candle Lantern");
+		this.add(YATMBlocks.LIME_CANDLE_LANTERN.get(), "Lime Candle Lantern");
+		this.add(YATMBlocks.PINK_CANDLE_LANTERN.get(), "Pink Candle Lantern");
+		this.add(YATMBlocks.GRAY_CANDLE_LANTERN.get(), "Gray Candle Lantern");
+		this.add(YATMBlocks.LIGHT_GRAY_CANDLE_LANTERN.get(), "Light Gray Candle Lantern");
+		this.add(YATMBlocks.CYAN_CANDLE_LANTERN.get(), "Cyan Candle Lantern");
+		this.add(YATMBlocks.PURPLE_CANDLE_LANTERN.get(), "Purple Candle Lantern");
+		this.add(YATMBlocks.BLUE_CANDLE_LANTERN.get(), "Blue Candle Lantern");
+		this.add(YATMBlocks.BROWN_CANDLE_LANTERN.get(), "Brown Candle Lantern");
+		this.add(YATMBlocks.GREEN_CANDLE_LANTERN.get(), "Green Candle Lantern");
+		this.add(YATMBlocks.RED_CANDLE_LANTERN.get(), "Red Candle Lantern");
+		this.add(YATMBlocks.BLACK_CANDLE_LANTERN.get(), "Black Candle Lantern");
 		
 		this.add(YATMBlocks.FOLIAR_STEEL_ORE.get(), "Foliar Steel Ore");
 		this.add(YATMBlocks.DEEPSLATE_FOLIAR_STEEL_ORE.get(), "Deepslate Foliar Steel Ore");
@@ -223,6 +240,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.STEEL_BOILER_TANK.get(), "Foliar Steel Boiler Tank");
 		this.add(YATMBlocks.STEEL_CRUCIBLE.get(), "Foliar Steel Crucible");
 		this.add(YATMBlocks.STEEL_CRYSTALLIZER.get(), "Foliar Steel Crystallizer");
+		this.add(YATMBlocks.STEEL_CURRENT_FURNACE.get(), "Steel Current Furnace");
 		this.add(YATMBlocks.STEEL_EXTRACTOR.get(), "Foliar Steel Extractor");
 //		this.add(YATMBlocks.STEEL_EXTRUDER.get(), "Foliar Steel Extruder");
 		this.add(YATMBlocks.STEEL_GRINDER.get(), "Foliar Steel Grinder");

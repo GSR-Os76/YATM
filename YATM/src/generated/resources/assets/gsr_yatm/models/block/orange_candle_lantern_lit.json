@@ -1,0 +1,6 @@
+{
+  "parent": "gsr_yatm:block/template_candle_lantern",
+  "textures": {
+    "lantern": "gsr_yatm:block/candle_lantern/orange_lit"
+  }
+}

@@ -2,7 +2,7 @@ package com.gsr.gsr_yatm.recipe.smelting;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.block.device.current_furnace.FurnacePlusBlockEntity;
+import com.gsr.gsr_yatm.block.device.current_furnace.CurrentFurnaceBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.registry.YATMItems;
 
@@ -39,18 +39,18 @@ public class WrappedSmeltingRecipe extends SmeltingRecipe implements ITimedRecip
 	
 	public boolean canBeUsedOn(@NotNull IItemHandler inventory)
 	{
-		return this.ingredient.test(inventory.getStackInSlot(FurnacePlusBlockEntity.INPUT_SLOT)) && 
-				inventory.insertItem(FurnacePlusBlockEntity.RESULT_SLOT, this.result, true).isEmpty();
+		return this.ingredient.test(inventory.getStackInSlot(CurrentFurnaceBlockEntity.INPUT_SLOT)) && 
+				inventory.insertItem(CurrentFurnaceBlockEntity.RESULT_SLOT, this.result, true).isEmpty();
 	} // end canBeUsedOn()
 	
 	public void startRecipe(@NotNull IItemHandler inventory)
 	{
-		inventory.extractItem(FurnacePlusBlockEntity.INPUT_SLOT, 1, false);
+		inventory.extractItem(CurrentFurnaceBlockEntity.INPUT_SLOT, 1, false);
 	} // end startRecipe()
 	
 	public void setResults(@NotNull IItemHandler inventory)
 	{
-		inventory.insertItem(FurnacePlusBlockEntity.RESULT_SLOT, this.result.copy(), false);
+		inventory.insertItem(CurrentFurnaceBlockEntity.RESULT_SLOT, this.result.copy(), false);
 	} // end setResults()
 
 	
@@ -59,7 +59,7 @@ public class WrappedSmeltingRecipe extends SmeltingRecipe implements ITimedRecip
 	public ItemStack getToastSymbol()
 	{
 		// TODO Auto-generated method stub
-		return new ItemStack(YATMItems.STEEL_FURNACE_PLUS_ITEM.get());
+		return new ItemStack(YATMItems.STEEL_CURRENT_FURNACE_ITEM.get());
 	} // end getToastSymbol()
 	
 } // end class

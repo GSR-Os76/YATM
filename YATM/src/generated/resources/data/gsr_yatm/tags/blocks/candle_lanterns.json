@@ -1,5 +1,21 @@
 {
   "values": [
-    "gsr_yatm:candle_lantern"
+    "gsr_yatm:candle_lantern",
+    "gsr_yatm:white_candle_lantern",
+    "gsr_yatm:orange_candle_lantern",
+    "gsr_yatm:magenta_candle_lantern",
+    "gsr_yatm:light_blue_candle_lantern",
+    "gsr_yatm:yellow_candle_lantern",
+    "gsr_yatm:lime_candle_lantern",
+    "gsr_yatm:pink_candle_lantern",
+    "gsr_yatm:gray_candle_lantern",
+    "gsr_yatm:light_gray_candle_lantern",
+    "gsr_yatm:cyan_candle_lantern",
+    "gsr_yatm:purple_candle_lantern",
+    "gsr_yatm:blue_candle_lantern",
+    "gsr_yatm:brown_candle_lantern",
+    "gsr_yatm:green_candle_lantern",
+    "gsr_yatm:red_candle_lantern",
+    "gsr_yatm:black_candle_lantern"
   ]
 }

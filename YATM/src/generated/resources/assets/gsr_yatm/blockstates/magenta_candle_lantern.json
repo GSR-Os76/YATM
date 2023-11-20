@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "hanging=false,lit=false,waterlogged=false": {
+      "model": "gsr_yatm:block/magenta_candle_lantern"
+    },
+    "hanging=false,lit=false,waterlogged=true": {
+      "model": "gsr_yatm:block/magenta_candle_lantern"
+    },
+    "hanging=false,lit=true,waterlogged=false": {
+      "model": "gsr_yatm:block/magenta_candle_lantern_lit"
+    },
+    "hanging=false,lit=true,waterlogged=true": {
+      "model": "gsr_yatm:block/magenta_candle_lantern_lit"
+    },
+    "hanging=true,lit=false,waterlogged=false": {
+      "model": "gsr_yatm:block/magenta_candle_lantern_hanging"
+    },
+    "hanging=true,lit=false,waterlogged=true": {
+      "model": "gsr_yatm:block/magenta_candle_lantern_hanging"
+    },
+    "hanging=true,lit=true,waterlogged=false": {
+      "model": "gsr_yatm:block/magenta_candle_lantern_lit_hanging"
+    },
+    "hanging=true,lit=true,waterlogged=true": {
+      "model": "gsr_yatm:block/magenta_candle_lantern_lit_hanging"
+    }
+  }
+}

@@ -87,8 +87,25 @@ public class YATMItemModelProvider extends ItemModelProvider
 		
 		this.basicItem(YATMItems.HANGING_POT_HOOK_ITEM.get());
 		
-		this.basicItem(YATMItems.CANDLE_LANTERN_ITEM.get());
 		
+		
+		this.basicItem(YATMItems.CANDLE_LANTERN_ITEM.get());
+		this.basicItem(YATMItems.WHITE_CANDLE_LANTERN_ITEM.get());
+		this.basicItem(YATMItems.ORANGE_CANDLE_LANTERN_ITEM.get());
+		this.basicItem(YATMItems.MAGENTA_CANDLE_LANTERN_ITEM.get());
+		this.basicItem(YATMItems.LIGHT_BLUE_CANDLE_LANTERN_ITEM.get());
+		this.basicItem(YATMItems.YELLOW_CANDLE_LANTERN_ITEM.get());
+		this.basicItem(YATMItems.LIME_CANDLE_LANTERN_ITEM.get());
+		this.basicItem(YATMItems.PINK_CANDLE_LANTERN_ITEM.get());
+		this.basicItem(YATMItems.GRAY_CANDLE_LANTERN_ITEM.get());
+		this.basicItem(YATMItems.LIGHT_GRAY_CANDLE_LANTERN_ITEM.get());
+		this.basicItem(YATMItems.CYAN_CANDLE_LANTERN_ITEM.get());
+		this.basicItem(YATMItems.PURPLE_CANDLE_LANTERN_ITEM.get());
+		this.basicItem(YATMItems.BLUE_CANDLE_LANTERN_ITEM.get());
+		this.basicItem(YATMItems.BROWN_CANDLE_LANTERN_ITEM.get());
+		this.basicItem(YATMItems.GREEN_CANDLE_LANTERN_ITEM.get());
+		this.basicItem(YATMItems.RED_CANDLE_LANTERN_ITEM.get());
+		this.basicItem(YATMItems.BLACK_CANDLE_LANTERN_ITEM.get());
 		
 	
 		this.basicItem(YATMItems.CONDUIT_VINES_ITEM.get());

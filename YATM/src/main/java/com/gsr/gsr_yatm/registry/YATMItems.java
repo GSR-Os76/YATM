@@ -22,7 +22,6 @@ import com.gsr.gsr_yatm.item.fluid.SoulSapBucketItem;
 import com.gsr.gsr_yatm.item.tool.DrillItem;
 import com.gsr.gsr_yatm.item.tool.PoweredToolItemStack;
 import com.gsr.gsr_yatm.item.tool.SawItem;
-
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
@@ -211,6 +210,23 @@ public class YATMItems
 	
 	public static final RegistryObject<BlockItem> CANDLE_LANTERN_ITEM = generalTabEnqueue(ITEMS.register("candle_lantern", () -> new BlockItem(YATMBlocks.CANDLE_LANTERN.get(), new Item.Properties())));
 	
+	public static final RegistryObject<BlockItem> WHITE_CANDLE_LANTERN_ITEM = generalTabEnqueue(ITEMS.register("white_candle_lantern", () -> new BlockItem(YATMBlocks.WHITE_CANDLE_LANTERN.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> ORANGE_CANDLE_LANTERN_ITEM = generalTabEnqueue(ITEMS.register("orange_candle_lantern", () -> new BlockItem(YATMBlocks.ORANGE_CANDLE_LANTERN.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> MAGENTA_CANDLE_LANTERN_ITEM = generalTabEnqueue(ITEMS.register("magenta_candle_lantern", () -> new BlockItem(YATMBlocks.MAGENTA_CANDLE_LANTERN.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> LIGHT_BLUE_CANDLE_LANTERN_ITEM = generalTabEnqueue(ITEMS.register("light_blue_candle_lantern", () -> new BlockItem(YATMBlocks.LIGHT_BLUE_CANDLE_LANTERN.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> YELLOW_CANDLE_LANTERN_ITEM = generalTabEnqueue(ITEMS.register("yellow_candle_lantern", () -> new BlockItem(YATMBlocks.YELLOW_CANDLE_LANTERN.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> LIME_CANDLE_LANTERN_ITEM = generalTabEnqueue(ITEMS.register("lime_candle_lantern", () -> new BlockItem(YATMBlocks.LIME_CANDLE_LANTERN.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> PINK_CANDLE_LANTERN_ITEM = generalTabEnqueue(ITEMS.register("pink_candle_lantern", () -> new BlockItem(YATMBlocks.PINK_CANDLE_LANTERN.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> GRAY_CANDLE_LANTERN_ITEM = generalTabEnqueue(ITEMS.register("gray_candle_lantern", () -> new BlockItem(YATMBlocks.GRAY_CANDLE_LANTERN.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> LIGHT_GRAY_CANDLE_LANTERN_ITEM = generalTabEnqueue(ITEMS.register("light_gray_candle_lantern", () -> new BlockItem(YATMBlocks.LIGHT_GRAY_CANDLE_LANTERN.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> CYAN_CANDLE_LANTERN_ITEM = generalTabEnqueue(ITEMS.register("cyan_candle_lantern", () -> new BlockItem(YATMBlocks.CYAN_CANDLE_LANTERN.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> PURPLE_CANDLE_LANTERN_ITEM = generalTabEnqueue(ITEMS.register("purple_candle_lantern", () -> new BlockItem(YATMBlocks.PURPLE_CANDLE_LANTERN.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> BLUE_CANDLE_LANTERN_ITEM = generalTabEnqueue(ITEMS.register("blue_candle_lantern", () -> new BlockItem(YATMBlocks.BLUE_CANDLE_LANTERN.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> BROWN_CANDLE_LANTERN_ITEM = generalTabEnqueue(ITEMS.register("brown_candle_lantern", () -> new BlockItem(YATMBlocks.BROWN_CANDLE_LANTERN.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> GREEN_CANDLE_LANTERN_ITEM = generalTabEnqueue(ITEMS.register("green_candle_lantern", () -> new BlockItem(YATMBlocks.GREEN_CANDLE_LANTERN.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> RED_CANDLE_LANTERN_ITEM = generalTabEnqueue(ITEMS.register("red_candle_lantern", () -> new BlockItem(YATMBlocks.RED_CANDLE_LANTERN.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> BLACK_CANDLE_LANTERN_ITEM = generalTabEnqueue(ITEMS.register("black_candle_lantern", () -> new BlockItem(YATMBlocks.BLACK_CANDLE_LANTERN.get(), new Item.Properties())));
+	
 	public static final RegistryObject<BlockItem> FOLIAR_STEEL_ORE_ITEM = generalTabEnqueue(ITEMS.register("foliar_steel_ore", () -> new BlockItem(YATMBlocks.FOLIAR_STEEL_ORE.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> DEEPSLATE_FOLIAR_STEEL_ORE_ITEM = generalTabEnqueue(ITEMS.register("deepslate_foliar_steel_ore", () -> new BlockItem(YATMBlocks.DEEPSLATE_FOLIAR_STEEL_ORE.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> FOLIAR_STEEL_BLOCK_ITEM = generalTabEnqueue(ITEMS.register("foliar_steel_block", () -> new BlockItem(YATMBlocks.FOLIAR_STEEL_BLOCK.get(), new Item.Properties())));
@@ -240,7 +256,7 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> STEEL_BOILER_ITEM = generalTabEnqueue(ITEMS.register("steel_boiler", () -> new BlockItem(YATMBlocks.STEEL_BOILER.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_CRUCIBLE_ITEM = generalTabEnqueue(ITEMS.register("steel_crucible", () -> new BlockItem(YATMBlocks.STEEL_CRUCIBLE.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_CRYSTALLIZER_ITEM = generalTabEnqueue(ITEMS.register("steel_crystallizer", () -> new BlockItem(YATMBlocks.STEEL_CRYSTALLIZER.get(), new Item.Properties())));
-	public static final RegistryObject<BlockItem> STEEL_FURNACE_PLUS_ITEM = generalTabEnqueue(ITEMS.register("steel_furnace_plus", () -> new BlockItem(YATMBlocks.STEEL_FURNACE_PLUS.get(), new Item.Properties())));	
+	public static final RegistryObject<BlockItem> STEEL_CURRENT_FURNACE_ITEM = generalTabEnqueue(ITEMS.register("steel_current_furnace", () -> new BlockItem(YATMBlocks.STEEL_CURRENT_FURNACE.get(), new Item.Properties())));	
 	public static final RegistryObject<BlockItem> STEEL_EXTRACTOR_ITEM = generalTabEnqueue(ITEMS.register("steel_extractor", () -> new BlockItem(YATMBlocks.STEEL_EXTRACTOR.get(), new Item.Properties())));
 //	public static final RegistryObject<BlockItem> STEEL_EXTRUDER_ITEM = /* generalTabEnqueue */(ITEMS.register("steel_extruder", () -> new BlockItem(YATMBlocks.STEEL_EXTRUDER.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_GRINDER_ITEM = generalTabEnqueue(ITEMS.register("steel_grinder", () -> new BlockItem(YATMBlocks.STEEL_GRINDER.get(), new Item.Properties())));

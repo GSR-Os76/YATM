@@ -1,0 +1,26 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"textures": {
+		"0": "gsr_yatm:block/device/current_furnace/front",
+		"1": "gsr_yatm:block/device/current_furnace/sides",
+		"2": "gsr_yatm:block/device/current_furnace/top",
+		"3": "gsr_yatm:block/device/current_furnace/back",
+		"4": "gsr_yatm:block/device/current_furnace/bottom",
+		"particle": "gsr_yatm:block/device/current_furnace/front"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#0"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#1"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#3"},
+				"west": {"uv": [16, 0, 0, 16], "texture": "#1"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#2"},
+				"down": {"uv": [0, 0, 16, 16], "rotation": 180, "texture": "#4"}
+			}
+		}
+	]
+}

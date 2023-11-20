@@ -16,6 +16,6 @@
     "gsr_yatm:lapum",
     "gsr_yatm:ruberum",
     "gsr_yatm:samaragdum",
-    "gsr_yatm:candle_lantern"
+    "#gsr_yatm:candle_lanterns"
   ]
 }

@@ -28,7 +28,6 @@ import com.gsr.gsr_yatm.block.plant.vicum.VicumBlock;
 import com.gsr.gsr_yatm.block.plant.vine.OnceFruitVineBodyBlock;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
-
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Direction;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -205,6 +204,24 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropOther(YATMBlocks.HANGING_POT_HOOK.get(), Items.CHAIN);
 		
 		this.dropSelf(YATMBlocks.CANDLE_LANTERN.get());
+		this.dropSelf(YATMBlocks.WHITE_CANDLE_LANTERN.get());
+		this.dropSelf(YATMBlocks.ORANGE_CANDLE_LANTERN.get());
+		this.dropSelf(YATMBlocks.MAGENTA_CANDLE_LANTERN.get());
+		this.dropSelf(YATMBlocks.LIGHT_BLUE_CANDLE_LANTERN.get());
+		this.dropSelf(YATMBlocks.YELLOW_CANDLE_LANTERN.get());
+		this.dropSelf(YATMBlocks.LIME_CANDLE_LANTERN.get());
+		this.dropSelf(YATMBlocks.PINK_CANDLE_LANTERN.get());
+		this.dropSelf(YATMBlocks.GRAY_CANDLE_LANTERN.get());
+		this.dropSelf(YATMBlocks.LIGHT_GRAY_CANDLE_LANTERN.get());
+		this.dropSelf(YATMBlocks.CYAN_CANDLE_LANTERN.get());
+		this.dropSelf(YATMBlocks.PURPLE_CANDLE_LANTERN.get());
+		this.dropSelf(YATMBlocks.BLUE_CANDLE_LANTERN.get());
+		this.dropSelf(YATMBlocks.BROWN_CANDLE_LANTERN.get());
+		this.dropSelf(YATMBlocks.GREEN_CANDLE_LANTERN.get());
+		this.dropSelf(YATMBlocks.RED_CANDLE_LANTERN.get());
+		this.dropSelf(YATMBlocks.BLACK_CANDLE_LANTERN.get());
+		
+		
 		
 		this.add(YATMBlocks.FOLIAR_STEEL_ORE.get(), this.createOreDrop(YATMBlocks.FOLIAR_STEEL_ORE.get(), YATMItems.FOLIAR_STEEL.get()));
 		this.add(YATMBlocks.DEEPSLATE_FOLIAR_STEEL_ORE.get(), this.createOreDrop(YATMBlocks.DEEPSLATE_FOLIAR_STEEL_ORE.get(), YATMItems.FOLIAR_STEEL.get()));
@@ -236,7 +253,7 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropSelf(YATMBlocks.STEEL_BOILER_TANK.get());
 		this.dropSelf(YATMBlocks.STEEL_CRUCIBLE.get());
 		this.dropSelf(YATMBlocks.STEEL_CRYSTALLIZER.get());
-		this.dropSelf(YATMBlocks.STEEL_FURNACE_PLUS.get());
+		this.dropSelf(YATMBlocks.STEEL_CURRENT_FURNACE.get());
 		this.dropSelf(YATMBlocks.STEEL_EXTRACTOR.get());
 //		this.dropSelf(YATMBlocks.STEEL_EXTRUDER.get());
 		this.dropSelf(YATMBlocks.STEEL_GRINDER.get());
