@@ -33,16 +33,13 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.ADAMUM_MERISTEM.get());
 		
 		this.basicItem(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get());
-		this.basicItem(YATMItems.AURUM_DEMINUTUS_FROND.get());
 		
 		this.basicItem(YATMItems.BASIN_OF_TEARS_SEED.get());
 		this.basicItem(YATMItems.DILUTED_TEAR_BOTTLE.get());
-		this.basicItem(YATMItems.TEAR_LEAF.get());	
 		
 		this.basicItem(YATMItems.CANDLELILY_ITEM.get());
 		
 		this.basicItem(YATMItems.CARBUM_MERISTEM.get());
-		this.basicItem(YATMItems.CARBUM_LEAF.get());
 		
 		this.basicItem(YATMItems.CARCASS_ROOT_CUTTING.get());
 		
@@ -53,12 +50,12 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.CUPRUM_BULB.get());		
 		
 		this.basicItem(YATMItems.FERRUM_ROOTSTOCK.get());
-		this.basicItem(YATMItems.FERRUM_BRANCH.get());
 		
 		this.basicItem(YATMItems.FOLIUM_RHIZOME.get());
 		
 		this.basicItem(YATMItems.FIRE_EATER_LILY_BULB.get());
-		this.basicItem(YATMItems.FIRE_EATER_LILY_FOLIAGE.get());
+		this.basicItem(YATMItems.FIRE_EATER_LILY_DECORATIVE.get());
+		this.basicItem(YATMItems.FIRE_EATER_LILY_UNLIT_DECORATIVE.get());
 		
 		this.basicItem(YATMItems.ICE_CORAL_POLYP.get());
 		this.basicItem(YATMItems.BLEACHED_ICE_CORAL_OLD_ITEM.get());
@@ -81,7 +78,6 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.SPIDER_VINE_FRUITS.get());	
 		
 		this.basicItem(YATMItems.VICUM_MERISTEM.get());
-		this.basicItem(YATMItems.VICUM_LEAF.get());
 		
 		this.basicItem(YATMItems.RAW_EXOTHEMIC_GLAND.get());
 		
@@ -139,26 +135,12 @@ public class YATMItemModelProvider extends ItemModelProvider
 		
 		
 		
-		// wheel goes here, TODO, figure out what this meant
 		this.basicItem(YATMItems.FOLIAR_STEEL.get());
-//		this.basicItem(YATMItems.SILVER_INGOT.get());
-//		this.basicItem(YATMItems.STEEL_INGOT.get());
+		
 		this.basicItem(YATMItems.RUBBER_BAR.get());
-//		this.basicItem(YATMItems.RUBBER_SCRAP_BALL.get());
-		
-//		this.basicItem(YATMItems.SILVER_NUGGET.get());
-//		this.basicItem(YATMItems.COPPER_NUGGET.get());
-		this.basicItem(YATMItems.NETHERITE_NUGGET.get());
-		
-//		this.basicItem(YATMItems.WAX_BIT_ITEM.get());
-//		this.basicItem(YATMItems.RUBBER_SCRAP.get());
-		
-		
-		
 		this.basicItem(YATMItems.WOOD_PULP.get());
 		
-		
-		
+		this.basicItem(YATMItems.NETHERITE_NUGGET.get());
 		this.basicItem(YATMItems.STAR_SEED.get());
 		this.basicItem(YATMItems.STAR_GERMLING.get());
 		this.basicItem(YATMItems.STAR_SPROUT.get());

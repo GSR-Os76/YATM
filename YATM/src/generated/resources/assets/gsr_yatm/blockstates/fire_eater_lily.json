@@ -25,10 +25,10 @@
       "model": "gsr_yatm:block/fire_eater_lily_young_lit"
     },
     "age=4,lit=false": {
-      "model": "gsr_yatm:block/fire_eater_lily_adolescent_unlit"
+      "model": "gsr_yatm:block/fire_eater_lily_young_unlit"
     },
     "age=4,lit=true": {
-      "model": "gsr_yatm:block/fire_eater_lily_adolescent_lit"
+      "model": "gsr_yatm:block/fire_eater_lily_young_lit"
     },
     "age=5,lit=false": {
       "model": "gsr_yatm:block/fire_eater_lily_adolescent_unlit"
@@ -43,10 +43,10 @@
       "model": "gsr_yatm:block/fire_eater_lily_adolescent_lit"
     },
     "age=7,lit=false": {
-      "model": "gsr_yatm:block/fire_eater_lily_old_unlit"
+      "model": "gsr_yatm:block/fire_eater_lily_adolescent_unlit"
     },
     "age=7,lit=true": {
-      "model": "gsr_yatm:block/fire_eater_lily_old_lit"
+      "model": "gsr_yatm:block/fire_eater_lily_adolescent_lit"
     }
   }
 }

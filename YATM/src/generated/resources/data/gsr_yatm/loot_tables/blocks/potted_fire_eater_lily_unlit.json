@@ -26,11 +26,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "gsr_yatm:fire_eater_lily_decorative"
+          "name": "gsr_yatm:fire_eater_lily_unlit_decorative"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "gsr_yatm:blocks/potted_fire_eater_lily"
+  "random_sequence": "gsr_yatm:blocks/potted_fire_eater_lily_unlit"
 }

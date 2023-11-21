@@ -217,14 +217,34 @@ public class YATMBlockShapes
 		} // end getShape()
 	};	
 	
+	public static final ICollisionVoxelShapeProvider FIRE_EATER_LILY_OLD_LIT = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape SHAPE = Block.box(3d, 0d, 3d, 13d, 10d, 13d);
+
+		@Override
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
+		{
+			return SHAPE;
+		} // end getShape()
+	};
+	
+	public static final ICollisionVoxelShapeProvider FIRE_EATER_LILY_OLD_UNLIT = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape SHAPE = Block.box(1d, 0d, 1d, 15d, 9d, 15d);
+
+		@Override
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
+		{
+			return SHAPE;
+		} // end getShape()
+	};	
+	
 	public static final ICollisionVoxelShapeProvider FIRE_EATER_LILY = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape BULB = Block.box(6d, 0d, 6d, 10d, 3d, 10d);
 		private static final VoxelShape YOUNG = Block.box(5d, 0d, 5d, 11d, 4d, 11d);
 		private static final VoxelShape ADOLESCENT_LIT = Block.box(5d, 0d, 5d, 11d, 5d, 11d);
 		private static final VoxelShape ADOLESCENT_UNLIT = Block.box(4d, 0d, 4d, 12d, 5d, 12d);
-		private static final VoxelShape OLD_LIT = Block.box(3d, 0d, 3d, 13d, 10d, 13d);
-		private static final VoxelShape OLD_UNLIT = Block.box(1d, 0d, 1d, 15d, 9d, 15d);
 
 		@Override
 		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
@@ -233,9 +253,8 @@ public class YATMBlockShapes
 			return switch(state.getValue(FireEaterLilyBlock.AGE)) 
 			{
 				case 0, 1 -> BULB;
-				case 2, 3 -> YOUNG;
-				case 4, 5, 6 -> lit ? ADOLESCENT_LIT : ADOLESCENT_UNLIT;
-				case 7 -> lit ? OLD_LIT : OLD_UNLIT;
+				case 2, 3, 4 -> YOUNG;
+				case 5, 6, 7 -> lit ? ADOLESCENT_LIT : ADOLESCENT_UNLIT;
 				default -> throw new IllegalArgumentException("Unexpected of value: " + state.getValue(FireEaterLilyBlock.AGE));
 			};
 		} // end getShape()

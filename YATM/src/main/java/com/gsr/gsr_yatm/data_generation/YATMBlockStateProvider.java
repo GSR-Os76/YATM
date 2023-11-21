@@ -434,9 +434,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	private void addFireEaterLily() 
 	{
 		ResourceLocation oldLitTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/fire_eater_lily/fire_eater_lily_old_lit");
+		ResourceLocation oldUnlitTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/fire_eater_lily/fire_eater_lily_old_unlit");
 		this.createFireEaterLily(YATMBlocks.FIRE_EATER_LILY.get(), 
-				oldLitTexture, 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/fire_eater_lily/fire_eater_lily_old_unlit"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/fire_eater_lily/fire_eater_lily_adolescent_lit"),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/fire_eater_lily/fire_eater_lily_adolescent_unlit"),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/fire_eater_lily/fire_eater_lily_young_lit"),
@@ -444,6 +443,9 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/fire_eater_lily/fire_eater_lily_bulb_lit"),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/fire_eater_lily/fire_eater_lily_bulb_unlit"));
 		this.createPottedCross(YATMBlocks.POTTED_FIRE_EATER_LILY.get(), oldLitTexture);
+		this.createPottedCross(YATMBlocks.POTTED_FIRE_EATER_LILY_UNLIT.get(), oldUnlitTexture);
+		this.createCross(YATMBlocks.FIRE_EATER_LILY_DECORATIVE.get(), oldLitTexture);
+		this.createCross(YATMBlocks.FIRE_EATER_LILY_UNLIT_DECORATIVE.get(), oldUnlitTexture);
 	} // end addFireEaterLily()
 
 	private void addFolium()
@@ -1007,8 +1009,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	} // end createFerrum()
 	
 	private void createFireEaterLily(@NotNull FireEaterLilyBlock block, 
-			@NotNull ResourceLocation oldLitTexture, 
-			@NotNull ResourceLocation oldUnlitTexture,
 			@NotNull ResourceLocation adolescentLitTexture,
 			@NotNull ResourceLocation adolescentUnlitTexture,
 			@NotNull ResourceLocation youngLitTexture,
@@ -1017,31 +1017,25 @@ public class YATMBlockStateProvider extends BlockStateProvider
 			@NotNull ResourceLocation bulbUnlitTexture) 
 	{
 		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
-		String nameOL = name + "_old_lit";
-		String nameOU = name + "_old_unlit";
 		String nameAL = name + "_adolescent_lit";
 		String nameAU = name + "_adolescent_unlit";
 		String nameYL = name + "_young_lit";
 		String nameYU = name + "_young_unlit";
 		String nameBL = name + "_bulb_lit";
 		String nameBU = name + "_bulb_unlit";
-		this.models().cross(nameOL, oldLitTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
-		this.models().cross(nameOU, oldUnlitTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
 		this.models().cross(nameAL, adolescentLitTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
 		this.models().cross(nameAU, adolescentUnlitTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
 		this.models().cross(nameYL, youngLitTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
 		this.models().cross(nameYU, youngUnlitTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
 		this.models().cross(nameBL, bulbLitTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
 		this.models().cross(nameBU, bulbUnlitTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
-		ModelFile modelOL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameOL));
-		ModelFile modelOU = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameOU));
 		ModelFile modelAL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameAL));
 		ModelFile modelAU = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameAU));
 		ModelFile modelYL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameYL));
 		ModelFile modelYU = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameYU));
 		ModelFile modelBL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameBL));
 		ModelFile modelBU = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameBU));
-		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forFireEaterLily(bs, modelOL, modelOU, modelAL, modelAU, modelYL, modelYU, modelBL, modelBU));
+		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forFireEaterLily(bs, modelAL, modelAU, modelYL, modelYU, modelBL, modelBU));
 	} // end createFireEaterLily()
 
 	private void createFolium(@NotNull FoliumBlock block, ResourceLocation sproutTexture, ResourceLocation youngTexture, @NotNull ResourceLocation adolescentTexture, @NotNull ResourceLocation matureLowerTexture, @NotNull ResourceLocation matureHigherTexture, @NotNull ResourceLocation oldLowerTexture, @NotNull ResourceLocation oldHigherTexture)
@@ -2008,8 +2002,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	} // end forCuprum()
 	
 	public static ConfiguredModel[] forFireEaterLily(BlockState bs, 
-			ModelFile oldLitModel, 
-			ModelFile oldUnlitModel, 
 			ModelFile adolescentLitModel, 
 			ModelFile adolescentUnlitModel, 
 			ModelFile youngLitModel, 
@@ -2024,9 +2016,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				switch(bs.getValue(FireEaterLilyBlock.AGE)) 
 				{
 					case 0, 1 -> lit ? bulbLitModel : bulbUnlitModel;
-					case 2, 3 -> lit ? youngLitModel : youngUnlitModel;
-					case 4, 5, 6 -> lit ? adolescentLitModel : adolescentUnlitModel;
-					case 7 -> lit ? oldLitModel : oldUnlitModel;
+					case 2, 3, 4 -> lit ? youngLitModel : youngUnlitModel;
+					case 5, 6, 7 -> lit ? adolescentLitModel : adolescentUnlitModel;
 					default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(FireEaterLilyBlock.AGE));
 				})
 			};

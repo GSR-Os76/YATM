@@ -48,6 +48,8 @@ import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootSupplier;
 import com.gsr.gsr_yatm.block.plant.cuprum.CuprumBlock;
 import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
+import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyDecorativeBlock;
+import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyUnlitDecorativeBlock;
 import com.gsr.gsr_yatm.block.plant.folium.FoliumBlock;
 import com.gsr.gsr_yatm.block.plant.fungi.PhantasmalShelfFungiBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
@@ -126,13 +128,8 @@ public class YATMBlocks
 	private static final BlockSetType SOUL_AFFLICTED_RUBBER_BLOCK_SET_TYPE = /* BlockSetType.register( */new BlockSetType("gsr_yatm:soul_afflicted_rubber")/* ) */;
 	public static final WoodType SOUL_AFFLICTED_RUBBER_WOOD_TYPE = new WoodType("gsr_yatm:soul_afflicted_rubber", YATMBlocks.SOUL_AFFLICTED_RUBBER_BLOCK_SET_TYPE);
 
-	public static final RegistryObject<RubberBushSaplingBlock> RUBBER_MERISTEM = BLOCKS.register("rubber_meristem", () -> new RubberBushSaplingBlock(YATMBlockProperties.SAPLING));	
-	public static final RegistryObject<FlowerPotBlock> POTTED_RUBBER_MERISTEM = BLOCKS.register("potted_rubber_meristem", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.RUBBER_MERISTEM.get(), YATMBlockProperties.FLOWER_POT));
-	public static final RegistryObject<LeavesBlock> RUBBER_LEAVES_YOUNG = BLOCKS.register("rubber_leaves_young", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
-	public static final RegistryObject<LeavesBlock> RUBBER_LEAVES_FLOWERING = BLOCKS.register("rubber_leaves_flowering", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
-	// TODO, maybe make persistent?
-	public static final RegistryObject<LeavesBlock> RUBBER_LEAVES_OLD = BLOCKS.register("rubber_leaves_old", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
-	public static final RegistryObject<AerialRootsBlock> RUBBER_ROOTS = BLOCKS.register("rubber_roots", () ->  new AerialRootsBlock(YATMBlockProperties.AERIAL_ROOTS));
+	
+	
 	public static final RegistryObject<RotatedPillarBlock> RUBBER_LOG = BLOCKS.register("rubber_log", () -> new RotatedPillarBlock(YATMBlockProperties.RUBBER_WOOD));
 	public static final RegistryObject<RotatedPillarBlock> RUBBER_WOOD = BLOCKS.register("rubber_wood", () -> new RotatedPillarBlock(YATMBlockProperties.RUBBER_WOOD));
 	public static final RegistryObject<TappedLogBlock> PARTIALLY_STRIPPED_RUBBER_LOG = BLOCKS.register("partially_stripped_rubber_log", () -> new TappedLogBlock(YATMFluids.LATEX::get, (l, bs, p) -> bs.is(YATMBlockTags.RUBBER_TREE_BLOCKS_KEY), YATMBlockProperties.PARTIALLY_STRIPPED_RUBBER_WOOD, YATMParticleTypes.DRIPPING_TAPPED_LOG_LATEX::get));
@@ -156,12 +153,6 @@ public class YATMBlocks
 
 	
 	
-	public static final RegistryObject<SoulAfflictedRubberBushSaplingBlock> SOUL_AFFLICTED_RUBBER_MERISTEM = BLOCKS.register("soul_afflicted_rubber_meristem", () -> new SoulAfflictedRubberBushSaplingBlock(YATMBlockProperties.SAPLING));
-	public static final RegistryObject<FlowerPotBlock> POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM = BLOCKS.register("potted_soul_afflicted_rubber_meristem", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), YATMBlockProperties.FLOWER_POT));
-	public static final RegistryObject<LeavesBlock> SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG = BLOCKS.register("soul_afflicted_rubber_leaves_young", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
-	public static final RegistryObject<LeavesBlock> SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING = BLOCKS.register("soul_afflicted_rubber_leaves_flowering", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
-	public static final RegistryObject<LeavesBlock> SOUL_AFFLICTED_RUBBER_LEAVES_OLD = BLOCKS.register("soul_afflicted_rubber_leaves_old", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
-	public static final RegistryObject<AerialRootsBlock> SOUL_AFFLICTED_RUBBER_ROOTS = BLOCKS.register("soul_afflicted_rubber_roots", () ->  new AerialRootsBlock(YATMBlockProperties.AERIAL_ROOTS));
 	public static final RegistryObject<RotatedPillarBlock> SOUL_AFFLICTED_RUBBER_LOG = BLOCKS.register("soul_afflicted_rubber_log", () -> new RotatedPillarBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD));
 	public static final RegistryObject<RotatedPillarBlock> SOUL_AFFLICTED_RUBBER_WOOD = BLOCKS.register("soul_afflicted_rubber_wood", () -> new RotatedPillarBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD));
 	public static final RegistryObject<TappedLogBlock> SOUL_AFFLICTED_PARTIALLY_STRIPPED_RUBBER_LOG = BLOCKS.register("soul_afflicted_partially_stripped_rubber_log", () -> new TappedLogBlock(YATMFluids.SOUL_SAP::get, (l, bs, p) -> bs.is(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_BLOCKS_KEY), YATMBlockProperties.PARTIALLY_STRIPPED_SOUL_AFFLICTED_RUBBER_WOOD, YATMParticleTypes.DRIPPING_TAPPED_LOG_SOUL_SAP::get));
@@ -184,15 +175,92 @@ public class YATMBlocks
 	public static final RegistryObject<YATMWallHangingSignBlock> SOUL_AFFLICTED_RUBBER_WALL_HANGING_SIGN = BLOCKS.register("soul_afflicted_rubber_wall_hanging_sign", () -> new YATMWallHangingSignBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD_SIGN, YATMBlocks.SOUL_AFFLICTED_RUBBER_WOOD_TYPE));
 	public static final RegistryObject<CarpetBlock> SOUL_AFFLICTED_LEAF_MULCH = BLOCKS.register("soul_afflicted_leaf_mulch", () -> new CarpetBlock(YATMBlockProperties.LEAF_MULCH));
 
-	// TODO, some dripping tree, a small tree with notable extrafloral nectaries, bees will interact with them, they will drip, small feeling tree
+	// despite it rendering in world when placed down by commands as expected, the one rendered by renderer is different
+	public static final RegistryObject<NoCullBlock> DEFAULT_HANGING_POT_SUPPORT_CHAINS = BLOCKS.register("default_hanging_pot_support_chains", () -> new NoCullBlock(BlockBehaviour.Properties.of().noLootTable().noOcclusion()));
+	public static final RegistryObject<HangingPotHookBlock> HANGING_POT_HOOK = BLOCKS.register("hanging_pot_hook", () -> new HangingPotHookBlock(YATMBlockProperties.HANGING_POT_HOOK, YATMBlockShapes.HANGING_POT_HOOK));
+		
+	public static final RegistryObject<CandleLanternBlock> CANDLE_LANTERN = BLOCKS.register("candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> WHITE_CANDLE_LANTERN = BLOCKS.register("white_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> ORANGE_CANDLE_LANTERN = BLOCKS.register("orange_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> MAGENTA_CANDLE_LANTERN = BLOCKS.register("magenta_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> LIGHT_BLUE_CANDLE_LANTERN = BLOCKS.register("light_blue_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> YELLOW_CANDLE_LANTERN = BLOCKS.register("yellow_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> LIME_CANDLE_LANTERN = BLOCKS.register("lime_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> PINK_CANDLE_LANTERN = BLOCKS.register("pink_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> GRAY_CANDLE_LANTERN = BLOCKS.register("gray_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> LIGHT_GRAY_CANDLE_LANTERN = BLOCKS.register("light_gray_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> CYAN_CANDLE_LANTERN = BLOCKS.register("cyan_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> PURPLE_CANDLE_LANTERN = BLOCKS.register("purple_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> BLUE_CANDLE_LANTERN = BLOCKS.register("blue_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> BROWN_CANDLE_LANTERN = BLOCKS.register("brown_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> GREEN_CANDLE_LANTERN = BLOCKS.register("green_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> RED_CANDLE_LANTERN = BLOCKS.register("red_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+	public static final RegistryObject<CandleLanternBlock> BLACK_CANDLE_LANTERN = BLOCKS.register("black_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
+		
+		//TODO, maybe add some sort of soul stone 
+	public static final RegistryObject<DropExperienceBlock> FOLIAR_STEEL_ORE = BLOCKS.register("foliar_steel_ore", () -> new DropExperienceBlock(YATMBlockProperties.stoneOre()));
+	public static final RegistryObject<DropExperienceBlock> DEEPSLATE_FOLIAR_STEEL_ORE = BLOCKS.register("deepslate_foliar_steel_ore", () -> new DropExperienceBlock(YATMBlockProperties.deepslateOre()));
+	public static final RegistryObject<Block> FOLIAR_STEEL_BLOCK = BLOCKS.register("foliar_steel_block", () -> new Block(YATMBlockProperties.FOLIAR_STEEL_BLOCK));
+	public static final RegistryObject<Block> RUBBER_BLOCK = BLOCKS.register("rubber_block", () -> new Block(YATMBlockProperties.RUBBER_BLOCK));
+	public static final RegistryObject<RootedDirtBlock> ROOTED_SOUL_SOIL = BLOCKS.register("rooted_soul_soil", () -> new RootedDirtBlock(YATMBlockProperties.ROOTED_SOUL_SOIL));
+	public static final RegistryObject<CarcassRootRootBlock> CARCASS_ROOT_ROOTED_DIRT = BLOCKS.register("carcass_root_rooted_dirt", () -> new CarcassRootRootBlock(YATMBlockProperties.CARCASS_ROOT_ROOTED_DIRT, YATMBlockShapes.CUBE, () -> YATMBlocks.CARCASS_ROOT_FOLIAGE.get().defaultBlockState()));
+	public static final RegistryObject<CarcassRootRootBlock> CARCASS_ROOT_ROOTED_NETHERRACK = BLOCKS.register("carcass_root_rooted_netherrack", () -> new CarcassRootRootBlock(YATMBlockProperties.CARCASS_ROOT_ROOTED_NETHERRACK, YATMBlockShapes.CUBE, () -> YATMBlocks.CARCASS_ROOT_FOLIAGE.get().defaultBlockState()));
+	
+	
+	
+	public static final RegistryObject<AerialRootsBlock> RUBBER_ROOTS = BLOCKS.register("rubber_roots", () ->  new AerialRootsBlock(YATMBlockProperties.AERIAL_ROOTS));
+	public static final RegistryObject<AerialRootsBlock> SOUL_AFFLICTED_RUBBER_ROOTS = BLOCKS.register("soul_afflicted_rubber_roots", () ->  new AerialRootsBlock(YATMBlockProperties.AERIAL_ROOTS));
+	
+	public static final RegistryObject<LeavesBlock> RUBBER_LEAVES_YOUNG = BLOCKS.register("rubber_leaves_young", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
+	public static final RegistryObject<LeavesBlock> RUBBER_LEAVES_FLOWERING = BLOCKS.register("rubber_leaves_flowering", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
+	public static final RegistryObject<LeavesBlock> RUBBER_LEAVES_OLD = BLOCKS.register("rubber_leaves_old", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
+	public static final RegistryObject<LeavesBlock> SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG = BLOCKS.register("soul_afflicted_rubber_leaves_young", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
+	public static final RegistryObject<LeavesBlock> SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING = BLOCKS.register("soul_afflicted_rubber_leaves_flowering", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
+	public static final RegistryObject<LeavesBlock> SOUL_AFFLICTED_RUBBER_LEAVES_OLD = BLOCKS.register("soul_afflicted_rubber_leaves_old", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
+	
+	public static final RegistryObject<RubberBushSaplingBlock> RUBBER_MERISTEM = BLOCKS.register("rubber_meristem", () -> new RubberBushSaplingBlock(YATMBlockProperties.SAPLING));	
+	public static final RegistryObject<FlowerPotBlock> POTTED_RUBBER_MERISTEM = BLOCKS.register("potted_rubber_meristem", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.RUBBER_MERISTEM.get(), YATMBlockProperties.FLOWER_POT));
+	public static final RegistryObject<SoulAfflictedRubberBushSaplingBlock> SOUL_AFFLICTED_RUBBER_MERISTEM = BLOCKS.register("soul_afflicted_rubber_meristem", () -> new SoulAfflictedRubberBushSaplingBlock(YATMBlockProperties.SAPLING));
+	public static final RegistryObject<FlowerPotBlock> POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM = BLOCKS.register("potted_soul_afflicted_rubber_meristem", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), YATMBlockProperties.FLOWER_POT));
+	
 	
 	public static final RegistryObject<AdamumBlock> ADAMUM = BLOCKS.register("adamum", () -> new AdamumBlock(YATMBlockProperties.ADAMUM, YATMBlockShapes.ADAMUM));
 	public static final RegistryObject<FlowerPotBlock> POTTED_ADAMUM = BLOCKS.register("potted_adamum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.ADAMUM.get(), YATMBlockProperties.FLOWER_POT));
 	
-	// TODO, probably needs shapes
 	public static final RegistryObject<AurumBlock> AURUM = BLOCKS.register("aurum_deminutus", () -> new AurumBlock(YATMBlockProperties.AURUM, YATMBlockShapes.AURUM));
 	public static final RegistryObject<FlowerPotBlock> POTTED_AURUM = BLOCKS.register("potted_aurum_deminutus", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.AURUM, YATMBlockProperties.FLOWER_POT));
 
+	public static final RegistryObject<CarbumBlock> CARBUM = BLOCKS.register("carbum", () -> new CarbumBlock(YATMBlockProperties.CARBUM, YATMBlockShapes.CARBUM));
+	public static final RegistryObject<FlowerPotBlock> POTTED_CARBUM = BLOCKS.register("potted_carbum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.CARBUM, YATMBlockProperties.FLOWER_POT));
+
+	public static final RegistryObject<CuprumBlock> CUPRUM = BLOCKS.register("cuprum", () -> new CuprumBlock(YATMBlockProperties.CUPRUM, YATMBlockShapes.CUPRUM));
+	public static final RegistryObject<FlowerPotBlock> POTTED_CUPRUM = BLOCKS.register("potted_cuprum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.CUPRUM.get(), YATMBlockProperties.FLOWER_POT));
+	
+	public static final RegistryObject<FerrumBlock> FERRUM = BLOCKS.register("ferrum", () -> new FerrumBlock(YATMBlockProperties.FERRUM, YATMBlockShapes.FERRUM));
+	public static final RegistryObject<FlowerPotBlock> POTTED_FERRUM = BLOCKS.register("potted_ferrum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.FERRUM, YATMBlockProperties.FLOWER_POT));
+
+	public static final RegistryObject<FoliumBlock> FOLIUM = BLOCKS.register("folium", () -> new FoliumBlock(YATMBlockProperties.FOLIUM, YATMBlockShapes.FOLIUM));
+	public static final RegistryObject<FlowerPotBlock> POTTED_FOLIUM = BLOCKS.register("potted_folium", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.FOLIUM, YATMBlockProperties.FLOWER_POT));
+
+	public static final RegistryObject<InfernalumBlock> INFERNALUM = BLOCKS.register("infernalum", () -> new InfernalumBlock(YATMBlockProperties.INFERNALUM, YATMBlockShapes.INFERNALUM));
+	public static final RegistryObject<FlowerPotBlock> POTTED_INFERNALUM = BLOCKS.register("potted_infernalum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.INFERNALUM, YATMBlockProperties.FLOWER_POT));
+	
+	public static final RegistryObject<LapumBlock> LAPUM = BLOCKS.register("lapum", () -> new LapumBlock(YATMBlockProperties.LAPUM, YATMBlockShapes.LAPUM));
+	public static final RegistryObject<FlowerPotBlock> POTTED_LAPUM = BLOCKS.register("potted_lapum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.LAPUM, YATMBlockProperties.FLOWER_POT));
+
+	public static final RegistryObject<RuberumBlock> RUBERUM = BLOCKS.register("ruberum", () -> new RuberumBlock(YATMBlockProperties.RUBERUM, YATMBlockShapes.RUBERUM));
+	public static final RegistryObject<FlowerPotBlock> POTTED_RUBERUM = BLOCKS.register("potted_ruberum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.RUBERUM, YATMBlockProperties.FLOWER_POT));
+
+	public static final RegistryObject<SamaragdumBlock> SAMARAGDUM = BLOCKS.register("samaragdum", () -> new SamaragdumBlock(YATMBlockProperties.SAMARAGDUM, YATMBlockShapes.SAMARAGDUM));
+	public static final RegistryObject<FlowerPotBlock> POTTED_SAMARAGDUM = BLOCKS.register("potted_samaragdum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.SAMARAGDUM, YATMBlockProperties.FLOWER_POT));
+
+	public static final RegistryObject<VicumBlock> VICUM = BLOCKS.register("vicum", () -> new VicumBlock(YATMBlockProperties.VICUM, YATMBlockShapes.VICUM));
+	public static final RegistryObject<FlowerPotBlock> POTTED_VICUM = BLOCKS.register("potted_vicum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.VICUM.get(), YATMBlockProperties.FLOWER_POT));
+
+	
+	
+	// TODO, some dripping tree, a small tree with notable extrafloral nectaries, bees will interact with them, they will drip, small feeling tree
+	
 	public static final RegistryObject<BasinOfTearsFloralBlock> BASIN_OF_TEARS_FLORAL = BLOCKS.register("basin_of_tears_floral", () -> new BasinOfTearsFloralBlock(YATMBlockProperties.BASIN_OF_TEARS, YATMBlockShapes.CUBE/*BASIN_OF_TEARS_FLORAL*/));
 	public static final RegistryObject<BasinOfTearsVegetationBlock> BASIN_OF_TEARS_VEGETATION = BLOCKS.register("basin_of_tears_vegetation", () -> new BasinOfTearsVegetationBlock(YATMBlockProperties.BASIN_OF_TEARS_VEGETATIVE, YATMBlockShapes.BASIN_OF_TEARS_VEGETATION, () -> YATMBlocks.BASIN_OF_TEARS_FLORAL.get().defaultBlockState().setValue(BasinOfTearsFloralBlock.FLOWER_COUNT, RandomSource.create().nextIntBetweenInclusive(1, 4))));
 	
@@ -200,28 +268,18 @@ public class YATMBlocks
 	public static final RegistryObject<CandlelilyBlock> CANDLELILY = BLOCKS.register("candlelily", () -> new CandlelilyBlock(YATMBlockProperties.CANDLELILY, YATMBlockShapes.CANDLELILY));	
 	public static final RegistryObject<FlowerPotBlock> POTTED_CANDLELILY = BLOCKS.register("potted_candlelily", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.CANDLELILY.get(), YATMBlockProperties.FLOWER_POT));
 	
-	public static final RegistryObject<CarbumBlock> CARBUM = BLOCKS.register("carbum", () -> new CarbumBlock(YATMBlockProperties.CARBUM, YATMBlockShapes.CARBUM));
-	public static final RegistryObject<FlowerPotBlock> POTTED_CARBUM = BLOCKS.register("potted_carbum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.CARBUM, YATMBlockProperties.FLOWER_POT));
-	
 	public static final RegistryObject<CarcassRootFoliageBlock> CARCASS_ROOT_FOLIAGE = BLOCKS.register("carcass_root_foliage", () -> new CarcassRootFoliageBlock(YATMBlockProperties.CARCASS_ROOT_FOLIAGE, YATMBlockShapes.CUBE, YATMItems.CARCASS_ROOT_CUTTING::get, () -> new ItemStack(YATMItems.CARCASS_ROOT_CUTTING.get()), new CarcassRootRootSupplier()));
 	public static final RegistryObject<FlowerPotBlock> POTTED_CARCASS_ROOT_FOLIAGE = BLOCKS.register("potted_carcass_root_foliage", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), YATMBlockProperties.FLOWER_POT));
-	public static final RegistryObject<CarcassRootRootBlock> CARCASS_ROOT_ROOTED_DIRT = BLOCKS.register("carcass_root_rooted_dirt", () -> new CarcassRootRootBlock(YATMBlockProperties.CARCASS_ROOT_ROOTED_DIRT, YATMBlockShapes.CUBE, () -> YATMBlocks.CARCASS_ROOT_FOLIAGE.get().defaultBlockState()));
-	public static final RegistryObject<CarcassRootRootBlock> CARCASS_ROOT_ROOTED_NETHERRACK = BLOCKS.register("carcass_root_rooted_netherrack", () -> new CarcassRootRootBlock(YATMBlockProperties.CARCASS_ROOT_ROOTED_NETHERRACK, YATMBlockShapes.CUBE, () -> YATMBlocks.CARCASS_ROOT_FOLIAGE.get().defaultBlockState()));
+	
 	// TODO, perhaps adjust hitbox to match stages closer
 	public static final RegistryObject<CustomSeedCropBlock> COTTON = BLOCKS.register("cotton", () -> new CustomSeedCropBlock(YATMBlockProperties.CROP, YATMItems.COTTON_SEEDS::get));
 	
-	public static final RegistryObject<CuprumBlock> CUPRUM = BLOCKS.register("cuprum", () -> new CuprumBlock(YATMBlockProperties.CUPRUM, YATMBlockShapes.CUPRUM));
-	public static final RegistryObject<FlowerPotBlock> POTTED_CUPRUM = BLOCKS.register("potted_cuprum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.CUPRUM.get(), YATMBlockProperties.FLOWER_POT));
-	
-	public static final RegistryObject<FerrumBlock> FERRUM = BLOCKS.register("ferrum", () -> new FerrumBlock(YATMBlockProperties.FERRUM, YATMBlockShapes.FERRUM));
-	public static final RegistryObject<FlowerPotBlock> POTTED_FERRUM = BLOCKS.register("potted_ferrum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.FERRUM, YATMBlockProperties.FLOWER_POT));
-	
 	// maybe make more like pitcher plants and torch flower, turnable into inert decoration afterwards
 	public static final RegistryObject<FireEaterLilyBlock> FIRE_EATER_LILY = BLOCKS.register("fire_eater_lily", () -> new FireEaterLilyBlock(YATMBlockProperties.FIRE_EATER_LILY, YATMBlockShapes.FIRE_EATER_LILY));
-	public static final RegistryObject<FlowerPotBlock> POTTED_FIRE_EATER_LILY = BLOCKS.register("potted_fire_eater_lily", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.FIRE_EATER_LILY.get(), YATMBlockProperties.FLOWER_POT));
-	
-	public static final RegistryObject<FoliumBlock> FOLIUM = BLOCKS.register("folium", () -> new FoliumBlock(YATMBlockProperties.FOLIUM, YATMBlockShapes.FOLIUM));
-	public static final RegistryObject<FlowerPotBlock> POTTED_FOLIUM = BLOCKS.register("potted_folium", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.FOLIUM, YATMBlockProperties.FLOWER_POT));
+	public static final RegistryObject<FireEaterLilyDecorativeBlock> FIRE_EATER_LILY_DECORATIVE = BLOCKS.register("fire_eater_lily_decorative", () -> new FireEaterLilyDecorativeBlock(YATMBlockProperties.FIRE_EATER_LILY, YATMBlockShapes.FIRE_EATER_LILY_OLD_LIT));
+	public static final RegistryObject<FireEaterLilyUnlitDecorativeBlock> FIRE_EATER_LILY_UNLIT_DECORATIVE = BLOCKS.register("fire_eater_lily_unlit_decorative", () -> new FireEaterLilyUnlitDecorativeBlock(YATMBlockProperties.FIRE_EATER_LILY_UNLIT, YATMBlockShapes.FIRE_EATER_LILY_OLD_UNLIT));
+	public static final RegistryObject<FlowerPotBlock> POTTED_FIRE_EATER_LILY = BLOCKS.register("potted_fire_eater_lily", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.FIRE_EATER_LILY_DECORATIVE.get(), YATMBlockProperties.FLOWER_POT));
+	public static final RegistryObject<FlowerPotBlock> POTTED_FIRE_EATER_LILY_UNLIT = BLOCKS.register("potted_fire_eater_lily_unlit", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.FIRE_EATER_LILY_UNLIT_DECORATIVE.get(), YATMBlockProperties.FLOWER_POT));
 	
 	public static final RegistryObject<IceCoralBlock> ICE_CORAL = BLOCKS.register("ice_coral", () -> new IceCoralBlock(YATMBlockProperties.ICE_CORAL, YATMBlockShapes.ICE_CORAL));
 	public static final RegistryObject<WaterloggableBlock> BLEACHED_ICE_CORAL_OLD = BLOCKS.register("bleached_ice_coral_old", () -> new WaterloggableBlock(YATMBlockProperties.BLEACHED_ICE_CORAL, (bs, bg, bp, cc) -> YATMBlockShapes.ICE_CORAL_OLD));
@@ -233,12 +291,6 @@ public class YATMBlocks
 	public static final RegistryObject<FlowerPotBlock> POTTED_BLEACHED_ICE_CORAL_YOUNG = BLOCKS.register("potted_bleached_ice_coral_young", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.BLEACHED_ICE_CORAL_YOUNG.get(), YATMBlockProperties.FLOWER_POT));
 	public static final RegistryObject<FlowerPotBlock> POTTED_BLEACHED_ICE_CORAL_POLYP = BLOCKS.register("potted_bleached_ice_coral_polyp", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.BLEACHED_ICE_CORAL_POLYP.get(), YATMBlockProperties.FLOWER_POT));
 	
-	public static final RegistryObject<InfernalumBlock> INFERNALUM = BLOCKS.register("infernalum", () -> new InfernalumBlock(YATMBlockProperties.INFERNALUM, YATMBlockShapes.INFERNALUM));
-	public static final RegistryObject<FlowerPotBlock> POTTED_INFERNALUM = BLOCKS.register("potted_infernalum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.INFERNALUM, YATMBlockProperties.FLOWER_POT));
-	
-	public static final RegistryObject<LapumBlock> LAPUM = BLOCKS.register("lapum", () -> new LapumBlock(YATMBlockProperties.LAPUM, YATMBlockShapes.LAPUM));
-	public static final RegistryObject<FlowerPotBlock> POTTED_LAPUM = BLOCKS.register("potted_lapum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.LAPUM, YATMBlockProperties.FLOWER_POT));
-
 	public static final RegistryObject<PhantasmalShelfFungiBlock> PHANTASMAL_SHELF_FUNGUS = BLOCKS.register("phantasmal_shelf_fungus", () -> new PhantasmalShelfFungiBlock(YATMBlockProperties.PHANTASMAL_SHELF_FUNGUS, YATMBlockShapes.PHANTASMAL_SHELF_FUNGUS, YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM::get));
 	
 	// TODO, properties
@@ -246,12 +298,6 @@ public class YATMBlocks
 	
 	public static final RegistryObject<PrismarineCrystalMossBlock> PRISMARINE_CRYSTAL_MOSS = BLOCKS.register("prismarine_crystal_moss", () -> new PrismarineCrystalMossBlock(YATMBlockProperties.PRISMARINE_CRYSTAL_MOSS, YATMBlockShapes.PRISMARINE_CRYSTAL_MOSS, () -> YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get()));
 	
-	public static final RegistryObject<RuberumBlock> RUBERUM = BLOCKS.register("ruberum", () -> new RuberumBlock(YATMBlockProperties.RUBERUM, YATMBlockShapes.RUBERUM));
-	public static final RegistryObject<FlowerPotBlock> POTTED_RUBERUM = BLOCKS.register("potted_ruberum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.RUBERUM, YATMBlockProperties.FLOWER_POT));
-
-	public static final RegistryObject<SamaragdumBlock> SAMARAGDUM = BLOCKS.register("samaragdum", () -> new SamaragdumBlock(YATMBlockProperties.SAMARAGDUM, YATMBlockShapes.SAMARAGDUM));
-	public static final RegistryObject<FlowerPotBlock> POTTED_SAMARAGDUM = BLOCKS.register("potted_samaragdum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, YATMBlocks.SAMARAGDUM, YATMBlockProperties.FLOWER_POT));
-
 	public static final RegistryObject<DecayingBlock> FALLEN_SHULKWART_SPORES = BLOCKS.register("fallen_shulkwart_spores", () -> new DecayingBlock(YATMBlockProperties.FALLEN_SHULKWART_SPORES, YATMBlockShapes.DOWNWARD_LICHEN_LIKE, 64));
 	public static final RegistryObject<ShulkwartBlock> SHULKWART = YATMBlocks.shulkwart("shulkwart", (DyeColor)null, () -> YATMItems.SHULKWART_HORN.get());
 	public static final RegistryObject<ShulkwartBlock> WHITE_SHULKWART = YATMBlocks.shulkwart("white_shulkwart", DyeColor.WHITE, () -> YATMItems.WHITE_SHULKWART_HORN.get());
@@ -277,9 +323,6 @@ public class YATMBlocks
 	public static final RegistryObject<VariegatedCactusBlock> VARIEGATED_CACTUS = BLOCKS.register("variegated_cactus", () -> new VariegatedCactusBlock(YATMBlockProperties.CACTUS, () -> Blocks.CACTUS.defaultBlockState()));
 	public static final RegistryObject<FlowerPotBlock> POTTED_VARIEGATED_CACTUS = BLOCKS.register("potted_variegated_cactus", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.VARIEGATED_CACTUS.get(), YATMBlockProperties.FLOWER_POT));
 
-	public static final RegistryObject<VicumBlock> VICUM = BLOCKS.register("vicum", () -> new VicumBlock(YATMBlockProperties.VICUM, YATMBlockShapes.VICUM));
-	public static final RegistryObject<FlowerPotBlock> POTTED_VICUM = BLOCKS.register("potted_vicum", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.VICUM.get(), YATMBlockProperties.FLOWER_POT));
-
 	
 	
 	private static final OnceFruitVineBodyBlock getSpiderVine()
@@ -290,41 +333,7 @@ public class YATMBlocks
 	private static final VineMeristemBlock getSpiderVineMeristem()
 	{
 		return YATMBlocks.SPIDER_VINE_MERISTEM.get();
-	} // end getSpiderVine()
-	
-	
-	
-	// despite it rendering in world when placed down by commands as expected, the one rendered by renderer is different
-	public static final RegistryObject<NoCullBlock> DEFAULT_HANGING_POT_SUPPORT_CHAINS = BLOCKS.register("default_hanging_pot_support_chains", () -> new NoCullBlock(BlockBehaviour.Properties.of().noLootTable().noOcclusion()));
-	public static final RegistryObject<HangingPotHookBlock> HANGING_POT_HOOK = BLOCKS.register("hanging_pot_hook", () -> new HangingPotHookBlock(YATMBlockProperties.HANGING_POT_HOOK, YATMBlockShapes.HANGING_POT_HOOK));
-	
-	
-	
-	public static final RegistryObject<CandleLanternBlock> CANDLE_LANTERN = BLOCKS.register("candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
-	public static final RegistryObject<CandleLanternBlock> WHITE_CANDLE_LANTERN = BLOCKS.register("white_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
-	public static final RegistryObject<CandleLanternBlock> ORANGE_CANDLE_LANTERN = BLOCKS.register("orange_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
-	public static final RegistryObject<CandleLanternBlock> MAGENTA_CANDLE_LANTERN = BLOCKS.register("magenta_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
-	public static final RegistryObject<CandleLanternBlock> LIGHT_BLUE_CANDLE_LANTERN = BLOCKS.register("light_blue_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
-	public static final RegistryObject<CandleLanternBlock> YELLOW_CANDLE_LANTERN = BLOCKS.register("yellow_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
-	public static final RegistryObject<CandleLanternBlock> LIME_CANDLE_LANTERN = BLOCKS.register("lime_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
-	public static final RegistryObject<CandleLanternBlock> PINK_CANDLE_LANTERN = BLOCKS.register("pink_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
-	public static final RegistryObject<CandleLanternBlock> GRAY_CANDLE_LANTERN = BLOCKS.register("gray_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
-	public static final RegistryObject<CandleLanternBlock> LIGHT_GRAY_CANDLE_LANTERN = BLOCKS.register("light_gray_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
-	public static final RegistryObject<CandleLanternBlock> CYAN_CANDLE_LANTERN = BLOCKS.register("cyan_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
-	public static final RegistryObject<CandleLanternBlock> PURPLE_CANDLE_LANTERN = BLOCKS.register("purple_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
-	public static final RegistryObject<CandleLanternBlock> BLUE_CANDLE_LANTERN = BLOCKS.register("blue_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
-	public static final RegistryObject<CandleLanternBlock> BROWN_CANDLE_LANTERN = BLOCKS.register("brown_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
-	public static final RegistryObject<CandleLanternBlock> GREEN_CANDLE_LANTERN = BLOCKS.register("green_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
-	public static final RegistryObject<CandleLanternBlock> RED_CANDLE_LANTERN = BLOCKS.register("red_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
-	public static final RegistryObject<CandleLanternBlock> BLACK_CANDLE_LANTERN = BLOCKS.register("black_candle_lantern", () -> new CandleLanternBlock(YATMBlockProperties.CANDLE_LANTERN, YATMBlockShapes.CANDLE_LANTERN));
-	
-	//TODO, maybe add some sort of soul stone 
-	public static final RegistryObject<DropExperienceBlock> FOLIAR_STEEL_ORE = BLOCKS.register("foliar_steel_ore", () -> new DropExperienceBlock(YATMBlockProperties.stoneOre()));
-	public static final RegistryObject<DropExperienceBlock> DEEPSLATE_FOLIAR_STEEL_ORE = BLOCKS.register("deepslate_foliar_steel_ore", () -> new DropExperienceBlock(YATMBlockProperties.deepslateOre()));
-	public static final RegistryObject<Block> FOLIAR_STEEL_BLOCK = BLOCKS.register("foliar_steel_block", () -> new Block(YATMBlockProperties.FOLIAR_STEEL_BLOCK));
-	public static final RegistryObject<Block> RUBBER_BLOCK = BLOCKS.register("rubber_block", () -> new Block(YATMBlockProperties.RUBBER_BLOCK));
-	public static final RegistryObject<RootedDirtBlock> ROOTED_SOUL_SOIL = BLOCKS.register("rooted_soul_soil", () -> new RootedDirtBlock(YATMBlockProperties.ROOTED_SOUL_SOIL));
-		
+	} // end getSpiderVine()	
 	
 	
 	public static final RegistryObject<GraftingTableBlock> GRAFTING_TABLE = BLOCKS.register("grafting_table", () -> new GraftingTableBlock(YATMBlockProperties.GRAFTING_TABLE, YATMBlockShapes.CUBE));
@@ -435,7 +444,8 @@ public class YATMBlocks
 		minecraftFlowerPot.addPlant(YATMBlocks.CARCASS_ROOT_FOLIAGE.getKey().location(), YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE);
 		minecraftFlowerPot.addPlant(YATMBlocks.CUPRUM.getKey().location(), YATMBlocks.POTTED_CUPRUM);
 		minecraftFlowerPot.addPlant(YATMBlocks.FERRUM.getKey().location(), YATMBlocks.POTTED_FERRUM);
-		minecraftFlowerPot.addPlant(YATMBlocks.FIRE_EATER_LILY.getKey().location(), YATMBlocks.POTTED_FIRE_EATER_LILY);
+		minecraftFlowerPot.addPlant(YATMBlocks.FIRE_EATER_LILY_DECORATIVE.getKey().location(), YATMBlocks.POTTED_FIRE_EATER_LILY);
+		minecraftFlowerPot.addPlant(YATMBlocks.FIRE_EATER_LILY_UNLIT_DECORATIVE.getKey().location(), YATMBlocks.POTTED_FIRE_EATER_LILY_UNLIT);
 		minecraftFlowerPot.addPlant(YATMBlocks.FOLIUM.getKey().location(), YATMBlocks.POTTED_FOLIUM);
 		minecraftFlowerPot.addPlant(YATMBlocks.BLEACHED_ICE_CORAL_OLD.getKey().location(), YATMBlocks.POTTED_BLEACHED_ICE_CORAL_OLD);
 		minecraftFlowerPot.addPlant(YATMBlocks.BLEACHED_ICE_CORAL_ADOLESCENT.getKey().location(), YATMBlocks.POTTED_BLEACHED_ICE_CORAL_ADOLESCENT);

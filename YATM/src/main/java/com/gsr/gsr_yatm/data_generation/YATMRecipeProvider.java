@@ -58,17 +58,9 @@ public class YATMRecipeProvider extends RecipeProvider
 
 	@Override
 	protected void buildRecipes(Consumer<FinishedRecipe> writer)
-	{
-//		this.addNineToOne(writer, YATMItemTags.FORGE_COPPER_NUGGETS_KEY, Items.COPPER_INGOT, YetAnotherTechMod.MODID + ":copper_ingot_from_shapeless_crafting");
+	{	
 		this.addNineToOne(writer, YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY, Items.NETHERITE_INGOT, YetAnotherTechMod.MODID + ":netherite_ingot_from_shapeless_crafting");
-//		this.addNineToOne(writer, YATMItemTags.FORGE_SILVER_NUGGETS_KEY, YATMItems.SILVER_INGOT.get(), YetAnotherTechMod.MODID + ":silver_ingot_from_shapeless_crafting");
-//		this.addOneToNine(writer, Tags.Items.INGOTS_COPPER, YATMItems.COPPER_NUGGET.get(), YetAnotherTechMod.MODID + ":copper_nuggets_from_shapeless_crafting");
 		this.addOneToNine(writer, Tags.Items.INGOTS_NETHERITE, YATMItems.NETHERITE_NUGGET.get(), YetAnotherTechMod.MODID + ":netherite_nuggets_from_shapeless_crafting");
-//		this.addOneToNine(writer, YATMItemTags.FORGE_SILVER_INGOTS_KEY, YATMItems.SILVER_NUGGET.get(), YetAnotherTechMod.MODID + ":silver_nuggets_from_shapeless_crafting");
-//
-//		this.addOneToX(writer, Items.HONEYCOMB, YATMItems.WAX_BIT_ITEM.get(), 8, YetAnotherTechMod.MODID + ":wax_bit_from_shapeless_crafting");
-//		this.addXToX(writer, YATMItems.WAX_BIT_ITEM.get(), Items.HONEYCOMB, 8, 1, YetAnotherTechMod.MODID + ":honeycomb_from_shapeless_crafting");
-//		
 		this.addLargeHeatSink(writer, YetAnotherTechMod.MODID + ":large_copper_heat_sink_from_shape_crafting", YATMItems.LARGE_COPPER_HEAT_SINK_ITEM.get(), Tags.Items.INGOTS_COPPER, YATMItemTags.UNOXIDIXED_COPPER_BLOCKS_KEY);
 
 		

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "gsr_yatm:item/fire_eater_lily_foliage"
+    "layer0": "gsr_yatm:item/fire_eater_lily_decorative"
   }
 }

@@ -56,7 +56,9 @@ public class YATMBlockProperties
 	public static final Properties CUPRUM = Properties.of().mapColor(MapColor.WARPED_NYLIUM).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.COPPER);
 	public static final Properties FALLEN_SHULKWART_SPORES = Properties.of().mapColor(MapColor.SAND).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();
 	public static final Properties FERRUM = Properties.of().mapColor(MapColor.RAW_IRON).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2.5F, 6.0F);
-	public static final Properties FIRE_EATER_LILY = Properties.of().mapColor(MapColor.COLOR_ORANGE).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();
+	public static final Properties FIRE_EATER_LILY = YATMBlockProperties.fireEaterLily();
+	public static final Properties FIRE_EATER_LILY_UNLIT = YATMBlockProperties.fireEaterLily().mapColor(MapColor.COLOR_PURPLE);
+	
 	public static final Properties FOLIUM = Properties.of().mapColor(MapColor.COLOR_GREEN).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2.75F, 6.0F);
 	public static final Properties ICE_CORAL = YATMBlockProperties.iceCoral();
 	public static final Properties INFERNALUM = Properties.of().mapColor(MapColor.COLOR_BLACK).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().strength(6.0F, 1200.0F).sound(SoundType.ANCIENT_DEBRIS);	
@@ -112,6 +114,11 @@ public class YATMBlockProperties
 	{
 		return Properties.of().mapColor(MapColor.TERRACOTTA_WHITE).noCollission().pushReaction(PushReaction.DESTROY).randomTicks().sound(SoundType.CROP).strength(0.1f);
 	} // end basinOfTears()
+	
+	public static @NotNull Properties fireEaterLily()
+	{
+		return Properties.of().instabreak().mapColor(MapColor.COLOR_ORANGE).noCollission().pushReaction(PushReaction.DESTROY).randomTicks().sound(SoundType.CROP);
+	} // end fireEaterLily()
 	
 	public static @NotNull Properties iceCoral()
 	{

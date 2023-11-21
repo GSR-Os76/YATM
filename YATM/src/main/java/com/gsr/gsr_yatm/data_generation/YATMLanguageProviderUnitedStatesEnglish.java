@@ -133,8 +133,11 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.POTTED_FERRUM.get(), "Potted Ferrum");
 		
 		this.add(YATMBlocks.FIRE_EATER_LILY.get(), "Fire Eater Lily");	
+		this.add(YATMBlocks.FIRE_EATER_LILY_DECORATIVE.get(), "Fire Eater Lily");		
+		this.add(YATMBlocks.FIRE_EATER_LILY_UNLIT_DECORATIVE.get(), "Fire Eater Lily Unlit");		
 		this.add(YATMBlocks.POTTED_FIRE_EATER_LILY.get(), "Potted Fire Eater Lily");		
-
+		this.add(YATMBlocks.POTTED_FIRE_EATER_LILY_UNLIT.get(), "Potted Fire Eater Lily Unlit");		
+		
 		this.add(YATMBlocks.FOLIUM.get(), "Folium");		
 		this.add(YATMBlocks.POTTED_FOLIUM.get(), "Potted Folium");		
 
@@ -285,42 +288,34 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_BOAT_ITEM.get(), "Soul Afflicted Rubber Boat");
 		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT_ITEM.get(), "Soul Afflicted Rubber Chest Boat");
 		
-		this.add(YATMItems.ADAMUM_MERISTEM.get(), "Adamum Meristem");
-		this.add(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get(), "Aurum Fiddle Head");
-		this.add(YATMItems.AURUM_DEMINUTUS_FROND.get(), "Aurum Frond");
+//		this.add(YATMItems.ADAMUM_MERISTEM.get(), "Adamum Meristem");
+//		this.add(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get(), "Aurum Fiddle Head");
+//		this.add(YATMItems.CARBUM_MERISTEM.get(), "Carbum Meristem");	
+//		this.add(YATMItems.CUPRUM_BULB.get(), "Cuprum Bulb");	
+//		this.add(YATMItems.FERRUM_ROOTSTOCK.get(), "Ferrum Rootstock");	
+//		this.add(YATMItems.FOLIUM_RHIZOME.get(), "Folium Rhizome");
+//		this.add(YATMItems.INFERNALUM_RHIZOME.get(), "Infernalum Rhizome");
+//		this.add(YATMItems.LAPUM_MERISTEM.get(), "Lapum Meristem");		
+//		this.add(YATMItems.RUBERUM_CORM.get(), "Ruberum Corm");
+//		this.add(YATMItems.SAMARAGDUM_NODULE.get(), "Samaragdum Nodule");		
+//		this.add(YATMItems.VICUM_MERISTEM.get(), "Vicum Meristem");
+					
 		this.add(YATMItems.BASIN_OF_TEARS_SEED.get(), "Crying Plant Seeds");
 		this.add(YATMItems.DILUTED_TEAR_BOTTLE.get(), "Diluted Tear Bottle");		
 
-		this.add(YATMItems.CARBUM_MERISTEM.get(), "Carbum Meristem");
-		this.add(YATMItems.CARBUM_LEAF.get(), "Carbum Leaf");
 		this.add(YATMItems.CARCASS_ROOT_CUTTING.get(), "Carcass Root Cutting");
 		
 		this.add(YATMItems.COTTON_SEEDS.get(), "Cotton Seeds");
 		this.add(YATMItems.COTTON_BOLLS.get(), "Cotton Bolls");
 		this.add(YATMItems.RAW_COTTON_FIBER.get(), "Raw Cotton Fiber");
 		
-		this.add(YATMItems.CUPRUM_BULB.get(), "Cuprum Bulb");
-		
-		this.add(YATMItems.FERRUM_ROOTSTOCK.get(), "Ferrum Rootstock");
-		this.add(YATMItems.FERRUM_BRANCH.get(), "Ferrum Branch");
-		
 		this.add(YATMItems.FIRE_EATER_LILY_BULB.get(), "Fire Eater Lily Bulb");
-		this.add(YATMItems.FIRE_EATER_LILY_FOLIAGE.get(), "Fire Eater Lily Foliage");
-		
-		this.add(YATMItems.FOLIUM_RHIZOME.get(), "Folium Rhizome");
-		
+		// this.add(YATMItems.FIRE_EATER_LILY_FOLIAGE.get(), "Fire Eater Lily Foliage");
+
 		this.add(YATMItems.ICE_CORAL_POLYP.get(), "Ice Coral Polyp");
-		
-		this.add(YATMItems.INFERNALUM_RHIZOME.get(), "Infernalum Rhizome");
-		
-		this.add(YATMItems.LAPUM_MERISTEM.get(), "Lapum Meristem");		
-		
+
 		this.add(YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get(), "Prismarine Crystal Moss Spores");
 
-		this.add(YATMItems.RUBERUM_CORM.get(), "Ruberum Corm");
-		
-		this.add(YATMItems.SAMARAGDUM_NODULE.get(), "Samaragdum Nodule");		
-		
 		this.add(YATMItems.SHULKWART_SPORES.get(), "Shulkwart Spores");
 		this.add(YATMItems.SHULKWART_HORN.get(), "Shulkwart Horn");
 		this.add(YATMItems.WHITE_SHULKWART_HORN.get(), "White Shulkwart Horn");
@@ -341,9 +336,6 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.BLACK_SHULKWART_HORN.get(), "Black Shulkwart Horn");
 		
 		this.add(YATMItems.SPIDER_VINE_FRUITS.get(), "Branch Of Glaring Fruit");
-		
-		this.add(YATMItems.VICUM_MERISTEM.get(), "Vicum Meristem");
-		this.add(YATMItems.VICUM_LEAF.get(), "Vicum Leaf");
 		
 		this.add(YATMItems.RAW_EXOTHEMIC_GLAND.get(), "Raw Exothermal Gland");
 		
@@ -376,19 +368,12 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 				
 			
 		this.add(YATMItems.FOLIAR_STEEL.get(), "Foliar Steel");
-//		this.add(YATMItems.SILVER_INGOT.get(), "Silver Ingot");
-//		this.add(YATMItems.STEEL_INGOT.get(), "Steel Ingot");
 		this.add(YATMItems.RUBBER_BAR.get(), "Rubber Bar");
-//		this.add(YATMItems.RUBBER_SCRAP_BALL.get(), "Rubber Scrap Ball");
-		
-//		this.add(YATMItems.SILVER_NUGGET.get(), "Silver Nugget");
-//		this.add(YATMItems.COPPER_NUGGET.get(), "Copper Nugget");
-		this.add(YATMItems.NETHERITE_NUGGET.get(), "Netherite Nugget");
-//		this.add(YATMItems.WAX_BIT_ITEM.get(), "Wax Bit");
-//		this.add(YATMItems.RUBBER_SCRAP.get(), "Rubber Scraps");
-//		
+
 		this.add(YATMItems.WOOD_PULP.get(), "Wood Pulp");
 		
+		
+		this.add(YATMItems.NETHERITE_NUGGET.get(), "Netherite Nugget");
 		this.add(YATMItems.STAR_SEED.get(), "Star Seed");
 		this.add(YATMItems.STAR_GERMLING.get(), "Start Germling");
 		this.add(YATMItems.STAR_SPROUT.get(), "Star Sprout");

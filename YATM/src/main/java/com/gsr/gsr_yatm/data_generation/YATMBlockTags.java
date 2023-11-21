@@ -60,6 +60,7 @@ public class YATMBlockTags extends BlockTagsProvider
 	public static final TagKey<Block> CUPRUM_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/cuprum_can_grow_in"));
 	public static final TagKey<Block> CUPRUM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/cuprum_can_grow_on"));
 	public static final TagKey<Block> FERRUM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/ferrum_can_grow_on"));
+	public static final TagKey<Block> FIRE_EATER_LILY_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/fire_eater_lily_can_grow_in"));
 	public static final TagKey<Block> FIRE_EATER_LILY_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/fire_eater_lily_can_grow_on"));
 	public static final TagKey<Block> FOLIAR_STEEL_ORES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "foliar_steel_ores"));
 	public static final TagKey<Block> FOLIUM_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/folium_can_grow_in"));
@@ -144,7 +145,7 @@ public class YATMBlockTags extends BlockTagsProvider
 		this.tag(BlockTags.CANDLES).addTag(YATMBlockTags.CANDLE_LANTERNS_KEY);
 		this.tag(BlockTags.CLIMBABLE).add(YATMBlocks.CONDUIT_VINES.get()).add(YATMBlocks.SPIDER_VINE.get());
 		this.tag(BlockTags.DIRT).add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get());
-		this.tag(BlockTags.FLOWERS).add(YATMBlocks.RUBBER_LEAVES_FLOWERING.get()); // maybe eventually add soul rubber flowers too, but seems like they should be special, and I dunno how to modify minecraft entity beehaviours
+		this.tag(BlockTags.FLOWERS).add(YATMBlocks.RUBBER_LEAVES_FLOWERING.get()).add(YATMBlocks.FIRE_EATER_LILY_DECORATIVE.get()); // maybe eventually add soul rubber flowers too, but seems like they should be special, and I dunno how to modify minecraft entity beehaviours
 		this.tag(BlockTags.FLOWER_POTS).add(YATMBlocks.POTTED_RUBBER_MERISTEM.get()).add(YATMBlocks.POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM.get())
 		.add(YATMBlocks.POTTED_ADAMUM.get())
 		.add(YATMBlocks.POTTED_AURUM.get())
@@ -153,7 +154,8 @@ public class YATMBlockTags extends BlockTagsProvider
 		.add(YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE.get())
 		.add(YATMBlocks.POTTED_CUPRUM.get())
 		.add(YATMBlocks.POTTED_FERRUM.get())
-		.add(YATMBlocks.FIRE_EATER_LILY.get())
+		.add(YATMBlocks.POTTED_FIRE_EATER_LILY.get())
+		.add(YATMBlocks.POTTED_FIRE_EATER_LILY_UNLIT.get())
 		.add(YATMBlocks.POTTED_FOLIUM.get())
 		.add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_POLYP.get()).add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_YOUNG.get()).add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_ADOLESCENT.get()).add(YATMBlocks.POTTED_BLEACHED_ICE_CORAL_OLD.get())
 		.add(YATMBlocks.POTTED_INFERNALUM.get())
@@ -227,6 +229,7 @@ public class YATMBlockTags extends BlockTagsProvider
 		this.tag(YATMBlockTags.CUPRUM_CAN_GROW_ON_KEY).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER);
 		// this.tag(YATMBlockTags.DATA_BLOCKS).add(YATMBlocks.DATA_STORAGE_BLOCK.get()).add(YATMBlocks.DATA_SCAN_COLLECTOR.get()).add(YATMBlocks.DESTRUCTIVE_DATA_SCANNER.get()).add(YATMBlocks.DATA_PROCESSOR.get())
 		this.tag(YATMBlockTags.FERRUM_CAN_GROW_ON_KEY).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER);
+		this.tag(YATMBlockTags.FIRE_EATER_LILY_CAN_GROW_IN_KEY).add(Blocks.AIR);
 		this.tag(YATMBlockTags.FIRE_EATER_LILY_CAN_GROW_ON_KEY).addTag(BlockTags.DIRT).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER).add(Blocks.MAGMA_BLOCK);
 		this.tag(YATMBlockTags.FOLIAR_STEEL_ORES_KEY).add(YATMBlocks.FOLIAR_STEEL_ORE.get()).add(YATMBlocks.DEEPSLATE_FOLIAR_STEEL_ORE.get());	
 		this.tag(YATMBlockTags.FOLIUM_CAN_GROW_IN_KEY).add(Blocks.AIR);

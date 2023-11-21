@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-19T21:26:19.9216218	Tags for minecraft:block mod id gsr_yatm
+// 1.20.1	2023-11-20T20:57:36.8102666	Tags for minecraft:block mod id gsr_yatm
 c66ff3626edc7c0f108f497fa9aec78cbf9db39f data/forge/tags/blocks/basalt.json
 ea459db540b319f4bdead7b7f1142fc238c09a8e data/forge/tags/blocks/cactus.json
 ebcf7881dcf42cb3d8c8b5c2e92ebf16fd9d7284 data/forge/tags/blocks/calcite.json
@@ -62,6 +62,7 @@ c7cf498dd11b4becfc703ca6d155b77406279d34 data/gsr_yatm/tags/blocks/mediums/basin
 8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/cuprum_can_grow_in.json
 61064ec33852a4a02609c7e6edc2de09c480a0f8 data/gsr_yatm/tags/blocks/mediums/cuprum_can_grow_on.json
 61064ec33852a4a02609c7e6edc2de09c480a0f8 data/gsr_yatm/tags/blocks/mediums/ferrum_can_grow_on.json
+8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/fire_eater_lily_can_grow_in.json
 f738b99c239d8fa447dd0744af550624426fb4a0 data/gsr_yatm/tags/blocks/mediums/fire_eater_lily_can_grow_on.json
 8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/folium_can_grow_in.json
 61064ec33852a4a02609c7e6edc2de09c480a0f8 data/gsr_yatm/tags/blocks/mediums/folium_can_grow_on.json
@@ -96,8 +97,8 @@ cabad7018263250a65993dc1bfafd32b2163b2f7 data/gsr_yatm/tags/blocks/unoxidized_co
 79057f85eba21895cb92edf14c38ba39cb22bc3e data/minecraft/tags/blocks/candles.json
 b176ca972464b67b2f1adc3de58dd6133ae56ed8 data/minecraft/tags/blocks/climbable.json
 952606965aea7b2cabce0eab939614887720ae6a data/minecraft/tags/blocks/dirt.json
-ae88bd8aabf02699bb3fdbf65bd64fc377fbc780 data/minecraft/tags/blocks/flowers.json
-0a67aa216442ec183df544595af92b3a8a06a213 data/minecraft/tags/blocks/flower_pots.json
+f6a96bbe88878e94afb093182810e68e0ed0459d data/minecraft/tags/blocks/flowers.json
+c77a37a04c31d80d4f9dd26ce8877cf25951916c data/minecraft/tags/blocks/flower_pots.json
 205d34972c106978555918bdbb34363a9a669d3e data/minecraft/tags/blocks/logs.json
 1502e7352c79e987a23ba14a77d87817c5e89ff2 data/minecraft/tags/blocks/logs_that_burn.json
 af3a4ed4904e324e4709eb531023fdf9e9503aee data/minecraft/tags/blocks/mineable/axe.json

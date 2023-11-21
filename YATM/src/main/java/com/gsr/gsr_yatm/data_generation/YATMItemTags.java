@@ -88,7 +88,7 @@ public class YATMItemTags extends ItemTagsProvider
 										 * .add(YATMItems.SIXTYFOUR_CU_CURRENT_REGULATOR.get()).add(YATMItems.
 										 * SIXTYFOUR_CU_CURRENT_FUSE.get()).add(YATMItems.SIXTYFOUR_CU_CURRENT_BREAKER.
 										 * get()).addTag(YATMItemTags.SIXTYFOUR_CU_WIRES_KEY)
-										 */.add(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get()).add(YATMItems.AURUM_DEMINUTUS_FROND.get());
+										 */.add(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get());
 		this.copy(BlockTags.PLANKS, ItemTags.PLANKS);
 		this.copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
 		this.tag(ItemTags.TRIMMABLE_ARMOR).addTag(DECAY_NETHERITE_ARMOR_PIECES_KEY).addTag(SOUL_ADORNED_NETHERITE_ARMOR_PIECES_KEY);
@@ -107,11 +107,7 @@ public class YATMItemTags extends ItemTagsProvider
 		this.copy(YATMBlockTags.FORGE_STORAGE_BLOCKS_RUBBER_KEY, YATMItemTags.FORGE_STORAGE_BLOCKS_RUBBER_KEY);
 		this.copy(YATMBlockTags.FORGE_STORAGE_BLOCKS_FOLIAR_STEEL_KEY, YATMItemTags.FORGE_STORAGE_BLOCKS_FOLIAR_STEEL_KEY);
 		this.tag(YATMItemTags.FORGE_RUBBER_INGOTS_KEY).add(YATMItems.RUBBER_BAR.get());
-//		this.tag(YATMItemTags.FORGE_SILVER_INGOTS_KEY).add(YATMItems.SILVER_INGOT.get());
-//		this.tag(YATMItemTags.FORGE_STEEL_INGOTS_KEY).add(YATMItems.STEEL_INGOT.get());
-//		this.tag(YATMItemTags.FORGE_COPPER_NUGGETS_KEY).add(YATMItems.COPPER_NUGGET.get());
 		this.tag(YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY).add(YATMItems.NETHERITE_NUGGET.get());
-//		this.tag(YATMItemTags.FORGE_SILVER_NUGGETS_KEY).add(YATMItems.SILVER_NUGGET.get());
 		
 		
 		

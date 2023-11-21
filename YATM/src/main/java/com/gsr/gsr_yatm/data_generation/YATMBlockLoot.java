@@ -15,7 +15,6 @@ import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsFloralBlock;
 import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
 import com.gsr.gsr_yatm.block.plant.cuprum.CuprumBlock;
 import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
-import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
 import com.gsr.gsr_yatm.block.plant.folium.FoliumBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
 import com.gsr.gsr_yatm.block.plant.infernalum.InfernalumBlock;
@@ -28,6 +27,7 @@ import com.gsr.gsr_yatm.block.plant.vicum.VicumBlock;
 import com.gsr.gsr_yatm.block.plant.vine.OnceFruitVineBodyBlock;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
+
 import net.minecraft.advancements.critereon.StatePropertiesPredicate;
 import net.minecraft.core.Direction;
 import net.minecraft.data.loot.BlockLootSubProvider;
@@ -141,7 +141,10 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropPottedContents(YATMBlocks.POTTED_FERRUM.get());
 		
 		this.add(YATMBlocks.FIRE_EATER_LILY.get(), this.createFireEaterLilyTable());
+		this.dropSelf(YATMBlocks.FIRE_EATER_LILY_DECORATIVE.get());
+		this.dropSelf(YATMBlocks.FIRE_EATER_LILY_UNLIT_DECORATIVE.get());
 		this.dropPottedContents(YATMBlocks.POTTED_FIRE_EATER_LILY.get());
+		this.dropPottedContents(YATMBlocks.POTTED_FIRE_EATER_LILY_UNLIT.get());
 		
 		this.add(YATMBlocks.FOLIUM.get(), this.createFoliumTable());		
 		this.dropPottedContents(YATMBlocks.POTTED_FOLIUM.get());
@@ -591,10 +594,11 @@ public class YATMBlockLoot extends VanillaBlockLoot
 	
 	protected @NotNull LootTable.Builder createFireEaterLilyTable() 
 	{
-		LootItemCondition.Builder fullGrown = LootItemBlockStatePropertyCondition
-				.hasBlockStateProperties(YATMBlocks.FIRE_EATER_LILY.get())
-				.setProperties(StatePropertiesPredicate.Builder.properties()
-						.hasProperty(FireEaterLilyBlock.AGE, YATMBlocks.FIRE_EATER_LILY.get().getMaxAge()));
+//		Function<Boolean, LootItemCondition.Builder> fullGrown = (lit) -> LootItemBlockStatePropertyCondition
+//				.hasBlockStateProperties(YATMBlocks.FIRE_EATER_LILY.get())
+//				.setProperties(StatePropertiesPredicate.Builder.properties()
+//						.hasProperty(FireEaterLilyBlock.AGE, YATMBlocks.FIRE_EATER_LILY.get().getMaxAge())
+//						.hasProperty(FireEaterLilyBlock.LIT, lit));
 
 		return LootTable.lootTable()
 				.withPool(
@@ -607,13 +611,6 @@ public class YATMBlockLoot extends VanillaBlockLoot
 												.exactly(1.0f)
 												)
 										)
-								)
-						)
-				.withPool(
-						LootPool.lootPool()
-						.when(fullGrown)
-						.add(LootItem.lootTableItem(YATMItems.FIRE_EATER_LILY_FOLIAGE.get())
-								.apply(SetItemCountFunction.setCount(UniformGenerator.between(1f, 3f)))
 								)
 						);
 	} // end createFireEaterLilyTable()

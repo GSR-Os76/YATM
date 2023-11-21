@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-10T19:24:38.7598321	Tags for minecraft:item mod id gsr_yatm
+// 1.20.1	2023-11-20T20:57:36.8248361	Tags for minecraft:item mod id gsr_yatm
 bade3c9b0ab674f2efd3dc51c76e3652a9021029 data/forge/tags/items/ingots/rubber.json
 18795a8c0bcbdd7d7450b4a7ba2b97df86e0d87a data/forge/tags/items/nuggets/netherite.json
 22817fc3a29127b1c1278ea16d671d7c02dbdeb9 data/forge/tags/items/rooted_dirt.json
@@ -23,10 +23,10 @@ cabad7018263250a65993dc1bfafd32b2163b2f7 data/gsr_yatm/tags/items/unoxidized_cop
 d0d15c7ca96252fa8af0e1f1370253b3152c876b data/minecraft/tags/items/beacon_payment_items.json
 e848628690a0eb8fd8e99f95f3cea7fa80434ef8 data/minecraft/tags/items/boats.json
 226e255d3c0920e8577b73d19f74b49b3d4333db data/minecraft/tags/items/chest_boats.json
-ae88bd8aabf02699bb3fdbf65bd64fc377fbc780 data/minecraft/tags/items/flowers.json
+f6a96bbe88878e94afb093182810e68e0ed0459d data/minecraft/tags/items/flowers.json
 205d34972c106978555918bdbb34363a9a669d3e data/minecraft/tags/items/logs.json
 1502e7352c79e987a23ba14a77d87817c5e89ff2 data/minecraft/tags/items/logs_that_burn.json
-4547ef787c902fcb3517ef82f6caf918a12be29b data/minecraft/tags/items/piglin_loved.json
+9e134361b0aa2b725c402f79a5f39c90a0fca103 data/minecraft/tags/items/piglin_loved.json
 861ac450b90a900a8dbe9dc301248cd0b5ca2f52 data/minecraft/tags/items/planks.json
 59d8edfe056f15f3cff621f10b35fa3ba99c9baf data/minecraft/tags/items/saplings.json
 dc7fb039cbc764f0bf3d6557392efa3f773c3fc3 data/minecraft/tags/items/trimmable_armor.json

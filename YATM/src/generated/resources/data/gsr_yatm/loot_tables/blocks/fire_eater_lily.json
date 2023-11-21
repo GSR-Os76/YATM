@@ -17,36 +17,6 @@
         }
       ],
       "rolls": 1.0
-    },
-    {
-      "bonus_rolls": 0.0,
-      "conditions": [
-        {
-          "block": "gsr_yatm:fire_eater_lily",
-          "condition": "minecraft:block_state_property",
-          "properties": {
-            "age": "7"
-          }
-        }
-      ],
-      "entries": [
-        {
-          "type": "minecraft:item",
-          "functions": [
-            {
-              "add": false,
-              "count": {
-                "type": "minecraft:uniform",
-                "max": 3.0,
-                "min": 1.0
-              },
-              "function": "minecraft:set_count"
-            }
-          ],
-          "name": "gsr_yatm:fire_eater_lily_foliage"
-        }
-      ],
-      "rolls": 1.0
     }
   ],
   "random_sequence": "gsr_yatm:blocks/fire_eater_lily"

@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-19T21:26:19.9294878	Loot Tables
+// 1.20.1	2023-11-20T20:57:36.8152268	Loot Tables
 3447f366126fe84e5d7fe101ca492c681d974485 data/gsr_yatm/loot_tables/blocks/adamum.json
 c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
@@ -38,7 +38,9 @@ c645ea266cc5f1e59cec421cf1ecf4cb2cee22f0 data/gsr_yatm/loot_tables/blocks/deepsl
 fec70c94dede2f9f6fd5673bf0f1974bb150fdaf data/gsr_yatm/loot_tables/blocks/fallen_shulkwart_spores.json
 64868cc841908508f0147f03b3787b19059182fe data/gsr_yatm/loot_tables/blocks/fancy_rubber_planks.json
 cc3efd275b645622157b2a0dbec85663295e574d data/gsr_yatm/loot_tables/blocks/ferrum.json
-c4edfdcb718f1724076063df7a1557dada3fffd2 data/gsr_yatm/loot_tables/blocks/fire_eater_lily.json
+1f2e882cce3627012cc9842a07518ece6ccc1612 data/gsr_yatm/loot_tables/blocks/fire_eater_lily.json
+74e98a821919de59ea62629bc2b732b55e0bde0b data/gsr_yatm/loot_tables/blocks/fire_eater_lily_decorative.json
+662029622b76db28b0309e33ba44b9511d8ef568 data/gsr_yatm/loot_tables/blocks/fire_eater_lily_unlit_decorative.json
 552828b67c689a8eb8ce68f7cdd7ab2be1727312 data/gsr_yatm/loot_tables/blocks/foliar_steel_block.json
 8a09dd4d3e159377e355865158df551d66f03aa5 data/gsr_yatm/loot_tables/blocks/foliar_steel_ore.json
 8712fd2237ba09507a784a60fa0032f117165a2f data/gsr_yatm/loot_tables/blocks/folium.json
@@ -79,7 +81,8 @@ b9e36cd114645bdbc82ed60a5c500b2f498580e1 data/gsr_yatm/loot_tables/blocks/potted
 f783d5cbbec1d684af81c483dcd0d57bde68e185 data/gsr_yatm/loot_tables/blocks/potted_carcass_root_foliage.json
 8977287a4ffa6b9ca339e9924c94f484fa5d6c2b data/gsr_yatm/loot_tables/blocks/potted_cuprum.json
 79e9c4f37351357885c7ee3a6bba130a67b74b09 data/gsr_yatm/loot_tables/blocks/potted_ferrum.json
-8a8963141185c73d1069731a372e1dffa592ea17 data/gsr_yatm/loot_tables/blocks/potted_fire_eater_lily.json
+b7ab44ba958f534390e671e634f94a232b9279d8 data/gsr_yatm/loot_tables/blocks/potted_fire_eater_lily.json
+29ccd6363459b065164c13f2bea910ae3a8531c8 data/gsr_yatm/loot_tables/blocks/potted_fire_eater_lily_unlit.json
 8a6980e1e6e2b1190988e97c485aba721a9567c8 data/gsr_yatm/loot_tables/blocks/potted_folium.json
 1090b4d8d863f1cf64ae6f12e5969b90c2c4c911 data/gsr_yatm/loot_tables/blocks/potted_infernalum.json
 71775bc9f3bf0313650c8b4bf53bd08c8449bd45 data/gsr_yatm/loot_tables/blocks/potted_lapum.json
