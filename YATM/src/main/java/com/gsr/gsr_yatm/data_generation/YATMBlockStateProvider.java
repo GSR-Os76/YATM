@@ -522,18 +522,12 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	private void addSamaragdum() 
 	{
 		ResourceLocation oldTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/samaragdum/old");
-		ResourceLocation oldCrossTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/samaragdum/old_cross");
-
 		this.createSamaragdum(YATMBlocks.SAMARAGDUM.get(), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/samaragdum/germinating"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/samaragdum/young"),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/samaragdum/adolescent"),
-				oldTexture,
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/samaragdum/germinating_cross"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/samaragdum/young_cross"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/samaragdum/adolescent_cross"),
-				oldCrossTexture);
-		this.createCustomGroundPottedCross(YATMBlocks.POTTED_SAMARAGDUM.get(), oldTexture, oldCrossTexture);
+				oldTexture);
+		this.createStoneSoilPottedCross(YATMBlocks.POTTED_SAMARAGDUM.get(), oldTexture);	
 	} // end addSamaragdum()
 	
 	private void addShulkwarts()
@@ -1174,11 +1168,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 			@NotNull ResourceLocation germinatingTexture, 
 			@NotNull ResourceLocation youngTexture,
 			@NotNull ResourceLocation adolescentTexture,
-			@NotNull ResourceLocation oldTexture,
-			@NotNull ResourceLocation germinatingCrossTexture, 
-			@NotNull ResourceLocation youngCrossTexture,
-			@NotNull ResourceLocation adolescentCrossTexture,
-			@NotNull ResourceLocation oldCrossTexture) 
+			@NotNull ResourceLocation oldTexture) 
 	{
 		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
 		String nameG = name + "_germinating";
@@ -1186,10 +1176,10 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		String nameA = name + "_adolescent";
 		String nameO = name + "_old";
 		//this.models().getBuilder(nameG).parent(YATMBlockStateProvider.GLOW_LICHEN).texture("glow_lichen", germinatingTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
-		this.models().getBuilder(nameG).parent(YATMBlockStateProvider.PATCH_CROSS_MODEL).texture("patch", germinatingTexture).texture("cross", germinatingCrossTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
-		this.models().getBuilder(nameY).parent(YATMBlockStateProvider.PATCH_CROSS_MODEL).texture("patch", youngTexture).texture("cross", youngCrossTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
-		this.models().getBuilder(nameA).parent(YATMBlockStateProvider.PATCH_CROSS_MODEL).texture("patch", adolescentTexture).texture("cross", adolescentCrossTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
-		this.models().getBuilder(nameO).parent(YATMBlockStateProvider.PATCH_CROSS_MODEL).texture("patch", oldTexture).texture("cross", oldCrossTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameG, germinatingTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameY, youngTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameA, adolescentTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameO, oldTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
 		ModelFile modelG = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameG));
 		ModelFile modelY = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameY));
 		ModelFile modelA = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameA));
@@ -1197,6 +1187,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forEightAge(bs, modelG, modelG, modelY, modelY, modelA, modelA, modelA, modelO));
 	} // end createSamaragdum()
 	
+	@SuppressWarnings("unused")
 	private void createCustomGroundPottedCross(Block block, ResourceLocation ground, ResourceLocation texture)
 	{
 		String name = getModelLocationNameFor(block);			

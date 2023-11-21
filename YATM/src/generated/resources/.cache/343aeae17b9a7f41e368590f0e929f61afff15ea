@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-20T20:57:36.8269866	Block States: gsr_yatm
+// 1.20.1	2023-11-21T13:19:16.155385	Block States: gsr_yatm
 11aad184ca6aaadbd7319a44c5a1985f7c029a1c assets/gsr_yatm/blockstates/adamum.json
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 a2a385d05e4f86cda9dd2c5a246077dac4e32579 assets/gsr_yatm/blockstates/advanced_solar_panel.json
@@ -356,7 +356,7 @@ e4f1afb8b1f9771d33cc0c01d77d7591f1c751ad assets/gsr_yatm/models/block/potted_inf
 6709025213c153877fba14f822d817ed616dc5a7 assets/gsr_yatm/models/block/potted_lapum.json
 ee6b378f3f56da0f1b633cf8763973c7ff2aef13 assets/gsr_yatm/models/block/potted_rubber_meristem.json
 c09059bfc956db79c570b9b996b892107da70eda assets/gsr_yatm/models/block/potted_ruberum.json
-70342a8ce0739303f14ff4c65aca1bfb5783d7c8 assets/gsr_yatm/models/block/potted_samaragdum.json
+ca2c9bebf2ec10b5f7fb3ad5510c4bd8f13e3c64 assets/gsr_yatm/models/block/potted_samaragdum.json
 d89ab75b96a3734c06d8bc07f66a573c6be1b7bc assets/gsr_yatm/models/block/potted_soul_afflicted_rubber_meristem.json
 bf90e432c6a571419ba7c68ba510a96467c2c1e2 assets/gsr_yatm/models/block/potted_variegated_cactus.json
 e3655e8915851ba518f994eaa96f88a632e84352 assets/gsr_yatm/models/block/potted_vicum.json
@@ -420,10 +420,10 @@ bc0b579a14c58fe40c6343ba0fdb18c1b5e03098 assets/gsr_yatm/models/block/ruberum_ad
 7a730fbec9b5dd5d23029bbcc73d2c76006b466e assets/gsr_yatm/models/block/ruberum_sprout_on.json
 f5c19e81337adf1e9666c01bffb148f30f46c2da assets/gsr_yatm/models/block/ruberum_young.json
 6fe1616b6add55ddf534a015987b4fe147a6ea4e assets/gsr_yatm/models/block/ruberum_young_on.json
-a09159798866d2cd7ded28d1518bed3e66fb22af assets/gsr_yatm/models/block/samaragdum_adolescent.json
-d775d22fd7d8882af91df40b01276cc830d3fc90 assets/gsr_yatm/models/block/samaragdum_germinating.json
-99d51b78f0ede47e6275da906727c8b89300ce9c assets/gsr_yatm/models/block/samaragdum_old.json
-155ec175fcc7fa1e36c5cbd2decd21470448fe94 assets/gsr_yatm/models/block/samaragdum_young.json
+cd0462fb9b3affde0a7d577b203e52a34681f8a6 assets/gsr_yatm/models/block/samaragdum_adolescent.json
+f9bc7496818c477a2a53e0c3dcd1ffe4870ada08 assets/gsr_yatm/models/block/samaragdum_germinating.json
+bce954696800ff882c2546babcd6404a09a7d986 assets/gsr_yatm/models/block/samaragdum_old.json
+4adee81974cec5aea572270db8fb44715c0f892f assets/gsr_yatm/models/block/samaragdum_young.json
 687ccc72ed2b4e4cc38799c266b963dbc2acdcae assets/gsr_yatm/models/block/sap_collector_latex.json
 a41872b3918baf757cdf78c2e0d6cc0b1f142a44 assets/gsr_yatm/models/block/sap_collector_soul_sap.json
 ef6622b3ee7902380cd1ea20ad5475245e283c9c assets/gsr_yatm/models/block/shulkwart_fruit_one.json

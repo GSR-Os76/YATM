@@ -1,8 +1,7 @@
 {
-  "parent": "gsr_yatm:block/patch_cross",
+  "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "gsr_yatm:block/plant/samaragdum/adolescent_cross",
-    "patch": "gsr_yatm:block/plant/samaragdum/adolescent"
+    "cross": "gsr_yatm:block/plant/samaragdum/adolescent"
   }
 }

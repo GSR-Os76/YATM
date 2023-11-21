@@ -127,7 +127,9 @@ public class YATMItems
 
 	public static final RegistryObject<ItemNameBlockItem> CARCASS_ROOT_CUTTING = generalTabEnqueue(ITEMS.register("carcass_root_cutting", () -> new ItemNameBlockItem(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), new Item.Properties())));
 	
-	// TODO, redraw all states of samaragdum, and redraw items for the pitcher clusters and phantasmal shelf fungus
+	// TODO, and redraw items for the pitcher clusters and phantasmal shelf fungus, and maybe spider vine fruit branch thingy.
+	// TODO, make spider vines sometimes drop eyes directly. make fruit extract to vitreus humor and leave some kind of ocular tissue, which can be grafted back together to make eyes of spiders
+	// TODO, add items to the vanilla creative tabs.
 	public static final RegistryObject<BlockItem> ADAMUM_MERISTEM = generalTabEnqueue(ITEMS.register("adamum_meristem", () -> new BlockItem(YATMBlocks.ADAMUM.get(), new Item.Properties().fireResistant())));
 	public static final RegistryObject<BlockItem> AURUM_DEMINUTUS_FIDDLE_HEAD = generalTabEnqueue(ITEMS.register("aurum_deminutus_fiddle_head", () -> new BlockItem(YATMBlocks.AURUM.get(), new Item.Properties().fireResistant())));
 	public static final RegistryObject<BlockItem> CARBUM_MERISTEM = generalTabEnqueue(ITEMS.register("carbum_meristem", () -> new BlockItem(YATMBlocks.CARBUM.get(), new Item.Properties().fireResistant())));

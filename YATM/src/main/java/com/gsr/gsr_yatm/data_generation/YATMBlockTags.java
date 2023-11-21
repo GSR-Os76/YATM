@@ -32,6 +32,7 @@ public class YATMBlockTags extends BlockTagsProvider
 	// maybe this should be "cactus" not "cactuses"
 	public static final TagKey<Block> FORGE_CACTUS_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "cactus"));
 	public static final TagKey<Block> FORGE_CALCITE_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "calcite"));
+	public static final TagKey<Block> FORGE_DEEPSLATE_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "deepslate"));
 	public static final TagKey<Block> FORGE_ROOTED_DIRT_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "rooted_dirt"));
 	public static final TagKey<Block> FORGE_SOUL_SOIL_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "soul_soil"));
 	public static final TagKey<Block> FORGE_STORAGE_BLOCKS_RUBBER_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "storage_blocks/rubber"));
@@ -83,7 +84,10 @@ public class YATMBlockTags extends BlockTagsProvider
 	public static final TagKey<Block> FORMS_LAPUM_INNER_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/lapum_inner"));	
 	public static final TagKey<Block> FORMS_LAPUM_OUTER_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/lapum_outer"));	
 	public static final TagKey<Block> FORMS_RUBERUM_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/ruberum"));	
-	public static final TagKey<Block> FORMS_SAMARAGDUM_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/samaragdum"));	
+	
+	public static final TagKey<Block> FORMS_SAMARAGDUM_INNER_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/samaragdum_inner"));	
+	public static final TagKey<Block> FORMS_SAMARAGDUM_OUTER_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/samaragdum_outer"));	
+	
 	public static final TagKey<Block> FORMS_VICUM_INNER_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/vicum_inner"));	
 	public static final TagKey<Block> FORMS_VICUM_OUTER_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "form/vicum_outer"));	
 	public static final TagKey<Block> GOLEM_LIKE_PLANTS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "golem_like_plants"));
@@ -191,6 +195,7 @@ public class YATMBlockTags extends BlockTagsProvider
 		this.tag(YATMBlockTags.FORGE_BASALT_KEY).add(Blocks.BASALT).add(Blocks.POLISHED_BASALT).add(Blocks.SMOOTH_BASALT);
 		this.tag(YATMBlockTags.FORGE_CACTUS_KEY).add(Blocks.CACTUS).add(YATMBlocks.VARIEGATED_CACTUS.get());
 		this.tag(YATMBlockTags.FORGE_CALCITE_KEY).add(Blocks.CALCITE);
+		this.tag(YATMBlockTags.FORGE_DEEPSLATE_KEY).addTag(Tags.Blocks.COBBLESTONE_DEEPSLATE).add(Blocks.DEEPSLATE).add(Blocks.DEEPSLATE_BRICKS).add(Blocks.DEEPSLATE_TILES).add(Blocks.CHISELED_DEEPSLATE).add(Blocks.CRACKED_DEEPSLATE_BRICKS).add(Blocks.CRACKED_DEEPSLATE_TILES).add(Blocks.POLISHED_DEEPSLATE);
 		this.tag(YATMBlockTags.FORGE_ROOTED_DIRT_KEY).add(Blocks.ROOTED_DIRT).add(Blocks.MUDDY_MANGROVE_ROOTS).add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get());
 		this.tag(YATMBlockTags.FORGE_SOUL_SOIL_KEY).add(Blocks.SOUL_SOIL).add(YATMBlocks.ROOTED_SOUL_SOIL.get());
 		this.tag(YATMBlockTags.FORGE_STORAGE_BLOCKS_RUBBER_KEY).add(YATMBlocks.RUBBER_BLOCK.get());
@@ -252,7 +257,10 @@ public class YATMBlockTags extends BlockTagsProvider
 		this.tag(YATMBlockTags.FORMS_LAPUM_INNER_KEY).addTag(Tags.Blocks.STORAGE_BLOCKS_LAPIS);
 		this.tag(YATMBlockTags.FORMS_LAPUM_OUTER_KEY).addTag(YATMBlockTags.FORGE_CALCITE_KEY);	
 		this.tag(YATMBlockTags.FORMS_RUBERUM_KEY).addTag(Tags.Blocks.STORAGE_BLOCKS_REDSTONE);		
-		this.tag(YATMBlockTags.FORMS_SAMARAGDUM_KEY).addTag(Tags.Blocks.STORAGE_BLOCKS_EMERALD);
+		
+		this.tag(YATMBlockTags.FORMS_SAMARAGDUM_INNER_KEY).addTag(Tags.Blocks.STORAGE_BLOCKS_EMERALD);
+		this.tag(YATMBlockTags.FORMS_SAMARAGDUM_OUTER_KEY).addTag(YATMBlockTags.FORGE_DEEPSLATE_KEY);
+		
 		this.tag(YATMBlockTags.FORMS_VICUM_INNER_KEY).addTag(Tags.Blocks.STORAGE_BLOCKS_QUARTZ);
 		this.tag(YATMBlockTags.FORMS_VICUM_OUTER_KEY).addTag(YATMBlockTags.FORGE_BASALT_KEY);	
 		this.tag(YATMBlockTags.GOLEM_LIKE_PLANTS_KEY).add(YATMBlocks.AURUM.get()).add(YATMBlocks.CARBUM.get()).add(YATMBlocks.FERRUM.get()).add(YATMBlocks.FOLIUM.get()).add(YATMBlocks.VICUM.get());		

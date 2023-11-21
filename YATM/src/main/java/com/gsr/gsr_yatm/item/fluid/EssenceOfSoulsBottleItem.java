@@ -43,7 +43,7 @@ public class EssenceOfSoulsBottleItem extends DrinkableFluidBottleItem
 			(c) -> EssenceOfSoulsBottleItem.tryFormVerticalThreeBlock(c, YATMBlockTags.FORMS_INFERNALUM_TOP_KEY, YATMBlockTags.FORMS_INFERNALUM_MIDDLE_KEY, YATMBlockTags.FORMS_INFERNALUM_BOTTOM_KEY, YATMItems.INFERNALUM_RHIZOME.get()),
 			(c) -> EssenceOfSoulsBottleItem.tryFormSurroundedBlock(c, YATMBlockTags.FORMS_LAPUM_INNER_KEY, YATMBlockTags.FORMS_LAPUM_OUTER_KEY, YATMItems.LAPUM_MERISTEM.get()),
 			(c) -> EssenceOfSoulsBottleItem.tryFormSingleBlock(c, YATMBlockTags.FORMS_RUBERUM_KEY, YATMItems.RUBERUM_CORM.get()),
-			(c) -> EssenceOfSoulsBottleItem.tryFormSingleBlock(c, YATMBlockTags.FORMS_SAMARAGDUM_KEY, YATMItems.SAMARAGDUM_NODULE.get()),
+			(c) -> EssenceOfSoulsBottleItem.tryFormSurroundedBlock(c, YATMBlockTags.FORMS_SAMARAGDUM_INNER_KEY, YATMBlockTags.FORMS_SAMARAGDUM_OUTER_KEY, YATMItems.SAMARAGDUM_NODULE.get()),
 			(c) -> EssenceOfSoulsBottleItem.tryFormSurroundedBlock(c, YATMBlockTags.FORMS_VICUM_INNER_KEY, YATMBlockTags.FORMS_VICUM_OUTER_KEY, YATMItems.VICUM_MERISTEM.get()) // EssenceOfSoulsBottleItem::tryFormVicum
 			);
 	

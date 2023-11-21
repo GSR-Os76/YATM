@@ -2,7 +2,7 @@
   "parent": "minecraft:block/flower_pot_cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "dirt": "gsr_yatm:block/plant/samaragdum/old",
-    "plant": "gsr_yatm:block/plant/samaragdum/old_cross"
+    "dirt": "minecraft:block/stone",
+    "plant": "gsr_yatm:block/plant/samaragdum/old"
   }
 }
