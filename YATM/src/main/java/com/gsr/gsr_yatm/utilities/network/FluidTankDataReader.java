@@ -39,12 +39,12 @@ public class FluidTankDataReader
 	
 	public @NotNull Fluid getFluid()
 	{
-		return NetworkUtil.getFluid(this.m_data.get(this.m_accessSpec.startIndex() + FluidHandlerContainerData.AMOUNT_INDEX));
+		return NetworkUtil.getFluid(this.m_data.get(this.m_accessSpec.startIndex() + FluidHandlerContainerData.FLUID_INDEX));
 	} // end getFluid() 
 	
 	public @NotNull FluidStack getFluidStack() 
 	{
 		return new FluidStack(this.getFluid(), this.getAmount());
-	} // end get()
+	} // end getFluidStack()
 	
 } // end class

@@ -15,7 +15,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 
-public class ConfigurableTankWrapper implements IFluidHandler, IFluidTank
+public class TankWrapper implements IFluidHandler, IFluidTank
 {
 	private final @NotNull IFluidHandler m_fluidHandler;
 	// TODO, look over this's functionality and it's usage.
@@ -27,12 +27,12 @@ public class ConfigurableTankWrapper implements IFluidHandler, IFluidTank
 
 
 	
-	public ConfigurableTankWrapper(@NotNull IFluidHandler fluidHandler, @NotNull Consumer<FluidStack> contentsChangedHandler) 
+	public TankWrapper(@NotNull IFluidHandler fluidHandler, @NotNull Consumer<FluidStack> contentsChangedHandler) 
 	{
 		this(fluidHandler, contentsChangedHandler, contentsChangedHandler, () -> true, (f) -> true, Integer.MAX_VALUE);
 	} // end constructor
 
-	public ConfigurableTankWrapper(@NotNull IFluidHandler fluidHandler, @NotNull Consumer<FluidStack> onContentsDrain, @NotNull Consumer<FluidStack> onContentsFill, @NotNull Supplier<Boolean> canDrain, @NotNull Predicate<FluidStack> fillValidator, @NotNegative int maxTransfer) 
+	public TankWrapper(@NotNull IFluidHandler fluidHandler, @NotNull Consumer<FluidStack> onContentsDrain, @NotNull Consumer<FluidStack> onContentsFill, @NotNull Supplier<Boolean> canDrain, @NotNull Predicate<FluidStack> fillValidator, @NotNegative int maxTransfer) 
 	{
 		this.m_fluidHandler = Objects.requireNonNull(fluidHandler);
 		this.m_tank = Lazy.of(() -> (IFluidTank)this.m_fluidHandler);
@@ -229,9 +229,9 @@ public class ConfigurableTankWrapper implements IFluidHandler, IFluidTank
 		
 		
 		
-		public ConfigurableTankWrapper build() 
+		public TankWrapper build() 
 		{
-			return new ConfigurableTankWrapper(this.m_fluidHandler, this.m_onContentsDrain, this.m_onContentsFill, this.m_canDrain, this.m_fillValidator, this.m_maxTransfer);
+			return new TankWrapper(this.m_fluidHandler, this.m_onContentsDrain, this.m_onContentsFill, this.m_canDrain, this.m_fillValidator, this.m_maxTransfer);
 		} // end builder()
 		
 	} // end inner class

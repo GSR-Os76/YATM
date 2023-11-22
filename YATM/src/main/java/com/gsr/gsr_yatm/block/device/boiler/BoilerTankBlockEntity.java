@@ -4,7 +4,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
-import com.gsr.gsr_yatm.utilities.capability.fluid.ConfigurableTankWrapper;
+import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -31,7 +31,7 @@ public class BoilerTankBlockEntity extends BlockEntity
 	
 	private int m_maxTransferRate;
 	private FluidTank m_rawContents= new FluidTank(32000);
-	private ConfigurableTankWrapper m_contents = new ConfigurableTankWrapper(this.m_rawContents, (f) -> this.setChanged());;
+	private TankWrapper m_contents = new TankWrapper(this.m_rawContents, (f) -> this.setChanged());;
 	private LazyOptional<IFluidHandler> m_contentsLazyOptional = LazyOptional.of(() -> this.m_contents);;
 	
 	private boolean m_paired = false;

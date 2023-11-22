@@ -9,7 +9,7 @@ import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
-import com.gsr.gsr_yatm.utilities.capability.fluid.ConfigurableTankWrapper;
+import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
 import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
 import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
 
@@ -108,11 +108,11 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 	private int m_maxFluidTransferRate;
 
 	private FluidTank m_rawInputTank;
-	private ConfigurableTankWrapper m_inputTank;
+	private TankWrapper m_inputTank;
 	private LazyOptional<IFluidHandler> m_inputTankLazyOptional;
 
 	private FluidTank m_rawResultTank;
-	private ConfigurableTankWrapper m_resultTank;
+	private TankWrapper m_resultTank;
 	
 	private FluidTank m_inputTankFillBuffer;
 	private int m_initialFillInputTankTransferSize = 0;
@@ -227,10 +227,10 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 		this.m_inputTankFillBuffer = new FluidTank(tankCapacities);
 		this.m_maxFluidTransferRate = maxFluidTransferRate;
 		
-		this.m_inputTank = new ConfigurableTankWrapper(this.m_rawInputTank, this::onFluidContentsChanged);
+		this.m_inputTank = new TankWrapper(this.m_rawInputTank, this::onFluidContentsChanged);
 		this.m_inputTankLazyOptional = LazyOptional.of(() -> this.m_inputTank);
 		
-		this.m_resultTank = new ConfigurableTankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);
+		this.m_resultTank = new TankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);
 	} // end setup()
 	
 

@@ -8,7 +8,7 @@ import org.jetbrains.annotations.Nullable;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
-import com.gsr.gsr_yatm.utilities.capability.fluid.ConfigurableTankWrapper;
+import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
@@ -44,7 +44,7 @@ public class TankBlockEntity extends BlockEntity
 	
 	private @NotNegative int m_maxFluidTransferRate;
 	private @NotNull FluidTank m_rawTank;
-	private @NotNull ConfigurableTankWrapper m_tank;	
+	private @NotNull TankWrapper m_tank;	
 	private @NotNull LazyOptional<IFluidHandler> m_tankLazyOptional = LazyOptional.of(() -> TankBlockEntity.this.m_tank);
 	
 	private LazyOptional<IFluidHandler> m_attachedCap;
@@ -92,7 +92,7 @@ public class TankBlockEntity extends BlockEntity
 	{
 		this.m_maxFluidTransferRate = Contract.notNegative(maxFluidTransferRate);
 		this.m_rawTank = new FluidTank(Contract.notNegative(tankCapacity));
-		this.m_tank = ConfigurableTankWrapper.Builder.of(this.m_rawTank)
+		this.m_tank = TankWrapper.Builder.of(this.m_rawTank)
 				.onContentsChanged((f) -> 
 				{
 					this.setChanged();

@@ -19,7 +19,7 @@ import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
-import com.gsr.gsr_yatm.utilities.capability.fluid.ConfigurableTankWrapper;
+import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
 import com.gsr.gsr_yatm.utilities.capability.heat.OnChangedHeatHandler;
 import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
 import com.gsr.gsr_yatm.utilities.network.CompositeAccessSpecification;
@@ -94,7 +94,7 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	private final IItemHandler m_inputSlot = InventoryWrapper.Builder.of().inventory(this.m_inventory).slotTranslationTable(new int[] {CrucibleBlockEntity.INPUT_SLOT}).build();;
 	private final IItemHandler m_heatingSlot = InventoryWrapper.Builder.of().inventory(this.m_inventory).slotTranslationTable(new int[] {CrucibleBlockEntity.HEAT_SLOT}).build();;
 	private FluidTank m_rawResultTank = new FluidTank(YATMConfigs.CRUCIBLE_RESULT_TANK_CAPACITY.get());
-	private ConfigurableTankWrapper m_resultTank = new ConfigurableTankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);	
+	private TankWrapper m_resultTank = new TankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);	
 	private OnChangedHeatHandler m_heatHandler = new OnChangedHeatHandler(IHeatHandler.getAmbientTemp(), (i) -> this.setChanged());
 	
 	private @Nullable ItemStack m_drainResultComponentStack = null;
@@ -259,8 +259,6 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	@Override
 	public void serverTick(Level level, BlockPos position, BlockState state)
 	{
-		super.serverTick(level, position, state);
-		
 		if(this.m_updateDrainResultComponentQueued) 
 		{
 			this.updateDrainResultComponent();

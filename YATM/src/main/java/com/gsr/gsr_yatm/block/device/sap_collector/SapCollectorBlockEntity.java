@@ -6,7 +6,7 @@ import org.jetbrains.annotations.Nullable;
 import com.gsr.gsr_yatm.item.fluid.FluidBottleItem;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.utilities.capability.fluid.BinaryFluidHandler;
-import com.gsr.gsr_yatm.utilities.capability.fluid.ConfigurableTankWrapper;
+import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -49,7 +49,7 @@ public class SapCollectorBlockEntity extends BlockEntity
 	protected void setup() 
 	{
 		ISapCollector sc = (ISapCollector)this.getBlockState().getBlock();
-		this.m_fluidHandler = ConfigurableTankWrapper.Builder.of(this.m_rawFluidHandler)
+		this.m_fluidHandler = TankWrapper.Builder.of(this.m_rawFluidHandler)
 				.canDrain(() -> this.getLevel() != null)
 				.fillValidator((f) -> this.getLevel() != null && sc.recievableFluids().contains(f.getFluid()))
 				.onContentsDrain((f) -> sc.onFluidDrained(this.getLevel(), this.getBlockState(), this.getBlockPos(), f))

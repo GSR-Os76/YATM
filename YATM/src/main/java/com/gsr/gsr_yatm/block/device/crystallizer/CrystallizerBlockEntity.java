@@ -7,7 +7,7 @@ import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
-import com.gsr.gsr_yatm.utilities.capability.fluid.ConfigurableTankWrapper;
+import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
 import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
 
 import net.minecraft.core.BlockPos;
@@ -61,7 +61,7 @@ public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<Crystalli
 	private int m_maxFluidTransferRate;
 
 	private FluidTank m_rawInputTank;
-	private ConfigurableTankWrapper m_inputTank;
+	private TankWrapper m_inputTank;
 	private FluidTank m_fillInputTankBuffer;
 	private int m_fillInputTankInitialTransferSize = 0;
 	private int m_drainInputTankCountDown = 0;
@@ -151,7 +151,7 @@ public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<Crystalli
 		this.m_maxFluidTransferRate = maxFluidTransferRate;		
 		this.m_fillInputTankBuffer = new FluidTank(tankCapacities);		
 		this.m_rawInputTank = new FluidTank(tankCapacities);
-		this.m_inputTank = new ConfigurableTankWrapper(this.m_rawInputTank, this::onFluidContentsChanged);
+		this.m_inputTank = new TankWrapper(this.m_rawInputTank, this::onFluidContentsChanged);
 	} // end setup()
 	
 	

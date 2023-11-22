@@ -8,7 +8,7 @@ import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
-import com.gsr.gsr_yatm.utilities.capability.fluid.ConfigurableTankWrapper;
+import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
 import com.gsr.gsr_yatm.utilities.network.AccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
 import com.gsr.gsr_yatm.utilities.network.CurrentHandlerContainerData;
@@ -134,7 +134,7 @@ public class BiolerBlockEntity extends CraftingDeviceBlockEntity<BiolingRecipe, 
 	private void setup(int currentCapacity, int maxCurrentTransfer, int fluidCapacity, int maxFluidTransferRate) 
 	{
 		this.m_rawResultTank = new FluidTank(fluidCapacity);
-		this.m_resultTank = new ConfigurableTankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);
+		this.m_resultTank = new TankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);
 		this.m_internalCurrentStorer = new CurrentHandler.Builder().capacity(currentCapacity).onCurrentExtracted(this::onCurrentExchanged).onCurrentRecieved(this::onCurrentExchanged).build();
 		this.m_maxSafeCurrentTransfer = maxCurrentTransfer;
 		this.m_maxFluidTransferRate = maxFluidTransferRate;
