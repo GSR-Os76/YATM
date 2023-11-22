@@ -1,7 +1,12 @@
 package com.gsr.gsr_yatm.item.fluid;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.function.Supplier;
+
+import javax.annotation.Nullable;
+
+import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.data_generation.YATMEntityTypeTags;
 import com.gsr.gsr_yatm.registry.YATMItems;
@@ -22,18 +27,18 @@ import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.capability.wrappers.FluidBucketWrapper;
 
-public class SoulSapBucketItem extends BucketItem
+public class EssenceOfSoulsBucketItem extends BucketItem
 {
 
-	public SoulSapBucketItem(Supplier<? extends Fluid> fluid, Properties properties)
+	public EssenceOfSoulsBucketItem(@NotNull Supplier<? extends Fluid> fluid, @NotNull Properties properties)
 	{
-		super(fluid, properties);
+		super(Objects.requireNonNull(fluid), Objects.requireNonNull(properties));
 	} // end constructor
 
 	
 	
 	@Override
-	public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand)
+	public InteractionResultHolder<ItemStack> use(@NotNull Level level, @NotNull Player player, @NotNull InteractionHand hand)
 	{
 		List<Entity> withers = level.getEntitiesOfClass(Entity.class, player.getBoundingBox().inflate(2.0D), (e) -> YATMEntityTypeTags.FORGE_WITHER_TAG.contains(e.getType()));
 		if (!withers.isEmpty())
@@ -65,9 +70,9 @@ public class SoulSapBucketItem extends BucketItem
 
 
 	@Override
-	public ICapabilityProvider initCapabilities(ItemStack stack, CompoundTag nbt)
+	public ICapabilityProvider initCapabilities(@NotNull ItemStack stack, @Nullable CompoundTag nbt)
 	{
-		return new FluidBucketWrapper(stack);
+		return new FluidBucketWrapper(Objects.requireNonNull(stack));
 	} // end initCapabilities()
 	
 } // end class
