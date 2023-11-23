@@ -4,10 +4,12 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.utilities.BlockUtilities;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
@@ -18,6 +20,7 @@ import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
@@ -34,9 +37,9 @@ public class HangingPotHookBlock extends Block implements EntityBlock
 {
 	private final @NotNull ICollisionVoxelShapeProvider m_shape;
 	
-	public HangingPotHookBlock(Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
+	public HangingPotHookBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
-		super(properties);
+		super(Objects.requireNonNull(properties));
 		this.m_shape = Objects.requireNonNull(shape);
 	} // end properties()
 
@@ -56,7 +59,26 @@ public class HangingPotHookBlock extends Block implements EntityBlock
 			}
 		}
 		return super.getCloneItemStack(blockGetter, position, state);
-	} // end getCloneItemStack
+	} // end getCloneItemStack()
+	
+	
+	
+	@Override
+	public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos position)
+	{
+		return Block.canSupportCenter(level, position.above(), Direction.DOWN);
+	} // end canSurvive()
+	
+	@SuppressWarnings("deprecation")
+	@Override
+	public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Block formerNeighbor, @NotNull BlockPos neighborPos, boolean p_60514_)
+	{
+		if(!this.canSurvive(state, level, position)) 
+		{
+			BlockUtilities.breakBlock(level, state, position);
+		}
+		super.neighborChanged(state, level, position, formerNeighbor, neighborPos, p_60514_);
+	} // end neighborChanged()
 	
 	
 	
@@ -93,26 +115,21 @@ public class HangingPotHookBlock extends Block implements EntityBlock
 
 
 
-	// TODO, look for moving this into an event, so we can do drops only when player's don't have instabuild, to maintain consistency of creative block breaking not dropping and such
 	@SuppressWarnings("deprecation")
 	@Override
 	public void onRemove(BlockState fromState, Level level, BlockPos position, BlockState toState, boolean p_60519_)
 	{
-		if (/* level instanceof ServerLevel serverLevel && */ !fromState.is(toState.getBlock()))
+		if (!fromState.is(toState.getBlock()))
 		{
 			BlockEntity be = level.getBlockEntity(position);
 			if (be != null && be instanceof HangingPotHookBlockEntity hphbe)
 			{
 				
 				FlowerPotBlock pot = hphbe.getPot();
-				Block.dropResources(pot.defaultBlockState(), level, position);
-// TODO, figure out why this was causing apparent desynchronizations and drop loot
-//				if (pot != null)
-//				{
-//					pot.defaultBlockState()
-//					.getDrops(new LootParams.Builder(serverLevel))
-//					.forEach((i) -> InventoryUtilities.drop(level, position, i));
-//				}
+				if(pot != null) 
+				{
+					Block.dropResources(pot.defaultBlockState(), level, position);
+				}
 			}
 		}			
 		super.onRemove(fromState, level, position, toState, p_60519_);
@@ -216,7 +233,7 @@ public class HangingPotHookBlock extends Block implements EntityBlock
 	
 
 	@Override
-	public BlockEntity newBlockEntity(BlockPos position, BlockState state)
+	public BlockEntity newBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
 		return new HangingPotHookBlockEntity(position, state);
 	} // end newBlockEntity()

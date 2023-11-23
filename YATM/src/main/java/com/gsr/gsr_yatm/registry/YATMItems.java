@@ -128,8 +128,6 @@ public class YATMItems
 	public static final RegistryObject<ItemNameBlockItem> CARCASS_ROOT_CUTTING = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("carcass_root_cutting", () -> new ItemNameBlockItem(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), new Item.Properties()))));
 	
 	// TODO, and redraw items for the pitcher clusters and phantasmal shelf fungus, and maybe spider vine fruit branch thingy.
-	// TODO, make spider vines sometimes drop eyes directly. make fruit extract to vitreus humor and leave some kind of ocular tissue, which can be grafted back together to make eyes of spiders
-	// TODO, add items to the vanilla creative tabs.
 	public static final RegistryObject<BlockItem> ADAMUM_MERISTEM = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("adamum_meristem", () -> new BlockItem(YATMBlocks.ADAMUM.get(), new Item.Properties().fireResistant()))));
 	public static final RegistryObject<BlockItem> AURUM_DEMINUTUS_FIDDLE_HEAD = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("aurum_deminutus_fiddle_head", () -> new BlockItem(YATMBlocks.AURUM.get(), new Item.Properties().fireResistant()))));
 	public static final RegistryObject<BlockItem> CARBUM_MERISTEM = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("carbum_meristem", () -> new BlockItem(YATMBlocks.CARBUM.get(), new Item.Properties().fireResistant()))));
@@ -241,6 +239,7 @@ public class YATMItems
 
 	public static final RegistryObject<FluidPassThroughBlockItem> CHANNEL_VINES_ITEM = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("channel_vines", () -> new FluidPassThroughBlockItem(YATMBlocks.CHANNEL_VINES.get(), new Item.Properties()))));
 	
+	// TODO, how to acquire?
 	public static final RegistryObject<BlockItem> CONDUIT_VINES_ITEM = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("conduit_vines", () -> new BlockItem(YATMBlocks.CONDUIT_VINES.get(), new Item.Properties()))));
 	
 
@@ -322,11 +321,7 @@ public class YATMItems
 	public static final RegistryObject<BucketItem> LATEX_BUCKET = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("latex_bucket", () -> new BucketItem(YATMFluids.LATEX, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1)))));
 	public static final RegistryObject<BucketItem> SOUL_SAP_BUCKET = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_sap_bucket", () -> new BucketItem(YATMFluids.SOUL_SAP, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1)))));
 	public static final RegistryObject<BucketItem> SOUL_SYRUP_BUCKET = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_syrup_bucket", () -> new BucketItem(YATMFluids.SOUL_SYRUP, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1)))));
-	// TODO, add biofuel from wood or sugar or such thigns.
-	// TODO, add silicon oxide as liquid, for growing out amethyst and nether quart
-	// TODO, add silicon for making advanced solar panels
-	// TODO, add solar panel recipes in
-
+	
 	// TODO, maybe add a special boat, longer, and with a soul lantern
 	public static final RegistryObject<YATMBoatItem> RUBBER_BOAT_ITEM = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("rubber_boat", () -> new YATMBoatItem(false, YATMBoatType.RUBBER, new Item.Properties().stacksTo(1)))));
 	public static final RegistryObject<YATMBoatItem> RUBBER_CHEST_BOAT_ITEM = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("rubber_chest_boat", () -> new YATMBoatItem(true, YATMBoatType.RUBBER, new Item.Properties().stacksTo(1)))));
@@ -387,6 +382,7 @@ public class YATMItems
 	
 	public static void addCompostables() 
 	{	
+		// TODO, review and add in missings
 		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_MERISTEM_ITEM.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_LEAVES_YOUNG_ITEM.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_LEAVES_FLOWERING_ITEM.get(), 0.3F);
@@ -396,7 +392,6 @@ public class YATMItems
 		ComposterBlock.COMPOSTABLES.put(YATMItems.RAW_COTTON_FIBER.get(), 0.65F);
 		ComposterBlock.COMPOSTABLES.put(YATMItems.FIRE_EATER_LILY_BULB.get(), 0.3F);		
 		
-		// TODO, possibly add the magically ones, here or elsewhere
 		/*
 		 * ComposterBlock.COMPOSTABLES.put(YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM_ITEM.get(), 0.3F); 
 		 * ComposterBlock.COMPOSTABLES.put(YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG_ITEM.get(), 0.3F);

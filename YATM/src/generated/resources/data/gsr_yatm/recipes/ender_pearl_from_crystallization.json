@@ -3,9 +3,9 @@
   "cost": 0,
   "input": {
     "ingedient": {
-      "type": "gsr_yatm:fluid_stack_ingredient",
-      "count": 250,
-      "fluid": "gsr_yatm:ender"
+      "type": "gsr_yatm:fluid_tag_ingredient",
+      "amount": 250,
+      "tag": "forge:ender"
     }
   },
   "result": {

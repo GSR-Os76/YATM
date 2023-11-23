@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "p": {
+      "tag": "minecraft:planks"
+    },
+    "s": {
+      "tag": "minecraft:slabs"
+    }
+  },
+  "pattern": [
+    "   ",
+    "p p",
+    "sss"
+  ],
+  "result": {
+    "item": "gsr_yatm:sap_collector"
+  },
+  "show_notification": true
+}

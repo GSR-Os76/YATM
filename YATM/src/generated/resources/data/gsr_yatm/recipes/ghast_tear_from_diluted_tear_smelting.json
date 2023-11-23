@@ -1,0 +1,10 @@
+{
+  "type": "minecraft:smelting",
+  "category": "misc",
+  "cookingtime": 100,
+  "experience": 1.0,
+  "ingredient": {
+    "item": "gsr_yatm:diluted_tear_bottle"
+  },
+  "result": "minecraft:ghast_tear"
+}

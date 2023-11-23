@@ -1,16 +1,16 @@
 {
   "type": "gsr_yatm:grinding",
-  "cost": 2,
+  "cost": 3,
   "input": {
     "ingedient": {
       "type": "gsr_yatm:item_stack_ingredient",
       "count": 1,
-      "item": "gsr_yatm:soul_afflicted_rubber_leaves_flowering"
+      "item": "gsr_yatm:soul_afflicted_rubber_leaves_old"
     }
   },
   "result": {
     "count": 1,
     "item": "gsr_yatm:soul_afflicted_leaf_mulch"
   },
-  "time": 26
+  "time": 40
 }

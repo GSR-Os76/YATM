@@ -55,7 +55,7 @@ public class FluidTagIngredient implements IIngredient<FluidStack>
 	public @NotNull JsonObject serialize()
 	{
 		JsonObject obj = new JsonObject();
-		obj.addProperty(IngredientUtil.TAG_KEY, this.m_tagKey.toString());
+		obj.addProperty(IngredientUtil.TAG_KEY, this.m_tagKey.location().toString());
 		obj.addProperty(IngredientUtil.AMOUNT_KEY, this.m_amount);
 		return obj;
 	} // end serialize()

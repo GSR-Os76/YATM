@@ -1,11 +1,6 @@
 {
   "values": [
-    "gsr_yatm:steel_drill_wood",
-    "gsr_yatm:steel_drill_stone",
-    "gsr_yatm:steel_drill_iron",
     "gsr_yatm:steel_drill_steel",
-    "gsr_yatm:steel_drill_gold",
-    "gsr_yatm:steel_drill_diamond",
     "gsr_yatm:steel_drill_netherite"
   ]
 }

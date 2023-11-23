@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": {
+      "item": "gsr_yatm:foliar_steel"
+    },
+    "g": {
+      "tag": "forge:glass"
+    }
+  },
+  "pattern": [
+    "fff",
+    "fgf",
+    "fff"
+  ],
+  "result": {
+    "item": "gsr_yatm:steel_tank"
+  },
+  "show_notification": true
+}

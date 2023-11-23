@@ -5,12 +5,12 @@
     "ingedient": {
       "type": "gsr_yatm:item_stack_ingredient",
       "count": 1,
-      "item": "gsr_yatm:soul_afflicted_rubber_leaves_flowering"
+      "item": "gsr_yatm:rubber_leaves_flowering"
     }
   },
   "result": {
     "count": 1,
-    "item": "gsr_yatm:soul_afflicted_leaf_mulch"
+    "item": "gsr_yatm:leaf_mulch"
   },
   "time": 26
 }

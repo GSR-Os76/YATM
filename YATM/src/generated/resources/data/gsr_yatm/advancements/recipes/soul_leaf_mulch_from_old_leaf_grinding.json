@@ -4,7 +4,9 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:nuggets/netherite"
+            "items": [
+              "gsr_yatm:soul_afflicted_rubber_leaves_old"
+            ]
           }
         ]
       },

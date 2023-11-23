@@ -1,11 +1,6 @@
 {
   "values": [
-    "gsr_yatm:steel_saw_wood",
-    "gsr_yatm:steel_saw_stone",
-    "gsr_yatm:steel_saw_iron",
     "gsr_yatm:steel_saw_steel",
-    "gsr_yatm:steel_saw_gold",
-    "gsr_yatm:steel_saw_diamond",
     "gsr_yatm:steel_saw_netherite"
   ]
 }

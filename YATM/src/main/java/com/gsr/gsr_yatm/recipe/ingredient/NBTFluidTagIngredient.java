@@ -65,7 +65,7 @@ public class NBTFluidTagIngredient implements IIngredient<FluidStack>
 	public @NotNull JsonObject serialize()
 	{
 		JsonObject obj = new JsonObject();
-		obj.addProperty(IngredientUtil.TAG_KEY, this.m_tagKey.toString());
+		obj.addProperty(IngredientUtil.TAG_KEY, this.m_tagKey.location().toString());
 		obj.addProperty(IngredientUtil.AMOUNT_KEY, this.m_amount);
 		if(this.m_nbt != null) 
 		{

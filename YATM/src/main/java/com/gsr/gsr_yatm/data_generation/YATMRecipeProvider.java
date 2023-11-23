@@ -14,6 +14,7 @@ import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.extracting.ExtractingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.ingredient.FluidStackIngredient;
+import com.gsr.gsr_yatm.recipe.ingredient.FluidTagIngredient;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.recipe.ingredient.ItemStackIngredient;
 import com.gsr.gsr_yatm.recipe.ingredient.ItemTagIngredient;
@@ -42,6 +43,7 @@ import net.minecraft.world.item.crafting.CraftingBookCategory;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.Fluids;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.fluids.FluidStack;
@@ -59,105 +61,96 @@ public class YATMRecipeProvider extends RecipeProvider
 	@Override
 	protected void buildRecipes(Consumer<FinishedRecipe> writer)
 	{	
-		// TODO, desperate, sort this out
-		this.addNineToOne(writer, YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY, Items.NETHERITE_INGOT, YetAnotherTechMod.MODID + ":netherite_ingot_from_shapeless_crafting");
-		this.addOneToNine(writer, Tags.Items.INGOTS_NETHERITE, YATMItems.NETHERITE_NUGGET.get(), YetAnotherTechMod.MODID + ":netherite_nuggets_from_shapeless_crafting");
-		this.addLargeHeatSink(writer, YetAnotherTechMod.MODID + ":large_copper_heat_sink_from_shape_crafting", YATMItems.LARGE_COPPER_HEAT_SINK_ITEM.get(), Tags.Items.INGOTS_COPPER, YATMItemTags.UNOXIDIXED_COPPER_BLOCKS_KEY);
-
+		this.addBlastingRecipes(writer);
+		this.addCraftingRecipes(writer);
+		this.addSmeltingRecipes(writer);
+		
+		this.addBiolingRecipes(writer);
+		this.addBoilingRecipes(writer);
+		this.addCrystallizationRecipes(writer);
+		this.addExtractionRecipes(writer);
+		this.addGrindingRecipes(writer);
+		this.addMeltingRecipes(writer);
+		this.addSpinningRecipes(writer);
+		
+		// TODO, maybe, could add a higher yielding fancy sugar extracting route
+		// TODO, wood pulp to paper route
+		// TODO, phantasmal shelf fungus -> phantom membrane somehwo
+		// TODO, add rubbber decomposition into slime. possibly biol into slime(fluid) -> bucket and place in world, turns instantly into a ball of slime, or maybe block. related. maybe make slime blocks animatable into slimes
+		// TODO, add tank and channel vine craftin recipes.
+		// TODO, add dirt from biofluid infection to sand or gravel or silt
+		// TODO, finish the soul essence chain of processing
+		// TODO, finish adding the chorus to ender sequence.
+		// this.addLargeHeatSink(writer, YetAnotherTechMod.MODID + ":large_copper_heat_sink_from_shape_crafting", YATMItems.LARGE_COPPER_HEAT_SINK_ITEM.get(), Tags.Items.INGOTS_COPPER, YATMItemTags.UNOXIDIXED_COPPER_BLOCKS_KEY);
+		
+		
+	} // end buildRecipes()
+	
+	
+	
+	private void addBlastingRecipes(@NotNull Consumer<FinishedRecipe> writer) 
+	{
+		this.addBlasting(writer, YATMItemTags.FOLIAR_STEEL_ORES_KEY, YATMItems.FOLIAR_STEEL.get(), .1f, 100, YetAnotherTechMod.MODID + ":foliar_steel_from_ore_blasting");
+		
+	} // end addBlastingRecipes()
+	
+	
+	
+	private void addCraftingRecipes(@NotNull Consumer<FinishedRecipe> writer) 
+	{
+		this.addStorageBlockNuggetLikeRecipes(writer);
 		
 		this.addRubberWoodCoreRecipes(writer);
 		this.addSoulAfflictedRubberWoodCoreRecipes(writer);
 		
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.HANGING_POT_HOOK_ITEM.get(), 1)
-		.pattern("c ")
-		.pattern("p ")
-		.define('c', Items.CHAIN)
-		.define('p', Items.FLOWER_POT) // possibly make tag
-		.unlockedBy("has_pot", inventoryTrigger(ItemPredicate.Builder.item().of(Items.FLOWER_POT).build()))
-		.save(writer, YetAnotherTechMod.MODID + ":hanging_pot_from_shaped_crafting");
-		
 		this.addCandleLanterns(writer);
 		
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.GRAFTING_TABLE_ITEM.get(), 1)
-		.pattern("f ")
-		.pattern("t ")
-		.define('f', YATMItems.FOLIAR_STEEL.get())
-		.define('t', Items.CRAFTING_TABLE)
-		.unlockedBy("has_pot", inventoryTrigger(ItemPredicate.Builder.item().of(Items.CRAFTING_TABLE).build()))
-		.save(writer, YetAnotherTechMod.MODID + ":grafting_table_from_shaped_crafting");
-		
-//		this.addOneToX(writer, YATMItems.RUBBER_BAR.get(), YATMItems.RUBBER_SCRAP.get(), 4, YetAnotherTechMod.MODID + ":rubber_scrap_from_ingot_shapeless_crafting");
-//		this.addOneToX(writer, YATMItems.RUBBER_SCRAP_BALL.get(), YATMItems.RUBBER_SCRAP.get(), 4, YetAnotherTechMod.MODID + ":rubber_scrap_from_scrap_ball_shapeless_crafting");
-//		this.addTwoByTwoToOne(writer, YATMItems.RUBBER_SCRAP.get(), YATMItems.RUBBER_SCRAP_BALL.get(), YetAnotherTechMod.MODID + ":rubber_scrap_ball_from_shaped_crafting");
-//		this.addSmelting(writer, new ItemLike[] {YATMItems.LATEX_BUCKET.get()}, YATMItems.RUBBER_BLOCK_ITEM.get(), .3f, 20, YetAnotherTechMod.MODID + ":rubber_block_from_latex_smelting");
-//		this.addSmelting(writer, new ItemLike[] {YATMItems.RUBBER_SCRAP_BALL.get()}, YATMItems.RUBBER_BAR.get(), new ItemLike[] {YATMItems.RUBBER_SCRAP_BALL.get()}, .3f, 20, YetAnotherTechMod.MODID + ":rubber_bar_from_scrap_ball_smelting");
-		this.addOneToNine(writer, YATMItemTags.FORGE_STORAGE_BLOCKS_RUBBER_KEY, YATMItems.RUBBER_BAR.get(), YetAnotherTechMod.MODID + ":rubber_bar_from_block_shapeless_crafting");
-		this.addNineToOne(writer, YATMItemTags.FORGE_RUBBER_INGOTS_KEY, YATMItems.RUBBER_BLOCK_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_block_from_bar_shapeless_crafting");
-		
-		this.addBlasting(writer, YATMItemTags.FOLIAR_STEEL_ORES_KEY, YATMItems.FOLIAR_STEEL.get(), .1f, 100, YetAnotherTechMod.MODID + ":foliar_steel_from_ore_blasting");
-		this.addSmelting(writer, YATMItemTags.FOLIAR_STEEL_ORES_KEY, YATMItems.FOLIAR_STEEL.get(), .1f, 200, YetAnotherTechMod.MODID + ":foliar_steel_from_ore_smelting");
-		this.addOneToNine(writer, YATMItems.FOLIAR_STEEL_BLOCK_ITEM.get(), YATMItems.FOLIAR_STEEL.get(), YetAnotherTechMod.MODID + ":foliar_steel_from_block_shapeless_crafting");
-		this.addNineToOne(writer, YATMItems.FOLIAR_STEEL.get(), YATMItems.FOLIAR_STEEL_BLOCK_ITEM.get(), YetAnotherTechMod.MODID + ":foliar_steel_block_from_bar_shapeless_crafting");
-		
-		this.addSmelting(writer, new ItemLike[] {YATMItems.VARIEGATED_CACTUS_ITEM.get()}, Items.GREEN_DYE, 1.0f, 100, YetAnotherTechMod.MODID + ":green_dye_from_variegated_cactus_smelting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.HANGING_POT_HOOK_ITEM.get(), 1).pattern("c ").pattern("p ").define('c', Items.CHAIN).define('p', Items.FLOWER_POT).unlockedBy("has_pot", inventoryTrigger(ItemPredicate.Builder.item().of(Items.FLOWER_POT).build())).save(writer, YetAnotherTechMod.MODID + ":hanging_pot_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.GRAFTING_TABLE_ITEM.get(), 1).pattern("f ").pattern("t ").define('f', YATMItems.FOLIAR_STEEL.get()).define('t', Items.CRAFTING_TABLE).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(Items.CRAFTING_TABLE).build())).save(writer, YetAnotherTechMod.MODID + ":grafting_table_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.SAP_COLLECTOR_ITEM.get(), 1).pattern("   ").pattern("p p").pattern("sss").define('p', ItemTags.PLANKS).define('s', ItemTags.SLABS).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(ItemTags.SLABS).build())).save(writer, YetAnotherTechMod.MODID + ":sap_collector_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.SPINNING_WHEEL_ITEM.get(), 1).pattern(" sw").pattern("www").pattern("w w").define('w', ItemTags.PLANKS).define('s', Items.STRING).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(ItemTags.PLANKS).build())).save(writer, YetAnotherTechMod.MODID + ":spinning_wheel_shaped_crafting");
 		
 		
-		
-		this.addExtraction(writer, YATMItemTags.LATEX_EXTRACTABLE_LOGS_KEY, new ItemStack(YATMItems.WOOD_PULP.get(), 6), new FluidStack(YATMFluids.LATEX.get(), 120), 12, 246, YetAnotherTechMod.MODID + ":latex_from_log_extraction");
-		this.addExtraction(writer, YATMItems.RUBBER_LEAVES_OLD_ITEM.get(), new ItemStack(YATMItems.WOOD_PULP.get(), 1), new FluidStack(YATMFluids.LATEX.get(), 40), 4, 62, YetAnotherTechMod.MODID + ":latex_from_old_leaves_extraction");
-		this.addExtraction(writer, YATMItems.RUBBER_LEAVES_FLOWERING_ITEM.get(), new ItemStack(YATMItems.LEAF_MULCH_ITEM.get(), 2), new FluidStack(YATMFluids.LATEX.get(), 30), 4, 46, YetAnotherTechMod.MODID + ":latex_from_flowering_leaves_extraction");
-		this.addExtraction(writer, YATMItems.RUBBER_LEAVES_YOUNG_ITEM.get(), new ItemStack(YATMItems.LEAF_MULCH_ITEM.get(), 1), new FluidStack(YATMFluids.LATEX.get(), 20), 4, 34, YetAnotherTechMod.MODID + ":latex_from_young_leaves_extraction");
-		this.addExtraction(writer, YATMItems.RUBBER_MERISTEM_ITEM.get(), new FluidStack(YATMFluids.LATEX.get(), 2), 1, 12, YetAnotherTechMod.MODID + ":latex_from_meristem_extraction");
-		
-		this.addExtraction(writer, YATMItemTags.SOUL_SAP_EXTRACTABLE_LOGS_KEY, new ItemStack(YATMItems.WOOD_PULP.get(), 6), new FluidStack(YATMFluids.SOUL_SAP.get(), 120), 12, 246, YetAnotherTechMod.MODID + ":soul_sap_from_log_extraction");
-		this.addExtraction(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_OLD_ITEM.get(), new ItemStack(YATMItems.WOOD_PULP.get(), 1), new FluidStack(YATMFluids.SOUL_SAP.get(), 40), 4, 62, YetAnotherTechMod.MODID + ":soul_sap_from_old_leaves_extraction");
-		this.addExtraction(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING_ITEM.get(), new ItemStack(YATMItems.LEAF_MULCH_ITEM.get(), 2), new FluidStack(YATMFluids.SOUL_SAP.get(), 40), 4, 46, YetAnotherTechMod.MODID + ":soul_sap_from_flowering_leaves_extraction");
-		this.addExtraction(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG_ITEM.get(), new ItemStack(YATMItems.LEAF_MULCH_ITEM.get(), 1), new FluidStack(YATMFluids.SOUL_SAP.get(), 20), 4, 34, YetAnotherTechMod.MODID + ":soul_sap_from_young_leaves_extraction");
-		this.addExtraction(writer, YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM_ITEM.get(), new FluidStack(YATMFluids.SOUL_SAP.get(), 2), 1, 12, YetAnotherTechMod.MODID + ":soul_sap_from_meristem_extraction");
-	
+		this.addOneToX(writer, YATMItems.COTTON_BOLLS.get(), YATMItems.RAW_COTTON_FIBER.get(), 1, YetAnotherTechMod.MODID + ":raw_cotton_fiber_from_cotton_bolls_shapeless_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.STRING, 3).pattern("   ").pattern("www").pattern("   ").define('w', YATMItems.RAW_COTTON_FIBER.get()).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(Items.STRING).build())).save(writer, YetAnotherTechMod.MODID + ":string_from_raw_cotton_fiber_shaped_crafting");
 		
 		
-		
-		this.addBoilingRecipe(writer, new FluidStack(YATMFluids.SOUL_SAP.get(), 3), new FluidStack(YATMFluids.SOUL_SYRUP.get(), 1), 722, 3, YetAnotherTechMod.MODID + ":soul_syrup_from_soul_sap_boiling");
-	
-		
-		
-//		this.addWireRecipes(writer);
-		
-		
-		
-		// TODO, create a fluidIngredient, so we can use tags or specifics
-		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ENDER.get(), 250), Tags.Items.SAND, new ItemStack(Items.ENDER_PEARL), false, 0, 300, YetAnotherTechMod.MODID + ":ender_pearl_from_crystallization");
-		this.addNetherStarCrystallizationProgression(writer);
-		
-		// TODO, make grinding recipes time proportional to hardness, and current proportional to the tool required.
-		this.addRootedSoilReversions(writer);
-		this.addGrinderBrickCrackings(writer);
-		this.addGrinderStoneTowardsCobblestone(writer);
-		this.addGrindingRecipe(writer, Items.COBBLESTONE, new ItemStack(Items.GRAVEL), 3, 80, YetAnotherTechMod.MODID + ":gravel_from_cobblestone_grinding");
-		this.addGrindToSand(writer);
-		this.addGrindPurpur(writer);
-		
-		this.addGrindingRecipe(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING_ITEM.get(), new ItemStack(YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get()), 2, 20, YetAnotherTechMod.MODID + ":soul_leaf_mulch_from_flowering_leaf_grinding");
-		this.addGrindingRecipe(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG_ITEM.get(), new ItemStack(YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get()), 1, 20, YetAnotherTechMod.MODID + ":soul_leaf_mulch_from_young_leaf_grinding");
-		
-		
-		
-		
-		this.addChorusBiolings(writer);
-		this.addBiolingRecipe(writer, Items.POISONOUS_POTATO, new FluidStack(YATMFluids.BIO.get(), 200), 2, 20, YetAnotherTechMod.MODID + ":biofluid_from_poisonous_potato_bioling");
-		
-		
-		
-		this.addCottonRecipes(writer);
+		// to become graftings
+		// TODO, make spider vines sometimes drop eyes directly. make fruit extract to vitreus humor and leave some kind of ocular tissue, which can be grafted back together to make eyes of spiders
 		this.addOneToX(writer, YATMItems.SPIDER_VINE_FRUITS.get(), Items.SPIDER_EYE, 3, YetAnotherTechMod.MODID + ":spider_eyes_from_spider_vine_fruits_shapeless_crafting");
-		this.addMeltingRecipes(writer);
+
+		// add all devices
+		
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.STEEL_TANK_ITEM.get(), 1).pattern("fff").pattern("fgf").pattern("fff").define('f', YATMItems.FOLIAR_STEEL.get()).define('g', Tags.Items.GLASS).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.FOLIAR_STEEL.get()).build())).save(writer, YetAnotherTechMod.MODID + ":steel_tank_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CHANNEL_VINES_ITEM.get(), 9).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.FOLIAR_STEEL.get()).build())).save(writer, YetAnotherTechMod.MODID + ":channel_vines_from_shaped_crafting");
+		
+		// flame gland and heat thingies
+		
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.SPEED_UPGRADE.get(), 1).pattern(" f ").pattern("fgf").pattern(" f ").define('f', YATMItems.FOLIAR_STEEL.get()).define('g', Tags.Items.STORAGE_BLOCKS_GOLD).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.FOLIAR_STEEL.get()).build())).save(writer, YetAnotherTechMod.MODID + ":speed_upgrade_from_shaped_crafting");
+		// energy upgrade similar to speed, but with something current related maybe perhaps
 		
 		this.addPoweredToolRecipes(writer);
+		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, YATMItems.STEEL_WRENCH.get(), 1).pattern("f f").pattern("fff").pattern(" f ").define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.FOLIAR_STEEL.get()).build())).save(writer, YetAnotherTechMod.MODID + ":wrench_from_shaped_crafting");
 		
-	} // end buildRecipes()
+	}// end addCraftingRecipes()
 	
-	private void addRubberWoodCoreRecipes(Consumer<FinishedRecipe> writer) 
+	private void addStorageBlockNuggetLikeRecipes(@NotNull Consumer<FinishedRecipe> writer) 
+	{
+		// foliar steel block ingot-like mutual interchange
+		this.addOneToNine(writer, YATMItems.FOLIAR_STEEL_BLOCK_ITEM.get(), YATMItems.FOLIAR_STEEL.get(), YetAnotherTechMod.MODID + ":foliar_steel_from_block_shapeless_crafting");
+		this.addNineToOne(writer, YATMItems.FOLIAR_STEEL.get(), YATMItems.FOLIAR_STEEL_BLOCK_ITEM.get(), YetAnotherTechMod.MODID + ":foliar_steel_block_from_bar_shapeless_crafting");
+
+		// netherite ingot nugget mutual interchange
+		this.addNineToOne(writer, YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY, Items.NETHERITE_INGOT, YetAnotherTechMod.MODID + ":netherite_ingot_from_shapeless_crafting");
+		this.addOneToNine(writer, Tags.Items.INGOTS_NETHERITE, YATMItems.NETHERITE_NUGGET.get(), YetAnotherTechMod.MODID + ":netherite_nuggets_from_shapeless_crafting");
+
+		// rubber block bar mutual interchange
+		this.addOneToNine(writer, YATMItemTags.FORGE_STORAGE_BLOCKS_RUBBER_KEY, YATMItems.RUBBER_BAR.get(), YetAnotherTechMod.MODID + ":rubber_bar_from_block_shapeless_crafting");
+		this.addNineToOne(writer, YATMItemTags.FORGE_RUBBER_INGOTS_KEY, YATMItems.RUBBER_BLOCK_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_block_from_bar_shapeless_crafting");
+
+	} // end addStorageBlockNuggetLikeRecipes()
+	
+	private void addRubberWoodCoreRecipes(@NotNull Consumer<FinishedRecipe> writer) 
 	{
 		this.addTwoByTwoToX(writer, YATMItems.RUBBER_LOG_ITEM.get(), YATMItems.RUBBER_WOOD_ITEM.get(), 3, YetAnotherTechMod.MODID + ":rubber_wood_from_shaped_crafting");
 		this.addTwoByTwoToX(writer, YATMItems.STRIPPED_RUBBER_LOG_ITEM.get(), YATMItems.STRIPPED_RUBBER_WOOD_ITEM.get(), 3, YetAnotherTechMod.MODID + ":stripped_rubber_wood_from_shaped_crafting");
@@ -176,10 +169,9 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addHangingSign(writer, YATMItems.STRIPPED_RUBBER_LOG_ITEM.get(), YATMItems.RUBBER_HANGING_SIGN_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_hanging_sign_from_shaped_crafting");
 		this.addBoat(writer, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_BOAT_ITEM.get(), "rubber_boat_from_shaped_crafting");
 		this.addChestBoat(writer, YATMItems.RUBBER_BOAT_ITEM.get(), YATMItems.RUBBER_CHEST_BOAT_ITEM.get(), "rubber_chest_boat_from_shapeless_crafting");
-
 	} // end addRubberWoodCoreRecipes()
 	
-	private void addSoulAfflictedRubberWoodCoreRecipes(Consumer<FinishedRecipe> writer) 
+	private void addSoulAfflictedRubberWoodCoreRecipes(@NotNull Consumer<FinishedRecipe> writer) 
 	{
 		this.addTwoByTwoToX(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LOG_ITEM.get(), YATMItems.SOUL_AFFLICTED_RUBBER_WOOD_ITEM.get(), 3, YetAnotherTechMod.MODID + ":soul_afflicted_rubber_wood_from_shaped_crafting");
 		this.addTwoByTwoToX(writer, YATMItems.SOUL_AFFLICTED_STRIPPED_RUBBER_LOG_ITEM.get(), YATMItems.SOUL_AFFLICTED_STRIPPED_RUBBER_WOOD_ITEM.get(), 3, YetAnotherTechMod.MODID + ":soul_afflicted_stripped_rubber_wood_from_shaped_crafting");
@@ -208,7 +200,7 @@ public class YATMRecipeProvider extends RecipeProvider
 
 	private void addCandleLanterns(@NotNull Consumer<FinishedRecipe> writer) 
 	{
-		TriConsumer<Item, String, Item> forCandle = (candle, color, lantern) -> ShapedRecipeBuilder.shaped(RecipeCategory.MISC, lantern, 1)
+		TriConsumer<Item, String, Item> forCandle = (candle, color, lantern) -> ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, lantern, 1)
 		.pattern("iii")
 		.pattern("ici")
 		.pattern("iii")
@@ -236,35 +228,72 @@ public class YATMRecipeProvider extends RecipeProvider
 		forCandle.accept(Items.BLACK_CANDLE, "black_", YATMItems.BLACK_CANDLE_LANTERN_ITEM.get());		
 	} // end addCandleLanterns()
 	
-	private void addCottonRecipes(Consumer<FinishedRecipe> writer) 
+	private void addPoweredToolRecipes(@NotNull Consumer<FinishedRecipe> writer) 
 	{
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.SPINNING_WHEEL_ITEM.get(), 1)
-		.pattern(" sw")
-		.pattern("www")
-		.pattern("w w")
-		.define('w', ItemTags.PLANKS)
-		.define('s', Items.STRING)
-		.unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(ItemTags.PLANKS).build()))
-		.save(writer, YetAnotherTechMod.MODID + ":spinning_wheel_shaped_crafting");
+//		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.WOODEN_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_WOOD.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_wood_from_part_exchange");
+//		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.STONE_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_STONE.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_stone_from_part_exchange");
+//		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.IRON_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_IRON.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_iron_from_part_exchange");
+		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.STEEL_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_STEEL.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_steel_from_part_exchange");
+//		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.GOLD_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_GOLD.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_gold_from_part_exchange");
+//		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.DIAMOND_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_DIAMOND.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_diamond_from_part_exchange");
+		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.NETHERITE_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_NETHERITE.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_netherite_from_part_exchange");
 		
+//		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.WOODEN_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_WOOD.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_wood_from_part_exchange");
+//		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.STONE_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_STONE.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_stone_from_part_exchange");
+//		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.IRON_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_IRON.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_iron_from_part_exchange");
+		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.STEEL_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_STEEL.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_steel_from_part_exchange");
+//		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.GOLD_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_GOLD.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_gold_from_part_exchange");
+//		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.DIAMOND_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_DIAMOND.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_diamond_from_part_exchange");
+		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.NETHERITE_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_NETHERITE.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_netherite_from_part_exchange");
 		
-		this.addOneToX(writer, YATMItems.COTTON_BOLLS.get(), YATMItems.RAW_COTTON_FIBER.get(), 1, YetAnotherTechMod.MODID + ":raw_cotton_fiber_from_cotton_bolls_shapeless_crafting");
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.STRING, 3)
-		.pattern("   ")
-		.pattern("www")
-		.pattern("   ")
-		.define('w', YATMItems.RAW_COTTON_FIBER.get())
-		.unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(Items.STRING).build()))
-		.save(writer, YetAnotherTechMod.MODID + ":string_from_raw_cotton_fiber_shaped_crafting");
+		// TODO, make the blades and bits
+		// TODO, make the actual tool parts
 		
-		this.addSpinningRecipe(writer, YATMItems.RAW_COTTON_FIBER.get(), new ItemStack(Items.STRING, 2), YetAnotherTechMod.MODID + ":string_from_raw_cotton_fiber_spinning");
-		this.addSpinningRecipe(writer, ItemTags.WOOL, new ItemStack(Items.STRING, 4), YetAnotherTechMod.MODID + ":string_from_wool_spinning");
-		/*TODO, perhaps make this better proportional to the input cost, or perhaps make a cheap way to make carpets so we can pretend giving two string is appropriate and not just because 8 doesn't divide without remainder into 3*/
-		this.addSpinningRecipe(writer, ItemTags.WOOL_CARPETS, new ItemStack(Items.STRING, 2), YetAnotherTechMod.MODID + ":string_from_wool_carpet_spinning");
-
-	}
-
-	private void addNetherStarCrystallizationProgression(Consumer<FinishedRecipe> writer) 
+	} // end addPoweredToolRecipes()
+	
+	
+	
+	private void addSmeltingRecipes(@NotNull Consumer<FinishedRecipe> writer) 
+	{
+		this.addSmelting(writer, new ItemLike[] {YATMItems.LATEX_BUCKET.get()}, YATMItems.RUBBER_BLOCK_ITEM.get(), .3f, 20, YetAnotherTechMod.MODID + ":rubber_block_from_latex_smelting");
+		
+		this.addSmelting(writer, YATMItemTags.FOLIAR_STEEL_ORES_KEY, YATMItems.FOLIAR_STEEL.get(), .1f, 200, YetAnotherTechMod.MODID + ":foliar_steel_from_ore_smelting");
+		
+		this.addSmelting(writer, new ItemLike[] {YATMItems.VARIEGATED_CACTUS_ITEM.get()}, Items.GREEN_DYE, 1.0f, 100, YetAnotherTechMod.MODID + ":green_dye_from_variegated_cactus_smelting");
+		
+		this.addSmelting(writer, new ItemLike[] {YATMItems.DILUTED_TEAR_BOTTLE.get()}, Items.GHAST_TEAR, 1.0f, 100, YetAnotherTechMod.MODID + ":ghast_tear_from_diluted_tear_smelting");
+		
+	} // end addSmeltingRecipes()
+	
+	
+	
+	
+	
+	private void addBiolingRecipes(@NotNull Consumer<FinishedRecipe> writer) 
+	{
+		this.addChorusBiolings(writer);
+		this.addBiolingRecipe(writer, Items.POISONOUS_POTATO, new FluidStack(YATMFluids.BIO.get(), 200), 2, 20, YetAnotherTechMod.MODID + ":biofluid_from_poisonous_potato_bioling");
+		// TODO, add biofuel from wood or sugar or such thigns.
+		
+	} // end addBiolingRecipes()
+	
+	
+	
+	private void addBoilingRecipes(@NotNull Consumer<FinishedRecipe> writer) 
+	{
+		this.addBoilingRecipe(writer, new FluidStack(YATMFluids.SOUL_SAP.get(), 3), new FluidStack(YATMFluids.SOUL_SYRUP.get(), 1), 722, 3, YetAnotherTechMod.MODID + ":soul_syrup_from_soul_sap_boiling");
+		// TODO, steam as a power option
+	} // end addBoilingRecipes()
+	
+	
+	
+	private void addCrystallizationRecipes(@NotNull Consumer<FinishedRecipe> writer) 
+	{
+		this.addCrystallizationRecipe(writer, YATMFluidTags.FORGE_ENDER_KEY, 250, Tags.Items.SAND, new ItemStack(Items.ENDER_PEARL), false, 0, 300, YetAnotherTechMod.MODID + ":ender_pearl_from_crystallization");
+		this.addNetherStarCrystallizationProgression(writer);
+	} // end addCrystallizationRecipes()
+	
+	private void addNetherStarCrystallizationProgression(@NotNull Consumer<FinishedRecipe> writer) 
 	{
 		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_DECAY.get(), 1000), YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY, new ItemStack(YATMItems.STAR_SEED.get()), true, 0, 300, YetAnotherTechMod.MODID + ":star_seed_from_crystallization");
 		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 1000), YATMItems.STAR_SEED.get(), new ItemStack(YATMItems.STAR_GERMLING.get()), true, 0, 200, YetAnotherTechMod.MODID + ":star_germling_from_crystallization");
@@ -272,6 +301,73 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 4000), YATMItems.STAR_SPROUT.get(), new ItemStack(YATMItems.STAR_ADOLESCENT.get()), true, 0, 800, YetAnotherTechMod.MODID + ":star_adolescent_from_crystallization");
 		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 8000), YATMItems.STAR_ADOLESCENT.get(), new ItemStack(Items.NETHER_STAR), true, 0, 1600, YetAnotherTechMod.MODID + ":nether_star_from_crystallization");
 	} // end addNetherStarCrystallizationProgression()
+	
+	
+	
+	private void addExtractionRecipes(@NotNull Consumer<FinishedRecipe> writer)
+	{
+		this.addExtraction(writer, YATMItemTags.LATEX_EXTRACTABLE_LOGS_KEY, new ItemStack(YATMItems.WOOD_PULP.get(), 6), new FluidStack(YATMFluids.LATEX.get(), 120), 12, 246, YetAnotherTechMod.MODID + ":latex_from_log_extraction");
+		this.addExtraction(writer, YATMItems.RUBBER_LEAVES_OLD_ITEM.get(), new ItemStack(YATMItems.WOOD_PULP.get(), 1), new FluidStack(YATMFluids.LATEX.get(), 40), 4, 62, YetAnotherTechMod.MODID + ":latex_from_old_leaves_extraction");
+		this.addExtraction(writer, YATMItems.RUBBER_LEAVES_FLOWERING_ITEM.get(), new ItemStack(YATMItems.LEAF_MULCH_ITEM.get(), 2), new FluidStack(YATMFluids.LATEX.get(), 30), 4, 46, YetAnotherTechMod.MODID + ":latex_from_flowering_leaves_extraction");
+		this.addExtraction(writer, YATMItems.RUBBER_LEAVES_YOUNG_ITEM.get(), new ItemStack(YATMItems.LEAF_MULCH_ITEM.get(), 1), new FluidStack(YATMFluids.LATEX.get(), 20), 4, 34, YetAnotherTechMod.MODID + ":latex_from_young_leaves_extraction");
+		this.addExtraction(writer, YATMItems.RUBBER_MERISTEM_ITEM.get(), new FluidStack(YATMFluids.LATEX.get(), 2), 1, 12, YetAnotherTechMod.MODID + ":latex_from_meristem_extraction");
+		
+		this.addExtraction(writer, YATMItemTags.SOUL_SAP_EXTRACTABLE_LOGS_KEY, new ItemStack(YATMItems.WOOD_PULP.get(), 6), new FluidStack(YATMFluids.SOUL_SAP.get(), 120), 12, 246, YetAnotherTechMod.MODID + ":soul_sap_from_log_extraction");
+		this.addExtraction(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_OLD_ITEM.get(), new ItemStack(YATMItems.WOOD_PULP.get(), 1), new FluidStack(YATMFluids.SOUL_SAP.get(), 40), 4, 62, YetAnotherTechMod.MODID + ":soul_sap_from_old_leaves_extraction");
+		this.addExtraction(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING_ITEM.get(), new ItemStack(YATMItems.LEAF_MULCH_ITEM.get(), 2), new FluidStack(YATMFluids.SOUL_SAP.get(), 40), 4, 46, YetAnotherTechMod.MODID + ":soul_sap_from_flowering_leaves_extraction");
+		this.addExtraction(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG_ITEM.get(), new ItemStack(YATMItems.LEAF_MULCH_ITEM.get(), 1), new FluidStack(YATMFluids.SOUL_SAP.get(), 20), 4, 34, YetAnotherTechMod.MODID + ":soul_sap_from_young_leaves_extraction");
+		this.addExtraction(writer, YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM_ITEM.get(), new FluidStack(YATMFluids.SOUL_SAP.get(), 2), 1, 12, YetAnotherTechMod.MODID + ":soul_sap_from_meristem_extraction");
+	
+	} // end addExtractionRecipes()
+	
+	
+	
+	private void addGrindingRecipes(@NotNull Consumer<FinishedRecipe> writer) 
+	{
+		// review wood pulp related things, and add more
+		this.addGrindingRecipe(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_OLD_ITEM.get(), new ItemStack(YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get()), 3, 40, YetAnotherTechMod.MODID + ":soul_leaf_mulch_from_old_leaf_grinding");
+		this.addGrindingRecipe(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING_ITEM.get(), new ItemStack(YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get()), 2, 26, YetAnotherTechMod.MODID + ":soul_leaf_mulch_from_flowering_leaf_grinding");
+		this.addGrindingRecipe(writer, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG_ITEM.get(), new ItemStack(YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get()), 1, 20, YetAnotherTechMod.MODID + ":soul_leaf_mulch_from_young_leaf_grinding");
+		
+		this.addGrindingRecipe(writer, YATMItems.RUBBER_LEAVES_OLD_ITEM.get(), new ItemStack(YATMItems.LEAF_MULCH_ITEM.get()), 3, 40, YetAnotherTechMod.MODID + ":leaf_mulch_from_old_leaf_grinding");
+		this.addGrindingRecipe(writer, YATMItems.RUBBER_LEAVES_FLOWERING_ITEM.get(), new ItemStack(YATMItems.LEAF_MULCH_ITEM.get()), 2, 26, YetAnotherTechMod.MODID + ":leaf_mulch_from_flowering_leaf_grinding");
+		this.addGrindingRecipe(writer, YATMItems.RUBBER_LEAVES_YOUNG_ITEM.get(), new ItemStack(YATMItems.LEAF_MULCH_ITEM.get()), 1, 20, YetAnotherTechMod.MODID + ":leaf_mulch_from_young_leaf_grinding");
+		
+		
+		// TODO, make grinding recipes time proportional to hardness, and current proportional to the tool required.
+		this.addRootedSoilReversions(writer);
+		this.addGrinderBrickCrackings(writer);
+		this.addGrinderStoneTowardsCobblestone(writer);
+		this.addGrindingRecipe(writer, Items.COBBLESTONE, new ItemStack(Items.GRAVEL), 3, 80, YetAnotherTechMod.MODID + ":gravel_from_cobblestone_grinding");
+		this.addGrindToSand(writer);
+		this.addGrindPurpur(writer);
+				
+				
+	} // end addGrindingRecipes()
+	
+	
+	
+	private void addMeltingRecipes(@NotNull Consumer<FinishedRecipe> writer) 
+	{
+		this.addMeltingRecipe(writer, new ItemStackIngredient(new ItemStack(Items.ICE)), new FluidStack(Fluids.WATER, 1000), 273, 360, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Items.ICE).build()), YetAnotherTechMod.MODID + ":water_from_ice_melting");
+		// TODO, add silicon oxide as liquid, for growing out amethyst and nether quart
+		// TODO, maybe silicon for making advanced solar panels as well
+				
+	} // end addMeltingRecipes()
+	
+	
+	
+	private void addSpinningRecipes(@NotNull Consumer<FinishedRecipe> writer) 
+	{
+		this.addSpinningRecipe(writer, YATMItems.RAW_COTTON_FIBER.get(), new ItemStack(Items.STRING, 2), YetAnotherTechMod.MODID + ":string_from_raw_cotton_fiber_spinning");
+		this.addSpinningRecipe(writer, ItemTags.WOOL, new ItemStack(Items.STRING, 4), YetAnotherTechMod.MODID + ":string_from_wool_spinning");
+		/*TODO, perhaps make this better proportional to the input cost, or perhaps make a cheap way to make carpets so we can pretend giving two string is appropriate and not just because 8 doesn't divide without remainder into 3*/
+		this.addSpinningRecipe(writer, ItemTags.WOOL_CARPETS, new ItemStack(Items.STRING, 2), YetAnotherTechMod.MODID + ":string_from_wool_carpet_spinning");
+	} // end addSpinningRecipes()
+
+	
+	
+	
 	
 	private void addRootedSoilReversions(Consumer<FinishedRecipe> writer) 
 	{
@@ -386,39 +482,17 @@ public class YATMRecipeProvider extends RecipeProvider
 
 	} // end addChorusBiolings()
 	
-	private void addMeltingRecipes(@NotNull Consumer<FinishedRecipe> writer) 
-	{
-		this.addMeltingRecipe(writer, new ItemStackIngredient(new ItemStack(Items.ICE)), new FluidStack(Fluids.WATER, 1000), 273, 360, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Items.ICE).build()), YetAnotherTechMod.MODID + ":water_from_ice_melting");
-	} // end addMeltingRecipes()
+
 	
 	
-	
-	private void addPoweredToolRecipes(@NotNull Consumer<FinishedRecipe> writer) 
-	{
-//		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.WOODEN_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_WOOD.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_wood_from_part_exchange");
-//		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.STONE_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_STONE.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_stone_from_part_exchange");
-//		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.IRON_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_IRON.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_iron_from_part_exchange");
-		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.STEEL_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_STEEL.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_steel_from_part_exchange");
-//		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.GOLD_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_GOLD.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_gold_from_part_exchange");
-//		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.DIAMOND_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_DIAMOND.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_diamond_from_part_exchange");
-		this.addPartExchange(writer, YATMItemTags.DRILLS_KEY, new ItemStack(YATMItems.NETHERITE_DRILL_BIT.get()), new ItemStack(YATMItems.STEEL_DRILL_NETHERITE.get()), "drill_tip_adjustment", YetAnotherTechMod.MODID + ":steel_drill_netherite_from_part_exchange");
-		
-//		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.WOODEN_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_WOOD.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_wood_from_part_exchange");
-//		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.STONE_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_STONE.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_stone_from_part_exchange");
-//		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.IRON_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_IRON.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_iron_from_part_exchange");
-		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.STEEL_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_STEEL.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_steel_from_part_exchange");
-//		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.GOLD_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_GOLD.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_gold_from_part_exchange");
-//		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.DIAMOND_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_DIAMOND.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_diamond_from_part_exchange");
-		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.NETHERITE_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_NETHERITE.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_netherite_from_part_exchange");
-		
-	} // end addPoweredToolRecipes()
+
 	
 	
 	
 	// TODO, add in silt, for clay making and reverting
 	
 	
-	private void addNineToOne(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemLike result, String key) 
+	protected void addNineToOne(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemLike result, String key) 
 	{
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
 		.requires(Ingredient.of(ingredient), 9)
@@ -426,7 +500,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addNineToOne()
 	
-	private void addNineToOne(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, String key) 
+	protected void addNineToOne(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, String key) 
 	{
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
 		.requires(Ingredient.of(ingredient), 9)
@@ -434,7 +508,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addNineToOne()
 
-	private void addOneToNine(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemLike result, String key) 
+	protected void addOneToNine(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemLike result, String key) 
 	{
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result, 9)
 		.requires(ingredient)
@@ -442,7 +516,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addCompressed()
 	
-	private void addOneToNine(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, String key) 
+	protected void addOneToNine(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, String key) 
 	{
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result, 9)
 		.requires(ingredient)
@@ -450,7 +524,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addCompressed()
 
-	private void addOneToFour(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemLike result, String key) 
+	protected void addOneToFour(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemLike result, String key) 
 	{
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result, 4)
 		.requires(ingredient)
@@ -458,7 +532,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addCompressed()
 	
-	private void addOneToX(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, int count, String key) 
+	protected void addOneToX(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, int count, String key) 
 	{
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result, count)
 		.requires(ingredient)
@@ -466,19 +540,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addCompressed()
 	
-//	@SuppressWarnings("unused")
-//	private void addTwoByTwoToOne(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, String key) 
-//	{
-////		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
-////		.pattern("aa")
-////		.pattern("aa")
-////		.define('a', ingredient)
-////		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
-////		.save(writer, key);
-//		this.addTwoByTwoToX(writer, ingredient, result, 1, key);
-//	} // end addTwoByTwoToOne()
-	
-	private void addTwoByTwoToX(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, int count, String key) 
+	protected void addTwoByTwoToX(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, int count, String key) 
 	{
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result, count)
 		.pattern("aa")
@@ -488,8 +550,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addTwoByTwoToOne()
 	
-	@SuppressWarnings("unused")
-	private void addXToX(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, int ingredientCount, int resultCount, String key) 
+	protected void addXToX(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemLike result, int ingredientCount, int resultCount, String key) 
 	{
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result, resultCount)
 		.requires(ingredient, ingredientCount)
@@ -497,7 +558,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addTwoByTwoToOne()
 	
-	private void addLargeHeatSink(Consumer<FinishedRecipe> writer, String key,  ItemLike result, TagKey<Item> finIngredient, TagKey<Item> baseIngredient) 
+	protected void addLargeHeatSink(Consumer<FinishedRecipe> writer, String key,  ItemLike result, TagKey<Item> finIngredient, TagKey<Item> baseIngredient) 
 	{
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
 		.pattern("fff")
@@ -509,7 +570,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addLargeHeatSink
 	
-	private void addFancyPlanks(Consumer<FinishedRecipe> writer, ItemLike regularPlank, ItemLike slab, ItemLike result, String key) 
+	protected void addFancyPlanks(Consumer<FinishedRecipe> writer, ItemLike regularPlank, ItemLike slab, ItemLike result, String key) 
 	{
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result, 3)
 		.pattern("bs")
@@ -520,70 +581,70 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	}
 	
-	private void addStairs(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
+	protected void addStairs(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
 	{
 		RecipeProvider.stairBuilder(result, Ingredient.of(ingredient))
 		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);		
 	} // end addStairs()
 	
-	private void addSlabs(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
+	protected void addSlabs(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
 	{
 		RecipeProvider.slabBuilder(RecipeCategory.BUILDING_BLOCKS, result, Ingredient.of(ingredient))
 		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);	
 	} // end addSlabs()
 	
-	private void addFence(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
+	protected void addFence(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
 	{
 		RecipeProvider.fenceBuilder(result, Ingredient.of(ingredient))
 		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);			
 	} // endFence()
 	
-	private void addFenceGate(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
+	protected void addFenceGate(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
 	{
 		fenceGateBuilder(result, Ingredient.of(ingredient))
 		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);			
 	} // endFence()
 	
-	private void addDoor(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
+	protected void addDoor(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
 	{
 		RecipeProvider.doorBuilder(result, Ingredient.of(ingredient))
 		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);			
 	} // addDoor()
 	
-	private void addTrapdoor(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
+	protected void addTrapdoor(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
 	{
 		RecipeProvider.trapdoorBuilder(result, Ingredient.of(ingredient))
 		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);			
 	} // addTrapdoor()
 	
-	private void addPressurePlate(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
+	protected void addPressurePlate(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
 	{
 		RecipeProvider.pressurePlateBuilder(RecipeCategory.REDSTONE, result, Ingredient.of(ingredient))
 		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);			
 	} // addPressurePlate()
 	
-	private void addButton(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
+	protected void addButton(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, @NotNull Item result, String key)
 	{
 		RecipeProvider.buttonBuilder(result,Ingredient.of(ingredient))
 		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);
 	} // end addButton()
 	
-	private void addSign(Consumer<FinishedRecipe> writer, TagKey<Item> planks, Item sign, String key) 
+	protected void addSign(Consumer<FinishedRecipe> writer, TagKey<Item> planks, Item sign, String key) 
 	{
 		RecipeProvider.signBuilder(sign, Ingredient.of(planks))
 		.unlockedBy("has_planks", has(planks))
 		.save(writer);
 	} // end addSign()
 	
-	private void addHangingSign(Consumer<FinishedRecipe> writer, Item strippedLog, Item sign, String key) 
+	protected void addHangingSign(Consumer<FinishedRecipe> writer, Item strippedLog, Item sign, String key) 
 	{
 		ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, sign, 6)
 		.group("hanging_sign")		
@@ -596,7 +657,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer);
 	} // end addHangingSign()
 	
-	private void addBoat(Consumer<FinishedRecipe> writer, TagKey<Item> planks, Item boat, String key) 
+	protected void addBoat(Consumer<FinishedRecipe> writer, TagKey<Item> planks, Item boat, String key) 
 	{
 		ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, boat)
 		.group("boat")
@@ -608,7 +669,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer);
 	} // end addBoat()
 	
-	private void addChestBoat(Consumer<FinishedRecipe> writer, Item boat, Item chestBoat, String key) 
+	protected void addChestBoat(Consumer<FinishedRecipe> writer, Item boat, Item chestBoat, String key) 
 	{
 		ShapelessRecipeBuilder.shapeless(RecipeCategory.TRANSPORTATION, chestBoat)
 		.group("chest_boat")
@@ -619,76 +680,27 @@ public class YATMRecipeProvider extends RecipeProvider
 	} // end addChestBoat()
 	
 	
-
-//	private void addWire(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemLike result, String key) 
-//	{
-//		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, result)
-//		.pattern("   ")
-//		.pattern("www")
-//		.pattern("   ")
-//		.define('w', ingredient)
-//		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
-//		.save(writer, key);
-//	} // end addWire()
 	
-//	private void addManyEnameledWire(Consumer<FinishedRecipe> writer, ItemLike wire, ItemLike enameler, ItemLike result, String key) 
-//	{
-//		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result, 8)
-//		.requires(Ingredient.of(wire), 8)
-//		.requires(enameler)
-//		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(wire).build(), ItemPredicate.Builder.item().of(enameler).build()))
-//		.save(writer, key);
-//	} // end addManyEnameledWire()
-//	
-//	private void addSingleEnameledWire(Consumer<FinishedRecipe> writer, ItemLike wire, ItemLike enameler, ItemLike result, String key) 
-//	{
-//		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
-//		.requires(Ingredient.of(wire))
-//		.requires(enameler)
-//		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(wire).build(), ItemPredicate.Builder.item().of(enameler).build()))
-//		.save(writer, key);
-//	} // end addSingleEnameledWire()
-//	
-//	private void addManyInsulatedWire(Consumer<FinishedRecipe> writer, ItemLike wire, ItemLike insulater, ItemLike result, String key) 
-//	{
-//		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result, 4)
-//		.requires(Ingredient.of(wire), 4)
-//		.requires(insulater)
-//		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(wire).build(), ItemPredicate.Builder.item().of(insulater).build()))
-//		.save(writer, key);
-//	} // end addManyInsulatedWire()
-//	
-//	private void addSingleInsulatedWire(Consumer<FinishedRecipe> writer, ItemLike wire, ItemLike insulater, ItemLike result, String key) 
-//	{
-//		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, result)
-//		.requires(Ingredient.of(wire))
-//		.requires(insulater)
-//		.unlockedBy("criteria", inventoryTrigger(ItemPredicate.Builder.item().of(wire).build(), ItemPredicate.Builder.item().of(insulater).build()))
-//		.save(writer, key);
-//	} // end addSingleInsulatedWire()
-	
-	
-	
-	private void addSmelting(Consumer<FinishedRecipe> writer, ItemLike[] ingredient, ItemLike result, float experience, int time, String key) 
+	protected void addSmelting(Consumer<FinishedRecipe> writer, ItemLike[] ingredient, ItemLike result, float experience, int time, String key) 
 	{
 		this.addSmelting(writer, ingredient, result, ingredient, experience, time, key);
 	} // end addSmelting
 	
-	private void addSmelting(Consumer<FinishedRecipe> writer, ItemLike[] ingredient, ItemLike result, ItemLike[] trigger, float experience, int time, String key) 
+	protected void addSmelting(Consumer<FinishedRecipe> writer, ItemLike[] ingredient, ItemLike result, ItemLike[] trigger, float experience, int time, String key) 
 	{
 		SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), RecipeCategory.MISC, result, experience, time)
 		.unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(trigger).build()))
 		.save(writer, key);
 	} // end addSmelting
 	
-	private void addSmelting(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemLike result, float experience, int time, String key) 
+	protected void addSmelting(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemLike result, float experience, int time, String key) 
 	{
 		SimpleCookingRecipeBuilder.smelting(Ingredient.of(ingredient), RecipeCategory.MISC, result, experience, time)
 		.unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
 		.save(writer, key);
 	} // end addSmelting
 	
-	private void addBlasting(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemLike result, float experience, int time, String key) 
+	protected void addBlasting(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemLike result, float experience, int time, String key) 
 	{
 		SimpleCookingRecipeBuilder.blasting(Ingredient.of(ingredient), RecipeCategory.MISC, result, experience, time)
 		.unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(ingredient).build()))
@@ -697,7 +709,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	
 	
-	private void addExtraction(Consumer<FinishedRecipe> writer, ItemLike ingredient, FluidStack result, int currentPerTick, int timeInTicks, String key) 
+	protected void addExtraction(Consumer<FinishedRecipe> writer, ItemLike ingredient, FluidStack result, int currentPerTick, int timeInTicks, String key) 
 	{
 		new ExtractingRecipeBuilder()
 		.input(new ItemStackIngredient(ingredient.asItem()))
@@ -708,7 +720,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addExtraction()
 	
-	private void addExtraction(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemStack remainder, FluidStack result, int currentPerTick, int timeInTicks, String key) 
+	protected void addExtraction(Consumer<FinishedRecipe> writer, ItemLike ingredient, ItemStack remainder, FluidStack result, int currentPerTick, int timeInTicks, String key) 
 	{
 		new ExtractingRecipeBuilder()
 		.input(new ItemStackIngredient(ingredient.asItem()))
@@ -720,7 +732,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addExtraction()
 	
-	private void addExtraction(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemStack remainder, FluidStack result, int currentPerTick, int timeInTicks, String key) 
+	protected void addExtraction(Consumer<FinishedRecipe> writer, TagKey<Item> ingredient, ItemStack remainder, FluidStack result, int currentPerTick, int timeInTicks, String key) 
 	{
 		new ExtractingRecipeBuilder()
 		.input(new ItemTagIngredient(ingredient))
@@ -734,37 +746,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	
 	
-//	// TODO, probably remove extrusion
-//	@SuppressWarnings("unused")
-//	private void addExtrusion(Consumer<FinishedRecipe> writer, TagKey<Item> input, TagKey<Item> die, ItemStack result, int currentPerTick, int timeInTicks, String key) 
-//	{
-//		new ExtrudingRecipeBuilder()
-//		.input(new ItemTagIngredient(input))
-//		.die(new ItemTagIngredient(die))
-//		.result(result)
-//		.currentPerTick(currentPerTick)
-//		.timeInTicks(timeInTicks)
-//		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(die).build()))
-//		.save(writer, key);
-//	} // end addExtrusion()
-//	
-//	@SuppressWarnings("unused")
-//	private void addExtrusion(Consumer<FinishedRecipe> writer, ItemLike input, ItemLike inputRemainder, TagKey<Item> die, ItemStack result, int currentPerTick, int timeInTicks, String key) 
-//	{
-//		new ExtrudingRecipeBuilder()
-//		.input(new ItemStackIngredient(input.asItem()))
-//		.inputRemainder(new ItemStack(inputRemainder))
-//		.die(new ItemTagIngredient(die))
-//		.result(result)
-//		.currentPerTick(currentPerTick)
-//		.timeInTicks(timeInTicks)
-//		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(die).build()))
-//		.save(writer, key);
-//	} // end addExtrusion()
-	
-	
-	
-	private void addBoilingRecipe(Consumer<FinishedRecipe> writer, FluidStack input, FluidStack result, int temperature, int timeInTicks, String key) 
+	protected void addBoilingRecipe(Consumer<FinishedRecipe> writer, FluidStack input, FluidStack result, int temperature, int timeInTicks, String key) 
 	{
 		new BoilingRecipeBuilder()
 		.input(new FluidStackIngredient(input))
@@ -778,7 +760,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	
 	
-	private void addCrystallizationRecipe(Consumer<FinishedRecipe> writer, FluidStack input, TagKey<Item> seed, ItemStack result, boolean consumeSeed, int currentPerTick, int timeInTicks, String key) 
+	protected void addCrystallizationRecipe(Consumer<FinishedRecipe> writer, FluidStack input, TagKey<Item> seed, ItemStack result, boolean consumeSeed, int currentPerTick, int timeInTicks, String key) 
 	{
 		new CrystallizingRecipeBuilder()
 		.input(new FluidStackIngredient(input))
@@ -787,13 +769,24 @@ public class YATMRecipeProvider extends RecipeProvider
 		.consumeSeed(consumeSeed)
 		.currentPerTick(currentPerTick)
 		.timeInTicks(timeInTicks)
-		// TODO, make use tag containing all the crystallizers
-		.unlockedBy("has_device", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.STEEL_CRYSTALLIZER_ITEM.get()).build()))
 		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(seed).build()))
 		.save(writer, key);
-	} // end addBoilingRecipe()
+	} // end addCrystallizationRecipe()
 	
-	private void addCrystallizationRecipe(Consumer<FinishedRecipe> writer, FluidStack input, Item seed, ItemStack result, boolean consumeSeed, int currentPerTick, int timeInTicks, String key) 
+	protected void addCrystallizationRecipe(@NotNull Consumer<FinishedRecipe> writer, @NotNull TagKey<Fluid> input, @NotNegative int inputAmount, @NotNull TagKey<Item> seed, @NotNull ItemStack result, boolean consumeSeed, @NotNegative int currentPerTick, @NotNegative int timeInTicks, @NotNull String key) 
+	{
+		new CrystallizingRecipeBuilder()
+		.input(new FluidTagIngredient(input, inputAmount))
+		.seed(new ItemTagIngredient(seed))
+		.result(result)
+		.consumeSeed(consumeSeed)
+		.currentPerTick(currentPerTick)
+		.timeInTicks(timeInTicks)
+		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(seed).build()))
+		.save(writer, key);
+	} // end addCrystallizationRecipe()
+	
+	protected void addCrystallizationRecipe(Consumer<FinishedRecipe> writer, FluidStack input, Item seed, ItemStack result, boolean consumeSeed, int currentPerTick, int timeInTicks, String key) 
 	{
 		new CrystallizingRecipeBuilder()
 		.input(new FluidStackIngredient(input))
@@ -802,15 +795,13 @@ public class YATMRecipeProvider extends RecipeProvider
 		.consumeSeed(consumeSeed)
 		.currentPerTick(currentPerTick)
 		.timeInTicks(timeInTicks)
-		// TODO, make use tag containing all the crystallizers
-		.unlockedBy("has_device", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.STEEL_CRYSTALLIZER_ITEM.get()).build()))
 		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(seed).build()))
 		.save(writer, key);
-	} // end addBoilingRecipe()
+	} // end addCrystallizationRecipe()
 	
 	
 	
-	private void addGrindingRecipe(Consumer<FinishedRecipe> writer, Item input, ItemStack result, int currentPerTick, int timeInTicks, String key) 
+	protected void addGrindingRecipe(Consumer<FinishedRecipe> writer, Item input, ItemStack result, int currentPerTick, int timeInTicks, String key) 
 	{
 		new GrindingRecipeBuilder()
 		.input(new ItemStackIngredient(input))
@@ -821,7 +812,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addGrindingRecipe()
 	
-	private void addGrindingRecipe(Consumer<FinishedRecipe> writer, Item input, int inputCount, ItemStack result, int currentPerTick, int timeInTicks, String key) 
+	protected void addGrindingRecipe(Consumer<FinishedRecipe> writer, Item input, int inputCount, ItemStack result, int currentPerTick, int timeInTicks, String key) 
 	{
 		new GrindingRecipeBuilder()
 		.input(new ItemStackIngredient(new ItemStack(input, inputCount)))
@@ -832,7 +823,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addGrindingRecipe()
 	
-	private void addGrindingRecipe(Consumer<FinishedRecipe> writer, TagKey<Item> input, ItemStack result, int currentPerTick, int timeInTicks, String key) 
+	protected void addGrindingRecipe(Consumer<FinishedRecipe> writer, TagKey<Item> input, ItemStack result, int currentPerTick, int timeInTicks, String key) 
 	{
 		new GrindingRecipeBuilder()
 		.input(new ItemTagIngredient(input))
@@ -843,7 +834,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addGrindingRecipe()
 	
-	private void addGrindingRecipe(Consumer<FinishedRecipe> writer, TagKey<Item> input, int inputCount, ItemStack result, int currentPerTick, int timeInTicks, String key) 
+	protected void addGrindingRecipe(Consumer<FinishedRecipe> writer, TagKey<Item> input, int inputCount, ItemStack result, int currentPerTick, int timeInTicks, String key) 
 	{
 		new GrindingRecipeBuilder()
 		.input(new ItemTagIngredient(input, inputCount))
@@ -856,7 +847,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	
 	
-	private void addBiolingRecipe(Consumer<FinishedRecipe> writer, Item input, FluidStack result, int currentPerTick, int timeInTicks, String key) 
+	protected void addBiolingRecipe(Consumer<FinishedRecipe> writer, Item input, FluidStack result, int currentPerTick, int timeInTicks, String key) 
 	{
 		new BiolingRecipeBuilder()
 		.input(new ItemStackIngredient(input))
@@ -870,7 +861,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	
 	
-	private void addSpinningRecipe(Consumer<FinishedRecipe> writer, Item input, ItemStack result, String key) 
+	protected void addSpinningRecipe(Consumer<FinishedRecipe> writer, Item input, ItemStack result, String key) 
 	{
 		new SpinningRecipeBuilder()
 		.input(new ItemStackIngredient(input))
@@ -879,7 +870,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(writer, key);
 	} // end addGrindRecipe()
 	
-	private void addSpinningRecipe(Consumer<FinishedRecipe> writer, TagKey<Item> input, ItemStack result, String key) 
+	protected void addSpinningRecipe(Consumer<FinishedRecipe> writer, TagKey<Item> input, ItemStack result, String key) 
 	{
 		new SpinningRecipeBuilder()
 		.input(new ItemTagIngredient(input))
@@ -889,7 +880,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	} // end addGrindRecipe()
 	
 	
-	private void addMeltingRecipe(@NotNull Consumer<FinishedRecipe> writer, @NotNull IIngredient<ItemStack> input, @NotNull FluidStack result, @NotNegative int temperature, @NotNegative int ticks, CriterionTriggerInstance unlockedBy, String key)
+	protected void addMeltingRecipe(@NotNull Consumer<FinishedRecipe> writer, @NotNull IIngredient<ItemStack> input, @NotNull FluidStack result, @NotNegative int temperature, @NotNegative int ticks, CriterionTriggerInstance unlockedBy, String key)
 	{
 		new MeltingRecipeBuilder()
 		.result(result)
@@ -901,7 +892,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	
 	
-	private void addPartExchange(Consumer<FinishedRecipe> writer, TagKey<Item> tool, ItemStack part, ItemStack result, String group, String key) 
+	protected void addPartExchange(Consumer<FinishedRecipe> writer, TagKey<Item> tool, ItemStack part, ItemStack result, String group, String key) 
 	{
 		new ToolPartExchangeRecipeBuilder()
 		.category(CraftingBookCategory.EQUIPMENT)
@@ -912,6 +903,5 @@ public class YATMRecipeProvider extends RecipeProvider
 		.unlockedBy("has_ingredient", inventoryTrigger(ItemPredicate.Builder.item().of(part.getItem()).build()))
 		.save(writer, key);
 	} // end addPartExchange()
-	
 	
 } // end class

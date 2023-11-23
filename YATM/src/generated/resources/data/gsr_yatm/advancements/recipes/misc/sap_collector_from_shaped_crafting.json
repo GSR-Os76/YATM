@@ -1,14 +1,11 @@
 {
   "parent": "minecraft:recipes/root",
   "criteria": {
-    "criteria": {
+    "has_item": {
       "conditions": {
         "items": [
           {
-            "tag": "forge:ingots/copper"
-          },
-          {
-            "tag": "gsr_yatm:unoxidized_copper_blocks"
+            "tag": "minecraft:slabs"
           }
         ]
       },
@@ -16,20 +13,20 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gsr_yatm:large_copper_heat_sink_from_shape_crafting"
+        "recipe": "gsr_yatm:sap_collector_from_shaped_crafting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
-      "criteria",
+      "has_item",
       "has_the_recipe"
     ]
   ],
   "rewards": {
     "recipes": [
-      "gsr_yatm:large_copper_heat_sink_from_shape_crafting"
+      "gsr_yatm:sap_collector_from_shaped_crafting"
     ]
   },
   "sends_telemetry_event": false

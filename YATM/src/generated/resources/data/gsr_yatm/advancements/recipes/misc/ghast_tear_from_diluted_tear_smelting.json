@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "minecraft:crafting_table"
+              "gsr_yatm:diluted_tear_bottle"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gsr_yatm:grafting_table_from_shaped_crafting"
+        "recipe": "gsr_yatm:ghast_tear_from_diluted_tear_smelting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "gsr_yatm:grafting_table_from_shaped_crafting"
+      "gsr_yatm:ghast_tear_from_diluted_tear_smelting"
     ]
   },
   "sends_telemetry_event": false
