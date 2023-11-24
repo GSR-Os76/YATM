@@ -28,6 +28,7 @@ public class YATMFluidTags extends FluidTagsProvider
 	
 	
 	public static final TagKey<Fluid> FORGE_ENDER_KEY = TM.createTagKey(new ResourceLocation(YATMFluidTags.FORGE_ID, "ender"));
+	public static final TagKey<Fluid> FORGE_SILICON_OXIDE_KEY = TM.createTagKey(new ResourceLocation(YATMFluidTags.FORGE_ID, "silicon_oxide"));
 	
 	
 	
@@ -42,6 +43,7 @@ public class YATMFluidTags extends FluidTagsProvider
 	protected void addTags(Provider provider)
 	{
 		this.tag(YATMFluidTags.FORGE_ENDER_KEY).add(YATMFluids.ENDER.get()).add(YATMFluids.ENDER_FLOWING.get());
+		this.tag(YATMFluidTags.FORGE_SILICON_OXIDE_KEY).add(YATMFluids.SILICON_OXIDE.get()).add(YATMFluids.SILICON_OXIDE_FLOWING.get());
 	} // end addTags()
 	
 } // end class

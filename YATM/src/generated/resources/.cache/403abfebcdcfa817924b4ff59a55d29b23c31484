@@ -1,9 +1,19 @@
-// 1.20.1	2023-11-22T19:09:18.7636174	Tags for minecraft:item mod id gsr_yatm
+// 1.20.1	2023-11-23T12:22:02.2686065	Tags for minecraft:item mod id gsr_yatm
+13a02f74fd8873c5f04a1528f897487ccadbeba4 data/forge/tags/items/armors/boots.json
+2b93f7f877d30d4f9b3cdc9475c1c55228c0094f data/forge/tags/items/armors/chestplates.json
+cb6c64d7d389b9aebc433bd86e469e5dbf5a6582 data/forge/tags/items/armors/helmets.json
+fad522adc79ea27a306068490b6e5a890f780914 data/forge/tags/items/armors/leggings.json
 bade3c9b0ab674f2efd3dc51c76e3652a9021029 data/forge/tags/items/ingots/rubber.json
 18795a8c0bcbdd7d7450b4a7ba2b97df86e0d87a data/forge/tags/items/nuggets/netherite.json
 22817fc3a29127b1c1278ea16d671d7c02dbdeb9 data/forge/tags/items/rooted_dirt.json
+bad73721637de97a32c61f4a2b344b34cf83351f data/forge/tags/items/slabs/quartz.json
+5266c583f2e368fc13db76cb803f3a8190f1c0d1 data/forge/tags/items/slabs/sandstone.json
+21787246d3ba62208df1262db82bea2a89668790 data/forge/tags/items/stairs/quartz.json
+5a59de1d817e41cd35084f2ec59f65c9e4608230 data/forge/tags/items/stairs/sandstone.json
 742490cf54e91e5fb6ef9433e3e7a050041f0a47 data/forge/tags/items/storage_blocks/foliar_steel.json
+832b7e6675be8ff08fd9a10a451a0f62d2bb9d10 data/forge/tags/items/storage_blocks/quartz.json
 5cde157d29986a1af6fac3eed0972c55ed684ae6 data/forge/tags/items/storage_blocks/rubber.json
+9c955a069c7d44f19a7775e96a97e0c2bf632acd data/forge/tags/items/walls/sandstone.json
 af5a440f5c712d3904c6b50819f04f2a58d71861 data/gsr_yatm/tags/items/armor_pieces/decay_netherite.json
 ec857824c3fbff4388d79661bc800d1e9c6b97bf data/gsr_yatm/tags/items/armor_pieces/soul_adorned_netherite.json
 eebcd9ed0e9c3b763459acafdafb1b8fc8df74c7 data/gsr_yatm/tags/items/device_adjusters.json

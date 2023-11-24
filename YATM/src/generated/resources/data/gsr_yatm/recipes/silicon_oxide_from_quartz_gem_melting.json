@@ -1,0 +1,16 @@
+{
+  "type": "gsr_yatm:melting",
+  "input": {
+    "ingedient": {
+      "type": "gsr_yatm:item_tag_ingredient",
+      "count": 1,
+      "tag": "forge:gems/quartz"
+    }
+  },
+  "result": {
+    "count": 250,
+    "fluid": "gsr_yatm:silicon_oxide"
+  },
+  "temperature": 1989,
+  "time": 160
+}

@@ -1,0 +1,24 @@
+{
+  "type": "gsr_yatm:crystallizing",
+  "cost": 36,
+  "input": {
+    "ingedient": {
+      "type": "gsr_yatm:fluid_tag_ingredient",
+      "amount": 250,
+      "tag": "forge:silicon_oxide"
+    }
+  },
+  "result": {
+    "count": 2,
+    "item": "minecraft:quartz"
+  },
+  "seed": {
+    "consume": true,
+    "ingedient": {
+      "type": "gsr_yatm:item_tag_ingredient",
+      "count": 1,
+      "tag": "forge:gems/quartz"
+    }
+  },
+  "time": 300
+}

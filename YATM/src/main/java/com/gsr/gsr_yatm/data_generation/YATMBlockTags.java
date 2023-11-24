@@ -6,6 +6,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
+
 import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -29,14 +30,18 @@ public class YATMBlockTags extends BlockTagsProvider
 	
 	
 	public static final TagKey<Block> FORGE_BASALT_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "basalt"));
-	// maybe this should be "cactus" not "cactuses"
-	public static final TagKey<Block> FORGE_CACTUS_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "cactus"));
+	public static final TagKey<Block> FORGE_CACTUSES_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "cactuses"));
 	public static final TagKey<Block> FORGE_CALCITE_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "calcite"));
 	public static final TagKey<Block> FORGE_DEEPSLATE_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "deepslate"));
 	public static final TagKey<Block> FORGE_ROOTED_DIRT_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "rooted_dirt"));
+	public static final TagKey<Block> FORGE_SLABS_QUARTZ = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "slabs/quartz"));
+	public static final TagKey<Block> FORGE_SLABS_SANDSTONE = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "slabs/sandstone"));
 	public static final TagKey<Block> FORGE_SOUL_SOIL_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "soul_soil"));
-	public static final TagKey<Block> FORGE_STORAGE_BLOCKS_RUBBER_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "storage_blocks/rubber"));
+	public static final TagKey<Block> FORGE_STAIRS_QUARTZ = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "stairs/quartz"));
+	public static final TagKey<Block> FORGE_STAIRS_SANDSTONE = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "stairs/sandstone"));
 	public static final TagKey<Block> FORGE_STORAGE_BLOCKS_FOLIAR_STEEL_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "storage_blocks/foliar_steel"));
+	public static final TagKey<Block> FORGE_STORAGE_BLOCKS_RUBBER_KEY = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "storage_blocks/rubber"));
+	public static final TagKey<Block> FORGE_WALLS_SANDSTONE = TM.createTagKey(new ResourceLocation(YATMBlockTags.FORGE_ID, "walls/sandstone"));
 	
 	
 
@@ -193,13 +198,18 @@ public class YATMBlockTags extends BlockTagsProvider
 		
 		
 		this.tag(YATMBlockTags.FORGE_BASALT_KEY).add(Blocks.BASALT).add(Blocks.POLISHED_BASALT).add(Blocks.SMOOTH_BASALT);
-		this.tag(YATMBlockTags.FORGE_CACTUS_KEY).add(Blocks.CACTUS).add(YATMBlocks.VARIEGATED_CACTUS.get());
+		this.tag(YATMBlockTags.FORGE_CACTUSES_KEY).add(Blocks.CACTUS).add(YATMBlocks.VARIEGATED_CACTUS.get());
 		this.tag(YATMBlockTags.FORGE_CALCITE_KEY).add(Blocks.CALCITE);
 		this.tag(YATMBlockTags.FORGE_DEEPSLATE_KEY).addTag(Tags.Blocks.COBBLESTONE_DEEPSLATE).add(Blocks.DEEPSLATE).add(Blocks.DEEPSLATE_BRICKS).add(Blocks.DEEPSLATE_TILES).add(Blocks.CHISELED_DEEPSLATE).add(Blocks.CRACKED_DEEPSLATE_BRICKS).add(Blocks.CRACKED_DEEPSLATE_TILES).add(Blocks.POLISHED_DEEPSLATE);
 		this.tag(YATMBlockTags.FORGE_ROOTED_DIRT_KEY).add(Blocks.ROOTED_DIRT).add(Blocks.MUDDY_MANGROVE_ROOTS).add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get());
+		this.tag(YATMBlockTags.FORGE_SLABS_QUARTZ).add(Blocks.QUARTZ_SLAB).add(Blocks.SMOOTH_QUARTZ_SLAB);
+		this.tag(YATMBlockTags.FORGE_SLABS_SANDSTONE).add(Blocks.SANDSTONE_SLAB).add(Blocks.CUT_SANDSTONE_SLAB).add(Blocks.SMOOTH_SANDSTONE_SLAB).add(Blocks.RED_SANDSTONE_SLAB).add(Blocks.CUT_RED_SANDSTONE_SLAB).add(Blocks.SMOOTH_RED_SANDSTONE_SLAB);
 		this.tag(YATMBlockTags.FORGE_SOUL_SOIL_KEY).add(Blocks.SOUL_SOIL).add(YATMBlocks.ROOTED_SOUL_SOIL.get());
+		this.tag(YATMBlockTags.FORGE_STAIRS_QUARTZ).add(Blocks.QUARTZ_STAIRS).add(Blocks.SMOOTH_QUARTZ_STAIRS);
+		this.tag(YATMBlockTags.FORGE_STAIRS_SANDSTONE).add(Blocks.SANDSTONE_STAIRS).add(Blocks.SMOOTH_SANDSTONE_STAIRS).add(Blocks.RED_SANDSTONE_STAIRS).add(Blocks.SMOOTH_RED_SANDSTONE_STAIRS);
 		this.tag(YATMBlockTags.FORGE_STORAGE_BLOCKS_RUBBER_KEY).add(YATMBlocks.RUBBER_BLOCK.get());
 		this.tag(YATMBlockTags.FORGE_STORAGE_BLOCKS_FOLIAR_STEEL_KEY).add(YATMBlocks.FOLIAR_STEEL_BLOCK.get());
+		this.tag(YATMBlockTags.FORGE_WALLS_SANDSTONE).add(Blocks.SANDSTONE_WALL).add(Blocks.RED_SANDSTONE_WALL);
 		this.tag(Tags.Blocks.NETHERRACK).add(Blocks.CRIMSON_NYLIUM).add(Blocks.WARPED_NYLIUM).add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get());
 		this.tag(Tags.Blocks.ORES).addTag(YATMBlockTags.FOLIAR_STEEL_ORES_KEY);
 		this.tag(Tags.Blocks.ORES_IN_GROUND_DEEPSLATE).add(YATMBlocks.DEEPSLATE_FOLIAR_STEEL_ORE.get());

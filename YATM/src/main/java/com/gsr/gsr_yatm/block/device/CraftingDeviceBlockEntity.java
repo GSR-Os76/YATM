@@ -36,12 +36,12 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 	protected final RecipeType<T> m_recipeType;
 	protected T m_activeRecipe = null;
 	protected String m_activeRecipeIdentifier = null;
-	protected int m_craftProgress = 0;
+	protected int m_craftCountDown = 0;
 	protected int m_craftTime = 0;
 	protected int m_timeSinceRecheck = 0;
 	protected boolean m_waitingForLoad = false;
 	
-	protected final ContainerData m_craftProgressC = new PropertyContainerData(List.of(new Property<>(() -> this.m_craftProgress, (i) -> {}), new Property<>(() -> this.m_craftTime, (i) -> {})));
+	protected final ContainerData m_craftProgressC = new PropertyContainerData(List.of(new Property<>(() -> this.m_craftCountDown, (i) -> {}), new Property<>(() -> this.m_craftTime, (i) -> {})));
 	
 	
 	
@@ -57,20 +57,20 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 	protected void onItemInsertion(int slot, ItemStack stack)
 	{
 		super.onItemInsertion(slot, stack);
-		this.m_timeSinceRecheck = RECHECK_PERIOD;
+		this.m_timeSinceRecheck = CraftingDeviceBlockEntity.RECHECK_PERIOD;
 	} // end onItemInsertion()
 
 	@Override
 	protected void onItemWithdrawal(int slot, ItemStack stack)
 	{
 		super.onItemWithdrawal(slot, stack);
-		this.m_timeSinceRecheck = RECHECK_PERIOD;
+		this.m_timeSinceRecheck = CraftingDeviceBlockEntity.RECHECK_PERIOD;
 	} // end onItemWithdrawal()
 	
 	@Override
 	protected void onFluidContentsChanged(FluidStack stack) 
 	{	
-		this.m_timeSinceRecheck = RECHECK_PERIOD;
+		this.m_timeSinceRecheck = CraftingDeviceBlockEntity.RECHECK_PERIOD;
 	} // end onFluidContentsChanged()
 
 
@@ -79,16 +79,16 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 	{
 		boolean changed = false;
 		
-		if (this.m_craftProgress > 0)
+		if (this.m_craftCountDown > 0)
 		{
-			if (--this.m_craftProgress <= 0)
+			if (--this.m_craftCountDown <= 0)
 			{
 				this.setRecipeResults(this.m_activeRecipe);
 				this.tryStartNewRecipe();
 			}
 			changed = true;
 		}
-		else if (++this.m_timeSinceRecheck > RECHECK_PERIOD)
+		else if (++this.m_timeSinceRecheck > CraftingDeviceBlockEntity.RECHECK_PERIOD)
 		{
 			this.m_timeSinceRecheck = 0;
 			this.tryStartNewRecipe();
@@ -99,27 +99,28 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 
 	protected void tryStartNewRecipe()
 	{
-		this.m_activeRecipe = null;
-		this.m_craftTime = 0;
-		this.m_craftProgress = 0;
-		
+		this.clearCurrentRecipe();
 		Enumeration<T> recipes = RecipeUtil.getRecipes(this.level, this.m_recipeType);
-		while (recipes.hasMoreElements())//for (T r : recipes)
+		while (recipes.hasMoreElements())
 		{
 			T r = recipes.nextElement();
-		//List<T> recipes = level.getRecipeManager().getAllRecipesFor(this.m_recipeType);
-		//for (T r : recipes)
-		//{
 			if (this.canUseRecipe(r))
 			{
 				this.m_activeRecipe = r;
 				this.m_craftTime = r.getTimeInTicks();
-				this.m_craftProgress = this.m_craftTime;
+				this.m_craftCountDown = this.m_craftTime;
 				this.startRecipe(r);
 				break;
 			}
 		}
-	} // end tryStartNewRecipe()	
+	} // end tryStartNewRecipe()
+	
+	protected void clearCurrentRecipe() 
+	{
+		this.m_activeRecipe = null;
+		this.m_craftTime = 0;
+		this.m_craftCountDown = 0;		
+	} // end clearCurrentRecipe()
 	
 	protected abstract void setRecipeResults(@NotNull T from);
 	protected abstract boolean canUseRecipe(@NotNull T from);
@@ -129,11 +130,9 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 	{
 		this.m_waitingForLoad = false;
 		this.m_activeRecipe = RecipeUtil.loadRecipe(this.m_activeRecipeIdentifier, this.level, this.m_recipeType);
-		if(this.m_activeRecipe == null || this.m_craftProgress <= 0 || this.m_craftTime <= 0) 
+		if(this.m_activeRecipe == null || this.m_craftCountDown <= 0 || this.m_craftTime <= 0) 
 		{
-			this.m_activeRecipe = null;
-			this.m_craftProgress = 0;
-			this.m_craftTime = 0;
+			this.clearCurrentRecipe();
 		}
 	} // end onRecipeLoad()
 	
@@ -143,10 +142,10 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 	{
 		super.saveAdditional(tag);
 		
-		if(this.m_activeRecipe != null && this.m_craftProgress > 0 && this.m_craftTime > 0) 
+		if(this.m_activeRecipe != null && this.m_craftCountDown > 0 && this.m_craftTime > 0) 
 		{
 			tag.putString(CraftingDeviceBlockEntity.RECIPE_IDENTIFIER_TAG_NAME, this.m_activeRecipe.getId().toString());
-			tag.putInt(CraftingDeviceBlockEntity.CRAFT_PROGESS_TAG_NAME, this.m_craftProgress);
+			tag.putInt(CraftingDeviceBlockEntity.CRAFT_PROGESS_TAG_NAME, this.m_craftCountDown);
 			tag.putInt(CraftingDeviceBlockEntity.CRAFT_TIME_TAG_NAME, this.m_craftTime);
 		}
 	} // end saveAdditional()
@@ -159,7 +158,7 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 		if(tag.contains(CraftingDeviceBlockEntity.RECIPE_IDENTIFIER_TAG_NAME) && tag.contains(CraftingDeviceBlockEntity.CRAFT_PROGESS_TAG_NAME) && tag.contains(CraftingDeviceBlockEntity.CRAFT_TIME_TAG_NAME)) 
 		{
 			this.m_activeRecipeIdentifier = tag.getString(CraftingDeviceBlockEntity.RECIPE_IDENTIFIER_TAG_NAME);
-			this.m_craftProgress = tag.getInt(CraftingDeviceBlockEntity.CRAFT_PROGESS_TAG_NAME);
+			this.m_craftCountDown = tag.getInt(CraftingDeviceBlockEntity.CRAFT_PROGESS_TAG_NAME);
 			this.m_craftTime = tag.getInt(CraftingDeviceBlockEntity.CRAFT_TIME_TAG_NAME);
 			this.m_waitingForLoad = true;
 			RecipeUtil.addRecipeLoadListener(this::onRecipeLoad);

@@ -79,7 +79,7 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractingRe
 		{
 			return switch(index) 
 			{
-				case ExtractorBlockEntity.EXTRACT_PROGRESS_SLOT -> ExtractorBlockEntity.this.m_craftProgress;
+				case ExtractorBlockEntity.EXTRACT_PROGRESS_SLOT -> ExtractorBlockEntity.this.m_craftCountDown;
 				case ExtractorBlockEntity.EXTRACT_TIME_SLOT -> ExtractorBlockEntity.this.m_craftTime;
 				case ExtractorBlockEntity.STORED_FlUID_AMOUNT_SLOT -> ExtractorBlockEntity.this.m_rawResultTank.getFluidAmount();
 				case ExtractorBlockEntity.FLUID_CAPACITY_SLOT -> ExtractorBlockEntity.this.m_rawResultTank.getCapacity();

@@ -135,7 +135,7 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 		{
 			return switch(index) 
 			{
-				case BoilerBlockEntity.BOIL_PROGESS_INDEX -> BoilerBlockEntity.this.m_craftProgress;
+				case BoilerBlockEntity.BOIL_PROGESS_INDEX -> BoilerBlockEntity.this.m_craftCountDown;
 				case BoilerBlockEntity.BOIL_TIME_INDEX -> BoilerBlockEntity.this.m_craftTime;
 				case BoilerBlockEntity.BURN_TIME_ELAPSED_INDEX -> BoilerBlockEntity.this.m_burnProgress;
 				case BoilerBlockEntity.BURN_TIME_INDEX -> BoilerBlockEntity.this.m_burnTime;

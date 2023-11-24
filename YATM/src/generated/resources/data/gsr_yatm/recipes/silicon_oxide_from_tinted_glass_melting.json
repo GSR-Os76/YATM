@@ -1,0 +1,16 @@
+{
+  "type": "gsr_yatm:melting",
+  "input": {
+    "ingedient": {
+      "type": "gsr_yatm:item_stack_ingredient",
+      "count": 1,
+      "item": "minecraft:tinted_glass"
+    }
+  },
+  "result": {
+    "count": 1000,
+    "fluid": "gsr_yatm:silicon_oxide"
+  },
+  "temperature": 1989,
+  "time": 360
+}

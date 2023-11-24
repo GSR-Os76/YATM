@@ -74,7 +74,7 @@ public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<Crystalli
 		{
 			return switch(value) 
 				{
-				case CrystallizerBlockEntity.CRYSTALLIZE_PROGRESS_SLOT -> CrystallizerBlockEntity.this.m_craftProgress;
+				case CrystallizerBlockEntity.CRYSTALLIZE_PROGRESS_SLOT -> CrystallizerBlockEntity.this.m_craftCountDown;
 				case CrystallizerBlockEntity.CRYSTALLIZE_TIME_SLOT -> CrystallizerBlockEntity.this.m_craftTime;
 				
 				case CrystallizerBlockEntity.FLUID_AMOUNT_SLOT -> CrystallizerBlockEntity.this.m_inputTank.getFluidAmount();

@@ -48,7 +48,7 @@ public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe
 			return switch(index) 
 			{
 				// seperate this out
-				case GRIND_PROGESS_INDEX -> GrinderBlockEntity.this.m_craftProgress;
+				case GRIND_PROGESS_INDEX -> GrinderBlockEntity.this.m_craftCountDown;
 				case GRIND_TIME_INDEX -> GrinderBlockEntity.this.m_craftTime;
 				// end
 				// maybe start again

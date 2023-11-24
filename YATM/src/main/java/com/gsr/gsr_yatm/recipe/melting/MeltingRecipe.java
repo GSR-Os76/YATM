@@ -73,22 +73,23 @@ public class MeltingRecipe implements ITimedRecipe<Container>
 	} // end getTimeInTicks()
 
 
+	
+	// TODO, update other recipes to match this pattern
+	public boolean canTick(@NotNull IHeatHandler heat)
+	{
+		return this.m_temperature <= heat.getTemperature();
+	} // end canTick()
 
-	public boolean canBeUsedOn(@NotNull IItemHandler inventory, @NotNull IFluidHandler tank, @NotNull IHeatHandler heat)
+	public boolean matches(@NotNull IItemHandler inventory, @NotNull IFluidHandler tank)
 	{
 		return this.m_input.test(inventory.getStackInSlot(CrucibleBlockEntity.INPUT_SLOT)) 
-				&& tank.fill(this.m_result.copy(), FluidAction.SIMULATE) == this.m_result.getAmount()
-				&& this.m_temperature <= heat.getTemperature();
-	} // end canBeUsedOn()
+				&& tank.fill(this.m_result.copy(), FluidAction.SIMULATE) == this.m_result.getAmount();
+	} // end matches()
 
-	public void startRecipe(@NotNull IItemHandler inventory)
+	public void setResults(@NotNull IItemHandler inventory, @NotNull IFluidHandler tank)
 	{
 		inventory.extractItem(CrucibleBlockEntity.INPUT_SLOT, 
 				IngredientUtil.getReqiuredCountFor(inventory.getStackInSlot(CrucibleBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
-	} // end startRecipe()
-
-	public void setResults(@NotNull IFluidHandler tank)
-	{
 		tank.fill(this.m_result.copy(), FluidAction.EXECUTE);
 	} // end setResults()
 

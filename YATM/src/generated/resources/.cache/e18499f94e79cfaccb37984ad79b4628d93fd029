@@ -1,6 +1,6 @@
-// 1.20.1	2023-11-21T14:14:28.2501109	Tags for minecraft:block mod id gsr_yatm
+// 1.20.1	2023-11-23T12:22:02.2452603	Tags for minecraft:block mod id gsr_yatm
 c66ff3626edc7c0f108f497fa9aec78cbf9db39f data/forge/tags/blocks/basalt.json
-ea459db540b319f4bdead7b7f1142fc238c09a8e data/forge/tags/blocks/cactus.json
+ea459db540b319f4bdead7b7f1142fc238c09a8e data/forge/tags/blocks/cactuses.json
 ebcf7881dcf42cb3d8c8b5c2e92ebf16fd9d7284 data/forge/tags/blocks/calcite.json
 2949b9218edc5b7c594819a61b28d2204a7a72f7 data/forge/tags/blocks/deepslate.json
 441fb6cee14b03b9652077a22a8b8c1f28226c72 data/forge/tags/blocks/needs_wood_tool.json
@@ -10,12 +10,17 @@ ae063a18d6a78c1df2e70286fb1984ffc87c6b2d data/forge/tags/blocks/netherrack.json
 3c80c57e657efa6316228e6dfac241b7f41aead1 data/forge/tags/blocks/ores_in_ground/stone.json
 07af26afbfb24573997b6045b1603d54792502cf data/forge/tags/blocks/ore_rates/singular.json
 22817fc3a29127b1c1278ea16d671d7c02dbdeb9 data/forge/tags/blocks/rooted_dirt.json
+bad73721637de97a32c61f4a2b344b34cf83351f data/forge/tags/blocks/slabs/quartz.json
+5266c583f2e368fc13db76cb803f3a8190f1c0d1 data/forge/tags/blocks/slabs/sandstone.json
 1da600bf13ef307c5b8543cdcc0e0283f57172df data/forge/tags/blocks/soul_soil.json
+21787246d3ba62208df1262db82bea2a89668790 data/forge/tags/blocks/stairs/quartz.json
+5a59de1d817e41cd35084f2ec59f65c9e4608230 data/forge/tags/blocks/stairs/sandstone.json
 0601a15eecd765ad830d41e85e3e16db1fc4232b data/forge/tags/blocks/storage_blocks.json
 4fe23facf617954e99c4a83d46d0ee350273d1e9 data/forge/tags/blocks/storage_blocks/copper.json
 742490cf54e91e5fb6ef9433e3e7a050041f0a47 data/forge/tags/blocks/storage_blocks/foliar_steel.json
 832b7e6675be8ff08fd9a10a451a0f62d2bb9d10 data/forge/tags/blocks/storage_blocks/quartz.json
 5cde157d29986a1af6fac3eed0972c55ed684ae6 data/forge/tags/blocks/storage_blocks/rubber.json
+9c955a069c7d44f19a7775e96a97e0c2bf632acd data/forge/tags/blocks/walls/sandstone.json
 3fea917b2e82ec709480b63b1edbf0c0d0a849b2 data/gsr_yatm/tags/blocks/candle_lanterns.json
 6126de40a64453ca531e66bfeb15ff34da6d5d8f data/gsr_yatm/tags/blocks/change_neutral_only_attachment.json
 4025cca10e3b03e5cf1f371e88a6afed701e7681 data/gsr_yatm/tags/blocks/foliar_steel_ores.json

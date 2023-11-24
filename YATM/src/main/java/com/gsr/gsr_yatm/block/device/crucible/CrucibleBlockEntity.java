@@ -47,6 +47,8 @@ import net.minecraftforge.items.IItemHandler;
 
 public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe, Container>
 {
+	// TODO, make crucible consume some heat to start a recipe
+	// TODO, make recipe progress reverse slowly when heat is lacking?
 	public static final int INVENTORY_SLOT_COUNT = 3;
 	
 	public static final int INPUT_SLOT = 0;
@@ -79,7 +81,7 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	private int m_ticksPerformed = 0;
 	private float m_ticksScheduled = 0f;	
 	
-	// TODO, force recheck when neighbor changes
+	// TODO, force recheck when neighbor changes. ... force recheck what?
 	private final int m_maxTemperature = YATMConfigs.CRUCIBLE_MAX_TEMPERATURE.get();
 	private final int m_maxFluidTransferRate = YATMConfigs.CRUCIBLE_MAX_FLUID_TRANSFER_RATE.get();
 	private int drainRecheckCounter = 0;
@@ -89,7 +91,6 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	private int m_drainResultTankCountDown = 0;
 	private int m_drainResultTankInitialTransferSize = 0;	
 	
-	// TODO, might need next three to be in the constructor
 	private final IItemHandler m_drainResultTankSlot = InventoryWrapper.Builder.of().inventory(this.m_inventory).slotTranslationTable(new int[] {CrucibleBlockEntity.DRAIN_RESULT_TANK_SLOT}).build();
 	private final IItemHandler m_inputSlot = InventoryWrapper.Builder.of().inventory(this.m_inventory).slotTranslationTable(new int[] {CrucibleBlockEntity.INPUT_SLOT}).build();;
 	private final IItemHandler m_heatingSlot = InventoryWrapper.Builder.of().inventory(this.m_inventory).slotTranslationTable(new int[] {CrucibleBlockEntity.HEAT_SLOT}).build();;
@@ -126,7 +127,7 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 			Map.entry(CrucibleBlockEntity.MAX_TEMPERATURE_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY)
 			));
 	protected final @NotNull ContainerData m_data = new ContainerDataBuilder()
-			.addProperty(() -> this.m_craftProgress, (i) -> {})
+			.addProperty(() -> this.m_craftCountDown, (i) -> {})
 			.addProperty(() -> this.m_craftTime, (i) -> {})
 			.addProperty(() -> this.m_burnProgress, (i) -> {})
 			.addProperty(() -> this.m_burnTime, (i) -> {})
@@ -165,7 +166,8 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	} // end itemInsertionValidator()
 	
 	
-
+	// TODO, make objects to capture all the component related varaibles and functions, to improve maintainability and readability and reuse. InputComponentHandler, OutputComponenttHandler, perhaps., 
+	// Possibly do similar with heating and draining and filling.
 	@Override
 	protected void onItemInsertion(int slot, ItemStack stack)
 	{
@@ -272,7 +274,12 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 		boolean changed = this.doHeat();
 		if(!this.m_waitingForLoad) 
 		{
-			if(this.m_activeRecipe == null || (this.m_heatHandler.getTemperature() >= this.m_activeRecipe.getTemperature())) 
+			
+			if(this.m_activeRecipe != null && !this.m_activeRecipe.matches(this.m_uncheckedInventory, this.m_resultTank)) 
+			{	
+				this.clearCurrentRecipe();
+			}
+			if(this.m_activeRecipe == null || this.m_activeRecipe.canTick(this.m_heatHandler)) 
 			{
 				this.doCrafting();
 				if(this.m_activeRecipe != null) 
@@ -283,6 +290,7 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 					for(int i = 0; (this.m_activeRecipe != null) && (i < bonusTicks); i++) 
 					{
 						this.doCrafting();
+						this.m_ticksPerformed += 1;
 					}
 				}
 			}		
@@ -401,7 +409,7 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	@Override
 	protected void setRecipeResults(@NotNull MeltingRecipe from)
 	{
-		from.setResults(this.m_rawResultTank);
+		from.setResults(this.m_uncheckedInventory, this.m_resultTank);
 		this.m_ticksPerformed = 0;
 		this.m_ticksScheduled = 0f;
 	} // end setRecipeResults()
@@ -409,13 +417,12 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	@Override
 	protected boolean canUseRecipe(@NotNull MeltingRecipe from)
 	{
-		return from.canBeUsedOn(this.m_uncheckedInventory, this.m_resultTank, this.m_heatHandler);
+		return from.matches(this.m_uncheckedInventory, this.m_resultTank);
 	} // end canUseRecipe()
 
 	@Override
 	protected void startRecipe(@NotNull MeltingRecipe from)
 	{
-		from.startRecipe(this.m_uncheckedInventory);
 		this.m_ticksPerformed = 0;
 		this.m_ticksScheduled = 0f;
 	} // end startRecipe()

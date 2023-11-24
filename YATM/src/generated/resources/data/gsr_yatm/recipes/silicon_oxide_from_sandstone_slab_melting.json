@@ -1,0 +1,16 @@
+{
+  "type": "gsr_yatm:melting",
+  "input": {
+    "ingedient": {
+      "type": "gsr_yatm:item_tag_ingredient",
+      "count": 1,
+      "tag": "forge:slabs/sandstone"
+    }
+  },
+  "result": {
+    "count": 2000,
+    "fluid": "gsr_yatm:silicon_oxide"
+  },
+  "temperature": 1989,
+  "time": 720
+}

@@ -73,6 +73,8 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addMeltingRecipes(writer);
 		this.addSpinningRecipes(writer);
 		
+		// TODO, maybe silicon for making advanced solar panels as well
+		
 		// TODO, maybe, could add a higher yielding fancy sugar extracting route
 		// TODO, wood pulp to paper route
 		// TODO, phantasmal shelf fungus -> phantom membrane somehwo
@@ -126,7 +128,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		
 		// flame gland and heat thingies
 		
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.SPEED_UPGRADE.get(), 1).pattern(" f ").pattern("fgf").pattern(" f ").define('f', YATMItems.FOLIAR_STEEL.get()).define('g', Tags.Items.STORAGE_BLOCKS_GOLD).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.FOLIAR_STEEL.get()).build())).save(writer, YetAnotherTechMod.MODID + ":speed_upgrade_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.SPEED_UPGRADE.get(), 1).pattern(" f ").pattern("fgf").pattern(" f ").define('f', YATMItems.FOLIAR_STEEL.get()).define('g', Tags.Items.INGOTS_GOLD).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.FOLIAR_STEEL.get()).build())).save(writer, YetAnotherTechMod.MODID + ":speed_upgrade_from_shaped_crafting");
 		// energy upgrade similar to speed, but with something current related maybe perhaps
 		
 		this.addPoweredToolRecipes(writer);
@@ -291,6 +293,10 @@ public class YATMRecipeProvider extends RecipeProvider
 	{
 		this.addCrystallizationRecipe(writer, YATMFluidTags.FORGE_ENDER_KEY, 250, Tags.Items.SAND, new ItemStack(Items.ENDER_PEARL), false, 0, 300, YetAnotherTechMod.MODID + ":ender_pearl_from_crystallization");
 		this.addNetherStarCrystallizationProgression(writer);
+		
+		// TODO, verify in blockEntity
+		this.addSiliconOxideCrystallizations(writer);
+		
 	} // end addCrystallizationRecipes()
 	
 	private void addNetherStarCrystallizationProgression(@NotNull Consumer<FinishedRecipe> writer) 
@@ -301,6 +307,13 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 4000), YATMItems.STAR_SPROUT.get(), new ItemStack(YATMItems.STAR_ADOLESCENT.get()), true, 0, 800, YetAnotherTechMod.MODID + ":star_adolescent_from_crystallization");
 		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 8000), YATMItems.STAR_ADOLESCENT.get(), new ItemStack(Items.NETHER_STAR), true, 0, 1600, YetAnotherTechMod.MODID + ":nether_star_from_crystallization");
 	} // end addNetherStarCrystallizationProgression()
+	
+	private void addSiliconOxideCrystallizations(@NotNull Consumer<FinishedRecipe> writer) 
+	{
+		this.addCrystallizationRecipe(writer, YATMFluidTags.FORGE_SILICON_OXIDE_KEY, 1000, Tags.Items.GLASS_SILICA, new ItemStack(Items.GLASS, 2), true, 36, 300, YetAnotherTechMod.MODID + ":glass_from_silicon_oxide_crystallization");
+		this.addCrystallizationRecipe(writer, YATMFluidTags.FORGE_SILICON_OXIDE_KEY, 250, Tags.Items.GEMS_AMETHYST, new ItemStack(Items.AMETHYST_SHARD, 2), true, 36, 300, YetAnotherTechMod.MODID + ":amethyst_shards_from_silicon_oxide_crystallization");
+		this.addCrystallizationRecipe(writer, YATMFluidTags.FORGE_SILICON_OXIDE_KEY, 250, Tags.Items.GEMS_QUARTZ, new ItemStack(Items.QUARTZ, 2), true, 36, 300, YetAnotherTechMod.MODID + ":quartz_from_silicon_oxide_crystallization");
+	} // end addSiliconOxideCrystallizations()
 	
 	
 	
@@ -350,10 +363,38 @@ public class YATMRecipeProvider extends RecipeProvider
 	private void addMeltingRecipes(@NotNull Consumer<FinishedRecipe> writer) 
 	{
 		this.addMeltingRecipe(writer, new ItemStackIngredient(new ItemStack(Items.ICE)), new FluidStack(Fluids.WATER, 1000), 273, 360, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Items.ICE).build()), YetAnotherTechMod.MODID + ":water_from_ice_melting");
-		// TODO, add silicon oxide as liquid, for growing out amethyst and nether quart
-		// TODO, maybe silicon for making advanced solar panels as well
+		this.addSiliconOxideMeltings(writer);
 				
 	} // end addMeltingRecipes()
+	
+	private void addSiliconOxideMeltings(@NotNull Consumer<FinishedRecipe> writer) 
+	{
+		this.addMeltingRecipe(writer, new ItemTagIngredient(Tags.Items.STORAGE_BLOCKS_AMETHYST), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 1000), 1989, 360, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Tags.Items.STORAGE_BLOCKS_AMETHYST).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_amethyst_storage_melting");
+		this.addMeltingRecipe(writer, new ItemStackIngredient(new ItemStack(Items.BUDDING_AMETHYST, 1)), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 1000), 1989, 360, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Items.BUDDING_AMETHYST).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_budding_amethyst_melting");
+		this.addMeltingRecipe(writer, new ItemStackIngredient(new ItemStack(Items.AMETHYST_CLUSTER, 1)), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 3000), 1989, 720, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Items.AMETHYST_CLUSTER).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_amethyst_cluster_melting");
+		this.addMeltingRecipe(writer, new ItemStackIngredient(new ItemStack(Items.LARGE_AMETHYST_BUD, 1)), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 1000), 1989, 240, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Items.LARGE_AMETHYST_BUD).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_large_amethyst_bud_melting");
+		this.addMeltingRecipe(writer, new ItemStackIngredient(new ItemStack(Items.MEDIUM_AMETHYST_BUD, 1)), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 500), 1989, 200, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Items.MEDIUM_AMETHYST_BUD).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_medium_amethyst_bud_melting");
+		this.addMeltingRecipe(writer, new ItemStackIngredient(new ItemStack(Items.SMALL_AMETHYST_BUD, 1)), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 250), 1989, 160, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Items.SMALL_AMETHYST_BUD).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_small_ameythyst_bud_melting");
+		this.addMeltingRecipe(writer, new ItemTagIngredient(Tags.Items.GEMS_AMETHYST), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 250), 1989, 160, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Tags.Items.GEMS_AMETHYST).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_amethyst_gem_melting");
+		
+		this.addMeltingRecipe(writer, new ItemTagIngredient(Tags.Items.GLASS_SILICA), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 1000), 1989, 360, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Tags.Items.GLASS_SILICA).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_glass_melting");
+		this.addMeltingRecipe(writer, new ItemTagIngredient(Tags.Items.GLASS_PANES), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 375), 1989, 135, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Tags.Items.GLASS_PANES).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_glass_pane_melting");
+		this.addMeltingRecipe(writer, new ItemStackIngredient(new ItemStack(Items.GLASS_BOTTLE, 1)), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 1000), 1989, 400, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Items.GLASS_BOTTLE).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_glass_bottle_melting");
+		this.addMeltingRecipe(writer, new ItemStackIngredient(new ItemStack(Items.TINTED_GLASS, 1)), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 1000), 1989, 360, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Items.TINTED_GLASS).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_tinted_glass_melting");
+		
+		this.addMeltingRecipe(writer, new ItemTagIngredient(Tags.Items.SAND), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 1000), 1989, 330, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Tags.Items.SAND).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_sand_melting");
+		this.addMeltingRecipe(writer, new ItemTagIngredient(Tags.Items.SANDSTONE), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 4000), 1989, 1440, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Tags.Items.SANDSTONE).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_sandstone_melting");
+		this.addMeltingRecipe(writer, new ItemTagIngredient(YATMItemTags.FORGE_SLABS_SANDSTONE), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 2000), 1989, 720, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(YATMItemTags.FORGE_SLABS_SANDSTONE).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_sandstone_slab_melting");
+		this.addMeltingRecipe(writer, new ItemTagIngredient(YATMItemTags.FORGE_STAIRS_SANDSTONE), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 3000), 1989, 1080, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(YATMItemTags.FORGE_STAIRS_SANDSTONE).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_sandstone_stairs_melting");
+		this.addMeltingRecipe(writer, new ItemTagIngredient(YATMItemTags.FORGE_WALLS_SANDSTONE), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 4000), 1989, 1440, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(YATMItemTags.FORGE_WALLS_SANDSTONE).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_sandstone_wall_melting");
+		
+		this.addMeltingRecipe(writer, new ItemTagIngredient(Tags.Items.STORAGE_BLOCKS_QUARTZ), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 1000), 1989, 360, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Tags.Items.STORAGE_BLOCKS_QUARTZ).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_quartz_storage_melting");
+		this.addMeltingRecipe(writer, new ItemTagIngredient(YATMItemTags.FORGE_SLABS_QUARTZ), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 750), 1989, 360, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(YATMItemTags.FORGE_SLABS_QUARTZ).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_quartz_slab_melting");
+		this.addMeltingRecipe(writer, new ItemTagIngredient(YATMItemTags.FORGE_STAIRS_QUARTZ), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 750), 1989, 360, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(YATMItemTags.FORGE_STAIRS_QUARTZ).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_quartz_stair_melting");
+		this.addMeltingRecipe(writer, new ItemTagIngredient(Tags.Items.GEMS_QUARTZ), new FluidStack(YATMFluids.SILICON_OXIDE.get(), 250), 1989, 160, RecipeProvider.inventoryTrigger(ItemPredicate.Builder.item().of(Tags.Items.GEMS_QUARTZ).build()), YetAnotherTechMod.MODID + ":silicon_oxide_from_quartz_gem_melting");
+		
+		
+	} // end addSiliconOxideMeltings()
 	
 	
 	

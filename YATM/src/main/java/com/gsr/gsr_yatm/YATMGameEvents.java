@@ -308,7 +308,7 @@ public class YATMGameEvents
 		LevelAccessor la = event.getLevel();
 		BlockPos position = event.getPos();
 		int cactusBelow;
-		for (cactusBelow = 1; la.getBlockState(position.below(cactusBelow)).is(YATMBlockTags.FORGE_CACTUS_KEY) && cactusBelow <= cactusMaxHeight; ++cactusBelow);
+		for (cactusBelow = 1; la.getBlockState(position.below(cactusBelow)).is(YATMBlockTags.FORGE_CACTUSES_KEY) && cactusBelow <= cactusMaxHeight; ++cactusBelow);
 		
 		// TODO, this check is meant to match the vanilla one, how less than three below limits the total height to three is escaping me though.
 		if(!(cactusBelow < cactusMaxHeight)) 

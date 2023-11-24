@@ -6,7 +6,7 @@
       "item": "gsr_yatm:foliar_steel"
     },
     "g": {
-      "tag": "forge:storage_blocks/gold"
+      "tag": "forge:ingots/gold"
     }
   },
   "pattern": [

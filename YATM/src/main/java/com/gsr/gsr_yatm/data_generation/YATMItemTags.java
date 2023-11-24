@@ -16,6 +16,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.tags.ITag;
@@ -35,10 +36,15 @@ public class YATMItemTags extends ItemTagsProvider
 	public static final TagKey<Item> FORGE_NETHERITE_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "nuggets/netherite"));
 	public static final TagKey<Item> FORGE_ROOTED_DIRT_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "rooted_dirt"));
 	public static final TagKey<Item> FORGE_RUBBER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "ingots/rubber"));
-	public static final TagKey<Item> FORGE_STORAGE_BLOCKS_RUBBER_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "storage_blocks/rubber"));
+	public static final TagKey<Item> FORGE_SLABS_QUARTZ = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "slabs/quartz"));
+	public static final TagKey<Item> FORGE_SLABS_SANDSTONE = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "slabs/sandstone"));
+	public static final TagKey<Item> FORGE_STAIRS_QUARTZ = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "stairs/quartz"));
+	public static final TagKey<Item> FORGE_STAIRS_SANDSTONE = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "stairs/sandstone"));
 	public static final TagKey<Item> FORGE_STORAGE_BLOCKS_FOLIAR_STEEL_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "storage_blocks/foliar_steel"));
+	public static final TagKey<Item> FORGE_STORAGE_BLOCKS_RUBBER_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "storage_blocks/rubber"));
+	public static final TagKey<Item> FORGE_WALLS_SANDSTONE = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "walls/sandstone"));
 	
-	//	public static final TagKey<Item> FORGE_SILVER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/silver"));
+//	public static final TagKey<Item> FORGE_SILVER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/silver"));
 //	public static final TagKey<Item> FORGE_SILVER_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "nuggets/silver"));
 //	public static final TagKey<Item> FORGE_STEEL_INGOTS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "ingots/steel"));
 
@@ -103,12 +109,21 @@ public class YATMItemTags extends ItemTagsProvider
 		
 		
 		
-		this.copy(YATMBlockTags.FORGE_ROOTED_DIRT_KEY, YATMItemTags.FORGE_ROOTED_DIRT_KEY);
-		this.copy(YATMBlockTags.FORGE_STORAGE_BLOCKS_RUBBER_KEY, YATMItemTags.FORGE_STORAGE_BLOCKS_RUBBER_KEY);
-		this.copy(YATMBlockTags.FORGE_STORAGE_BLOCKS_FOLIAR_STEEL_KEY, YATMItemTags.FORGE_STORAGE_BLOCKS_FOLIAR_STEEL_KEY);
-		this.tag(YATMItemTags.FORGE_RUBBER_INGOTS_KEY).add(YATMItems.RUBBER_BAR.get());
 		this.tag(YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY).add(YATMItems.NETHERITE_NUGGET.get());
-		
+		this.copy(YATMBlockTags.FORGE_ROOTED_DIRT_KEY, YATMItemTags.FORGE_ROOTED_DIRT_KEY);
+		this.tag(YATMItemTags.FORGE_RUBBER_INGOTS_KEY).add(YATMItems.RUBBER_BAR.get());
+		this.copy(YATMBlockTags.FORGE_SLABS_QUARTZ, YATMItemTags.FORGE_SLABS_QUARTZ);
+		this.copy(YATMBlockTags.FORGE_SLABS_SANDSTONE, YATMItemTags.FORGE_SLABS_SANDSTONE);
+		this.copy(YATMBlockTags.FORGE_STAIRS_QUARTZ, YATMItemTags.FORGE_STAIRS_QUARTZ);
+		this.copy(YATMBlockTags.FORGE_STAIRS_SANDSTONE, YATMItemTags.FORGE_STAIRS_SANDSTONE);
+		this.copy(YATMBlockTags.FORGE_STORAGE_BLOCKS_FOLIAR_STEEL_KEY, YATMItemTags.FORGE_STORAGE_BLOCKS_FOLIAR_STEEL_KEY);
+		this.copy(YATMBlockTags.FORGE_STORAGE_BLOCKS_RUBBER_KEY, YATMItemTags.FORGE_STORAGE_BLOCKS_RUBBER_KEY);
+		this.copy(YATMBlockTags.FORGE_WALLS_SANDSTONE, YATMItemTags.FORGE_WALLS_SANDSTONE);
+		this.tag(Tags.Items.ARMORS_HELMETS).add(YATMItems.DECAY_NETHERITE_HELMET.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_HELMET.get());
+		this.tag(Tags.Items.ARMORS_CHESTPLATES).add(YATMItems.DECAY_NETHERITE_CHESTPLATE.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_CHESTPLATE.get());
+		this.tag(Tags.Items.ARMORS_LEGGINGS).add(YATMItems.DECAY_NETHERITE_LEGGINGS.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_LEGGINGS.get());
+		this.tag(Tags.Items.ARMORS_BOOTS).add(YATMItems.DECAY_NETHERITE_BOOTS.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_BOOTS.get());
+		this.copy(Tags.Blocks.STORAGE_BLOCKS_QUARTZ, Tags.Items.STORAGE_BLOCKS_QUARTZ);
 		
 		
 		this.tag(YATMItemTags.DECAY_NETHERITE_ARMOR_PIECES_KEY).add(YATMItems.DECAY_NETHERITE_HELMET.get()).add(YATMItems.DECAY_NETHERITE_CHESTPLATE.get()).add(YATMItems.DECAY_NETHERITE_LEGGINGS.get()).add(YATMItems.DECAY_NETHERITE_BOOTS.get());
