@@ -352,6 +352,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.ESSENCE_OF_DECAY_BUCKET.get(), "Essence Of Decay Bucket");
 		this.add(YATMItems.ESSENCE_OF_SOULS_BUCKET.get(), "Essence Of Souls Bucket");		
 		this.add(YATMItems.LATEX_BUCKET.get(), "Latex Bucket");
+		this.add(YATMItems.SILICON_OXIDE_BUCKET.get(), "Silicon Oxide Bucket");
 		this.add(YATMItems.SOUL_SAP_BUCKET.get(), "Soul Sap Bucket");
 		this.add(YATMItems.SOUL_SYRUP_BUCKET.get(), "Soul Syrup Bucket");
 		
@@ -447,6 +448,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMFluids.ESSENCE_OF_DECAY.get(), "Essence Of Decay");
 		this.add(YATMFluids.ESSENCE_OF_SOULS.get(), "Essence Of Souls");
 		this.add(YATMFluids.LATEX.get(), "Latex");
+		this.add(YATMFluids.SILICON_OXIDE.get(), "Silicon Oxide");
 		this.add(YATMFluids.SOUL_SAP.get(), "Soul Sap");
 		this.add(YATMFluids.SOUL_SYRUP.get(), "Soul Syrup");
 		

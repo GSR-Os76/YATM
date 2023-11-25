@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-20T20:57:36.8226131	Item Models: gsr_yatm
+// 1.20.1	2023-11-24T17:15:13.0885995	Item Models: gsr_yatm
 c2ea606d991a81e423cce1d89391873c41111adb assets/gsr_yatm/models/item/adamum_meristem.json
 39dc65663f22bc3413323e63119c165dc4f51c76 assets/gsr_yatm/models/item/aurum_deminutus_fiddle_head.json
 3bea91f080b24cdb89ab4bfe42012e1d2717cd84 assets/gsr_yatm/models/item/basin_of_tears_seed.json
@@ -85,6 +85,7 @@ ab152784180f56534434c0872a37bf784dbd9c10 assets/gsr_yatm/models/item/rubber_hang
 d1beab1cd64b26473c025ad3919aabcfab96bf3e assets/gsr_yatm/models/item/ruberum_corm.json
 a997fb9bedbed4e90ebc34f5c00dd7fd5a82646f assets/gsr_yatm/models/item/samaragdum_nodule.json
 04cbe77a5d5c6767e44563cf23654dff80a577ca assets/gsr_yatm/models/item/shulkwart_spores.json
+41376d489c0678368292cadc71ab16161d8a3eeb assets/gsr_yatm/models/item/silicon_oxide_bucket.json
 e43a2ba4bb83cceb66680e29dd824fe75e96b3d9 assets/gsr_yatm/models/item/soul_adorned_netherite_boots.json
 b9918ca0343b8f0eb7784d50a5c3902aad4bd90c assets/gsr_yatm/models/item/soul_adorned_netherite_chestplate.json
 0804d1161b1d3b2c466fc2cc757c58888e654648 assets/gsr_yatm/models/item/soul_adorned_netherite_helmet.json

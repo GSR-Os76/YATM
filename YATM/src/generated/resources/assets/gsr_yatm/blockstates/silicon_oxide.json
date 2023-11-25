@@ -1,0 +1,52 @@
+{
+  "variants": {
+    "level=0": {
+      "model": "gsr_yatm:block/silicon_oxide"
+    },
+    "level=1": {
+      "model": "gsr_yatm:block/silicon_oxide"
+    },
+    "level=10": {
+      "model": "gsr_yatm:block/silicon_oxide"
+    },
+    "level=11": {
+      "model": "gsr_yatm:block/silicon_oxide"
+    },
+    "level=12": {
+      "model": "gsr_yatm:block/silicon_oxide"
+    },
+    "level=13": {
+      "model": "gsr_yatm:block/silicon_oxide"
+    },
+    "level=14": {
+      "model": "gsr_yatm:block/silicon_oxide"
+    },
+    "level=15": {
+      "model": "gsr_yatm:block/silicon_oxide"
+    },
+    "level=2": {
+      "model": "gsr_yatm:block/silicon_oxide"
+    },
+    "level=3": {
+      "model": "gsr_yatm:block/silicon_oxide"
+    },
+    "level=4": {
+      "model": "gsr_yatm:block/silicon_oxide"
+    },
+    "level=5": {
+      "model": "gsr_yatm:block/silicon_oxide"
+    },
+    "level=6": {
+      "model": "gsr_yatm:block/silicon_oxide"
+    },
+    "level=7": {
+      "model": "gsr_yatm:block/silicon_oxide"
+    },
+    "level=8": {
+      "model": "gsr_yatm:block/silicon_oxide"
+    },
+    "level=9": {
+      "model": "gsr_yatm:block/silicon_oxide"
+    }
+  }
+}

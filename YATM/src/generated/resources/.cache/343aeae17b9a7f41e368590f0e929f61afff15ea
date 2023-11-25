@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-21T13:19:16.155385	Block States: gsr_yatm
+// 1.20.1	2023-11-24T17:15:13.0920869	Block States: gsr_yatm
 11aad184ca6aaadbd7319a44c5a1985f7c029a1c assets/gsr_yatm/blockstates/adamum.json
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 a2a385d05e4f86cda9dd2c5a246077dac4e32579 assets/gsr_yatm/blockstates/advanced_solar_panel.json
@@ -129,6 +129,7 @@ ea39ca5596cd846f77911ee356b9bdc6cb428f14 assets/gsr_yatm/blockstates/sap_collect
 6dc41c59b517b2ccb23ad2a784c4dc6344dd9f61 assets/gsr_yatm/blockstates/sap_collector_latex.json
 fac3c4cc89cf4da7c6b17c8834e34fc53bc5c8c4 assets/gsr_yatm/blockstates/sap_collector_soul_sap.json
 3aef5293e2dffa5ff12ed1997df32b503840c88a assets/gsr_yatm/blockstates/shulkwart.json
+0d4502eb88836a19fc628c6a61bddab52f49c1a9 assets/gsr_yatm/blockstates/silicon_oxide.json
 13a65e33c551131e5f9dc7fa2daf79073bfd7649 assets/gsr_yatm/blockstates/soul_afflicted_fancy_rubber_planks.json
 de379072d623394b43e2b6ea3f5c62bc3566256f assets/gsr_yatm/blockstates/soul_afflicted_fancy_rubber_planks_tiled.json
 dee50fb6edfb53f1429a096845b58812683ab1da assets/gsr_yatm/blockstates/soul_afflicted_leaf_mulch.json
@@ -430,6 +431,7 @@ ef6622b3ee7902380cd1ea20ad5475245e283c9c assets/gsr_yatm/models/block/shulkwart_
 4997eb0020e7a8cea004978db3bfbcde7546853a assets/gsr_yatm/models/block/shulkwart_fruit_three.json
 8d987ee20bbab1b8c575bb43ae64f94c59c73945 assets/gsr_yatm/models/block/shulkwart_fruit_two.json
 ebf860d73f0c1fedf036fd4c7bf9fd6300d5b23d assets/gsr_yatm/models/block/shulkwart_grown.json
+ba4fae536f1e3c778600eaf6120d110cd8b9b4ea assets/gsr_yatm/models/block/silicon_oxide.json
 4f42c13b124320bb9f25b83cb4544583820f34f7 assets/gsr_yatm/models/block/soul_afflicted_fancy_rubber_planks.json
 65c793ce7a029a85d0ebb892a0b455dbe16c0dd9 assets/gsr_yatm/models/block/soul_afflicted_fancy_rubber_planks_tiled.json
 8b868ddb53a5f87c2db7229b1d2a237682c85e6b assets/gsr_yatm/models/block/soul_afflicted_leaf_mulch.json

@@ -120,6 +120,7 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.ESSENCE_OF_DECAY_BUCKET.get());
 		this.basicItem(YATMItems.ESSENCE_OF_SOULS_BUCKET.get());
 		this.basicItem(YATMItems.LATEX_BUCKET.get());
+		this.basicItem(YATMItems.SILICON_OXIDE_BUCKET.get());
 		this.basicItem(YATMItems.SOUL_SAP_BUCKET.get());
 		this.basicItem(YATMItems.SOUL_SYRUP_BUCKET.get());
 		

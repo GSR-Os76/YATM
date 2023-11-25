@@ -767,6 +767,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createFluidBlock(YATMBlocks.ESSENCE_OF_DECAY_LIQUID_BLOCK.get());
 		this.createFluidBlock(YATMBlocks.ESSENCE_OF_SOULS_LIQUID_BLOCK.get());
 		this.createFluidBlock(YATMBlocks.LATEX_LIQUID_BLOCK.get());
+		this.createFluidBlock(YATMBlocks.SILICON_OXIDE_LIQUID_BLOCK.get());
 		this.createFluidBlock(YATMBlocks.SOUL_SAP_LIQUID_BLOCK.get());
 		this.createFluidBlock(YATMBlocks.SOUL_SYRUP_LIQUID_BLOCK.get());
 	} // end addFluidBlocks()
