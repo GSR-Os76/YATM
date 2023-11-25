@@ -1,5 +1,9 @@
 package com.gsr.gsr_yatm.fluid;
 
+import java.util.Optional;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMFluidTypes;
 import com.gsr.gsr_yatm.registry.YATMFluids;
@@ -7,6 +11,8 @@ import com.gsr.gsr_yatm.registry.YATMItems;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
@@ -109,7 +115,11 @@ public abstract class ChorusFluid extends FlowingFluid implements IBottleableFlu
 		return 1000f;
 	} // end getExplosionResistance()
 	
-	
+	@Override
+	public @NotNull Optional<SoundEvent> getPickupSound()
+	{
+		return Optional.of(SoundEvents.BUCKET_FILL);
+	} // end getPickupSound()
 
 
 	// IMPLEMENTATIONS \\

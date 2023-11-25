@@ -1,5 +1,9 @@
 package com.gsr.gsr_yatm.fluid;
 
+import java.util.Optional;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMFluidTypes;
 import com.gsr.gsr_yatm.registry.YATMFluids;
@@ -7,6 +11,8 @@ import com.gsr.gsr_yatm.registry.YATMItems;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
@@ -136,7 +142,7 @@ public abstract class LatexFluid extends FlowingFluid implements IBottleableFlui
 		{
 			return;
 		}
-		// TODO, temperature should be the one factoring in height and such things, that method is private though and deprecated, hmmmmm
+		// TODO, temperature should be the one factoring in height and such things, that method is private though and deprecated
 		int temperatureScaledEvaporationSpeed = (int)(10f * (1f / level.getBiome(blockPos).get().getBaseTemperature()));
 		if(randomSource.nextInt(temperatureScaledEvaporationSpeed) == 1)
 		{
@@ -144,7 +150,11 @@ public abstract class LatexFluid extends FlowingFluid implements IBottleableFlui
 		}
 	} // end randomTick()
 
-
+	@Override
+	public @NotNull Optional<SoundEvent> getPickupSound()
+	{
+		return Optional.of(SoundEvents.BUCKET_FILL);
+	} // end getPickupSound()
 
 
 

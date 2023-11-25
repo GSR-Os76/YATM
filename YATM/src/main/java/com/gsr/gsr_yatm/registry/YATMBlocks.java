@@ -395,7 +395,7 @@ public class YATMBlocks
 	public static final RegistryObject<LiquidBlock> ESSENCE_OF_DECAY_LIQUID_BLOCK = BLOCKS.register("essence_of_decay", () -> new LiquidBlock(YATMFluids.ESSENCE_OF_DECAY, YATMBlockProperties.liquid(MapColor.COLOR_BLACK)));
 	public static final RegistryObject<LiquidBlock> ESSENCE_OF_SOULS_LIQUID_BLOCK = BLOCKS.register("essence_of_souls", () -> new LiquidBlock(YATMFluids.ESSENCE_OF_SOULS, YATMBlockProperties.liquid(MapColor.COLOR_LIGHT_BLUE)));
 	public static final RegistryObject<LiquidBlock> LATEX_LIQUID_BLOCK = BLOCKS.register("latex", () -> new LiquidBlock(YATMFluids.LATEX, YATMBlockProperties.liquid(MapColor.TERRACOTTA_WHITE)));
-	public static final RegistryObject<LiquidBlock> SILICON_OXIDE_LIQUID_BLOCK = BLOCKS.register("silicon_oxide", () -> new LiquidBlock(YATMFluids.SILICON_OXIDE, YATMBlockProperties.liquid(MapColor.COLOR_ORANGE)));
+	public static final RegistryObject<LiquidBlock> SILICON_OXIDE_LIQUID_BLOCK = BLOCKS.register("silicon_oxide", () -> new LiquidBlock(YATMFluids.SILICON_OXIDE, YATMBlockProperties.liquid(MapColor.COLOR_ORANGE).lightLevel((bs) -> 12)));
 	public static final RegistryObject<LiquidBlock> SOUL_SAP_LIQUID_BLOCK = BLOCKS.register("soul_sap", () -> new LiquidBlock(YATMFluids.SOUL_SAP, YATMBlockProperties.liquid(MapColor.COLOR_CYAN)));
 	public static final RegistryObject<LiquidBlock> SOUL_SYRUP_LIQUID_BLOCK = BLOCKS.register("soul_syrup", () -> new LiquidBlock(YATMFluids.SOUL_SYRUP, YATMBlockProperties.liquid(MapColor.COLOR_CYAN)));
 

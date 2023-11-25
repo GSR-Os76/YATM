@@ -10,10 +10,10 @@ import net.minecraftforge.fluids.FluidType;
 
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
 
-public class SilconOxideFluidType extends FluidType
+public class SiliconOxideFluidType extends FluidType
 {
 
-	public SilconOxideFluidType(@NotNull Properties properties)
+	public SiliconOxideFluidType(@NotNull Properties properties)
 	{
 		super(Objects.requireNonNull(properties));
 	} // end constructor

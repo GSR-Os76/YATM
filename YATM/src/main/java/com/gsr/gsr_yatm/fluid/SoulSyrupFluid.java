@@ -1,5 +1,9 @@
 package com.gsr.gsr_yatm.fluid;
 
+import java.util.Optional;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMFluidTypes;
 import com.gsr.gsr_yatm.registry.YATMFluids;
@@ -8,6 +12,7 @@ import com.gsr.gsr_yatm.registry.YATMItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
@@ -139,7 +144,11 @@ public abstract class SoulSyrupFluid extends FlowingFluid implements IBottleable
 		}
 	} // end animateTick()
 
-
+	@Override
+	public @NotNull Optional<SoundEvent> getPickupSound()
+	{
+		return Optional.of(SoundEvents.BUCKET_FILL);
+	} // end getPickupSound()
 
 
 

@@ -1,5 +1,7 @@
 package com.gsr.gsr_yatm.fluid;
 
+import java.util.Optional;
+
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.registry.YATMBlocks;
@@ -9,21 +11,26 @@ import com.gsr.gsr_yatm.registry.YATMItems;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.LiquidBlock;
+import net.minecraft.world.level.block.LiquidBlockContainer;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
-import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
+import net.minecraft.world.level.material.LavaFluid;
 import net.minecraftforge.fluids.FluidType;
 
-public abstract class SiliconOxideFluid extends FlowingFluid
+public abstract class SiliconOxideFluid extends LavaFluid
 {
 	
 	@Override
@@ -39,7 +46,7 @@ public abstract class SiliconOxideFluid extends FlowingFluid
 	} // end getFlowing()
 
 	@Override
-	protected BlockState createLegacyBlock(@NotNull FluidState state)
+	public BlockState createLegacyBlock(@NotNull FluidState state)
 	{
 		return YATMBlocks.SILICON_OXIDE_LIQUID_BLOCK.get().defaultBlockState().setValue(LiquidBlock.LEVEL, Integer.valueOf(getLegacyLevel(state)));
 	} // end createLegacyBlock()
@@ -63,8 +70,6 @@ public abstract class SiliconOxideFluid extends FlowingFluid
 	} // end isSame()
 
 	
-	// TODO, add the burning of surroundings and such
-	
 	
 	@Override
 	protected boolean canConvertToSource(@NotNull Level level)
@@ -78,25 +83,17 @@ public abstract class SiliconOxideFluid extends FlowingFluid
 		
 	} // end beforeDestroyingBlock()
 
-	Fluids l;
-	
 	@Override
-	protected int getSlopeFindDistance(@NotNull LevelReader level)
+	public int getSlopeFindDistance(@NotNull LevelReader level)
 	{
 		return level.dimensionType().ultraWarm() ? 4 : 2;
 	} // end getSlopeFindDistance()
 
 	@Override
-	protected int getDropOff(@NotNull LevelReader level)
+	public int getDropOff(@NotNull LevelReader level)
 	{
 		return level.dimensionType().ultraWarm() ? 1 : 2;
 	} // end getDropOff()
-
-	@Override
-	protected boolean canBeReplacedWith(FluidState fluidState, BlockGetter level, BlockPos position, Fluid fluid, Direction direction)
-	{
-		return false;
-	} // end canBeReplacedWith()
 
 	@Override
 	public int getTickDelay(@NotNull LevelReader level)
@@ -104,14 +101,58 @@ public abstract class SiliconOxideFluid extends FlowingFluid
 		return level.dimensionType().ultraWarm() ? 20 : 60;
 	} // end getTickDelay()
 
-	@Override
-	protected float getExplosionResistance()
-	{
-		return 100f;
-	} // end getExplosionResistance()
+//	@Override
+//	protected float getExplosionResistance()
+//	{
+//		return 100f;
+//	} // end getExplosionResistance()
 	
+	@Override
+	public boolean canBeReplacedWith(FluidState fluidState, BlockGetter level, BlockPos position, Fluid fluid, Direction direction)
+	{
+		return false;
+	} // end canBeReplacedWith()
+
 	
 
+	@Override
+	public @NotNull Optional<SoundEvent> getPickupSound()
+	{
+		return Optional.of(SoundEvents.BUCKET_FILL_LAVA);
+	} // end getPickupSound()
+
+	@Override
+	public @NotNull ParticleOptions getDripParticle()
+	{
+		return null;
+	} // end getDripParticle()
+
+	@Override
+	protected void spreadTo(LevelAccessor level, BlockPos position, BlockState state, Direction p_76008_, FluidState fluidState)
+	{
+		if (state.getBlock() instanceof LiquidBlockContainer lbc)
+		{
+			lbc.placeLiquid(level, position, state, fluidState);
+		}
+		else
+		{
+			if (!state.isAir())
+			{
+				this.beforeDestroyingBlock(level, position, state);
+			}
+
+			level.setBlock(position, fluidState.createLegacyBlock(), Block.UPDATE_ALL);
+		}
+	} // end spreadTo() 
+
+	@Override
+	public void animateTick(Level level, BlockPos positon, FluidState fluidState, RandomSource random)
+	{
+		
+	} // end animateTick()
+	
+	
+	
 
 	// IMPLEMENTATIONS \\
 	public static class Flowing extends SiliconOxideFluid
