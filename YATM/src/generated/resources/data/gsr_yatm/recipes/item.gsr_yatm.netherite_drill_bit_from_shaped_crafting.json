@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "i": {
+      "item": "minecraft:netherite_ingot"
+    },
+    "n": {
+      "item": "gsr_yatm:netherite_nugget"
+    }
+  },
+  "pattern": [
+    "  n",
+    " n ",
+    "i  "
+  ],
+  "result": {
+    "item": "gsr_yatm:netherite_drill_bit"
+  },
+  "show_notification": true
+}

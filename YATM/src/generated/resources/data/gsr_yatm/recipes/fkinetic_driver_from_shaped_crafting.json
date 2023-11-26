@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": {
+      "item": "gsr_yatm:foliar_steel"
+    },
+    "p": {
+      "tag": "forge:pistons"
+    },
+    "r": {
+      "tag": "forge:dusts/redstone"
+    },
+    "v": {
+      "item": "gsr_yatm:conduit_vines"
+    }
+  },
+  "pattern": [
+    " v ",
+    "fpf",
+    " r "
+  ],
+  "result": {
+    "item": "gsr_yatm:kinetic_driver"
+  },
+  "show_notification": true
+}

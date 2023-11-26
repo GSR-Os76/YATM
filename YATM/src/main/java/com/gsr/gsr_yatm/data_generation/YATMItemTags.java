@@ -15,6 +15,7 @@ import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.item.Item;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
@@ -34,6 +35,7 @@ public class YATMItemTags extends ItemTagsProvider
 	
 //	public static final TagKey<Item> FORGE_COPPER_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "nuggets/copper"));
 	public static final TagKey<Item> FORGE_NETHERITE_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "nuggets/netherite"));
+	public static final TagKey<Item> FORGE_PISTONS_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "pistons"));
 	public static final TagKey<Item> FORGE_ROOTED_DIRT_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "rooted_dirt"));
 	public static final TagKey<Item> FORGE_RUBBER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "ingots/rubber"));
 	public static final TagKey<Item> FORGE_SLABS_QUARTZ = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "slabs/quartz"));
@@ -110,6 +112,7 @@ public class YATMItemTags extends ItemTagsProvider
 		
 		
 		this.tag(YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY).add(YATMItems.NETHERITE_NUGGET.get());
+		this.tag(YATMItemTags.FORGE_PISTONS_KEY).add(Items.PISTON).add(Items.STICKY_PISTON);
 		this.copy(YATMBlockTags.FORGE_ROOTED_DIRT_KEY, YATMItemTags.FORGE_ROOTED_DIRT_KEY);
 		this.tag(YATMItemTags.FORGE_RUBBER_INGOTS_KEY).add(YATMItems.RUBBER_BAR.get());
 		this.copy(YATMBlockTags.FORGE_SLABS_QUARTZ, YATMItemTags.FORGE_SLABS_QUARTZ);

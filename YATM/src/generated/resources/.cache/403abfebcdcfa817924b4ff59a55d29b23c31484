@@ -1,10 +1,11 @@
-// 1.20.1	2023-11-23T12:22:02.2686065	Tags for minecraft:item mod id gsr_yatm
+// 1.20.1	2023-11-25T23:11:06.89233	Tags for minecraft:item mod id gsr_yatm
 13a02f74fd8873c5f04a1528f897487ccadbeba4 data/forge/tags/items/armors/boots.json
 2b93f7f877d30d4f9b3cdc9475c1c55228c0094f data/forge/tags/items/armors/chestplates.json
 cb6c64d7d389b9aebc433bd86e469e5dbf5a6582 data/forge/tags/items/armors/helmets.json
 fad522adc79ea27a306068490b6e5a890f780914 data/forge/tags/items/armors/leggings.json
 bade3c9b0ab674f2efd3dc51c76e3652a9021029 data/forge/tags/items/ingots/rubber.json
 18795a8c0bcbdd7d7450b4a7ba2b97df86e0d87a data/forge/tags/items/nuggets/netherite.json
+4f9bdf86ef56df2d6abcc811dda7e2bed52b0289 data/forge/tags/items/pistons.json
 22817fc3a29127b1c1278ea16d671d7c02dbdeb9 data/forge/tags/items/rooted_dirt.json
 bad73721637de97a32c61f4a2b344b34cf83351f data/forge/tags/items/slabs/quartz.json
 5266c583f2e368fc13db76cb803f3a8190f1c0d1 data/forge/tags/items/slabs/sandstone.json

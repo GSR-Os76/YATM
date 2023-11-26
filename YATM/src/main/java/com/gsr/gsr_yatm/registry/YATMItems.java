@@ -17,6 +17,7 @@ import com.gsr.gsr_yatm.item.ShulkwartSporesBlockItem;
 import com.gsr.gsr_yatm.item.SpeedUpgradeItem;
 import com.gsr.gsr_yatm.item.YATMBoatItem;
 import com.gsr.gsr_yatm.item.component.current_heater.CurrentHeaterItem;
+import com.gsr.gsr_yatm.item.component.current_storer.CurrentStorerItem;
 import com.gsr.gsr_yatm.item.component.fluid_pass_through.FluidPassThroughBlockItem;
 import com.gsr.gsr_yatm.item.fluid.DrinkableFluidBottleItem;
 import com.gsr.gsr_yatm.item.fluid.EssenceOfSoulsBottleItem;
@@ -244,11 +245,13 @@ public class YATMItems
 	
 
 	
+	public static final RegistryObject<Item> FOLIAR_STEEL_SHRED = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("foliar_steel_shred", () -> new Item(new Item.Properties()))));
 	public static final RegistryObject<Item> FOLIAR_STEEL = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("foliar_steel", () -> new Item(new Item.Properties()))));
 	public static final RegistryObject<Item> RUBBER_BAR = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("rubber_bar", () -> new Item(new Item.Properties()))));
 	
 	public static final RegistryObject<Item> ENDOTHERMIC_TISSUE = /* generalTabEnqueue */(ITEMS.register("endothermic_tissue", () -> new Item(new Item.Properties())));
 	public static final RegistryObject<Item> RAW_EXOTHEMIC_GLAND = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("raw_exothermic_gland", () -> new Item(new Item.Properties()))));
+	public static final RegistryObject<Item> KINETIC_DRIVER = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("kinetic_driver", () -> new Item(new Item.Properties()))));
 	
 	public static final RegistryObject<Item> COTTON_BOLLS = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("cotton_bolls", () -> new Item(new Item.Properties().craftRemainder(YATMItems.COTTON_SEEDS.get())))));
 	public static final RegistryObject<Item> RAW_COTTON_FIBER = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("raw_cotton_fiber", () -> new Item(new Item.Properties()))));
@@ -331,9 +334,9 @@ public class YATMItems
 	public static final RegistryObject<CurrentHeaterItem> FLAME_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("flame_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), 2000, 16f))));
 	public static final RegistryObject<CurrentHeaterItem> TORCH_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("torch_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), 4000, 20f))));
 	
-	// public static final RegistryObject<CurrentBatteryItem> CURRENT_TUBER = generalTabEnqueue(ITEMS.register("current_tuber", () -> new CurrentBatteryItem(new Item.Properties().stacksTo(4))));
-	// public static final RegistryObject<CurrentBatteryItem> CURRENT_BATTERY = generalTabEnqueue(ITEMS.register("current_battery", () -> new CurrentBatteryItem(new Item.Properties().stacksTo(4))));
-	// public static final RegistryObject<CurrentBatteryItem> ADVANCED_CURRENT_BATTERY = generalTabEnqueue(ITEMS.register("advanced_current_battery", () -> new CurrentBatteryItem(new Item.Properties().stacksTo(4))));
+	public static final RegistryObject<CurrentStorerItem> CURRENT_TUBER = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_tuber", () -> new CurrentStorerItem(new Item.Properties().stacksTo(1)))));
+	public static final RegistryObject<CurrentStorerItem> CURRENT_BATTERY = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_battery", () -> new CurrentStorerItem(new Item.Properties().stacksTo(1)))));
+	public static final RegistryObject<CurrentStorerItem> ADVANCED_CURRENT_BATTERY = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("advanced_current_battery", () -> new CurrentStorerItem(new Item.Properties().stacksTo(1)))));
 	
 	public static final RegistryObject<SpeedUpgradeItem> SPEED_UPGRADE = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("speed_upgrade", () -> new SpeedUpgradeItem(new Item.Properties().stacksTo(4), 1f, BonusType.ADDITIVE))));
 	public static final RegistryObject<EfficiencyUpgradeItem> EFFICIENCY_UPGRADE = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("efficiency_upgrade", () -> new EfficiencyUpgradeItem(new Item.Properties().stacksTo(4), 1f, BonusType.ADDITIVE))));

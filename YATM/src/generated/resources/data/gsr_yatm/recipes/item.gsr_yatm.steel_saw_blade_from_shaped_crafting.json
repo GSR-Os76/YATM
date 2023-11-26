@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "equipment",
+  "key": {
+    "i": {
+      "item": "gsr_yatm:foliar_steel"
+    },
+    "n": {
+      "item": "gsr_yatm:foliar_steel_shred"
+    }
+  },
+  "pattern": [
+    " nn",
+    "nin",
+    "in "
+  ],
+  "result": {
+    "item": "gsr_yatm:steel_saw_blade"
+  },
+  "show_notification": true
+}

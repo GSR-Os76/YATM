@@ -1,0 +1,20 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "g": {
+      "item": "gsr_yatm:ember_gland"
+    },
+    "v": {
+      "item": "gsr_yatm:conduit_vines"
+    }
+  },
+  "pattern": [
+    "gg",
+    "vv"
+  ],
+  "result": {
+    "item": "gsr_yatm:flame_gland"
+  },
+  "show_notification": true
+}

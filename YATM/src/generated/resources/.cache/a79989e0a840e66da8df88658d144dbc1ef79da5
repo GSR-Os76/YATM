@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-24T17:15:13.0885995	Item Models: gsr_yatm
+// 1.20.1	2023-11-25T23:11:06.8861056	Item Models: gsr_yatm
 c2ea606d991a81e423cce1d89391873c41111adb assets/gsr_yatm/models/item/adamum_meristem.json
 39dc65663f22bc3413323e63119c165dc4f51c76 assets/gsr_yatm/models/item/aurum_deminutus_fiddle_head.json
 3bea91f080b24cdb89ab4bfe42012e1d2717cd84 assets/gsr_yatm/models/item/basin_of_tears_seed.json
@@ -50,6 +50,7 @@ d7d95a23a1602ab2f8388942b90f9a14082f2469 assets/gsr_yatm/models/item/essence_of_
 dbd0a5777277fc587b4d8ec2d1feb1ec2766af1f assets/gsr_yatm/models/item/fire_eater_lily_unlit_decorative.json
 3e679a51cdd47edcde900fa4d4b66e115a4cc513 assets/gsr_yatm/models/item/flame_gland.json
 bd6d19cb0497c729df1f59e2634d46a4d22982ec assets/gsr_yatm/models/item/foliar_steel.json
+9cd193ad480ae717e9bbba34874901e7006e099c assets/gsr_yatm/models/item/foliar_steel_shred.json
 77feae6f71ee41645ee1f59670e7f82c73461193 assets/gsr_yatm/models/item/folium_rhizome.json
 fd0c6790b4ad4922df8113215d9927b4079c689d assets/gsr_yatm/models/item/gold_drill_bit.json
 3056bda9f50e2b31a3504fd309de81827d8b554d assets/gsr_yatm/models/item/gold_saw_blade.json
@@ -60,6 +61,7 @@ c26dd7787f24be10782a7b97d3560292ada28628 assets/gsr_yatm/models/item/green_candl
 075c5789750c6ae07faea955720f0bd2447a9089 assets/gsr_yatm/models/item/infernalum_rhizome.json
 0eb5ff109e0ce4394a34be83243945bb9a13988f assets/gsr_yatm/models/item/iron_drill_bit.json
 0833b12de9c4a2e956c10d279879459013d4af13 assets/gsr_yatm/models/item/iron_saw_blade.json
+bc342f88c6ac1c6a966e8e1051ef5fda354596e9 assets/gsr_yatm/models/item/kinetic_driver.json
 b83c20efb63100f8d72e14cb0b408c4786eb1dbe assets/gsr_yatm/models/item/lapum_meristem.json
 130079ff0bfb9fca9d683d4af51b13482817774b assets/gsr_yatm/models/item/latex_bottle.json
 0ae36a420f6db4a61dc357a25874a67a9b43081b assets/gsr_yatm/models/item/latex_bucket.json

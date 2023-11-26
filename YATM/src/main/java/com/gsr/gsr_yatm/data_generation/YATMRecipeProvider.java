@@ -1,6 +1,7 @@
 package com.gsr.gsr_yatm.data_generation;
 
 import java.util.Objects;
+import java.util.function.BiConsumer;
 import java.util.function.Consumer;
 
 import org.apache.logging.log4j.util.TriConsumer;
@@ -117,16 +118,31 @@ public class YATMRecipeProvider extends RecipeProvider
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, Items.STRING, 3).pattern("   ").pattern("www").pattern("   ").define('w', YATMItems.RAW_COTTON_FIBER.get()).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(Items.STRING).build())).save(writer, YetAnotherTechMod.MODID + ":string_from_raw_cotton_fiber_shaped_crafting");
 		
 		
-		// to become graftings
+		// TO BECOME GRAFTING \\
+		
+		// foliar steel block ingot-like nugget-like mutual interchange
+		this.addOneToNine(writer, YATMItems.FOLIAR_STEEL_BLOCK_ITEM.get(), YATMItems.FOLIAR_STEEL.get(), YetAnotherTechMod.MODID + ":foliar_steel_from_block_shapeless_crafting");
+		this.addNineToOne(writer, YATMItems.FOLIAR_STEEL.get(), YATMItems.FOLIAR_STEEL_BLOCK_ITEM.get(), YetAnotherTechMod.MODID + ":foliar_steel_block_from_bar_shapeless_crafting");
+		this.addOneToNine(writer, YATMItems.FOLIAR_STEEL.get(), YATMItems.FOLIAR_STEEL_SHRED.get(), YetAnotherTechMod.MODID + ":foliar_steel_shred_from_bar_shapeless_crafting");
+		this.addNineToOne(writer, YATMItems.FOLIAR_STEEL_SHRED.get(), YATMItems.FOLIAR_STEEL.get(), YetAnotherTechMod.MODID + ":foliar_steel_from_shred_shapeless_crafting");
+
 		// TODO, make spider vines sometimes drop eyes directly. make fruit extract to vitreus humor and leave some kind of ocular tissue, which can be grafted back together to make eyes of spiders
 		this.addOneToX(writer, YATMItems.SPIDER_VINE_FRUITS.get(), Items.SPIDER_EYE, 3, YetAnotherTechMod.MODID + ":spider_eyes_from_spider_vine_fruits_shapeless_crafting");
 
 		// add all devices
+		this.addDeviceRecipes(writer);
 		
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.STEEL_TANK_ITEM.get(), 1).pattern("fff").pattern("fgf").pattern("fff").define('f', YATMItems.FOLIAR_STEEL.get()).define('g', Tags.Items.GLASS).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.FOLIAR_STEEL.get()).build())).save(writer, YetAnotherTechMod.MODID + ":steel_tank_from_shaped_crafting");
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CHANNEL_VINES_ITEM.get(), 9).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.FOLIAR_STEEL.get()).build())).save(writer, YetAnotherTechMod.MODID + ":channel_vines_from_shaped_crafting");
 		
-		// flame gland and heat thingies
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.KINETIC_DRIVER.get(), 1).pattern(" r ").pattern("fpf").pattern(" v ").define('r', Tags.Items.DUSTS_REDSTONE).define('p', YATMItemTags.FORGE_PISTONS_KEY).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES_ITEM.get()).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItemTags.FORGE_PISTONS_KEY).build())).save(writer, YetAnotherTechMod.MODID + ":kinetic_driver_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.KINETIC_DRIVER.get(), 1).pattern(" v ").pattern("fpf").pattern(" r ").define('r', Tags.Items.DUSTS_REDSTONE).define('p', YATMItemTags.FORGE_PISTONS_KEY).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES_ITEM.get()).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItemTags.FORGE_PISTONS_KEY).build())).save(writer, YetAnotherTechMod.MODID + ":fkinetic_driver_from_shaped_crafting");
+		
+		// TODO, torchflower or candlelily -> raw exothermal gland
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.EMBER_GLAND.get(), 1).pattern("g ").pattern("v ").define('g', YATMItems.RAW_EXOTHEMIC_GLAND.get()).define('v', YATMItems.CONDUIT_VINES_ITEM.get()).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.RAW_EXOTHEMIC_GLAND.get()).build())).save(writer, YetAnotherTechMod.MODID + ":ember_gland_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.FLAME_GLAND.get(), 1).pattern("gg").pattern("vv").define('g', YATMItems.EMBER_GLAND.get()).define('v', YATMItems.CONDUIT_VINES_ITEM.get()).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.EMBER_GLAND.get()).build())).save(writer, YetAnotherTechMod.MODID + ":flame_gland_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.TORCH_GLAND.get(), 1).pattern("ggg").pattern("vvv").pattern("   ").define('g', YATMItems.FLAME_GLAND.get()).define('v', YATMItems.CONDUIT_VINES_ITEM.get()).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.FLAME_GLAND.get()).build())).save(writer, YetAnotherTechMod.MODID + ":torch_gland_from_shaped_crafting");
+		
 		
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.SPEED_UPGRADE.get(), 1).pattern(" f ").pattern("fgf").pattern(" f ").define('f', YATMItems.FOLIAR_STEEL.get()).define('g', Tags.Items.INGOTS_GOLD).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(YATMItems.FOLIAR_STEEL.get()).build())).save(writer, YetAnotherTechMod.MODID + ":speed_upgrade_from_shaped_crafting");
 		// energy upgrade similar to speed, but with something current related maybe perhaps
@@ -138,10 +154,6 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	private void addStorageBlockNuggetLikeRecipes(@NotNull Consumer<FinishedRecipe> writer) 
 	{
-		// foliar steel block ingot-like mutual interchange
-		this.addOneToNine(writer, YATMItems.FOLIAR_STEEL_BLOCK_ITEM.get(), YATMItems.FOLIAR_STEEL.get(), YetAnotherTechMod.MODID + ":foliar_steel_from_block_shapeless_crafting");
-		this.addNineToOne(writer, YATMItems.FOLIAR_STEEL.get(), YATMItems.FOLIAR_STEEL_BLOCK_ITEM.get(), YetAnotherTechMod.MODID + ":foliar_steel_block_from_bar_shapeless_crafting");
-
 		// netherite ingot nugget mutual interchange
 		this.addNineToOne(writer, YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY, Items.NETHERITE_INGOT, YetAnotherTechMod.MODID + ":netherite_ingot_from_shapeless_crafting");
 		this.addOneToNine(writer, Tags.Items.INGOTS_NETHERITE, YATMItems.NETHERITE_NUGGET.get(), YetAnotherTechMod.MODID + ":netherite_nuggets_from_shapeless_crafting");
@@ -248,10 +260,32 @@ public class YATMRecipeProvider extends RecipeProvider
 //		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.DIAMOND_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_DIAMOND.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_diamond_from_part_exchange");
 		this.addPartExchange(writer, YATMItemTags.SAWS_KEY, new ItemStack(YATMItems.NETHERITE_SAW_BLADE.get()), new ItemStack(YATMItems.STEEL_SAW_NETHERITE.get()), "saw_blade_adjustment", YetAnotherTechMod.MODID + ":steel_saw_netherite_from_part_exchange");
 		
-		// TODO, make the blades and bits
-		// TODO, make the actual tool parts
 		
+		TriConsumer<Item, Item, Item> addDrillBit = (part, ingot, nugget) -> ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, part, 1).pattern("  n").pattern(" n ").pattern("i  ").define('i', ingot).define('n', nugget).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(part).build())).save(writer, YetAnotherTechMod.MODID + ":" + part.getDescriptionId() + "_from_shaped_crafting");
+		TriConsumer<Item, Item, Item> addSawBlade = (part, ingot, nugget) -> ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, part, 1).pattern(" nn").pattern("nin").pattern("in ").define('i', ingot).define('n', nugget).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(part).build())).save(writer, YetAnotherTechMod.MODID + ":" + part.getDescriptionId() + "_from_shaped_crafting");
+		
+		addDrillBit.accept(YATMItems.STEEL_DRILL_BIT.get(), YATMItems.FOLIAR_STEEL.get(), YATMItems.FOLIAR_STEEL_SHRED.get());
+		addDrillBit.accept(YATMItems.NETHERITE_DRILL_BIT.get(), Items.NETHERITE_INGOT, YATMItems.NETHERITE_NUGGET.get());
+		
+		addSawBlade.accept(YATMItems.STEEL_SAW_BLADE.get(), YATMItems.FOLIAR_STEEL.get(), YATMItems.FOLIAR_STEEL_SHRED.get());
+		addSawBlade.accept(YATMItems.NETHERITE_SAW_BLADE.get(), Items.NETHERITE_INGOT, YATMItems.NETHERITE_NUGGET.get());
+		
+		BiConsumer<Item, Item> addTool = (tool, part) -> ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, tool, 1).pattern(" lb").pattern("fdf").pattern("cf ").define('l', Items.LEVER) // TODO, eventually probably replace with a current switch
+		.define('b', part).define('c', YATMItems.CURRENT_BATTERY.get()) // TODO, make copy current over to final device
+		.define('d', YATMItems.KINETIC_DRIVER.get()).define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(part).build())).save(writer, YetAnotherTechMod.MODID + ":" + tool.getDescriptionId() + "_from_shaped_crafting");
+		
+		addTool.accept(YATMItems.STEEL_DRILL_STEEL.get(), YATMItems.STEEL_DRILL_BIT.get());
+		addTool.accept(YATMItems.STEEL_DRILL_NETHERITE.get(), YATMItems.NETHERITE_DRILL_BIT.get());
+		
+		addTool.accept(YATMItems.STEEL_SAW_STEEL.get(), YATMItems.STEEL_SAW_BLADE.get());
+		addTool.accept(YATMItems.STEEL_SAW_NETHERITE.get(), YATMItems.NETHERITE_SAW_BLADE.get());
 	} // end addPoweredToolRecipes()
+	
+	private void addDeviceRecipes(@NotNull Consumer<FinishedRecipe> writer) 
+	{
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.STEEL_BOILER_ITEM.get(), 1).pattern("fff").pattern("g g").pattern("fbf").define('g', Tags.Items.GLASS).define('b', Items.BLAST_FURNACE).define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", inventoryTrigger(ItemPredicate.Builder.item().of(Items.BLAST_FURNACE).build())).save(writer, YetAnotherTechMod.MODID + ":steel_boiler_from_shaped_crafting");
+		
+	} // end addDeviceRecipes()
 	
 	
 	

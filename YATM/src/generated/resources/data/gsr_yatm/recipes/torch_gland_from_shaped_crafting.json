@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "g": {
+      "item": "gsr_yatm:flame_gland"
+    },
+    "v": {
+      "item": "gsr_yatm:conduit_vines"
+    }
+  },
+  "pattern": [
+    "ggg",
+    "vvv",
+    "   "
+  ],
+  "result": {
+    "item": "gsr_yatm:torch_gland"
+  },
+  "show_notification": true
+}

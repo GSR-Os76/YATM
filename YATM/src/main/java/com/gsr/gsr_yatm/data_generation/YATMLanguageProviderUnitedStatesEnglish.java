@@ -287,18 +287,6 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.RUBBER_CHEST_BOAT_ITEM.get(), "Rubber Chest Boat");
 		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_BOAT_ITEM.get(), "Soul Afflicted Rubber Boat");
 		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT_ITEM.get(), "Soul Afflicted Rubber Chest Boat");
-		
-//		this.add(YATMItems.ADAMUM_MERISTEM.get(), "Adamum Meristem");
-//		this.add(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get(), "Aurum Fiddle Head");
-//		this.add(YATMItems.CARBUM_MERISTEM.get(), "Carbum Meristem");	
-//		this.add(YATMItems.CUPRUM_BULB.get(), "Cuprum Bulb");	
-//		this.add(YATMItems.FERRUM_ROOTSTOCK.get(), "Ferrum Rootstock");	
-//		this.add(YATMItems.FOLIUM_RHIZOME.get(), "Folium Rhizome");
-//		this.add(YATMItems.INFERNALUM_RHIZOME.get(), "Infernalum Rhizome");
-//		this.add(YATMItems.LAPUM_MERISTEM.get(), "Lapum Meristem");		
-//		this.add(YATMItems.RUBERUM_CORM.get(), "Ruberum Corm");
-//		this.add(YATMItems.SAMARAGDUM_NODULE.get(), "Samaragdum Nodule");		
-//		this.add(YATMItems.VICUM_MERISTEM.get(), "Vicum Meristem");
 					
 		this.add(YATMItems.BASIN_OF_TEARS_SEED.get(), "Crying Plant Seeds");
 		this.add(YATMItems.DILUTED_TEAR_BOTTLE.get(), "Diluted Tear Bottle");		
@@ -310,8 +298,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.RAW_COTTON_FIBER.get(), "Raw Cotton Fiber");
 		
 		this.add(YATMItems.FIRE_EATER_LILY_BULB.get(), "Fire Eater Lily Bulb");
-		// this.add(YATMItems.FIRE_EATER_LILY_FOLIAGE.get(), "Fire Eater Lily Foliage");
-
+		
 		this.add(YATMItems.ICE_CORAL_POLYP.get(), "Ice Coral Polyp");
 
 		this.add(YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get(), "Prismarine Crystal Moss Spores");
@@ -369,6 +356,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 				
 			
 		this.add(YATMItems.FOLIAR_STEEL.get(), "Foliar Steel");
+		this.add(YATMItems.FOLIAR_STEEL_SHRED.get(), "Foliar Steel Nugget");
 		this.add(YATMItems.RUBBER_BAR.get(), "Rubber Bar");
 
 		this.add(YATMItems.WOOD_PULP.get(), "Wood Pulp");
@@ -379,6 +367,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.STAR_GERMLING.get(), "Start Germling");
 		this.add(YATMItems.STAR_SPROUT.get(), "Star Sprout");
 		this.add(YATMItems.STAR_ADOLESCENT.get(), "Star Adolescent");
+		
+		this.add(YATMItems.KINETIC_DRIVER.get(), "Kinetic Driver");
 		
 		this.add(YATMItems.EFFICIENCY_UPGRADE.get(), "Efficiency Upgrade (+100%)");
 		this.add(YATMItems.SPEED_UPGRADE.get(), "Speed Upgrade (+100%)");
