@@ -35,12 +35,12 @@ public class SlotUtil
 	/** returns a capability of the given type which does as little as's possible*/
 	public static <T> LazyOptional<T> createSterileCapability(@NotNull Capability<T> capType) 
 	{
-		return SlotUtil.STERILE_CAP_PROVIDERS.get(capType).get().cast();
+		return SlotUtil.isSterileCapProviderRegistered(capType) ? SlotUtil.STERILE_CAP_PROVIDERS.get(capType).get().cast() : LazyOptional.empty();
 	} // end createSterileCapability()
 	
 	public static <T> void registerSterileCapProvider(@NotNull Capability<T> capType, @NotNull Supplier<LazyOptional<?>> provider) 
 	{
-		if(SlotUtil.isSterileCapProviderRegister(capType)) 
+		if(SlotUtil.isSterileCapProviderRegistered(capType)) 
 		{
 			throw new UnsupportedOperationException("A provider of the type: " + capType + ", has already been register here.");
 		}
@@ -60,7 +60,7 @@ public class SlotUtil
 		SlotUtil.STERILE_CAP_PROVIDERS.put(capType, provider);
 	} // end registerSterileCapProvider()
 	
-	public static boolean isSterileCapProviderRegister(@NotNull Capability<?> capType) 
+	public static boolean isSterileCapProviderRegistered(@NotNull Capability<?> capType) 
 	{
 		return SlotUtil.STERILE_CAP_PROVIDERS.containsKey(Objects.requireNonNull(capType));
 	} // end isSterileCapProviderRegister()
@@ -266,7 +266,7 @@ public class SlotUtil
 		{
 			return 0;
 		}
-		return  Math.max(minDrainTankTo(stackInSlot, toDrain), drainClosestToFavoringLow(stackInSlot, toDrain, favoredTransferSize));
+		return Math.max(SlotUtil.minDrainTankTo(stackInSlot, toDrain), SlotUtil.drainClosestToFavoringLow(stackInSlot, toDrain, favoredTransferSize));
 	} // end queueToDrainToSlot()
 	
 	public static int countDownOrDrainToSlot(Level level, BlockPos position, IItemHandler inventory, int slot, IFluidHandler toDrain, int tank, int transferSize, int countDownTime, int maxRateOfTransfer) 
@@ -276,8 +276,8 @@ public class SlotUtil
 		{
 			if (SlotUtil.canDrainTankto(inventory.getStackInSlot(slot), toDrain, transferSize))
 			{
-					ItemStack remainder = SlotUtil.drainTankTo(inventory.extractItem(slot, inventory.getSlotLimit(slot), false), toDrain, transferSize);
-					InventoryUtil.insertItemOrDrop(level, position, inventory, slot, remainder);
+				ItemStack remainder = SlotUtil.drainTankTo(inventory.extractItem(slot, inventory.getSlotLimit(slot), false), toDrain, transferSize);
+				InventoryUtil.insertItemOrDrop(level, position, inventory, slot, remainder);
 			}
 		}		
 		return countDownTime;

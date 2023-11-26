@@ -50,7 +50,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 public class YATMRecipeProvider extends RecipeProvider
 {
-
+	// TODO, investigate melting and spinning recipes unknown category log messages.
 	public YATMRecipeProvider(@NotNull PackOutput output)
 	{
 		super(Objects.requireNonNull(output));

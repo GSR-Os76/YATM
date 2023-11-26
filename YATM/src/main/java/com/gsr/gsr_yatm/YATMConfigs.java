@@ -77,8 +77,9 @@ public class YATMConfigs
 	public static final IntValue VICUM_GROWTH_RARITY = YATMConfigs.s_builder.comment("The average number of random ticks for which the plant increases in age one time.").defineInRange("growth_rarity", 36, 0, Integer.MAX_VALUE);
 	
 	
-
-	public static final IntValue CRUCIBLE_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.pop().pop().push("Devices: ").push("Crucible: ").comment("The most fluid that can be moved per tick.").defineInRange("max_fluid_transfer_rate", 16, 0, Integer.MAX_VALUE);
+	
+	public static final IntValue CRUCIBLE_DRAIN_RECHECK_PERIOD  = YATMConfigs.s_builder.pop().pop().push("Devices: ").push("Crucible: ").comment("The period in ticks of the device trying to reattach a slotted result tank draining component to relavent neighbors.").defineInRange("drain_recheck_period", 40, 0, Integer.MAX_VALUE);
+	public static final IntValue CRUCIBLE_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("max_fluid_transfer_rate", 16, 0, Integer.MAX_VALUE);
 	public static final IntValue CRUCIBLE_MAX_TEMPERATURE = YATMConfigs.s_builder.comment("The highest possible temperature for the device.").defineInRange("max_temperature", 4000, 0, Integer.MAX_VALUE);
 	public static final IntValue CRUCIBLE_RESULT_TANK_CAPACITY = YATMConfigs.s_builder.comment("The result tank's fluid capacity.").defineInRange("result_tank_capacity", 4000, 0, Integer.MAX_VALUE);
 	

@@ -166,13 +166,13 @@ public class YATMModEvents
 		event.enqueueWork(() -> YATMBlocks.addSapCollectorVariants());
 		// TODO, add for all types supported by default or situation if appropriate
 		event.enqueueWork(() -> {
-			if(!SlotUtil.isSterileCapProviderRegister(ForgeCapabilities.FLUID_HANDLER)) 
+			if(!SlotUtil.isSterileCapProviderRegistered(ForgeCapabilities.FLUID_HANDLER)) 
 			{
 				SlotUtil.registerSterileCapProvider(ForgeCapabilities.FLUID_HANDLER, () -> LazyOptional.of(() -> new FluidTank(0)));
 			}
 		});
 		event.enqueueWork(() -> {
-			if(!SlotUtil.isSterileCapProviderRegister(YATMCapabilities.CURRENT)) 
+			if(!SlotUtil.isSterileCapProviderRegistered(YATMCapabilities.CURRENT)) 
 			{
 				SlotUtil.registerSterileCapProvider(YATMCapabilities.CURRENT, () -> LazyOptional.of(() -> new CurrentHandler(0)));
 			}

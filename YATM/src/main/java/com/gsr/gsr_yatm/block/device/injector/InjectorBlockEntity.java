@@ -180,7 +180,7 @@ public class InjectorBlockEntity extends TestCraftingDeviceBlockEntity<Injecting
 				? false 
 				: 
 					this.m_activeRecipe != null 
-					&& this.m_currentTransferedThisTick < this.m_activeRecipe.getCurrentPerTick() 
+					&& true//this.m_currentTransferedThisTick < this.m_activeRecipe.getCurrentPerTick() 
 					? false 
 					: this.doCrafting();
 		changed |= this.doDrainInputTank();

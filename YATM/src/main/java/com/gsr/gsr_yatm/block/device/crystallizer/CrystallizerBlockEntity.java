@@ -184,7 +184,8 @@ public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<Crystalli
 		changed |= this.doFillInputTank();
 		changed |= this.m_waitingForLoad 
 				? false 
-				: this.m_activeRecipe != null && this.m_currentTransferedThisTick < this.m_activeRecipe.getCurrentPerTick() 
+				: this.m_activeRecipe != null 
+				&& true//this.m_currentTransferedThisTick < this.m_activeRecipe.getCurrentPerTick() 
 					? false 
 					: this.doCrafting();
 		changed |= this.doDrainInputTank();

@@ -122,9 +122,9 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 		this.m_craftCountDown = 0;		
 	} // end clearCurrentRecipe()
 	
-	protected abstract void setRecipeResults(@NotNull T from);
 	protected abstract boolean canUseRecipe(@NotNull T from);
-	protected abstract void startRecipe(@NotNull T from);
+	protected void setRecipeResults(@NotNull T from) {}
+	protected void startRecipe(@NotNull T from) {}
 
 	protected void onRecipeLoad() 
 	{

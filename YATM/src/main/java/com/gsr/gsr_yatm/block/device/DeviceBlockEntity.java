@@ -3,9 +3,11 @@ package com.gsr.gsr_yatm.block.device;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
 import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -18,6 +20,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
+import oshi.util.tuples.Pair;
 
 // TODO, subclass BasicBlockEntity probably, also probably rename that class
 public abstract class DeviceBlockEntity extends BlockEntity 
@@ -26,6 +29,11 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	public static final String INVENTORY_TAG_NAME = "inventory";
 	public static final String CURRENT_HANDLER_TAG_NAME = "current";
 	
+	private static final float AMBIENT_COOLING_FACTOR = .013f;	
+	private static final int MINIMUM_CHANGE_PER_AMBIENT_COOLING = 6;	
+	
+	
+	
 	protected final ItemStackHandler m_rawInventory;
 	protected final InventoryWrapper m_uncheckedInventory;
 	protected final InventoryWrapper m_inventory;
@@ -33,7 +41,6 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	protected CurrentHandler m_internalCurrentStorer;	
 	
 	protected int m_maxSafeCurrentTransfer;
-	protected int m_currentTransferedThisTick = 0;
 	
 	
 	
@@ -72,12 +79,7 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	
 	protected void onCurrentExchanged(int amount) 
 	{
-		this.m_currentTransferedThisTick += amount;
 		this.setChanged();
-		if(this.m_currentTransferedThisTick > this.m_maxSafeCurrentTransfer) 
-		{
-			// TODO, detonate. or rather call a method that can be overriden that by default will detonates this
-		}
 	} // end onCurrentExchanged()
 	
 	protected void onFluidContentsChanged(FluidStack stack) 
@@ -105,7 +107,7 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	
 	public void serverTick(Level level, BlockPos position, BlockState state)
 	{
-		this.m_currentTransferedThisTick = 0;
+
 	} // end serverTick()
 	
 	
@@ -159,4 +161,11 @@ public abstract class DeviceBlockEntity extends BlockEntity
 		}
 	} // end load()
 	
+	
+	
+	
+	public static @NotNull Pair<Integer, Integer> deviceHeatEquation(@NotNegative int self, @NotNegative int other)
+	{
+		return IHeatHandler.levelTemperatures(self, self <= other ? other : Math.max(other, self - Math.max(DeviceBlockEntity.MINIMUM_CHANGE_PER_AMBIENT_COOLING, ((int)((self - other) * DeviceBlockEntity.AMBIENT_COOLING_FACTOR)))));
+	} // end deviceHeatEquation()
 } // end class

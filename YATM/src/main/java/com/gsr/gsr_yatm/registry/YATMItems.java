@@ -310,8 +310,6 @@ public class YATMItems
 	
 	
 	
-	// TODO, placed soul fluids should be corruptible too
-	// liquid latex that burns you if you're in the sun light
 	public static final RegistryObject<BucketItem> BIO_BUCKET = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("bio_bucket", () -> new BucketItem(YATMFluids.BIO, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1)))));
 	public static final RegistryObject<BucketItem> CHORUS_BUCKET = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("chorus_bucket", () -> new BucketItem(YATMFluids.CHORUS, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1)))));
 	public static final RegistryObject<BucketItem> CHORUS_BIO_BUCKET = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("chorus_bio_bucket", () -> new BucketItem(YATMFluids.CHORUS_BIO, (new Item.Properties()).craftRemainder(Items.BUCKET).stacksTo(1)))));
@@ -339,7 +337,8 @@ public class YATMItems
 	
 	public static final RegistryObject<SpeedUpgradeItem> SPEED_UPGRADE = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("speed_upgrade", () -> new SpeedUpgradeItem(new Item.Properties().stacksTo(4), 1f, BonusType.ADDITIVE))));
 	public static final RegistryObject<EfficiencyUpgradeItem> EFFICIENCY_UPGRADE = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("efficiency_upgrade", () -> new EfficiencyUpgradeItem(new Item.Properties().stacksTo(4), 1f, BonusType.ADDITIVE))));
-	
+	// TODO, tank capacity upgrade
+	// TODO, current capacity upgrade
 	
 	public static final RegistryObject<DrillItem> STEEL_DRILL_WOOD = /* generalTabEnqueue */(ITEMS.register("steel_drill_wood", () -> new DrillItem(Tiers.WOOD, new Item.Properties().craftRemainder(YATMItems.WOODEN_DRILL_BIT.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 8, 8)));
 	public static final RegistryObject<DrillItem> STEEL_DRILL_STONE = /* generalTabEnqueue */(ITEMS.register("steel_drill_stone", () -> new DrillItem(Tiers.STONE, new Item.Properties().craftRemainder(YATMItems.STONE_DRILL_BIT.get()).durability(PoweredToolItemStack.BASE_CURRENT_CAPACITY).setNoRepair(), 1, 8, 8)));

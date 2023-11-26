@@ -31,6 +31,8 @@ public class YATMFluids
 	// TODO, add drip particles
 	// TODO, add fog sort of effect while submerged.
 	// TODO, add effects when entities inside
+	// liquid latex that burns you if you're in the sun light
+	// TODO, placed soul fluids should be corruptible too	
 	public static final RegistryObject<BioFluid.Source> BIO = FLUIDS.register("bio", () -> new BioFluid.Source());
 	public static final RegistryObject<BioFluid.Flowing> BIO_FLOWING = FLUIDS.register("bio_flowing", () -> new BioFluid.Flowing());
 
