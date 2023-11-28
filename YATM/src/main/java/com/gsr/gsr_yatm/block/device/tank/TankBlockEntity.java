@@ -5,11 +5,9 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
-import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
 import net.minecraft.core.BlockPos;
@@ -34,17 +32,18 @@ import net.minecraftforge.fluids.capability.templates.FluidTank;
 
 public class TankBlockEntity extends BlockEntity 
 {	
-	private static final String MAX_FLUID_TRANSFER_RATE_TAG_NAME = "maxFluidTransferRate";
-	private static final String SETUP_TAG_NAME = "setup";
 	private static final String TANK_TAG_NAME = "tank";
-	private static final String TANK_CAPACITY_TAG_NAME = "tankCapacity";
 	
-	private static final int DRAIN_RECHECK_PERIOD = 40;	
+	private static final int DRAIN_RECHECK_PERIOD = YATMConfigs.TANK_DRAIN_RECHECK_PERIOD.get();	
 	private @NotNegative int m_drainRecheckCounter = 0;
 	
-	private @NotNegative int m_maxFluidTransferRate;
-	private @NotNull FluidTank m_rawTank;
-	private @NotNull TankWrapper m_tank;	
+	private final @NotNegative int m_maxFluidTransferRate = YATMConfigs.TANK_MAX_FLUID_TRANSFER_RATE.get();
+	private final @NotNull FluidTank m_rawTank = new FluidTank(YATMConfigs.TANK_CAPACITY.get());
+	private final @NotNull TankWrapper m_tank = TankWrapper.Builder.of(this.m_rawTank).onContentsChanged((f) -> 
+			{
+				this.setChanged();
+				this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), Block.UPDATE_CLIENTS);
+			}).maxTransfer(this.m_maxFluidTransferRate).build();	
 	private @NotNull LazyOptional<IFluidHandler> m_tankLazyOptional = LazyOptional.of(() -> TankBlockEntity.this.m_tank);
 	
 	private LazyOptional<IFluidHandler> m_attachedCap;
@@ -54,62 +53,14 @@ public class TankBlockEntity extends BlockEntity
 	
 	public TankBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		this(Objects.requireNonNull(position), Objects.requireNonNull(state), DeviceTierConstants.EMPTY);
-	} // end constuctor
-	
-	public TankBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState, @NotNull DeviceTierConstants constants)
-	{
-		super(YATMBlockEntityTypes.TANK.get(), Objects.requireNonNull(blockPos), Objects.requireNonNull(blockState));
-		this.setup(constants.maxFluidTransferRate(), constants.tankCapacity());
+		super(YATMBlockEntityTypes.TANK.get(), Objects.requireNonNull(position), Objects.requireNonNull(state));
 	} // end constructor
-	
-	protected @NotNull CompoundTag setupToNBT()
-	{
-		CompoundTag tag = new CompoundTag();
-		tag.putInt(TankBlockEntity.MAX_FLUID_TRANSFER_RATE_TAG_NAME, this.m_maxFluidTransferRate);
-		tag.putInt(TankBlockEntity.TANK_CAPACITY_TAG_NAME, this.m_rawTank.getCapacity());
-		return tag;
-	} // end setupToNBT()
-
-	protected void setupFromNBT(@NotNull CompoundTag tag)
-	{
-		int tankCapacity = 0;
-		int maxFluidTransferRate = 0;
-		
-		if (tag.contains(TankBlockEntity.MAX_FLUID_TRANSFER_RATE_TAG_NAME))
-		{
-			maxFluidTransferRate = tag.getInt(TankBlockEntity.MAX_FLUID_TRANSFER_RATE_TAG_NAME);
-		}
-		if (tag.contains(TankBlockEntity.TANK_CAPACITY_TAG_NAME))
-		{
-			tankCapacity = tag.getInt(TankBlockEntity.TANK_CAPACITY_TAG_NAME);
-		}
-		
-		this.setup(maxFluidTransferRate, tankCapacity);
-	} // end setupFromNBT()
-
-	private void setup(@NotNegative int maxFluidTransferRate, @NotNegative int tankCapacity)
-	{
-		this.m_maxFluidTransferRate = Contract.notNegative(maxFluidTransferRate);
-		this.m_rawTank = new FluidTank(Contract.notNegative(tankCapacity));
-		this.m_tank = TankWrapper.Builder.of(this.m_rawTank)
-				.onContentsChanged((f) -> 
-				{
-					this.setChanged();
-					this.getLevel().sendBlockUpdated(this.getBlockPos(), this.getBlockState(), this.getBlockState(), Block.UPDATE_CLIENTS);
-				})
-				.maxTransfer(this.m_maxFluidTransferRate).build();
-		
-		this.m_tankLazyOptional.invalidate();
-		this.m_tankLazyOptional = LazyOptional.of(() -> TankBlockEntity.this.m_tank);
-	} // end setup()
 	
 	
 	
 	@Override
 	public Packet<ClientGamePacketListener> getUpdatePacket()
 	{
-		YetAnotherTechMod.LOGGER.info("getting a packet");
 		return ClientboundBlockEntityDataPacket.create(this);		
 	} // end getUpdatePacket()
 	
@@ -124,7 +75,6 @@ public class TankBlockEntity extends BlockEntity
 	@Override
 	public void onDataPacket(Connection net, ClientboundBlockEntityDataPacket pkt)
 	{
-		YetAnotherTechMod.LOGGER.info("recieving a packet");
 		super.onDataPacket(net, pkt);
 		CompoundTag tag = pkt.getTag();
 		if(tag.contains(TankBlockEntity.TANK_TAG_NAME)) 
@@ -138,7 +88,7 @@ public class TankBlockEntity extends BlockEntity
 	public @Nullable Fluid getFluid()
 	{
 		FluidStack f = this.m_tank.getFluid();
-		return f == null ? null : f.getFluid();
+		return (f == null || f.isEmpty()) ? null : f.getFluid();
 	} // end getFluid()
 	
 	public float getPercentageFilled() 
@@ -202,7 +152,7 @@ public class TankBlockEntity extends BlockEntity
 		}
 	} // end recheckDrainAttachment()
 	
-	private void tryRemoveAttachment(LazyOptional<IFluidHandler> la) 
+	private void tryRemoveAttachment(@NotNull LazyOptional<IFluidHandler> la) 
 	{
 		if(la == this.m_attachedCap) 
 		{
@@ -218,7 +168,6 @@ public class TankBlockEntity extends BlockEntity
 	{
 		super.saveAdditional(tag);
 		
-		tag.put(TankBlockEntity.SETUP_TAG_NAME, this.setupToNBT());
 		if (this.m_rawTank.getFluidAmount() > 0)
 		{
 			tag.put(TankBlockEntity.TANK_TAG_NAME, this.m_rawTank.writeToNBT(new CompoundTag()));
@@ -230,10 +179,6 @@ public class TankBlockEntity extends BlockEntity
 	{
 		super.load(tag);
 		
-		if(tag.contains(TankBlockEntity.SETUP_TAG_NAME)) 
-		{
-			this.setupFromNBT(tag.getCompound(TankBlockEntity.SETUP_TAG_NAME));
-		}
 		if(tag.contains(TankBlockEntity.TANK_TAG_NAME)) 
 		{
 			this.m_rawTank.readFromNBT(tag.getCompound(TankBlockEntity.TANK_TAG_NAME));

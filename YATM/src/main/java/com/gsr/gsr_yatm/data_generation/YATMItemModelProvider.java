@@ -1,11 +1,18 @@
 package com.gsr.gsr_yatm.data_generation;
 
+import org.jetbrains.annotations.NotNull;
+
+import com.gsr.gsr_yatm.YATMModEvents;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.registry.YATMItems;
 
 import net.minecraft.data.PackOutput;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.Item;
 import net.minecraftforge.client.model.generators.ItemModelProvider;
+import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import net.minecraftforge.registries.ForgeRegistries;
 
 public class YATMItemModelProvider extends ItemModelProvider
 {
@@ -133,6 +140,9 @@ public class YATMItemModelProvider extends ItemModelProvider
 		
 		
 		// TODO, alphabetize the rest
+		this.addCurrentStorer(YATMItems.ADVANCED_CURRENT_BATTERY.get());
+		this.addCurrentStorer(YATMItems.CURRENT_BATTERY.get());
+		// this.addCurrentStorer(YATMItems.CURRENT_TUBER.get());
 		this.basicItem(YATMItems.EMBER_GLAND.get());
 		this.basicItem(YATMItems.FLAME_GLAND.get());
 		this.basicItem(YATMItems.FOLIAR_STEEL.get());
@@ -203,6 +213,22 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.CREATIVE_FLUID_STORER.get());
 		this.basicItem(YATMItems.CREATIVE_FLUID_SOURCE.get());
 	} // end registerModels()
+	
+	private void addCurrentStorer(@NotNull Item item) 
+	{
+		ResourceLocation bTN = ForgeRegistries.ITEMS.getKey(item);//YATMItems.ADVANCED_CURRENT_BATTERY.get());//new ResourceLocation(YetAnotherTechMod.MODID, "advanced_current_battery");
+		this.getBuilder(bTN.toString())
+		.parent(new ModelFile.UncheckedModelFile("item/generated"))
+        .texture("layer0", bTN.withPrefix("item/").withSuffix("_0"))
+        .override().predicate(YATMModEvents.CURRENT_STORED_ITEM_PROPERTY, .125f).model(this.basicItem(bTN.withSuffix("_1"))).end()
+        .override().predicate(YATMModEvents.CURRENT_STORED_ITEM_PROPERTY, .25f).model(this.basicItem(bTN.withSuffix("_2"))).end()
+        .override().predicate(YATMModEvents.CURRENT_STORED_ITEM_PROPERTY, .375f).model(this.basicItem(bTN.withSuffix("_3"))).end()
+        .override().predicate(YATMModEvents.CURRENT_STORED_ITEM_PROPERTY, .5f).model(this.basicItem(bTN.withSuffix("_4"))).end()
+        .override().predicate(YATMModEvents.CURRENT_STORED_ITEM_PROPERTY, .625f).model(this.basicItem(bTN.withSuffix("_5"))).end()
+        .override().predicate(YATMModEvents.CURRENT_STORED_ITEM_PROPERTY, .75f).model(this.basicItem(bTN.withSuffix("_6"))).end()
+        .override().predicate(YATMModEvents.CURRENT_STORED_ITEM_PROPERTY, .875f).model(this.basicItem(bTN.withSuffix("_7"))).end();
+
+	}
 	
 
 } // end class

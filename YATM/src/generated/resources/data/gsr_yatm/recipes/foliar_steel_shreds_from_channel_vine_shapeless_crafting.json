@@ -1,0 +1,13 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gsr_yatm:channel_vines"
+    }
+  ],
+  "result": {
+    "count": 3,
+    "item": "gsr_yatm:foliar_steel_shred"
+  }
+}

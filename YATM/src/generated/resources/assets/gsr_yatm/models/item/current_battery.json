@@ -1,0 +1,50 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "gsr_yatm:item/current_battery_1",
+      "predicate": {
+        "gsr_yatm:power": 0.125
+      }
+    },
+    {
+      "model": "gsr_yatm:item/current_battery_2",
+      "predicate": {
+        "gsr_yatm:power": 0.25
+      }
+    },
+    {
+      "model": "gsr_yatm:item/current_battery_3",
+      "predicate": {
+        "gsr_yatm:power": 0.375
+      }
+    },
+    {
+      "model": "gsr_yatm:item/current_battery_4",
+      "predicate": {
+        "gsr_yatm:power": 0.5
+      }
+    },
+    {
+      "model": "gsr_yatm:item/current_battery_5",
+      "predicate": {
+        "gsr_yatm:power": 0.625
+      }
+    },
+    {
+      "model": "gsr_yatm:item/current_battery_6",
+      "predicate": {
+        "gsr_yatm:power": 0.75
+      }
+    },
+    {
+      "model": "gsr_yatm:item/current_battery_7",
+      "predicate": {
+        "gsr_yatm:power": 0.875
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "gsr_yatm:item/current_battery_0"
+  }
+}

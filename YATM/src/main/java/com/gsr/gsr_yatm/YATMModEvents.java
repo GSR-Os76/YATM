@@ -1,5 +1,8 @@
 package com.gsr.gsr_yatm;
 
+import java.util.function.Function;
+
+import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.bioler.BiolerScreen;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerScreen;
@@ -62,11 +65,13 @@ import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.renderer.Sheets;
 import net.minecraft.client.renderer.blockentity.HangingSignRenderer;
 import net.minecraft.client.renderer.blockentity.SignRenderer;
+import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.vehicle.Boat;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -83,6 +88,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class YATMModEvents
 {
+	public static final ResourceLocation CURRENT_STORED_ITEM_PROPERTY = new ResourceLocation(YetAnotherTechMod.MODID, "power");
 	public static void register(IEventBus modEventBus)
 	{
 		YATMBlocks.BLOCKS.register(modEventBus);
@@ -156,6 +162,16 @@ public class YATMModEvents
 			ForgeHooksClient.registerLayerDefinition(YATMModelLayers.createYATMChestBoatModelName(type), () -> chestBoat);
 		}
 		// ForgeHooksClient.registerLayerDefinition(YATMModelLayers.DEAFULT_HANGING_POT_SUPPORT_CHAIN_MODEL_NAME, () -> defaulfHangingPotSupportChain);
+		
+		
+		
+		Function<ItemStack, Float> getStoredProportion = (is) -> {
+			ICurrentHandler c = is.getCapability(YATMCapabilities.CURRENT).orElse(null);
+			return ((float)c.stored()) / ((float)c.capacity());
+		};
+		event.enqueueWork(() -> ItemProperties.register(YATMItems.CURRENT_TUBER.get(), YATMModEvents.CURRENT_STORED_ITEM_PROPERTY, (is, l, e, id) -> getStoredProportion.apply(is)));
+		event.enqueueWork(() -> ItemProperties.register(YATMItems.CURRENT_BATTERY.get(), YATMModEvents.CURRENT_STORED_ITEM_PROPERTY, (is, l, e, id) -> getStoredProportion.apply(is)));
+		event.enqueueWork(() -> ItemProperties.register(YATMItems.ADVANCED_CURRENT_BATTERY.get(), YATMModEvents.CURRENT_STORED_ITEM_PROPERTY, (is, l, e, id) -> getStoredProportion.apply(is)));
 	} // end clientSetup()
 
 	private static void commonSetup(FMLCommonSetupEvent event)

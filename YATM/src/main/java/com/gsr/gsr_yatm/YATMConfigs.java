@@ -79,14 +79,31 @@ public class YATMConfigs
 	
 	
 	public static final IntValue CRUCIBLE_DRAIN_RECHECK_PERIOD  = YATMConfigs.s_builder.pop().pop().push("Devices: ").push("Crucible: ").comment("The period in ticks of the device trying to reattach a slotted result tank draining component to relavent neighbors.").defineInRange("drain_recheck_period", 40, 0, Integer.MAX_VALUE);
-	public static final IntValue CRUCIBLE_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("max_fluid_transfer_rate", 16, 0, Integer.MAX_VALUE);
+	public static final IntValue CRUCIBLE_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("max_fluid_transfer_rate", 200, 0, Integer.MAX_VALUE);
 	public static final IntValue CRUCIBLE_MAX_TEMPERATURE = YATMConfigs.s_builder.comment("The highest possible temperature for the device.").defineInRange("max_temperature", 4000, 0, Integer.MAX_VALUE);
 	public static final IntValue CRUCIBLE_RESULT_TANK_CAPACITY = YATMConfigs.s_builder.comment("The result tank's fluid capacity.").defineInRange("result_tank_capacity", 4000, 0, Integer.MAX_VALUE);
 	
 	public static final IntValue CURRENT_FURNACE_MAX_TEMPERATURE = YATMConfigs.s_builder.pop().push("Current Furnace: ").comment("The highest possible temperature for the device.").defineInRange("max_temperature", 4000, 0, Integer.MAX_VALUE);
 	
+	public static final IntValue TANK_CAPACITY = YATMConfigs.s_builder.pop().push("Tank: ").comment("The tank's capacity in milibuckets.").defineInRange("capacity", 16000, 0, Integer.MAX_VALUE);
+	public static final IntValue TANK_DRAIN_RECHECK_PERIOD = YATMConfigs.s_builder.comment("The period in ticks of the device trying to attach to a below neighbor's fluid handling capability.").defineInRange("drain_recheck_period", 40, 0, Integer.MAX_VALUE);
+	public static final IntValue TANK_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("max_fluid_transfer_rate", 1000, 0, Integer.MAX_VALUE);
 	
-	public static final ForgeConfigSpec SPEC = YATMConfigs.s_builder.pop().pop().build();
+	
+	
+	public static final IntValue EMBER_GLAND_HEAT = YATMConfigs.s_builder.pop().pop().push("Components: ").push("Current Heaters: ").push("Ember Gland: ").comment("The highest temperature the component can attain in kelvin.").defineInRange("heat", 1000, 0, Integer.MAX_VALUE);
+	public static final DoubleValue EMBER_GLAND_KELVIN_PER_CURRENT = YATMConfigs.s_builder.comment("The number kelvin produceable max from a single cu.").defineInRange("kelvin_per_cu", 12d, Double.MIN_VALUE, Double.MAX_VALUE);
+	public static final IntValue FLAME_GLAND_HEAT = YATMConfigs.s_builder.pop().push("Flame Gland: ").comment("The highest temperature the component can attain in kelvin.").defineInRange("heat", 2000, 0, Integer.MAX_VALUE);
+	public static final DoubleValue FLAME_GLAND_KELVIN_PER_CURRENT = YATMConfigs.s_builder.comment("The number kelvin produceable max from a single cu.").defineInRange("kelvin_per_cu", 16d, Double.MIN_VALUE, Double.MAX_VALUE);
+	public static final IntValue TORCH_GLAND_HEAT = YATMConfigs.s_builder.pop().push("Torch Gland: ").comment("The highest temperature the component can attain in kelvin.").defineInRange("heat", 4000, 0, Integer.MAX_VALUE);
+	public static final DoubleValue TORCH_GLAND_KELVIN_PER_CURRENT = YATMConfigs.s_builder.comment("The number kelvin produceable max from a single cu.").defineInRange("kelvin_per_cu", 20d, Double.MIN_VALUE, Double.MAX_VALUE);
+	
+	public static final IntValue CURRENT_TUBER = YATMConfigs.s_builder.pop().pop().push("Current Storers: ").push("Current Tuber: ").comment("The item capacity in cu.").defineInRange("capacity", 32768, 0, Integer.MAX_VALUE);
+	public static final IntValue CURRENT_BATTERY = YATMConfigs.s_builder.pop().push("Current Battery: ").comment("The item capacity in cu.").defineInRange("capacity", 98304, 0, Integer.MAX_VALUE);
+	public static final IntValue ADVANCED_CURRENT_BATTERY = YATMConfigs.s_builder.pop().push("Advanced Current Battery: ").comment("The item capacity in cu.").defineInRange("capacity", 393216, 0, Integer.MAX_VALUE);
+
+	
+	public static final ForgeConfigSpec SPEC = YATMConfigs.s_builder.pop().pop().pop().build();
 
 
 	

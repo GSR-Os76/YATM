@@ -2,6 +2,7 @@ package com.gsr.gsr_yatm.item.component.current_heater;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -21,16 +22,16 @@ import net.minecraftforge.common.util.LazyOptional;
 
 public class CurrentHeaterItem extends Item implements IComponent
 {
-	private final @NotNegative int m_maxTemperature; 
-	private final float m_kelvinPerCurrent;
+	private final @NotNull Supplier<@NotNegative Integer> m_maxTemperature; 
+	private final @NotNull Supplier<Float> m_kelvinPerCurrent;
 	
 	
 	
-	public CurrentHeaterItem(@NotNull Properties properties, @NotNegative int maxTemperature, float kelvinPerCurrent)
+	public CurrentHeaterItem(@NotNull Properties properties, @NotNull Supplier<@NotNegative Integer> maxTemperature, @NotNull Supplier<Float> kelvinPerCurrent)
 	{
 		super(Objects.requireNonNull(properties));
-		this.m_maxTemperature = Contract.notNegative(maxTemperature);
-		this.m_kelvinPerCurrent = kelvinPerCurrent;
+		this.m_maxTemperature = Objects.requireNonNull(maxTemperature);
+		this.m_kelvinPerCurrent = Objects.requireNonNull(kelvinPerCurrent);
 	} // end constructor
 	
 	
@@ -38,7 +39,7 @@ public class CurrentHeaterItem extends Item implements IComponent
 	@Override
 	public @Nullable ICapabilityProvider initCapabilities(@NotNull ItemStack stack, @Nullable CompoundTag nbt)
 	{
-		return new CurrentHeaterItemStack(this.m_maxTemperature, this.m_kelvinPerCurrent);
+		return new CurrentHeaterItemStack(Contract.notNegative(this.m_maxTemperature.get()), this.m_kelvinPerCurrent.get());
 	} // end initCapabilities()
 
 	

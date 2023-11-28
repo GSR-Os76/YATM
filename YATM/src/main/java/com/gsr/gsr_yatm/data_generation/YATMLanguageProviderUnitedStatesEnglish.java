@@ -326,10 +326,12 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMItems.RAW_EXOTHEMIC_GLAND.get(), "Raw Exothermal Gland");
 		
+		this.add(YATMItems.ADVANCED_CURRENT_BATTERY.get(), "Advanced Current Battery");
+		this.add(YATMItems.CURRENT_BATTERY.get(), "Current Battery");
+		this.add(YATMItems.CURRENT_TUBER.get(), "Current Tuber");
 		this.add(YATMItems.EMBER_GLAND.get(), "Ember Gland");
 		this.add(YATMItems.FLAME_GLAND.get(), "Flame Gland");
 		this.add(YATMItems.TORCH_GLAND.get(), "Torch Gland");
-		
 		
 		
 		this.add(YATMItems.BIO_BUCKET.get(), "Biofluid Bucket");

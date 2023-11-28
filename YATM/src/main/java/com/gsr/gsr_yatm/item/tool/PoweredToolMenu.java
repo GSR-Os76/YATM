@@ -39,7 +39,7 @@ public class PoweredToolMenu extends AbstractContainerMenu
 		super(YATMMenuTypes.POWERED_TOOL.get(), inventoryId);
 
 		this.m_data = data;
-		this.addSlot(new SlotItemHandler(objInventory, PoweredToolItemStack.POWER_SLOT, 62, 60));
+		this.addSlot(new SlotItemHandler(objInventory, PoweredToolItemStack.POWER_SLOT, 80, 21));
 		this.addSlot(new SlotItemHandler(objInventory, PoweredToolItemStack.UPGRADE_SLOT_ONE, 151, 21));
 		this.addSlot(new SlotItemHandler(objInventory, PoweredToolItemStack.UPGRADE_SLOT_TWO, 151, 40));
 		
@@ -70,7 +70,7 @@ public class PoweredToolMenu extends AbstractContainerMenu
 		{
 			ItemStack slotsStack = quickMovedSlot.getItem();
 			ItemStack slotsStackInit = slotsStack.copy();			
-			if (quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END)
+			if (quickMovedSlotIndex >= PoweredToolMenu.PLAYER_INVENTORY_START && quickMovedSlotIndex <= PoweredToolMenu.PLAYER_HOTBAR_END)
 			{		
 				boolean moved = false;
 				if(SlotUtil.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, PoweredToolItemStack.POWER_SLOT, PoweredToolItemStack.POWER_SLOT + 1, false)) 

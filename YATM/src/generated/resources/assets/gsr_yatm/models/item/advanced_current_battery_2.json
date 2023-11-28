@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "gsr_yatm:item/advanced_current_battery_2"
+  }
+}

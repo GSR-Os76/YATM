@@ -379,11 +379,12 @@ public class YATMBlocks
 	
 	// TODO, lightning strike current generation thingy
 	
-	
+	// TODO, maybe make this a plant which grow, but can be processed into a bundle self supporting more like channel vines
 	public static final RegistryObject<ConduitVineBlock> CONDUIT_VINES = BLOCKS.register("conduit_vines", () -> new ConduitVineBlock(YATMBlockProperties.CONDUIT_VINES, YATMBlockShapes.CONDUIT_VINES));
 	
-	public static final RegistryObject<TankBlock> STEEL_TANK = BLOCKS.register("steel_tank", () -> new TankBlock(YATMBlockProperties.STEEL_TANK, YATMBlockShapes.STEEL_TANK, DeviceTierConstants.STEEL_TANK));
+	public static final RegistryObject<TankBlock> STEEL_TANK = BLOCKS.register("steel_tank", () -> new TankBlock(YATMBlockProperties.STEEL_TANK, YATMBlockShapes.STEEL_TANK));
 	
+	// TODO, maybe make model more base on crosses
 	public static final RegistryObject<ChannelVineBlock> CHANNEL_VINES = BLOCKS.register("channel_vines", () -> new ChannelVineBlock(YATMBlockProperties.CHANNEL_VINES, YATMBlockShapes.CHANNEL_VINES));
 
 	// TODO, maybe add a regstone emitter, that's output stength can be dynamically configured

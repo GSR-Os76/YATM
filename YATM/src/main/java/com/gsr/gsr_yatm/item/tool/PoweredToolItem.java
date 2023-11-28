@@ -78,7 +78,7 @@ public abstract class PoweredToolItem extends DiggerItem
 	} // end getEnchantmentValue();
 
 	
-	
+
 	public boolean hurtEnemy(ItemStack stack, LivingEntity hurt, LivingEntity user)
 	{
 		if(this.hasPowerToAttack(stack, hurt)) 
@@ -163,14 +163,9 @@ public abstract class PoweredToolItem extends DiggerItem
 	
 	
 	
-//	public int getMaxPower(@NotNull ItemStack stack) 
-//	{
-//		return this.getToolProvider(stack).capacity();
-//	} // end getPower()
-	
 	public int getPower(@NotNull ItemStack stack) 
 	{
-		return this.getToolProvider(stack).getStoredCurrent();
+		return this.getToolProvider(stack).stored();
 	} // end getPower()
 	
 	public void setPower(@NotNull ItemStack stack, @NotNegative int power) 

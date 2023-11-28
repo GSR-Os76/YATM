@@ -24,22 +24,6 @@ import net.minecraftforge.registries.RegistryObject;
 
 public class YATMCreativeModeTabs
 {
-//	public static final ResourceKey<CreativeModeTab> BUILDING_BLOCKS = createKey("building_blocks");
-//	   public static final ResourceKey<CreativeModeTab> COLORED_BLOCKS = createKey("colored_blocks");
-//	   public static final ResourceKey<CreativeModeTab> NATURAL_BLOCKS = createKey("natural_blocks");
-//	   public static final ResourceKey<CreativeModeTab> FUNCTIONAL_BLOCKS = createKey("functional_blocks");
-//	   public static final ResourceKey<CreativeModeTab> REDSTONE_BLOCKS = createKey("redstone_blocks");
-//	   public static final ResourceKey<CreativeModeTab> HOTBAR = createKey("hotbar");
-//	   public static final ResourceKey<CreativeModeTab> SEARCH = createKey("search");
-//	   public static final ResourceKey<CreativeModeTab> TOOLS_AND_UTILITIES = createKey("tools_and_utilities");
-//	   public static final ResourceKey<CreativeModeTab> COMBAT = createKey("combat");
-//	   public static final ResourceKey<CreativeModeTab> FOOD_AND_DRINKS = createKey("food_and_drinks");
-//	   public static final ResourceKey<CreativeModeTab> INGREDIENTS = createKey("ingredients");
-//	   public static final ResourceKey<CreativeModeTab> SPAWN_EGGS = createKey("spawn_eggs");
-//	   public static final ResourceKey<CreativeModeTab> OP_BLOCKS = createKey("op_blocks");
-//	   public static final ResourceKey<CreativeModeTab> INVENTORY = createKey("inventory");
-//	   
-//	private static final ArrayList<Supplier<Item>> YATM_GENERAL_QUEUE = new ArrayList<>();
 	private static final HashMap<ResourceKey<CreativeModeTab>, List<Supplier<? extends Item>>> TAB_ADDITIONS_QUEUE = new HashMap<>();
 	
 	
@@ -66,11 +50,9 @@ public class YATMCreativeModeTabs
 	private static void buildCreativeModeTabContents(@NotNull BuildCreativeModeTabContentsEvent event)
 	{
 		ResourceKey<CreativeModeTab> tabKey = event.getTabKey();
-		YetAnotherTechMod.LOGGER.info("tab key to build contents: " + tabKey + ", keyContained?: " + YATMCreativeModeTabs.TAB_ADDITIONS_QUEUE.containsKey(tabKey));
 		if(YATMCreativeModeTabs.TAB_ADDITIONS_QUEUE.containsKey(tabKey)) 
 		{
 			
-			YATMCreativeModeTabs.TAB_ADDITIONS_QUEUE.get(tabKey).forEach((i) -> YetAnotherTechMod.LOGGER.info("preAdd, and item is: " + i.get()));	
 			YATMCreativeModeTabs.TAB_ADDITIONS_QUEUE.get(tabKey).forEach((i) -> event.accept(i.get()));	
 		}
 	} // end buildCreativeModeTabContents()
@@ -79,7 +61,6 @@ public class YATMCreativeModeTabs
 	
 	public static <T extends Item> RegistryObject<T> tabEnqueue(@NotNull ResourceKey<CreativeModeTab> tabKey, @NotNull RegistryObject<T> item)
 	{
-		YetAnotherTechMod.LOGGER.info("enqueuing a tab, key: " + tabKey + ", keyContained?: " + YATMCreativeModeTabs.TAB_ADDITIONS_QUEUE.containsKey(tabKey));
 		YATMCreativeModeTabs.TAB_ADDITIONS_QUEUE.computeIfAbsent(tabKey, (k) -> new ArrayList<>()).add(item);
 		
 		return item;		

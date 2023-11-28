@@ -22,10 +22,9 @@ public class ItemStackCurrentHandler implements ICurrentHandler
 	
 	
 	
-	public ItemStackCurrentHandler(@NotNegative int capacity, @NotNull ItemStack self)
+	public ItemStackCurrentHandler(@NotNull ItemStack self, @NotNegative int capacity)
 	{
-		this.m_self = Objects.requireNonNull(self);
-		
+		this.m_self = Objects.requireNonNull(self);		
 		this.m_capacity = Contract.notNegative(capacity);
 	} // end constructor()
 	

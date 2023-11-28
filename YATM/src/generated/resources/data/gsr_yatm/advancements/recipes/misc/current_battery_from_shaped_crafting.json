@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "gsr_yatm:foliar_steel"
+              "gsr_yatm:current_tuber"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gsr_yatm:channel_vines_from_shaped_crafting"
+        "recipe": "gsr_yatm:current_battery_from_shaped_crafting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "gsr_yatm:channel_vines_from_shaped_crafting"
+      "gsr_yatm:current_battery_from_shaped_crafting"
     ]
   },
   "sends_telemetry_event": false

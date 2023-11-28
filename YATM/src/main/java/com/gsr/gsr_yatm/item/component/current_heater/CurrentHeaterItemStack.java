@@ -14,14 +14,14 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 
-public class CurrentHeaterItemStack implements ICapabilityProvider,  ICurrentHandler
+public class CurrentHeaterItemStack implements ICapabilityProvider, ICurrentHandler
 {
 	private final @NotNull LazyOptional<ICurrentHandler> m_thisCap = LazyOptional.of(() -> this);
 	private final @NotNegative int m_maxTemperature; 
 	private final float m_kelvinPerCurrent;
 		
-	private LazyOptional<IHeatHandler> m_attachedCap;
-	private IHeatHandler m_attachment;
+	private @Nullable LazyOptional<IHeatHandler> m_attachedCap;
+	private @Nullable IHeatHandler m_attachment;
 
 	
 	

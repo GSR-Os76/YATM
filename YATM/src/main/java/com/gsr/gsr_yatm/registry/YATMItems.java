@@ -2,6 +2,7 @@ package com.gsr.gsr_yatm.registry;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.YATMFoods;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.armor.YATMArmorMaterials;
@@ -25,6 +26,7 @@ import com.gsr.gsr_yatm.item.fluid.EssenceOfSoulsBucketItem;
 import com.gsr.gsr_yatm.item.tool.DrillItem;
 import com.gsr.gsr_yatm.item.tool.PoweredToolItemStack;
 import com.gsr.gsr_yatm.item.tool.SawItem;
+import com.gsr.gsr_yatm.utilities.PrimitiveUtil;
 
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
@@ -330,13 +332,16 @@ public class YATMItems
 	public static final RegistryObject<YATMBoatItem> SOUL_AFFLICTED_RUBBER_BOAT_ITEM = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_afflicted_rubber_boat", () -> new YATMBoatItem(false, YATMBoatType.SOUL_AFFLICTED_RUBBER, new Item.Properties().stacksTo(1)))));
 	public static final RegistryObject<YATMBoatItem> SOUL_AFFLICTED_RUBBER_CHEST_BOAT_ITEM = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_afflicted_rubber_chest_boat", () -> new YATMBoatItem(true, YATMBoatType.SOUL_AFFLICTED_RUBBER, new Item.Properties().stacksTo(1)))));
 
-	public static final RegistryObject<CurrentHeaterItem> EMBER_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("ember_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), 1000, 12f))));
-	public static final RegistryObject<CurrentHeaterItem> FLAME_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("flame_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), 2000, 16f))));
-	public static final RegistryObject<CurrentHeaterItem> TORCH_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("torch_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), 4000, 20f))));
+	// TODO, some sort of hydraulic accumulator
+	// TODO, blocks matching against most components
+	public static final RegistryObject<CurrentHeaterItem> EMBER_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("ember_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), YATMConfigs.EMBER_GLAND_HEAT, PrimitiveUtil.toFloatSupplier(YATMConfigs.EMBER_GLAND_KELVIN_PER_CURRENT)))));
+	public static final RegistryObject<CurrentHeaterItem> FLAME_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("flame_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), YATMConfigs.FLAME_GLAND_HEAT, PrimitiveUtil.toFloatSupplier(YATMConfigs.FLAME_GLAND_KELVIN_PER_CURRENT)))));
+	public static final RegistryObject<CurrentHeaterItem> TORCH_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("torch_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), YATMConfigs.TORCH_GLAND_HEAT, PrimitiveUtil.toFloatSupplier(YATMConfigs.TORCH_GLAND_KELVIN_PER_CURRENT)))));
 	
-	public static final RegistryObject<CurrentStorerItem> CURRENT_TUBER = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_tuber", () -> new CurrentStorerItem(new Item.Properties().stacksTo(1)))));
-	public static final RegistryObject<CurrentStorerItem> CURRENT_BATTERY = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_battery", () -> new CurrentStorerItem(new Item.Properties().stacksTo(1)))));
-	public static final RegistryObject<CurrentStorerItem> ADVANCED_CURRENT_BATTERY = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("advanced_current_battery", () -> new CurrentStorerItem(new Item.Properties().stacksTo(1)))));
+	// TODO, draw
+	public static final RegistryObject<CurrentStorerItem> CURRENT_TUBER = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_tuber", () -> new CurrentStorerItem(new Item.Properties().durability(1), YATMConfigs.CURRENT_TUBER))));
+	public static final RegistryObject<CurrentStorerItem> CURRENT_BATTERY = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_battery", () -> new CurrentStorerItem(new Item.Properties().durability(1), YATMConfigs.CURRENT_BATTERY))));
+	public static final RegistryObject<CurrentStorerItem> ADVANCED_CURRENT_BATTERY = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("advanced_current_battery", () -> new CurrentStorerItem(new Item.Properties().durability(1), YATMConfigs.ADVANCED_CURRENT_BATTERY))));
 	
 	public static final RegistryObject<SpeedUpgradeItem> SPEED_UPGRADE = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("speed_upgrade", () -> new SpeedUpgradeItem(new Item.Properties().stacksTo(4), 1f, BonusType.ADDITIVE))));
 	public static final RegistryObject<EfficiencyUpgradeItem> EFFICIENCY_UPGRADE = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("efficiency_upgrade", () -> new EfficiencyUpgradeItem(new Item.Properties().stacksTo(4), 1f, BonusType.ADDITIVE))));

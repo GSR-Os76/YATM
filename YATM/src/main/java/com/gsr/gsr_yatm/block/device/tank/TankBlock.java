@@ -5,7 +5,6 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.block.ShapeBlock;
-import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
 import com.gsr.gsr_yatm.data_generation.YATMItemTags;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.utilities.UseUtilities;
@@ -30,17 +29,14 @@ import net.minecraft.world.phys.BlockHitResult;
 public class TankBlock extends ShapeBlock implements EntityBlock
 {
 	public static final BooleanProperty DRAINING = YATMBlockStateProperties.DRAINING;
-	private @NotNull DeviceTierConstants m_constants;
 
 	
 	
-	public TankBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, @NotNull DeviceTierConstants constants)
+	public TankBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
 		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape));
 		
 		this.registerDefaultState(this.defaultBlockState().setValue(TankBlock.DRAINING, false));
-		
-		this.m_constants = Objects.requireNonNull(constants);
 	} // end constructor()
 
 
@@ -79,7 +75,7 @@ public class TankBlock extends ShapeBlock implements EntityBlock
 	@Override
 	public BlockEntity newBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		return new TankBlockEntity(position, state, this.m_constants);
+		return new TankBlockEntity(position, state);
 	} // end newBlockEntity
 
 	@Override

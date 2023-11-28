@@ -25,10 +25,10 @@ public class ItemStackItemStackHandler implements IItemHandler, IItemHandlerModi
     
     public ItemStackItemStackHandler(@NotNull ItemStack self)
     {
-        this(1, Objects.requireNonNull(self));
+        this(Objects.requireNonNull(self), 1);
     } // end constructor
 
-    public ItemStackItemStackHandler(@NotNegative int size, @NotNull ItemStack self)
+    public ItemStackItemStackHandler(@NotNull ItemStack self, @NotNegative int size)
     {
         this.m_size = Contract.notNegative(size);
         this.m_self = Objects.requireNonNull(self);

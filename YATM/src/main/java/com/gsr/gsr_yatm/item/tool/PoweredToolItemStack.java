@@ -63,30 +63,31 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 			));
 	private final ContainerData m_data;
 	
-	
+	// fix component bug, afirm component drain before internal
 	
 	public PoweredToolItemStack(@NotNull ItemStack self) 
 	{
 		this.m_self = Objects.requireNonNull(self);
-		this.m_inventory = InventoryWrapper.Builder.of(new ItemStackItemStackHandler(PoweredToolItemStack.INVENTORY_SLOT_COUNT, this.m_self))
+		this.m_inventory = InventoryWrapper.Builder.of(new ItemStackItemStackHandler(this.m_self, PoweredToolItemStack.INVENTORY_SLOT_COUNT))
 				.onInsertion(PoweredToolItemStack.this::onInventoryChange)
 				.onWithdrawal(PoweredToolItemStack.this::onInventoryChange)
 				.slotValidator(PoweredToolItemStack.this::insertionValidator).build();
 		
-		this.m_builtInBattery = CurrentHandlerWrapper.Builder.of(new ItemStackCurrentHandler(PoweredToolItemStack.BASE_CURRENT_CAPACITY, this.m_self))// new CurrentHandler.Builder().capacity(PoweredToolItemStack.BASE_CURRENT_CAPACITY)
+		this.m_builtInBattery = CurrentHandlerWrapper.Builder.of(new ItemStackCurrentHandler(this.m_self, PoweredToolItemStack.BASE_CURRENT_CAPACITY))
 				.onCurrentExtracted((i) -> this.updateDamage())
 				.onCurrentRecieved((i) -> this.updateDamage()).build();
 		this.m_batteryCap = LazyOptional.of(() -> this.m_builtInBattery);
 		
 		ContainerDataBuilder cdb = new ContainerDataBuilder();
-		cdb.addPropertyS(() -> /*PoweredToolItemStack.this.stored(), (i) -> {});//*/PoweredToolItemStack.this.m_builtInBattery.stored(), (i) -> {});
-		cdb.addPropertyS(() -> /*PoweredToolItemStack.this.capacity(), (i) -> {});//*/PoweredToolItemStack.this.m_builtInBattery.capacity(), (i) -> {});
+		cdb.addPropertyS(() -> PoweredToolItemStack.this.m_builtInBattery.stored(), (i) -> {});
+		cdb.addPropertyS(() -> PoweredToolItemStack.this.m_builtInBattery.capacity(), (i) -> {});
 		this.m_data = cdb.build();
 		
 		this.updateDamage();
+		this.tryAttachCComponent();
 	} // end constructor
 	
-	
+	// itemstack might only be set on the one side, so client event never triggers the attaching
 	
 	public @NotNull IItemHandler getInventory() 
 	{
@@ -141,8 +142,8 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 			if(c.getValidCapabilities().contains(YATMCapabilities.CURRENT)) 
 			{
 				this.m_cComponentStack = stack;
-				this.m_cComponent.attachRecievingCapability(stack, YATMCapabilities.CURRENT, this.m_batteryCap);
 				this.m_cComponent = c;
+				this.m_cComponent.attachRecievingCapability(stack, YATMCapabilities.CURRENT, this.m_batteryCap);
 				this.m_cComponentCHandler = stack.getCapability(YATMCapabilities.CURRENT).orElse(null);
 			}
 		}
@@ -237,19 +238,28 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 	
 	
 	
+	// TODO, could be circular, with hidden exceptions
 	@Override
 	public int recieveCurrent(int amount, boolean simulate)
 	{
-		return this.m_cComponentCHandler != null 				
-				? this.m_cComponentCHandler.recieveCurrent(amount, simulate) 
-				: this.m_builtInBattery.recieveCurrent(amount, simulate);
+		int r = this.m_builtInBattery.recieveCurrent(amount, simulate);
+		if (this.m_cComponentCHandler != null)
+		{
+			r += this.m_cComponentCHandler.recieveCurrent(amount - r, simulate);
+		}
+		return r;
 	} // end recieveCurrent()
 
 	@Override
 	public int extractCurrent(int amount, boolean simulate)
 	{
-		return 0;
-	} // end extractCurrent()
+		int r = this.m_builtInBattery.extractCurrent(amount, simulate);
+		if (this.m_cComponentCHandler != null)
+		{
+			r += this.m_cComponentCHandler.extractCurrent(amount - r, simulate);
+		}
+		return r;
+	}
 
 	@Override
 	public int capacity()
@@ -263,21 +273,16 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 		return this.m_builtInBattery.stored() + (this.m_cComponentCHandler != null ? this.m_cComponentCHandler.stored() : 0);
 	} // end stored()
 	
-	public int getStoredCurrent() 
-	{
-		return this.m_builtInBattery.stored();
-	} // end getStoredCurrent()
-	
 	public void setStoredCurrent(int to) 
 	{
-		int d = this.m_builtInBattery.stored() - to;
+		int d = this.stored() - to;
 		if(d > 0) 
 		{
-			this.m_builtInBattery.extractCurrent(Math.abs(d), false);
+			this.extractCurrent(Math.abs(d), false);
 		}
 		else if (d < 0)
 		{
-			this.m_builtInBattery.recieveCurrent(Math.abs(d), false);
+			this.recieveCurrent(Math.abs(d), false);
 		}
 	} // end setStoredCurrent()
 

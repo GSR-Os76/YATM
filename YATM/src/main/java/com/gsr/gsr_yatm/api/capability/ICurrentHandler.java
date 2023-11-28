@@ -9,11 +9,12 @@ public interface ICurrentHandler
 {
 	// function
 	// recieve in current, actually, or see what would happen.
-	// probably returns accepted
+	// returns amount recieved
 	public int recieveCurrent(@NotNegative int amount, boolean simulate);
 	
 	// function
 	// from implementers perspective
+	// returns amount extracted
 	public int extractCurrent(@NotNegative int amount, boolean simulate);
 	
 	// info
