@@ -5,7 +5,6 @@ import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
-import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
 import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
@@ -27,7 +26,6 @@ public abstract class DeviceBlockEntity extends BlockEntity
 {	
 	public static final String SETUP_TAG_NAME = "setup";
 	public static final String INVENTORY_TAG_NAME = "inventory";
-	public static final String CURRENT_HANDLER_TAG_NAME = "current";
 	
 	private static final float AMBIENT_COOLING_FACTOR = .013f;	
 	private static final int MINIMUM_CHANGE_PER_AMBIENT_COOLING = 6;	
@@ -38,9 +36,6 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	protected final InventoryWrapper m_uncheckedInventory;
 	protected final InventoryWrapper m_inventory;
 	
-	protected CurrentHandler m_internalCurrentStorer;	
-	
-	protected int m_maxSafeCurrentTransfer;
 	
 	
 	
@@ -65,7 +60,7 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	// TODO, sub classes should explicitly declare contract too
 	public abstract @NotNull ContainerData getDataAccessor();
 	
-	protected abstract boolean itemInsertionValidator(int slot, ItemStack itemStack, boolean simulate);
+	protected abstract boolean itemInsertionValidator(@NotNegative int slot, @NotNull ItemStack itemStack, boolean simulate);
 
 	protected void onItemInsertion(int slot, ItemStack stack)
 	{
@@ -129,16 +124,14 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	protected void saveAdditional(@NotNull CompoundTag tag)
 	{
 		super.saveAdditional(tag);
+		// TODO, removing setup system
 		CompoundTag setup = this.setupToNBT();
 		if(setup != null) 
 		{
 			tag.put(DeviceBlockEntity.SETUP_TAG_NAME, setup);
 		}
 		tag.put(DeviceBlockEntity.INVENTORY_TAG_NAME, this.m_rawInventory.serializeNBT());
-		if(this.m_internalCurrentStorer != null && this.m_internalCurrentStorer.stored() > 0) 
-		{
-			tag.put(DeviceBlockEntity.CURRENT_HANDLER_TAG_NAME, this.m_internalCurrentStorer.serializeNBT());
-		}
+		
 	} // end saveAdditional()
 	
 	@Override
@@ -155,10 +148,6 @@ public abstract class DeviceBlockEntity extends BlockEntity
 			this.m_rawInventory.deserializeNBT(tag.getCompound(DeviceBlockEntity.INVENTORY_TAG_NAME));
 		}
 		
-		if(tag.contains(DeviceBlockEntity.CURRENT_HANDLER_TAG_NAME)) 
-		{
-			this.m_internalCurrentStorer.deserializeNBT(tag.getCompound(DeviceBlockEntity.CURRENT_HANDLER_TAG_NAME));
-		}
 	} // end load()
 	
 	

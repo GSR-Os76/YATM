@@ -1,5 +1,9 @@
 package com.gsr.gsr_yatm.block.device.grinder;
 
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.block.device.DeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
@@ -21,9 +25,9 @@ public class GrinderBlock extends DeviceBlock
 	
 	
 	
-	public GrinderBlock(Properties properties, ICollisionVoxelShapeProvider shape, int currentCapacity, int maxCurrent)
+	public GrinderBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, int currentCapacity, int maxCurrent)
 	{
-		super(properties, YATMBlockEntityTypes.GRINDER::get, shape);
+		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.GRINDER::get);
 		this.m_currentCapacity = currentCapacity;
 		this.m_maxCurrent = maxCurrent;
 	} // end constructor
@@ -31,23 +35,23 @@ public class GrinderBlock extends DeviceBlock
 
 	
 	@Override
-	public DeviceBlockEntity newDeviceBlockEntity(BlockPos blockPos, BlockState blockState)
+	public @NotNull DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		return new GrinderBlockEntity(blockPos, blockState, this.m_currentCapacity, this.m_maxCurrent);
+		return new GrinderBlockEntity(position, state, this.m_currentCapacity, this.m_maxCurrent);
 	} // end newDeviceBlockEntity()
 	
 	@Override
-	public MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos)
+	public @NotNull MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position)
 	{
-		GrinderBlockEntity ebe = (GrinderBlockEntity)level.getBlockEntity(blockPos);
+		GrinderBlockEntity ebe = (GrinderBlockEntity)level.getBlockEntity(position);
 		return new SimpleMenuProvider((containerId, playerInv, player) -> new GrinderMenu(
 				containerId,
 				playerInv, 
-				ContainerLevelAccess.create(level, blockPos), 
-				blockState.getBlock(), 
+				ContainerLevelAccess.create(level, position), 
+				state.getBlock(), 
 				ebe.getInventory(), 
 				ebe.getDataAccessor()),
-		YATMLanguageProvider.getTranslatableTitleNameFor(YATMMenuTypes.GRINDER.get()));
+		YATMLanguageProvider.translatableFor(YATMMenuTypes.GRINDER.get()));
 	} // end getMenuProvider()
 	
 } // end class

@@ -282,7 +282,7 @@ public class YATMBlockTags extends BlockTagsProvider
 		this.tag(YATMBlockTags.LAPUM_CAN_GROW_IN_KEY).add(Blocks.AIR);
 		this.tag(YATMBlockTags.LAPUM_CAN_GROW_ON_KEY).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER);
 		this.tag(YATMBlockTags.LEAVES_LITER_ON_KEY).addTag(BlockTags.DIRT).add(Blocks.SOUL_SAND).add(Blocks.SOUL_SOIL);
-		this.tag(YATMBlockTags.MACHINES_KEY).add(YATMBlocks.STEEL_BIOLER.get()).add(YATMBlocks.STEEL_BOILER.get()).add(YATMBlocks.STEEL_CRUCIBLE.get()).add(YATMBlocks.STEEL_CRYSTALLIZER.get()).add(YATMBlocks.STEEL_CURRENT_FURNACE.get()).add(YATMBlocks.STEEL_EXTRACTOR.get()).add(YATMBlocks.STEEL_GRINDER.get()).add(YATMBlocks.STEEL_INJECTOR.get());
+		this.tag(YATMBlockTags.MACHINES_KEY).add(YATMBlocks.STEEL_BIOREACTOR.get()).add(YATMBlocks.STEEL_BOILER.get()).add(YATMBlocks.STEEL_CRUCIBLE.get()).add(YATMBlocks.STEEL_CRYSTALLIZER.get()).add(YATMBlocks.STEEL_CURRENT_FURNACE.get()).add(YATMBlocks.STEEL_EXTRACTOR.get()).add(YATMBlocks.STEEL_GRINDER.get()).add(YATMBlocks.STEEL_INJECTOR.get());
 		this.tag(YATMBlockTags.PHANTASMAL_SHELF_FUNGI_SPREAD_TO_KEY).addTag(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);
 		this.tag(YATMBlockTags.PITCHER_CLUSTERS_CAN_GROW_ON_KEY).addTag(BlockTags.DIRT);
 		// TODO, fully stripped probably shouldn't be growable on, logically

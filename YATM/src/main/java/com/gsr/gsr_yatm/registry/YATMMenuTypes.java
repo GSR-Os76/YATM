@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.registry;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.block.device.bioler.BiolerMenu;
+import com.gsr.gsr_yatm.block.device.bioreactor.BioreactorMenu;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerMenu;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceMenu;
 import com.gsr.gsr_yatm.block.device.crucible.CrucibleMenu;
@@ -29,7 +29,7 @@ public class YATMMenuTypes
 	
 	public static final RegistryObject<MenuType<GraftingMenu>> GRAFTING_TABLE = MENU_TYPES.register("grafting_menu", () -> new MenuType<>(GraftingMenu::new, FeatureFlagSet.of()));
 
-	public static final RegistryObject<MenuType<BiolerMenu>> BIOLER = MENU_TYPES.register("bioler_menu", () -> new MenuType<>(BiolerMenu::new, FeatureFlagSet.of()));
+	public static final RegistryObject<MenuType<BioreactorMenu>> BIOREACTOR = MENU_TYPES.register("bioreactor_menu", () -> new MenuType<>(BioreactorMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<BoilerMenu>> BOILER = MENU_TYPES.register("boiler_menu", () -> new MenuType<>(BoilerMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<CrucibleMenu>> CRUCIBLE = MENU_TYPES.register("crucible_menu", () -> new MenuType<>(CrucibleMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<CrystallizerMenu>> CRYSTALLIZER = MENU_TYPES.register("crystallizer_menu", () -> new MenuType<>(CrystallizerMenu::new, FeatureFlagSet.of()));

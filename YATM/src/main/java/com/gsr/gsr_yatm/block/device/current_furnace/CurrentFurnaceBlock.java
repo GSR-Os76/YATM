@@ -30,8 +30,7 @@ public class CurrentFurnaceBlock extends DeviceBlock
 	
 	public CurrentFurnaceBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
-		super(Objects.requireNonNull(properties), YATMBlockEntityTypes.FURNACE_PLUS::get, Objects.requireNonNull(shape));
-		
+		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.FURNACE_PLUS::get);
 		this.registerDefaultState(this.defaultBlockState().setValue(CurrentFurnaceBlock.LIT, false));		
 	} // end constructor
 
@@ -46,13 +45,13 @@ public class CurrentFurnaceBlock extends DeviceBlock
 
 	
 	@Override
-	public DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
+	public @NotNull DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
 		return new CurrentFurnaceBlockEntity(position, state);
 	} // end newDeviceBlockEntity()
 
 	@Override
-	public MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position)
+	public @NotNull MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position)
 	{		
 		CurrentFurnaceBlockEntity blockEntity = (CurrentFurnaceBlockEntity)level.getBlockEntity(position);
 		return new SimpleMenuProvider((containerId, playerInventory, player) -> new CurrentFurnaceMenu(
@@ -62,8 +61,7 @@ public class CurrentFurnaceBlock extends DeviceBlock
 				state.getBlock(),
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()),
-		YATMLanguageProvider.getTranslatableTitleNameFor(YATMMenuTypes.CURRENT_FURNACE.get())
-				);
+		YATMLanguageProvider.translatableFor(YATMMenuTypes.CURRENT_FURNACE.get()));
 	} // end getMenuProvider()
 
 } // end class

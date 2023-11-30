@@ -14,7 +14,7 @@ import com.gsr.gsr_yatm.block.FaceBlock;
 import com.gsr.gsr_yatm.block.candle_lantern.CandleLanternBlock;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.device.AttachmentState;
-import com.gsr.gsr_yatm.block.device.bioler.BiolerBlock;
+import com.gsr.gsr_yatm.block.device.bioreactor.BioreactorBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlock;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceBlock;
@@ -638,7 +638,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 //				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_top"), 
 //				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_inside"));
 //		
-		this.createFacingBlock(YATMBlocks.STEEL_BIOLER.get(), YATMItems.STEEL_BIOLER_ITEM.get(), YATMBlockStateProvider.BIOLER_MODEL);
+		this.createFacingBlock(YATMBlocks.STEEL_BIOREACTOR.get(), YATMItems.STEEL_BIOLER_ITEM.get(), YATMBlockStateProvider.BIOLER_MODEL);
 		
 	} // end addBioler()
 	
@@ -1612,7 +1612,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 		this.getVariantBuilder(block).forAllStates((bs) -> 
 		{
-			return new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(BiolerBlock.FACING)).x, rotationForDirectionFromNorth(bs.getValue(BiolerBlock.FACING)).y, false) };
+			return new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(BioreactorBlock.FACING)).x, rotationForDirectionFromNorth(bs.getValue(BioreactorBlock.FACING)).y, false) };
 		});
 		
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
@@ -1620,7 +1620,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	
 	@SuppressWarnings("unused")
-	private void createBioler(@NotNull BiolerBlock block, @NotNull Item item, @NotNull ResourceLocation portTexture, @NotNull ResourceLocation sideTexture, @NotNull ResourceLocation bottomTexture, @NotNull ResourceLocation topTexture, @NotNull ResourceLocation insideTexture) 
+	private void createBioler(@NotNull BioreactorBlock block, @NotNull Item item, @NotNull ResourceLocation portTexture, @NotNull ResourceLocation sideTexture, @NotNull ResourceLocation bottomTexture, @NotNull ResourceLocation topTexture, @NotNull ResourceLocation insideTexture) 
 	{
 		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
 		this.models().getBuilder(name).parent(YATMBlockStateProvider.BIOLER_MODEL)
@@ -1631,7 +1631,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		.texture("4", insideTexture);
 		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
 		
-		this.getVariantBuilder(block).forAllStates((bs) -> new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(BiolerBlock.FACING)).x, rotationForDirectionFromNorth(bs.getValue(BiolerBlock.FACING)).y, false) });
+		this.getVariantBuilder(block).forAllStates((bs) -> new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(BioreactorBlock.FACING)).x, rotationForDirectionFromNorth(bs.getValue(BioreactorBlock.FACING)).y, false) });
 		
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
 	} // end createBioler()

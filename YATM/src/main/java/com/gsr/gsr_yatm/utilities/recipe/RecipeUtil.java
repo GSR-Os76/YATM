@@ -38,9 +38,6 @@ import net.minecraftforge.registries.tags.ITagManager;
 @SuppressWarnings("unused")
 public class RecipeUtil
 {	
-	public static final int RECHECK_CRAFTING_PERIOD = 20;
-	
-	
 	/**use IngredientUtilities instead*/
 	@Deprecated
 	public static final String GROUP_KEY = "group";

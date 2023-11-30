@@ -1,6 +1,9 @@
 package com.gsr.gsr_yatm.gui;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.utilities.contract.Contract;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageWidget;
 import net.minecraft.client.gui.components.Tooltip;
@@ -12,33 +15,33 @@ public class HorizontalCurrentWidget extends ImageWidget
 	public static final ResourceLocation WIDGET_THINGS = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/widget_things.png");
 	public static final int WIDTH = 90;
 	public static final int HEIGHT = 18;
-	private final int m_capacity;
-	private int m_stored = 0;
-	private int m_pixelsToDrawOverCount = 0;
+	private final @NotNegative int m_capacity;
+	private @NotNegative int m_stored = 0;
+	private @NotNegative int m_pixelsToDrawOverCount = 0;
 	
 	
-	public HorizontalCurrentWidget(int toX, int toY, int capacity) 
+	public HorizontalCurrentWidget(int toX, int toY, @NotNegative int capacity) 
 	{
-		super(toX, toY, WIDTH, HEIGHT, WIDGET_THINGS);
-		this.m_capacity = capacity;
+		super(toX, toY, HorizontalCurrentWidget.WIDTH, HorizontalCurrentWidget.HEIGHT, HorizontalCurrentWidget.WIDGET_THINGS);
+		this.m_capacity = Contract.notNegative(capacity);
 		this.updateTooltip();
 	} // end constructor()
 	
 	
 	
 
-	public int getCapacity()
+	public @NotNegative int getCapacity()
 	{
 		return this.m_capacity;
 	} // end getCapacity()
 	
 	
 	
-	public void setStored(int amount) 
+	public void setStored(@NotNegative int amount) 
 	{
-		this.m_stored = Math.min(amount, this.m_capacity);
+		this.m_stored = Math.min(Contract.notNegative(amount), this.m_capacity);
 		float storedPercentageOfMax = (this.m_capacity == 0) ? 0 : (((float)this.m_stored) / ((float)this.m_capacity));
-		this.m_pixelsToDrawOverCount = (int)(((float)WIDTH) * storedPercentageOfMax);
+		this.m_pixelsToDrawOverCount = (int)(((float)VerticalCurrentWidget.WIDTH) * storedPercentageOfMax);
 		this.updateTooltip();
 	} // end setStoredAmount()
 	
@@ -52,10 +55,10 @@ public class HorizontalCurrentWidget extends ImageWidget
 	@Override
 	public void renderWidget(GuiGraphics graphics, int mouseX, int mouseY, float partialTick)
 	{
-		graphics.blit(WIDGET_THINGS, this.getX(), this.getY(), 0, 106, WIDTH, HEIGHT);
+		graphics.blit(HorizontalCurrentWidget.WIDGET_THINGS, this.getX(), this.getY(), 0, 106, HorizontalCurrentWidget.WIDTH, HorizontalCurrentWidget.HEIGHT);
 		if(this.m_stored > 0) 
 		{			
-			graphics.blit(WIDGET_THINGS, this.getX(), this.getY(), 0, 124, this.m_pixelsToDrawOverCount, HEIGHT);
+			graphics.blit(HorizontalCurrentWidget.WIDGET_THINGS, this.getX(), this.getY(), 0, 124, this.m_pixelsToDrawOverCount, HorizontalCurrentWidget.HEIGHT);
 		}		
 	} // end renderWidget()
 	

@@ -34,7 +34,7 @@ public class CrucibleBlock extends DeviceBlock
 	
 	public CrucibleBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
-		super(Objects.requireNonNull(properties), YATMBlockEntityTypes.CRUCIBLE::get, Objects.requireNonNull(shape));
+		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.CRUCIBLE::get);
 		
 		this.registerDefaultState(this.defaultBlockState().setValue(CrucibleBlock.LIT, false));
 	} // end constructor
@@ -69,22 +69,17 @@ public class CrucibleBlock extends DeviceBlock
 		}
 		super.animateTick(state, level, position, random);
 	} // end animateTick()
-	
-	
-	
-
-
 
 
 
 	@Override
-	public DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
+	public @NotNull DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
 		return new CrucibleBlockEntity(position, state);
 	} // end newBlockEntity()
 	
 	@Override
-	public MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position)
+	public @NotNull MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position)
 	{
 		CrucibleBlockEntity blockEntity = (CrucibleBlockEntity) level.getBlockEntity(position);
 		return new SimpleMenuProvider((containerId, playerInventory, player) -> new CrucibleMenu(
@@ -94,7 +89,7 @@ public class CrucibleBlock extends DeviceBlock
 				state.getBlock(), 
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
-		YATMLanguageProvider.getTranslatableTitleNameFor(YATMMenuTypes.CRUCIBLE.get()));
+		YATMLanguageProvider.translatableFor(YATMMenuTypes.CRUCIBLE.get()));
 	} // end getMenuProvider()
 	
 } // end class

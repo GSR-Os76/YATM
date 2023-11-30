@@ -1,5 +1,9 @@
 package com.gsr.gsr_yatm.block.device.crystallizer;
 
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.block.device.DeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
@@ -21,9 +25,9 @@ public class CrystallizerBlock extends DeviceBlock
 	
 	
 	
-	public CrystallizerBlock(Properties properties, ICollisionVoxelShapeProvider shape, int tankCapacities, int maximumFluidTransferRate)
+	public CrystallizerBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, int tankCapacities, int maximumFluidTransferRate)
 	{
-		super(properties, YATMBlockEntityTypes.CRYSTALLIZER::get, shape);
+		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.CRYSTALLIZER::get);
 		this.m_tankCapacities = tankCapacities;
 		this.m_maximumFluidTransferRate = maximumFluidTransferRate;
 	} // end constructor
@@ -31,23 +35,23 @@ public class CrystallizerBlock extends DeviceBlock
 
 
 	@Override
-	public DeviceBlockEntity newDeviceBlockEntity(BlockPos blockPos, BlockState blockState)
+	public @NotNull DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		return new CrystallizerBlockEntity(blockPos, blockState, this.m_tankCapacities, this.m_maximumFluidTransferRate);
+		return new CrystallizerBlockEntity(position, state, this.m_tankCapacities, this.m_maximumFluidTransferRate);
 	} // end newBlockEntity()
 	
 	@Override
-	public MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos)
+	public @NotNull MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position)
 	{
-		CrystallizerBlockEntity blockEntity = (CrystallizerBlockEntity) level.getBlockEntity(blockPos);
+		CrystallizerBlockEntity blockEntity = (CrystallizerBlockEntity) level.getBlockEntity(position);
 		return new SimpleMenuProvider((containerId, playerInventory, player) -> new CrystallizerMenu(
 				containerId, 
 				playerInventory, 
-				ContainerLevelAccess.create(level, blockPos), 
-				blockState.getBlock(), 
+				ContainerLevelAccess.create(level, position), 
+				state.getBlock(), 
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
-		YATMLanguageProvider.getTranslatableTitleNameFor(YATMMenuTypes.CRYSTALLIZER.get()));
+		YATMLanguageProvider.translatableFor(YATMMenuTypes.CRYSTALLIZER.get()));
 	} // end getMenuProvider()
 	
 } // end class

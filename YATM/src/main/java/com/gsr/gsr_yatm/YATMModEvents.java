@@ -4,7 +4,7 @@ import java.util.function.Function;
 
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
-import com.gsr.gsr_yatm.block.device.bioler.BiolerScreen;
+import com.gsr.gsr_yatm.block.device.bioreactor.BioreactorScreen;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerScreen;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceScreen;
 import com.gsr.gsr_yatm.block.device.crucible.CrucibleScreen;
@@ -31,7 +31,7 @@ import com.gsr.gsr_yatm.data_generation.YATMRecipeProvider;
 import com.gsr.gsr_yatm.entity.boat.YATMBoatRenderer;
 import com.gsr.gsr_yatm.entity.boat.YATMBoatType;
 import com.gsr.gsr_yatm.item.tool.PoweredToolScreen;
-import com.gsr.gsr_yatm.recipe.bioling.CompostableBiolingRecipeProvider;
+import com.gsr.gsr_yatm.recipe.bioreacting.CompostableBioreactingRecipeProvider;
 import com.gsr.gsr_yatm.recipe.smelting.WrappedSmeltingRecipeProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
@@ -128,7 +128,7 @@ public class YATMModEvents
 	{
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.GRAFTING_TABLE.get(), GraftingScreen::new));
 
-		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BIOLER.get(), BiolerScreen::new));
+		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BIOREACTOR.get(), BioreactorScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BOILER.get(), BoilerScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.CRUCIBLE.get(), CrucibleScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.CRYSTALLIZER.get(), CrystallizerScreen::new));
@@ -177,7 +177,7 @@ public class YATMModEvents
 	private static void commonSetup(FMLCommonSetupEvent event)
 	{
 		event.enqueueWork(() -> YATMItems.addCompostables());
-		event.enqueueWork(() -> RecipeUtil.addDynamicRecipeProvider(new CompostableBiolingRecipeProvider()));
+		event.enqueueWork(() -> RecipeUtil.addDynamicRecipeProvider(new CompostableBioreactingRecipeProvider()));
 		event.enqueueWork(() -> RecipeUtil.addDynamicRecipeProvider(new WrappedSmeltingRecipeProvider()));
 		event.enqueueWork(() -> YATMBlocks.addSapCollectorVariants());
 		// TODO, add for all types supported by default or situation if appropriate

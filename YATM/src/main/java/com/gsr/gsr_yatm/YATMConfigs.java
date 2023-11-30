@@ -78,16 +78,24 @@ public class YATMConfigs
 	
 	
 	
-	public static final IntValue CRUCIBLE_DRAIN_RECHECK_PERIOD  = YATMConfigs.s_builder.pop().pop().push("Devices: ").push("Crucible: ").comment("The period in ticks of the device trying to reattach a slotted result tank draining component to relavent neighbors.").defineInRange("drain_recheck_period", 40, 0, Integer.MAX_VALUE);
+	public static final IntValue BIOREACTOR_CURRENT_CAPACITY  = YATMConfigs.s_builder.pop().pop().push("Devices: ").push("Bioreactor: ").comment("The maximum number of cu the device can hold.").defineInRange("currentCapacity", 32768, 0, Integer.MAX_VALUE);
+	public static final IntValue BIOREACTOR_DRAIN_RECHECK_PERIOD  = YATMConfigs.s_builder.comment("The period in ticks of the device trying to reattach a slotted result tank draining component to relavent neighbors.").defineInRange("drain_recheck_period", 40, 0, Integer.MAX_VALUE);
+	public static final IntValue BIOREACTOR_MAX_CURRENT_TRANSFER = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("max_current_transfer_rate", 256, 0, Integer.MAX_VALUE);
+	public static final IntValue BIOREACTOR_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("max_fluid_transfer_rate", 200, 0, Integer.MAX_VALUE);
+	public static final IntValue BIOREACTOR_RESULT_TANK_CAPACITY = YATMConfigs.s_builder.comment("The result tank's fluid capacity.").defineInRange("result_tank_capacity", 8000, 0, Integer.MAX_VALUE);
+	
+	public static final IntValue CRUCIBLE_DRAIN_RECHECK_PERIOD  = YATMConfigs.s_builder.pop().push("Crucible: ").comment("The period in ticks of the device trying to reattach a slotted result tank draining component to relavent neighbors.").defineInRange("drain_recheck_period", 40, 0, Integer.MAX_VALUE);
 	public static final IntValue CRUCIBLE_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("max_fluid_transfer_rate", 200, 0, Integer.MAX_VALUE);
 	public static final IntValue CRUCIBLE_MAX_TEMPERATURE = YATMConfigs.s_builder.comment("The highest possible temperature for the device.").defineInRange("max_temperature", 4000, 0, Integer.MAX_VALUE);
-	public static final IntValue CRUCIBLE_RESULT_TANK_CAPACITY = YATMConfigs.s_builder.comment("The result tank's fluid capacity.").defineInRange("result_tank_capacity", 4000, 0, Integer.MAX_VALUE);
+	public static final IntValue CRUCIBLE_RESULT_TANK_CAPACITY = YATMConfigs.s_builder.comment("The result tank's fluid capacity.").defineInRange("result_tank_capacity", 8000, 0, Integer.MAX_VALUE);
 	
 	public static final IntValue CURRENT_FURNACE_MAX_TEMPERATURE = YATMConfigs.s_builder.pop().push("Current Furnace: ").comment("The highest possible temperature for the device.").defineInRange("max_temperature", 4000, 0, Integer.MAX_VALUE);
 	
 	public static final IntValue TANK_CAPACITY = YATMConfigs.s_builder.pop().push("Tank: ").comment("The tank's capacity in milibuckets.").defineInRange("capacity", 16000, 0, Integer.MAX_VALUE);
 	public static final IntValue TANK_DRAIN_RECHECK_PERIOD = YATMConfigs.s_builder.comment("The period in ticks of the device trying to attach to a below neighbor's fluid handling capability.").defineInRange("drain_recheck_period", 40, 0, Integer.MAX_VALUE);
 	public static final IntValue TANK_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("max_fluid_transfer_rate", 1000, 0, Integer.MAX_VALUE);
+	
+	public static final IntValue CRAFTING_RECHECK_PERIOD = YATMConfigs.s_builder.pop().push("Misc: ").comment("The period in ticks while idle before a crafting device'll try to match it's contents to a new recipe. Note: recheck's occur automatically when device inventories change.").defineInRange("crafting recheck period", 20, 0, Integer.MAX_VALUE);
 	
 	
 	

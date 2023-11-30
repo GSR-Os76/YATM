@@ -4,7 +4,9 @@ import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.block.ShapeBlock;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
@@ -17,7 +19,6 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -28,25 +29,21 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.network.NetworkHooks;
 
-public abstract class DeviceBlock extends Block implements EntityBlock
+public abstract class DeviceBlock extends ShapeBlock implements EntityBlock
 {
 	public static final DirectionProperty FACING = YATMBlockStateProperties.FACING_HORIZONTAL;
 	
 	protected final Supplier<BlockEntityType<? extends DeviceBlockEntity>> m_type;
-	protected final ICollisionVoxelShapeProvider m_shape;
 	
 	
 	
-	public DeviceBlock(@NotNull Properties properties, @NotNull Supplier<BlockEntityType<? extends DeviceBlockEntity>> type, @NotNull ICollisionVoxelShapeProvider shape)
+	public DeviceBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, @NotNull Supplier<BlockEntityType<? extends DeviceBlockEntity>> type)
 	{
-		super(Objects.requireNonNull(properties));
+		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape));
 		this.registerDefaultState(this.defaultBlockState().setValue(DeviceBlock.FACING, Direction.NORTH));
 		this.m_type = Objects.requireNonNull(type);
-		this.m_shape = Objects.requireNonNull(shape);
 	} // end constructor
 
 	
@@ -65,16 +62,16 @@ public abstract class DeviceBlock extends Block implements EntityBlock
 	
 	
 	
-	public abstract DeviceBlockEntity newDeviceBlockEntity(BlockPos blockPos, BlockState blockState);
+	public abstract @NotNull DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state);
 	
 	@Override
-	public final BlockEntity newBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState)
+	public final @NotNull BlockEntity newBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		return this.newDeviceBlockEntity(blockPos, blockState);
+		return this.newDeviceBlockEntity(position, state);
 	} // end newBlockEntity()
 
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState blockState, @NotNull BlockEntityType<T> blockEntityType)
+	public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState blockState, @NotNull BlockEntityType<T> blockEntityType)
 	{
 		return blockEntityType == this.m_type.get() ? (l, bp, bs, be) -> DeviceBlockEntity.tick(l, bp, bs, (DeviceBlockEntity)be) : null;
 	} // end getTicker()
@@ -82,41 +79,33 @@ public abstract class DeviceBlock extends Block implements EntityBlock
 	
 	
 	@Override
-	public InteractionResult use(BlockState blockState, Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult)
+	public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
 		if(!level.isClientSide && player instanceof ServerPlayer serverPlayer) 
 		{
-			NetworkHooks.openScreen(serverPlayer, blockState.getMenuProvider(level, blockPos));
+			NetworkHooks.openScreen(serverPlayer, state.getMenuProvider(level, position));
 		}
 		return InteractionResult.sidedSuccess(level.isClientSide);
 	} // end use()
 
 	@Override
-	public abstract MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos);
-	
-	
-	
-	@Override
-	public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
-	{		
-		return this.m_shape.getShape(blockState, blockGetter, blockPos, context);
-	} // end getShape()
+	public abstract @NotNull MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position);
 	
 	
 	
 	@SuppressWarnings("deprecation")
 	@Override
-	public void onRemove(BlockState fromState, Level level, BlockPos blockPos, BlockState toState, boolean dunno)
+	public void onRemove(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull BlockState toState, boolean dunno)
 	{
-		if(!fromState.is(toState.getBlock())) 
+		if(!state.is(toState.getBlock())) 
 		{
-			BlockEntity be = level.getBlockEntity(blockPos);
+			BlockEntity be = level.getBlockEntity(position);
 			if(be instanceof DeviceBlockEntity dbe && level instanceof ServerLevel) 
 			{
 				dbe.blockBroken();
 			}
 		}
-		super.onRemove(fromState, level, blockPos, toState, dunno);;
+		super.onRemove(state, level, position, toState, dunno);
 	} // end onRemove()
 
 } // end class

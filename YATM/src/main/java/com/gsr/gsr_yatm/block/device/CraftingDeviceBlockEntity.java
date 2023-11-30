@@ -5,7 +5,9 @@ import java.util.List;
 import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
@@ -31,17 +33,17 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 	public static final String CRAFT_PROGESS_TAG_NAME = "craftProgress";
 	public static final String CRAFT_TIME_TAG_NAME = "craftTime";
 	
-	public static final int RECHECK_PERIOD = RecipeUtil.RECHECK_CRAFTING_PERIOD;
+	public static final int RECHECK_PERIOD = YATMConfigs.CRAFTING_RECHECK_PERIOD.get();
 	
-	protected final RecipeType<T> m_recipeType;
-	protected T m_activeRecipe = null;
-	protected String m_activeRecipeIdentifier = null;
-	protected int m_craftCountDown = 0;
-	protected int m_craftTime = 0;
-	protected int m_timeSinceRecheck = 0;
+	protected final @NotNull RecipeType<T> m_recipeType;
+	protected @Nullable T m_activeRecipe = null;
+	protected @Nullable String m_activeRecipeIdentifier = null;
+	protected @NotNegative int m_craftCountDown = 0;
+	protected @NotNegative int m_craftTime = 0;
+	protected @NotNegative int m_timeSinceRecheck = 0;
 	protected boolean m_waitingForLoad = false;
 	
-	protected final ContainerData m_craftProgressC = new PropertyContainerData(List.of(new Property<>(() -> this.m_craftCountDown, (i) -> {}), new Property<>(() -> this.m_craftTime, (i) -> {})));
+	protected final @NotNull ContainerData m_craftProgressC = new PropertyContainerData(List.of(new Property<>(() -> this.m_craftCountDown, (i) -> {}), new Property<>(() -> this.m_craftTime, (i) -> {})));
 	
 	
 	
@@ -78,10 +80,21 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 	protected boolean doCrafting() 
 	{
 		boolean changed = false;
+		if(this.m_waitingForLoad || (this.m_activeRecipe != null && !this.canTick())) 
+		{
+			return changed;
+		}
+		if(this.m_activeRecipe != null && !this.canUseRecipe(this.m_activeRecipe)) 
+		{
+			this.clearCurrentRecipe();
+		}
+		
 		
 		if (this.m_craftCountDown > 0)
 		{
-			if (--this.m_craftCountDown <= 0)
+			--this.m_craftCountDown;
+			this.recipeTick();		
+			if (this.m_craftCountDown <= 0)
 			{
 				this.setRecipeResults(this.m_activeRecipe);
 				this.tryStartNewRecipe();
@@ -122,10 +135,12 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 		this.m_craftCountDown = 0;		
 	} // end clearCurrentRecipe()
 	
-	protected abstract boolean canUseRecipe(@NotNull T from);
+	/** If the active recipe can be used this tick or not, should only be called while an active recipe's present. */ protected boolean canTick() {return true;}
+	/** If the recipes material inputs are matched and outputs aren't blocked, excluding tick based things like current or present temperature. */ protected abstract boolean canUseRecipe(@NotNull T from);
 	protected void setRecipeResults(@NotNull T from) {}
 	protected void startRecipe(@NotNull T from) {}
-
+	/** Place for post tick recipe related changes. Only called while a recipe is active. */protected void recipeTick() {}
+	
 	protected void onRecipeLoad() 
 	{
 		this.m_waitingForLoad = false;

@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-20T20:57:36.8152268	Loot Tables
+// 1.20.1	2023-11-29T18:42:55.4581036	Loot Tables
 3447f366126fe84e5d7fe101ca492c681d974485 data/gsr_yatm/loot_tables/blocks/adamum.json
 c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
@@ -154,7 +154,7 @@ def549e41f2ace4f1718c5cc79a5d7cc4f935e10 data/gsr_yatm/loot_tables/blocks/soul_a
 f666218d6fc8ba63aedb215470cf61d2e48eca80 data/gsr_yatm/loot_tables/blocks/spider_vine.json
 e705dde9d0a8f15a97545882edea815de0363ce4 data/gsr_yatm/loot_tables/blocks/spider_vine_meristem.json
 f2d3330c8d7df718c92e02665f23902a7c36c7da data/gsr_yatm/loot_tables/blocks/spinning_wheel.json
-5475db6dc7e083584bf022970644bf05e4eb6f68 data/gsr_yatm/loot_tables/blocks/steel_bioler.json
+c3f520b8bd764310acd495708fa871377a510ea6 data/gsr_yatm/loot_tables/blocks/steel_bioreactor.json
 1574bd7d11c0e9aa48c4d0c15ef33ac0f9cb1628 data/gsr_yatm/loot_tables/blocks/steel_boiler.json
 15a6b0e1a283259667b6e925c45b6d98dbca462a data/gsr_yatm/loot_tables/blocks/steel_boiler_tank.json
 2bbd9058ac1a65f641f63c041c4897ecfcc40445 data/gsr_yatm/loot_tables/blocks/steel_crucible.json

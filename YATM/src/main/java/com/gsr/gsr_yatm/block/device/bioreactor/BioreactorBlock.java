@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.device.injector;
+package com.gsr.gsr_yatm.block.device.bioreactor;
 
 import java.util.Objects;
 
@@ -6,7 +6,6 @@ import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.block.device.DeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
-import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
@@ -19,38 +18,34 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class InjectorBlock extends DeviceBlock
+public class BioreactorBlock extends DeviceBlock
 {
-	private final @NotNull DeviceTierConstants m_constants;
 	
-	
-	
-	public InjectorBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, @NotNull DeviceTierConstants constants)
+	public BioreactorBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
-		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.INJECTOR::get);
-		this.m_constants = Objects.requireNonNull(constants);
+		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.BIOLER::get);
 	} // end constructor
 
-
+	
 	
 	@Override
-	public @NotNull DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
+	public DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		return new InjectorBlockEntity(position, state, this.m_constants);
+		return new BioreactorBlockEntity(position, state);
 	} // end newDeviceBlockEntity()
 
 	@Override
 	public @NotNull MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position)
 	{
-		InjectorBlockEntity blockEntity = (InjectorBlockEntity) level.getBlockEntity(position);
-		return new SimpleMenuProvider((containerId, playerInventory, player) -> new InjectorMenu(
+		BioreactorBlockEntity blockEntity = (BioreactorBlockEntity)level.getBlockEntity(position);
+		return new SimpleMenuProvider((containerId, playerInventory, player) -> new BioreactorMenu(
 				containerId, 
 				playerInventory, 
 				ContainerLevelAccess.create(level, position), 
-				state.getBlock(), 
+				state.getBlock(),
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.INJECTOR.get()));
+		YATMLanguageProvider.translatableFor(YATMMenuTypes.BIOREACTOR.get()));
 	} // end getMenuProvider()
-	
+
 } // end class

@@ -43,7 +43,7 @@ public class BoilerBlock extends DeviceBlock
 	
 	public BoilerBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, @NotNull DeviceTierConstants constants)
 	{
-		super(Objects.requireNonNull(properties), YATMBlockEntityTypes.BOILER::get, Objects.requireNonNull(shape));
+		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.BOILER::get);
 		
 		this.registerDefaultState(this.defaultBlockState().setValue(BoilerBlock.HAS_TANK, false).setValue(BoilerBlock.LIT, false));
 		
@@ -66,14 +66,16 @@ public class BoilerBlock extends DeviceBlock
 		return super.getStateForPlacement(context).setValue(BoilerBlock.HAS_TANK, above instanceof BoilerTankBlock);
 	} // end getStateForPlacement()
 
+	
+	
 	@SuppressWarnings("deprecation")
 	@Override
 	public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, Block formerNeighbor, BlockPos neighborPosition, boolean p_60514_)
 	{
-		boolean hasTank = level.getBlockState(position.above()).getBlock() instanceof BoilerTankBlock;
-		if (hasTank != state.getValue(BoilerBlock.HAS_TANK))
+		boolean sHT = level.getBlockState(position.above()).getBlock() instanceof BoilerTankBlock;
+		if (sHT != state.getValue(BoilerBlock.HAS_TANK))
 		{
-			level.setBlockAndUpdate(position, state.setValue(BoilerBlock.HAS_TANK, hasTank));
+			level.setBlock(position, state.setValue(BoilerBlock.HAS_TANK, sHT), Block.UPDATE_CLIENTS);
 		}
 		
 		super.neighborChanged(state, level, position, formerNeighbor, neighborPosition, p_60514_);
@@ -106,9 +108,6 @@ public class BoilerBlock extends DeviceBlock
 	      }
 	} // end animateTick()
 	
-	
-	
-
 
 
 	@Override
@@ -129,7 +128,7 @@ public class BoilerBlock extends DeviceBlock
 				state.getBlock(),
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
-		YATMLanguageProvider.getTranslatableTitleNameFor(YATMMenuTypes.BOILER.get()));
+		YATMLanguageProvider.translatableFor(YATMMenuTypes.BOILER.get()));
 	} // end getMenuProvider()
 
 } // end class

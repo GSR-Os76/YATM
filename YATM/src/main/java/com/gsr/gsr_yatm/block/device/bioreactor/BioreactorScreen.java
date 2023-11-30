@@ -1,22 +1,25 @@
-package com.gsr.gsr_yatm.block.device.bioler;
+package com.gsr.gsr_yatm.block.device.bioreactor;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.gui.VerticalCurrentWidget;
 import com.gsr.gsr_yatm.gui.VerticalStoredFluidWidget;
+
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class BiolerScreen extends AbstractContainerScreen<BiolerMenu>
+public class BioreactorScreen extends AbstractContainerScreen<BioreactorMenu>
 {
-	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/bioler.png");
+	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/bioreactor.png");
 
 	private VerticalStoredFluidWidget m_resultTankWidget;
-	
+	private VerticalCurrentWidget m_currentWidget;
 	
 
-	public BiolerScreen(BiolerMenu menu, Inventory inventory, Component title)
+	
+	public BioreactorScreen(BioreactorMenu menu, Inventory inventory, Component title)
 	{
 		super(menu, inventory, title);
 		int yDownShift = 36;
@@ -31,6 +34,7 @@ public class BiolerScreen extends AbstractContainerScreen<BiolerMenu>
 	{
 		super.init();
 		this.setResultTankWidget();
+		this.setCurrentWidget();
 	} // end init()
 
 	
@@ -39,6 +43,7 @@ public class BiolerScreen extends AbstractContainerScreen<BiolerMenu>
 	{
 		super.renderBackground(graphics);
 		this.renderBg(graphics, partialTick, mouseX, mouseY);
+		this.updateCurrentWidget();
 		this.updateResultTankWidget();
 		super.render(graphics, mouseX, mouseY, partialTick);
 		this.renderTooltip(graphics, mouseX, mouseY);
@@ -47,20 +52,19 @@ public class BiolerScreen extends AbstractContainerScreen<BiolerMenu>
 	@Override
 	protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY)
 	{
-		//RenderSystem._setShaderTexture(0, BACKGROUND);
-		graphics.blit(BACKGROUND, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+		graphics.blit(BioreactorScreen.BACKGROUND, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 		float cP = this.menu.getCraftProgress();
 		if(cP > 0f) 
 		{
 			// from 176 0 to 80 63 size 16 8
 			int horizontalWidth = (int)(16f * cP);
-			graphics.blit(BACKGROUND, this.leftPos + 80, this.topPos + 63, 176, 0, horizontalWidth, 8);
+			graphics.blit(BioreactorScreen.BACKGROUND, this.leftPos + 80, this.topPos + 63, 176, 0, horizontalWidth, 8);
 		}
 
 		float dP = this.menu.getResultTankDrainProgress();
 		if(dP > 0) 
 		{
-			graphics.blit(BACKGROUND,  this.leftPos + 102, this.topPos + 79, 176, 8, 8, (int)(6f * dP));
+			graphics.blit(BioreactorScreen.BACKGROUND,  this.leftPos + 102, this.topPos + 79, 176, 8, 8, (int)(6f * dP));
 		}
 		
 	} // end renderBg()
@@ -86,9 +90,32 @@ public class BiolerScreen extends AbstractContainerScreen<BiolerMenu>
 		{			
 			this.removeWidget(this.m_resultTankWidget);
 		}
-		// fix draw position
+
 		this.m_resultTankWidget = new VerticalStoredFluidWidget(this.leftPos + 97, this.topPos + 20, this.menu.getResultTankCapacity(), this.menu.getResultTankContents().getFluid());//= new StoredFluidWidget(this.leftPos + 7, this.topPos + 20, this.menu.getResultTankCapacity(), this.menu.getResultTankContents().getFluid());
 		this.addRenderableWidget(this.m_resultTankWidget);
-	} // end setWidget()
+	} // end setResultTankWidget()
+	
+	
+	
+	public void updateCurrentWidget() 
+	{
+		if(this.m_currentWidget == null || this.menu.getCurrentCapacity() != this.m_currentWidget.getCapacity()) 
+		{
+			this.setCurrentWidget();
+		}
+
+		this.m_currentWidget.setStored(this.menu.getCurrentStored());
+	} // end updateCurrentWidget()
+	
+	public void setCurrentWidget() 
+	{
+		if(this.m_currentWidget != null) 
+		{			
+			this.removeWidget(this.m_currentWidget);
+		}
+		
+		this.m_currentWidget = new VerticalCurrentWidget(this.leftPos + 7, this.topPos + 20, this.getMenu().getCurrentCapacity());
+		this.addRenderableWidget(this.m_currentWidget);
+	} // end setCurrentWidget()
 	
 } // end class

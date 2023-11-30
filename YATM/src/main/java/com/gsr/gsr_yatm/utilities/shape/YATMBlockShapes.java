@@ -644,7 +644,7 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 	
-	public static final ICollisionVoxelShapeProvider BIOLER = new ICollisionVoxelShapeProvider()
+	public static final ICollisionVoxelShapeProvider BIOREACTOR = new ICollisionVoxelShapeProvider()
 	{		
 		private static final VoxelShape SHAPE = Block.box(0d, 0d, 0d, 16d, 4d, 16d);
 

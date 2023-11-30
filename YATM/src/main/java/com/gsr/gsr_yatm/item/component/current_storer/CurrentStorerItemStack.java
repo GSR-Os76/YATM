@@ -20,8 +20,6 @@ import net.minecraftforge.common.util.LazyOptional;
 
 public class CurrentStorerItemStack implements ICapabilityProvider, ICurrentHandler
 {
-	public static final String STORED_TAG_NAME = "stored";
-	
 	private final @NotNull ItemStack m_self;
 	private final @NotNull LazyOptional<ICurrentHandler> m_thisCap = LazyOptional.of(() -> this);
 	private final @NotNegative int m_capacity;
@@ -70,14 +68,12 @@ public class CurrentStorerItemStack implements ICapabilityProvider, ICurrentHand
 	@Override
 	public int extractCurrent(int amount, boolean simulate)
 	{
-		int toInner = amount;
-		int fromC = 0;
-		if(this.m_attachment != null) 
+		int taken = this.m_inner.extractCurrent(amount, simulate);
+		if(this.m_attachment != null && taken != amount) 
 		{
-			fromC = this.m_attachment.extractCurrent(amount, simulate);
-			toInner = amount - fromC;
+			taken += this.m_attachment.extractCurrent(amount - taken, simulate);
 		}
-		return this.m_inner.extractCurrent(toInner, simulate) + fromC;
+		return taken;
 	} // end extractCurrent()
 	@Override
 	public int capacity()

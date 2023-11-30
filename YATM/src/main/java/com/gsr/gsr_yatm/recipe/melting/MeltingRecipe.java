@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.block.device.crucible.CrucibleBlockEntity;
+import com.gsr.gsr_yatm.recipe.IHeatedRecipe;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMItems;
@@ -29,7 +30,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.items.IItemHandler;
 
-public class MeltingRecipe implements ITimedRecipe<Container>
+public class MeltingRecipe implements ITimedRecipe<Container>, IHeatedRecipe<Container>
 {
 	private final @NotNull ResourceLocation m_identifier;
 	private final @NotNull FluidStack m_result;
@@ -60,7 +61,7 @@ public class MeltingRecipe implements ITimedRecipe<Container>
 	} // end constructor
 
 
-
+	@Override
 	public @NotNegative int getTemperature()
 	{
 		return this.m_temperature;

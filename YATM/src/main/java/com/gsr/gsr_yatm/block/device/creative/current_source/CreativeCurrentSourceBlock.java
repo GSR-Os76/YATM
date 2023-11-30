@@ -122,6 +122,6 @@ public class CreativeCurrentSourceBlock extends ShapeBlock implements EntityBloc
 				blockState.getBlock(), 
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
-		YATMLanguageProvider.getTranslatableTitleNameFor(YATMMenuTypes.CREATIVE_CURRENT_SOURCE.get()));
+		YATMLanguageProvider.translatableFor(YATMMenuTypes.CREATIVE_CURRENT_SOURCE.get()));
 	} // end getMenuProvider()
 } // end class

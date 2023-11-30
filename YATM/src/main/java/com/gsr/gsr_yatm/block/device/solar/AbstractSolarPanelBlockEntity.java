@@ -73,7 +73,8 @@ public abstract class AbstractSolarPanelBlockEntity extends DeviceBlockEntity
 	private Map<Direction, ICurrentHandler> m_attachedSides = new EnumMap<>(Direction.class);
 	private ContainerData m_data; 
 	
-	
+	@Deprecated(forRemoval = true) public ICurrentHandler m_internalCurrentStorer;
+	@Deprecated(forRemoval = true) public int m_maxSafeCurrentTransfer;
 	
 	public AbstractSolarPanelBlockEntity(BlockEntityType<?> type, BlockPos blockPos, BlockState blockState, ImmutableList<Direction> powerableFaces)
 	{

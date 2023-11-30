@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.recipe.bioling;
+package com.gsr.gsr_yatm.recipe.bioreacting;
 
 import java.util.Objects;
 import java.util.function.Consumer;
@@ -18,7 +18,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.fluids.FluidStack;
 
-public class BiolingRecipeBuilder implements RecipeBuilder
+public class BioreactingRecipeBuilder implements RecipeBuilder
 {
 	private @Nullable ResourceLocation m_identifier;
 	private @Nullable FluidStack m_result;
@@ -30,31 +30,31 @@ public class BiolingRecipeBuilder implements RecipeBuilder
 	private final @NotNull Advancement.Builder m_advancement = Advancement.Builder.advancement();
 
 
-	public @NotNull BiolingRecipeBuilder identifier(@Nullable ResourceLocation identifier)
+	public @NotNull BioreactingRecipeBuilder identifier(@Nullable ResourceLocation identifier)
 	{
 		this.m_identifier = identifier;
 		return this;
 	} // end identifier()
 
-	public @NotNull BiolingRecipeBuilder input(@Nullable IIngredient<ItemStack> input)
+	public @NotNull BioreactingRecipeBuilder input(@Nullable IIngredient<ItemStack> input)
 	{
 		this.m_input = input;
 		return this;
 	} // end input()
 
-	public @NotNull BiolingRecipeBuilder result(@Nullable FluidStack result)
+	public @NotNull BioreactingRecipeBuilder result(@Nullable FluidStack result)
 	{
 		this.m_result = result == null ? null : result.copy();
 		return this;
 	} // end result()
 
-	public @NotNull BiolingRecipeBuilder currentPerTick(int currentPerTick)
+	public @NotNull BioreactingRecipeBuilder currentPerTick(int currentPerTick)
 	{
 		this.m_currentPerTick = currentPerTick;
 		return this;
 	} // end currentPerTick()
 
-	public @NotNull BiolingRecipeBuilder timeInTicks(int timeInTicks)
+	public @NotNull BioreactingRecipeBuilder timeInTicks(int timeInTicks)
 	{
 		this.m_timeInTicks = timeInTicks;
 		return this;
@@ -62,9 +62,9 @@ public class BiolingRecipeBuilder implements RecipeBuilder
 
 
 
-	public @NotNull BiolingRecipe build()
+	public @NotNull BioreactingRecipe build()
 	{
-		BiolingRecipe r = new BiolingRecipe(this.m_identifier, this.m_input, this.m_result);
+		BioreactingRecipe r = new BioreactingRecipe(this.m_identifier, this.m_input, this.m_result);
 		r.m_currentPerTick = this.m_currentPerTick;
 		r.m_timeInTicks = this.m_timeInTicks;
 		r.m_group = this.m_group;
@@ -98,7 +98,7 @@ public class BiolingRecipeBuilder implements RecipeBuilder
 	public void save(Consumer<FinishedRecipe> writer, ResourceLocation fileName)
 	{
 		this.validate(fileName);
-		writer.accept(new BiolingFinishedRecipe(fileName, this.m_result, this.m_input, this.m_currentPerTick, this.m_timeInTicks, this.m_group, fileName.withPrefix("recipes/"), this.m_advancement));
+		writer.accept(new BioreactingFinishedRecipe(fileName, this.m_result, this.m_input, this.m_currentPerTick, this.m_timeInTicks, this.m_group, fileName.withPrefix("recipes/"), this.m_advancement));
 	} // end save()
 	
 	

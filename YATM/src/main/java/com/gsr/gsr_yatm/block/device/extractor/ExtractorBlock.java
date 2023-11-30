@@ -1,5 +1,9 @@
 package com.gsr.gsr_yatm.block.device.extractor;
 
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.block.device.DeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
@@ -23,9 +27,9 @@ public class ExtractorBlock extends DeviceBlock
 	
 	
 	
-	public ExtractorBlock(Properties properties, ICollisionVoxelShapeProvider shape, int currentCapacity, int maxCurrent, int fluidCapacity, int maxFluidTransferRate)
+	public ExtractorBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, int currentCapacity, int maxCurrent, int fluidCapacity, int maxFluidTransferRate)
 	{
-		super(properties, YATMBlockEntityTypes.EXTRACTOR::get, shape);
+		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.EXTRACTOR::get);
 		this.m_currentCapacity = currentCapacity;
 		this.m_maxCurrent = maxCurrent;
 		this.m_fluidCapacity = fluidCapacity;
@@ -35,25 +39,23 @@ public class ExtractorBlock extends DeviceBlock
 	
 
 	@Override
-	public DeviceBlockEntity newDeviceBlockEntity(BlockPos blockPos, BlockState blockState)
+	public @NotNull DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		return new ExtractorBlockEntity(blockPos, blockState, this.m_currentCapacity, this.m_maxCurrent, this.m_fluidCapacity, this.m_maxFluidTransferRate);
-
+		return new ExtractorBlockEntity(position, state, this.m_currentCapacity, this.m_maxCurrent, this.m_fluidCapacity, this.m_maxFluidTransferRate);
 	} // end newDeviceBlockEntity()
 
 	@Override
-	public MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos)
+	public @NotNull MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position)
 	{
-		ExtractorBlockEntity ebe = (ExtractorBlockEntity)level.getBlockEntity(blockPos);
+		ExtractorBlockEntity ebe = (ExtractorBlockEntity)level.getBlockEntity(position);
 		return new SimpleMenuProvider((containerId, playerInv, player) -> new ExtractorMenu(
 				containerId, 
 				playerInv, 
-				ContainerLevelAccess.create(level, blockPos), 
-				blockState.getBlock(), 
+				ContainerLevelAccess.create(level, position), 
+				state.getBlock(), 
 				ebe.getInventory(), 
 				ebe.getDataAccessor()),
-		YATMLanguageProvider.getTranslatableTitleNameFor(YATMMenuTypes.EXTRACTOR.get())
-				);
+		YATMLanguageProvider.translatableFor(YATMMenuTypes.EXTRACTOR.get()));
 	} // end getMenuProvider()
 	
 } // end class

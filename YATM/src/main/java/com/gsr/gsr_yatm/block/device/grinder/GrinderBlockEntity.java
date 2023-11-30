@@ -2,6 +2,7 @@ package com.gsr.gsr_yatm.block.device.grinder;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
@@ -36,9 +37,8 @@ public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe
 	private static final String CURRENT_CAPACITY_TAG_NAME = "currentCapacity";
 	private static final String MAX_CURRENT_TAG_NAME = "maxCurrent";
 	
-	
-	
-	private CurrentHandler m_internalCurrentStorer;	
+	@Deprecated(forRemoval = true) public ICurrentHandler m_internalCurrentStorer;
+	@Deprecated(forRemoval = true) public int m_maxSafeCurrentTransfer;
 	
 	protected ContainerData m_dataAccessor = new ContainerData()
 	{

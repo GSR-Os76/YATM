@@ -27,7 +27,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMMenuTypes.GRAFTING_TABLE.get(), "Grafting Table");		
 		
-		this.add(YATMMenuTypes.BIOLER.get(), "Bioreactor");		
+		this.add(YATMMenuTypes.BIOREACTOR.get(), "Bioreactor");		
 		this.add(YATMMenuTypes.BOILER.get(), "Boiler");		
 		this.add(YATMMenuTypes.CRUCIBLE.get(), "Crucible");	
 		this.add(YATMMenuTypes.CRYSTALLIZER.get(), "Crystallizer");		
@@ -238,7 +238,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), "Large Copper Heat Sink");
 		
-		this.add(YATMBlocks.STEEL_BIOLER.get(), "Foliar Steel Bioreactor");
+		this.add(YATMBlocks.STEEL_BIOREACTOR.get(), "Foliar Steel Bioreactor");
 		this.add(YATMBlocks.STEEL_BOILER.get(), "Foliar Steel Boiler");
 		this.add(YATMBlocks.STEEL_BOILER_TANK.get(), "Foliar Steel Boiler Tank");
 		this.add(YATMBlocks.STEEL_CRUCIBLE.get(), "Foliar Steel Crucible");

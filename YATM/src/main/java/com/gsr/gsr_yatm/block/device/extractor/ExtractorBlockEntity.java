@@ -3,6 +3,7 @@ package com.gsr.gsr_yatm.block.device.extractor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.extracting.ExtractingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
@@ -70,6 +71,8 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractingRe
 	private int m_initialDrainResultTankTransferSize = 0;
 	
 	private BooleanFlagHandler m_flagHandler = new BooleanFlagHandler();
+	@Deprecated(forRemoval = true) public ICurrentHandler m_internalCurrentStorer;
+	@Deprecated(forRemoval = true) public int m_maxSafeCurrentTransfer;
 	
 	// TODO, allegedly can transfer at most the lowest 16 bits, to show reasonable amounts of power somewheres maybe use two then and merge on client, confirm this detail
 	private ContainerData m_data = new ContainerData()

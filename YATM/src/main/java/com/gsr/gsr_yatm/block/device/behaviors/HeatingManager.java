@@ -94,7 +94,7 @@ public class HeatingManager implements INBTSerializable<CompoundTag>
 			changed = true;
 		}
 		return changed;
-	} // end doHeat()
+	} // end tick()
 	
 	
 

@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.recipe.bioling;
+package com.gsr.gsr_yatm.recipe.bioreacting;
 
 import org.jetbrains.annotations.Nullable;
 
@@ -8,12 +8,12 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 
-public class BiolingRecipeSerializer implements RecipeSerializer<BiolingRecipe>
+public class BioreactingRecipeSerializer implements RecipeSerializer<BioreactingRecipe>
 {
 	@Override
-	public BiolingRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject)
+	public BioreactingRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject)
 	{
-		BiolingRecipeBuilder builder = new BiolingRecipeBuilder();
+		BioreactingRecipeBuilder builder = new BioreactingRecipeBuilder();
 		
 		builder.identifier(resourceLocation);
 		builder.result(IngredientUtil.nbtFluidStackFromJson(jsonObject.getAsJsonObject(IngredientUtil.RESULT_KEY)));
@@ -39,14 +39,14 @@ public class BiolingRecipeSerializer implements RecipeSerializer<BiolingRecipe>
 	} // end fromJson()
 
 	@Override
-	public @Nullable BiolingRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf)
+	public @Nullable BioreactingRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf)
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public void toNetwork(FriendlyByteBuf friendlyByteBuf, BiolingRecipe recipe)
+	public void toNetwork(FriendlyByteBuf friendlyByteBuf, BioreactingRecipe recipe)
 	{
 		// TODO Auto-generated method stub	
 	}

@@ -59,7 +59,7 @@ public abstract class YATMLanguageProvider extends LanguageProvider
 	
 	
 	
-	public static <T extends AbstractContainerMenu> Component getTranslatableTitleNameFor(MenuType<T> menu) 
+	public static <T extends AbstractContainerMenu> Component translatableFor(MenuType<T> menu) 
 	{
 		return Component.translatable(getTitleNameFor(menu));
 	} // end getTranslatableTitleNameFor()

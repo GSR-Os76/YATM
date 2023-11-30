@@ -14,23 +14,25 @@ import oshi.util.tuples.Pair;
 
 public class OnChangedHeatHandler implements IHeatHandler
 {
-	private final BiFunction<Integer, Integer, Pair<Integer, Integer>> m_heatEquation;
+	private final @NotNull BiFunction<Integer, Integer, Pair<Integer, Integer>> m_heatEquation;
+	private final @NotNull Consumer<Integer> m_onChanged;
+	private final @NotNegative int m_maxTemperature;
 	
 	private @NotNegative int m_temperature;
-	private @NotNull Consumer<Integer> m_onChanged;
 	
 	
 	
 	public OnChangedHeatHandler(@NotNegative int temperature, @NotNull Consumer<Integer> onChanged) 
 	{
-		this(Contract.notNegative(temperature), Objects.requireNonNull(onChanged), IHeatHandler::levelTemperatures);
+		this(Contract.notNegative(temperature), Objects.requireNonNull(onChanged), IHeatHandler::levelTemperatures, Integer.MAX_VALUE);
 	} // end constructor()
 	
-	public OnChangedHeatHandler(@NotNegative int temperature, @NotNull Consumer<Integer> onChanged, @NotNull BiFunction<Integer, Integer, Pair<Integer, Integer>> heatEquation) 
+	public OnChangedHeatHandler(@NotNegative int temperature, @NotNull Consumer<Integer> onChanged, @NotNull BiFunction<Integer, Integer, Pair<Integer, Integer>> heatEquation, @NotNegative int maxTemperature) 
 	{
 		this.m_temperature = Contract.notNegative(temperature);
 		this.m_onChanged = Objects.requireNonNull(onChanged);
 		this.m_heatEquation = Objects.requireNonNull(heatEquation);
+		this.m_maxTemperature = Contract.notNegative(maxTemperature);
 	} // end constructor()
 	
 	
@@ -52,7 +54,8 @@ public class OnChangedHeatHandler implements IHeatHandler
 	@Override
 	public void setTemperature(@NotNegative int temperature)
 	{
-		this.m_temperature = Contract.notNegative(temperature);
+		// TODO, canidate for configurable overload exploding
+		this.m_temperature = Math.min(this.m_maxTemperature, Contract.notNegative(temperature));
 		this.m_onChanged.accept(this.m_temperature);
 	} // end setTemperature()
 	

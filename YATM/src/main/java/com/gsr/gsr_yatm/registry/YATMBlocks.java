@@ -10,7 +10,7 @@ import com.gsr.gsr_yatm.block.candle_lantern.CandleLanternBlock;
 import com.gsr.gsr_yatm.block.conduit.channel_vine.ChannelVineBlock;
 import com.gsr.gsr_yatm.block.conduit.current.ConduitVineBlock;
 import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
-import com.gsr.gsr_yatm.block.device.bioler.BiolerBlock;
+import com.gsr.gsr_yatm.block.device.bioreactor.BioreactorBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlock;
 import com.gsr.gsr_yatm.block.device.compute.DataProcessorBlock;
@@ -356,7 +356,7 @@ public class YATMBlocks
 
 	
 	
-	public static final RegistryObject<BiolerBlock> STEEL_BIOLER = BLOCKS.register("steel_bioler", () -> new BiolerBlock(YATMBlockProperties.STEEL_PLANT_MACHINE, YATMBlockShapes.BIOLER, DeviceTierConstants.STEEL_CURRENT_CAPACITY, DeviceTierConstants.STEEL_MAX_CURRENT_TRANSFER, DeviceTierConstants.STEEL_TANK_CAPACITY, DeviceTierConstants.STEEL_MAXIMUM_FLUID_TRANSFER_RATE));
+	public static final RegistryObject<BioreactorBlock> STEEL_BIOREACTOR = BLOCKS.register("steel_bioreactor", () -> new BioreactorBlock(YATMBlockProperties.STEEL_PLANT_MACHINE, YATMBlockShapes.BIOREACTOR));
 	public static final RegistryObject<BoilerTankBlock> STEEL_BOILER_TANK = BLOCKS.register("steel_boiler_tank", () -> new BoilerTankBlock(YATMBlockProperties.STEEL_MACHINE, 256, 32000));
 	public static final RegistryObject<BoilerBlock> STEEL_BOILER = BLOCKS.register("steel_boiler", () -> new BoilerBlock(YATMBlockProperties.STEEL_PLANT_MACHINE, YATMBlockShapes.BOILER, DeviceTierConstants.STEEL_DEVICE));
 	public static final RegistryObject<CrucibleBlock> STEEL_CRUCIBLE = BLOCKS.register("steel_crucible", () -> new CrucibleBlock(YATMBlockProperties.STEEL_PLANT_MACHINE, YATMBlockShapes.CUBE));

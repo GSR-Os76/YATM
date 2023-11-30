@@ -1,5 +1,9 @@
 package com.gsr.gsr_yatm.block.device.solar;
 
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.block.device.DeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
@@ -22,9 +26,9 @@ public class BatterySolarPanelBlock extends DeviceBlock
 	private final SolarPanelSettings m_settings;
 	
 	
-	public BatterySolarPanelBlock(Properties properties, ICollisionVoxelShapeProvider shape, int currentCapacity, int maxSafeCurrent, int maxCurrent, SolarPanelSettings settings)
+	public BatterySolarPanelBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, int currentCapacity, int maxSafeCurrent, int maxCurrent, SolarPanelSettings settings)
 	{
-		super(properties, YATMBlockEntityTypes.BATTERY_SOLAR_PANEL::get, shape);
+		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.BATTERY_SOLAR_PANEL::get);
 		this.m_currentCapacity = currentCapacity;
 		this.m_maxSafeCurrent = maxSafeCurrent;
 		this.m_maxCurrent = maxCurrent;
@@ -34,23 +38,23 @@ public class BatterySolarPanelBlock extends DeviceBlock
 	
 	
 	@Override
-	public DeviceBlockEntity newDeviceBlockEntity(BlockPos blockPos, BlockState blockState)
+	public @NotNull DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		return new BatterySolarPanelBlockEntity(blockPos, blockState, this.m_currentCapacity, this.m_maxSafeCurrent, this.m_maxCurrent, this.m_settings);
+		return new BatterySolarPanelBlockEntity(position, state, this.m_currentCapacity, this.m_maxSafeCurrent, this.m_maxCurrent, this.m_settings);
 	} // end newDeviceBlockEntity()
 
 	@Override
-	public MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos)
+	public @NotNull MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position)
 	{
-		BatterySolarPanelBlockEntity blockEntity = (BatterySolarPanelBlockEntity)level.getBlockEntity(blockPos);
+		BatterySolarPanelBlockEntity blockEntity = (BatterySolarPanelBlockEntity)level.getBlockEntity(position);
 		return new SimpleMenuProvider((containerId, playerInventory, player) -> new BatterySolarPanelMenu(
 				containerId, 
 				playerInventory, 
-				ContainerLevelAccess.create(level, blockPos), 
-				blockState.getBlock(),
+				ContainerLevelAccess.create(level, position), 
+				state.getBlock(),
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
-		YATMLanguageProvider.getTranslatableTitleNameFor(YATMMenuTypes.BATTERY_SOLAR_PANEL.get()));
+		YATMLanguageProvider.translatableFor(YATMMenuTypes.BATTERY_SOLAR_PANEL.get()));
 	} // end getMenuProvider()
 	
 } // end class
