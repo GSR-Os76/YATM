@@ -3,14 +3,14 @@
   "input": {
     "ingedient": {
       "type": "gsr_yatm:fluid_stack_ingredient",
-      "count": 3,
+      "count": 300,
       "fluid": "gsr_yatm:soul_sap"
     }
   },
   "result": {
-    "count": 1,
+    "count": 60,
     "fluid": "gsr_yatm:soul_syrup"
   },
   "temperature": 722,
-  "time": 3
+  "time": 900
 }

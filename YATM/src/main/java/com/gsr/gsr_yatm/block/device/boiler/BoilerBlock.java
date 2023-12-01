@@ -7,7 +7,6 @@ import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.block.device.DeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
-import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
@@ -37,18 +36,13 @@ public class BoilerBlock extends DeviceBlock
 	public static final BooleanProperty HAS_TANK = YATMBlockStateProperties.HAS_TANK;
 	public static final BooleanProperty LIT = YATMBlockStateProperties.LIT;
 
-	private final @NotNull DeviceTierConstants m_constants;
-	
 
 	
-	public BoilerBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, @NotNull DeviceTierConstants constants)
+	public BoilerBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
 		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.BOILER::get);
-		
 		this.registerDefaultState(this.defaultBlockState().setValue(BoilerBlock.HAS_TANK, false).setValue(BoilerBlock.LIT, false));
-		
-		this.m_constants = Objects.requireNonNull(constants);
-		
+	
 	} // end constructor
 
 
@@ -113,8 +107,7 @@ public class BoilerBlock extends DeviceBlock
 	@Override
 	public @NotNull DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		// TODO, simplify this to just passing the constants, letting be decide
-		return new BoilerBlockEntity(position, state, this.m_constants.maxTemperature(), this.m_constants.tankCapacity(), this.m_constants.maxFluidTransferRate());
+		return new BoilerBlockEntity(position, state);
 	} // end newBlockEntity()
 
 	@Override

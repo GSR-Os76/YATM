@@ -63,8 +63,6 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreacting
 
 	
 	
-	private @NotNegative int m_drainRecheckCounter = 0;
-	
 	private final @NotNull IItemHandler m_drainResultTankSlot = InventoryWrapper.Builder.of(this.m_inventory).slotTranslationTable(new int[] {BioreactorBlockEntity.DRAIN_RESULT_TANK_SLOT}).build();
 	private final @NotNull IItemHandler m_inputSlot = InventoryWrapper.Builder.of(this.m_inventory).slotTranslationTable(new int[] {BioreactorBlockEntity.INPUT_SLOT}).build();;
 	private final @NotNull IItemHandler m_currentSlot = InventoryWrapper.Builder.of(this.m_inventory).slotTranslationTable(new int[] {BioreactorBlockEntity.POWER_SLOT}).build();;
@@ -82,13 +80,10 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreacting
 	private @NotNull LazyOptional<IFluidHandler> m_resultTankLazyOptional = LazyOptional.of(() -> BioreactorBlockEntity.this.m_resultTank);
 	private @NotNull LazyOptional<ICurrentHandler> m_currentStorerLazyOptional = LazyOptional.of(() -> BioreactorBlockEntity.this.m_currentStorer);
 
-	
 	private final @NotNull InputComponentManager<ICurrentHandler> m_currentComponentManager = new InputComponentManager<>(this.m_inventory, BioreactorBlockEntity.POWER_SLOT, this.m_currentStorer, YATMCapabilities.CURRENT);
 	private final @NotNull CurrentFillManager m_currentFillManager = new CurrentFillManager(this.m_inventory, BioreactorBlockEntity.POWER_SLOT, this.m_currentStorer, YATMConfigs.BIOREACTOR_MAX_CURRENT_TRANSFER.get());
-	private final @NotNull OutputComponentManager m_drainResultComponentManager = new OutputComponentManager(this.m_inventory, BioreactorBlockEntity.DRAIN_RESULT_TANK_SLOT);
-	private final @NotNull DrainTankManager m_drainResultTankManager = new DrainTankManager(this.m_inventory, BioreactorBlockEntity.DRAIN_RESULT_TANK_SLOT, this.m_resultTank, YATMConfigs.BIOREACTOR_MAX_FLUID_TRANSFER_RATE.get());
-
-	
+	private final @NotNull OutputComponentManager m_drainResultComponentManager = new OutputComponentManager(this.m_inventory, BioreactorBlockEntity.DRAIN_RESULT_TANK_SLOT, () -> List.of(Direction.DOWN), YATMConfigs.BIOREACTOR_DRAIN_RECHECK_PERIOD.get());
+	private final @NotNull DrainTankManager m_drainResultTankManager = new DrainTankManager(this.m_inventory, BioreactorBlockEntity.DRAIN_RESULT_TANK_SLOT, this.m_resultTank, YATMConfigs.BIOREACTOR_MAX_FLUID_TRANSFER_RATE.get());	
 	
 	public static final ICompositeAccessSpecification ACCESS_SPEC = CompositeAccessSpecification.of(List.of(
 			Map.entry(CraftingDeviceBlockEntity.CRAFT_PROGRESS_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY * 2),
@@ -136,9 +131,9 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreacting
 	} // end itemInsertionValidator()
 
 	@Override
-	protected void onItemInsertion(int slot, ItemStack stack)
+	protected void onItemChange(@NotNegative int slot, @NotNull ItemStack stack)
 	{
-		super.onItemInsertion(slot, stack);
+		super.onItemChange(slot, stack);
 		if(slot == BioreactorBlockEntity.POWER_SLOT) 
 		{
 			this.m_updateCurrentComponentQueued = true;
@@ -146,24 +141,8 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreacting
 		if(slot == BioreactorBlockEntity.DRAIN_RESULT_TANK_SLOT) 
 		{
 			this.m_updateDrainResultComponentQueued = true;
-			// this.updateDrainResultComponent();
 		}
-	} // end onItemInsertion()
-
-	@Override
-	protected void onItemWithdrawal(int slot, ItemStack stack)
-	{
-		super.onItemWithdrawal(slot, stack);
-		if(slot == BioreactorBlockEntity.POWER_SLOT) 
-		{
-			this.m_updateCurrentComponentQueued = true;
-		}
-		if(slot == BioreactorBlockEntity.DRAIN_RESULT_TANK_SLOT) 
-		{
-			this.m_updateDrainResultComponentQueued = true;
-			// this.updateDrainResultComponent();
-		}
-	} // end onItemWithdrawal()
+	} // end onItemChange()
 
 
 
@@ -185,10 +164,7 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreacting
 		boolean changed = this.m_currentFillManager.tick(level, position);
 		changed |= this.doCrafting();
 		changed |= this.m_drainResultTankManager.tick(level, position);
-		if(++this.m_drainRecheckCounter >= YATMConfigs.BIOREACTOR_DRAIN_RECHECK_PERIOD.get()) 
-		{
-			this.m_drainResultComponentManager.tryAttach(level, position, Direction.DOWN);
-		}
+		this.m_drainResultComponentManager.tick(level, position);
 		
 		
 		if(changed) 
@@ -230,12 +206,20 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreacting
 	protected void saveAdditional(@NotNull CompoundTag tag)
 	{
 		super.saveAdditional(tag);
+		
 		if(this.m_currentStorer.stored() > 0) 
 		{
 			tag.put(BioreactorBlockEntity.CURRENT_HANDLER_TAG_NAME, this.m_currentStorer.serializeNBT());
 		}
-		tag.put(BioreactorBlockEntity.DRAIN_RESULT_MANAGER_TAG_NAME, this.m_drainResultTankManager.serializeNBT());
-		tag.put(BioreactorBlockEntity.TANK_TAG_NAME, this.m_rawResultTank.writeToNBT(new CompoundTag()));
+		CompoundTag drtmTag = this.m_drainResultTankManager.serializeNBT();
+		if(drtmTag != null) 
+		{
+			tag.put(BioreactorBlockEntity.DRAIN_RESULT_MANAGER_TAG_NAME, drtmTag);
+		}
+		if(!this.m_rawResultTank.getFluid().isEmpty()) 
+		{
+			tag.put(BioreactorBlockEntity.TANK_TAG_NAME, this.m_rawResultTank.writeToNBT(new CompoundTag()));
+		}
 	} // end saveAdditional()
 	
 	@Override
@@ -285,27 +269,11 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreacting
 		}
 		else if(Direction.Plane.HORIZONTAL.test(side))
 		{				
-			LazyOptional<T> l = this.m_currentComponentManager.getCapability(cap);
-			if(l.isPresent()) 
-			{
-				return l.cast();
-			}
-			else if (cap == ForgeCapabilities.ITEM_HANDLER) 
-			{
-				return this.m_currentSlotLazyOptional.cast();
-			}
+			return SlotUtil.componentOrSlot(cap, this.m_currentComponentManager.getCapability(cap), this.m_currentSlotLazyOptional, () -> BioreactorBlockEntity.super.getCapability(cap, side));
 		}
 		else if(side == Direction.DOWN) 
 		{
-			LazyOptional<T> l = this.m_drainResultComponentManager.getCapability(cap);
-			if(l.isPresent()) 
-			{
-				return l.cast();
-			}
-			else if (cap == ForgeCapabilities.ITEM_HANDLER) 
-			{
-				return this.m_drainResultTankSlotLazyOptional.cast();
-			}
+			return SlotUtil.componentOrSlot(cap, this.m_drainResultComponentManager.getCapability(cap), this.m_drainResultTankSlotLazyOptional, () -> BioreactorBlockEntity.super.getCapability(cap, side));
 		}
 		
 		return super.getCapability(cap, side);

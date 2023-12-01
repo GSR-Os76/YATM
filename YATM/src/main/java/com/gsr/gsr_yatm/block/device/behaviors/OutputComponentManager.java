@@ -5,10 +5,12 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.item.component.IComponent;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
@@ -28,6 +30,10 @@ public class OutputComponentManager implements ICapabilityProvider
 {
 	private final @NotNull IItemHandler m_inventory;
 	private final @NotNegative int m_slot;
+	private final @NotNull Supplier<@NotNull List<@NotNull Direction>> m_attachmentDirections;
+	private final @NotNegative int m_recheckPeriod;
+	
+	private @NotNegative int m_recheckCounter = 0;
 	
 	private @Nullable ItemStack m_componentStack = null;
 	private @Nullable IComponent m_component = null;
@@ -36,10 +42,12 @@ public class OutputComponentManager implements ICapabilityProvider
 	
 	
 	
-	public OutputComponentManager(@NotNull IItemHandler inventory, @NotNegative int slot) 
+	public OutputComponentManager(@NotNull IItemHandler inventory, @NotNegative int slot, @NotNull Supplier<@NotNull List<@NotNull Direction>> attachmentDirections, @NotNegative int recheckPeriod) 
 	{
 		this.m_inventory = Objects.requireNonNull(inventory);
 		this.m_slot = Contract.notNegative(slot);
+		this.m_attachmentDirections = Objects.requireNonNull(attachmentDirections);
+		this.m_recheckPeriod = Contract.notNegative(recheckPeriod);
 	} // end constructor
 	
 	
@@ -61,6 +69,16 @@ public class OutputComponentManager implements ICapabilityProvider
 			this.m_componentStack = drainResultStack;
 		}
 	} // end updateComponent()
+	
+	
+	
+	public void tick(@NotNull Level level, @NotNull BlockPos position) 
+	{
+		if(++this.m_recheckCounter >= YATMConfigs.CRUCIBLE_DRAIN_RECHECK_PERIOD.get()) 
+		{
+			this.m_attachmentDirections.get().forEach((d) ->  this.tryAttach(level, position, d));
+		}
+	} // end tick()
 	
 	
 	

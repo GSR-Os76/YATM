@@ -1,6 +1,9 @@
 package com.gsr.gsr_yatm.gui;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.utilities.contract.Contract;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.ImageWidget;
 import net.minecraft.client.gui.components.Tooltip;
@@ -9,6 +12,8 @@ import net.minecraft.resources.ResourceLocation;
 
 public class HorizontalTemperatureWidget extends ImageWidget implements ITemperatureWidget
 {
+	// TODO, add marker for required heat
+	
 	public static final ResourceLocation WIDGET_THINGS = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/widget_things.png");
 	public static final int WIDTH = 102;
 	public static final int HEIGHT = 11;
@@ -17,17 +22,17 @@ public class HorizontalTemperatureWidget extends ImageWidget implements ITempera
 	private int m_pixelsToDrawOverCount = 0;
 	
 	
-	public HorizontalTemperatureWidget(int toX, int toY, int maxTemperature) 
+	public HorizontalTemperatureWidget(int toX, int toY, @NotNegative int maxTemperature) 
 	{
-		super(toX, toY, WIDTH, HEIGHT, WIDGET_THINGS);
-		this.m_maxTemperature = maxTemperature;
+		super(toX, toY, HorizontalTemperatureWidget.WIDTH, HorizontalTemperatureWidget.HEIGHT, HorizontalTemperatureWidget.WIDGET_THINGS);
+		this.m_maxTemperature = Contract.notNegative(maxTemperature);
 		this.updateTooltip();
 	} // end constructor()
 	
 	
 	
 	@Override
-	public int getMaxTemperature()
+	public @NotNegative int getMaxTemperature()
 	{
 		return this.m_maxTemperature;
 	} // end getCapacity()

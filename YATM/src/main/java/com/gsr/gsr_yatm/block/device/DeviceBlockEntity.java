@@ -1,11 +1,14 @@
 package com.gsr.gsr_yatm.block.device;
 
+import java.util.Objects;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
+import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
 import net.minecraft.core.BlockPos;
@@ -39,15 +42,17 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	
 	
 	
-	public DeviceBlockEntity(BlockEntityType<?> type, BlockPos blockPos, BlockState blockState, int inventorySlotCount)
+	public DeviceBlockEntity(@NotNull BlockEntityType<?> type, @NotNull BlockPos position, @NotNull BlockState state, @NotNegative int inventorySlotCount)
 	{
-		super(type, blockPos, blockState);
-		this.m_rawInventory = new ItemStackHandler(inventorySlotCount);
+		super(Objects.requireNonNull(type), Objects.requireNonNull(position), Objects.requireNonNull(state));
+		this.m_rawInventory = new ItemStackHandler(Contract.notNegative(inventorySlotCount));
 		this.m_uncheckedInventory = InventoryWrapper.Builder.of(this.m_rawInventory).onInsertion(this::onItemInsertion).onWithdrawal(this::onItemWithdrawal).build();
 		this.m_inventory = InventoryWrapper.Builder.of(this.m_uncheckedInventory).slotValidator(this::itemInsertionValidator).build();
 	} // end constructor
 	
+	@Deprecated(forRemoval = true)
 	protected @Nullable CompoundTag setupToNBT() {return null;}
+	@Deprecated(forRemoval = true)
 	protected void setupFromNBT(@NotNull CompoundTag tag) {}
 	
 	
@@ -57,50 +62,55 @@ public abstract class DeviceBlockEntity extends BlockEntity
 		return this.m_inventory;
 	} // end getInventory()
 
-	// TODO, sub classes should explicitly declare contract too
 	public abstract @NotNull ContainerData getDataAccessor();
 	
 	protected abstract boolean itemInsertionValidator(@NotNegative int slot, @NotNull ItemStack itemStack, boolean simulate);
 
-	protected void onItemInsertion(int slot, ItemStack stack)
+	protected void onItemInsertion(@NotNegative int slot, @NotNull ItemStack stack)
 	{
-		this.setChanged();
+		this.onItemChange(slot, stack);
 	} // end onItemInsertion()
 
-	protected void onItemWithdrawal(int slot, ItemStack stack)
+	protected void onItemWithdrawal(@NotNegative int slot, @NotNull ItemStack stack)
+	{
+		this.onItemChange(slot, stack);
+	} // end onItemWithdrawal()
+	
+	protected void onItemChange(@NotNegative int slot, @NotNull ItemStack stack)
 	{
 		this.setChanged();
-	} // onItemWithdrawal
+	} // end onItemChange()
 	
-	protected void onCurrentExchanged(int amount) 
+	protected void onCurrentExchanged(@NotNegative int amount) 
 	{
 		this.setChanged();
 	} // end onCurrentExchanged()
 	
-	protected void onFluidContentsChanged(FluidStack stack) 
+	protected void onFluidContentsChanged(@NotNull FluidStack stack) 
 	{		
 		this.setChanged();
 	} // end onFluidContentsChanged()
 	
 	
-	public static void tick(Level level, BlockPos pos, BlockState blockState, DeviceBlockEntity blockEntity)
+	
+	public static void tick(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state, @NotNull DeviceBlockEntity blockEntity)
 	{
 		if (level.isClientSide)
 		{
-			blockEntity.clientTick(level, pos, blockState);
+			blockEntity.clientTick(level, position, state);
 		}
 		else
 		{
-			blockEntity.serverTick(level, pos, blockState);
+			blockEntity.serverTick(level, position, state);
 		}
 	} // end tick()
 
-	public void clientTick(Level level, BlockPos position, BlockState state)
+	public void clientTick(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state)
 	{
 		
 	} // end clientTick()
 	
-	public void serverTick(Level level, BlockPos position, BlockState state)
+	public void serverTick(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state)
 	{
 
 	} // end serverTick()
@@ -108,7 +118,7 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	
 	
 	
-	protected IItemHandler getDropInventory() 
+	protected @NotNull IItemHandler getDropInventory() 
 	{
 		return this.m_rawInventory;
 	} // end getDropInventory()

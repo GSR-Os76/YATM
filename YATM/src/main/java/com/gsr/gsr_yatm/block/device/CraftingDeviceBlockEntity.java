@@ -19,11 +19,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraftforge.fluids.FluidStack;
 
 public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C extends Container> extends DeviceBlockEntity 
 {	
@@ -53,27 +51,14 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 		this.m_recipeType = Objects.requireNonNull(recipeType);
 	} // end Constructor
 
-	
-	
-	@Override
-	protected void onItemInsertion(int slot, ItemStack stack)
-	{
-		super.onItemInsertion(slot, stack);
-		this.m_timeSinceRecheck = CraftingDeviceBlockEntity.RECHECK_PERIOD;
-	} // end onItemInsertion()
+
 
 	@Override
-	protected void onItemWithdrawal(int slot, ItemStack stack)
+	public void setChanged()
 	{
-		super.onItemWithdrawal(slot, stack);
+		super.setChanged();
 		this.m_timeSinceRecheck = CraftingDeviceBlockEntity.RECHECK_PERIOD;
-	} // end onItemWithdrawal()
-	
-	@Override
-	protected void onFluidContentsChanged(FluidStack stack) 
-	{	
-		this.m_timeSinceRecheck = CraftingDeviceBlockEntity.RECHECK_PERIOD;
-	} // end onFluidContentsChanged()
+	} // end setChanged()
 
 
 

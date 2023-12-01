@@ -322,7 +322,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	private void addBoilingRecipes(@NotNull Consumer<FinishedRecipe> writer) 
 	{
-		this.addBoilingRecipe(writer, new FluidStack(YATMFluids.SOUL_SAP.get(), 3), new FluidStack(YATMFluids.SOUL_SYRUP.get(), 1), 722, 3, YetAnotherTechMod.MODID + ":soul_syrup_from_soul_sap_boiling");
+		this.addBoilingRecipe(writer, new FluidStack(YATMFluids.SOUL_SAP.get(), 300), new FluidStack(YATMFluids.SOUL_SYRUP.get(), 60), 722, 900, YetAnotherTechMod.MODID + ":soul_syrup_from_soul_sap_boiling");
 		// TODO, steam as a power option
 	} // end addBoilingRecipes()
 	

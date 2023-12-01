@@ -37,6 +37,13 @@ public class OnChangedHeatHandler implements IHeatHandler
 	
 	
 	
+	public @NotNegative int maxTemperature() 
+	{
+		return this.m_maxTemperature;
+	} // end maxTemperature()
+	
+	
+	
 	@Override
 	public @NotNegative int heat(@NotNegative int temperature)
 	{

@@ -75,7 +75,6 @@ public class MeltingRecipe implements ITimedRecipe<Container>, IHeatedRecipe<Con
 
 
 	
-	// TODO, update other recipes to match this pattern
 	public boolean canTick(@NotNull IHeatHandler heat)
 	{
 		return this.m_temperature <= heat.getTemperature();

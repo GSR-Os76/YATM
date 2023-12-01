@@ -24,6 +24,7 @@ public class DrainTankManager implements INBTSerializable<CompoundTag>
 {
 	private static final String COUNT_DOWN_TAG_NAME = "drainResultCount";
 	private static final String TRANSFER_INITIAL_TAG_NAME = "drainResultInitial";
+	private static final String STACK_TAG_NAME = "stack";
 	
 	private final @NotNull IItemHandler m_inventory;
 	private final @NotNegative int m_slot;
@@ -116,33 +117,32 @@ public class DrainTankManager implements INBTSerializable<CompoundTag>
 		}
 		return changed;
 	} // end tick()
-
-	public static int minDrainTankTo(IFluidHandler to, IFluidHandler from) 
-	{
-		return to.fill(from.drain(Integer.MAX_VALUE, FluidAction.SIMULATE), FluidAction.SIMULATE);
-	} // end maxDrainTankTo()
 	
 	
 
 	@Override
-	public @NotNull CompoundTag serializeNBT()
+	public @Nullable CompoundTag serializeNBT()
 	{
-		CompoundTag tag = new CompoundTag();
-		if (this.m_countDown > 0 && this.m_initial > 0)
+		if (this.m_countDown > 0 && this.m_initial > 0 && this.m_initialItemStack != null)
 		{
+			CompoundTag tag = new CompoundTag();
 			tag.putInt(DrainTankManager.COUNT_DOWN_TAG_NAME, this.m_countDown);
 			tag.putInt(DrainTankManager.TRANSFER_INITIAL_TAG_NAME, this.m_initial);
+			tag.put(DrainTankManager.STACK_TAG_NAME, this.m_initialItemStack.save(new CompoundTag()));
+			return tag;
 		}
-		return tag;
+		return null;
 	} // end serializeNBT()
 
 	@Override
 	public void deserializeNBT(@NotNull CompoundTag tag)
 	{
-		if (tag.contains(DrainTankManager.COUNT_DOWN_TAG_NAME) && tag.contains(DrainTankManager.TRANSFER_INITIAL_TAG_NAME))
+		if (tag.contains(DrainTankManager.COUNT_DOWN_TAG_NAME) && tag.contains(DrainTankManager.TRANSFER_INITIAL_TAG_NAME) && tag.contains(DrainTankManager.STACK_TAG_NAME))
 		{
 			this.m_countDown = tag.getInt(DrainTankManager.COUNT_DOWN_TAG_NAME);
 			this.m_initial = tag.getInt(DrainTankManager.TRANSFER_INITIAL_TAG_NAME);
+			this.m_initialItemStack = ItemStack.of(tag.getCompound(DrainTankManager.STACK_TAG_NAME));
+			
 		}
 	} // end deserializeNBT()
 	

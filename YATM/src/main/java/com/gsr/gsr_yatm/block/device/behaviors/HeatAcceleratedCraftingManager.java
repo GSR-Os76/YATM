@@ -63,15 +63,16 @@ public class HeatAcceleratedCraftingManager implements INBTSerializable<Compound
 
 
 	@Override
-	public @NotNull CompoundTag serializeNBT()
+	public @Nullable CompoundTag serializeNBT()
 	{
-		CompoundTag tag = new CompoundTag();
-		if(this.m_recipeSupplier.get() != null) 
+		if (this.m_recipeSupplier.get() != null)
 		{
+			CompoundTag tag = new CompoundTag();
 			tag.putInt(HeatAcceleratedCraftingManager.TICKS_PERFORMED_TAG_NAME, this.m_ticksPerformed);
 			tag.putFloat(HeatAcceleratedCraftingManager.TICKS_SCHEDULED_TAG_NAME, this.m_ticksScheduled);
+			return tag;
 		}
-		return tag;
+		return null;
 	} // end serializeNBT()
 
 	@Override

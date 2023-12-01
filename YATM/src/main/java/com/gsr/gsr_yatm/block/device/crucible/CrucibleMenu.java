@@ -40,7 +40,7 @@ public class CrucibleMenu extends AbstractContainerMenu
 	
 	
 	// client side constructor
-	public CrucibleMenu(int inventoryId, Inventory playerInventory)
+	public CrucibleMenu(int inventoryId, @NotNull Inventory playerInventory)
 	{
 		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(CrucibleBlockEntity.INVENTORY_SLOT_COUNT), new SimpleContainerData(CrucibleBlockEntity.ACCESS_SPEC.getCount()));
 	} // end client constructor
@@ -89,13 +89,13 @@ public class CrucibleMenu extends AbstractContainerMenu
 			ItemStack slotsStack = quickMovedSlot.getItem();
 			if (quickMovedSlotIndex == CrucibleBlockEntity.DRAIN_RESULT_TANK_SLOT)
 			{				
-				if (!this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_HOTBAR_END + 1, true))
+				if (!this.moveItemStackTo(slotsStack, CrucibleMenu.PLAYER_INVENTORY_START, CrucibleMenu.PLAYER_HOTBAR_END + 1, true))
 				{					
 					return ItemStack.EMPTY;
 				}
 				quickMovedSlot.onQuickCraft(slotsStack, quickMovedStack);
 			}
-			else if (quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END)
+			else if (quickMovedSlotIndex >= CrucibleMenu.PLAYER_INVENTORY_START && quickMovedSlotIndex <= CrucibleMenu.PLAYER_HOTBAR_END)
 			{	
 				boolean moved = false;
 				if(this.moveItemStackTo(slotsStack, CrucibleBlockEntity.INPUT_SLOT, CrucibleBlockEntity.INPUT_SLOT + 1, false)) 
@@ -110,11 +110,11 @@ public class CrucibleMenu extends AbstractContainerMenu
 				{											
 					moved = true;				
 				}
-				else if((quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_INVENTORY_END) && this.moveItemStackTo(slotsStack, PLAYER_HOTBAR_START, PLAYER_HOTBAR_END + 1, false)) 
+				else if((quickMovedSlotIndex >= CrucibleMenu.PLAYER_INVENTORY_START && quickMovedSlotIndex <= CrucibleMenu.PLAYER_INVENTORY_END) && this.moveItemStackTo(slotsStack, CrucibleMenu.PLAYER_HOTBAR_START, CrucibleMenu.PLAYER_HOTBAR_END + 1, false)) 
 				{											
 					moved = true;
 				}
-				else if ((quickMovedSlotIndex >= PLAYER_HOTBAR_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END) && this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_INVENTORY_END + 1, false))
+				else if ((quickMovedSlotIndex >= CrucibleMenu.PLAYER_HOTBAR_START && quickMovedSlotIndex <= CrucibleMenu.PLAYER_HOTBAR_END) && this.moveItemStackTo(slotsStack, CrucibleMenu.PLAYER_INVENTORY_START, CrucibleMenu.PLAYER_INVENTORY_END + 1, false))
 				{
 					moved = true;
 				}
@@ -123,7 +123,7 @@ public class CrucibleMenu extends AbstractContainerMenu
 					return ItemStack.EMPTY;
 				}
 			}
-			else if (!this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_HOTBAR_END + 1, false))
+			else if (!this.moveItemStackTo(slotsStack, CrucibleMenu.PLAYER_INVENTORY_START, CrucibleMenu.PLAYER_HOTBAR_END + 1, false))
 			{
 				return ItemStack.EMPTY;
 			}

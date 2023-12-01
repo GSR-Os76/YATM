@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.api.capability.IHeatHandler;
+import com.gsr.gsr_yatm.recipe.IHeatedRecipe;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMItems;
@@ -23,7 +25,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 
-public class BoilingRecipe implements ITimedRecipe<Container>
+public class BoilingRecipe implements ITimedRecipe<Container>, IHeatedRecipe<Container>
 {
 	private final @NotNull ResourceLocation m_identifier;
 	private final @NotNull FluidStack m_result;
@@ -46,7 +48,7 @@ public class BoilingRecipe implements ITimedRecipe<Container>
 	} // end constructor
 	
 	
-	
+	@Override
 	public int getTemperature()
 	{
 		return this.m_temperature;
@@ -59,34 +61,34 @@ public class BoilingRecipe implements ITimedRecipe<Container>
 	} // end getTimeInTicks()
 
 	
+
+	public boolean canTick(@NotNull IHeatHandler heat)
+	{
+		return this.m_temperature <= heat.getTemperature();
+	} // end canTick()
 	
-	
-	public boolean canBeUsedOn(@NotNull IFluidHandler inputTank, @NotNull IFluidHandler resultTank, int temperature)
+	public boolean matches(@NotNull IFluidHandler inputTank, @NotNull IFluidHandler resultTank)
 	{
 		Fluid f = inputTank.getFluidInTank(0).getFluid();
 		int am = IngredientUtil.getRequiredAmountFor(f, this.m_input);
-		FluidStack inputDrainSimulated = inputTank.drain(new FluidStack(f, am), FluidAction.EXECUTE);
-		
-		return am != -1 
-				&& inputDrainSimulated.getAmount() == am 
-				&& resultTank.fill(this.m_result, FluidAction.SIMULATE) == this.m_result.getAmount() 
-				&& temperature >= this.m_temperature;
+		if (am == -1)
+		{
+			return false;
+		}
+		FluidStack inputDrainSimulated = inputTank.drain(new FluidStack(f, am), FluidAction.SIMULATE);
+		return inputDrainSimulated.getAmount() == am 
+				&& resultTank.fill(this.m_result, FluidAction.SIMULATE) == this.m_result.getAmount(); 
 	} // end canBeUsedOn()
 	
-	public void startRecipe(@NotNull IFluidHandler inputTank)
+	public void setResults(@NotNull IFluidHandler inputTank, @NotNull IFluidHandler resultTank)
 	{
 		Fluid f = inputTank.getFluidInTank(0).getFluid();
 		inputTank.drain(new FluidStack(f, IngredientUtil.getRequiredAmountFor(f, this.m_input)), FluidAction.EXECUTE);
-	} // end startRecipe()
-	
-	public void setResults(@NotNull IFluidHandler resultTank)
-	{
 		resultTank.fill(this.m_result.copy(), FluidAction.EXECUTE);
 	} // end setResults()
 		
 	
 		
-	// use canBeUsedOn() instead
 	@Override
 	public boolean matches(Container container, Level level)
 	{

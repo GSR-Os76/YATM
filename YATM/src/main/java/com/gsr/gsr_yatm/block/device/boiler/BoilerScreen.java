@@ -17,8 +17,9 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 	private VerticalStoredFluidWidget m_inputTankWidget;
 	private VerticalStoredFluidWidget m_resultTankWidget;
 	private HorizontalTemperatureWidget m_temperatureWidget;
-	// add face configuration, and
 
+	
+	
 	public BoilerScreen(BoilerMenu boilerMenu, Inventory inventory, Component titleComponentMaybe)
 	{
 		super(boilerMenu, inventory, titleComponentMaybe);
@@ -26,24 +27,9 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 		int newYDownShift = 36;
 		this.imageHeight = 166 + newYDownShift;
 		this.inventoryLabelY = this.inventoryLabelY + newYDownShift;
-		
-//		this.menu.maximumTemperatureChanged((mt) -> 
-//		{
-//			YetAnotherTechMod.LOGGER.info("trying to set the max temperature to: " + mt);
-//			BoilerScreen.this.setTemperatureWidget(new TemperatureWidget(BoilerScreen.this.leftPos + 37, BoilerScreen.this.topPos + 43, mt));
-//		});
-//		this.menu.temperatureChanged((t) -> 
-//		{
-//			YetAnotherTechMod.LOGGER.info("trying to set temperature to: " + t);
-//			TemperatureWidget tw = BoilerScreen.this.getTemperatureWidget();
-//			if(tw != null) 
-//			{
-//				tw.setTemperature(t);	
-//			}
-//		});
 	} // end constructor
 
-	// TODO, add marker for required heat, add a boil progress marker
+	
 	
 	@Override
 	protected void init()
@@ -52,10 +38,6 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 		this.setInputTankWidget();
 		this.setResultTankWidget();
 		this.setTemperatureWidget();
-//		this.m_temperatureWidget = new TemperatureWidget(this.leftPos + 37, this.topPos + 43, this.menu.getMaxTemperature());
-//		this.addRenderableWidget(this.m_temperatureWidget);
-		//this.setTemperatureWidget();
-		
 	} // end init()
 
 	@Override
@@ -74,22 +56,22 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 	@Override
 	protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY)
 	{
-		graphics.blit(BACKGROUND, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+		graphics.blit(BoilerScreen.BACKGROUND, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 		
-		float bP = this.menu.boilProgress();
+		float bP = this.menu.craftProgress();
 		if(bP > 0) 
 		{
-			graphics.blit(BACKGROUND, this.leftPos + 37, this.topPos + 23, 0, 202, (int)(102f * bP), 16);
+			graphics.blit(BoilerScreen.BACKGROUND, this.leftPos + 37, this.topPos + 23, 0, 202, (int)(102f * bP), 16);
 		}
 		
 		
 		// burn square is 14x14, at 177 0
 		// draw it to 80 70
-		float burnFractionRemaining = this.menu.burnFractionRemaining();
+		float burnFractionRemaining = this.menu.burnProgress();
 		if (burnFractionRemaining > 0f)
 		{
 			int renderDownSet = 14 - ((int) (14 * burnFractionRemaining));
-			graphics.blit(BACKGROUND, this.leftPos + 80, (this.topPos + 70) + renderDownSet, 176, 0 + renderDownSet, 14, 14 - renderDownSet);
+			graphics.blit(BoilerScreen.BACKGROUND, this.leftPos + 80, (this.topPos + 70) + renderDownSet, 176, 0 + renderDownSet, 14, 14 - renderDownSet);
 		}
 
 
@@ -100,7 +82,7 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 		{
 			// 176, 14. 9x8 to 11, 78
 			int renderDownSet = 8 - ((int) (8f * iFP));
-			graphics.blit(BACKGROUND, this.leftPos + 11, (this.topPos + 78) + renderDownSet, 176, 14 + renderDownSet, 9, 8 - renderDownSet);
+			graphics.blit(BoilerScreen.BACKGROUND, this.leftPos + 11, (this.topPos + 78) + renderDownSet, 176, 14 + renderDownSet, 9, 8 - renderDownSet);
 		}
 
 		// draw input tank drain progress
@@ -113,9 +95,9 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 			float hP = iDP >= .36f ? 1f : (iDP / .36f);
 			float vP = iDP < .36f ? 0f : (iDP - .36f) / .64f;
 			int renderRightSet = 9 - ((int) (9f * hP));
-			graphics.blit(BACKGROUND, (this.leftPos + 27), this.topPos + 65, 185, 14, 9 - renderRightSet, 4);
+			graphics.blit(BoilerScreen.BACKGROUND, (this.leftPos + 27), this.topPos + 65, 185, 14, 9 - renderRightSet, 4);
 			int renderDownSet = 16 - ((int) (16f * vP));
-			graphics.blit(BACKGROUND, this.leftPos + 29, this.topPos + 69, 188, 18, 9, 16 - renderDownSet);
+			graphics.blit(BoilerScreen.BACKGROUND, this.leftPos + 29, this.topPos + 69, 188, 18, 9, 16 - renderDownSet);
 		}
 
 		// draw result tank drain progress
@@ -124,7 +106,7 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 		{
 			// 197, 14. 9x8 to 155, 78
 			int renderDownSet = 8 - ((int) (8f * rDP));
-			graphics.blit(BACKGROUND, this.leftPos + 155, this.topPos + 78, 197, 14, 9, 8 - renderDownSet);
+			graphics.blit(BoilerScreen.BACKGROUND, this.leftPos + 155, this.topPos + 78, 197, 14, 9, 8 - renderDownSet);
 		}
 
 	} // end renderBg

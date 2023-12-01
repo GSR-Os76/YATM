@@ -321,5 +321,20 @@ public class SlotUtil
 		
 		return 0;
 	} // end tryToPower()
+
+	
+	
+	public static <T> @NotNull LazyOptional<T> componentOrSlot(@NotNull Capability<T> cap, @NotNull LazyOptional<T> componentCap, @NotNull LazyOptional<IItemHandler> slotOptional, @NotNull Supplier<LazyOptional<T>> superCall)
+	{
+		if(componentCap.isPresent()) 
+		{
+			return componentCap.cast();
+		}
+		else if (cap == ForgeCapabilities.ITEM_HANDLER) 
+		{
+			return slotOptional.cast();
+		}
+		return superCall.get();
+	} // end componentOrSlot()
 	
 } // end class

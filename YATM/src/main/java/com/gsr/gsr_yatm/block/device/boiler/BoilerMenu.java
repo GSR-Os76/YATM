@@ -1,7 +1,14 @@
 package com.gsr.gsr_yatm.block.device.boiler;
 
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
+import com.gsr.gsr_yatm.utilities.network.FluidTankDataReader;
 import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
 
 import net.minecraft.world.entity.player.Inventory;
@@ -25,29 +32,32 @@ public class BoilerMenu extends AbstractContainerMenu
 	public static final int PLAYER_HOTBAR_START = PLAYER_INVENTORY_END + 1;
 	public static final int PLAYER_HOTBAR_END = PLAYER_HOTBAR_START + 8;
 	
-	private final ContainerLevelAccess m_access;
-	private final Block m_openingBlockType;
-	private final ContainerData m_data;
-
+	private final @NotNull ContainerLevelAccess m_access;
+	private final @NotNull ContainerData m_data;
+	private final @NotNull FluidTankDataReader m_inputTankReader;
+	private final @Nullable Block m_openingBlockType;
+	private final @NotNull FluidTankDataReader m_resultTankReader;
+	
 
 
 	// client side constructor
 	public BoilerMenu(int inventoryId, Inventory playerInventory)
 	{
-		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(BoilerBlockEntity.INVENTORY_SLOT_COUNT), new SimpleContainerData(BoilerBlockEntity.DATA_SLOT_COUNT));//, new SimpleContainerData(4));
+		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(BoilerBlockEntity.INVENTORY_SLOT_COUNT), new SimpleContainerData(BoilerBlockEntity.DATA_SLOT_COUNT));
 	} // end client constructor
 
 	// server side constructor
-	public BoilerMenu(int inventoryId, Inventory playerInventory, ContainerLevelAccess access, Block openingBlockType, IItemHandler objInventory, ContainerData data)//, ContainerData container)
+	public BoilerMenu(int inventoryId, @NotNull Inventory playerInventory, @NotNull ContainerLevelAccess access, @Nullable Block openingBlockType, @NotNull IItemHandler objInventory, @NotNull ContainerData data)
 	{
 		super(YATMMenuTypes.BOILER.get(), inventoryId);
 
-		this.m_access = access;
+		this.m_access = Objects.requireNonNull(access);
 		this.m_openingBlockType = openingBlockType;
-		this.m_data = data;
-		//this.m_inputTankCapacity = data.get(BoilerBlockEntity.INPUT_CAPACITY_INDEX);
-		//this.m_outputTankCapacity = data.get(BoilerBlockEntity.OUTPUT_CAPACITY_INDEX);
-		// checkObjInventorySize();
+		this.m_data = Objects.requireNonNull(data);
+
+		this.m_inputTankReader = new FluidTankDataReader(this.m_data, BoilerBlockEntity.ACCESS_SPEC.get(BoilerBlockEntity.INPUT_TANK_DATA_SPEC_KEY));
+		this.m_resultTankReader = new FluidTankDataReader(this.m_data, BoilerBlockEntity.ACCESS_SPEC.get(BoilerBlockEntity.RESULT_TANK_DATA_SPEC_KEY));
+		
 		int newYDownShift = 36;
 		int yPos = 51 + newYDownShift;
 		this.addSlot(new SlotItemHandler(objInventory, BoilerBlockEntity.FILL_INPUT_TANK_SLOT, 8, yPos));
@@ -78,8 +88,6 @@ public class BoilerMenu extends AbstractContainerMenu
 	@Override
 	public ItemStack quickMoveStack(Player player, int quickMovedSlotIndex)
 	{
-		// get moved stack
-		// if from player, and is a fluidHandler or a fuel, move as appropriate
 		ItemStack quickMovedStack = ItemStack.EMPTY;
 		Slot quickMovedSlot = this.slots.get(quickMovedSlotIndex);
 		if (quickMovedSlot != null && quickMovedSlot.hasItem())
@@ -88,14 +96,14 @@ public class BoilerMenu extends AbstractContainerMenu
 			if (quickMovedSlotIndex == BoilerBlockEntity.DRAIN_RESULT_TANK_SLOT)
 			{
 				
-				if (!this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_HOTBAR_END + 1, true))
+				if (!this.moveItemStackTo(slotsStack, BoilerMenu.PLAYER_INVENTORY_START, BoilerMenu.PLAYER_HOTBAR_END + 1, true))
 				{					
 					return ItemStack.EMPTY;
 				}
 
 				quickMovedSlot.onQuickCraft(slotsStack, quickMovedStack);
 			}
-			else if (quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END)
+			else if (quickMovedSlotIndex >= BoilerMenu.PLAYER_INVENTORY_START && quickMovedSlotIndex <= BoilerMenu.PLAYER_HOTBAR_END)
 			{			
 				boolean moved = false;
 				if(SlotUtil.isValidTankFillSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, BoilerBlockEntity.FIRST_FILL_FLUID_SLOT, BoilerBlockEntity.LAST_FILL_FLUID_SLOT + 1, false)) 
@@ -110,11 +118,11 @@ public class BoilerMenu extends AbstractContainerMenu
 				{			
 					moved = true;
 				}
-				else if((quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_INVENTORY_END) && this.moveItemStackTo(slotsStack, PLAYER_HOTBAR_START, PLAYER_HOTBAR_END + 1, false)) 
+				else if((quickMovedSlotIndex >= BoilerMenu.PLAYER_INVENTORY_START && quickMovedSlotIndex <= BoilerMenu.PLAYER_INVENTORY_END) && this.moveItemStackTo(slotsStack, BoilerMenu.PLAYER_HOTBAR_START, BoilerMenu.PLAYER_HOTBAR_END + 1, false)) 
 				{						
 					moved = true;
 				}
-				else if ((quickMovedSlotIndex >= PLAYER_HOTBAR_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END) && this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_INVENTORY_END + 1, false))
+				else if ((quickMovedSlotIndex >= BoilerMenu.PLAYER_HOTBAR_START && quickMovedSlotIndex <= BoilerMenu.PLAYER_HOTBAR_END) && this.moveItemStackTo(slotsStack, BoilerMenu.PLAYER_INVENTORY_START, BoilerMenu.PLAYER_INVENTORY_END + 1, false))
 				{
 					moved = true;
 				}			
@@ -123,9 +131,7 @@ public class BoilerMenu extends AbstractContainerMenu
 					return ItemStack.EMPTY;
 				}
 			}
-			// if not result or inventory of player, move from other device slots to player
-			// inventory if is possible
-			else if (!this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_HOTBAR_END + 1, false))
+			else if (!this.moveItemStackTo(slotsStack, BoilerMenu.PLAYER_INVENTORY_START, BoilerMenu.PLAYER_HOTBAR_END + 1, false))
 			{
 				return ItemStack.EMPTY;
 			}
@@ -160,44 +166,53 @@ public class BoilerMenu extends AbstractContainerMenu
 
 	
 	
-	public float boilProgress() 
+	public float craftProgress() 
 	{
-		return 1f - (((float)this.m_data.get(BoilerBlockEntity.BOIL_PROGESS_INDEX)) / ((float)this.m_data.get(BoilerBlockEntity.BOIL_TIME_INDEX)));
-	} // end boilProgress()
+		return NetworkUtil.getProgess(BoilerBlockEntity.ACCESS_SPEC.get(CraftingDeviceBlockEntity.CRAFT_PROGRESS_SPEC_KEY), this.m_data);
+	} // end craftProgress()
 	
-	public float burnFractionRemaining()
+	public float burnProgress() 
 	{
-		int elapsed = this.m_data.get(BoilerBlockEntity.BURN_TIME_ELAPSED_INDEX);
-		int time =  this.m_data.get(BoilerBlockEntity.BURN_TIME_INDEX);
-		return time == 0 ? 0f : ((float)elapsed / (float)time);
-	} // end burnPercentageRemaining()
+		return NetworkUtil.getRemainingZeroIfNotRunning(BoilerBlockEntity.ACCESS_SPEC.get(BoilerBlockEntity.BURN_PROGRESS_SPEC_KEY), this.m_data);
+	} // end heatProgress()
 	
 	public float fillInputTankTransferProgress() 
 	{
-		return 1f - ((float)this.m_data.get(BoilerBlockEntity.FILL_INPUT_TANK_TRANSFER_PROGRESS) / (float)this.m_data.get(BoilerBlockEntity.FILL_INPUT_TANK_TRANSFER_INITIAL));
+		return NetworkUtil.getProgess(BoilerBlockEntity.ACCESS_SPEC.get(BoilerBlockEntity.FILL_INPUT_PROGRESS_SPEC_KEY), this.m_data);
 	} // end fillInputTankTransferProgress()
 	
 	public float drainInputTankTransferProgress() 
 	{
-		return 1f - ((float)this.m_data.get(BoilerBlockEntity.DRAIN_INPUT_TANK_TRANSFER_PROGRESS) / (float)this.m_data.get(BoilerBlockEntity.DRAIN_INPUT_TANK_TRANSFER_INITIAL));
+		return NetworkUtil.getProgess(BoilerBlockEntity.ACCESS_SPEC.get(BoilerBlockEntity.DRAIN_INPUT_PROGRESS_SPEC_KEY), this.m_data);
 	} // end drainInputTankTransferProgress()
 	
 	public float drainResultTankTransferProgress() 
 	{
-		return 1f - ((float)this.m_data.get(BoilerBlockEntity.DRAIN_RESULT_TANK_TRANSFER_PROGRESS) / (float)this.m_data.get(BoilerBlockEntity.DRAIN_RESULT_TANK_TRANSFER_INITIAL));
+		return NetworkUtil.getProgess(BoilerBlockEntity.ACCESS_SPEC.get(BoilerBlockEntity.DRAIN_RESULT_PROGRESS_SPEC_KEY), this.m_data);
 	} // end drainResultTankTransferProgress()
-
+	
+	
+	
+	public int getTemperature() 
+	{
+		return NetworkUtil.getPropertyValue(BoilerBlockEntity.ACCESS_SPEC.get(BoilerBlockEntity.TEMPERATURE_SPEC_KEY), this.m_data);	
+	} // end temperature()
+	
+	public int getMaxTemperature() 
+	{
+		return NetworkUtil.getPropertyValue(BoilerBlockEntity.ACCESS_SPEC.get(BoilerBlockEntity.MAX_TEMPERATURE_SPEC_KEY), this.m_data);
+	} // end maxTemperature()
+	
 	
 	
 	public int getInputTankCapacity() 
 	{
-		return this.m_data.get(BoilerBlockEntity.INPUT_CAPACITY_INDEX);
+		return this.m_inputTankReader.getCapacity();
 	} // end getInputTankCapacity() 
 	
 	public FluidStack getInputTankContents()
 	{
-		int index = NetworkUtil.composeInt(this.m_data.get(BoilerBlockEntity.INPUT_TANK_FLUID_INDEX_LOW), this.m_data.get(BoilerBlockEntity.INPUT_TANK_FLUID_INDEX_HIGH));
-		return new FluidStack(NetworkUtil.getFluid(index), this.m_data.get(BoilerBlockEntity.INPUT_HOLDING_INDEX));
+		return this.m_inputTankReader.getFluidStack();
 	} // end getInputTankFluid()
 	
 
@@ -205,82 +220,12 @@ public class BoilerMenu extends AbstractContainerMenu
 	
 	public int getOutputTankCapacity() 
 	{
-		return this.m_data.get(BoilerBlockEntity.RESULT_CAPACITY_INDEX);
+		return this.m_resultTankReader.getCapacity();
 	} // end getOutputTankCapacity() 
 	
 	public FluidStack getOutputTankContents()
 	{
-		int index = NetworkUtil.composeInt(this.m_data.get(BoilerBlockEntity.RESULT_TANK_FLUID_INDEX_LOW), this.m_data.get(BoilerBlockEntity.RESULT_TANK_FLUID_INDEX_HIGH));
-		return new FluidStack(NetworkUtil.getFluid(index), this.m_data.get(BoilerBlockEntity.RESULT_HOLDING_INDEX));
+		return this.m_resultTankReader.getFluidStack();
 	} // end getOutputTankFluid()
-	
-	
-	
-	public int getMaxTemperature()
-	{
-		return this.m_data.get(BoilerBlockEntity.MAXIMUM_TEMPERATURE_INDEX);
-	} // end getMaxTemperature()
-	
-	public int getTemperature()
-	{
-		return this.m_data.get(BoilerBlockEntity.TEMPERATURE_INDEX);
-		// TODO, this might finally be what we've been looking for
-		// this.addSlotListener(null);
-		// ContainerListener
-	} // end getMaxTemperature() 
 
-	
-	// does not do as I was expecting it seesm
-//	public void maximumTemperatureChanged(@NotNull Consumer<Integer> onChanged) 
-//	{
-//		ContainerListener cl = new ContainerListener() 
-//		{
-//			private Consumer<Integer> m_onChanged = onChanged;
-//			
-//			@Override
-//			public void slotChanged(AbstractContainerMenu menu, int index, ItemStack contents)
-//			{
-//
-//			} // end slotChanged()
-//
-//			@Override
-//			public void dataChanged(AbstractContainerMenu menu, int index, int value)
-//			{
-//				YetAnotherTechMod.LOGGER.info("data was changed, 1: " + index + ", 2: " + value);
-//				if(index == BoilerBlockEntity.MAXIMUM_TEMPERATURE_INDEX) 
-//				{
-//					this.m_onChanged.accept(value);
-//				}
-//			} // end dataChanged()
-//			
-//		};
-//		this.addSlotListener(cl);
-//	} // end maximumTemperatureChanged()
-//
-//	public void temperatureChanged(@NotNull Consumer<Integer> onChanged) 
-//	{
-//		ContainerListener cl = new ContainerListener() 
-//		{
-//			private Consumer<Integer> m_onChanged = onChanged;
-//			
-//			@Override
-//			public void slotChanged(AbstractContainerMenu menu, int index, ItemStack contents)
-//			{
-//
-//			} // end slotChanged()
-//
-//			@Override
-//			public void dataChanged(AbstractContainerMenu menu, int index, int value)
-//			{
-//				YetAnotherTechMod.LOGGER.info("data was changed, 1: " + index + ", 2: " + value);
-//				if(index == BoilerBlockEntity.TEMPERATURE_INDEX) 
-//				{
-//					this.m_onChanged.accept(value);
-//				}
-//			} // end dataChanged()
-//			
-//		};
-//		this.addSlotListener(cl);
-//	} // end maximumTemperatureChanged()
-	
 } // end class

@@ -3,9 +3,9 @@ package com.gsr.gsr_yatm.block.device.behaviors;
 import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
-import com.gsr.gsr_yatm.block.device.crucible.CrucibleBlockEntity;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
@@ -80,9 +80,9 @@ public class HeatingManager implements INBTSerializable<CompoundTag>
 			}
 			changed = true;
 		}
-		else if (SlotUtil.getHeatingBurnTime(this.m_inventory.getStackInSlot(CrucibleBlockEntity.HEAT_SLOT)) > 0)
+		else if (SlotUtil.getHeatingBurnTime(this.m_inventory.getStackInSlot(this.m_slot)) > 0)
 		{
-			ItemStack i = this.m_inventory.extractItem(CrucibleBlockEntity.HEAT_SLOT, 1, false);
+			ItemStack i = this.m_inventory.extractItem(this.m_slot, 1, false);
 			if (i.hasCraftingRemainingItem())
 			{
 				InventoryUtil.insertItemOrDrop(level, position, this.m_inventory, this.m_slot, i.getCraftingRemainingItem());
@@ -99,28 +99,28 @@ public class HeatingManager implements INBTSerializable<CompoundTag>
 	
 
 	@Override
-	public CompoundTag serializeNBT()
+	public @Nullable CompoundTag serializeNBT()
 	{
-		CompoundTag tag = new CompoundTag();
-				if(this.m_burnProgress > 0 && this.m_burnTime > 0) 
-				{
-					tag.putInt(HeatingManager.BURN_TIME_ELAPSED_TAG_NAME, this.m_burnProgress);
-					tag.putInt(HeatingManager.BURN_TIME_INITIAL_TAG_NAME, this.m_burnTime);
-					tag.putInt(HeatingManager.BURN_TEMP_TAG_NAME, this.m_burnTemperature);
-					
-				}
-		return tag;
-	}
+		if (this.m_burnProgress > 0 && this.m_burnTime > 0)
+		{
+			CompoundTag tag = new CompoundTag();
+			tag.putInt(HeatingManager.BURN_TIME_ELAPSED_TAG_NAME, this.m_burnProgress);
+			tag.putInt(HeatingManager.BURN_TIME_INITIAL_TAG_NAME, this.m_burnTime);
+			tag.putInt(HeatingManager.BURN_TEMP_TAG_NAME, this.m_burnTemperature);
+			return tag;
+		}
+		return null;
+	} // serializeNBT() 
 
 	@Override
-	public void deserializeNBT(CompoundTag tag)
+	public void deserializeNBT(@NotNull CompoundTag tag)
 	{
-		if (tag.contains(HeatingManager.BURN_TIME_ELAPSED_TAG_NAME) && tag.contains(HeatingManager.BURN_TIME_INITIAL_TAG_NAME))
+		if (tag.contains(HeatingManager.BURN_TIME_ELAPSED_TAG_NAME) && tag.contains(HeatingManager.BURN_TIME_INITIAL_TAG_NAME)&& tag.contains(HeatingManager.BURN_TEMP_TAG_NAME))
 		{
 			this.m_burnProgress = tag.getInt(HeatingManager.BURN_TIME_ELAPSED_TAG_NAME);
 			this.m_burnTime = tag.getInt(HeatingManager.BURN_TIME_INITIAL_TAG_NAME);
 			this.m_burnTemperature = tag.getInt(HeatingManager.BURN_TEMP_TAG_NAME);
 		}
-	} // end constructor
+	} // end deserializeNBT()
 	
 } // end class

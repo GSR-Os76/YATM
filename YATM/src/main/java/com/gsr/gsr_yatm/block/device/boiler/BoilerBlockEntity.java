@@ -1,17 +1,38 @@
 package com.gsr.gsr_yatm.block.device.boiler;
 
+import java.util.List;
+import java.util.Map;
+import java.util.Objects;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.YATMConfigs;
+import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.api.capability.IHeatHandler;
+import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
+import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
+import com.gsr.gsr_yatm.block.device.behaviors.DrainTankManager;
+import com.gsr.gsr_yatm.block.device.behaviors.FillTankManager;
+import com.gsr.gsr_yatm.block.device.behaviors.HeatAcceleratedCraftingManager;
+import com.gsr.gsr_yatm.block.device.behaviors.HeatingManager;
+import com.gsr.gsr_yatm.block.device.behaviors.InputComponentManager;
+import com.gsr.gsr_yatm.block.device.behaviors.OutputComponentManager;
 import com.gsr.gsr_yatm.recipe.boiling.BoilingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
+import com.gsr.gsr_yatm.utilities.capability.fluid.CompoundTank;
 import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
+import com.gsr.gsr_yatm.utilities.capability.heat.OnChangedHeatHandler;
 import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
-import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.network.CompositeAccessSpecification;
+import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
+import com.gsr.gsr_yatm.utilities.network.FluidHandlerContainerData;
+import com.gsr.gsr_yatm.utilities.network.ICompositeAccessSpecification;
+import com.gsr.gsr_yatm.utilities.network.PropertyContainerData;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -20,12 +41,12 @@ import net.minecraft.world.Container;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 
@@ -48,211 +69,113 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 	public static final int FIRST_DRAIN_FLUID_SLOT = DRAIN_INPUT_TANK_SLOT;
 	public static final int LAST_DRAIN_FLUID_SLOT = DRAIN_RESULT_TANK_SLOT;
 
-	public static final int BOIL_PROGESS_INDEX = 0;
-	public static final int BOIL_TIME_INDEX = 1;
-	public static final int BURN_TIME_ELAPSED_INDEX = 2;
-	public static final int BURN_TIME_INDEX = 3;
-	public static final int TEMPERATURE_INDEX = 4;
-	public static final int MAXIMUM_TEMPERATURE_INDEX = 5;
-	public static final int INPUT_CAPACITY_INDEX = 6;
-	public static final int INPUT_HOLDING_INDEX = 7;
-	public static final int RESULT_CAPACITY_INDEX = 8;
-	public static final int RESULT_HOLDING_INDEX = 9;
-	public static final int FILL_INPUT_TANK_TRANSFER_PROGRESS = 10;
-	public static final int FILL_INPUT_TANK_TRANSFER_INITIAL = 11;
-	public static final int DRAIN_INPUT_TANK_TRANSFER_PROGRESS = 12;
-	public static final int DRAIN_INPUT_TANK_TRANSFER_INITIAL = 13;
-	public static final int DRAIN_RESULT_TANK_TRANSFER_PROGRESS = 14;
-	public static final int DRAIN_RESULT_TANK_TRANSFER_INITIAL = 15;
-	public static final int INPUT_TANK_FLUID_INDEX_LOW = 16;
-	public static final int INPUT_TANK_FLUID_INDEX_HIGH = 17;
-	public static final int RESULT_TANK_FLUID_INDEX_LOW = 18;
-	public static final int RESULT_TANK_FLUID_INDEX_HIGH = 19;
-
-	private static final String MAX_TEMPERATURE_TAG_NAME = "maxTemperature";
-	private static final String TANK_CAPACITY_TAG_NAME = "tankCapacity";
-	private static final String MAX_FLUID_TRANSFER_RATE_TAG_NAME = "maxFluidTransferRate";
-
+	public static final String BURN_PROGRESS_SPEC_KEY = "burnProgress";
+	public static final String TEMPERATURE_SPEC_KEY = "temperature";
+	public static final String MAX_TEMPERATURE_SPEC_KEY = "maxTemperature";
+	public static final String INPUT_TANK_DATA_SPEC_KEY = "inputTankData";
+	public static final String RESULT_TANK_DATA_SPEC_KEY = "resultTankData";
+	public static final String FILL_INPUT_PROGRESS_SPEC_KEY = "fillInputProgress";
+	public static final String DRAIN_INPUT_PROGRESS_SPEC_KEY = "drainInputProgress";
+	public static final String DRAIN_RESULT_PROGRESS_SPEC_KEY = "drainResultProgress";
+	
+	private static final String CRAFTING_MANAGER_TAG_NAME = "craftingManager";
+	private static final String DRAIN_INPUT_MANAGER_TAG_NAME = "drainInputManager";
+	private static final String DRAIN_RESULT_MANAGER_TAG_NAME = "drainResultManager";
+	private static final String FILL_INPUT_MANAGER_TAG_NAME = "fillInputManager";
+	private static final String HEATING_MANAGER_TAG_NAME = "heatingManager";
 	private static final String INPUT_TANK_TAG_NAME = "inputTank";
 	private static final String RESULT_TANK_TAG_NAME = "resultTank";
-	private static final String BURN_TIME_ELAPSED_TAG_NAME = "burnTimeElapsed";
-	private static final String BURN_TIME_INITIAL_TAG_NAME = "burnTimeInitial";
-	private static final String BURN_TEMP_TAG_NAME = "burnTemp";
-	private static final String FILL_INPUT_TRANSFER_BUFFER_TAG_NAME = "fillInputBuffer";
-	private static final String FILL_INPUT_TRANSFER_INITIAL_TAG_NAME = "fillInputInitial";
-	private static final String DRAIN_INPUT_COUNT_DOWN_TAG_NAME = "drainInputCount";
-	private static final String DRAIN_INPUT_TRANSFER_INITIAL_TAG_NAME = "drainInputInitial";
-	private static final String DRAIN_RESULT_COUNT_DOWN_TAG_NAME = "drainResultCount";
-	private static final String DRAIN_RESULT_TRANSFER_INITIAL_TAG_NAME = "drainResultInitial";
+	private static final String TEMPERAURE_TAG_NAME = "temperature";
+	
+	
+	
+	private final @NotNull IItemHandler m_fillInputTankSlot = new InventoryWrapper(this.m_inventory, new int[]{ BoilerBlockEntity.FILL_INPUT_TANK_SLOT });
+	private final @NotNull IItemHandler m_drainInputTankSlot = new InventoryWrapper(this.m_inventory, new int[]{ BoilerBlockEntity.DRAIN_INPUT_TANK_SLOT });
+	private final @NotNull IItemHandler m_drainResultTankSlot = new InventoryWrapper(this.m_inventory, new int[]{ BoilerBlockEntity.DRAIN_RESULT_TANK_SLOT });
+	private final @NotNull IItemHandler m_heatingSlot = new InventoryWrapper(this.m_inventory, new int[] { BoilerBlockEntity.HEAT_SLOT });
+	private final @NotNull FluidTank m_rawInputTank = new FluidTank(YATMConfigs.BOILER_INPUT_TANK_CAPACITY.get());
+	private final @NotNull TankWrapper m_inputTank =  new TankWrapper(this.m_rawInputTank, this::onFluidContentsChanged);
+	private final @NotNull FluidTank m_rawResultTank = new FluidTank(YATMConfigs.BOILER_RESULT_TANK_CAPACITY.get());
+	private final @NotNull TankWrapper m_resultTank =  new TankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);
+	private final @NotNull IFluidHandler m_compoundTank = new CompoundTank(this.m_resultTank, this.m_inputTank);
+	private final @NotNull OnChangedHeatHandler m_heatHandler = new OnChangedHeatHandler(IHeatHandler.getAmbientTemp(), (i) -> this.setChanged(), DeviceBlockEntity::deviceHeatEquation, YATMConfigs.BOILER_MAX_TEMPERATURE.get());
+	
+	private boolean m_updateDrainInputComponentQueued = false;
+	private boolean m_updateDrainResultComponentQueued = false;
+	private boolean m_updateFillInputComponentQueued = false;
+	private boolean m_updateHeatComponentQueued = false;
+	
+	private LazyOptional<IFluidHandler> m_inputTankLazyOptional = LazyOptional.of(() -> this.m_inputTank);
+	
+	private @NotNull LazyOptional<IItemHandler> m_inventoryLazyOptional = LazyOptional.of(() -> BoilerBlockEntity.this.m_inventory);
+	private @NotNull LazyOptional<IItemHandler> m_fillInputTankSlotLazyOptional = LazyOptional.of(() -> BoilerBlockEntity.this.m_fillInputTankSlot);
+	private @NotNull LazyOptional<IItemHandler> m_drainInputTankSlotLazyOptional = LazyOptional.of(() -> BoilerBlockEntity.this.m_drainInputTankSlot);
+	private @NotNull LazyOptional<IItemHandler> m_drainResultTankSlotLazyOptional = LazyOptional.of(() -> BoilerBlockEntity.this.m_drainResultTankSlot);
+	private @NotNull LazyOptional<IItemHandler> m_heatingSlotLazyOptional = LazyOptional.of(() -> BoilerBlockEntity.this.m_heatingSlot);
+	private @NotNull LazyOptional<IFluidHandler> m_compoundTankLazyOptional = LazyOptional.of(() -> BoilerBlockEntity.this.m_compoundTank);
+	private @NotNull LazyOptional<IHeatHandler> m_heatLazyOptional = LazyOptional.of(() -> BoilerBlockEntity.this.m_heatHandler);
+
+	private final @NotNull OutputComponentManager m_drainInputComponentManager = new OutputComponentManager(this.m_inventory, BoilerBlockEntity.DRAIN_INPUT_TANK_SLOT, () -> List.of(), YATMConfigs.BOILER_DRAIN_INPUT_RECHECK_PERIOD.get());
+	private final @NotNull DrainTankManager m_drainInputTankManager = new DrainTankManager(this.m_inventory, BoilerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, YATMConfigs.BOILER_DRAIN_INPUT_MAX_FLUID_TRANSFER_RATE.get());
+	private final @NotNull OutputComponentManager m_drainResultComponentManager = new OutputComponentManager(this.m_inventory, BoilerBlockEntity.DRAIN_RESULT_TANK_SLOT, () -> List.of(Direction.DOWN), YATMConfigs.BOILER_DRAIN_RESULT_RECHECK_PERIOD.get());
+	private final @NotNull DrainTankManager m_drainResultTankManager = new DrainTankManager(this.m_inventory, BoilerBlockEntity.DRAIN_RESULT_TANK_SLOT, this.m_resultTank, YATMConfigs.BOILER_DRAIN_RESULT_MAX_FLUID_TRANSFER_RATE.get());
+	private final @NotNull InputComponentManager<IFluidHandler> m_fillInputComponentManager = new InputComponentManager<>(this.m_inventory, BoilerBlockEntity.FILL_INPUT_TANK_SLOT, TankWrapper.Builder.of(this.m_inputTank).canDrain(() -> false).build(), ForgeCapabilities.FLUID_HANDLER);
+	private final @NotNull FillTankManager m_fillInputTankManager = new FillTankManager(this.m_inventory, BoilerBlockEntity.FILL_INPUT_TANK_SLOT, this.m_inputTank, YATMConfigs.BOILER_FILL_INPUT_MAX_FLUID_TRANSFER_RATE.get());
+	private final @NotNull HeatAcceleratedCraftingManager m_heatAcceleratedCraftingManager = new HeatAcceleratedCraftingManager(BoilerBlockEntity.this::doCrafting, this.m_heatHandler, () -> BoilerBlockEntity.this.m_activeRecipe);
+	private final @NotNull InputComponentManager<IHeatHandler> m_heatComponentManager = new InputComponentManager<>(this.m_inventory, BoilerBlockEntity.HEAT_SLOT, this.m_heatHandler, YATMCapabilities.HEAT);
+	private final @NotNull HeatingManager m_heatingManager = new HeatingManager(this.m_inventory, BoilerBlockEntity.HEAT_SLOT, this.m_heatHandler);
+	
+	public static final ICompositeAccessSpecification ACCESS_SPEC = CompositeAccessSpecification.of(List.of(
+			Map.entry(CraftingDeviceBlockEntity.CRAFT_PROGRESS_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY * 2),
+			Map.entry(BoilerBlockEntity.BURN_PROGRESS_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY * 2), 
+			Map.entry(BoilerBlockEntity.TEMPERATURE_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY),
+			Map.entry(BoilerBlockEntity.MAX_TEMPERATURE_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY),
+			Map.entry(BoilerBlockEntity.INPUT_TANK_DATA_SPEC_KEY, FluidHandlerContainerData.SLOT_COUNT), 
+			Map.entry(BoilerBlockEntity.RESULT_TANK_DATA_SPEC_KEY, FluidHandlerContainerData.SLOT_COUNT), 
+			Map.entry(BoilerBlockEntity.FILL_INPUT_PROGRESS_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY * 2),
+			Map.entry(BoilerBlockEntity.DRAIN_INPUT_PROGRESS_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY * 2), 
+			Map.entry(BoilerBlockEntity.DRAIN_RESULT_PROGRESS_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY * 2) 
+			));
+	protected final @NotNull ContainerData m_data = new ContainerDataBuilder()
+			.addProperty(() -> this.m_craftCountDown, (i) -> {})
+			.addProperty(() -> this.m_craftTime, (i) -> {})
+			.addProperty(() -> this.m_heatingManager.burnProgress(), (i) -> {})
+			.addProperty(() -> this.m_heatingManager.burnTime(), (i) -> {})
+			.addProperty(() -> this.m_heatHandler.getTemperature(), (i) -> {})
+			.addProperty(() -> this.m_heatHandler.maxTemperature(), (i) -> {})
+			.addContainerData(new FluidHandlerContainerData(this.m_rawInputTank, 0))
+			.addContainerData(new FluidHandlerContainerData(this.m_rawResultTank, 0))
+			.addProperty(() -> this.m_fillInputTankManager.countDown(), (i) -> {})
+			.addProperty(() -> this.m_fillInputTankManager.initial(), (i) -> {})
+			.addProperty(() -> this.m_drainInputTankManager.countDown(), (i) -> {})
+			.addProperty(() -> this.m_drainInputTankManager.initial(), (i) -> {})
+			.addProperty(() -> this.m_drainResultTankManager.countDown(), (i) -> {})
+			.addProperty(() -> this.m_drainResultTankManager.initial(), (i) -> {})
+			.build();
 
 	
 	
-	private LazyOptional<IItemHandler> m_inventoryLazyOptional = LazyOptional.of(() -> m_inventory);
 
-	private InventoryWrapper m_fillInputTankSlot = new InventoryWrapper(m_inventory, new int[]
-	{ FILL_INPUT_TANK_SLOT });
-	private LazyOptional<IItemHandler> m_fillInputTankSlotLazyOptional = LazyOptional.of(() -> m_fillInputTankSlot);
 
-	private InventoryWrapper m_drainInputTankSlot = new InventoryWrapper(m_inventory, new int[]
-	{ DRAIN_INPUT_TANK_SLOT });
-	private LazyOptional<IItemHandler> m_drainInputTankSlotLazyOptional = LazyOptional.of(() -> m_drainInputTankSlot);
 
-	private InventoryWrapper m_drainResultTankSlot = new InventoryWrapper(m_inventory, new int[]
-	{ DRAIN_RESULT_TANK_SLOT });
-	private LazyOptional<IItemHandler> m_drainResultTankSlotLazyOptional = LazyOptional.of(() -> m_drainResultTankSlot);
-
-	private InventoryWrapper m_heatingSlot = new InventoryWrapper(m_inventory, new int[]
-	{ HEAT_SLOT });
-	private LazyOptional<IItemHandler> m_heatingSlotLazyOptional = LazyOptional.of(() -> m_heatingSlot);
-
-	private int m_maxFluidTransferRate;
-
-	private FluidTank m_rawInputTank;
-	private TankWrapper m_inputTank;
-	private LazyOptional<IFluidHandler> m_inputTankLazyOptional;
-
-	private FluidTank m_rawResultTank;
-	private TankWrapper m_resultTank;
-	
-	private FluidTank m_inputTankFillBuffer;
-	private int m_initialFillInputTankTransferSize = 0;
-	private int m_inputTankDrainCountDown = 0;
-	private int m_initialDrainInputTankTransferSize = 0;
-	private int m_resultTankDrainCountDown = 0;
-	private int m_initialDrainResultTankTransferSize = 0;
-	
-	private Direction m_blocksFacingIn;
-	
-	private int m_burnProgress = 0;
-	private int m_burnTime = 0;
-	private int m_temperature = 0;
-	private int m_maxTemperature = 0;
-	
-	protected ContainerData m_dataAccessor = new ContainerData()
+	public BoilerBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		@Override
-		public int get(int index)
-		{
-			return switch(index) 
-			{
-				case BoilerBlockEntity.BOIL_PROGESS_INDEX -> BoilerBlockEntity.this.m_craftCountDown;
-				case BoilerBlockEntity.BOIL_TIME_INDEX -> BoilerBlockEntity.this.m_craftTime;
-				case BoilerBlockEntity.BURN_TIME_ELAPSED_INDEX -> BoilerBlockEntity.this.m_burnProgress;
-				case BoilerBlockEntity.BURN_TIME_INDEX -> BoilerBlockEntity.this.m_burnTime;
-				case BoilerBlockEntity.TEMPERATURE_INDEX -> BoilerBlockEntity.this.m_temperature;
-				case BoilerBlockEntity.MAXIMUM_TEMPERATURE_INDEX -> BoilerBlockEntity.this.m_maxTemperature;
-				case BoilerBlockEntity.INPUT_CAPACITY_INDEX -> BoilerBlockEntity.this.m_inputTank.getCapacity();
-				case BoilerBlockEntity.INPUT_HOLDING_INDEX -> BoilerBlockEntity.this.m_inputTank.getFluidAmount();
-				case BoilerBlockEntity.RESULT_CAPACITY_INDEX -> BoilerBlockEntity.this.m_resultTank.getCapacity();
-				case BoilerBlockEntity.RESULT_HOLDING_INDEX -> BoilerBlockEntity.this.m_resultTank.getFluidAmount();
-				case BoilerBlockEntity.FILL_INPUT_TANK_TRANSFER_PROGRESS -> BoilerBlockEntity.this.m_inputTankFillBuffer.getFluidAmount();
-				case BoilerBlockEntity.FILL_INPUT_TANK_TRANSFER_INITIAL -> BoilerBlockEntity.this.m_initialFillInputTankTransferSize;
-				case BoilerBlockEntity.DRAIN_INPUT_TANK_TRANSFER_PROGRESS -> BoilerBlockEntity.this.m_inputTankDrainCountDown;
-				case BoilerBlockEntity.DRAIN_INPUT_TANK_TRANSFER_INITIAL -> BoilerBlockEntity.this.m_initialDrainInputTankTransferSize;
-				case BoilerBlockEntity.DRAIN_RESULT_TANK_TRANSFER_PROGRESS -> BoilerBlockEntity.this.m_resultTankDrainCountDown;
-				case BoilerBlockEntity.DRAIN_RESULT_TANK_TRANSFER_INITIAL -> BoilerBlockEntity.this.m_initialDrainResultTankTransferSize;
-				case BoilerBlockEntity.INPUT_TANK_FLUID_INDEX_LOW -> NetworkUtil.splitInt(NetworkUtil.getFluidIndex(BoilerBlockEntity.this.m_inputTank.getFluid().getFluid()), false);
-				case BoilerBlockEntity.INPUT_TANK_FLUID_INDEX_HIGH -> NetworkUtil.splitInt(NetworkUtil.getFluidIndex(BoilerBlockEntity.this.m_inputTank.getFluid().getFluid()), true);
-				case BoilerBlockEntity.RESULT_TANK_FLUID_INDEX_LOW -> NetworkUtil.splitInt(NetworkUtil.getFluidIndex(BoilerBlockEntity.this.m_resultTank.getFluid().getFluid()), false);
-				case BoilerBlockEntity.RESULT_TANK_FLUID_INDEX_HIGH -> NetworkUtil.splitInt(NetworkUtil.getFluidIndex(BoilerBlockEntity.this.m_resultTank.getFluid().getFluid()), true);
-				
-				default -> throw new IllegalArgumentException("Unexpected value of: " + index);
-			};
-		} // end get()
-
-		@Override
-		public void set(int index, int value)
-		{
-			return;
-		} // end set()
-
-		@Override
-		public int getCount()
-		{
-			return BoilerBlockEntity.DATA_SLOT_COUNT;
-		} // end getCount()
-	};
-
-
-
-	public BoilerBlockEntity(BlockPos blockPos, BlockState blockState)
-	{
-		this(blockPos, blockState, 0, 0, 0);
+		super(YATMBlockEntityTypes.BOILER.get(), Objects.requireNonNull(position), Objects.requireNonNull(state), BoilerBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.BOILING.get());
 	} // end constructor
 	
-	public BoilerBlockEntity(BlockPos blockPos, BlockState blockState, int maxTemperature, int tankCapacities, int maxFluidTransferRate)
-	{
-		super(YATMBlockEntityTypes.BOILER.get(), blockPos, blockState, BoilerBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.BOILING.get());
-		this.m_blocksFacingIn = blockState.getValue(BoilerBlock.FACING);
-		this.setup(maxTemperature, tankCapacities, maxFluidTransferRate);
-	} // end constructor
-	
-	@Override
-	protected @NotNull CompoundTag setupToNBT()
-	{
-		CompoundTag tag = new CompoundTag();
-		tag.putInt(MAX_TEMPERATURE_TAG_NAME, this.m_maxTemperature);
-		tag.putInt(TANK_CAPACITY_TAG_NAME, this.m_rawInputTank.getCapacity());
-		tag.putInt(MAX_FLUID_TRANSFER_RATE_TAG_NAME, this.m_maxFluidTransferRate);
-		return tag;
-	} // end setupToNBT()
-
-	@Override
-	protected void setupFromNBT(@NotNull CompoundTag tag)
-	{
-		int maxTemperature = 0;
-		int fluidCapacity = 0;
-		int maxFluidTransferRate = 0;
-		if(tag.contains(MAX_TEMPERATURE_TAG_NAME)) 
-		{
-			maxTemperature = tag.getInt(MAX_TEMPERATURE_TAG_NAME);
-		}
-		if(tag.contains(TANK_CAPACITY_TAG_NAME)) 
-		{
-			fluidCapacity = tag.getInt(TANK_CAPACITY_TAG_NAME);
-		}
-		if(tag.contains(MAX_FLUID_TRANSFER_RATE_TAG_NAME)) 
-		{
-			maxFluidTransferRate = tag.getInt(MAX_FLUID_TRANSFER_RATE_TAG_NAME);
-		}
-		this.setup(maxTemperature, fluidCapacity, maxFluidTransferRate);
-	} // end setupFromNBT()
-
-	private void setup(int maxTemperature, int tankCapacities, int maxFluidTransferRate) 
-	{
-		this.m_maxTemperature = maxTemperature;
-		this.m_rawInputTank = new FluidTank(tankCapacities);
-		this.m_rawResultTank = new FluidTank(tankCapacities);
-		
-		this.m_inputTankFillBuffer = new FluidTank(tankCapacities);
-		this.m_maxFluidTransferRate = maxFluidTransferRate;
-		
-		this.m_inputTank = new TankWrapper(this.m_rawInputTank, this::onFluidContentsChanged);
-		this.m_inputTankLazyOptional = LazyOptional.of(() -> this.m_inputTank);
-		
-		this.m_resultTank = new TankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);
-	} // end setup()
-	
 
 
-	public LazyOptional<IFluidHandler> getInputTank()
+	public @NotNull LazyOptional<IFluidHandler> getInputTank()
 	{
 		return this.m_inputTankLazyOptional;
-	} // end getRawInputTank()
+	} // end getInputTank()
 
 	@Override
-	public ContainerData getDataAccessor()
+	public @NotNull ContainerData getDataAccessor()
 	{
-		return this.m_dataAccessor;
-	} // end getDataAccesor
+		return this.m_data;
+	} // end getDataAccessor()
 
-
-
-	public boolean isLit()
-	{
-		// TODO, add other conditions once implemented
-		return this.m_burnProgress > 0;
-	} // end isLit()
 
 
 	@Override
@@ -260,226 +183,194 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 	{
 		return switch(slot) 
 		{
-			case FILL_INPUT_TANK_SLOT -> SlotUtil.isValidTankFillSlotInsert(itemStack);
-			case DRAIN_INPUT_TANK_SLOT, DRAIN_RESULT_TANK_SLOT -> SlotUtil.isValidTankDrainSlotInsert(itemStack);
-			case HEAT_SLOT -> SlotUtil.isValidHeatingSlotInsert(itemStack);
+			case BoilerBlockEntity.FILL_INPUT_TANK_SLOT -> SlotUtil.isValidTankFillSlotInsert(itemStack);
+			case BoilerBlockEntity.DRAIN_INPUT_TANK_SLOT, BoilerBlockEntity.DRAIN_RESULT_TANK_SLOT -> SlotUtil.isValidTankDrainSlotInsert(itemStack);
+			case BoilerBlockEntity.HEAT_SLOT -> SlotUtil.isValidHeatingSlotInsert(itemStack);
 			
 			default -> throw new IllegalArgumentException("Unexpected value: " + slot);
 		};
 	} // end validateSlotInsertion()
 
-
-
 	@Override
-	public void serverTick(Level level, BlockPos position, BlockState state)
+	protected void onItemChange(@NotNegative int slot, @NotNull ItemStack stack)
 	{
-		boolean wasLitInitially = this.isLit();
-		boolean changed = doHeat();
-		changed |= this.doFillInputTank();
-		changed |= /* this.m_activeRecipe != null && */this.m_waitingForLoad ? false : this.doCrafting();
-		changed |= this.doDrainInputTank();
-		changed |= this.doDrainResultTank();
-		
-		if (wasLitInitially != this.isLit())
+		super.onItemChange(slot, stack);
+		if(slot == BoilerBlockEntity.FILL_INPUT_TANK_SLOT) 
 		{
-			level.setBlockAndUpdate(position, state.setValue(BoilerBlock.LIT, this.isLit()));
+			this.m_updateFillInputComponentQueued = true;
 		}
+		if(slot == BoilerBlockEntity.DRAIN_INPUT_TANK_SLOT) 
+		{
+			this.m_updateDrainInputComponentQueued = true;
+		}
+		if(slot == BoilerBlockEntity.DRAIN_RESULT_TANK_SLOT) 
+		{
+			this.m_updateDrainResultComponentQueued = true;
+		}
+		else if(slot == BoilerBlockEntity.HEAT_SLOT) 
+		{
+			this.m_updateHeatComponentQueued = true;
+		}
+	} // end onItemChange()
+
+	
+	
+	@Override
+	public void serverTick(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state)
+	{
+		if(this.m_updateFillInputComponentQueued) 
+		{
+			this.m_fillInputComponentManager.updateComponent();
+			this.m_updateFillInputComponentQueued = false;
+		}
+		if(this.m_updateDrainInputComponentQueued) 
+		{
+			this.m_drainInputComponentManager.updateComponent();
+			this.m_updateDrainInputComponentQueued = false;
+		}
+		if(this.m_updateDrainResultComponentQueued) 
+		{
+			this.m_drainResultComponentManager.updateComponent();
+			this.m_updateDrainResultComponentQueued = false;
+		}
+		if(this.m_updateHeatComponentQueued) 
+		{
+			this.m_heatComponentManager.updateComponent();
+			this.m_updateHeatComponentQueued = false;			
+		}
+		
+		
+		
+		boolean changed = this.m_heatingManager.tick(level, position);
+		changed |= this.m_fillInputTankManager.tick(level, position);
+		changed |= this.m_heatAcceleratedCraftingManager.tick(level, position);
+		changed |= this.m_drainInputTankManager.tick(level, position);
+		changed |= this.m_drainResultTankManager.tick(level, position);
+		this.m_drainInputComponentManager.tick(level, position);
+		this.m_drainResultComponentManager.tick(level, position);
+		
 		if(changed) 
 		{
 			this.setChanged();
 		}
+		boolean shouldBeLit = this.m_heatHandler.getTemperature() > YATMConfigs.BOILER_LIT_ABOVE_TEMPERATURE.get();
+		if(state.getValue(BoilerBlock.LIT) ^ shouldBeLit) 
+		{
+			level.setBlock(position, state.setValue(BoilerBlock.LIT, shouldBeLit), Block.UPDATE_CLIENTS);
+		}
 	} // end serverTick()
 
-	private boolean doHeat() 
-	{
-		boolean changed = false;
-		if (this.m_burnProgress > 0)
-		{
-			if (--this.m_burnProgress == 0)
-			{
-				this.m_temperature = 0;
-				this.m_burnTime = 0;
-			}
-			changed = true;
-		}
-		else
-		{
-			if (SlotUtil.getHeatingBurnTime(this.m_inventory.getStackInSlot(HEAT_SLOT)) > 0)
-			{
-				ItemStack i = this.m_inventory.extractItem(HEAT_SLOT, 1, false);
-				if(i.hasCraftingRemainingItem()) 
-				{
-					InventoryUtil.insertItemOrDrop(this.level, this.worldPosition, this.m_inventory, HEAT_SLOT, i.getCraftingRemainingItem());
-				}				
-
-				this.m_burnTime = SlotUtil.getHeatingBurnTime(i);
-				this.m_burnProgress = this.m_burnTime;
-				this.m_temperature = SlotUtil.getHeatingTemperature(i);
-				changed = true;
-			}
-		}
-		return changed;
-	} // end doHeat()
-
-	private boolean doFillInputTank() 
-	{
-		boolean changed = false;
-		if(this.m_inputTankFillBuffer.getFluidAmount() <= 0) 
-		{
-			this.m_initialFillInputTankTransferSize = SlotUtil.queueToFillFromSlot(this.level, this.worldPosition, this.m_inventory, BoilerBlockEntity.FILL_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_inputTankFillBuffer, this.m_maxFluidTransferRate);
-			if(this.m_initialFillInputTankTransferSize > 0) 
-			{
-				changed = true;
-			}
-		}
-		if (this.m_inputTankFillBuffer.getFluidAmount() > 0)
-		{
-			this.m_inputTank.fill(this.m_inputTankFillBuffer.drain(this.m_maxFluidTransferRate, FluidAction.EXECUTE), FluidAction.EXECUTE);
-			if (this.m_inputTankFillBuffer.getFluidAmount() <= 0)
-			{
-				this.m_initialFillInputTankTransferSize = 0;
-			}
-			changed = true;
-		}
-		return changed;
-	}// end doFillInputTank() 
-
-	private boolean doDrainInputTank() 
-	{
-		boolean changed = false;		
-		if (this.m_inputTankDrainCountDown > 0)
-		{
-			this.m_inputTankDrainCountDown = SlotUtil.countDownOrDrainToSlot(this.level, this.worldPosition, this.m_inventory, BoilerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_initialDrainInputTankTransferSize, this.m_inputTankDrainCountDown, this.m_maxFluidTransferRate);
-			if (this.m_inputTankDrainCountDown <= 0)
-			{
-				this.m_initialDrainInputTankTransferSize = 0;
-			}
-			changed = true;
-		}
-		if(m_initialDrainInputTankTransferSize == 0) 
-		{
-			this.m_initialDrainInputTankTransferSize = SlotUtil.queueToDrainToSlot(this.m_inventory, BoilerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_maxFluidTransferRate);
-			this.m_inputTankDrainCountDown = this.m_initialDrainInputTankTransferSize;
-			
-			changed = true;
-		}
-		return changed;
-	} // end doDrainInputTank()
 	
-	private boolean doDrainResultTank() 
-	{
-		boolean changed = false;		
-		if (this.m_resultTankDrainCountDown > 0)
-		{
-			this.m_resultTankDrainCountDown = SlotUtil.countDownOrDrainToSlot(this.level, this.worldPosition, this.m_inventory, DRAIN_RESULT_TANK_SLOT, this.m_resultTank, 0, this.m_initialDrainResultTankTransferSize, this.m_resultTankDrainCountDown, this.m_maxFluidTransferRate);
-			if (this.m_resultTankDrainCountDown <= 0)
-			{
-				this.m_initialDrainResultTankTransferSize = 0;
-			}
-			changed = true;
-		}
-		if(m_initialDrainResultTankTransferSize == 0) 
-		{
-			this.m_initialDrainResultTankTransferSize = SlotUtil.queueToDrainToSlot(this.m_inventory, DRAIN_RESULT_TANK_SLOT, this.m_resultTank, 0, this.m_maxFluidTransferRate);
-			this.m_resultTankDrainCountDown = this.m_initialDrainResultTankTransferSize;
-			changed = true;
-		}
-		return changed;
-	} // end doDrainResultTank()
 	
 	@Override
-	protected void setRecipeResults(BoilingRecipe from)
+	protected boolean canTick()
 	{
-		from.setResults(this.m_rawResultTank);
+		return this.m_activeRecipe.canTick(this.m_heatHandler);
+	} // end canTick()
+
+	@Override
+	protected void setRecipeResults(@NotNull BoilingRecipe from)
+	{
+		from.setResults(this.m_rawInputTank, this.m_rawResultTank);
 	} // setRecipeResults()
 
 	@Override
-	protected boolean canUseRecipe(BoilingRecipe from)
+	protected boolean canUseRecipe(@NotNull BoilingRecipe from)
 	{
-		return from.canBeUsedOn(this.m_inputTank, this.m_resultTank, this.m_temperature);
+		return from.matches(this.m_inputTank, this.m_resultTank);
 	} // end canUseRecipe()
 
 	@Override
-	protected void startRecipe(BoilingRecipe from)
+	protected void recipeTick()
 	{
-		from.startRecipe(this.m_inputTank);
-	} // end startRecipe()
-
+		// TODO, make boiler consume some heat to perform a recipe
+	} // end recipeTick()
+	
 	
 	
 	@Override
- 	protected void saveAdditional(CompoundTag tag)
+ 	protected void saveAdditional(@NotNull CompoundTag tag)
 	{
 		super.saveAdditional(tag);
 		
-		tag.putInt(BURN_TEMP_TAG_NAME, this.m_temperature);
-		if(this.m_rawInputTank.getFluidAmount() > 0) 
+		CompoundTag cmTag = this.m_heatAcceleratedCraftingManager.serializeNBT();
+		if(cmTag != null) 
 		{
-			tag.put(INPUT_TANK_TAG_NAME, this.m_rawInputTank.writeToNBT(new CompoundTag()));
+			tag.put(BoilerBlockEntity.CRAFTING_MANAGER_TAG_NAME, cmTag);
 		}
-		if(this.m_rawResultTank.getFluidAmount() > 0) 
+		CompoundTag ditmTag = this.m_drainInputTankManager.serializeNBT();
+		if(ditmTag != null) 
 		{
-			tag.put(RESULT_TANK_TAG_NAME, this.m_rawResultTank.writeToNBT(new CompoundTag()));
+			tag.put(BoilerBlockEntity.DRAIN_INPUT_MANAGER_TAG_NAME, ditmTag);
 		}
-		if(this.m_burnProgress > 0 && this.m_burnTime > 0) 
+		CompoundTag drtmTag = this.m_drainResultTankManager.serializeNBT();
+		if(drtmTag != null) 
 		{
-			tag.putInt(BURN_TIME_ELAPSED_TAG_NAME, this.m_burnProgress);
-			tag.putInt(BURN_TIME_INITIAL_TAG_NAME, this.m_burnTime);
+			tag.put(BoilerBlockEntity.DRAIN_RESULT_MANAGER_TAG_NAME, drtmTag);
 		}
-		if(this.m_initialFillInputTankTransferSize > 0 && this.m_inputTankFillBuffer.getFluidAmount() > 0) 
+		CompoundTag fitmTag = this.m_fillInputTankManager.serializeNBT();
+		if(fitmTag != null) 
 		{
-			tag.put(FILL_INPUT_TRANSFER_BUFFER_TAG_NAME, this.m_inputTankFillBuffer.writeToNBT(new CompoundTag()));
-			tag.putInt(FILL_INPUT_TRANSFER_INITIAL_TAG_NAME, this.m_initialFillInputTankTransferSize);
+			tag.put(BoilerBlockEntity.FILL_INPUT_MANAGER_TAG_NAME, fitmTag);
 		}
-		if(this.m_inputTankDrainCountDown > 0 && this.m_initialDrainInputTankTransferSize > 0) 
+		CompoundTag hmTag = this.m_heatingManager.serializeNBT();
+		if(hmTag != null) 
 		{
-			tag.putInt(DRAIN_INPUT_COUNT_DOWN_TAG_NAME, this.m_inputTankDrainCountDown);
-			tag.putInt(DRAIN_INPUT_TRANSFER_INITIAL_TAG_NAME, this.m_initialDrainInputTankTransferSize);
+			tag.put(BoilerBlockEntity.HEATING_MANAGER_TAG_NAME, hmTag);
 		}
-		if(this.m_resultTankDrainCountDown > 0 && this.m_initialDrainResultTankTransferSize > 0) 
+		if(!this.m_rawInputTank.getFluid().isEmpty()) 
 		{
-			tag.putInt(DRAIN_RESULT_COUNT_DOWN_TAG_NAME, this.m_resultTankDrainCountDown);
-			tag.putInt(DRAIN_RESULT_TRANSFER_INITIAL_TAG_NAME, this.m_initialDrainResultTankTransferSize);
+			tag.put(BoilerBlockEntity.INPUT_TANK_TAG_NAME, this.m_rawInputTank.writeToNBT(new CompoundTag()));
 		}
-	} // end saveAdditional
+		if(!this.m_rawResultTank.getFluid().isEmpty()) 
+		{
+			tag.put(BoilerBlockEntity.RESULT_TANK_TAG_NAME, this.m_rawResultTank.writeToNBT(new CompoundTag()));
+		}
+		tag.putInt(BoilerBlockEntity.TEMPERAURE_TAG_NAME, this.m_heatHandler.getTemperature());
+	} // end saveAdditional()
 
 	@Override
-	public void load(CompoundTag tag)
+	public void load(@NotNull CompoundTag tag)
 	{
 		super.load(tag);
+			
+		if (tag.contains(BoilerBlockEntity.CRAFTING_MANAGER_TAG_NAME))
+		{
+			this.m_heatAcceleratedCraftingManager.deserializeNBT(tag.getCompound(BoilerBlockEntity.CRAFTING_MANAGER_TAG_NAME));
+		}
+		if (tag.contains(BoilerBlockEntity.DRAIN_INPUT_MANAGER_TAG_NAME))
+		{
+			this.m_drainInputTankManager.deserializeNBT(tag.getCompound(BoilerBlockEntity.DRAIN_INPUT_MANAGER_TAG_NAME));
+		}
+		if (tag.contains(BoilerBlockEntity.DRAIN_RESULT_MANAGER_TAG_NAME))
+		{
+			this.m_drainResultTankManager.deserializeNBT(tag.getCompound(BoilerBlockEntity.DRAIN_RESULT_MANAGER_TAG_NAME));
+		}
+		if (tag.contains(BoilerBlockEntity.FILL_INPUT_MANAGER_TAG_NAME))
+		{
+			this.m_fillInputTankManager.deserializeNBT(tag.getCompound(BoilerBlockEntity.FILL_INPUT_MANAGER_TAG_NAME));
+		}
+		if (tag.contains(BoilerBlockEntity.HEATING_MANAGER_TAG_NAME))
+		{
+			this.m_heatingManager.deserializeNBT(tag.getCompound(BoilerBlockEntity.HEATING_MANAGER_TAG_NAME));
+		}
+		if (tag.contains(BoilerBlockEntity.INPUT_TANK_TAG_NAME))
+		{
+			this.m_rawInputTank.readFromNBT(tag.getCompound(BoilerBlockEntity.INPUT_TANK_TAG_NAME));
+		}
+		if (tag.contains(BoilerBlockEntity.RESULT_TANK_TAG_NAME))
+		{
+			this.m_rawResultTank.readFromNBT(tag.getCompound(BoilerBlockEntity.RESULT_TANK_TAG_NAME));
+		}
+		if (tag.contains(BoilerBlockEntity.TEMPERAURE_TAG_NAME))
+		{
+			this.m_heatHandler.setTemperature(tag.getInt(BoilerBlockEntity.TEMPERAURE_TAG_NAME));
+		}
 		
-		if (tag.contains(BURN_TEMP_TAG_NAME))
-		{
-			this.m_temperature = tag.getInt(BURN_TEMP_TAG_NAME);
-		}		
-		if (tag.contains(INPUT_TANK_TAG_NAME))
-		{
-			this.m_rawInputTank.readFromNBT(tag.getCompound(INPUT_TANK_TAG_NAME));
-		}
-		if (tag.contains(RESULT_TANK_TAG_NAME))
-		{
-			this.m_rawResultTank.readFromNBT(tag.getCompound(RESULT_TANK_TAG_NAME));
-		}
-		if (tag.contains(BURN_TIME_ELAPSED_TAG_NAME) && tag.contains(BURN_TIME_INITIAL_TAG_NAME))
-		{
-			this.m_burnProgress = tag.getInt(BURN_TIME_ELAPSED_TAG_NAME);
-			this.m_burnTime = tag.getInt(BURN_TIME_INITIAL_TAG_NAME);
-		}
-		if (tag.contains(FILL_INPUT_TRANSFER_BUFFER_TAG_NAME) && tag.contains(FILL_INPUT_TRANSFER_INITIAL_TAG_NAME))
-		{
-			this.m_inputTankFillBuffer.readFromNBT(tag.getCompound(FILL_INPUT_TRANSFER_BUFFER_TAG_NAME));
-			this.m_initialFillInputTankTransferSize = tag.getInt(FILL_INPUT_TRANSFER_INITIAL_TAG_NAME);
-		}
-		if (tag.contains(DRAIN_INPUT_COUNT_DOWN_TAG_NAME) && tag.contains(DRAIN_INPUT_TRANSFER_INITIAL_TAG_NAME))
-		{
-			this.m_inputTankDrainCountDown = tag.getInt(DRAIN_INPUT_COUNT_DOWN_TAG_NAME);
-			this.m_initialDrainInputTankTransferSize = tag.getInt(DRAIN_INPUT_TRANSFER_INITIAL_TAG_NAME);
-		}
-		if (tag.contains(DRAIN_RESULT_COUNT_DOWN_TAG_NAME) && tag.contains(DRAIN_RESULT_TRANSFER_INITIAL_TAG_NAME))
-		{
-			this.m_resultTankDrainCountDown = tag.getInt(DRAIN_RESULT_COUNT_DOWN_TAG_NAME);
-			this.m_initialDrainResultTankTransferSize = tag.getInt(DRAIN_RESULT_TRANSFER_INITIAL_TAG_NAME);
-		}
+		this.m_drainInputComponentManager.updateComponent();
+		this.m_drainResultComponentManager.updateComponent();
+		this.m_fillInputComponentManager.updateComponent();
+		this.m_heatComponentManager.updateComponent();
 	} // end load()
 
 
@@ -487,35 +378,37 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 	@Override
 	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side)
 	{
-		LazyOptional<IItemHandler> releventSlot = null;
-		if (side == this.m_blocksFacingIn) 
-		{				
-			releventSlot = this.m_heatingSlotLazyOptional;
-		}
-		else if(side == this.m_blocksFacingIn.getClockWise())
-		{				
-			releventSlot = this.m_fillInputTankSlotLazyOptional;
-		}
-		else if(side == this.m_blocksFacingIn.getClockWise().getClockWise())
-		{				
-			releventSlot = this.m_drainInputTankSlotLazyOptional;
-		}
-		else if(side == this.m_blocksFacingIn.getCounterClockWise())
-		{				
-			releventSlot = this.m_drainResultTankSlotLazyOptional;
-		}
-		else if(side == Direction.DOWN && cap != ForgeCapabilities.ITEM_HANDLER) 
+		if(side == null) 
 		{
-			releventSlot = this.m_heatingSlotLazyOptional;
-		}
-		
-		if(releventSlot != null) 
-		{
-			LazyOptional<T> c = SlotUtil.getSlotsCapability(releventSlot, cap);
-			if(c.isPresent()) 
+			if(cap == ForgeCapabilities.ITEM_HANDLER) 
 			{
-				return c;
+				return this.m_inventoryLazyOptional.cast();
 			}
+			else if(cap == ForgeCapabilities.FLUID_HANDLER) 
+			{
+				return this.m_compoundTankLazyOptional.cast();
+			}
+			else if(cap == YATMCapabilities.HEAT) 
+			{
+				return this.m_heatLazyOptional.cast();
+			}
+		}		
+		else if (side == Direction.UP) 
+		{				
+			YetAnotherTechMod.LOGGER.info("fic cap present: " + this.m_fillInputComponentManager.getCapability(cap).isPresent() + ", cap: " + cap);
+			return SlotUtil.componentOrSlot(cap, this.m_fillInputComponentManager.getCapability(cap), this.m_fillInputTankSlotLazyOptional, () -> BoilerBlockEntity.super.getCapability(cap, side));
+		}
+		else if(Direction.Plane.HORIZONTAL.test(side))
+		{		
+			return SlotUtil.componentOrSlot(cap, this.m_heatComponentManager.getCapability(cap), this.m_heatingSlotLazyOptional, () -> BoilerBlockEntity.super.getCapability(cap, side));
+		}
+		else if(side == Direction.DOWN) 
+		{
+			return SlotUtil.componentOrSlot(cap, this.m_drainResultComponentManager.getCapability(cap), this.m_drainResultTankSlotLazyOptional, () -> BoilerBlockEntity.super.getCapability(cap, side));
+		}
+		else if(cap == YATMCapabilities.HEAT) 
+		{
+			return this.m_heatLazyOptional.cast();
 		}
 		
 		return super.getCapability(cap, side);
@@ -525,22 +418,40 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 	public void invalidateCaps()
 	{
 		super.invalidateCaps();
+		this.m_inputTankLazyOptional.invalidate();
+		
 		this.m_inventoryLazyOptional.invalidate();
 		this.m_fillInputTankSlotLazyOptional.invalidate();
 		this.m_drainInputTankSlotLazyOptional.invalidate();
 		this.m_drainResultTankSlotLazyOptional.invalidate();
 		this.m_heatingSlotLazyOptional.invalidate();
+		this.m_compoundTankLazyOptional.invalidate();
+		this.m_heatLazyOptional.invalidate();
+		
+		this.m_drainInputComponentManager.invalidateCaps();
+		this.m_drainResultComponentManager.invalidateCaps();
+		this.m_fillInputComponentManager.invalidateCaps();
+		this.m_heatComponentManager.invalidateCaps();
 	} // end invalidateCaps()
 
 	@Override
 	public void reviveCaps()
 	{
 		super.reviveCaps();
-		this.m_inventoryLazyOptional = LazyOptional.of(() -> m_inventory);
-		this.m_fillInputTankSlotLazyOptional = LazyOptional.of(() -> m_fillInputTankSlot);
-		this.m_drainInputTankSlotLazyOptional = LazyOptional.of(() -> m_drainInputTankSlot);
-		this.m_drainResultTankSlotLazyOptional = LazyOptional.of(() -> m_drainResultTankSlot);
-		this.m_heatingSlotLazyOptional = LazyOptional.of(() -> m_heatingSlot);
+		this.m_inputTankLazyOptional = LazyOptional.of(() -> this.m_inputTank);
+		
+		this.m_inventoryLazyOptional = LazyOptional.of(() -> BoilerBlockEntity.this.m_inventory);
+		this.m_fillInputTankSlotLazyOptional = LazyOptional.of(() -> BoilerBlockEntity.this.m_fillInputTankSlot);
+		this.m_drainInputTankSlotLazyOptional = LazyOptional.of(() -> BoilerBlockEntity.this.m_drainInputTankSlot);
+		this.m_drainResultTankSlotLazyOptional = LazyOptional.of(() -> BoilerBlockEntity.this.m_drainResultTankSlot);
+		this.m_heatingSlotLazyOptional = LazyOptional.of(() -> BoilerBlockEntity.this.m_heatingSlot);
+		this.m_compoundTankLazyOptional = LazyOptional.of(() -> BoilerBlockEntity.this.m_compoundTank);
+		this.m_heatLazyOptional = LazyOptional.of(() -> BoilerBlockEntity.this.m_heatHandler);
+		
+		this.m_drainInputComponentManager.updateComponent();
+		this.m_drainResultComponentManager.updateComponent();
+		this.m_fillInputComponentManager.updateComponent();
+		this.m_heatComponentManager.updateComponent();
 	} // end revivieCaps()
 
 } // end class
