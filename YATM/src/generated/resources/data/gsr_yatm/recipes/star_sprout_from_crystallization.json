@@ -1,6 +1,6 @@
 {
   "type": "gsr_yatm:crystallizing",
-  "cost": 0,
+  "cost": 512,
   "input": {
     "ingedient": {
       "type": "gsr_yatm:fluid_stack_ingredient",

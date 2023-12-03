@@ -330,7 +330,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	private void addCrystallizationRecipes(@NotNull Consumer<FinishedRecipe> writer) 
 	{
-		this.addCrystallizationRecipe(writer, YATMFluidTags.FORGE_ENDER_KEY, 250, Tags.Items.SAND, new ItemStack(Items.ENDER_PEARL), false, 0, 300, YetAnotherTechMod.MODID + ":ender_pearl_from_crystallization");
+		this.addCrystallizationRecipe(writer, YATMFluidTags.FORGE_ENDER_KEY, 250, Tags.Items.SAND, new ItemStack(Items.ENDER_PEARL), false, 64, 300, YetAnotherTechMod.MODID + ":ender_pearl_from_crystallization");
 		this.addNetherStarCrystallizationProgression(writer);
 		
 		// TODO, verify in blockEntity
@@ -340,18 +340,18 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	private void addNetherStarCrystallizationProgression(@NotNull Consumer<FinishedRecipe> writer) 
 	{
-		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_DECAY.get(), 1000), YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY, new ItemStack(YATMItems.STAR_SEED.get()), true, 0, 300, YetAnotherTechMod.MODID + ":star_seed_from_crystallization");
-		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 1000), YATMItems.STAR_SEED.get(), new ItemStack(YATMItems.STAR_GERMLING.get()), true, 0, 200, YetAnotherTechMod.MODID + ":star_germling_from_crystallization");
-		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 2000), YATMItems.STAR_GERMLING.get(), new ItemStack(YATMItems.STAR_SPROUT.get()), true, 0, 400, YetAnotherTechMod.MODID + ":star_sprout_from_crystallization");
-		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 4000), YATMItems.STAR_SPROUT.get(), new ItemStack(YATMItems.STAR_ADOLESCENT.get()), true, 0, 800, YetAnotherTechMod.MODID + ":star_adolescent_from_crystallization");
-		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 8000), YATMItems.STAR_ADOLESCENT.get(), new ItemStack(Items.NETHER_STAR), true, 0, 1600, YetAnotherTechMod.MODID + ":nether_star_from_crystallization");
+		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_DECAY.get(), 1000), YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY, new ItemStack(YATMItems.STAR_SEED.get()), true, 256, 300, YetAnotherTechMod.MODID + ":star_seed_from_crystallization");
+		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 1000), YATMItems.STAR_SEED.get(), new ItemStack(YATMItems.STAR_GERMLING.get()), true, 256, 200, YetAnotherTechMod.MODID + ":star_germling_from_crystallization");
+		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 2000), YATMItems.STAR_GERMLING.get(), new ItemStack(YATMItems.STAR_SPROUT.get()), true, 512, 400, YetAnotherTechMod.MODID + ":star_sprout_from_crystallization");
+		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 4000), YATMItems.STAR_SPROUT.get(), new ItemStack(YATMItems.STAR_ADOLESCENT.get()), true, 512, 800, YetAnotherTechMod.MODID + ":star_adolescent_from_crystallization");
+		this.addCrystallizationRecipe(writer, new FluidStack(YATMFluids.ESSENCE_OF_SOULS.get(), 8000), YATMItems.STAR_ADOLESCENT.get(), new ItemStack(Items.NETHER_STAR), true, 1024, 1600, YetAnotherTechMod.MODID + ":nether_star_from_crystallization");
 	} // end addNetherStarCrystallizationProgression()
 	
 	private void addSiliconOxideCrystallizations(@NotNull Consumer<FinishedRecipe> writer) 
 	{
-		this.addCrystallizationRecipe(writer, YATMFluidTags.FORGE_SILICON_OXIDE_KEY, 1000, Tags.Items.GLASS_SILICA, new ItemStack(Items.GLASS, 2), true, 36, 300, YetAnotherTechMod.MODID + ":glass_from_silicon_oxide_crystallization");
-		this.addCrystallizationRecipe(writer, YATMFluidTags.FORGE_SILICON_OXIDE_KEY, 250, Tags.Items.GEMS_AMETHYST, new ItemStack(Items.AMETHYST_SHARD, 2), true, 36, 300, YetAnotherTechMod.MODID + ":amethyst_shards_from_silicon_oxide_crystallization");
-		this.addCrystallizationRecipe(writer, YATMFluidTags.FORGE_SILICON_OXIDE_KEY, 250, Tags.Items.GEMS_QUARTZ, new ItemStack(Items.QUARTZ, 2), true, 36, 300, YetAnotherTechMod.MODID + ":quartz_from_silicon_oxide_crystallization");
+		this.addCrystallizationRecipe(writer, YATMFluidTags.FORGE_SILICON_OXIDE_KEY, 1000, Tags.Items.GLASS_SILICA, new ItemStack(Items.GLASS, 1), false, 36, 300, YetAnotherTechMod.MODID + ":glass_from_silicon_oxide_crystallization");
+		this.addCrystallizationRecipe(writer, YATMFluidTags.FORGE_SILICON_OXIDE_KEY, 250, Tags.Items.GEMS_AMETHYST, new ItemStack(Items.AMETHYST_SHARD, 1), false, 36, 300, YetAnotherTechMod.MODID + ":amethyst_shards_from_silicon_oxide_crystallization");
+		this.addCrystallizationRecipe(writer, YATMFluidTags.FORGE_SILICON_OXIDE_KEY, 250, Tags.Items.GEMS_QUARTZ, new ItemStack(Items.QUARTZ, 1), false, 36, 300, YetAnotherTechMod.MODID + ":quartz_from_silicon_oxide_crystallization");
 	} // end addSiliconOxideCrystallizations()
 	
 	

@@ -129,7 +129,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile SPINNING_WHEEL_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/spinning_wheel"));
 	
 	
-	public static final ModelFile BIOLER_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/bioler"));
+	public static final ModelFile BIOREACTOR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/bioreactor"));
 	public static final ModelFile BOILER_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/boiler"));
 	public static final ModelFile BOILER_WHEN_HAS_TANK_PART_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/boiler_has_tank_multipart"));
 	public static final ModelFile BOILER_TANK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/boiler_tank"));
@@ -638,7 +638,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 //				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_top"), 
 //				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_inside"));
 //		
-		this.createFacingBlock(YATMBlocks.STEEL_BIOREACTOR.get(), YATMItems.STEEL_BIOLER_ITEM.get(), YATMBlockStateProvider.BIOLER_MODEL);
+		this.createFacingBlock(YATMBlocks.STEEL_BIOREACTOR.get(), YATMItems.STEEL_BIOLER_ITEM.get(), YATMBlockStateProvider.BIOREACTOR_MODEL);
 		
 	} // end addBioler()
 	
@@ -1623,7 +1623,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	private void createBioler(@NotNull BioreactorBlock block, @NotNull Item item, @NotNull ResourceLocation portTexture, @NotNull ResourceLocation sideTexture, @NotNull ResourceLocation bottomTexture, @NotNull ResourceLocation topTexture, @NotNull ResourceLocation insideTexture) 
 	{
 		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
-		this.models().getBuilder(name).parent(YATMBlockStateProvider.BIOLER_MODEL)
+		this.models().getBuilder(name).parent(YATMBlockStateProvider.BIOREACTOR_MODEL)
 		.texture("0", portTexture)
 		.texture("1", sideTexture)
 		.texture("2", bottomTexture)

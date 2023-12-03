@@ -1,18 +1,18 @@
 {
   "variants": {
     "facing=east": {
-      "model": "gsr_yatm:block/bioler",
+      "model": "gsr_yatm:block/bioreactor",
       "y": 90
     },
     "facing=north": {
-      "model": "gsr_yatm:block/bioler"
+      "model": "gsr_yatm:block/bioreactor"
     },
     "facing=south": {
-      "model": "gsr_yatm:block/bioler",
+      "model": "gsr_yatm:block/bioreactor",
       "y": 180
     },
     "facing=west": {
-      "model": "gsr_yatm:block/bioler",
+      "model": "gsr_yatm:block/bioreactor",
       "y": 270
     }
   }

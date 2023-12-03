@@ -9,11 +9,11 @@
     }
   },
   "result": {
-    "count": 2,
+    "count": 1,
     "item": "minecraft:quartz"
   },
   "seed": {
-    "consume": true,
+    "consume": false,
     "ingedient": {
       "type": "gsr_yatm:item_tag_ingredient",
       "count": 1,
