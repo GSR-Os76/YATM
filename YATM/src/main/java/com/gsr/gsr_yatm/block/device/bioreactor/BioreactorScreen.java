@@ -33,8 +33,8 @@ public class BioreactorScreen extends AbstractContainerScreen<BioreactorMenu>
 	protected void init()
 	{
 		super.init();
-		this.setResultTankWidget();
 		this.setCurrentWidget();
+		this.setResultTankWidget();		
 	} // end init()
 
 	
@@ -71,6 +71,29 @@ public class BioreactorScreen extends AbstractContainerScreen<BioreactorMenu>
 
 	
 	
+	public void updateCurrentWidget() 
+	{
+		if(this.m_currentWidget == null || this.menu.getCurrentCapacity() != this.m_currentWidget.getCapacity()) 
+		{
+			this.setCurrentWidget();
+		}
+
+		this.m_currentWidget.setStored(this.menu.getCurrentStored());
+	} // end updateCurrentWidget()
+	
+	public void setCurrentWidget() 
+	{
+		if(this.m_currentWidget != null) 
+		{			
+			this.removeWidget(this.m_currentWidget);
+		}
+		
+		this.m_currentWidget = new VerticalCurrentWidget(this.leftPos + 7, this.topPos + 20, this.getMenu().getCurrentCapacity());
+		this.addRenderableWidget(this.m_currentWidget);
+	} // end setCurrentWidget()
+	
+	
+	
 	public void updateResultTankWidget() 
 	{
 		if(this.m_resultTankWidget == null || this.menu.getResultTankCapacity() != this.m_resultTankWidget.getCapacity()) 
@@ -94,28 +117,5 @@ public class BioreactorScreen extends AbstractContainerScreen<BioreactorMenu>
 		this.m_resultTankWidget = new VerticalStoredFluidWidget(this.leftPos + 97, this.topPos + 20, this.menu.getResultTankCapacity(), this.menu.getResultTankContents().getFluid());//= new StoredFluidWidget(this.leftPos + 7, this.topPos + 20, this.menu.getResultTankCapacity(), this.menu.getResultTankContents().getFluid());
 		this.addRenderableWidget(this.m_resultTankWidget);
 	} // end setResultTankWidget()
-	
-	
-	
-	public void updateCurrentWidget() 
-	{
-		if(this.m_currentWidget == null || this.menu.getCurrentCapacity() != this.m_currentWidget.getCapacity()) 
-		{
-			this.setCurrentWidget();
-		}
-
-		this.m_currentWidget.setStored(this.menu.getCurrentStored());
-	} // end updateCurrentWidget()
-	
-	public void setCurrentWidget() 
-	{
-		if(this.m_currentWidget != null) 
-		{			
-			this.removeWidget(this.m_currentWidget);
-		}
-		
-		this.m_currentWidget = new VerticalCurrentWidget(this.leftPos + 7, this.topPos + 20, this.getMenu().getCurrentCapacity());
-		this.addRenderableWidget(this.m_currentWidget);
-	} // end setCurrentWidget()
 	
 } // end class

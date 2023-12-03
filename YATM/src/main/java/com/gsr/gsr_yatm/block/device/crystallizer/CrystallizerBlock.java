@@ -20,16 +20,9 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class CrystallizerBlock extends DeviceBlock
 {
-	private final int m_tankCapacities;
-	private final int m_maximumFluidTransferRate;
-	
-	
-	
-	public CrystallizerBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, int tankCapacities, int maximumFluidTransferRate)
+	public CrystallizerBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
 		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.CRYSTALLIZER::get);
-		this.m_tankCapacities = tankCapacities;
-		this.m_maximumFluidTransferRate = maximumFluidTransferRate;
 	} // end constructor
 
 
@@ -37,7 +30,7 @@ public class CrystallizerBlock extends DeviceBlock
 	@Override
 	public @NotNull DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		return new CrystallizerBlockEntity(position, state, this.m_tankCapacities, this.m_maximumFluidTransferRate);
+		return new CrystallizerBlockEntity(position, state);
 	} // end newBlockEntity()
 	
 	@Override

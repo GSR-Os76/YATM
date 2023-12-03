@@ -8,7 +8,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.YATMConfigs;
-import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
@@ -102,8 +101,6 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 	
 	private boolean m_updateDrainInputComponentQueued = false;
 	private boolean m_updateDrainResultComponentQueued = false;
-	private boolean m_updateFillInputComponentQueued = false;
-	private boolean m_updateHeatComponentQueued = false;
 	
 	private LazyOptional<IFluidHandler> m_inputTankLazyOptional = LazyOptional.of(() -> this.m_inputTank);
 	
@@ -179,13 +176,13 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 
 
 	@Override
-	protected boolean itemInsertionValidator(int slot, ItemStack itemStack, boolean simulate)
+	protected boolean itemInsertionValidator(int slot, ItemStack stack, boolean simulate)
 	{
 		return switch(slot) 
 		{
-			case BoilerBlockEntity.FILL_INPUT_TANK_SLOT -> SlotUtil.isValidTankFillSlotInsert(itemStack);
-			case BoilerBlockEntity.DRAIN_INPUT_TANK_SLOT, BoilerBlockEntity.DRAIN_RESULT_TANK_SLOT -> SlotUtil.isValidTankDrainSlotInsert(itemStack);
-			case BoilerBlockEntity.HEAT_SLOT -> SlotUtil.isValidHeatingSlotInsert(itemStack);
+			case BoilerBlockEntity.FILL_INPUT_TANK_SLOT -> SlotUtil.isValidTankFillSlotInsert(stack);
+			case BoilerBlockEntity.DRAIN_INPUT_TANK_SLOT, BoilerBlockEntity.DRAIN_RESULT_TANK_SLOT -> SlotUtil.isValidTankDrainSlotInsert(stack);
+			case BoilerBlockEntity.HEAT_SLOT -> SlotUtil.isValidHeatingSlotInsert(stack);
 			
 			default -> throw new IllegalArgumentException("Unexpected value: " + slot);
 		};
@@ -197,7 +194,7 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 		super.onItemChange(slot, stack);
 		if(slot == BoilerBlockEntity.FILL_INPUT_TANK_SLOT) 
 		{
-			this.m_updateFillInputComponentQueued = true;
+			this.m_fillInputComponentManager.updateComponent();
 		}
 		if(slot == BoilerBlockEntity.DRAIN_INPUT_TANK_SLOT) 
 		{
@@ -209,7 +206,7 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 		}
 		else if(slot == BoilerBlockEntity.HEAT_SLOT) 
 		{
-			this.m_updateHeatComponentQueued = true;
+			this.m_heatComponentManager.updateComponent();
 		}
 	} // end onItemChange()
 
@@ -218,11 +215,6 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 	@Override
 	public void serverTick(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state)
 	{
-		if(this.m_updateFillInputComponentQueued) 
-		{
-			this.m_fillInputComponentManager.updateComponent();
-			this.m_updateFillInputComponentQueued = false;
-		}
 		if(this.m_updateDrainInputComponentQueued) 
 		{
 			this.m_drainInputComponentManager.updateComponent();
@@ -233,13 +225,6 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 			this.m_drainResultComponentManager.updateComponent();
 			this.m_updateDrainResultComponentQueued = false;
 		}
-		if(this.m_updateHeatComponentQueued) 
-		{
-			this.m_heatComponentManager.updateComponent();
-			this.m_updateHeatComponentQueued = false;			
-		}
-		
-		
 		
 		boolean changed = this.m_heatingManager.tick(level, position);
 		changed |= this.m_fillInputTankManager.tick(level, position);
@@ -395,7 +380,6 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 		}		
 		else if (side == Direction.UP) 
 		{				
-			YetAnotherTechMod.LOGGER.info("fic cap present: " + this.m_fillInputComponentManager.getCapability(cap).isPresent() + ", cap: " + cap);
 			return SlotUtil.componentOrSlot(cap, this.m_fillInputComponentManager.getCapability(cap), this.m_fillInputTankSlotLazyOptional, () -> BoilerBlockEntity.super.getCapability(cap, side));
 		}
 		else if(Direction.Plane.HORIZONTAL.test(side))

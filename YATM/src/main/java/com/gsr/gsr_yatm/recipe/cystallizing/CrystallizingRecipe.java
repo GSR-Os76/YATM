@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
@@ -62,7 +63,17 @@ public class CrystallizingRecipe implements ITimedRecipe<Container>
 	
 	
 	
-	public boolean canBeUsedOn(@NotNull IItemHandler inventory, @NotNull IFluidHandler inputTank)
+	public boolean canTick(@NotNull ICurrentHandler battery) 
+	{
+		return battery.extractCurrent(this.m_currentPerTick, true) == this.m_currentPerTick;
+	} // end canTick()
+	
+	public void tick(@NotNull ICurrentHandler battery) 
+	{
+		battery.extractCurrent(this.m_currentPerTick, false);
+	} // end canTick()
+	
+	public boolean matches(@NotNull IItemHandler inventory, @NotNull IFluidHandler inputTank)
 	{
 		Fluid f = inputTank.getFluidInTank(0).getFluid();
 		int am = IngredientUtil.getRequiredAmountFor(f, this.m_input);
@@ -74,18 +85,14 @@ public class CrystallizingRecipe implements ITimedRecipe<Container>
 				&& inventory.insertItem(CrystallizerBlockEntity.RESULT_SLOT, this.m_result, true).isEmpty();
 	} // end canBeUsedOn()
 	
-	public void startRecipe(@NotNull IItemHandler inventory, @NotNull IFluidHandler inputTank)
+	public void setResults(@NotNull IItemHandler inventory, @NotNull IFluidHandler inputTank)
 	{
 		Fluid f = inputTank.getFluidInTank(0).getFluid();
 		inputTank.drain(new FluidStack(f, IngredientUtil.getRequiredAmountFor(f, this.m_input)), FluidAction.EXECUTE);
 		if(this.m_consumeSeed) 
 		{
 			inventory.extractItem(CrystallizerBlockEntity.SEED_SLOT, 1, false);
-		}		
-	} // end startRecipe()
-	
-	public void setResults(@NotNull IItemHandler inventory)
-	{
+		}
 		inventory.insertItem(CrystallizerBlockEntity.RESULT_SLOT, this.m_result.copy(), false);
 	} // end setResults()
 		

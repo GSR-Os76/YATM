@@ -130,12 +130,12 @@ public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe
 	} // end getDataAccussor()
 
 	@Override
-	protected boolean itemInsertionValidator(int slot, ItemStack itemStack, boolean simulate)
+	protected boolean itemInsertionValidator(int slot, ItemStack stack, boolean simulate)
 	{
 		return switch(slot) 
 		{
 			case GrinderBlockEntity.INPUT_SLOT -> true;
-			case GrinderBlockEntity.POWER_SLOT -> SlotUtil.isValidPowerSlotInsert(itemStack);
+			case GrinderBlockEntity.POWER_SLOT -> SlotUtil.isValidPowerSlotInsert(stack);
 			case GrinderBlockEntity.RESULT_SLOT -> false;
 			
 			default -> throw new IllegalArgumentException("Unexpected value: " + slot);

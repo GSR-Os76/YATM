@@ -52,8 +52,9 @@ public class BioreactorMenu extends AbstractContainerMenu
 		this.m_access = Objects.requireNonNull(access);
 		this.m_data = Objects.requireNonNull(data);
 		this.m_openingBlockType = openingBlockType;
-		this.m_tankReader = new FluidTankDataReader(this.m_data, BioreactorBlockEntity.ACCESS_SPEC.get(BioreactorBlockEntity.TANK_DATA_SPEC_KEY));
+		
 		this.m_currentReader = new CurrentDataReader(this.m_data, BioreactorBlockEntity.ACCESS_SPEC.get(BioreactorBlockEntity.CURRENT_DATA_SPEC_KEY));
+		this.m_tankReader = new FluidTankDataReader(this.m_data, BioreactorBlockEntity.ACCESS_SPEC.get(BioreactorBlockEntity.TANK_DATA_SPEC_KEY));
 		
 		int downShift = 36;
 		this.addSlot(new SlotItemHandler(objInventory, BioreactorBlockEntity.INPUT_SLOT, 62, 60));
@@ -89,13 +90,13 @@ public class BioreactorMenu extends AbstractContainerMenu
 			ItemStack slotsStack = quickMovedSlot.getItem();
 			if (quickMovedSlotIndex == BioreactorBlockEntity.DRAIN_RESULT_TANK_SLOT)
 			{				
-				if (!this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_HOTBAR_END + 1, true))
+				if (!this.moveItemStackTo(slotsStack, BioreactorMenu.PLAYER_INVENTORY_START, BioreactorMenu.PLAYER_HOTBAR_END + 1, true))
 				{					
 					return ItemStack.EMPTY;
 				}
 				quickMovedSlot.onQuickCraft(slotsStack, quickMovedStack);
 			}
-			else if (quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END)
+			else if (quickMovedSlotIndex >= BioreactorMenu.PLAYER_INVENTORY_START && quickMovedSlotIndex <= BioreactorMenu.PLAYER_HOTBAR_END)
 			{		
 				boolean moved = false;
 				if(this.moveItemStackTo(slotsStack, BioreactorBlockEntity.INPUT_SLOT, BioreactorBlockEntity.INPUT_SLOT + 1, false)) 
@@ -110,11 +111,11 @@ public class BioreactorMenu extends AbstractContainerMenu
 				{					
 					moved = true;
 				}
-				else if((quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_INVENTORY_END) && this.moveItemStackTo(slotsStack, PLAYER_HOTBAR_START, PLAYER_HOTBAR_END + 1, false)) 
+				else if((quickMovedSlotIndex >= BioreactorMenu.PLAYER_INVENTORY_START && quickMovedSlotIndex <= BioreactorMenu.PLAYER_INVENTORY_END) && this.moveItemStackTo(slotsStack, BioreactorMenu.PLAYER_HOTBAR_START, BioreactorMenu.PLAYER_HOTBAR_END + 1, false)) 
 				{											
 					moved = true;
 				}
-				else if ((quickMovedSlotIndex >= PLAYER_HOTBAR_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END) && this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_INVENTORY_END + 1, false))
+				else if ((quickMovedSlotIndex >= BioreactorMenu.PLAYER_HOTBAR_START && quickMovedSlotIndex <= BioreactorMenu.PLAYER_HOTBAR_END) && this.moveItemStackTo(slotsStack, BioreactorMenu.PLAYER_INVENTORY_START, BioreactorMenu.PLAYER_INVENTORY_END + 1, false))
 				{
 					moved = true;
 				}	
@@ -123,7 +124,7 @@ public class BioreactorMenu extends AbstractContainerMenu
 					return ItemStack.EMPTY;
 				}
 			}
-			else if (!this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_HOTBAR_END + 1, false))
+			else if (!this.moveItemStackTo(slotsStack, BioreactorMenu.PLAYER_INVENTORY_START, BioreactorMenu.PLAYER_HOTBAR_END + 1, false))
 			{
 				return ItemStack.EMPTY;
 			}
@@ -161,7 +162,7 @@ public class BioreactorMenu extends AbstractContainerMenu
 	public float getCraftProgress()
 	{
 		return NetworkUtil.getProgess(BioreactorBlockEntity.ACCESS_SPEC.get(BioreactorBlockEntity.CRAFT_PROGESS_TAG_NAME), this.m_data);
-	} // end getCraftProgess
+	} // end getCraftProgess()
 	
 	public float getResultTankDrainProgress()
 	{
@@ -171,17 +172,17 @@ public class BioreactorMenu extends AbstractContainerMenu
 	public @NotNegative int getCurrentCapacity()
 	{
 		return this.m_currentReader.getCapacity();
-	} // end getResultTankCapacity
+	} // end getResultTankCapacity()
 	
 	public @NotNegative int getCurrentStored()
 	{
 		return this.m_currentReader.getStored();
-	} // end getResultTankCapacity
+	} // end getResultTankCapacity()
 	
 	public @NotNegative int getResultTankCapacity()
 	{
 		return this.m_tankReader.getCapacity();
-	} // end getResultTankCapacity
+	} // end getResultTankCapacity()
 	
 	public @NotNull FluidStack getResultTankContents()
 	{

@@ -64,7 +64,7 @@ public abstract class DeviceBlockEntity extends BlockEntity
 
 	public abstract @NotNull ContainerData getDataAccessor();
 	
-	protected abstract boolean itemInsertionValidator(@NotNegative int slot, @NotNull ItemStack itemStack, boolean simulate);
+	protected abstract boolean itemInsertionValidator(@NotNegative int slot, @NotNull ItemStack stack, boolean simulate);
 
 	protected void onItemInsertion(@NotNegative int slot, @NotNull ItemStack stack)
 	{

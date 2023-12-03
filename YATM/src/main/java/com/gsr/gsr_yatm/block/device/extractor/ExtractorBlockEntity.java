@@ -182,14 +182,14 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractingRe
 	} // end getDataAccessor()
 	
 	@Override
-	protected boolean itemInsertionValidator(int slot, ItemStack itemStack, boolean simulate)
+	protected boolean itemInsertionValidator(int slot, ItemStack stack, boolean simulate)
 	{
 		return switch(slot) 
 		{
 			case ExtractorBlockEntity.INPUT_SLOT -> true;
-			case ExtractorBlockEntity.DRAIN_RESULT_TANK_SLOT -> SlotUtil.isValidTankDrainSlotInsert(itemStack);
+			case ExtractorBlockEntity.DRAIN_RESULT_TANK_SLOT -> SlotUtil.isValidTankDrainSlotInsert(stack);
 			case ExtractorBlockEntity.INPUT_REMAINDER_SLOT -> false;
-			case ExtractorBlockEntity.POWER_SLOT -> SlotUtil.isValidPowerSlotInsert(itemStack);
+			case ExtractorBlockEntity.POWER_SLOT -> SlotUtil.isValidPowerSlotInsert(stack);
 			default -> throw new IllegalArgumentException("Unexpected value of: " + slot);
 		};
 	} // end itemInsertionValidator()

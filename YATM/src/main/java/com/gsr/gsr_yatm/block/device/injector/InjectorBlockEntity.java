@@ -156,12 +156,12 @@ public class InjectorBlockEntity extends TestCraftingDeviceBlockEntity<Injecting
 	
 	
 	@Override
-	protected boolean itemInsertionValidator(int slot, ItemStack itemStack, boolean simulate)
+	protected boolean itemInsertionValidator(int slot, ItemStack stack, boolean simulate)
 	{
 		return switch (slot)
 		{
-			case InjectorBlockEntity.FILL_INPUT_TANK_SLOT -> SlotUtil.isValidTankFillSlotInsert(itemStack);
-			case InjectorBlockEntity.DRAIN_INPUT_TANK_SLOT -> SlotUtil.isValidTankDrainSlotInsert(itemStack);
+			case InjectorBlockEntity.FILL_INPUT_TANK_SLOT -> SlotUtil.isValidTankFillSlotInsert(stack);
+			case InjectorBlockEntity.DRAIN_INPUT_TANK_SLOT -> SlotUtil.isValidTankDrainSlotInsert(stack);
 			case InjectorBlockEntity.RESULT_SLOT -> false;
 			default -> true;
 		};

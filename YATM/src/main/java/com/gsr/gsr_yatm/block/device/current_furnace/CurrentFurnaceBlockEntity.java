@@ -141,13 +141,13 @@ public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<Wrapped
 	} // end getDataAccessor()
 
 	@Override
-	protected boolean itemInsertionValidator(int slot, ItemStack itemStack, boolean simulate)
+	protected boolean itemInsertionValidator(int slot, ItemStack stack, boolean simulate)
 	{
 		return switch(slot) 
 		{
 			case INPUT_SLOT -> true;
 			case RESULT_SLOT -> false;
-			case HEAT_SLOT -> SlotUtil.isValidHeatingSlotInsert(itemStack);
+			case HEAT_SLOT -> SlotUtil.isValidHeatingSlotInsert(stack);
 			default -> throw new IllegalArgumentException("Unexpected value of: " + slot);
 		};
 	} // end itemInsertionValidator()

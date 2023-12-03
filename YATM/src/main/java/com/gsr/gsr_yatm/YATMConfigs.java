@@ -6,6 +6,16 @@ import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 
 public class YATMConfigs
 {
+	private static final int DRAIN_RECHECK_PERIOD = 40;
+	private static final int LIT_ABOVE_TEMPERATURE = 300;
+	private static final int STEEL_DEVICE_CURRENT_CAPACITY = 32768;
+	private static final int STEEL_DEVICE_MAX_CURRENT_TRANSFER_RATE = 256;
+	private static final int STEEL_DEVICE_MAX_FLUID_TRANSFER_RATE = 60;
+	private static final int STEEL_DEVICE_MAX_TEMPERATURE = 4000;
+	private static final int STEEL_DEVICE_TANK_CAPACITY = 8000;
+	
+	
+	
 	private static ForgeConfigSpec.Builder s_builder = new ForgeConfigSpec.Builder();
 	
 	
@@ -78,32 +88,41 @@ public class YATMConfigs
 	
 	
 	
-	public static final IntValue BIOREACTOR_CURRENT_CAPACITY  = YATMConfigs.s_builder.pop().pop().push("Devices: ").push("Bioreactor: ").comment("The maximum number of cu the device can hold.").defineInRange("currentCapacity", 32768, 0, Integer.MAX_VALUE);
-	public static final IntValue BIOREACTOR_DRAIN_RECHECK_PERIOD  = YATMConfigs.s_builder.comment("The period in ticks of the device trying to reattach a slotted result tank draining component to relavent neighbors.").defineInRange("drain_recheck_period", 40, 0, Integer.MAX_VALUE);
-	public static final IntValue BIOREACTOR_MAX_CURRENT_TRANSFER = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("max_current_transfer_rate", 256, 0, Integer.MAX_VALUE);
-	public static final IntValue BIOREACTOR_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("max_fluid_transfer_rate", 200, 0, Integer.MAX_VALUE);
-	public static final IntValue BIOREACTOR_RESULT_TANK_CAPACITY = YATMConfigs.s_builder.comment("The result tank's fluid capacity.").defineInRange("result_tank_capacity", 8000, 0, Integer.MAX_VALUE);
+	public static final IntValue BIOREACTOR_CURRENT_CAPACITY = YATMConfigs.s_builder.pop().pop().push("Devices: ").push("Bioreactor: ").comment("The maximum number of cu the device can hold.").defineInRange("current_capacity", YATMConfigs.STEEL_DEVICE_CURRENT_CAPACITY, 0, Integer.MAX_VALUE);
+	public static final IntValue BIOREACTOR_DRAIN_RECHECK_PERIOD = YATMConfigs.s_builder.comment("The period in ticks of the device trying to reattach a slotted result tank draining component to relavent neighbors.").defineInRange("drain_recheck_period", YATMConfigs.DRAIN_RECHECK_PERIOD, 0, Integer.MAX_VALUE);
+	public static final IntValue BIOREACTOR_MAX_CURRENT_TRANSFER = YATMConfigs.s_builder.comment("The most current that can be moved per tick.").defineInRange("max_current_transfer_rate", YATMConfigs.STEEL_DEVICE_MAX_CURRENT_TRANSFER_RATE, 0, Integer.MAX_VALUE);
+	public static final IntValue BIOREACTOR_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("max_fluid_transfer_rate", YATMConfigs.STEEL_DEVICE_MAX_FLUID_TRANSFER_RATE, 0, Integer.MAX_VALUE);
+	public static final IntValue BIOREACTOR_RESULT_TANK_CAPACITY = YATMConfigs.s_builder.comment("The result tank's fluid capacity.").defineInRange("result_tank_capacity", YATMConfigs.STEEL_DEVICE_TANK_CAPACITY, 0, Integer.MAX_VALUE);
 	
-	public static final IntValue BOILER_DRAIN_INPUT_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.pop().push("Boiler: ").comment("The most fluid that can be moved per tick while drain out it's input tank..").defineInRange("drain_input_max_fluid_transfer_rate", 200, 0, Integer.MAX_VALUE);
-	public static final IntValue BOILER_DRAIN_INPUT_RECHECK_PERIOD  = YATMConfigs.s_builder.comment("The period in ticks of the device trying to reattach a slotted input tank draining component to relavent neighbors.").defineInRange("drain_input_recheck_period", 40, 0, Integer.MAX_VALUE);
-	public static final IntValue BOILER_DRAIN_RESULT_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick while drain out it's result tank.").defineInRange("drain_result_max_fluid_transfer_rate", 200, 0, Integer.MAX_VALUE);
-	public static final IntValue BOILER_DRAIN_RESULT_RECHECK_PERIOD  = YATMConfigs.s_builder.comment("The period in ticks of the device trying to reattach a slotted result tank draining component to relavent neighbors.").defineInRange("drain_result_recheck_period", 40, 0, Integer.MAX_VALUE);
-	public static final IntValue BOILER_FILL_INPUT_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick while filling up it's input taking.").defineInRange("fill_input_max_fluid_transfer_rate", 200, 0, Integer.MAX_VALUE);
-	public static final IntValue BOILER_INPUT_TANK_CAPACITY = YATMConfigs.s_builder.comment("The input tank's fluid capacity.").defineInRange("input_tank_capacity", 8000, 0, Integer.MAX_VALUE);
-	public static final IntValue BOILER_LIT_ABOVE_TEMPERATURE = YATMConfigs.s_builder.comment("The temperature above which the device will be switched to the lit state.").defineInRange("lit_above", 300, 0, Integer.MAX_VALUE);
-	public static final IntValue BOILER_MAX_TEMPERATURE = YATMConfigs.s_builder.comment("The highest possible temperature for the device.").defineInRange("max_temperature", 4000, 0, Integer.MAX_VALUE);
-	public static final IntValue BOILER_RESULT_TANK_CAPACITY = YATMConfigs.s_builder.comment("The result tank's fluid capacity.").defineInRange("result_tank_capacity", 8000, 0, Integer.MAX_VALUE);
+	public static final IntValue BOILER_DRAIN_INPUT_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.pop().push("Boiler: ").comment("The most fluid that can be moved per tick while drain out it's input tank.").defineInRange("drain_input_max_fluid_transfer_rate", YATMConfigs.STEEL_DEVICE_MAX_FLUID_TRANSFER_RATE, 0, Integer.MAX_VALUE);
+	public static final IntValue BOILER_DRAIN_INPUT_RECHECK_PERIOD = YATMConfigs.s_builder.comment("The period in ticks of the device trying to reattach a slotted input tank draining component to relavent neighbors.").defineInRange("drain_input_recheck_period", YATMConfigs.DRAIN_RECHECK_PERIOD, 0, Integer.MAX_VALUE);
+	public static final IntValue BOILER_DRAIN_RESULT_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick while drain out it's result tank.").defineInRange("drain_result_max_fluid_transfer_rate", YATMConfigs.STEEL_DEVICE_MAX_FLUID_TRANSFER_RATE, 0, Integer.MAX_VALUE);
+	public static final IntValue BOILER_DRAIN_RESULT_RECHECK_PERIOD = YATMConfigs.s_builder.comment("The period in ticks of the device trying to reattach a slotted result tank draining component to relavent neighbors.").defineInRange("drain_result_recheck_period", YATMConfigs.DRAIN_RECHECK_PERIOD, 0, Integer.MAX_VALUE);
+	public static final IntValue BOILER_FILL_INPUT_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick while filling up it's input taking.").defineInRange("fill_input_max_fluid_transfer_rate", YATMConfigs.STEEL_DEVICE_MAX_FLUID_TRANSFER_RATE, 0, Integer.MAX_VALUE);
+	public static final IntValue BOILER_INPUT_TANK_CAPACITY = YATMConfigs.s_builder.comment("The input tank's fluid capacity.").defineInRange("input_tank_capacity", YATMConfigs.STEEL_DEVICE_TANK_CAPACITY, 0, Integer.MAX_VALUE);
+	public static final IntValue BOILER_LIT_ABOVE_TEMPERATURE = YATMConfigs.s_builder.comment("The temperature above which the device will be switched to the lit state.").defineInRange("lit_above", YATMConfigs.LIT_ABOVE_TEMPERATURE, 0, Integer.MAX_VALUE);
+	public static final IntValue BOILER_MAX_TEMPERATURE = YATMConfigs.s_builder.comment("The highest possible temperature for the device.").defineInRange("max_temperature", YATMConfigs.STEEL_DEVICE_MAX_TEMPERATURE, 0, Integer.MAX_VALUE);
+	public static final IntValue BOILER_RESULT_TANK_CAPACITY = YATMConfigs.s_builder.comment("The result tank's fluid capacity.").defineInRange("result_tank_capacity", YATMConfigs.STEEL_DEVICE_TANK_CAPACITY, 0, Integer.MAX_VALUE);
 	
-	public static final IntValue CRUCIBLE_DRAIN_RECHECK_PERIOD  = YATMConfigs.s_builder.pop().push("Crucible: ").comment("The period in ticks of the device trying to reattach a slotted result tank draining component to relavent neighbors.").defineInRange("drain_recheck_period", 40, 0, Integer.MAX_VALUE);
-	public static final IntValue CRUCIBLE_LIT_ABOVE_TEMPERATURE = YATMConfigs.s_builder.comment("The temperature above which the device will be switched to the lit state.").defineInRange("lit_above", 300, 0, Integer.MAX_VALUE);
-	public static final IntValue CRUCIBLE_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("max_fluid_transfer_rate", 200, 0, Integer.MAX_VALUE);
-	public static final IntValue CRUCIBLE_MAX_TEMPERATURE = YATMConfigs.s_builder.comment("The highest possible temperature for the device.").defineInRange("max_temperature", 4000, 0, Integer.MAX_VALUE);
-	public static final IntValue CRUCIBLE_RESULT_TANK_CAPACITY = YATMConfigs.s_builder.comment("The result tank's fluid capacity.").defineInRange("result_tank_capacity", 8000, 0, Integer.MAX_VALUE);
+	public static final IntValue CRUCIBLE_DRAIN_RECHECK_PERIOD = YATMConfigs.s_builder.pop().push("Crucible: ").comment("The period in ticks of the device trying to reattach a slotted result tank draining component to relavent neighbors.").defineInRange("drain_recheck_period", YATMConfigs.DRAIN_RECHECK_PERIOD, 0, Integer.MAX_VALUE);
+	public static final IntValue CRUCIBLE_LIT_ABOVE_TEMPERATURE = YATMConfigs.s_builder.comment("The temperature above which the device will be switched to the lit state.").defineInRange("lit_above", YATMConfigs.LIT_ABOVE_TEMPERATURE, 0, Integer.MAX_VALUE);
+	public static final IntValue CRUCIBLE_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("max_fluid_transfer_rate", YATMConfigs.STEEL_DEVICE_MAX_FLUID_TRANSFER_RATE, 0, Integer.MAX_VALUE);
+	public static final IntValue CRUCIBLE_MAX_TEMPERATURE = YATMConfigs.s_builder.comment("The highest possible temperature for the device.").defineInRange("max_temperature", YATMConfigs.STEEL_DEVICE_MAX_TEMPERATURE, 0, Integer.MAX_VALUE);
+	public static final IntValue CRUCIBLE_RESULT_TANK_CAPACITY = YATMConfigs.s_builder.comment("The result tank's fluid capacity.").defineInRange("result_tank_capacity", YATMConfigs.STEEL_DEVICE_TANK_CAPACITY, 0, Integer.MAX_VALUE);
 	
-	public static final IntValue CURRENT_FURNACE_MAX_TEMPERATURE = YATMConfigs.s_builder.pop().push("Current Furnace: ").comment("The highest possible temperature for the device.").defineInRange("max_temperature", 4000, 0, Integer.MAX_VALUE);
+	public static final IntValue CRYSTALLIZER_CURRENT_CAPACITY  = YATMConfigs.s_builder.pop().push("Crystallizer: ").comment("The maximum number of cu the device can hold.").defineInRange("current_capacity", YATMConfigs.STEEL_DEVICE_CURRENT_CAPACITY, 0, Integer.MAX_VALUE);
+	public static final IntValue CRYSTALLIZER_DRAIN_RECHECK_PERIOD = YATMConfigs.s_builder.comment("The period in ticks of the device trying to reattach a slotted result tank draining component to relavent neighbors.").defineInRange("drain_recheck_period", YATMConfigs.DRAIN_RECHECK_PERIOD, 0, Integer.MAX_VALUE);
+	public static final IntValue CRYSTALLIZER_DRAIN_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("drain_max_fluid_transfer_rate", YATMConfigs.STEEL_DEVICE_MAX_FLUID_TRANSFER_RATE, 0, Integer.MAX_VALUE);
+	public static final IntValue CRYSTALLIZER_FILL_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("fill_max_fluid_transfer_rate", YATMConfigs.STEEL_DEVICE_MAX_FLUID_TRANSFER_RATE, 0, Integer.MAX_VALUE);
+	public static final IntValue CRYSTALLIZER_INPUT_TANK_CAPACITY = YATMConfigs.s_builder.comment("The input tank's fluid capacity.").defineInRange("input_tank_capacity", YATMConfigs.STEEL_DEVICE_TANK_CAPACITY, 0, Integer.MAX_VALUE);
+	public static final IntValue CRYSTALLIZER_MAX_CURRENT_TRANSFER = YATMConfigs.s_builder.comment("The most current that can be moved per tick.").defineInRange("max_current_transfer_rate", YATMConfigs.STEEL_DEVICE_MAX_CURRENT_TRANSFER_RATE, 0, Integer.MAX_VALUE);
+	
+	public static final IntValue CURRENT_FURNACE_MAX_TEMPERATURE = YATMConfigs.s_builder.pop().push("Current Furnace: ").comment("The highest possible temperature for the device.").defineInRange("max_temperature", YATMConfigs.STEEL_DEVICE_MAX_TEMPERATURE, 0, Integer.MAX_VALUE);
+	
+	
 	
 	public static final IntValue TANK_CAPACITY = YATMConfigs.s_builder.pop().push("Tank: ").comment("The tank's capacity in milibuckets.").defineInRange("capacity", 16000, 0, Integer.MAX_VALUE);
-	public static final IntValue TANK_DRAIN_RECHECK_PERIOD = YATMConfigs.s_builder.comment("The period in ticks of the device trying to attach to a below neighbor's fluid handling capability.").defineInRange("drain_recheck_period", 40, 0, Integer.MAX_VALUE);
+	public static final IntValue TANK_DRAIN_RECHECK_PERIOD = YATMConfigs.s_builder.comment("The period in ticks of the device trying to attach to a below neighbor's fluid handling capability.").defineInRange("drain_recheck_period", YATMConfigs.DRAIN_RECHECK_PERIOD, 0, Integer.MAX_VALUE);
 	public static final IntValue TANK_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("max_fluid_transfer_rate", 1000, 0, Integer.MAX_VALUE);
 	
 	public static final IntValue CRAFTING_RECHECK_PERIOD = YATMConfigs.s_builder.pop().push("Misc: ").comment("The period in ticks while idle before a crafting device'll try to match it's contents to a new recipe. Note: recheck's occur automatically when device inventories change.").defineInRange("crafting recheck period", 20, 0, Integer.MAX_VALUE);

@@ -53,9 +53,9 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreacting
 	public static final int DRAIN_RESULT_TANK_SLOT = 1;
 	public static final int POWER_SLOT = 2;
 	
+	public static final String CURRENT_DATA_SPEC_KEY = "currentData";
 	public static final String DRAIN_PROGRESS_SPEC_KEY = "drainProgress";
 	public static final String TANK_DATA_SPEC_KEY = "tankData";
-	public static final String CURRENT_DATA_SPEC_KEY = "currentData";
 	
 	private static final String CURRENT_HANDLER_TAG_NAME = "current";
 	private static final String DRAIN_RESULT_MANAGER_TAG_NAME = "drainResultManager";
@@ -63,20 +63,19 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreacting
 
 	
 	
+	private final @NotNull IItemHandler m_currentSlot = InventoryWrapper.Builder.of(this.m_inventory).slotTranslationTable(new int[] {BioreactorBlockEntity.POWER_SLOT}).build();;
 	private final @NotNull IItemHandler m_drainResultTankSlot = InventoryWrapper.Builder.of(this.m_inventory).slotTranslationTable(new int[] {BioreactorBlockEntity.DRAIN_RESULT_TANK_SLOT}).build();
 	private final @NotNull IItemHandler m_inputSlot = InventoryWrapper.Builder.of(this.m_inventory).slotTranslationTable(new int[] {BioreactorBlockEntity.INPUT_SLOT}).build();;
-	private final @NotNull IItemHandler m_currentSlot = InventoryWrapper.Builder.of(this.m_inventory).slotTranslationTable(new int[] {BioreactorBlockEntity.POWER_SLOT}).build();;
 	private final @NotNull FluidTank m_rawResultTank = new FluidTank(YATMConfigs.BIOREACTOR_RESULT_TANK_CAPACITY.get());
 	private final @NotNull IFluidHandler m_resultTank = new TankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);;
-	protected final @NotNull CurrentHandler m_currentStorer = CurrentHandler.Builder.of(YATMConfigs.BIOREACTOR_CURRENT_CAPACITY.get()).onCurrentExtracted((i) -> this.setChanged()).onCurrentRecieved((i) -> this.setChanged()).maxTransfer(YATMConfigs.BIOREACTOR_MAX_CURRENT_TRANSFER.get()).build();	
+	private final @NotNull CurrentHandler m_currentStorer = CurrentHandler.Builder.of(YATMConfigs.BIOREACTOR_CURRENT_CAPACITY.get()).onCurrentExtracted((i) -> this.setChanged()).onCurrentRecieved((i) -> this.setChanged()).maxTransfer(YATMConfigs.BIOREACTOR_MAX_CURRENT_TRANSFER.get()).build();	
 	
-	private boolean m_updateCurrentComponentQueued = false;
 	private boolean m_updateDrainResultComponentQueued = false;
 	
 	private @NotNull LazyOptional<IItemHandler> m_inventoryLazyOptional = LazyOptional.of(() -> BioreactorBlockEntity.this.m_inventory);
+	private @NotNull LazyOptional<IItemHandler> m_currentSlotLazyOptional = LazyOptional.of(() -> BioreactorBlockEntity.this.m_currentSlot);
 	private @NotNull LazyOptional<IItemHandler> m_drainResultTankSlotLazyOptional = LazyOptional.of(() -> BioreactorBlockEntity.this.m_drainResultTankSlot);
 	private @NotNull LazyOptional<IItemHandler> m_inputSlotLazyOptional = LazyOptional.of(() -> BioreactorBlockEntity.this.m_inputSlot);
-	private @NotNull LazyOptional<IItemHandler> m_currentSlotLazyOptional = LazyOptional.of(() -> BioreactorBlockEntity.this.m_currentSlot);
 	private @NotNull LazyOptional<IFluidHandler> m_resultTankLazyOptional = LazyOptional.of(() -> BioreactorBlockEntity.this.m_resultTank);
 	private @NotNull LazyOptional<ICurrentHandler> m_currentStorerLazyOptional = LazyOptional.of(() -> BioreactorBlockEntity.this.m_currentStorer);
 
@@ -119,13 +118,13 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreacting
 	
 	
 	@Override
-	protected boolean itemInsertionValidator(@NotNegative int slot, @NotNull ItemStack itemStack, boolean simulate)
+	protected boolean itemInsertionValidator(@NotNegative int slot, @NotNull ItemStack stack, boolean simulate)
 	{
 		return switch(slot) 
 		{
 			case BioreactorBlockEntity.INPUT_SLOT -> true;
-			case BioreactorBlockEntity.DRAIN_RESULT_TANK_SLOT -> SlotUtil.isValidTankDrainSlotInsert(itemStack);
-			case BioreactorBlockEntity.POWER_SLOT -> SlotUtil.isValidPowerSlotInsert(itemStack);
+			case BioreactorBlockEntity.DRAIN_RESULT_TANK_SLOT -> SlotUtil.isValidTankDrainSlotInsert(stack);
+			case BioreactorBlockEntity.POWER_SLOT -> SlotUtil.isValidPowerSlotInsert(stack);
 			default -> throw new IllegalArgumentException("Unexpected value of: " + slot);
 		};
 	} // end itemInsertionValidator()
@@ -134,9 +133,11 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreacting
 	protected void onItemChange(@NotNegative int slot, @NotNull ItemStack stack)
 	{
 		super.onItemChange(slot, stack);
+		// TODO, power seems to work without being queued,but drain doesnt
+
 		if(slot == BioreactorBlockEntity.POWER_SLOT) 
 		{
-			this.m_updateCurrentComponentQueued = true;
+			this.m_currentComponentManager.updateComponent();
 		}
 		if(slot == BioreactorBlockEntity.DRAIN_RESULT_TANK_SLOT) 
 		{
@@ -149,11 +150,6 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreacting
 	@Override
 	public void serverTick(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state)
 	{
-		if(this.m_updateCurrentComponentQueued) 
-		{
-			this.m_currentComponentManager.updateComponent();
-			this.m_updateCurrentComponentQueued = false;
-		}
 		if(this.m_updateDrainResultComponentQueued) 
 		{
 			this.m_drainResultComponentManager.updateComponent();

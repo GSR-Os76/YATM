@@ -79,7 +79,6 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	
 	// TODO, investigate why the update pattern necessitates this, and fix it
 	private boolean m_updateDrainResultComponentQueued = false;
-	private boolean m_updateHeatComponentQueued = false;
 	
 	private @NotNull LazyOptional<IItemHandler> m_inventoryLazyOptional = LazyOptional.of(() -> CrucibleBlockEntity.this.m_inventory);
 	private @NotNull LazyOptional<IItemHandler> m_drainResultTankSlotLazyOptional = LazyOptional.of(() -> CrucibleBlockEntity.this.m_drainResultTankSlot);
@@ -131,12 +130,12 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	
 	
 	@Override
-	protected boolean itemInsertionValidator(@NotNegative int slot, @NotNull ItemStack itemStack, boolean simulate)
+	protected boolean itemInsertionValidator(@NotNegative int slot, @NotNull ItemStack stack, boolean simulate)
 	{
 		return switch (slot)
 		{
-			case CrucibleBlockEntity.HEAT_SLOT -> SlotUtil.isValidHeatingSlotInsert(itemStack);
-			case CrucibleBlockEntity.DRAIN_RESULT_TANK_SLOT -> SlotUtil.isValidTankDrainSlotInsert(itemStack);
+			case CrucibleBlockEntity.HEAT_SLOT -> SlotUtil.isValidHeatingSlotInsert(stack);
+			case CrucibleBlockEntity.DRAIN_RESULT_TANK_SLOT -> SlotUtil.isValidTankDrainSlotInsert(stack);
 			default -> true;
 		};
 	} // end itemInsertionValidator()
@@ -152,7 +151,7 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 		}
 		else if(slot == CrucibleBlockEntity.HEAT_SLOT) 
 		{
-			this.m_updateHeatComponentQueued = true;
+			this.m_heatComponentManager.updateComponent();
 		}
 	} // end onItemChange()
 
@@ -167,11 +166,7 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 			this.m_drainResultComponentManager.updateComponent();
 			this.m_updateDrainResultComponentQueued = false;
 		}
-		if(this.m_updateHeatComponentQueued) 
-		{
-			this.m_heatComponentManager.updateComponent();
-			this.m_updateHeatComponentQueued = false;			
-		}
+
 		
 		
 		boolean changed = this.m_heatingManager.tick(level, position);

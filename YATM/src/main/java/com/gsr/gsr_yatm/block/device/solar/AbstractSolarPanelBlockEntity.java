@@ -151,9 +151,9 @@ public abstract class AbstractSolarPanelBlockEntity extends DeviceBlockEntity
 	} // end getDataAccessor()
 	
 	@Override
-	protected boolean itemInsertionValidator(int slot, ItemStack itemStack, boolean simulate)
+	protected boolean itemInsertionValidator(int slot, ItemStack stack, boolean simulate)
 	{
-		return slot == POWER_SLOT && SlotUtil.isValidPowerSlotInsert(itemStack);
+		return slot == POWER_SLOT && SlotUtil.isValidPowerSlotInsert(stack);
 	} // end itemInsertionValidator()
 	
 	@Override

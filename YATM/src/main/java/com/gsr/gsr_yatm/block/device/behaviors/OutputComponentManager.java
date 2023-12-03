@@ -61,12 +61,11 @@ public class OutputComponentManager implements ICapabilityProvider
 			this.m_component = null;
 			this.m_componentStack = null;
 		}
-		ItemStack drainResultStack = this.m_inventory.getStackInSlot(this.m_slot);
-		
-		if(drainResultStack.getItem() instanceof IComponent fc) 
+		ItemStack held = this.m_inventory.getStackInSlot(this.m_slot);
+		if(held.getItem() instanceof IComponent fc) 
 		{
 			this.m_component = fc;
-			this.m_componentStack = drainResultStack;
+			this.m_componentStack = held;
 		}
 	} // end updateComponent()
 	

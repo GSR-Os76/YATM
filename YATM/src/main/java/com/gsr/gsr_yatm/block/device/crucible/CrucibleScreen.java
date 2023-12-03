@@ -13,7 +13,6 @@ import net.minecraft.world.entity.player.Inventory;
 
 public class CrucibleScreen extends AbstractContainerScreen<CrucibleMenu>
 {
-	// TODO, everything
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/crucible.png");
 	
 	private VerticalStoredFluidWidget m_resultTankWidget;

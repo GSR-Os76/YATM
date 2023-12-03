@@ -1,7 +1,15 @@
 package com.gsr.gsr_yatm.block.device.crystallizer;
 
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.network.CurrentDataReader;
+import com.gsr.gsr_yatm.utilities.network.FluidTankDataReader;
 import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
 
 import net.minecraft.world.entity.player.Inventory;
@@ -13,7 +21,7 @@ import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.material.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
@@ -26,26 +34,32 @@ public class CrystallizerMenu extends AbstractContainerMenu
 	public static final int PLAYER_HOTBAR_END = PLAYER_HOTBAR_START + 8;
 	
 	
-	private final ContainerLevelAccess m_access;
-	private final Block m_openingBlockType;
-	private final ContainerData m_data;
+	private final @NotNull ContainerLevelAccess m_access;
+	private final @NotNull ContainerData m_data;
+	private final @Nullable Block m_openingBlockType;
+	private final @NotNull CurrentDataReader m_currentReader;
+	private final @NotNull FluidTankDataReader m_tankReader;
 	
 	
 	
 	// client side constructor
-	public CrystallizerMenu(int inventoryId, Inventory playerInventory)
+	public CrystallizerMenu(int inventoryId, @NotNull Inventory playerInventory)
 	{
-		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(CrystallizerBlockEntity.INVENTORY_SLOT_COUNT), new SimpleContainerData(CrystallizerBlockEntity.DATA_SLOT_COUNT));
+		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(CrystallizerBlockEntity.INVENTORY_SLOT_COUNT), new SimpleContainerData(CrystallizerBlockEntity.ACCESS_SPEC.getCount()));
 	} // end client constructor
 
 	// server side constructor
-	public CrystallizerMenu(int inventoryId, Inventory playerInventory, ContainerLevelAccess access, Block openingBlockType, IItemHandler objInventory, ContainerData data)
+	public CrystallizerMenu(int inventoryId, @NotNull Inventory playerInventory, @NotNull ContainerLevelAccess access, @Nullable Block openingBlockType, @NotNull IItemHandler objInventory, @NotNull ContainerData data)
 	{
 		super(YATMMenuTypes.CRYSTALLIZER.get(), inventoryId);
 
-		this.m_access = access;
+		this.m_access = Objects.requireNonNull(access);
+		this.m_data = Objects.requireNonNull(data);
 		this.m_openingBlockType = openingBlockType;
-		this.m_data = data;
+		
+		this.m_currentReader = new CurrentDataReader(this.m_data, CrystallizerBlockEntity.ACCESS_SPEC.get(CrystallizerBlockEntity.CURRENT_DATA_SPEC_KEY));
+		this.m_tankReader = new FluidTankDataReader(this.m_data, CrystallizerBlockEntity.ACCESS_SPEC.get(CrystallizerBlockEntity.TANK_DATA_SPEC_KEY));
+		
 		this.addSlot(new SlotItemHandler(objInventory, CrystallizerBlockEntity.FILL_INPUT_TANK_SLOT, 116, 87));
 		this.addSlot(new SlotItemHandler(objInventory, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT, 134, 87));
 		this.addSlot(new SlotItemHandler(objInventory, CrystallizerBlockEntity.SEED_SLOT, 80, 51));
@@ -81,46 +95,45 @@ public class CrystallizerMenu extends AbstractContainerMenu
 			ItemStack slotsStack = quickMovedSlot.getItem();
 			if (quickMovedSlotIndex == CrystallizerBlockEntity.RESULT_SLOT)
 			{				
-				if (!this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_HOTBAR_END + 1, true))
+				if (!this.moveItemStackTo(slotsStack, CrystallizerMenu.PLAYER_INVENTORY_START, CrystallizerMenu.PLAYER_HOTBAR_END + 1, true))
 				{					
 					return ItemStack.EMPTY;
 				}
 				quickMovedSlot.onQuickCraft(slotsStack, quickMovedStack);
 			}
-			else if (quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END)
+			else if (quickMovedSlotIndex >= CrystallizerMenu.PLAYER_INVENTORY_START && quickMovedSlotIndex <= CrystallizerMenu.PLAYER_HOTBAR_END)
 			{	
 				boolean moved = false;
 				if(SlotUtil.isValidTankFillSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, CrystallizerBlockEntity.FILL_INPUT_TANK_SLOT, CrystallizerBlockEntity.FILL_INPUT_TANK_SLOT + 1, false)) 
 				{						
-					moved = true; //return ItemStack.EMPTY;					
+					moved = true;
 				}
 				else if(SlotUtil.isValidTankDrainSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT + 1, false)) 
 				{											
-					moved = true; //return ItemStack.EMPTY;					
+					moved = true;
 				}
 				else if(SlotUtil.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, CrystallizerBlockEntity.POWER_SLOT, CrystallizerBlockEntity.POWER_SLOT + 1, false)) 
 				{					
-					moved = true; //return ItemStack.EMPTY;
+					moved = true;
 				}
-				// seed slot consider
 				else if(this.moveItemStackTo(slotsStack, CrystallizerBlockEntity.SEED_SLOT, CrystallizerBlockEntity.SEED_SLOT + 1, false)) 
 				{					
-					moved = true; //return ItemStack.EMPTY;					
+					moved = true;
 				}
-				else if((quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_INVENTORY_END) && this.moveItemStackTo(slotsStack, PLAYER_HOTBAR_START, PLAYER_HOTBAR_END + 1, false)) 
+				else if((quickMovedSlotIndex >= CrystallizerMenu.PLAYER_INVENTORY_START && quickMovedSlotIndex <= CrystallizerMenu.PLAYER_INVENTORY_END) && this.moveItemStackTo(slotsStack, CrystallizerMenu.PLAYER_HOTBAR_START, CrystallizerMenu.PLAYER_HOTBAR_END + 1, false)) 
 				{											
-					moved = true; //return ItemStack.EMPTY;
+					moved = true;
 				}
-				else if ((quickMovedSlotIndex >= PLAYER_HOTBAR_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END) && this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_INVENTORY_END + 1, false))
+				else if ((quickMovedSlotIndex >= CrystallizerMenu.PLAYER_HOTBAR_START && quickMovedSlotIndex <= CrystallizerMenu.PLAYER_HOTBAR_END) && this.moveItemStackTo(slotsStack, CrystallizerMenu.PLAYER_INVENTORY_START, CrystallizerMenu.PLAYER_INVENTORY_END + 1, false))
 				{
-					moved = true; //return ItemStack.EMPTY;
+					moved = true;
 				}
 				if(!moved) 
 				{
 					return ItemStack.EMPTY;
 				}
 			}
-			else if (!this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_HOTBAR_END + 1, false))
+			else if (!this.moveItemStackTo(slotsStack, CrystallizerMenu.PLAYER_INVENTORY_START, CrystallizerMenu.PLAYER_HOTBAR_END + 1, false))
 			{
 				return ItemStack.EMPTY;
 			}
@@ -155,38 +168,40 @@ public class CrystallizerMenu extends AbstractContainerMenu
 
 	
 	
-	public float getCrystallizationProgress()
+	public float getCraftProgress()
 	{
-		return 1f - (((float) this.m_data.get(CrystallizerBlockEntity.CRYSTALLIZE_PROGRESS_SLOT)) / ((float) this.m_data.get(CrystallizerBlockEntity.CRYSTALLIZE_TIME_SLOT)));
-	} // end getCrystallizationProgress()
+		return NetworkUtil.getProgess(CrystallizerBlockEntity.ACCESS_SPEC.get(CrystallizerBlockEntity.CRAFT_PROGESS_TAG_NAME), this.m_data);
+	} // end getCraftProgess()
 	
-	public float inputTankFillProgress()
+	public float getInputTankDrainProgress()
 	{
-		return 1f - (((float) this.m_data.get(CrystallizerBlockEntity.FILL_INPUT_TANK_TRANSFER_PROGRESS)) / ((float) this.m_data.get(CrystallizerBlockEntity.FILL_INPUT_TANK_TRANSFER_INITIAL)));
-	} // end inputTankFillProgress()
-	
-	public float inputTankDrainProgress()
-	{
-		return 1f - (((float) this.m_data.get(CrystallizerBlockEntity.DRAIN_INPUT_TANK_TRANSFER_PROGRESS)) / ((float) this.m_data.get(CrystallizerBlockEntity.DRAIN_INPUT_TANK_TRANSFER_INITIAL)));
-	} // end inputTankDrainProgress()
-	
-	
-	
-	public int getFluidAmount()
-	{
-		return this.m_data.get(CrystallizerBlockEntity.FLUID_AMOUNT_SLOT);
-	} // end getFluidCapacity()
-	
-	public int getFluidCapacity()
-	{
-		return this.m_data.get(CrystallizerBlockEntity.FLUID_CAPACITY_SLOT);
-	} // end getFluidCapacity()
+		return NetworkUtil.getProgess(CrystallizerBlockEntity.ACCESS_SPEC.get(CrystallizerBlockEntity.DRAIN_PROGRESS_SPEC_KEY), this.m_data);
+	} // end getResultTankDrainProgress()
 
-	public Fluid getFluid() 
+	public float getInputTankFillProgress()
 	{
-		return NetworkUtil.getFluid(NetworkUtil.composeInt(this.m_data.get(CrystallizerBlockEntity.FLUID_INDEX_LOW_SLOT), this.m_data.get(CrystallizerBlockEntity.FLUID_INDEX_HIGH_SLOT)));
-	} // end getFluid()	
-
-
-
+		return NetworkUtil.getProgess(CrystallizerBlockEntity.ACCESS_SPEC.get(CrystallizerBlockEntity.FILL_PROGRESS_SPEC_KEY), this.m_data);
+	} // end getResultTankDrainProgress()
+	
+	
+	
+	public @NotNegative int getCurrentCapacity()
+	{
+		return this.m_currentReader.getCapacity();
+	} // end getResultTankCapacity
+	
+	public @NotNegative int getCurrentStored()
+	{
+		return this.m_currentReader.getStored();
+	} // end getResultTankCapacity
+	
+	public @NotNegative int getInputTankCapacity()
+	{
+		return this.m_tankReader.getCapacity();
+	} // end getResultTankCapacity
+	
+	public @NotNull FluidStack getInputTankContents()
+	{
+		return this.m_tankReader.getFluidStack();
+	} // end getResultTankContents()
 } // end class

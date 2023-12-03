@@ -67,7 +67,6 @@ public class InventoryWrapper implements IItemHandler, IItemHandlerModifiable
 		ItemStack result = m_inventory.insertItem(this.m_slots[slot], stack, simulate);
 		if(!simulate && !(stack.equals(result))) 
 		{
-			// TODO, verify is called after change, isn't being for the crucibleBlockEntity
 			this.m_onItemInsertion.accept(slot, result);
 		}
 		return result;
