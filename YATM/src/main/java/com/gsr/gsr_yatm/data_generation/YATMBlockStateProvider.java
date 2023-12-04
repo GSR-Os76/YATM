@@ -138,6 +138,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile CRYSTALLIZER_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/crystallizer"));
 	public static final ModelFile CURRENT_FURNACE_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/current_furnace"));
 	public static final ModelFile EXTRACTOR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/extractor"));
+	public static final ModelFile GRINDER_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/grinder"));
 	public static final ModelFile INJECTOR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/injector"));
 	
 	public static final ModelFile SOLAR_PANEL_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/solar_panel"));
@@ -227,6 +228,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createSpinningWheel(YATMBlocks.SPINNING_WHEEL.get(), YATMItems.SPINNING_WHEEL_ITEM.get());
 		this.addHeatSinks();
 		this.addComputeBlocks();
+		// TODO, probably pack all these crafting ones into one method, and remove the individual ones.
 		this.addBiolers();
 		this.addBoilers();
 		this.addBoilerTanks();
@@ -234,6 +236,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addCrystallizers();
 		this.addCurrentFurnaces();
 		this.addExtractors();
+		this.createFacingBlock(YATMBlocks.STEEL_GRINDER.get(), YATMItems.STEEL_GRINDER_ITEM.get(), YATMBlockStateProvider.GRINDER_MODEL);
 		this.addInjectors();
 		
 		this.createAllBlock(YATMBlocks.C_U_F_E_I.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/energy_converter/energy_converter"));

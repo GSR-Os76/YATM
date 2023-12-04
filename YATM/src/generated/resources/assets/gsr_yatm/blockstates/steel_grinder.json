@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=east": {
+      "model": "gsr_yatm:block/grinder",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "gsr_yatm:block/grinder"
+    },
+    "facing=south": {
+      "model": "gsr_yatm:block/grinder",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "gsr_yatm:block/grinder",
+      "y": 270
+    }
+  }
+}
