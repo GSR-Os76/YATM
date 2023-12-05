@@ -15,8 +15,6 @@ import com.gsr.gsr_yatm.block.candle_lantern.CandleLanternBlock;
 import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.device.AttachmentState;
 import com.gsr.gsr_yatm.block.device.bioreactor.BioreactorBlock;
-import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
-import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlock;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlock;
@@ -131,8 +129,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	public static final ModelFile BIOREACTOR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/bioreactor"));
 	public static final ModelFile BOILER_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/boiler"));
-	public static final ModelFile BOILER_WHEN_HAS_TANK_PART_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/boiler_has_tank_multipart"));
-	public static final ModelFile BOILER_TANK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/boiler_tank"));
 	public static final ModelFile CRUCIBLE_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/crucible"));
 	public static final ModelFile CRUCIBLE_LIT_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/crucible_lit"));
 	public static final ModelFile CRYSTALLIZER_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/crystallizer"));
@@ -229,9 +225,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addHeatSinks();
 		this.addComputeBlocks();
 		// TODO, probably pack all these crafting ones into one method, and remove the individual ones.
-		this.addBiolers();
+		this.addBioreactors();
 		this.addBoilers();
-		this.addBoilerTanks();
 		this.addCrucibles();
 		this.addCrystallizers();
 		this.addCurrentFurnaces();
@@ -632,7 +627,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/compute/data_scan_collector/data_scan_collector_side"));
 	} // end addComputeBlocks()
 	
-	private void addBiolers() 
+	private void addBioreactors() 
 	{
 //		this.createBioler(YATMBlocks.STEEL_BIOLER.get(), YATMItems.STEEL_BIOLER_ITEM.get(),
 //				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/steel_bioler_side_ports"), 
@@ -647,27 +642,10 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	private void addBoilers() 
 	{
-//		this.createBoiler(YATMBlocks.STEEL_BOILER.get(), YATMItems.STEEL_BOILER_ITEM.get(), 
-//				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/boiler/steel_boiler_face_plate_and_ports"), 
-//				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/boiler/steel_boiler_top"), 
-//				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/boiler/steel_boiler_port_sides"), 
-//				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/boiler/steel_boiler_face_side_off"), 
-//				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/boiler/steel_boiler_face_side_lit"),
-//				new ResourceLocation(YetAnotherTechMod.MODID, "block/steel_boiler_tank_top_and_bottom"), 
-//				new ResourceLocation(YetAnotherTechMod.MODID, "block/steel_boiler_has_tank_multipart_side"));
-
 		String litName = YATMBlockStateProvider.getModelLocationNameFor(YATMBlocks.STEEL_BOILER.get()) + "_lit";
-		this.models().getBuilder(litName).parent(YATMBlockStateProvider.BOILER_MODEL).texture("grate", new ResourceLocation(YetAnotherTechMod.MODID, "block/device/boiler/grate_lit"));
+		this.models().getBuilder(litName).parent(YATMBlockStateProvider.BOILER_MODEL).texture("front", new ResourceLocation(YetAnotherTechMod.MODID, "block/device/boiler/front_lit"));
 		ModelFile litModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, litName));
 		this.createLitFacingBlock(YATMBlocks.STEEL_BOILER.get(), YATMItems.STEEL_BOILER_ITEM.get(), YATMBlockStateProvider.BOILER_MODEL, litModel);
-	} // end addBoilers()
-	
-	private void addBoilerTanks() 
-	{
-		this.createBoilerTank(YATMBlocks.STEEL_BOILER_TANK.get(), YATMItems.STEEL_BOILER_TANK_ITEM.get(), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/steel_boiler_tank_side"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/steel_boiler_tank_side_has_boiler"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/steel_boiler_tank_top_and_bottom"));
 	} // end addBoilers()
 	
 	private void addCrucibles() 
@@ -1638,57 +1616,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
 	} // end createBioler()
-	
-	@SuppressWarnings("unused")
-	private void createBoiler(@NotNull BoilerBlock block, @NotNull Item item, @NotNull ResourceLocation facePlateAndPortsTexture, @NotNull ResourceLocation topTexture, @NotNull ResourceLocation sidesTexture, @NotNull ResourceLocation faceTexture, @NotNull ResourceLocation litFaceTexture, ResourceLocation hasTankTopTexture, ResourceLocation hasTankPartSideTexture)
-	{
-		String baseName = YATMBlockStateProvider.getModelLocationNameFor(block);
-		String litName = baseName + "_lit";
-		String hasTankPartName = baseName + "_has_tank_part";
-		this.models().getBuilder(baseName).parent(YATMBlockStateProvider.BOILER_MODEL).texture("0", facePlateAndPortsTexture).texture("1", topTexture).texture("2", sidesTexture).texture("3", faceTexture);
-		this.models().getBuilder(litName).parent(YATMBlockStateProvider.BOILER_MODEL).texture("0", facePlateAndPortsTexture).texture("1", topTexture).texture("2", sidesTexture).texture("3", litFaceTexture);
-		this.models().getBuilder(hasTankPartName).parent(YATMBlockStateProvider.BOILER_WHEN_HAS_TANK_PART_MODEL).texture("0", hasTankTopTexture).texture("1", hasTankPartSideTexture);
-		ModelFile unlitModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, baseName));
-		ModelFile litModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, litName));
-		ModelFile hasTankPartModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, hasTankPartName));
-		MultiPartBlockStateBuilder builder = this.getMultipartBuilder(block);
-		Direction.Plane.HORIZONTAL.forEach((dir) ->
-				builder.part()
-				.modelFile(unlitModel)
-				.rotationY(YATMBlockStateProvider.rotationForDirectionFromNorth(dir).y)
-				.addModel()
-				.condition(BoilerBlock.FACING, dir)
-				.condition(BoilerBlock.LIT, false)
-		);
-		Direction.Plane.HORIZONTAL.forEach((dir) -> 
-				builder.part()
-				.modelFile(litModel)
-				.rotationY(YATMBlockStateProvider.rotationForDirectionFromNorth(dir).y)
-				.addModel()
-				.condition(BoilerBlock.FACING, dir)
-				.condition(BoilerBlock.LIT, true)
-		);
-		builder.part().modelFile(hasTankPartModel).addModel().condition(BoilerBlock.HAS_TANK, true);
-		
-		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(unlitModel);
-	} // end createBoiler()
-	
-	private void createBoilerTank(@NotNull BoilerTankBlock block, @NotNull Item item, @NotNull ResourceLocation sideTexture, @NotNull ResourceLocation hasBoilerSideTexture, @NotNull ResourceLocation endsTexture)
-	{
-		String baseName = YATMBlockStateProvider.getModelLocationNameFor(block);
-		String hasBoilerName = baseName + "_has_boiler";
-		this.models().getBuilder(baseName).parent(YATMBlockStateProvider.BOILER_TANK_MODEL).texture("0", endsTexture).texture("1", sideTexture);
-		this.models().getBuilder(hasBoilerName).parent(YATMBlockStateProvider.BOILER_TANK_MODEL).texture("0", endsTexture).texture("1", hasBoilerSideTexture);
-		ModelFile unpairedModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, baseName));
-		ModelFile pairedModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, hasBoilerName));
-		this.getVariantBuilder(block)
-		.partialState().with(BoilerTankBlock.HAS_BOILER, false).addModels(new ConfiguredModel(unpairedModel))
-		.partialState().with(BoilerTankBlock.HAS_BOILER, true).addModels(new ConfiguredModel(pairedModel));
 
-		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(unpairedModel);
-	} // end createBoilerTank()
-	
-	
 	private void createConduitVine(@NotNull Block block, @NotNull ResourceLocation faceTexture, @NotNull ModelFile parallelCrosslink) 
 	{
 		String faceName = YATMBlockStateProvider.getModelLocationNameFor(block) + "_face";

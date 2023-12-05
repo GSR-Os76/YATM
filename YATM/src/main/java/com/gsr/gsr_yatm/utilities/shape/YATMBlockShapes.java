@@ -7,7 +7,6 @@ import org.jetbrains.annotations.NotNull;
 import com.google.common.collect.ImmutableMap;
 import com.gsr.gsr_yatm.block.conduit.channel_vine.ChannelVineBlock;
 import com.gsr.gsr_yatm.block.device.AttachmentState;
-import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.grafting.GraftingTableBlock;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
@@ -658,21 +657,12 @@ public class YATMBlockShapes
 	
 	public static final ICollisionVoxelShapeProvider BOILER = new ICollisionVoxelShapeProvider()
 	{		
-		private static final VoxelShape BASE_SHAPE = Block.box(0d, 0d, 0d, 16d, 10d, 16d);
-		private static final VoxelShape HAS_TANK_SHAPE = Block.box(1d, 14d, 1d, 15d, 16d, 15d);
+		private static final VoxelShape SHAPE = Block.box(0d, 0d, 0d, 16d, 10d, 16d);
 
 		@Override
 		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{
-			
-			VoxelShape shape = BASE_SHAPE;
-			
-			if (blockState.getValue(BoilerBlock.HAS_TANK))
-			{
-				shape = Shapes.or(shape, HAS_TANK_SHAPE);
-			}
-
-			return shape;
+			return SHAPE;
 		} // end getShape()
 	};
 

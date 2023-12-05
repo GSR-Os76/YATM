@@ -240,7 +240,6 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMBlocks.STEEL_BIOREACTOR.get(), "Foliar Steel Bioreactor");
 		this.add(YATMBlocks.STEEL_BOILER.get(), "Foliar Steel Boiler");
-		this.add(YATMBlocks.STEEL_BOILER_TANK.get(), "Foliar Steel Boiler Tank");
 		this.add(YATMBlocks.STEEL_CRUCIBLE.get(), "Foliar Steel Crucible");
 		this.add(YATMBlocks.STEEL_CRYSTALLIZER.get(), "Foliar Steel Crystallizer");
 		this.add(YATMBlocks.STEEL_CURRENT_FURNACE.get(), "Steel Current Furnace");

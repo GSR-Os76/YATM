@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-29T18:42:55.4541143	Tags for minecraft:block mod id gsr_yatm
+// 1.20.1	2023-12-05T11:47:52.0630888	Tags for minecraft:block mod id gsr_yatm
 c66ff3626edc7c0f108f497fa9aec78cbf9db39f data/forge/tags/blocks/basalt.json
 ea459db540b319f4bdead7b7f1142fc238c09a8e data/forge/tags/blocks/cactuses.json
 ebcf7881dcf42cb3d8c8b5c2e92ebf16fd9d7284 data/forge/tags/blocks/calcite.json
@@ -110,10 +110,10 @@ c77a37a04c31d80d4f9dd26ce8877cf25951916c data/minecraft/tags/blocks/flower_pots.
 1502e7352c79e987a23ba14a77d87817c5e89ff2 data/minecraft/tags/blocks/logs_that_burn.json
 af3a4ed4904e324e4709eb531023fdf9e9503aee data/minecraft/tags/blocks/mineable/axe.json
 65ff65f5d38acbce6c7b5a5fe3dcb8cc7dbc87c3 data/minecraft/tags/blocks/mineable/hoe.json
-0fae17b885531230e00a42e5a603a96c77b4342d data/minecraft/tags/blocks/mineable/pickaxe.json
+899ce416189da359110adea43cf5e3825acfe27e data/minecraft/tags/blocks/mineable/pickaxe.json
 fe5385076699557563e54f97ff82706f931b1273 data/minecraft/tags/blocks/mineable/shovel.json
 553472f364f8dc1a6e55accd268a7c6b736b3779 data/minecraft/tags/blocks/needs_diamond_tool.json
-94c4cde0cd402842c87c944bafa1668df37ac1b7 data/minecraft/tags/blocks/needs_iron_tool.json
+689d118b95327cffe35b35cebef309d24ee7f453 data/minecraft/tags/blocks/needs_iron_tool.json
 6db0f3960710b0be0a11b07799ef3058edb5c9d4 data/minecraft/tags/blocks/needs_stone_tool.json
 861ac450b90a900a8dbe9dc301248cd0b5ca2f52 data/minecraft/tags/blocks/planks.json
 59d8edfe056f15f3cff621f10b35fa3ba99c9baf data/minecraft/tags/blocks/saplings.json

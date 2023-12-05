@@ -12,7 +12,6 @@ import com.gsr.gsr_yatm.block.conduit.current.ConduitVineBlock;
 import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
 import com.gsr.gsr_yatm.block.device.bioreactor.BioreactorBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
-import com.gsr.gsr_yatm.block.device.boiler.BoilerTankBlock;
 import com.gsr.gsr_yatm.block.device.compute.DataProcessorBlock;
 import com.gsr.gsr_yatm.block.device.compute.DestructiveDataScannerBlock;
 import com.gsr.gsr_yatm.block.device.compute.scan_collector.DataCollectorBlock;
@@ -354,11 +353,10 @@ public class YATMBlocks
 	public static final RegistryObject<DestructiveDataScannerBlock> DESTRUCTIVE_DATA_SCANNER = BLOCKS.register("destructive_data_scanner", () -> new DestructiveDataScannerBlock(YATMBlockProperties.DATA_DEVICE));
 	public static final RegistryObject<DataProcessorBlock> DATA_PROCESSOR = BLOCKS.register("data_processor", () -> new DataProcessorBlock(YATMBlockProperties.DATA_DEVICE));
 
-	
+	// TODO, add a pump, takes fluid from underneath it, or under it's lowest pipe, checks spreading source rule things, possibly drills and lays down well pipe(by config), can always get water if it drills to 64~, block updates configurable
 	
 	public static final RegistryObject<BioreactorBlock> STEEL_BIOREACTOR = BLOCKS.register("steel_bioreactor", () -> new BioreactorBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE));
-	public static final RegistryObject<BoilerTankBlock> STEEL_BOILER_TANK = BLOCKS.register("steel_boiler_tank", () -> new BoilerTankBlock(YATMBlockProperties.STEEL_MACHINE, 256, 32000));
-	public static final RegistryObject<BoilerBlock> STEEL_BOILER = BLOCKS.register("steel_boiler", () -> new BoilerBlock(YATMBlockProperties.STEEL_PLANT_MACHINE, YATMBlockShapes.BOILER));
+	public static final RegistryObject<BoilerBlock> STEEL_BOILER = BLOCKS.register("steel_boiler", () -> new BoilerBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE));
 	public static final RegistryObject<CrucibleBlock> STEEL_CRUCIBLE = BLOCKS.register("steel_crucible", () -> new CrucibleBlock(YATMBlockProperties.STEEL_PLANT_MACHINE, YATMBlockShapes.CUBE));
 	public static final RegistryObject<CrystallizerBlock> STEEL_CRYSTALLIZER = BLOCKS.register("steel_crystallizer", () -> new CrystallizerBlock(YATMBlockProperties.STEEL_PLANT_MACHINE, YATMBlockShapes.CUBE));
 	public static final RegistryObject<CurrentFurnaceBlock> STEEL_CURRENT_FURNACE = BLOCKS.register("steel_current_furnace", () -> new CurrentFurnaceBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE));

@@ -1,4 +1,4 @@
-// 1.20.1	2023-12-03T23:22:45.3996599	Block States: gsr_yatm
+// 1.20.1	2023-12-05T11:47:52.1102168	Block States: gsr_yatm
 11aad184ca6aaadbd7319a44c5a1985f7c029a1c assets/gsr_yatm/blockstates/adamum.json
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 a2a385d05e4f86cda9dd2c5a246077dac4e32579 assets/gsr_yatm/blockstates/advanced_solar_panel.json
@@ -162,8 +162,7 @@ e203b44732aa0a9fe3292c4ac1785eb491e795d7 assets/gsr_yatm/blockstates/spider_vine
 6acbec645f351ba02d26184535b913b8ab7d5c21 assets/gsr_yatm/blockstates/spider_vine_meristem.json
 695a7f85ef0a5f3310935dcf6e726fcd9c644b42 assets/gsr_yatm/blockstates/spinning_wheel.json
 92320ca71da34a5067fae9080d1a44b862d6a414 assets/gsr_yatm/blockstates/steel_bioreactor.json
-11f686c6e942ab2e7c34659c2a7785a03bec7d85 assets/gsr_yatm/blockstates/steel_boiler.json
-52d28ca00e6680eed39791ef28e5f619c56a9524 assets/gsr_yatm/blockstates/steel_boiler_tank.json
+a2b930e84e05c256d942fbb70f87e14cd4afa60d assets/gsr_yatm/blockstates/steel_boiler.json
 d50441ece5bc105502bb511d1aaf02fa94334185 assets/gsr_yatm/blockstates/steel_crucible.json
 7ee7182a0dc1ec41062df71d04cc031d644c6e90 assets/gsr_yatm/blockstates/steel_crystallizer.json
 12aaedc25419b0d34b68d1eadec2f87949d3b505 assets/gsr_yatm/blockstates/steel_current_furnace.json
@@ -484,9 +483,7 @@ fbd85c15f50a9c5b9942e026e776f5610375bec6 assets/gsr_yatm/models/block/soul_affli
 dd9f6f632e979490fbdfb47b62379488205bf26f assets/gsr_yatm/models/block/spider_vine_harvested.json
 ed97bc829d7d24e74ddf57470bed81aedf0ad704 assets/gsr_yatm/models/block/spider_vine_immature.json
 3a9ee2e697a4f5c5c2d29dc655d93ba72f97e462 assets/gsr_yatm/models/block/spider_vine_meristem.json
-4d422e9852c88b817fa7c40dbd2ebba952f8488a assets/gsr_yatm/models/block/steel_boiler_lit.json
-05213a08240d5616e74e71b452925325db84c875 assets/gsr_yatm/models/block/steel_boiler_tank.json
-1f92b9e1bae724078af883a73d94c16dc55977a0 assets/gsr_yatm/models/block/steel_boiler_tank_has_boiler.json
+26791b1c3bcfcd2d1b5a3f148f014dc9b1206b19 assets/gsr_yatm/models/block/steel_boiler_lit.json
 e31e7a745af51b5381eef8a098162e2bb9165b2d assets/gsr_yatm/models/block/stripped_rubber_log.json
 184f039d3749ccc0eb3399d425ae3b83fd5862c0 assets/gsr_yatm/models/block/stripped_rubber_wood.json
 3a40a52d6a9aa994833868bd6dcc354e750e9489 assets/gsr_yatm/models/block/suns_complement_battery_solar_panel.json
@@ -583,7 +580,6 @@ af8bd795fc533236b07cb40603e6c274a54a99b2 assets/gsr_yatm/models/item/soul_afflic
 84c221d37be5b6abd5800e5392db9bef9417f7a0 assets/gsr_yatm/models/item/spinning_wheel.json
 5913e935acf5f46f1ab3d12979f31d08352858e7 assets/gsr_yatm/models/item/steel_bioler.json
 2e8a1f59e451a47bdd7c6e876e1a020fd18a0de9 assets/gsr_yatm/models/item/steel_boiler.json
-c8727fa0c3489da6abe0f6273cc6635d3b8e88cd assets/gsr_yatm/models/item/steel_boiler_tank.json
 79aa8e72878b6e62b8c8a0246ada8e05bbd8a950 assets/gsr_yatm/models/item/steel_crucible.json
 cae289c192ba12d79a64335460fd440fdc956b1c assets/gsr_yatm/models/item/steel_crystallizer.json
 adcfcfbd01bb8e898a03b94a9ebe2c05e50e7809 assets/gsr_yatm/models/item/steel_current_furnace.json

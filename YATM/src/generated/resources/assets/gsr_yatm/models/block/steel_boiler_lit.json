@@ -1,6 +1,6 @@
 {
   "parent": "gsr_yatm:block/boiler",
   "textures": {
-    "grate": "gsr_yatm:block/device/boiler/grate_lit"
+    "front": "gsr_yatm:block/device/boiler/front_lit"
   }
 }

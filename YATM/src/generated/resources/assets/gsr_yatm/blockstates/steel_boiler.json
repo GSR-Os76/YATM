@@ -1,62 +1,32 @@
 {
   "variants": {
-    "facing=east,has_tank=false,lit=false": {
+    "facing=east,lit=false": {
       "model": "gsr_yatm:block/boiler",
       "y": 90
     },
-    "facing=east,has_tank=false,lit=true": {
+    "facing=east,lit=true": {
       "model": "gsr_yatm:block/steel_boiler_lit",
       "y": 90
     },
-    "facing=east,has_tank=true,lit=false": {
-      "model": "gsr_yatm:block/boiler",
-      "y": 90
-    },
-    "facing=east,has_tank=true,lit=true": {
-      "model": "gsr_yatm:block/steel_boiler_lit",
-      "y": 90
-    },
-    "facing=north,has_tank=false,lit=false": {
+    "facing=north,lit=false": {
       "model": "gsr_yatm:block/boiler"
     },
-    "facing=north,has_tank=false,lit=true": {
+    "facing=north,lit=true": {
       "model": "gsr_yatm:block/steel_boiler_lit"
     },
-    "facing=north,has_tank=true,lit=false": {
-      "model": "gsr_yatm:block/boiler"
-    },
-    "facing=north,has_tank=true,lit=true": {
-      "model": "gsr_yatm:block/steel_boiler_lit"
-    },
-    "facing=south,has_tank=false,lit=false": {
+    "facing=south,lit=false": {
       "model": "gsr_yatm:block/boiler",
       "y": 180
     },
-    "facing=south,has_tank=false,lit=true": {
+    "facing=south,lit=true": {
       "model": "gsr_yatm:block/steel_boiler_lit",
       "y": 180
     },
-    "facing=south,has_tank=true,lit=false": {
-      "model": "gsr_yatm:block/boiler",
-      "y": 180
-    },
-    "facing=south,has_tank=true,lit=true": {
-      "model": "gsr_yatm:block/steel_boiler_lit",
-      "y": 180
-    },
-    "facing=west,has_tank=false,lit=false": {
+    "facing=west,lit=false": {
       "model": "gsr_yatm:block/boiler",
       "y": 270
     },
-    "facing=west,has_tank=false,lit=true": {
-      "model": "gsr_yatm:block/steel_boiler_lit",
-      "y": 270
-    },
-    "facing=west,has_tank=true,lit=false": {
-      "model": "gsr_yatm:block/boiler",
-      "y": 270
-    },
-    "facing=west,has_tank=true,lit=true": {
+    "facing=west,lit=true": {
       "model": "gsr_yatm:block/steel_boiler_lit",
       "y": 270
     }

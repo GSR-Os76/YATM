@@ -219,7 +219,6 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> DATA_PROCESSOR_ITEM = /* generalTabEnqueue */(ITEMS.register("data_processor", () -> new BlockItem(YATMBlocks.DATA_PROCESSOR.get(), new Item.Properties())));
 	
 	public static final RegistryObject<BlockItem> STEEL_BIOLER_ITEM = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_bioler", () -> new BlockItem(YATMBlocks.STEEL_BIOREACTOR.get(), new Item.Properties()))));
-	public static final RegistryObject<BlockItem> STEEL_BOILER_TANK_ITEM = /* generalTabEnqueue */(ITEMS.register("steel_boiler_tank", () -> new BlockItem(YATMBlocks.STEEL_BOILER_TANK.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_BOILER_ITEM = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_boiler", () -> new BlockItem(YATMBlocks.STEEL_BOILER.get(), new Item.Properties()))));
 	public static final RegistryObject<BlockItem> STEEL_CRUCIBLE_ITEM = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_crucible", () -> new BlockItem(YATMBlocks.STEEL_CRUCIBLE.get(), new Item.Properties()))));
 	public static final RegistryObject<BlockItem> STEEL_CRYSTALLIZER_ITEM = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_crystallizer", () -> new BlockItem(YATMBlocks.STEEL_CRYSTALLIZER.get(), new Item.Properties()))));

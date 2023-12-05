@@ -332,8 +332,6 @@ public class YATMRecipeProvider extends RecipeProvider
 	{
 		this.addCrystallizationRecipe(writer, YATMFluidTags.FORGE_ENDER_KEY, 250, Tags.Items.SAND, new ItemStack(Items.ENDER_PEARL), false, 64, 300, YetAnotherTechMod.MODID + ":ender_pearl_from_crystallization");
 		this.addNetherStarCrystallizationProgression(writer);
-		
-		// TODO, verify in blockEntity
 		this.addSiliconOxideCrystallizations(writer);
 		
 	} // end addCrystallizationRecipes()
