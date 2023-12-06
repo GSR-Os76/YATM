@@ -1,0 +1,37 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gsr_yatm:bio_bucket"
+    },
+    {
+      "tag": "gsr_yatm:soil_minerals"
+    },
+    {
+      "tag": "gsr_yatm:soil_minerals"
+    },
+    {
+      "tag": "gsr_yatm:soil_minerals"
+    },
+    {
+      "tag": "gsr_yatm:soil_minerals"
+    },
+    {
+      "tag": "gsr_yatm:soil_minerals"
+    },
+    {
+      "tag": "gsr_yatm:soil_minerals"
+    },
+    {
+      "tag": "gsr_yatm:soil_minerals"
+    },
+    {
+      "tag": "gsr_yatm:soil_minerals"
+    }
+  ],
+  "result": {
+    "count": 8,
+    "item": "minecraft:dirt"
+  }
+}

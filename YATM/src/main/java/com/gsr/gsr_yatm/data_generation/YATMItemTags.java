@@ -34,10 +34,12 @@ public class YATMItemTags extends ItemTagsProvider
 	// it should be better insured copies have the same resource locations where appropriate.
 	
 //	public static final TagKey<Item> FORGE_COPPER_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "nuggets/copper"));
+	public static final TagKey<Item> FORGE_CLAY_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "clay"));
 	public static final TagKey<Item> FORGE_NETHERITE_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "nuggets/netherite"));
 	public static final TagKey<Item> FORGE_PISTONS_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "pistons"));
 	public static final TagKey<Item> FORGE_ROOTED_DIRT_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "rooted_dirt"));
 	public static final TagKey<Item> FORGE_RUBBER_INGOTS_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "ingots/rubber"));
+	public static final TagKey<Item> FORGE_SILT_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "silt"));
 	public static final TagKey<Item> FORGE_SLABS_QUARTZ = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "slabs/quartz"));
 	public static final TagKey<Item> FORGE_SLABS_SANDSTONE = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "slabs/sandstone"));
 	public static final TagKey<Item> FORGE_STAIRS_QUARTZ = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "stairs/quartz"));
@@ -63,6 +65,7 @@ public class YATMItemTags extends ItemTagsProvider
 	public static final TagKey<Item> RUBBER_TREE_PLANKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "rubber_planks"));
 	public static final TagKey<Item> UNOXIDIXED_COPPER_BLOCKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "unoxidized_copper_blocks"));
 	public static final TagKey<Item> SAWS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "saws"));
+	public static final TagKey<Item> SOIL_MINERALS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "soil_minerals"));
 	public static final TagKey<Item> SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "soul_afflicted_rubber_tree_logs"));
 	public static final TagKey<Item> SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "soul_afflicted_rubber_planks"));
 	public static final TagKey<Item> SOUL_ADORNED_NETHERITE_ARMOR_PIECES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "armor_pieces/soul_adorned_netherite"));
@@ -110,11 +113,12 @@ public class YATMItemTags extends ItemTagsProvider
 		
 		
 		
-		
+		this.copy(YATMBlockTags.FORGE_CLAY_KEY, YATMItemTags.FORGE_CLAY_KEY);
 		this.tag(YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY).add(YATMItems.NETHERITE_NUGGET.get());
 		this.tag(YATMItemTags.FORGE_PISTONS_KEY).add(Items.PISTON).add(Items.STICKY_PISTON);
 		this.copy(YATMBlockTags.FORGE_ROOTED_DIRT_KEY, YATMItemTags.FORGE_ROOTED_DIRT_KEY);
 		this.tag(YATMItemTags.FORGE_RUBBER_INGOTS_KEY).add(YATMItems.RUBBER_BAR.get());
+		this.copy(YATMBlockTags.FORGE_SILT_KEY, YATMItemTags.FORGE_SILT_KEY);
 		this.copy(YATMBlockTags.FORGE_SLABS_QUARTZ, YATMItemTags.FORGE_SLABS_QUARTZ);
 		this.copy(YATMBlockTags.FORGE_SLABS_SANDSTONE, YATMItemTags.FORGE_SLABS_SANDSTONE);
 		this.copy(YATMBlockTags.FORGE_STAIRS_QUARTZ, YATMItemTags.FORGE_STAIRS_QUARTZ);
@@ -146,6 +150,7 @@ public class YATMItemTags extends ItemTagsProvider
 		.add(YATMItems.STEEL_SAW_STEEL.get())
 		//.add(YATMItems.STEEL_SAW_GOLD.get()).add(YATMItems.STEEL_SAW_DIAMOND.get())
 		.add(YATMItems.STEEL_SAW_NETHERITE.get());
+		this.copy(YATMBlockTags.SOIL_MINERALS_KEY, YATMItemTags.SOIL_MINERALS_KEY);
 		this.copy(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);
 		this.copy(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY);
 		this.tag(YATMItemTags.SOUL_ADORNED_NETHERITE_ARMOR_PIECES_KEY).add(YATMItems.SOUL_ADORNED_NETHERITE_HELMET.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_CHESTPLATE.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_LEGGINGS.get()).add(YATMItems.SOUL_ADORNED_NETHERITE_BOOTS.get());

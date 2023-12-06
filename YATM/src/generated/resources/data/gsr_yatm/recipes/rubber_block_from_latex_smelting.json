@@ -1,7 +1,7 @@
 {
   "type": "minecraft:smelting",
   "category": "blocks",
-  "cookingtime": 20,
+  "cookingtime": 60,
   "experience": 0.3,
   "ingredient": {
     "item": "gsr_yatm:latex_bucket"

@@ -1,7 +1,8 @@
-// 1.20.1	2023-12-05T11:47:52.0630888	Tags for minecraft:block mod id gsr_yatm
+// 1.20.1	2023-12-05T22:09:34.4773019	Tags for minecraft:block mod id gsr_yatm
 c66ff3626edc7c0f108f497fa9aec78cbf9db39f data/forge/tags/blocks/basalt.json
 ea459db540b319f4bdead7b7f1142fc238c09a8e data/forge/tags/blocks/cactuses.json
 ebcf7881dcf42cb3d8c8b5c2e92ebf16fd9d7284 data/forge/tags/blocks/calcite.json
+da1d12f678963493519caaff63a76241b220579f data/forge/tags/blocks/clay.json
 2949b9218edc5b7c594819a61b28d2204a7a72f7 data/forge/tags/blocks/deepslate.json
 441fb6cee14b03b9652077a22a8b8c1f28226c72 data/forge/tags/blocks/needs_wood_tool.json
 ae063a18d6a78c1df2e70286fb1984ffc87c6b2d data/forge/tags/blocks/netherrack.json
@@ -10,6 +11,7 @@ ae063a18d6a78c1df2e70286fb1984ffc87c6b2d data/forge/tags/blocks/netherrack.json
 3c80c57e657efa6316228e6dfac241b7f41aead1 data/forge/tags/blocks/ores_in_ground/stone.json
 07af26afbfb24573997b6045b1603d54792502cf data/forge/tags/blocks/ore_rates/singular.json
 22817fc3a29127b1c1278ea16d671d7c02dbdeb9 data/forge/tags/blocks/rooted_dirt.json
+35133e95f1c8fdd7a1c21afcc231fc0bffefb9a8 data/forge/tags/blocks/silt.json
 bad73721637de97a32c61f4a2b344b34cf83351f data/forge/tags/blocks/slabs/quartz.json
 5266c583f2e368fc13db76cb803f3a8190f1c0d1 data/forge/tags/blocks/slabs/sandstone.json
 1da600bf13ef307c5b8543cdcc0e0283f57172df data/forge/tags/blocks/soul_soil.json
@@ -96,6 +98,7 @@ dbc7ff55315393ed7b1d401f282d24be3c0e6096 data/gsr_yatm/tags/blocks/rubber_planks
 9a0fbf9bed3595f4ca3b021fa65f06e34ae64181 data/gsr_yatm/tags/blocks/rubber_tree_blocks.json
 fdecd6c72772c252a2b8dcc095c7aa6e1685f4d7 data/gsr_yatm/tags/blocks/rubber_tree_logs.json
 a91b872f5cad95f7c8a6412565ffebdc7690bbfe data/gsr_yatm/tags/blocks/sap_collectors.json
+9bdb690a84b383adc69de856323241cab0dc3f76 data/gsr_yatm/tags/blocks/soil_minerals.json
 501277475e7f110a254450a8f21524225b471230 data/gsr_yatm/tags/blocks/soul_afflicted_rubber_planks.json
 ab467479a645246538e49c55790b101c51194caa data/gsr_yatm/tags/blocks/soul_afflicted_rubber_tree_logs.json
 abe2c6338432532e82ba82f66236e62b0cc227a2 data/gsr_yatm/tags/blocks/soul_ground.json
