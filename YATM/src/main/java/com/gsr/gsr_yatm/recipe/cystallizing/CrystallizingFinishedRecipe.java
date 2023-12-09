@@ -5,97 +5,59 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 import com.google.gson.JsonObject;
+import com.gsr.gsr_yatm.recipe.FinishedRecipeBase;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
+import com.gsr.gsr_yatm.utilities.contract.Contract;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
-import net.minecraft.advancements.Advancement;
-import net.minecraft.data.recipes.FinishedRecipe;
+import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.fluids.FluidStack;
 
-public class CrystallizingFinishedRecipe implements FinishedRecipe
+public class CrystallizingFinishedRecipe extends FinishedRecipeBase
 {
-	private final @NotNull ResourceLocation m_identifier;
 	private final @NotNull ItemStack m_result;
 	private final @NotNull IIngredient<ItemStack> m_seed;	
 	private final @NotNull IIngredient<FluidStack> m_input;
 	private final boolean m_consumeSeed;
-	private final int m_currentPerTick;
-	private final int m_timeInTicks;
-	private final @NotNull String m_group;
-	
-	private final @NotNull ResourceLocation m_advancementIdentifier;	
-	private final @NotNull Advancement.Builder m_advancement;
+	private final @NotNegative int m_currentPerTick;
+	private final @NotNegative int m_timeInTicks;
 	
 	
 	
-	public CrystallizingFinishedRecipe(@NotNull ResourceLocation identifier, @NotNull ItemStack result, @NotNull IIngredient<FluidStack> input, @NotNull IIngredient<ItemStack> seed, boolean consumeSeed, int currentPerTick, int timeInTicks, @NotNull String group, @NotNull ResourceLocation advancementIdentifier, @NotNull Advancement.Builder advancement) 
+	public CrystallizingFinishedRecipe(@NotNull ResourceLocation identifier, @NotNull AdvancementHolder advancement, @NotNull String group, @NotNull ItemStack result, @NotNull IIngredient<FluidStack> input, @NotNull IIngredient<ItemStack> seed, boolean consumeSeed, @NotNegative int currentPerTick, @NotNegative int timeInTicks) 
 	{
-		Objects.requireNonNull(identifier);
-		Objects.requireNonNull(result);
-		Objects.requireNonNull(input);
-		Objects.requireNonNull(seed);
-		Objects.requireNonNull(group);
-		Objects.requireNonNull(advancementIdentifier);
-		Objects.requireNonNull(advancement);
+		super(Objects.requireNonNull(identifier), Objects.requireNonNull(advancement), Objects.requireNonNull(group));	
 		
-		this.m_identifier = identifier;
-		this.m_result = result;
-		this.m_input = input;
-		this.m_seed = seed;
+		this.m_result = Objects.requireNonNull(result);
+		this.m_input = Objects.requireNonNull(input);
+		this.m_seed = Objects.requireNonNull(seed);
 		this.m_consumeSeed = consumeSeed;
-		this.m_currentPerTick = currentPerTick;
-		this.m_timeInTicks = timeInTicks;
-		this.m_group = group;
-		this.m_advancementIdentifier = advancementIdentifier;
-		this.m_advancement = advancement;
+		this.m_currentPerTick = Contract.notNegative(currentPerTick);
+		this.m_timeInTicks = Contract.notNegative(timeInTicks);
 	} // end constructor
 	
 	
 	@Override
-	public void serializeRecipeData(JsonObject jsonObject)
+	public void serializeRecipeData(@NotNull JsonObject jsonObject)
 	{
-		if(!this.m_group.isEmpty()) 
-		{
-			jsonObject.addProperty(IngredientUtil.GROUP_KEY, this.m_group);
-		}
+		super.serializeRecipeData(jsonObject);
 		
 		jsonObject.add(IngredientUtil.RESULT_KEY, IngredientUtil.nbtItemStackToJson(this.m_result));
-		JsonObject inputObject = new JsonObject();
-		inputObject.add(IngredientUtil.INGREDIENT_KEY, IngredientUtil.writeIngredient(this.m_input));
-		jsonObject.add(IngredientUtil.INPUT_KEY, inputObject);
-		JsonObject seedObject = new JsonObject();
-		seedObject.add(IngredientUtil.INGREDIENT_KEY, IngredientUtil.writeIngredient(this.m_seed));
-		seedObject.addProperty(IngredientUtil.CONSUME_SEED_KEY, this.m_consumeSeed);		
-		jsonObject.add(IngredientUtil.SEED_KEY, seedObject);	
+		jsonObject.add(IngredientUtil.INPUT_KEY, IngredientUtil.writeIngredient(this.m_input));
+		jsonObject.add(IngredientUtil.SEED_KEY, IngredientUtil.writeIngredient(this.m_seed));
+		jsonObject.addProperty(IngredientUtil.CONSUME_SEED_KEY, this.m_consumeSeed);		
 		jsonObject.addProperty(IngredientUtil.CURRENT_PER_TICK_KEY, this.m_currentPerTick);
 		jsonObject.addProperty(IngredientUtil.TIME_IN_TICKS_KEY, this.m_timeInTicks);
 	} // end serializeRecipeData()
 
 	@Override
-	public ResourceLocation getId()
-	{
-		return this.m_identifier;
-	} // end getId()
-
-	@Override
-	public RecipeSerializer<CrystallizingRecipe> getType()
+	public @NotNull RecipeSerializer<CrystallizingRecipe> type()
 	{
 		return YATMRecipeSerializers.CRYSTALLIZING.get();
-	} // end getType()
-
-	@Override
-	public JsonObject serializeAdvancement()
-	{
-		return this.m_advancement.serializeToJson();
-	} // end serializeAdvancement()
-
-	@Override
-	public ResourceLocation getAdvancementId()
-	{
-		return this.m_advancementIdentifier;
-	} // end getAdvancementId()
+	} // end type()
 
 } // end class

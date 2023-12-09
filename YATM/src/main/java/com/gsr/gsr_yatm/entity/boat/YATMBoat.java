@@ -38,11 +38,11 @@ public class YATMBoat extends Boat implements IYATMBoat
 
 
 	
-	@Override
-	public double getPassengersRidingOffset()
-	{
-		return -0.1D;
-	} // end getPassengersRidingOffset()
+//	@Override
+//	public double getPassengersRidingOffset()
+//	{
+//		return -0.1D;
+//	} // end getPassengersRidingOffset()
 
 	@Override
 	public Item getDropItem() 

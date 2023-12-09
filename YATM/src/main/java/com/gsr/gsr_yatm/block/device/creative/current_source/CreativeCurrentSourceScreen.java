@@ -10,10 +10,7 @@ import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
-import net.minecraftforge.api.distmarker.Dist;
-import net.minecraftforge.api.distmarker.OnlyIn;
 
-@OnlyIn(Dist.CLIENT)
 public class CreativeCurrentSourceScreen extends AbstractContainerScreen<CreativeCurrentSourceMenu>
 {
 	public static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/creative_current_source.png");
@@ -58,7 +55,7 @@ public class CreativeCurrentSourceScreen extends AbstractContainerScreen<Creativ
 	@Override
 	public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick)
 	{
-		super.renderBackground(graphics);
+		super.renderBackground(graphics, mouseX, mouseY, partialTick);
 		this.renderBg(graphics, partialTick, mouseX, mouseY);
 		this.m_outputBox.render(graphics, mouseX, mouseY, partialTick);
 		super.render(graphics, mouseX, mouseY, partialTick);

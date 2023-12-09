@@ -72,7 +72,7 @@ public class CandlelilyBlock extends ShapeBlock implements IYATMPlantableBlock, 
 
 
 	@Override
-	public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos position, @NotNull BlockState state, boolean p_50900_)
+	public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos position, @NotNull BlockState state)
 	{
 		return true;
 	} // end isValidBonemealTarget()

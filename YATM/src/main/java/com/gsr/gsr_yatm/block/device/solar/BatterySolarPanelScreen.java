@@ -35,7 +35,7 @@ public class BatterySolarPanelScreen extends AbstractContainerScreen<BatterySola
 	@Override
 	public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick)
 	{
-		super.renderBackground(graphics);
+		super.renderBackground(graphics, mouseX, mouseY, partialTick);
 		this.renderBg(graphics, partialTick, mouseX, mouseY);
 		this.updateCurrentWidget();
 		super.render(graphics, mouseX, mouseY, partialTick);

@@ -7,15 +7,16 @@ import org.jetbrains.annotations.NotNull;
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.block.device.bioreactor.BioreactorBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
+import com.gsr.gsr_yatm.recipe.RecipeBase;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
+import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -26,23 +27,23 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.items.IItemHandler;
 
-public class BioreactingRecipe implements ITimedRecipe<Container>
+public class BioreactingRecipe extends RecipeBase<Container> implements ITimedRecipe<Container>
 {
-	protected final @NotNull ResourceLocation m_identifier;
 	protected final @NotNull FluidStack m_result;	
 	protected final @NotNull IIngredient<ItemStack> m_input;
-	// TODO, update for immutibility, same with the other recipes.
-	@NotNegative int m_currentPerTick = 8;
-	@NotNegative int m_timeInTicks = 20;
-	@NotNull String m_group = "";
+	protected final @NotNegative int m_currentPerTick;
+	protected final @NotNegative int m_timeInTicks;
 	
 	
 	
-	public BioreactingRecipe(@NotNull ResourceLocation identifier, @NotNull IIngredient<ItemStack> input, @NotNull FluidStack result) 
+	public BioreactingRecipe(@NotNull String group, @NotNull IIngredient<ItemStack> input, @NotNull FluidStack result, @NotNegative int currentPerTick, @NotNegative int timeInTicks) 
 	{
-		this.m_identifier = Objects.requireNonNull(identifier);
+		super(Objects.requireNonNull(group));
+		
 		this.m_input = Objects.requireNonNull(input);
-		this.m_result = Objects.requireNonNull(result.copy());;
+		this.m_result = result.copy();
+		this.m_currentPerTick = Contract.notNegative(currentPerTick);
+		this.m_timeInTicks = Contract.notNegative(timeInTicks);
 	} // end constructor
 	
 	
@@ -57,7 +58,17 @@ public class BioreactingRecipe implements ITimedRecipe<Container>
 	{
 		return this.m_timeInTicks;
 	} // end getTimeInTicks()
-
+	
+	public @NotNull FluidStack result()
+	{
+		return this.m_result;
+	} // end result()
+	
+	public @NotNull IIngredient<ItemStack> input()
+	{
+		return this.m_input;
+	} // end input()
+	
 	
 	
 	
@@ -109,13 +120,7 @@ public class BioreactingRecipe implements ITimedRecipe<Container>
 	{
 		return ItemStack.EMPTY;
 	} // end getResultItem()
-
-	@Override
-	public ResourceLocation getId()
-	{
-		return this.m_identifier;
-	} // end getId()
-
+	
 	@Override
 	public RecipeSerializer<BioreactingRecipe> getSerializer()
 	{
@@ -133,11 +138,5 @@ public class BioreactingRecipe implements ITimedRecipe<Container>
 	{
 		return new ItemStack(YATMItems.STEEL_BIOLER_ITEM.get());
 	} // end getToastSymbol()
-	
-	@Override
-	public String getGroup()
-	{
-		return this.m_group;
-	} // end getGroup()
 	
 } // end class

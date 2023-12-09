@@ -23,7 +23,7 @@ public interface IHarvestableBlock
 	public default boolean allowEventHandling() 
 	{
 		return true;
-	} // end expectsEventHandling()
+	} // end allowEventHandling()
 	
 	// should be called by harvesters after all other logic is completed.
 	public default void onHarvest(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action) 

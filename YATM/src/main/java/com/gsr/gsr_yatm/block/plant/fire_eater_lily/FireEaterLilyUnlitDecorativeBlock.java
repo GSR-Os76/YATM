@@ -39,7 +39,7 @@ public class FireEaterLilyUnlitDecorativeBlock extends FireEaterLilyDecorativeBl
 
 	
 	@Override
-	public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos position, @NotNull BlockState state, boolean p_50900_)
+	public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos position, @NotNull BlockState state)
 	{
 		return FireEaterLilyBlock.shouldBeLit(level, position);
 	} // end isValidBonemealTarget()

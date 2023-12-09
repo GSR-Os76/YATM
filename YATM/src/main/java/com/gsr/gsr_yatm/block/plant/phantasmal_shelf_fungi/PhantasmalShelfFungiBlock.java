@@ -1,5 +1,4 @@
-// fungi aren't plant's in a taxonomical sense, i just sort them here for convenience and organization, a raname would be apt
-package com.gsr.gsr_yatm.block.plant.fungi;
+package com.gsr.gsr_yatm.block.plant.phantasmal_shelf_fungi;
 
 import java.util.List;
 import java.util.function.Supplier;
@@ -41,6 +40,7 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 
+// TODO, rewrite
 public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestableBlock
 {
 	private static final int MIN_SPREAD_ATTEMPT_COUNT = 12;
@@ -152,7 +152,7 @@ public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestable
 	} // end getBaseSeedId()
 	
 	@Override
-	public boolean isValidBonemealTarget(LevelReader p_255715_, BlockPos p_52259_, BlockState p_52260_, boolean p_52261_)
+	public boolean isValidBonemealTarget(LevelReader p_255715_, BlockPos p_52259_, BlockState p_52260_)
 	{
 		return false;
 	} // end isValidBonemealTarget()

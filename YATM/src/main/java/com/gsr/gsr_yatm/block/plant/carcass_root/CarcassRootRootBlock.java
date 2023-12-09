@@ -5,9 +5,9 @@ import java.util.function.Supplier;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.IOccasionallySpreadableBlock;
 import com.gsr.gsr_yatm.block.ISpreadabilitySettableBlock;
-import com.gsr.gsr_yatm.command.PlantData;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
@@ -125,7 +125,7 @@ public class CarcassRootRootBlock extends Block implements BonemealableBlock, IO
 
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos position, BlockState state, boolean p_50900_)
+	public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos position, BlockState state)
 	{
 		Boolean canidateFound = false;
 		for(int y = 1; y <= CarcassRootRootBlock.MAX_GROW_DISTANCE; y++) 
@@ -196,7 +196,7 @@ public class CarcassRootRootBlock extends Block implements BonemealableBlock, IO
 				if(placingState.getBlock() instanceof ISpreadabilitySettableBlock ss) 
 				{
 					// TODO, probably add unbound horizontal spread as a game rule
-					return () -> level.setBlock(pos, ss.setSpreadability(level, placingState, pos, PlantData.isHorizontalGrowthUnbound(level)), Block.UPDATE_ALL);
+					return () -> level.setBlock(pos, ss.setSpreadability(level, placingState, pos, YATMConfigs.IS_HORIZONTAL_GROWRTH_UNBOUND.get()), Block.UPDATE_ALL);
 				}				
 				return () -> level.setBlock(pos, placingState, Block.UPDATE_ALL);
 			}

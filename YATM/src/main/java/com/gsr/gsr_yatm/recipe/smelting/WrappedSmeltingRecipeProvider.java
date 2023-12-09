@@ -11,13 +11,14 @@ import com.gsr.gsr_yatm.recipe.dynamic.IDynamicRecipeProvider;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtil;
 
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraft.world.level.Level;
 
 public class WrappedSmeltingRecipeProvider implements IDynamicRecipeProvider<WrappedSmeltingRecipe>
 {
-	private Map<String, WrappedSmeltingRecipe> m_cache = new HashMap<>();
+	private Map<String, RecipeHolder<WrappedSmeltingRecipe>> m_cache = new HashMap<>();
 	
 	
 	
@@ -29,11 +30,11 @@ public class WrappedSmeltingRecipeProvider implements IDynamicRecipeProvider<Wra
 	
 	
 	@Override
-	public @NotNull Enumeration<WrappedSmeltingRecipe> getEnumerator(@NotNull Level level)
+	public @NotNull Enumeration<RecipeHolder<WrappedSmeltingRecipe>> getEnumerator(@NotNull Level level)
 	{
 		return new Enumeration<>() 
 		{
-			private Iterator<SmeltingRecipe> m_smeltingRecipes = level.getRecipeManager().getAllRecipesFor(RecipeType.SMELTING).iterator();
+			private Iterator<RecipeHolder<SmeltingRecipe>> m_smeltingRecipes = level.getRecipeManager().getAllRecipesFor(RecipeType.SMELTING).iterator();
 			
 			@Override
 			public boolean hasMoreElements()
@@ -42,13 +43,13 @@ public class WrappedSmeltingRecipeProvider implements IDynamicRecipeProvider<Wra
 			} // end hasMoreElements()
 
 			@Override
-			public WrappedSmeltingRecipe nextElement()
+			public RecipeHolder<WrappedSmeltingRecipe> nextElement()
 			{
-				SmeltingRecipe r = this.m_smeltingRecipes.next();
-				String key = r.getId().toString(); 
+				RecipeHolder<SmeltingRecipe> r = this.m_smeltingRecipes.next();
+				String key = r.id().toString(); 
 				if(!WrappedSmeltingRecipeProvider.this.m_cache.containsKey(key)) 
 				{
-					WrappedSmeltingRecipeProvider.this.m_cache.put(key, new WrappedSmeltingRecipe(r));
+					WrappedSmeltingRecipeProvider.this.m_cache.put(key, new RecipeHolder<>(r.id(), new WrappedSmeltingRecipe(r.value())));
 				}
 				return WrappedSmeltingRecipeProvider.this.m_cache.get(key);
 			} // end nextElement()

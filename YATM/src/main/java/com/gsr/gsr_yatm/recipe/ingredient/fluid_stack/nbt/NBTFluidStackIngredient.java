@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.recipe.ingredient;
+package com.gsr.gsr_yatm.recipe.ingredient.fluid_stack.nbt;
 
 import java.util.List;
 import java.util.Objects;
@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonObject;
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.custom.YATMIngredientDeserializers;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
@@ -23,6 +24,11 @@ public class NBTFluidStackIngredient implements IIngredient<FluidStack>
 		Objects.requireNonNull(ingredient);
 		this.m_ingredient = ingredient;
 	} // end constructor
+
+	public @NotNull FluidStack stack() 
+	{
+		return this.m_ingredient.copy();
+	} // end stack()
 	
 	
 	
@@ -38,7 +44,9 @@ public class NBTFluidStackIngredient implements IIngredient<FluidStack>
 	@Override
 	public @NotNull JsonObject serialize()
 	{
-		return IngredientUtil.nbtFluidStackToJson(this.m_ingredient);
+		JsonObject obj = new JsonObject();
+		obj.add(IngredientUtil.STACK_KEY, IngredientUtil.nbtFluidStackToJson(this.m_ingredient));
+		return obj;
 	} // end serialize()
 
 	@Override

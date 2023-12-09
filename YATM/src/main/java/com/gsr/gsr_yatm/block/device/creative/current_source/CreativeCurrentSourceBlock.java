@@ -34,7 +34,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.network.NetworkHooks;
 
 public class CreativeCurrentSourceBlock extends ShapeBlock implements EntityBlock
 {
@@ -77,7 +76,7 @@ public class CreativeCurrentSourceBlock extends ShapeBlock implements EntityBloc
 
 		if(!level.isClientSide && player instanceof ServerPlayer serverPlayer) 
 		{
-			NetworkHooks.openScreen(serverPlayer, state.getMenuProvider(level, position));
+			serverPlayer.openMenu(state.getMenuProvider(level, position));
 		}
 		return InteractionResult.sidedSuccess(level.isClientSide);
 	} // end use()

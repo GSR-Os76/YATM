@@ -43,7 +43,7 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 	@Override
 	public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick)
 	{
-		super.renderBackground(graphics);
+		super.renderBackground(graphics, mouseX, mouseY, partialTick);
 		this.renderBg(graphics, partialTick, mouseX, mouseY);
 		this.updateInputTankWidget();
 		this.updateResultTankWidget();

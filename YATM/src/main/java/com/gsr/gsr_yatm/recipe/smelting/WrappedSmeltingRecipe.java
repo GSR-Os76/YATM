@@ -19,12 +19,12 @@ public class WrappedSmeltingRecipe extends SmeltingRecipe implements ITimedRecip
 	
 	public WrappedSmeltingRecipe(@NotNull SmeltingRecipe r)
 	{
-		super(r.getId(), r.getGroup(), r.category(), r.getIngredients().get(0), r.getResultItem(null), r.getExperience(), r.getCookingTime());
+		super(r.getGroup(), r.category(), r.getIngredients().get(0), r.getResultItem(null), r.getExperience(), r.getCookingTime());
 	} // end constructor
 
 	public WrappedSmeltingRecipe(ResourceLocation id, String group, CookingBookCategory category, Ingredient ingredient, ItemStack result, float experience, int cookingTime)
 	{
-		super(id, group, category, ingredient, result, experience, cookingTime);
+		super(group, category, ingredient, result, experience, cookingTime);
 	} // end constructor
 	
 

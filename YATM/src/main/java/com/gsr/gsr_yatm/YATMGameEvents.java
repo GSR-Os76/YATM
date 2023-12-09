@@ -4,7 +4,6 @@ import java.util.Collection;
 
 import com.gsr.gsr_yatm.block.IHarvestableBlock;
 import com.gsr.gsr_yatm.block.plant.tree.TappedLogBlock;
-import com.gsr.gsr_yatm.command.YATMRuleCommand;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.item.fluid.GlassBottleItemStack;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
@@ -37,7 +36,6 @@ import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.ToolActions;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
-import net.minecraftforge.event.RegisterCommandsEvent;
 import net.minecraftforge.event.entity.living.LivingDamageEvent;
 import net.minecraftforge.event.level.BlockEvent.BlockToolModificationEvent;
 import net.minecraftforge.event.level.BlockEvent.CropGrowEvent;
@@ -53,7 +51,6 @@ public class YATMGameEvents
 		eventBus.addListener(YATMGameEvents::entityDamaged);
 		eventBus.addListener(YATMGameEvents::cropsGrowPre);
 		eventBus.addListener(YATMGameEvents::recipesUpdated);
-		eventBus.addListener(YATMGameEvents::registerCommands);
 		eventBus.addGenericListener(ItemStack.class, YATMGameEvents::attachItemStackCapabilities);
 	} // end register()
 	
@@ -68,14 +65,6 @@ public class YATMGameEvents
 			
 			event.setFinalState(resSta);
 		}
-//		else if(event.getToolAction() == ToolActions.AXE_WAX_OFF) 
-//		{
-//			BlockState on = event.getState();
-//			BlockState resSta = stripWires(on, event.getContext());
-//			
-//			event.setFinalState(resSta);
-//		}
-		// TODO, do wanna add the harvesting of phantasmal shelf fungus here too.
 		YATMGameEvents.tryHarvest(event);
 	} // end blockToolModification
 	
@@ -98,11 +87,6 @@ public class YATMGameEvents
 	{
 		RecipeUtil.recipesUpdated();
 	} // end recipesUpdated()
-	
-	private static void registerCommands(RegisterCommandsEvent event)
-	{
-		YATMRuleCommand.register(event.getDispatcher());
-	} // end registerCommands()
 	
 	private static void attachItemStackCapabilities(AttachCapabilitiesEvent<ItemStack> event) 
 	{

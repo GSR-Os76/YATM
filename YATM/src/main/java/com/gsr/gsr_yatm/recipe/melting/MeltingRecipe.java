@@ -8,6 +8,7 @@ import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.block.device.crucible.CrucibleBlockEntity;
 import com.gsr.gsr_yatm.recipe.IHeatedRecipe;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
+import com.gsr.gsr_yatm.recipe.RecipeBase;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
@@ -18,7 +19,6 @@ import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.Ingredient;
@@ -30,36 +30,25 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.items.IItemHandler;
 
-public class MeltingRecipe implements ITimedRecipe<Container>, IHeatedRecipe<Container>
+public class MeltingRecipe extends RecipeBase<Container> implements ITimedRecipe<Container>, IHeatedRecipe<Container>
 {
-	private final @NotNull ResourceLocation m_identifier;
 	private final @NotNull FluidStack m_result;
-
 	private final @NotNull IIngredient<ItemStack> m_input;
-
 	private final @NotNegative int m_temperature;
 	private final @NotNegative int m_timeInTicks;
 
-	private final @NotNull String m_group;
 
 
-
-	public MeltingRecipe(@NotNull ResourceLocation identifier, 
-			@NotNull IIngredient<ItemStack> input, 
-			@NotNull FluidStack result,
-			@NotNegative int temperature,
-			@NotNegative int timeInTicks,
-			@NotNull String group
-			)
+	public MeltingRecipe(@NotNull String group, @NotNull IIngredient<ItemStack> input, @NotNull FluidStack result, @NotNegative int temperature, @NotNegative int timeInTicks)
 	{
-		this.m_identifier = Objects.requireNonNull(identifier);
+		super(Objects.requireNonNull(group));
 		this.m_input = Objects.requireNonNull(input);
-		this.m_result = Objects.requireNonNull(result.copy());
+		this.m_result = result.copy();
 		this.m_temperature = Contract.notNegative(temperature);
 		this.m_timeInTicks = Contract.notNegative(timeInTicks);
-		this.m_group = Objects.requireNonNull(group);
 	} // end constructor
 
+	
 
 	@Override
 	public @NotNegative int getTemperature()
@@ -72,6 +61,18 @@ public class MeltingRecipe implements ITimedRecipe<Container>, IHeatedRecipe<Con
 	{
 		return this.m_timeInTicks;
 	} // end getTimeInTicks()
+	
+	
+	public @NotNull FluidStack result()
+	{
+		return this.m_result;
+	} // end result()
+	
+	
+	public @NotNull IIngredient<ItemStack> input()
+	{
+		return this.m_input;
+	} // end input()
 
 
 	
@@ -120,12 +121,6 @@ public class MeltingRecipe implements ITimedRecipe<Container>, IHeatedRecipe<Con
 	} // end getResultItem
 
 	@Override
-	public @NotNull ResourceLocation getId()
-	{
-		return this.m_identifier;
-	} // end getId()
-
-	@Override
 	public @NotNull RecipeSerializer<MeltingRecipe> getSerializer()
 	{
 		return YATMRecipeSerializers.MELTING.get();
@@ -156,11 +151,5 @@ public class MeltingRecipe implements ITimedRecipe<Container>, IHeatedRecipe<Con
 	{
 		return NonNullList.of(Ingredient.EMPTY, IngredientUtil.toMinecraftIngredient(this.m_input));
 	} // end getIngredients()
-
-	@Override
-	public @NotNull String getGroup()
-	{
-		return this.m_group;
-	} // end getGroup()
 
 } // end class

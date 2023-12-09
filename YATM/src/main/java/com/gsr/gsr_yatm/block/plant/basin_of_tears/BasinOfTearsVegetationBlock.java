@@ -172,7 +172,7 @@ public class BasinOfTearsVegetationBlock extends ShapeBlock implements IAgingBlo
 
 	// TODO, consider: maybe bonemealing a fully grown block should grow any above it if possible, out of convenince and logic
 	@Override
-	public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos position, @NotNull BlockState state, boolean p_50900_)
+	public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos position, @NotNull BlockState state)
 	{
 		return state.getValue(this.getAgeProperty()) < this.getMaxAge();
 	} // end isValidBonemealTarget()

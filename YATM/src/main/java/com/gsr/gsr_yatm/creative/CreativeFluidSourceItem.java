@@ -41,12 +41,9 @@ public class CreativeFluidSourceItem extends Item
 	@Override
 	public InteractionResult useOn(UseOnContext context)
 	{
-		YetAnotherTechMod.LOGGER.info("useOn's being called");
-
 		Level l = context.getLevel();
 		if(!l.isClientSide) 
 		{
-			// ItemStack i = ;
 			LazyOptional<IFluidHandlerItem>  lo = context.getItemInHand().getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM);
 			IFluidHandlerItem fh = lo.orElse(null);
 			if(fh != null) 
@@ -54,7 +51,7 @@ public class CreativeFluidSourceItem extends Item
 				BlockState bs = context.getLevel().getBlockState(context.getClickedPos());
 				if(bs.getBlock() instanceof BucketPickup bp) 
 				{
-					ItemStack bucketPickedUp = bp.pickupBlock(l, context.getClickedPos(), bs);
+					ItemStack bucketPickedUp = bp.pickupBlock(context.getPlayer(), l, context.getClickedPos(), bs);
 					if(bucketPickedUp != null) 
 					{
 						LazyOptional<IFluidHandlerItem>  bf = bucketPickedUp.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM);

@@ -1,54 +1,55 @@
 package com.gsr.gsr_yatm.recipe.grinding;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.google.gson.JsonObject;
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ExtraCodecs;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingRecipeCodecs;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.common.crafting.CraftingHelper;
 
 public class GrindingRecipeSerializer implements RecipeSerializer<GrindingRecipe>
 {	
+	private static final @NotNull Codec<GrindingRecipe> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+			ExtraCodecs.strictOptionalField(Codec.STRING, IngredientUtil.GROUP_KEY, "").forGetter(GrindingRecipe::getGroup),
+			IngredientUtil.ingredientCodec().fieldOf(IngredientUtil.INPUT_KEY).forGetter(GrindingRecipe::input),
+			CraftingRecipeCodecs.ITEMSTACK_OBJECT_CODEC.fieldOf(IngredientUtil.RESULT_KEY).forGetter(GrindingRecipe::result),
+			Codec.INT.fieldOf(IngredientUtil.CURRENT_PER_TICK_KEY).forGetter(GrindingRecipe::getCurrentPerTick),
+			Codec.INT.fieldOf(IngredientUtil.TIME_IN_TICKS_KEY).forGetter(GrindingRecipe::getTimeInTicks)
+			).apply(instance, (g, i, r, c, t) -> new GrindingRecipe(g, i.cast(), r, c, t)));
 	
 	@Override
-	public GrindingRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject)
+	public Codec<GrindingRecipe> codec()
 	{
-		GrindingRecipeBuilder builder = new GrindingRecipeBuilder();
+		return GrindingRecipeSerializer.CODEC;
+	} // end codec()
+	
+	@Override
+	public @Nullable GrindingRecipe fromNetwork(@NotNull FriendlyByteBuf buffer)
+	{
+		String group = buffer.readUtf();
+		IIngredient<ItemStack> input = IngredientUtil.fromNetwork(buffer);
+		ItemStack result = buffer.readItem();
+		int current = buffer.readVarInt();
+		int time = buffer.readVarInt();
 		
-		builder.identifier(resourceLocation);
-		builder.result(CraftingHelper.getItemStack(jsonObject.getAsJsonObject(IngredientUtil.RESULT_KEY), true));
-		builder.input(IngredientUtil.readIngredient(jsonObject.getAsJsonObject(IngredientUtil.INPUT_KEY).getAsJsonObject(IngredientUtil.INGREDIENT_KEY)).cast());
-		
-		if(jsonObject.has(IngredientUtil.CURRENT_PER_TICK_KEY)) 
-		{
-			builder.currentPerTick(jsonObject.get(IngredientUtil.CURRENT_PER_TICK_KEY).getAsInt());
-		}
-		if(jsonObject.has(IngredientUtil.TIME_IN_TICKS_KEY)) 
-		{
-			builder.timeInTicks(jsonObject.get(IngredientUtil.TIME_IN_TICKS_KEY).getAsInt());
-		}
-		if(jsonObject.has(IngredientUtil.GROUP_KEY)) 
-		{
-			builder.group(jsonObject.get(IngredientUtil.GROUP_KEY).getAsString());
-		}
-		
-		return builder.build();		
-	} // end fromJson()
+		return new GrindingRecipe(group, input, result, current, time);
+	} // end fromNetwork()
 
 	@Override
-	public @Nullable GrindingRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf)
+	public void toNetwork(@NotNull FriendlyByteBuf buffer, @NotNull GrindingRecipe recipe)
 	{
-		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public void toNetwork(FriendlyByteBuf friendlyByteBuf, GrindingRecipe recipe)
-	{
-		// TODO Auto-generated method stub
-	}
+		buffer.writeUtf(recipe.getGroup());
+		IngredientUtil.toNetwork(recipe.input(), buffer);
+		buffer.writeItem(recipe.result());
+		buffer.writeVarInt(recipe.getCurrentPerTick());
+		buffer.writeVarInt(recipe.getTimeInTicks());
+	} // end toNetwork()
 	
 } // end class

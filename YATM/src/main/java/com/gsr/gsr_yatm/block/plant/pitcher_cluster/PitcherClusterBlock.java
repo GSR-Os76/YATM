@@ -61,7 +61,7 @@ public class PitcherClusterBlock extends ShapeBlock implements IYATMPlantableBlo
 	
 	
 	@Override
-	public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos position, @NotNull BlockState state, boolean p_50900_)
+	public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos position, @NotNull BlockState state)
 	{
 //		BlockPos.MutableBlockPos mPos = new BlockPos.MutableBlockPos().set(position);
 //		for(int x = -2; x <= 2; x++) 

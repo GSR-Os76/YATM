@@ -1,50 +1,37 @@
 package com.gsr.gsr_yatm.recipe.extracting;
 
 import java.util.Objects;
-import java.util.function.Consumer;
-
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
-
+import com.gsr.gsr_yatm.recipe.RecipeBuilderBase;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
+import com.gsr.gsr_yatm.utilities.contract.Contract;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.CriterionTriggerInstance;
+import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeBuilder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.fluids.FluidStack;
 
-public class ExtractingRecipeBuilder implements RecipeBuilder
+public class ExtractingRecipeBuilder extends RecipeBuilderBase
 {
-	// TODO, TODONE, maybe these should more all be nullable, considering they can validly be null sometimes, just shouldn't be when
-	private @Nullable ResourceLocation m_identifier;
-	private @Nullable FluidStack m_result;
-	private @Nullable IIngredient<ItemStack> m_input;
-	private @NotNull ItemStack m_inputRemainder = ItemStack.EMPTY;
-	private int m_currentPerTick = 8;
-	private int m_timeInTicks = 20;
-
-	private @NotNull String m_group = "";
-	private final @NotNull Advancement.Builder m_advancement = Advancement.Builder.advancement();
+	private FluidStack m_result;
+	private IIngredient<ItemStack> m_input;
+	private ItemStack m_inputRemainder = ItemStack.EMPTY;
+	private int m_currentPerTick = -1;
+	private int m_timeInTicks = -1;
+	
 
 
-	public @NotNull ExtractingRecipeBuilder identifier(@Nullable ResourceLocation identifier)
+	public @NotNull ExtractingRecipeBuilder input(@NotNull IIngredient<ItemStack> input)
 	{
-		this.m_identifier = identifier;
-		return this;
-	} // end identifier()
-
-	public @NotNull ExtractingRecipeBuilder input(@Nullable IIngredient<ItemStack> input)
-	{
-		this.m_input = input;
+		this.m_input = Objects.requireNonNull(input);
 		return this;
 	} // end input()
 
-	public @NotNull ExtractingRecipeBuilder result(@Nullable FluidStack result)
+	public @NotNull ExtractingRecipeBuilder result(@NotNull FluidStack result)
 	{
 		this.m_result = result.copy();
 		return this;
@@ -52,51 +39,23 @@ public class ExtractingRecipeBuilder implements RecipeBuilder
 
 	public @NotNull ExtractingRecipeBuilder inputRemainder(@NotNull ItemStack inputRemainder)
 	{
-		Objects.requireNonNull(inputRemainder);
 		this.m_inputRemainder = inputRemainder.copy();
 		return this;
 	} // end inputRemainder()
 
-	public @NotNull ExtractingRecipeBuilder currentPerTick(int currentPerTick)
+	public @NotNull ExtractingRecipeBuilder currentPerTick(@NotNegative int currentPerTick)
 	{
-		this.m_currentPerTick = currentPerTick;
+		this.m_currentPerTick = Contract.notNegative(currentPerTick);
 		return this;
 	} // end currentPerTick()
 
-	public @NotNull ExtractingRecipeBuilder timeInTicks(int timeInTicks)
+	public @NotNull ExtractingRecipeBuilder timeInTicks(@NotNegative int timeInTicks)
 	{
-		this.m_timeInTicks = timeInTicks;
+		this.m_timeInTicks = Contract.notNegative(timeInTicks);
 		return this;
 	} // end timeInTicks()
 
 
-
-	public @NotNull ExtractingRecipe build()
-	{
-		ExtractingRecipe r = new ExtractingRecipe(this.m_identifier, this.m_input, this.m_result);
-		r.m_inputRemainder = this.m_inputRemainder;
-		r.m_currentPerTick = this.m_currentPerTick;
-		r.m_timeInTicks = this.m_timeInTicks;
-		r.m_group = this.m_group;
-		return r;
-	} // end build()
-
-
-
-	@Override
-	public RecipeBuilder unlockedBy(String triggerName, CriterionTriggerInstance trigger)
-	{
-		this.m_advancement.addCriterion(triggerName, trigger);
-		return this;
-	} // end unlockedBy()
-
-	@Override
-	public RecipeBuilder group(String group)
-	{
-		Objects.requireNonNull(group);
-		this.m_group = group;// == null ? "" : group;
-		return this;
-	} // end group()
 
 	@Override
 	public Item getResult()
@@ -105,20 +64,9 @@ public class ExtractingRecipeBuilder implements RecipeBuilder
 	} // end getResult()
 
 	@Override
-	public void save(Consumer<FinishedRecipe> writer, ResourceLocation fileName)
+	public @NotNull FinishedRecipe createFinishedRecipe(@NotNull ResourceLocation fileName, @NotNull AdvancementHolder advancement)
 	{
-		this.validate(fileName);
-		writer.accept(new ExtractingFinishedRecipe(fileName, this.m_result, this.m_input, this.m_inputRemainder, this.m_currentPerTick, this.m_timeInTicks, this.m_group, fileName.withPrefix("recipes/"), this.m_advancement));
-	} // end save()
-	
-	
-	
-	private void validate(@NotNull ResourceLocation wouldBeFileName)
-	{
-		if (this.m_advancement.getCriteria().isEmpty())
-		{
-			throw new IllegalStateException("No way of obtaining recipe: " + wouldBeFileName);
-		}
-	} // end validate()
+		return new ExtractingFinishedRecipe(fileName, advancement, this.m_group, this.m_result, this.m_input, this.m_inputRemainder, this.m_currentPerTick, this.m_timeInTicks);
+	} // end createFinishedRecipe()
 
 } // end Builder

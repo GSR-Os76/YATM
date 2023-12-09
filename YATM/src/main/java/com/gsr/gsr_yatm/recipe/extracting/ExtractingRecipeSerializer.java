@@ -1,60 +1,58 @@
 package com.gsr.gsr_yatm.recipe.extracting;
 
-import org.jetbrains.annotations.Nullable;
+import org.jetbrains.annotations.NotNull;
 
-import com.google.gson.JsonObject;
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ExtraCodecs;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingRecipeCodecs;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.fluids.FluidStack;
 
 public class ExtractingRecipeSerializer implements RecipeSerializer<ExtractingRecipe>
 {
-	@Override
-	public ExtractingRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject)
-	{
-		ExtractingRecipeBuilder builder = new ExtractingRecipeBuilder();
-		
-		builder.identifier(resourceLocation);
-		builder.result(IngredientUtil.nbtFluidStackFromJson(jsonObject.getAsJsonObject(IngredientUtil.RESULT_KEY)));
-		
-		JsonObject inputObj = jsonObject.getAsJsonObject(IngredientUtil.INPUT_KEY);
-		builder.input(IngredientUtil.readIngredient(inputObj.getAsJsonObject(IngredientUtil.INGREDIENT_KEY)).cast());
-		if(inputObj.has(IngredientUtil.REMAINDER_STACK_KEY)) 
-		{
-			builder.inputRemainder(CraftingHelper.getItemStack(inputObj.getAsJsonObject(IngredientUtil.REMAINDER_STACK_KEY), true));
-		}
-		
-		// current
-		if(jsonObject.has(IngredientUtil.CURRENT_PER_TICK_KEY)) 
-		{
-			builder.currentPerTick(jsonObject.get(IngredientUtil.CURRENT_PER_TICK_KEY).getAsInt());
-		}
-		// time
-		if(jsonObject.has(IngredientUtil.TIME_IN_TICKS_KEY)) 
-		{
-			builder.timeInTicks(jsonObject.get(IngredientUtil.TIME_IN_TICKS_KEY).getAsInt());
-		}
-		if(jsonObject.has(IngredientUtil.GROUP_KEY)) 
-		{
-			builder.group(jsonObject.get(IngredientUtil.GROUP_KEY).getAsString());
-		}
-		return builder.build();
-	} // end fromJson()
+	private static final @NotNull Codec<ExtractingRecipe> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+			ExtraCodecs.strictOptionalField(Codec.STRING, IngredientUtil.GROUP_KEY, "").forGetter(ExtractingRecipe::getGroup),
+			IngredientUtil.ingredientCodec().fieldOf(IngredientUtil.INPUT_KEY).forGetter(ExtractingRecipe::input),
+			ExtraCodecs.strictOptionalField(CraftingRecipeCodecs.ITEMSTACK_OBJECT_CODEC, IngredientUtil.INPUT_REMAINDER_STACK_KEY, ItemStack.EMPTY).forGetter(ExtractingRecipe::inputRemainder),
+			FluidStack.CODEC.fieldOf(IngredientUtil.RESULT_KEY).forGetter(ExtractingRecipe::result),
+			Codec.INT.fieldOf(IngredientUtil.CURRENT_PER_TICK_KEY).forGetter(ExtractingRecipe::getCurrentPerTick),
+			Codec.INT.fieldOf(IngredientUtil.TIME_IN_TICKS_KEY).forGetter(ExtractingRecipe::getTimeInTicks)
+			).apply(instance, (g, i, ir, r, c, t) -> new ExtractingRecipe(g, i.cast(), ir, r, c, t)));
 
 	@Override
-	public @Nullable ExtractingRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf)
+	public @NotNull Codec<ExtractingRecipe> codec()
 	{
-		// TODO Auto-generated method stub
-		return null;
-	}
+		return ExtractingRecipeSerializer.CODEC;
+	} // end codec()
 
 	@Override
-	public void toNetwork(FriendlyByteBuf friendlyByteBuf, ExtractingRecipe recipe)
+	public @NotNull ExtractingRecipe fromNetwork(@NotNull FriendlyByteBuf buffer)
 	{
-		// TODO Auto-generated method stub
+		String group = buffer.readUtf();
+		IIngredient<ItemStack> input = IngredientUtil.fromNetwork(buffer);
+		ItemStack inputRemainder = buffer.readItem();
+		FluidStack result = buffer.readFluidStack();
+		int current = buffer.readVarInt();
+		int time = buffer.readVarInt();
 		
-	}
+		return new ExtractingRecipe(group, input, inputRemainder, result, current, time);
+	} // end fromNetwork()
+
+	@Override
+	public void toNetwork(@NotNull FriendlyByteBuf buffer, @NotNull ExtractingRecipe recipe)
+	{
+		buffer.writeUtf(recipe.getGroup());
+		IngredientUtil.toNetwork(recipe.input(), buffer);
+		buffer.writeItem(recipe.inputRemainder());
+		buffer.writeFluidStack(recipe.result());
+		buffer.writeVarInt(recipe.getCurrentPerTick());
+		buffer.writeVarInt(recipe.getTimeInTicks());
+	} // end toNetwork()
 
 } // end class

@@ -7,14 +7,16 @@ import org.jetbrains.annotations.NotNull;
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
+import com.gsr.gsr_yatm.recipe.RecipeBase;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
+import com.gsr.gsr_yatm.utilities.contract.Contract;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -26,40 +28,61 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.items.IItemHandler;
 
-public class CrystallizingRecipe implements ITimedRecipe<Container>
+public class CrystallizingRecipe extends RecipeBase<Container> implements ITimedRecipe<Container>
 {
-	private final @NotNull ResourceLocation m_identifier;
 	private final @NotNull ItemStack m_result;
-	private final @NotNull IIngredient<ItemStack> m_seed;	
 	private final @NotNull IIngredient<FluidStack> m_input;
-	boolean m_consumeSeed = false;
-	int m_currentPerTick = 8;
-	int m_timeInTicks = 20;
-	@NotNull String m_group = "";
+	private final @NotNull IIngredient<ItemStack> m_seed;	
+	private final boolean m_consumeSeed;
+	private final @NotNegative int m_currentPerTick;
+	private final @NotNegative int m_timeInTicks;
 	
 	
 	
-	public CrystallizingRecipe(@NotNull ResourceLocation identifier, @NotNull IIngredient<FluidStack> input, @NotNull IIngredient<ItemStack> seed, @NotNull ItemStack result) 
+	public CrystallizingRecipe(@NotNull String group, @NotNull IIngredient<FluidStack> input, @NotNull IIngredient<ItemStack> seed, boolean consumeSeed, @NotNull ItemStack result, @NotNegative int currentPerTick, @NotNegative int timeInTicks) 
 	{
-		this.m_identifier = Objects.requireNonNull(identifier);
+		super(Objects.requireNonNull(group));
+
 		this.m_input = Objects.requireNonNull(input);
 		this.m_seed = Objects.requireNonNull(seed);
 		this.m_result = Objects.requireNonNull(result);
+		this.m_consumeSeed = consumeSeed;
+		this.m_currentPerTick = Contract.notNegative(currentPerTick);
+		this.m_timeInTicks = Contract.notNegative(timeInTicks);
 	} // end constructor
 	
 	
 	
-	public int getCurrentPerTick()
+	public @NotNegative int getCurrentPerTick()
 	{
 		return this.m_currentPerTick;
 	} // end getCurrentPerTick()
 	
 	@Override
-	public int getTimeInTicks()
+	public @NotNegative int getTimeInTicks()
 	{
 		return this.m_timeInTicks;
 	} // end getTimeInTicks()
 
+	public boolean consumeSeed()
+	{
+		return this.m_consumeSeed;
+	} // end consumeSeed()
+	
+	public @NotNull IIngredient<ItemStack> seed()
+	{
+		return this.m_seed;
+	} // end seed()
+	
+	public @NotNull IIngredient<FluidStack> input()
+	{
+		return this.m_input;
+	} // end input()	
+	
+	public @NotNull ItemStack result()
+	{
+		return this.m_result;
+	} // end result()
 	
 	
 	
@@ -122,13 +145,6 @@ public class CrystallizingRecipe implements ITimedRecipe<Container>
 	{
 		return this.m_result.copy();
 	} // end getResultItem()
-
-	@Override
-	public ResourceLocation getId()
-	{
-		return this.m_identifier;
-	} // end getId()
-
 	@Override
 	public RecipeSerializer<CrystallizingRecipe> getSerializer()
 	{
@@ -146,11 +162,5 @@ public class CrystallizingRecipe implements ITimedRecipe<Container>
 	{
 		return new ItemStack(YATMItems.STEEL_CRYSTALLIZER_ITEM.get());
 	} // end getToastSymbol()
-	
-	@Override
-	public String getGroup()
-	{
-		return this.m_group;
-	} // end getGroup()
 	
 } // end class

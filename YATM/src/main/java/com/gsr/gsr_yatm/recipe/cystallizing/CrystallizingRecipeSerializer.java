@@ -1,59 +1,62 @@
 package com.gsr.gsr_yatm.recipe.cystallizing;
 
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.google.gson.JsonObject;
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ExtraCodecs;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingRecipeCodecs;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.common.crafting.CraftingHelper;
+import net.minecraftforge.fluids.FluidStack;
 
 public class CrystallizingRecipeSerializer implements RecipeSerializer<CrystallizingRecipe>
 {
-	@Override
-	public CrystallizingRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject)
-	{
-		CrystallizingRecipeBuilder builder = new CrystallizingRecipeBuilder();
-		
-		builder.identifier(resourceLocation);
-		builder.result(CraftingHelper.getItemStack(jsonObject.getAsJsonObject(IngredientUtil.RESULT_KEY), true));
-		builder.input(IngredientUtil.readIngredient(jsonObject.getAsJsonObject(IngredientUtil.INPUT_KEY).getAsJsonObject(IngredientUtil.INGREDIENT_KEY)).cast());
-		
-		JsonObject seedObj = jsonObject.getAsJsonObject(IngredientUtil.SEED_KEY);
-		builder.seed(IngredientUtil.readIngredient(seedObj.getAsJsonObject(IngredientUtil.INGREDIENT_KEY)).cast());
-		if(seedObj.has(IngredientUtil.CONSUME_SEED_KEY)) 
-		{
-			builder.consumeSeed(seedObj.get(IngredientUtil.CONSUME_SEED_KEY).getAsBoolean());
-		}
-		
-		if(jsonObject.has(IngredientUtil.CURRENT_PER_TICK_KEY)) 
-		{
-			builder.currentPerTick(jsonObject.get(IngredientUtil.CURRENT_PER_TICK_KEY).getAsInt());
-		}
-		if(jsonObject.has(IngredientUtil.TIME_IN_TICKS_KEY)) 
-		{
-			builder.timeInTicks(jsonObject.get(IngredientUtil.TIME_IN_TICKS_KEY).getAsInt());
-		}
-		if(jsonObject.has(IngredientUtil.GROUP_KEY)) 
-		{
-			builder.group(jsonObject.get(IngredientUtil.GROUP_KEY).getAsString());
-		}
-		return builder.build();
-	} // end fromJson()
+	private static final @NotNull Codec<CrystallizingRecipe> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+			ExtraCodecs.strictOptionalField(Codec.STRING, IngredientUtil.GROUP_KEY, "").forGetter(CrystallizingRecipe::getGroup),
+			IngredientUtil.ingredientCodec().fieldOf(IngredientUtil.INPUT_KEY).forGetter(CrystallizingRecipe::input),
+			IngredientUtil.ingredientCodec().fieldOf(IngredientUtil.SEED_KEY).forGetter(CrystallizingRecipe::seed),
+			Codec.BOOL.fieldOf(IngredientUtil.CONSUME_SEED_KEY).forGetter(CrystallizingRecipe::consumeSeed),
+			CraftingRecipeCodecs.ITEMSTACK_OBJECT_CODEC.fieldOf(IngredientUtil.RESULT_KEY).forGetter(CrystallizingRecipe::result),
+			Codec.INT.fieldOf(IngredientUtil.CURRENT_PER_TICK_KEY).forGetter(CrystallizingRecipe::getCurrentPerTick),
+			Codec.INT.fieldOf(IngredientUtil.TIME_IN_TICKS_KEY).forGetter(CrystallizingRecipe::getTimeInTicks)
+			).apply(instance, (g, i, s, cs, r, c, t) -> new CrystallizingRecipe(g, i.cast(), s.cast(), cs, r, c, t)));
 
 	@Override
-	public @Nullable CrystallizingRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf)
+	public @NotNull Codec<CrystallizingRecipe> codec()
 	{
-		// TODO Auto-generated method stub
-		return null;
-	}
+		return CrystallizingRecipeSerializer.CODEC;
+	} // end codec()
 
 	@Override
-	public void toNetwork(FriendlyByteBuf friendlyByteBuf, CrystallizingRecipe recipe)
+	public @Nullable CrystallizingRecipe fromNetwork(@NotNull FriendlyByteBuf buffer)
 	{
-		// TODO Auto-generated method stub	
-	}
+		String group = buffer.readUtf();
+		IIngredient<FluidStack> input = IngredientUtil.fromNetwork(buffer);
+		IIngredient<ItemStack> seed = IngredientUtil.fromNetwork(buffer);
+		boolean consumeSeed = buffer.readBoolean();
+		ItemStack result = buffer.readItem();
+		int current = buffer.readVarInt();
+		int time = buffer.readVarInt();
+		
+		return new CrystallizingRecipe(group, input, seed, consumeSeed, result, current, time);
+	} // end fromNetwork()
+
+	@Override
+	public void toNetwork(@NotNull FriendlyByteBuf buffer, @NotNull CrystallizingRecipe recipe)
+	{
+		buffer.writeUtf(recipe.getGroup());
+		IngredientUtil.toNetwork(recipe.input(), buffer);
+		IngredientUtil.toNetwork(recipe.seed(), buffer);
+		buffer.writeBoolean(recipe.consumeSeed());
+		buffer.writeItem(recipe.result());
+		buffer.writeVarInt(recipe.getCurrentPerTick());
+		buffer.writeVarInt(recipe.getTimeInTicks());
+	} // end toNetwork()
 
 } // end class

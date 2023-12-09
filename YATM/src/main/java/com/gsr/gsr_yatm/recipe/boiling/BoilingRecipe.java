@@ -7,14 +7,16 @@ import org.jetbrains.annotations.NotNull;
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.recipe.IHeatedRecipe;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
+import com.gsr.gsr_yatm.recipe.RecipeBase;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
+import com.gsr.gsr_yatm.utilities.contract.Contract;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -25,41 +27,49 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 
-public class BoilingRecipe implements ITimedRecipe<Container>, IHeatedRecipe<Container>
+public class BoilingRecipe extends RecipeBase<Container> implements ITimedRecipe<Container>, IHeatedRecipe<Container>
 {
-	private final @NotNull ResourceLocation m_identifier;
 	private final @NotNull FluidStack m_result;
 	private final @NotNull IIngredient<FluidStack> m_input;
-	int m_temperature = 373;
-	int m_timeInTicks = 20;
-
-	@NotNull String m_group = "";
+	private final @NotNegative int m_temperature;
+	private final @NotNegative int m_timeInTicks;	
 	
 	
-	public BoilingRecipe(@NotNull ResourceLocation identifier, @NotNull IIngredient<FluidStack> input, @NotNull FluidStack result) 
+	
+	public BoilingRecipe(@NotNull String group, @NotNull IIngredient<FluidStack> input, @NotNull FluidStack result, @NotNegative int temperature, @NotNegative int timeInTicks) 
 	{
-		Objects.requireNonNull(identifier);
-		Objects.requireNonNull(input);
-		Objects.requireNonNull(result);
+		super(Objects.requireNonNull(group));
 		
-		this.m_identifier = identifier;
-		this.m_input = input;
+		this.m_input = Objects.requireNonNull(input);
 		this.m_result = result.copy();
+		this.m_temperature = Contract.notNegative(temperature);
+		this.m_timeInTicks = Contract.notNegative(timeInTicks);
 	} // end constructor
 	
 	
-	@Override
-	public int getTemperature()
-	{
-		return this.m_temperature;
-	} // end getCurrentPerTick()
 	
 	@Override
-	public int getTimeInTicks()
+	public @NotNegative int getTemperature()
+	{
+		return this.m_temperature;
+	} // end getTemperature()
+	
+	@Override
+	public @NotNegative int getTimeInTicks()
 	{
 		return this.m_timeInTicks;
 	} // end getTimeInTicks()
-
+	
+	public @NotNull FluidStack result()
+	{
+		return this.m_result;
+	} // end result()
+	
+	public @NotNull IIngredient<FluidStack> input()
+	{
+		return this.m_input;
+	} // end input()
+	
 	
 
 	public boolean canTick(@NotNull IHeatHandler heat)
@@ -114,12 +124,6 @@ public class BoilingRecipe implements ITimedRecipe<Container>, IHeatedRecipe<Con
 	} // end getResultItem()
 
 	@Override
-	public ResourceLocation getId()
-	{
-		return this.m_identifier;
-	} // end getId()
-
-	@Override
 	public RecipeSerializer<BoilingRecipe> getSerializer()
 	{
 		return YATMRecipeSerializers.BOILING.get();
@@ -136,14 +140,5 @@ public class BoilingRecipe implements ITimedRecipe<Container>, IHeatedRecipe<Con
 	{
 		return new ItemStack(YATMItems.STEEL_BOILER_ITEM.get());
 	} // end getToastSymbol()
-
-	@Override
-	public String getGroup()
-	{
-		return this.m_group;
-	} // end getGroup()
-
-	
-
 	
 } // end class

@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.recipe.ingredient;
+package com.gsr.gsr_yatm.recipe.ingredient.item_tag;
 
 import java.util.List;
 import java.util.Objects;
@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.gson.JsonObject;
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.custom.YATMIngredientDeserializers;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
@@ -65,7 +66,10 @@ public class ItemTagIngredient implements IIngredient<ItemStack>
 	{
 		JsonObject jsObj = new JsonObject();
 		jsObj.addProperty(IngredientUtil.TAG_KEY, this.m_tagKey.location().toString());
-		jsObj.addProperty(IngredientUtil.COUNT_KEY, this.m_count);
+		if(this.m_count != 1) 
+		{
+			jsObj.addProperty(IngredientUtil.AMOUNT_KEY, this.m_count);
+		}
 		return jsObj;
 	} // end serialize()
 
