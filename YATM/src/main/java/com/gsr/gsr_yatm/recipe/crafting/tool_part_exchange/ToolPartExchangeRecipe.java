@@ -127,7 +127,7 @@ public class ToolPartExchangeRecipe extends RecipeBase<CraftingContainer> implem
 	@Override
 	public @NotNull ItemStack getToastSymbol()
 	{
-		return new ItemStack(YATMItems.GRAFTING_TABLE_ITEM.get());
+		return new ItemStack(YATMItems.GRAFTING_TABLE.get());
 	} // end getToastSymbol()
 	
 } // end class

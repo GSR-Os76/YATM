@@ -194,7 +194,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addIceCoral();
 		this.addInfernalum();
 		this.addLapum();
-		this.createPhantasmalShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM.get());
+		this.createPhantasmalShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS.get());
 		this.createBlockWithItem(YATMBlocks.PITCHER_CLUSTER.get(), YATMBlockStateProvider.PITCHER_CLUSTER);
 		this.createPrismarineCrystalMossLike(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), 
 				//new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/moss/prismarine/prismarine_crystal_moss_germinating"), 
@@ -219,9 +219,9 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createAllBlock(YATMBlocks.RUBBER_BLOCK.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rubber_block"));
 		this.createAllBlock(YATMBlocks.ROOTED_SOUL_SOIL.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rooted_soul_soil"));
 		
-		this.createFacingBlock(YATMBlocks.GRAFTING_TABLE.get(), YATMItems.GRAFTING_TABLE_ITEM.get(), YATMBlockStateProvider.GRAFTING_TABLE_MODEL);
+		this.createFacingBlock(YATMBlocks.GRAFTING_TABLE.get(), YATMItems.GRAFTING_TABLE.get(), YATMBlockStateProvider.GRAFTING_TABLE_MODEL);
 		this.addSapCollectors();
-		this.createSpinningWheel(YATMBlocks.SPINNING_WHEEL.get(), YATMItems.SPINNING_WHEEL_ITEM.get());
+		this.createSpinningWheel(YATMBlocks.SPINNING_WHEEL.get(), YATMItems.SPINNING_WHEEL.get());
 		this.addHeatSinks();
 		this.addComputeBlocks();
 		// TODO, probably pack all these crafting ones into one method, and remove the individual ones.
@@ -231,7 +231,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addCrystallizers();
 		this.addCurrentFurnaces();
 		this.addExtractors();
-		this.createFacingBlock(YATMBlocks.STEEL_GRINDER.get(), YATMItems.STEEL_GRINDER_ITEM.get(), YATMBlockStateProvider.GRINDER_MODEL);
+		this.createFacingBlock(YATMBlocks.STEEL_GRINDER.get(), YATMItems.STEEL_GRINDER.get(), YATMBlockStateProvider.GRINDER_MODEL);
 		this.addInjectors();
 		
 		this.createAllBlock(YATMBlocks.C_U_F_E_I.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/energy_converter/energy_converter"));
@@ -252,12 +252,12 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	private void addRubberSet() 
 	{
 		ResourceLocation meristemTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_meristem");
-		this.createSelfLayeringSapling(YATMBlocks.RUBBER_MERISTEM.get(), YATMItems.RUBBER_MERISTEM_ITEM.get(), "block/rubber_meristem", meristemTexture);
+		this.createSelfLayeringSapling(YATMBlocks.RUBBER_MERISTEM.get(), YATMItems.RUBBER_MERISTEM.get(), "block/rubber_meristem", meristemTexture);
 		this.createPottedCross(YATMBlocks.POTTED_RUBBER_MERISTEM.get(), meristemTexture);
 		this.createAllBlock(YATMBlocks.RUBBER_LEAVES_YOUNG.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_leaves_young"));
 		this.createAllBlock(YATMBlocks.RUBBER_LEAVES_FLOWERING.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_leaves_flowering"));
 		this.createAllBlock(YATMBlocks.RUBBER_LEAVES_OLD.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_leaves_old"));
-		this.createRootsBlock(YATMBlocks.RUBBER_ROOTS.get(), YATMItems.RUBBER_ROOTS_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_roots_side"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_roots_ends"), true);
+		this.createRootsBlock(YATMBlocks.RUBBER_ROOTS.get(), YATMItems.RUBBER_ROOTS.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_roots_side"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_roots_ends"), true);
 		ResourceLocation rubberLogSideTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_log_side");
 		ResourceLocation rubberLogTopTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_log_top");
 		ResourceLocation strippedRubberLogSideTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_log_side_stripped");
@@ -282,7 +282,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createFenceGate(YATMBlocks.RUBBER_FENCE_GATE.get(), "item/rubber_fence_gate", rubberPlanksTexture);
 		ResourceLocation rubberDoorTopTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_door_top");
 		ResourceLocation rubberDoorBottomTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_door_bottom");
-		this.createDoor(YATMBlocks.RUBBER_DOOR.get(), YATMItems.RUBBER_DOOR_ITEM.get(), rubberDoorBottomTexture, rubberDoorTopTexture);
+		this.createDoor(YATMBlocks.RUBBER_DOOR.get(), YATMItems.RUBBER_DOOR.get(), rubberDoorBottomTexture, rubberDoorTopTexture);
 		this.createTrapDoor(YATMBlocks.RUBBER_TRAPDOOR.get(), "item/rubber_trapdoor", new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_trapdoor_top"));
 		this.createPressurePlate(YATMBlocks.RUBBER_PRESSURE_PLATE.get(), "item/rubber_pressure_plate", rubberPlanksTexture);
 		this.createButton(YATMBlocks.RUBBER_BUTTON.get(),"item/rubber_button", rubberPlanksTexture);
@@ -293,7 +293,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createSign(YATMBlocks.RUBBER_WALL_HANGING_SIGN.get(), rubberLogSideTexture);
 		
 		
-		this.createCarpet(YATMBlocks.LEAF_MULCH.get(), YATMItems.LEAF_MULCH_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/leaf_mulch"));
+		this.createCarpet(YATMBlocks.LEAF_MULCH.get(), YATMItems.LEAF_MULCH.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/leaf_mulch"));
 		// sign
 		// the newer and fancier sign
 	} // end addRubberSet()
@@ -301,12 +301,12 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	private void addSoulAfflictedRubberSet() 
 	{
 		ResourceLocation meristemTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_meristem");
-		this.createSelfLayeringSapling(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM_ITEM.get(), "block/soul_afflicted_rubber_meristem", meristemTexture);
+		this.createSelfLayeringSapling(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), "block/soul_afflicted_rubber_meristem", meristemTexture);
 		this.createPottedCross(YATMBlocks.POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM.get(), meristemTexture);
 		this.createAllBlock(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_leaves_young"));
 		this.createAllBlock(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_leaves_flowering"));
 		this.createAllBlock(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_OLD.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_leaves_old"));
-		this.createRootsBlock(YATMBlocks.SOUL_AFFLICTED_RUBBER_ROOTS.get(), YATMItems.SOUL_AFFLICTED_RUBBER_ROOTS_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_roots_side"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_roots_ends"), true);
+		this.createRootsBlock(YATMBlocks.SOUL_AFFLICTED_RUBBER_ROOTS.get(), YATMItems.SOUL_AFFLICTED_RUBBER_ROOTS.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_roots_side"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_roots_ends"), true);
 		ResourceLocation soulAfflictedRubberLogSideTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_log_side");
 		ResourceLocation soulAfflictedRubberLogTopTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_log_top");
 		ResourceLocation soulAfflictedStrippedRubberLogSideTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_log_side_stripped");
@@ -330,7 +330,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createFenceGate(YATMBlocks.SOUL_AFFLICTED_RUBBER_FENCE_GATE.get(), "item/soul_afflicted_rubber_fence_gate", soulAfflictedRubberPlanksTexture);
 		ResourceLocation soulAfflictedRubberDoorTopTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_door_top");
 		ResourceLocation soulAfflictedRubberDoorBottomTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_door_bottom");
-		this.createDoor(YATMBlocks.SOUL_AFFLICTED_RUBBER_DOOR.get(), YATMItems.SOUL_AFFLICTED_RUBBER_DOOR_ITEM.get(), soulAfflictedRubberDoorBottomTexture, soulAfflictedRubberDoorTopTexture);
+		this.createDoor(YATMBlocks.SOUL_AFFLICTED_RUBBER_DOOR.get(), YATMItems.SOUL_AFFLICTED_RUBBER_DOOR.get(), soulAfflictedRubberDoorBottomTexture, soulAfflictedRubberDoorTopTexture);
 		this.createTrapDoor(YATMBlocks.SOUL_AFFLICTED_RUBBER_TRAPDOOR.get(), "item/soul_afflicted_rubber_trapdoor", new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_trapdoor_top"));
 		this.createPressurePlate(YATMBlocks.SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE.get(), "item/soul_afflicted_rubber_pressure_plate", soulAfflictedRubberPlanksTexture);
 		this.createButton(YATMBlocks.SOUL_AFFLICTED_RUBBER_BUTTON.get(),"item/soul_afflicted_rubber_button", soulAfflictedRubberPlanksTexture);
@@ -340,7 +340,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createSign(YATMBlocks.SOUL_AFFLICTED_RUBBER_HANGING_SIGN.get(), soulAfflictedStrippedRubberLogSideTexture);
 		this.createSign(YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_HANGING_SIGN.get(), soulAfflictedStrippedRubberLogSideTexture);
 		
-		this.createCarpet(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_leaf_mulch"));
+		this.createCarpet(YATMBlocks.SOUL_AFFLICTED_LEAF_MULCH.get(), YATMItems.SOUL_AFFLICTED_LEAF_MULCH.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_leaf_mulch"));
 	} // end addSoulAfflictedRubberSet()
 
 	private void addAdamum()
@@ -400,8 +400,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		ResourceLocation youngTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/young");
 		this.createCarcassRootFoliage(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), youngTexture, new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/old_lower"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/old_higher"));
 		this.createPottedCross(YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE.get(), youngTexture);
-		this.createCarcassRootRooted(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get(), YATMItems.CARCASS_ROOT_ROOTED_DIRT_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_dirt_young"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_dirt_old"));
-		this.createCarcassRootRooted(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get(), YATMItems.CARCASS_ROOT_ROOTED_NETHERRACK_ITEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_netherrack_young"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_netherrack_old"));
+		this.createCarcassRootRooted(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get(), YATMItems.CARCASS_ROOT_ROOTED_DIRT.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_dirt_young"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_dirt_old"));
+		this.createCarcassRootRooted(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get(), YATMItems.CARCASS_ROOT_ROOTED_NETHERRACK.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_netherrack_young"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/carcass_root/rooted_netherrack_old"));
 		
 	} // end addCarcassRoot()
 	
@@ -561,7 +561,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	{
 		ResourceLocation topTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/variegated_cactus/variegated_cactus_top");
 		ResourceLocation sideTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/variegated_cactus/variegated_cactus_side");
-		this.createCactus(YATMBlocks.VARIEGATED_CACTUS.get(), YATMItems.VARIEGATED_CACTUS_ITEM.get(), 
+		this.createCactus(YATMBlocks.VARIEGATED_CACTUS.get(), YATMItems.VARIEGATED_CACTUS.get(), 
 				topTexture, 
 				sideTexture, 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/variegated_cactus/variegated_cactus_bottom"));
@@ -607,7 +607,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	private void addHeatSinks() 
 	{
-		this.createLargeHeatSink(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), YATMItems.LARGE_COPPER_HEAT_SINK_ITEM.get(), 
+		this.createLargeHeatSink(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), YATMItems.LARGE_COPPER_HEAT_SINK.get(), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/large_copper_heat_sink_one"),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/large_copper_heat_sink_two"));
 
@@ -622,7 +622,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	private void addComputeBlocks() 
 	{
-		this.createFaceFacingBlock(YATMBlocks.DATA_SCAN_COLLECTOR.get(), YATMItems.DATA_SCAN_COLLECTOR_ITEM.get(), 
+		this.createFaceFacingBlock(YATMBlocks.DATA_SCAN_COLLECTOR.get(), YATMItems.DATA_SCAN_COLLECTOR.get(), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/compute/data_scan_collector/data_scan_collector_face"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/compute/data_scan_collector/data_scan_collector_side"));
 	} // end addComputeBlocks()
@@ -636,7 +636,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 //				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_top"), 
 //				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_inside"));
 //		
-		this.createFacingBlock(YATMBlocks.STEEL_BIOREACTOR.get(), YATMItems.STEEL_BIOLER_ITEM.get(), YATMBlockStateProvider.BIOREACTOR_MODEL);
+		this.createFacingBlock(YATMBlocks.STEEL_BIOREACTOR.get(), YATMItems.STEEL_BIOREACTOR.get(), YATMBlockStateProvider.BIOREACTOR_MODEL);
 		
 	} // end addBioler()
 	
@@ -645,59 +645,59 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		String litName = YATMBlockStateProvider.getModelLocationNameFor(YATMBlocks.STEEL_BOILER.get()) + "_lit";
 		this.models().getBuilder(litName).parent(YATMBlockStateProvider.BOILER_MODEL).texture("front", new ResourceLocation(YetAnotherTechMod.MODID, "block/device/boiler/front_lit"));
 		ModelFile litModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, litName));
-		this.createLitFacingBlock(YATMBlocks.STEEL_BOILER.get(), YATMItems.STEEL_BOILER_ITEM.get(), YATMBlockStateProvider.BOILER_MODEL, litModel);
+		this.createLitFacingBlock(YATMBlocks.STEEL_BOILER.get(), YATMItems.STEEL_BOILER.get(), YATMBlockStateProvider.BOILER_MODEL, litModel);
 	} // end addBoilers()
 	
 	private void addCrucibles() 
 	{
-		this.createLitFacingBlock(YATMBlocks.STEEL_CRUCIBLE.get(), YATMItems.STEEL_CRUCIBLE_ITEM.get(), YATMBlockStateProvider.CRUCIBLE_MODEL, YATMBlockStateProvider.CRUCIBLE_LIT_MODEL);
+		this.createLitFacingBlock(YATMBlocks.STEEL_CRUCIBLE.get(), YATMItems.STEEL_CRUCIBLE.get(), YATMBlockStateProvider.CRUCIBLE_MODEL, YATMBlockStateProvider.CRUCIBLE_LIT_MODEL);
 		
 	} // end addCrucibles()
 	
 	private void addCrystallizers() 
 	{
-		this.createFacingBlock(YATMBlocks.STEEL_CRYSTALLIZER.get(), YATMItems.STEEL_CRYSTALLIZER_ITEM.get(), YATMBlockStateProvider.CRYSTALLIZER_MODEL);
+		this.createFacingBlock(YATMBlocks.STEEL_CRYSTALLIZER.get(), YATMItems.STEEL_CRYSTALLIZER.get(), YATMBlockStateProvider.CRYSTALLIZER_MODEL);
 		
 	} // end addCrystallizers()
 	
 	private void addCurrentFurnaces() 
 	{
-		this.createFacingBlock(YATMBlocks.STEEL_CURRENT_FURNACE.get(), YATMItems.STEEL_CURRENT_FURNACE_ITEM.get(), YATMBlockStateProvider.CURRENT_FURNACE_MODEL);
+		this.createFacingBlock(YATMBlocks.STEEL_CURRENT_FURNACE.get(), YATMItems.STEEL_CURRENT_FURNACE.get(), YATMBlockStateProvider.CURRENT_FURNACE_MODEL);
 		
 	} // end addCurrentFurnaces()
 	
 	private void addExtractors() 
 	{
-		this.createFacingBlock(YATMBlocks.STEEL_EXTRACTOR.get(), YATMItems.STEEL_EXTRACTOR_ITEM.get(), YATMBlockStateProvider.EXTRACTOR_MODEL);
+		this.createFacingBlock(YATMBlocks.STEEL_EXTRACTOR.get(), YATMItems.STEEL_EXTRACTOR.get(), YATMBlockStateProvider.EXTRACTOR_MODEL);
 		
 	} // end addExtractors()
 	
 	private void addInjectors() 
 	{
-		this.createFacingBlock(YATMBlocks.STEEL_INJECTOR.get(), YATMItems.STEEL_INJECTOR_ITEM.get(), YATMBlockStateProvider.INJECTOR_MODEL);
+		this.createFacingBlock(YATMBlocks.STEEL_INJECTOR.get(), YATMItems.STEEL_INJECTOR.get(), YATMBlockStateProvider.INJECTOR_MODEL);
 		
 	} // end addInjectors()
 	
 	private void addSolarPanels() 
 	{
 		// TODO, update face textures
-		this.createHorizontalFacingTopBlock(YATMBlocks.CRUDE_BATTERY_SOLAR_PANEL.get(), YATMItems.CRUDE_BATTERY_SOLAR_PANEL_ITEM.get(),
+		this.createHorizontalFacingTopBlock(YATMBlocks.CRUDE_BATTERY_SOLAR_PANEL.get(), YATMItems.CRUDE_BATTERY_SOLAR_PANEL.get(),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/eight_cu_solar_panel_side"),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/crude_solar_panel_top"));
-		this.createHorizontalFacingTopBlock(YATMBlocks.ADVANCED_BATTERY_SOLAR_PANEL.get(), YATMItems.ADVANCED_BATTERY_SOLAR_PANEL_ITEM.get(),
+		this.createHorizontalFacingTopBlock(YATMBlocks.ADVANCED_BATTERY_SOLAR_PANEL.get(), YATMItems.ADVANCED_BATTERY_SOLAR_PANEL.get(),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/sixtyfour_cu_solar_panel_side"),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/advanced_solar_panel_top"));
-		this.createHorizontalFacingTopBlock(YATMBlocks.SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL.get(), YATMItems.SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL_ITEM.get(),
+		this.createHorizontalFacingTopBlock(YATMBlocks.SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL.get(), YATMItems.SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL.get(),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/fivehundredtwelve_cu_solar_panel_side"),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/suns_complement_solar_panel_top"));
 	
-		this.createSolarPanel(YATMBlocks.CRUDE_SOLAR_PANEL.get(), YATMItems.CRUDE_SOLAR_PANEL_ITEM.get(),
+		this.createSolarPanel(YATMBlocks.CRUDE_SOLAR_PANEL.get(), YATMItems.CRUDE_SOLAR_PANEL.get(),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/one_cu_solar_panel_side"),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/crude_solar_panel_top"));
-		this.createSolarPanel(YATMBlocks.ADVANCED_SOLAR_PANEL.get(), YATMItems.ADVANCED_SOLAR_PANEL_ITEM.get(),
+		this.createSolarPanel(YATMBlocks.ADVANCED_SOLAR_PANEL.get(), YATMItems.ADVANCED_SOLAR_PANEL.get(),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/eight_cu_solar_panel_side"),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/advanced_solar_panel_top"));
-		this.createSolarPanel(YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get(), YATMItems.SUNS_COMPLEMENT_SOLAR_PANEL_ITEM.get(),
+		this.createSolarPanel(YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get(), YATMItems.SUNS_COMPLEMENT_SOLAR_PANEL.get(),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/sixtyfour_cu_solar_panel_side"),
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/suns_complement_solar_panel_top"));
 		

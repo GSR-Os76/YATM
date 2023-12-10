@@ -1,4 +1,4 @@
-// 1.20.1	2023-12-05T11:47:52.1102168	Block States: gsr_yatm
+// 1.20.2	2023-12-10T18:17:57.6882951	Block States: gsr_yatm
 11aad184ca6aaadbd7319a44c5a1985f7c029a1c assets/gsr_yatm/blockstates/adamum.json
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 a2a385d05e4f86cda9dd2c5a246077dac4e32579 assets/gsr_yatm/blockstates/advanced_solar_panel.json
@@ -578,7 +578,7 @@ af8bd795fc533236b07cb40603e6c274a54a99b2 assets/gsr_yatm/models/item/soul_afflic
 2e712dded50fb22f67232c08a47f7ecc3848135c assets/gsr_yatm/models/item/soul_afflicted_stripped_rubber_log.json
 279fc75804adc8f06984b4e385e385ce7b54dfa7 assets/gsr_yatm/models/item/soul_afflicted_stripped_rubber_wood.json
 84c221d37be5b6abd5800e5392db9bef9417f7a0 assets/gsr_yatm/models/item/spinning_wheel.json
-5913e935acf5f46f1ab3d12979f31d08352858e7 assets/gsr_yatm/models/item/steel_bioler.json
+5913e935acf5f46f1ab3d12979f31d08352858e7 assets/gsr_yatm/models/item/steel_bioreactor.json
 2e8a1f59e451a47bdd7c6e876e1a020fd18a0de9 assets/gsr_yatm/models/item/steel_boiler.json
 79aa8e72878b6e62b8c8a0246ada8e05bbd8a950 assets/gsr_yatm/models/item/steel_crucible.json
 cae289c192ba12d79a64335460fd440fdc956b1c assets/gsr_yatm/models/item/steel_crystallizer.json

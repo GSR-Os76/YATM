@@ -276,10 +276,10 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		
 		// ITEMS \\
-		this.add(YATMItems.RUBBER_BOAT_ITEM.get(), "Rubber Boat");
-		this.add(YATMItems.RUBBER_CHEST_BOAT_ITEM.get(), "Rubber Chest Boat");
-		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_BOAT_ITEM.get(), "Soul Afflicted Rubber Boat");
-		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT_ITEM.get(), "Soul Afflicted Rubber Chest Boat");
+		this.add(YATMItems.RUBBER_BOAT.get(), "Rubber Boat");
+		this.add(YATMItems.RUBBER_CHEST_BOAT.get(), "Rubber Chest Boat");
+		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_BOAT.get(), "Soul Afflicted Rubber Boat");
+		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT.get(), "Soul Afflicted Rubber Chest Boat");
 					
 		this.add(YATMItems.BASIN_OF_TEARS_SEED.get(), "Crying Plant Seeds");
 		this.add(YATMItems.DILUTED_TEAR_BOTTLE.get(), "Diluted Tear Bottle");		

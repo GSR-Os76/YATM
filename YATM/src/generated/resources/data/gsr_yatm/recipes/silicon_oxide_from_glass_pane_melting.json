@@ -1,15 +1,12 @@
 {
   "type": "gsr_yatm:melting",
   "input": {
-    "ingedient": {
-      "type": "gsr_yatm:item_tag_ingredient",
-      "count": 1,
-      "tag": "forge:glass_panes"
-    }
+    "type": "gsr_yatm:item_tag_ingredient",
+    "tag": "forge:glass_panes"
   },
   "result": {
-    "count": 375,
-    "fluid": "gsr_yatm:silicon_oxide"
+    "Amount": 375,
+    "FluidName": "gsr_yatm:silicon_oxide"
   },
   "temperature": 1989,
   "time": 135

@@ -290,7 +290,7 @@ public class YATMBlocks
 	public static final RegistryObject<FlowerPotBlock> POTTED_BLEACHED_ICE_CORAL_YOUNG = BLOCKS.register("potted_bleached_ice_coral_young", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.BLEACHED_ICE_CORAL_YOUNG.get(), YATMBlockProperties.FLOWER_POT));
 	public static final RegistryObject<FlowerPotBlock> POTTED_BLEACHED_ICE_CORAL_POLYP = BLOCKS.register("potted_bleached_ice_coral_polyp", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.BLEACHED_ICE_CORAL_POLYP.get(), YATMBlockProperties.FLOWER_POT));
 	
-	public static final RegistryObject<PhantasmalShelfFungiBlock> PHANTASMAL_SHELF_FUNGUS = BLOCKS.register("phantasmal_shelf_fungus", () -> new PhantasmalShelfFungiBlock(YATMBlockProperties.PHANTASMAL_SHELF_FUNGUS, YATMBlockShapes.PHANTASMAL_SHELF_FUNGUS, YATMItems.PHANTASMAL_SHELF_FUNGUS_ITEM::get));
+	public static final RegistryObject<PhantasmalShelfFungiBlock> PHANTASMAL_SHELF_FUNGUS = BLOCKS.register("phantasmal_shelf_fungus", () -> new PhantasmalShelfFungiBlock(YATMBlockProperties.PHANTASMAL_SHELF_FUNGUS, YATMBlockShapes.PHANTASMAL_SHELF_FUNGUS, YATMItems.PHANTASMAL_SHELF_FUNGUS::get));
 	
 	// TODO, properties
 	public static final RegistryObject<PitcherClusterBlock> PITCHER_CLUSTER = BLOCKS.register("pitcher_cluster", () -> new PitcherClusterBlock(YATMBlockProperties.CROP, YATMBlockShapes.PITCHER_CLUSTER));

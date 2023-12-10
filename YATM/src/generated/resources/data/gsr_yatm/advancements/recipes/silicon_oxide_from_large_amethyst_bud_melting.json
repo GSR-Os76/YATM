@@ -1,4 +1,5 @@
 {
+  "parent": "minecraft:recipes/root",
   "criteria": {
     "has_ingredient": {
       "conditions": {
@@ -11,12 +12,24 @@
         ]
       },
       "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "gsr_yatm:silicon_oxide_from_large_amethyst_bud_melting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
     }
   },
   "requirements": [
     [
+      "has_the_recipe",
       "has_ingredient"
     ]
   ],
-  "sends_telemetry_event": true
+  "rewards": {
+    "recipes": [
+      "gsr_yatm:silicon_oxide_from_large_amethyst_bud_melting"
+    ]
+  },
+  "sends_telemetry_event": false
 }

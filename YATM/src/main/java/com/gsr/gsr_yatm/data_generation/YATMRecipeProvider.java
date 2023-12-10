@@ -111,10 +111,10 @@ public class YATMRecipeProvider extends RecipeProvider
 		
 		this.addCandleLanterns(output);
 		
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.HANGING_POT_HOOK_ITEM.get(), 1).pattern("c ").pattern("p ").define('c', Items.CHAIN).define('p', Items.FLOWER_POT).unlockedBy("has_pot", has(Items.FLOWER_POT)).save(output, YetAnotherTechMod.MODID + ":hanging_pot_from_shaped_crafting");
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.GRAFTING_TABLE_ITEM.get(), 1).pattern("f ").pattern("t ").define('f', YATMItems.FOLIAR_STEEL.get()).define('t', Items.CRAFTING_TABLE).unlockedBy("has_item", has(Items.CRAFTING_TABLE)).save(output, YetAnotherTechMod.MODID + ":grafting_table_from_shaped_crafting");
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.SAP_COLLECTOR_ITEM.get(), 1).pattern("   ").pattern("p p").pattern("sss").define('p', ItemTags.PLANKS).define('s', ItemTags.SLABS).unlockedBy("has_item", has(ItemTags.SLABS)).save(output, YetAnotherTechMod.MODID + ":sap_collector_from_shaped_crafting");
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.SPINNING_WHEEL_ITEM.get(), 1).pattern(" sw").pattern("www").pattern("w w").define('w', ItemTags.PLANKS).define('s', Items.STRING).unlockedBy("has_item", has(ItemTags.PLANKS)).save(output, YetAnotherTechMod.MODID + ":spinning_wheel_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.HANGING_POT_HOOK.get(), 1).pattern("c ").pattern("p ").define('c', Items.CHAIN).define('p', Items.FLOWER_POT).unlockedBy("has_pot", has(Items.FLOWER_POT)).save(output, YetAnotherTechMod.MODID + ":hanging_pot_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.GRAFTING_TABLE.get(), 1).pattern("f ").pattern("t ").define('f', YATMItems.FOLIAR_STEEL.get()).define('t', Items.CRAFTING_TABLE).unlockedBy("has_item", has(Items.CRAFTING_TABLE)).save(output, YetAnotherTechMod.MODID + ":grafting_table_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.SAP_COLLECTOR.get(), 1).pattern("   ").pattern("p p").pattern("sss").define('p', ItemTags.PLANKS).define('s', ItemTags.SLABS).unlockedBy("has_item", has(ItemTags.SLABS)).save(output, YetAnotherTechMod.MODID + ":sap_collector_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.SPINNING_WHEEL.get(), 1).pattern(" sw").pattern("www").pattern("w w").define('w', ItemTags.PLANKS).define('s', Items.STRING).unlockedBy("has_item", has(ItemTags.PLANKS)).save(output, YetAnotherTechMod.MODID + ":spinning_wheel_shaped_crafting");
 		
 		
 		this.addOneToX(output, YATMItems.COTTON_BOLLS.get(), YATMItems.RAW_COTTON_FIBER.get(), 1, YetAnotherTechMod.MODID + ":raw_cotton_fiber_from_cotton_bolls_shapeless_crafting");
@@ -124,8 +124,8 @@ public class YATMRecipeProvider extends RecipeProvider
 		// TO BECOME GRAFTING \\
 		
 		// foliar steel block ingot-like nugget-like mutual interchange
-		this.addOneToNine(output, YATMItems.FOLIAR_STEEL_BLOCK_ITEM.get(), YATMItems.FOLIAR_STEEL.get(), YetAnotherTechMod.MODID + ":foliar_steel_from_block_shapeless_crafting");
-		this.addNineToOne(output, YATMItems.FOLIAR_STEEL.get(), YATMItems.FOLIAR_STEEL_BLOCK_ITEM.get(), YetAnotherTechMod.MODID + ":foliar_steel_block_from_bar_shapeless_crafting");
+		this.addOneToNine(output, YATMItems.FOLIAR_STEEL_BLOCK.get(), YATMItems.FOLIAR_STEEL.get(), YetAnotherTechMod.MODID + ":foliar_steel_from_block_shapeless_crafting");
+		this.addNineToOne(output, YATMItems.FOLIAR_STEEL.get(), YATMItems.FOLIAR_STEEL_BLOCK.get(), YetAnotherTechMod.MODID + ":foliar_steel_block_from_bar_shapeless_crafting");
 		this.addOneToNine(output, YATMItems.FOLIAR_STEEL.get(), YATMItems.FOLIAR_STEEL_SHRED.get(), YetAnotherTechMod.MODID + ":foliar_steel_shred_from_bar_shapeless_crafting");
 		this.addNineToOne(output, YATMItems.FOLIAR_STEEL_SHRED.get(), YATMItems.FOLIAR_STEEL.get(), YetAnotherTechMod.MODID + ":foliar_steel_from_shred_shapeless_crafting");
 
@@ -135,21 +135,21 @@ public class YATMRecipeProvider extends RecipeProvider
 		// TODO, add all devices
 		this.addDeviceRecipes(output);
 		
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.STEEL_TANK_ITEM.get(), 1).pattern("fff").pattern("fgf").pattern("fff").define('f', YATMItems.FOLIAR_STEEL.get()).define('g', Tags.Items.GLASS).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL.get())).save(output, YetAnotherTechMod.MODID + ":steel_tank_from_shaped_crafting");
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CHANNEL_VINES_ITEM.get(), 9).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL.get())).save(output, YetAnotherTechMod.MODID + ":channel_vines_from_foliar_steel_shaped_crafting");
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CHANNEL_VINES_ITEM.get(), 1).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.FOLIAR_STEEL_SHRED.get()).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL_SHRED.get())).save(output, YetAnotherTechMod.MODID + ":channel_vines_from_foliar_steel_shred_shaped_crafting");
-		this.addOneToX(output, YATMItems.CHANNEL_VINES_ITEM.get(), YATMItems.FOLIAR_STEEL_SHRED.get(), 3, YetAnotherTechMod.MODID + ":foliar_steel_shreds_from_channel_vine_shapeless_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.STEEL_TANK.get(), 1).pattern("fff").pattern("fgf").pattern("fff").define('f', YATMItems.FOLIAR_STEEL.get()).define('g', Tags.Items.GLASS).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL.get())).save(output, YetAnotherTechMod.MODID + ":steel_tank_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CHANNEL_VINES.get(), 9).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL.get())).save(output, YetAnotherTechMod.MODID + ":channel_vines_from_foliar_steel_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CHANNEL_VINES.get(), 1).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.FOLIAR_STEEL_SHRED.get()).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL_SHRED.get())).save(output, YetAnotherTechMod.MODID + ":channel_vines_from_foliar_steel_shred_shaped_crafting");
+		this.addOneToX(output, YATMItems.CHANNEL_VINES.get(), YATMItems.FOLIAR_STEEL_SHRED.get(), 3, YetAnotherTechMod.MODID + ":foliar_steel_shreds_from_channel_vine_shapeless_crafting");
 
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.KINETIC_DRIVER.get(), 1).pattern(" r ").pattern("fpf").pattern(" v ").define('r', Tags.Items.DUSTS_REDSTONE).define('p', YATMItemTags.FORGE_PISTONS_KEY).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES_ITEM.get()).unlockedBy("has_item", has(YATMItemTags.FORGE_PISTONS_KEY)).save(output, YetAnotherTechMod.MODID + ":kinetic_driver_from_shaped_crafting");
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.KINETIC_DRIVER.get(), 1).pattern(" v ").pattern("fpf").pattern(" r ").define('r', Tags.Items.DUSTS_REDSTONE).define('p', YATMItemTags.FORGE_PISTONS_KEY).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES_ITEM.get()).unlockedBy("has_item", has(YATMItemTags.FORGE_PISTONS_KEY)).save(output, YetAnotherTechMod.MODID + ":fkinetic_driver_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.KINETIC_DRIVER.get(), 1).pattern(" r ").pattern("fpf").pattern(" v ").define('r', Tags.Items.DUSTS_REDSTONE).define('p', YATMItemTags.FORGE_PISTONS_KEY).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItemTags.FORGE_PISTONS_KEY)).save(output, YetAnotherTechMod.MODID + ":kinetic_driver_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.KINETIC_DRIVER.get(), 1).pattern(" v ").pattern("fpf").pattern(" r ").define('r', Tags.Items.DUSTS_REDSTONE).define('p', YATMItemTags.FORGE_PISTONS_KEY).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItemTags.FORGE_PISTONS_KEY)).save(output, YetAnotherTechMod.MODID + ":fkinetic_driver_from_shaped_crafting");
 		
 		// TODO, torchflower or candlelily -> raw exothermal gland
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.EMBER_GLAND.get(), 1).pattern("g ").pattern("v ").define('g', YATMItems.RAW_EXOTHEMIC_GLAND.get()).define('v', YATMItems.CONDUIT_VINES_ITEM.get()).unlockedBy("has_item", has(YATMItems.RAW_EXOTHEMIC_GLAND.get())).save(output, YetAnotherTechMod.MODID + ":ember_gland_from_shaped_crafting");
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.FLAME_GLAND.get(), 1).pattern("gg").pattern("vv").define('g', YATMItems.EMBER_GLAND.get()).define('v', YATMItems.CONDUIT_VINES_ITEM.get()).unlockedBy("has_item", has(YATMItems.EMBER_GLAND.get())).save(output, YetAnotherTechMod.MODID + ":flame_gland_from_shaped_crafting");
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.TORCH_GLAND.get(), 1).pattern("ggg").pattern("vvv").pattern("   ").define('g', YATMItems.FLAME_GLAND.get()).define('v', YATMItems.CONDUIT_VINES_ITEM.get()).unlockedBy("has_item", has(YATMItems.FLAME_GLAND.get())).save(output, YetAnotherTechMod.MODID + ":torch_gland_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.EMBER_GLAND.get(), 1).pattern("g ").pattern("v ").define('g', YATMItems.RAW_EXOTHEMIC_GLAND.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.RAW_EXOTHEMIC_GLAND.get())).save(output, YetAnotherTechMod.MODID + ":ember_gland_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.FLAME_GLAND.get(), 1).pattern("gg").pattern("vv").define('g', YATMItems.EMBER_GLAND.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.EMBER_GLAND.get())).save(output, YetAnotherTechMod.MODID + ":flame_gland_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.TORCH_GLAND.get(), 1).pattern("ggg").pattern("vvv").pattern("   ").define('g', YATMItems.FLAME_GLAND.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.FLAME_GLAND.get())).save(output, YetAnotherTechMod.MODID + ":torch_gland_from_shaped_crafting");
 		
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CURRENT_BATTERY.get(), 1).pattern(" v ").pattern("fbf").pattern("fbf").define('b', YATMItems.CURRENT_TUBER.get()).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES_ITEM.get()).unlockedBy("has_item", has(YATMItems.CURRENT_TUBER.get())).save(output, YetAnotherTechMod.MODID + ":current_battery_from_shaped_crafting");
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.ADVANCED_CURRENT_BATTERY.get(), 1).pattern("vbv").pattern("fbf").pattern("fbf").define('b', YATMItems.CURRENT_BATTERY.get()).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES_ITEM.get()).unlockedBy("has_item", has(YATMItems.CURRENT_BATTERY.get())).save(output, YetAnotherTechMod.MODID + ":advanced_current_battery_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CURRENT_BATTERY.get(), 1).pattern(" v ").pattern("fbf").pattern("fbf").define('b', YATMItems.CURRENT_TUBER.get()).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.CURRENT_TUBER.get())).save(output, YetAnotherTechMod.MODID + ":current_battery_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.ADVANCED_CURRENT_BATTERY.get(), 1).pattern("vbv").pattern("fbf").pattern("fbf").define('b', YATMItems.CURRENT_BATTERY.get()).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.CURRENT_BATTERY.get())).save(output, YetAnotherTechMod.MODID + ":advanced_current_battery_from_shaped_crafting");
 
 		
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.SPEED_UPGRADE.get(), 1).pattern(" f ").pattern("fgf").pattern(" f ").define('f', YATMItems.FOLIAR_STEEL.get()).define('g', Tags.Items.INGOTS_GOLD).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL.get())).save(output, YetAnotherTechMod.MODID + ":speed_upgrade_from_shaped_crafting");
@@ -168,56 +168,56 @@ public class YATMRecipeProvider extends RecipeProvider
 
 		// rubber block bar mutual interchange
 		this.addOneToNine(output, YATMItemTags.FORGE_STORAGE_BLOCKS_RUBBER_KEY, YATMItems.RUBBER_BAR.get(), YetAnotherTechMod.MODID + ":rubber_bar_from_block_shapeless_crafting");
-		this.addNineToOne(output, YATMItemTags.FORGE_RUBBER_INGOTS_KEY, YATMItems.RUBBER_BLOCK_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_block_from_bar_shapeless_crafting");
+		this.addNineToOne(output, YATMItemTags.FORGE_RUBBER_INGOTS_KEY, YATMItems.RUBBER_BLOCK.get(), YetAnotherTechMod.MODID + ":rubber_block_from_bar_shapeless_crafting");
 
 	} // end addStorageBlockNuggetLikeRecipes()
 	
 	private void addRubberWoodCoreRecipes(@NotNull RecipeOutput output) 
 	{
-		this.addTwoByTwoToX(output, YATMItems.RUBBER_LOG_ITEM.get(), YATMItems.RUBBER_WOOD_ITEM.get(), 3, YetAnotherTechMod.MODID + ":rubber_wood_from_shaped_crafting");
-		this.addTwoByTwoToX(output, YATMItems.STRIPPED_RUBBER_LOG_ITEM.get(), YATMItems.STRIPPED_RUBBER_WOOD_ITEM.get(), 3, YetAnotherTechMod.MODID + ":stripped_rubber_wood_from_shaped_crafting");
-		this.addOneToFour(output, YATMItemTags.RUBBER_TREE_LOGS_KEY, YATMItems.RUBBER_PLANKS_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_planks_from_shapeless_crafting");
-		this.addFancyPlanks(output, YATMItems.RUBBER_PLANKS_ITEM.get(), YATMItems.RUBBER_SLAB_ITEM.get(), YATMItems.FANCY_RUBBER_PLANKS_ITEM.get(), YetAnotherTechMod.MODID + ":fancy_rubber_planks_from_shaped_crafting");
-		this.addStairs(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_STAIRS_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_stairs_from_shaped_crafting");
-		this.addSlabs(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_SLAB_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_slab_from_shaped_crafting");
-		this.addFence(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_FENCE_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_fence_from_shaped_crafting");
-		this.addFenceGate(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_FENCE_GATE_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_fence_gate_from_shaped_crafting");
-		this.addDoor(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_DOOR_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_door_from_shaped_crafting");
-		this.addTrapdoor(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_TRAPDOOR_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_trapdoor_from_shaped_crafting");
-		this.addPressurePlate(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_PRESSURE_PLATE_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_pressure_plate_from_shaped_crafting");
-		this.addButton(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_BUTTON_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_button_from_shaped_crafting");
+		this.addTwoByTwoToX(output, YATMItems.RUBBER_LOG.get(), YATMItems.RUBBER_WOOD.get(), 3, YetAnotherTechMod.MODID + ":rubber_wood_from_shaped_crafting");
+		this.addTwoByTwoToX(output, YATMItems.STRIPPED_RUBBER_LOG.get(), YATMItems.STRIPPED_RUBBER_WOOD.get(), 3, YetAnotherTechMod.MODID + ":stripped_rubber_wood_from_shaped_crafting");
+		this.addOneToFour(output, YATMItemTags.RUBBER_TREE_LOGS_KEY, YATMItems.RUBBER_PLANKS.get(), YetAnotherTechMod.MODID + ":rubber_planks_from_shapeless_crafting");
+		this.addFancyPlanks(output, YATMItems.RUBBER_PLANKS.get(), YATMItems.RUBBER_SLAB.get(), YATMItems.FANCY_RUBBER_PLANKS.get(), YetAnotherTechMod.MODID + ":fancy_rubber_planks_from_shaped_crafting");
+		this.addStairs(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_STAIRS.get(), YetAnotherTechMod.MODID + ":rubber_stairs_from_shaped_crafting");
+		this.addSlabs(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_SLAB.get(), YetAnotherTechMod.MODID + ":rubber_slab_from_shaped_crafting");
+		this.addFence(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_FENCE.get(), YetAnotherTechMod.MODID + ":rubber_fence_from_shaped_crafting");
+		this.addFenceGate(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_FENCE_GATE.get(), YetAnotherTechMod.MODID + ":rubber_fence_gate_from_shaped_crafting");
+		this.addDoor(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_DOOR.get(), YetAnotherTechMod.MODID + ":rubber_door_from_shaped_crafting");
+		this.addTrapdoor(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_TRAPDOOR.get(), YetAnotherTechMod.MODID + ":rubber_trapdoor_from_shaped_crafting");
+		this.addPressurePlate(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_PRESSURE_PLATE.get(), YetAnotherTechMod.MODID + ":rubber_pressure_plate_from_shaped_crafting");
+		this.addButton(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_BUTTON.get(), YetAnotherTechMod.MODID + ":rubber_button_from_shaped_crafting");
 		
-		this.addSign(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_SIGN_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_sign_from_shaped_crafting");
-		this.addHangingSign(output, YATMItems.STRIPPED_RUBBER_LOG_ITEM.get(), YATMItems.RUBBER_HANGING_SIGN_ITEM.get(), YetAnotherTechMod.MODID + ":rubber_hanging_sign_from_shaped_crafting");
-		this.addBoat(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_BOAT_ITEM.get(), "rubber_boat_from_shaped_crafting");
-		super.chestBoat(output, YATMItems.RUBBER_CHEST_BOAT_ITEM.get(), YATMItems.RUBBER_BOAT_ITEM.get());
+		this.addSign(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_SIGN.get(), YetAnotherTechMod.MODID + ":rubber_sign_from_shaped_crafting");
+		this.addHangingSign(output, YATMItems.STRIPPED_RUBBER_LOG.get(), YATMItems.RUBBER_HANGING_SIGN.get(), YetAnotherTechMod.MODID + ":rubber_hanging_sign_from_shaped_crafting");
+		this.addBoat(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_BOAT.get(), "rubber_boat_from_shaped_crafting");
+		super.chestBoat(output, YATMItems.RUBBER_CHEST_BOAT.get(), YATMItems.RUBBER_BOAT.get());
 
 	} // end addRubberWoodCoreRecipes()
 	
 	private void addSoulAfflictedRubberWoodCoreRecipes(@NotNull RecipeOutput output) 
 	{
-		this.addTwoByTwoToX(output, YATMItems.SOUL_AFFLICTED_RUBBER_LOG_ITEM.get(), YATMItems.SOUL_AFFLICTED_RUBBER_WOOD_ITEM.get(), 3, YetAnotherTechMod.MODID + ":soul_afflicted_rubber_wood_from_shaped_crafting");
-		this.addTwoByTwoToX(output, YATMItems.SOUL_AFFLICTED_STRIPPED_RUBBER_LOG_ITEM.get(), YATMItems.SOUL_AFFLICTED_STRIPPED_RUBBER_WOOD_ITEM.get(), 3, YetAnotherTechMod.MODID + ":soul_afflicted_stripped_rubber_wood_from_shaped_crafting");
-		this.addOneToFour(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_PLANKS_ITEM.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_planks_from_shapeless_crafting");
-		this.addFancyPlanks(output, YATMItems.SOUL_AFFLICTED_RUBBER_PLANKS_ITEM.get(), YATMItems.SOUL_AFFLICTED_RUBBER_SLAB_ITEM.get(), YATMItems.SOUL_AFFLICTED_FANCY_RUBBER_PLANKS_TILED_ITEM.get(), YetAnotherTechMod.MODID + ":soul_afflicted_fancy_rubber_planks_tiled_from_shaped_crafting");
+		this.addTwoByTwoToX(output, YATMItems.SOUL_AFFLICTED_RUBBER_LOG.get(), YATMItems.SOUL_AFFLICTED_RUBBER_WOOD.get(), 3, YetAnotherTechMod.MODID + ":soul_afflicted_rubber_wood_from_shaped_crafting");
+		this.addTwoByTwoToX(output, YATMItems.SOUL_AFFLICTED_STRIPPED_RUBBER_LOG.get(), YATMItems.SOUL_AFFLICTED_STRIPPED_RUBBER_WOOD.get(), 3, YetAnotherTechMod.MODID + ":soul_afflicted_stripped_rubber_wood_from_shaped_crafting");
+		this.addOneToFour(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_PLANKS.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_planks_from_shapeless_crafting");
+		this.addFancyPlanks(output, YATMItems.SOUL_AFFLICTED_RUBBER_PLANKS.get(), YATMItems.SOUL_AFFLICTED_RUBBER_SLAB.get(), YATMItems.SOUL_AFFLICTED_FANCY_RUBBER_PLANKS_TILED.get(), YetAnotherTechMod.MODID + ":soul_afflicted_fancy_rubber_planks_tiled_from_shaped_crafting");
 
 		// TODO, make better obtainable, such as not conflicting with the button crafting recipe
-		this.addOneToX(output, YATMItems.SOUL_AFFLICTED_FANCY_RUBBER_PLANKS_TILED_ITEM.get(), YATMItems.SOUL_AFFLICTED_FANCY_RUBBER_PLANKS_ITEM.get(), 1, YetAnotherTechMod.MODID + ":soul_afflicted_fancy_rubber_planks_from_tiled_from_shapeless_crafting");
-		this.addOneToX(output, YATMItems.SOUL_AFFLICTED_FANCY_RUBBER_PLANKS_ITEM.get(), YATMItems.SOUL_AFFLICTED_FANCY_RUBBER_PLANKS_TILED_ITEM.get(), 1, YetAnotherTechMod.MODID + ":soul_afflicted_fancy_rubber_planks_tiled_from_untiled_from_shapeless_crafting");
+		this.addOneToX(output, YATMItems.SOUL_AFFLICTED_FANCY_RUBBER_PLANKS_TILED.get(), YATMItems.SOUL_AFFLICTED_FANCY_RUBBER_PLANKS.get(), 1, YetAnotherTechMod.MODID + ":soul_afflicted_fancy_rubber_planks_from_tiled_from_shapeless_crafting");
+		this.addOneToX(output, YATMItems.SOUL_AFFLICTED_FANCY_RUBBER_PLANKS.get(), YATMItems.SOUL_AFFLICTED_FANCY_RUBBER_PLANKS_TILED.get(), 1, YetAnotherTechMod.MODID + ":soul_afflicted_fancy_rubber_planks_tiled_from_untiled_from_shapeless_crafting");
 		
-		this.addStairs(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_STAIRS_ITEM.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_stairs_from_shaped_crafting");
-		this.addSlabs(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_SLAB_ITEM.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_slab_from_shaped_crafting");
-		this.addFence(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_FENCE_ITEM.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_fence_from_shaped_crafting");
-		this.addFenceGate(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_FENCE_GATE_ITEM.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_fence_gate_from_shaped_crafting");
-		this.addDoor(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_DOOR_ITEM.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_door_from_shaped_crafting");
-		this.addTrapdoor(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_TRAPDOOR_ITEM.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_trapdoor_from_shaped_crafting");
-		this.addPressurePlate(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE_ITEM.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_pressure_plate_from_shaped_crafting");
-		this.addButton(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_BUTTON_ITEM.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_button_from_shaped_crafting");
+		this.addStairs(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_STAIRS.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_stairs_from_shaped_crafting");
+		this.addSlabs(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_SLAB.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_slab_from_shaped_crafting");
+		this.addFence(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_FENCE.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_fence_from_shaped_crafting");
+		this.addFenceGate(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_FENCE_GATE.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_fence_gate_from_shaped_crafting");
+		this.addDoor(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_DOOR.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_door_from_shaped_crafting");
+		this.addTrapdoor(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_TRAPDOOR.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_trapdoor_from_shaped_crafting");
+		this.addPressurePlate(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_PRESSURE_PLATE.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_pressure_plate_from_shaped_crafting");
+		this.addButton(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_BUTTON.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_button_from_shaped_crafting");
 		
-		this.addSign(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_SIGN_ITEM.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_sign_from_shaped_crafting");
-		this.addHangingSign(output, YATMItems.SOUL_AFFLICTED_STRIPPED_RUBBER_LOG_ITEM.get(), YATMItems.SOUL_AFFLICTED_RUBBER_HANGING_SIGN_ITEM.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_hanging_sign_from_shaped_crafting");
-		this.addBoat(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_BOAT_ITEM.get(), "soul_afflicted_rubber_boat_from_shaped_crafting");
-		super.chestBoat(output, YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT_ITEM.get(), YATMItems.SOUL_AFFLICTED_RUBBER_BOAT_ITEM.get());
+		this.addSign(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_SIGN.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_sign_from_shaped_crafting");
+		this.addHangingSign(output, YATMItems.SOUL_AFFLICTED_STRIPPED_RUBBER_LOG.get(), YATMItems.SOUL_AFFLICTED_RUBBER_HANGING_SIGN.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_hanging_sign_from_shaped_crafting");
+		this.addBoat(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_BOAT.get(), "soul_afflicted_rubber_boat_from_shaped_crafting");
+		super.chestBoat(output, YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT.get(), YATMItems.SOUL_AFFLICTED_RUBBER_BOAT.get());
 
 	} // end addSoulAfflictedRubberWoodCoreRecipes()
 
@@ -232,23 +232,23 @@ public class YATMRecipeProvider extends RecipeProvider
 		.unlockedBy("has_item", has(candle))
 		.save(output, YetAnotherTechMod.MODID + ":" + color + "candle_lantern_from_shaped_crafting");
 		
-		forCandle.accept(Items.CANDLE, "", YATMItems.CANDLE_LANTERN_ITEM.get());
-		forCandle.accept(Items.WHITE_CANDLE, "white_", YATMItems.WHITE_CANDLE_LANTERN_ITEM.get());
-		forCandle.accept(Items.ORANGE_CANDLE, "orange_", YATMItems.ORANGE_CANDLE_LANTERN_ITEM.get());
-		forCandle.accept(Items.MAGENTA_CANDLE, "magenta_", YATMItems.MAGENTA_CANDLE_LANTERN_ITEM.get());
-		forCandle.accept(Items.LIGHT_BLUE_CANDLE, "light_blue_", YATMItems.LIGHT_BLUE_CANDLE_LANTERN_ITEM.get());
-		forCandle.accept(Items.YELLOW_CANDLE, "yellow_", YATMItems.YELLOW_CANDLE_LANTERN_ITEM.get());
-		forCandle.accept(Items.LIME_CANDLE, "lime_", YATMItems.LIME_CANDLE_LANTERN_ITEM.get());
-		forCandle.accept(Items.PINK_CANDLE, "pink_", YATMItems.PINK_CANDLE_LANTERN_ITEM.get());
-		forCandle.accept(Items.GRAY_CANDLE, "gray_", YATMItems.GRAY_CANDLE_LANTERN_ITEM.get());
-		forCandle.accept(Items.LIGHT_GRAY_CANDLE, "light_gray_", YATMItems.LIGHT_GRAY_CANDLE_LANTERN_ITEM.get());
-		forCandle.accept(Items.CYAN_CANDLE, "cyan_", YATMItems.CYAN_CANDLE_LANTERN_ITEM.get());
-		forCandle.accept(Items.PURPLE_CANDLE, "purple_", YATMItems.PURPLE_CANDLE_LANTERN_ITEM.get());
-		forCandle.accept(Items.BLUE_CANDLE, "blue_", YATMItems.BLUE_CANDLE_LANTERN_ITEM.get());
-		forCandle.accept(Items.BROWN_CANDLE, "brown_", YATMItems.BROWN_CANDLE_LANTERN_ITEM.get());
-		forCandle.accept(Items.GREEN_CANDLE, "green_", YATMItems.GREEN_CANDLE_LANTERN_ITEM.get());
-		forCandle.accept(Items.RED_CANDLE, "red_", YATMItems.RED_CANDLE_LANTERN_ITEM.get());
-		forCandle.accept(Items.BLACK_CANDLE, "black_", YATMItems.BLACK_CANDLE_LANTERN_ITEM.get());		
+		forCandle.accept(Items.CANDLE, "", YATMItems.CANDLE_LANTERN.get());
+		forCandle.accept(Items.WHITE_CANDLE, "white_", YATMItems.WHITE_CANDLE_LANTERN.get());
+		forCandle.accept(Items.ORANGE_CANDLE, "orange_", YATMItems.ORANGE_CANDLE_LANTERN.get());
+		forCandle.accept(Items.MAGENTA_CANDLE, "magenta_", YATMItems.MAGENTA_CANDLE_LANTERN.get());
+		forCandle.accept(Items.LIGHT_BLUE_CANDLE, "light_blue_", YATMItems.LIGHT_BLUE_CANDLE_LANTERN.get());
+		forCandle.accept(Items.YELLOW_CANDLE, "yellow_", YATMItems.YELLOW_CANDLE_LANTERN.get());
+		forCandle.accept(Items.LIME_CANDLE, "lime_", YATMItems.LIME_CANDLE_LANTERN.get());
+		forCandle.accept(Items.PINK_CANDLE, "pink_", YATMItems.PINK_CANDLE_LANTERN.get());
+		forCandle.accept(Items.GRAY_CANDLE, "gray_", YATMItems.GRAY_CANDLE_LANTERN.get());
+		forCandle.accept(Items.LIGHT_GRAY_CANDLE, "light_gray_", YATMItems.LIGHT_GRAY_CANDLE_LANTERN.get());
+		forCandle.accept(Items.CYAN_CANDLE, "cyan_", YATMItems.CYAN_CANDLE_LANTERN.get());
+		forCandle.accept(Items.PURPLE_CANDLE, "purple_", YATMItems.PURPLE_CANDLE_LANTERN.get());
+		forCandle.accept(Items.BLUE_CANDLE, "blue_", YATMItems.BLUE_CANDLE_LANTERN.get());
+		forCandle.accept(Items.BROWN_CANDLE, "brown_", YATMItems.BROWN_CANDLE_LANTERN.get());
+		forCandle.accept(Items.GREEN_CANDLE, "green_", YATMItems.GREEN_CANDLE_LANTERN.get());
+		forCandle.accept(Items.RED_CANDLE, "red_", YATMItems.RED_CANDLE_LANTERN.get());
+		forCandle.accept(Items.BLACK_CANDLE, "black_", YATMItems.BLACK_CANDLE_LANTERN.get());		
 	} // end addCandleLanterns()
 	
 	private void addPoweredToolRecipes(@NotNull RecipeOutput output) 
@@ -292,7 +292,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	private void addDeviceRecipes(@NotNull RecipeOutput output) 
 	{
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.STEEL_BOILER_ITEM.get(), 1).pattern("fff").pattern("g g").pattern("fbf").define('g', Tags.Items.GLASS).define('b', Items.BLAST_FURNACE).define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", has(Items.BLAST_FURNACE)).save(output, YetAnotherTechMod.MODID + ":steel_boiler_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.STEEL_BOILER.get(), 1).pattern("fff").pattern("g g").pattern("fbf").define('g', Tags.Items.GLASS).define('b', Items.BLAST_FURNACE).define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", has(Items.BLAST_FURNACE)).save(output, YetAnotherTechMod.MODID + ":steel_boiler_from_shaped_crafting");
 		
 	} // end addDeviceRecipes()
 	
@@ -300,11 +300,11 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	private void addSmeltingRecipes(@NotNull RecipeOutput output) 
 	{
-		this.addSmelting(output, YATMItems.LATEX_BUCKET.get(), YATMItems.RUBBER_BLOCK_ITEM.get(), .3f, 60, YetAnotherTechMod.MODID + ":rubber_block_from_latex_smelting");
+		this.addSmelting(output, YATMItems.LATEX_BUCKET.get(), YATMItems.RUBBER_BLOCK.get(), .3f, 60, YetAnotherTechMod.MODID + ":rubber_block_from_latex_smelting");
 		
 		this.addSmelting(output, YATMItemTags.FOLIAR_STEEL_ORES_KEY, YATMItems.FOLIAR_STEEL.get(), .1f, 200, YetAnotherTechMod.MODID + ":foliar_steel_from_ore_smelting");
 		
-		this.addSmelting(output, YATMItems.VARIEGATED_CACTUS_ITEM.get(), Items.GREEN_DYE, 1.0f, 100, YetAnotherTechMod.MODID + ":green_dye_from_variegated_cactus_smelting");
+		this.addSmelting(output, YATMItems.VARIEGATED_CACTUS.get(), Items.GREEN_DYE, 1.0f, 100, YetAnotherTechMod.MODID + ":green_dye_from_variegated_cactus_smelting");
 		
 		this.addSmelting(output, YATMItems.DILUTED_TEAR_BOTTLE.get(), Items.GHAST_TEAR, 1.0f, 100, YetAnotherTechMod.MODID + ":ghast_tear_from_diluted_tear_smelting");
 		
@@ -377,16 +377,17 @@ public class YATMRecipeProvider extends RecipeProvider
 	private void addExtractionRecipes(@NotNull RecipeOutput output)
 	{
 		this.addExtraction(output, YATMItemTags.LATEX_EXTRACTABLE_LOGS_KEY, new ItemStack(YATMItems.WOOD_PULP.get(), 6), new FluidStack(YATMFluids.LATEX.get(), 120), 12, 246, YetAnotherTechMod.MODID + ":latex_from_log_extraction");
-		this.addExtraction(output, YATMItems.RUBBER_LEAVES_OLD_ITEM.get(), new ItemStack(YATMItems.WOOD_PULP.get(), 1), new FluidStack(YATMFluids.LATEX.get(), 40), 4, 62, YetAnotherTechMod.MODID + ":latex_from_old_leaves_extraction");
-		this.addExtraction(output, YATMItems.RUBBER_LEAVES_FLOWERING_ITEM.get(), new ItemStack(YATMItems.LEAF_MULCH_ITEM.get(), 2), new FluidStack(YATMFluids.LATEX.get(), 30), 4, 46, YetAnotherTechMod.MODID + ":latex_from_flowering_leaves_extraction");
-		this.addExtraction(output, YATMItems.RUBBER_LEAVES_YOUNG_ITEM.get(), new ItemStack(YATMItems.LEAF_MULCH_ITEM.get(), 1), new FluidStack(YATMFluids.LATEX.get(), 20), 4, 34, YetAnotherTechMod.MODID + ":latex_from_young_leaves_extraction");
-		this.addExtraction(output, YATMItems.RUBBER_MERISTEM_ITEM.get(), new FluidStack(YATMFluids.LATEX.get(), 2), 1, 12, YetAnotherTechMod.MODID + ":latex_from_meristem_extraction");
+		this.addExtraction(output, YATMItems.RUBBER_LEAVES_OLD.get(), new ItemStack(YATMItems.WOOD_PULP.get(), 1), new FluidStack(YATMFluids.LATEX.get(), 40), 4, 62, YetAnotherTechMod.MODID + ":latex_from_old_leaves_extraction");
+		this.addExtraction(output, YATMItems.RUBBER_LEAVES_FLOWERING.get(), new ItemStack(YATMItems.LEAF_MULCH.get(), 2), new FluidStack(YATMFluids.LATEX.get(), 30), 4, 46, YetAnotherTechMod.MODID + ":latex_from_flowering_leaves_extraction");
+		this.addExtraction(output, YATMItems.RUBBER_LEAVES_YOUNG.get(), new ItemStack(YATMItems.LEAF_MULCH.get(), 1), new FluidStack(YATMFluids.LATEX.get(), 20), 4, 34, YetAnotherTechMod.MODID + ":latex_from_young_leaves_extraction");
+		this.addExtraction(output, YATMItems.RUBBER_MERISTEM.get(), new FluidStack(YATMFluids.LATEX.get(), 2), 1, 12, YetAnotherTechMod.MODID + ":latex_from_meristem_extraction");
 		
+		// TODO, maybe something with soul sand and soil
 		this.addExtraction(output, YATMItemTags.SOUL_SAP_EXTRACTABLE_LOGS_KEY, new ItemStack(YATMItems.WOOD_PULP.get(), 6), new FluidStack(YATMFluids.SOUL_SAP.get(), 120), 12, 246, YetAnotherTechMod.MODID + ":soul_sap_from_log_extraction");
-		this.addExtraction(output, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_OLD_ITEM.get(), new ItemStack(YATMItems.WOOD_PULP.get(), 1), new FluidStack(YATMFluids.SOUL_SAP.get(), 40), 4, 62, YetAnotherTechMod.MODID + ":soul_sap_from_old_leaves_extraction");
-		this.addExtraction(output, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING_ITEM.get(), new ItemStack(YATMItems.LEAF_MULCH_ITEM.get(), 2), new FluidStack(YATMFluids.SOUL_SAP.get(), 40), 4, 46, YetAnotherTechMod.MODID + ":soul_sap_from_flowering_leaves_extraction");
-		this.addExtraction(output, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG_ITEM.get(), new ItemStack(YATMItems.LEAF_MULCH_ITEM.get(), 1), new FluidStack(YATMFluids.SOUL_SAP.get(), 20), 4, 34, YetAnotherTechMod.MODID + ":soul_sap_from_young_leaves_extraction");
-		this.addExtraction(output, YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM_ITEM.get(), new FluidStack(YATMFluids.SOUL_SAP.get(), 2), 1, 12, YetAnotherTechMod.MODID + ":soul_sap_from_meristem_extraction");
+		this.addExtraction(output, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_OLD.get(), new ItemStack(YATMItems.WOOD_PULP.get(), 1), new FluidStack(YATMFluids.SOUL_SAP.get(), 40), 4, 62, YetAnotherTechMod.MODID + ":soul_sap_from_old_leaves_extraction");
+		this.addExtraction(output, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get(), new ItemStack(YATMItems.LEAF_MULCH.get(), 2), new FluidStack(YATMFluids.SOUL_SAP.get(), 40), 4, 46, YetAnotherTechMod.MODID + ":soul_sap_from_flowering_leaves_extraction");
+		this.addExtraction(output, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG.get(), new ItemStack(YATMItems.LEAF_MULCH.get(), 1), new FluidStack(YATMFluids.SOUL_SAP.get(), 20), 4, 34, YetAnotherTechMod.MODID + ":soul_sap_from_young_leaves_extraction");
+		this.addExtraction(output, YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), new FluidStack(YATMFluids.SOUL_SAP.get(), 2), 1, 12, YetAnotherTechMod.MODID + ":soul_sap_from_meristem_extraction");
 	
 	} // end addExtractionRecipes()
 	
@@ -395,13 +396,13 @@ public class YATMRecipeProvider extends RecipeProvider
 	private void addGrindingRecipes(@NotNull RecipeOutput output) 
 	{
 		// review wood pulp related things, and add more
-		this.addGrindingRecipe(output, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_OLD_ITEM.get(), new ItemStack(YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get()), 3, 40, YetAnotherTechMod.MODID + ":soul_leaf_mulch_from_old_leaf_grinding");
-		this.addGrindingRecipe(output, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING_ITEM.get(), new ItemStack(YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get()), 2, 26, YetAnotherTechMod.MODID + ":soul_leaf_mulch_from_flowering_leaf_grinding");
-		this.addGrindingRecipe(output, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG_ITEM.get(), new ItemStack(YATMItems.SOUL_AFFLICTED_LEAF_MULCH_ITEM.get()), 1, 20, YetAnotherTechMod.MODID + ":soul_leaf_mulch_from_young_leaf_grinding");
+		this.addGrindingRecipe(output, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_OLD.get(), new ItemStack(YATMItems.SOUL_AFFLICTED_LEAF_MULCH.get()), 3, 40, YetAnotherTechMod.MODID + ":soul_leaf_mulch_from_old_leaf_grinding");
+		this.addGrindingRecipe(output, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get(), new ItemStack(YATMItems.SOUL_AFFLICTED_LEAF_MULCH.get()), 2, 26, YetAnotherTechMod.MODID + ":soul_leaf_mulch_from_flowering_leaf_grinding");
+		this.addGrindingRecipe(output, YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG.get(), new ItemStack(YATMItems.SOUL_AFFLICTED_LEAF_MULCH.get()), 1, 20, YetAnotherTechMod.MODID + ":soul_leaf_mulch_from_young_leaf_grinding");
 		
-		this.addGrindingRecipe(output, YATMItems.RUBBER_LEAVES_OLD_ITEM.get(), new ItemStack(YATMItems.LEAF_MULCH_ITEM.get()), 3, 40, YetAnotherTechMod.MODID + ":leaf_mulch_from_old_leaf_grinding");
-		this.addGrindingRecipe(output, YATMItems.RUBBER_LEAVES_FLOWERING_ITEM.get(), new ItemStack(YATMItems.LEAF_MULCH_ITEM.get()), 2, 26, YetAnotherTechMod.MODID + ":leaf_mulch_from_flowering_leaf_grinding");
-		this.addGrindingRecipe(output, YATMItems.RUBBER_LEAVES_YOUNG_ITEM.get(), new ItemStack(YATMItems.LEAF_MULCH_ITEM.get()), 1, 20, YetAnotherTechMod.MODID + ":leaf_mulch_from_young_leaf_grinding");
+		this.addGrindingRecipe(output, YATMItems.RUBBER_LEAVES_OLD.get(), new ItemStack(YATMItems.LEAF_MULCH.get()), 3, 40, YetAnotherTechMod.MODID + ":leaf_mulch_from_old_leaf_grinding");
+		this.addGrindingRecipe(output, YATMItems.RUBBER_LEAVES_FLOWERING.get(), new ItemStack(YATMItems.LEAF_MULCH.get()), 2, 26, YetAnotherTechMod.MODID + ":leaf_mulch_from_flowering_leaf_grinding");
+		this.addGrindingRecipe(output, YATMItems.RUBBER_LEAVES_YOUNG.get(), new ItemStack(YATMItems.LEAF_MULCH.get()), 1, 20, YetAnotherTechMod.MODID + ":leaf_mulch_from_young_leaf_grinding");
 		
 		
 		// TODO, make grinding recipes time proportional to hardness, and current proportional to the tool required.
@@ -418,7 +419,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	private void addRootedSoilReversions(@NotNull RecipeOutput output) 
 	{
 		this.addGrindingRecipe(output, YATMItemTags.FORGE_ROOTED_DIRT_KEY, new ItemStack(Items.DIRT), 2, 40, YetAnotherTechMod.MODID + ":dirt_from_rooted_grinding");
-		this.addGrindingRecipe(output, YATMItems.ROOTED_SOUL_SOIL_ITEM.get(), new ItemStack(Items.SOUL_SOIL), 2, 40, YetAnotherTechMod.MODID + ":soul_soil_from_rooted_grinding");
+		this.addGrindingRecipe(output, YATMItems.ROOTED_SOUL_SOIL.get(), new ItemStack(Items.SOUL_SOIL), 2, 40, YetAnotherTechMod.MODID + ":soul_soil_from_rooted_grinding");
 	} // end addRootedSoilReversions()
 	
 	private void addGrinderBrickCrackings(@NotNull RecipeOutput output) 
@@ -524,6 +525,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	private void addMeltingRecipes(@NotNull RecipeOutput output) 
 	{
 		this.addMeltingRecipe(output, new ItemStackIngredient(new ItemStack(Items.ICE)), new FluidStack(Fluids.WATER, 1000), 273, 360, RecipeProvider.has(Items.ICE), YetAnotherTechMod.MODID + ":water_from_ice_melting");
+		this.addMeltingRecipe(output, new ItemStackIngredient(new ItemStack(Items.ENDER_PEARL)), new FluidStack(YATMFluids.ENDER.get(), 1000), 2400, 520, RecipeProvider.has(Items.ENDER_PEARL), YetAnotherTechMod.MODID + ":ender_from_ender_pearl_melting");
 		this.addSiliconOxideMeltings(output);
 				
 	} // end addMeltingRecipes()
@@ -822,7 +824,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.temperature(temperature)
 		.timeInTicks(timeInTicks)
 		// TODO, make use tag containing all the boilers
-		.unlockedBy("has_device", has(YATMItems.STEEL_BOILER_ITEM.get()))
+		.unlockedBy("has_device", has(YATMItems.STEEL_BOILER.get()))
 		.save(output, key);
 	} // end addBoilingRecipe()
 	

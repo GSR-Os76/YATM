@@ -160,7 +160,7 @@ public class CrystallizingRecipe extends RecipeBase<Container> implements ITimed
 	@Override
 	public ItemStack getToastSymbol()
 	{
-		return new ItemStack(YATMItems.STEEL_CRYSTALLIZER_ITEM.get());
+		return new ItemStack(YATMItems.STEEL_CRYSTALLIZER.get());
 	} // end getToastSymbol()
 	
 } // end class

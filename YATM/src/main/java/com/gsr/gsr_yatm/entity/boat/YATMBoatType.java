@@ -21,8 +21,8 @@ import net.minecraftforge.common.util.Lazy;
 
 public enum YATMBoatType implements StringRepresentable
 {
-	RUBBER("gsr_yatm:rubber", () -> YATMItems.RUBBER_BOAT_ITEM.get(), () -> YATMItems.RUBBER_CHEST_BOAT_ITEM.get(), NonNullList.<Supplier<Item>>of(() -> Items.AIR, () -> YATMItems.RUBBER_PLANKS_ITEM.get(), () -> YATMItems.RUBBER_PLANKS_ITEM.get(), () -> YATMItems.RUBBER_PLANKS_ITEM.get(), () -> Items.STICK, () -> Items.STICK)), 
-	SOUL_AFFLICTED_RUBBER("gsr_yatm:soul_afflicted_rubber", () -> YATMItems.SOUL_AFFLICTED_RUBBER_BOAT_ITEM.get(), () -> YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT_ITEM.get(), NonNullList.of(() -> Items.AIR, () -> YATMItems.SOUL_AFFLICTED_RUBBER_PLANKS_ITEM.get(), () -> YATMItems.SOUL_AFFLICTED_RUBBER_PLANKS_ITEM.get(), () -> YATMItems.SOUL_AFFLICTED_RUBBER_PLANKS_ITEM.get(), () -> Items.STICK, () -> Items.STICK));
+	RUBBER("gsr_yatm:rubber", () -> YATMItems.RUBBER_BOAT.get(), () -> YATMItems.RUBBER_CHEST_BOAT.get(), NonNullList.<Supplier<Item>>of(() -> Items.AIR, () -> YATMItems.RUBBER_PLANKS.get(), () -> YATMItems.RUBBER_PLANKS.get(), () -> YATMItems.RUBBER_PLANKS.get(), () -> Items.STICK, () -> Items.STICK)), 
+	SOUL_AFFLICTED_RUBBER("gsr_yatm:soul_afflicted_rubber", () -> YATMItems.SOUL_AFFLICTED_RUBBER_BOAT.get(), () -> YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT.get(), NonNullList.of(() -> Items.AIR, () -> YATMItems.SOUL_AFFLICTED_RUBBER_PLANKS.get(), () -> YATMItems.SOUL_AFFLICTED_RUBBER_PLANKS.get(), () -> YATMItems.SOUL_AFFLICTED_RUBBER_PLANKS.get(), () -> Items.STICK, () -> Items.STICK));
 
 
 

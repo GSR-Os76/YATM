@@ -1,24 +1,19 @@
 {
   "type": "gsr_yatm:crystallizing",
+  "consume_seed": false,
   "cost": 64,
   "input": {
-    "ingedient": {
-      "type": "gsr_yatm:fluid_tag_ingredient",
-      "amount": 250,
-      "tag": "forge:ender"
-    }
+    "type": "gsr_yatm:fluid_tag_ingredient",
+    "amount": 250,
+    "tag": "forge:ender"
   },
   "result": {
     "count": 1,
     "item": "minecraft:ender_pearl"
   },
   "seed": {
-    "consume": false,
-    "ingedient": {
-      "type": "gsr_yatm:item_tag_ingredient",
-      "count": 1,
-      "tag": "forge:sand"
-    }
+    "type": "gsr_yatm:item_tag_ingredient",
+    "tag": "forge:sand"
   },
   "time": 300
 }

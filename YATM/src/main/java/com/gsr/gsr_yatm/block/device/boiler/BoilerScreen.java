@@ -189,49 +189,5 @@ public class BoilerScreen extends AbstractContainerScreen<BoilerMenu>
 		this.addRenderableWidget(this.m_temperatureWidget);
 	} // end setTemperatureWidget()
 
-//	private TemperatureWidget getTemperatureWidget()
-//	{
-//		return this.m_temperatureWidget;
-//	} // end getTemperatureWidget()
-//	
-//	private void setTemperatureWidget(TemperatureWidget tw) 
-//	{
-//		if(this.m_temperatureWidget != null) 
-//		{			
-//			this.removeWidget(this.m_temperatureWidget);
-//		}
-//		
-//		this.m_temperatureWidget = tw;
-//		this.addRenderableWidget(this.m_temperatureWidget);
-//	} // end setTemperatureWidget()
-	
-} // end class
 
-//FluidStack iTCs = this.menu.getInputTankContents();
-//if (!iTCs.isEmpty())
-//{
-//	// figure out how to get the texture from fluid
-//	RenderSystem.setShaderTexture(0, new ResourceLocation(""));
-//	// iTCs.getRawFluid().defaultFluidState()
-//	// ForgeHooksClient.getFluidSprites(new BlockAndTintGetter() {}, BlockPos.ZERO,
-//	// iTCs.getRawFluid().defaultFluidState());
-//
-//	int renderDownSet = 51 - ((int) (51 * ((float) iTCs.getAmount() / (float) this.menu.getInputTankCapacity())));
-//	blit(poseStack, this.leftPos + 10, (this.topPos + 23) + renderDownSet, 0, renderDownSet, 12, 51 - renderDownSet);
-//	// render over fluid with the level indicators
-//	RenderSystem.setShaderTexture(0, BACKGROUND);
-//	blit(poseStack, this.leftPos + 10, this.topPos + 23, 176, 35, 12, 51);
-//}
-//
-//FluidStack oTCs = this.menu.getOutputTankContents();
-//if (!oTCs.isEmpty())
-//{
-//	// figure out how to get the texture from fluid
-//	RenderSystem.setShaderTexture(0, new ResourceLocation(""));
-//
-//	int renderDownSet = 51 - ((int) (51 * ((float) oTCs.getAmount() / (float) this.menu.getOutputTankCapacity())));
-//	blit(poseStack, this.leftPos + 154, (this.topPos + 23) + renderDownSet, 0, renderDownSet, 12, 51 - renderDownSet);
-//
-//	RenderSystem.setShaderTexture(0, BACKGROUND);
-//	blit(poseStack, this.leftPos + 154, this.topPos + 23, 176, 35, 12, 51);
-//}
+} // end class

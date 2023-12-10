@@ -2,11 +2,9 @@
   "type": "gsr_yatm:grinding",
   "cost": 1,
   "input": {
-    "ingedient": {
-      "type": "gsr_yatm:item_tag_ingredient",
-      "count": 16,
-      "tag": "forge:glass_panes"
-    }
+    "type": "gsr_yatm:item_tag_ingredient",
+    "amount": 16,
+    "tag": "forge:glass_panes"
   },
   "result": {
     "count": 6,

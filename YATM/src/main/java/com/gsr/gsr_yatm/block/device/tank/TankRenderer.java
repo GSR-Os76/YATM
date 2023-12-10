@@ -6,12 +6,10 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.registry.YATMFluids;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 
-import net.minecraft.client.renderer.LevelRenderer;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.block.BlockRenderDispatcher;
@@ -19,24 +17,16 @@ import net.minecraft.client.renderer.blockentity.BlockEntityRenderer;
 import net.minecraft.client.renderer.blockentity.BlockEntityRendererProvider;
 import net.minecraft.client.renderer.texture.OverlayTexture;
 import net.minecraft.client.renderer.texture.TextureAtlasSprite;
-import net.minecraft.client.resources.model.BakedModel;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.tags.FluidTags;
-import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
-import net.minecraft.world.level.BlockAndTintGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.level.material.Fluids;
-import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.extensions.common.IClientFluidTypeExtensions;
-import net.minecraftforge.client.model.data.ModelData;
 
 @OnlyIn(Dist.CLIENT)
 public class TankRenderer implements BlockEntityRenderer<TankBlockEntity>
@@ -66,9 +56,9 @@ public class TankRenderer implements BlockEntityRenderer<TankBlockEntity>
 //			YetAnotherTechMod.LOGGER.info("about to try to render");
 			Level level = tank.getLevel();
 			BlockPos position = tank.getBlockPos();
-			float heightPercentage = tank.getPercentageFilled();
+			// float heightPercentage = tank.getPercentageFilled();
 			
-			BlockState fluidToRender = this.m_fluidRenderLookup.computeIfAbsent(contained, (f) -> f.defaultFluidState().createLegacyBlock());
+			// BlockState fluidToRender = this.m_fluidRenderLookup.computeIfAbsent(contained, (f) -> f.defaultFluidState().createLegacyBlock());
 			// BakedModel model = this.m_blockRenderer.getBlockModel(fluidToRender);			
 //
 //			poseStack.pushPose();

@@ -1,15 +1,15 @@
 {
   "type": "gsr_yatm:boiling",
   "input": {
-    "ingedient": {
-      "type": "gsr_yatm:fluid_stack_ingredient",
-      "count": 300,
-      "fluid": "gsr_yatm:soul_sap"
+    "type": "gsr_yatm:fluid_stack_ingredient",
+    "stack": {
+      "Amount": 300,
+      "FluidName": "gsr_yatm:soul_sap"
     }
   },
   "result": {
-    "count": 60,
-    "fluid": "gsr_yatm:soul_syrup"
+    "Amount": 60,
+    "FluidName": "gsr_yatm:soul_syrup"
   },
   "temperature": 722,
   "time": 900

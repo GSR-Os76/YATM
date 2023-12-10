@@ -27,15 +27,15 @@ public class YATMItemModelProvider extends ItemModelProvider
 	@Override
 	protected void registerModels()
 	{
-		this.basicItem(YATMItems.RUBBER_SIGN_ITEM.get());
-		this.basicItem(YATMItems.RUBBER_HANGING_SIGN_ITEM.get());
-		this.basicItem(YATMItems.RUBBER_BOAT_ITEM.get());
-		this.basicItem(YATMItems.RUBBER_CHEST_BOAT_ITEM.get());
+		this.basicItem(YATMItems.RUBBER_SIGN.get());
+		this.basicItem(YATMItems.RUBBER_HANGING_SIGN.get());
+		this.basicItem(YATMItems.RUBBER_BOAT.get());
+		this.basicItem(YATMItems.RUBBER_CHEST_BOAT.get());
 		
-		this.basicItem(YATMItems.SOUL_AFFLICTED_RUBBER_SIGN_ITEM.get());
-		this.basicItem(YATMItems.SOUL_AFFLICTED_RUBBER_HANGING_SIGN_ITEM.get());
-		this.basicItem(YATMItems.SOUL_AFFLICTED_RUBBER_BOAT_ITEM.get());
-		this.basicItem(YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT_ITEM.get());
+		this.basicItem(YATMItems.SOUL_AFFLICTED_RUBBER_SIGN.get());
+		this.basicItem(YATMItems.SOUL_AFFLICTED_RUBBER_HANGING_SIGN.get());
+		this.basicItem(YATMItems.SOUL_AFFLICTED_RUBBER_BOAT.get());
+		this.basicItem(YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT.get());
 		
 		this.basicItem(YATMItems.ADAMUM_MERISTEM.get());
 		
@@ -44,7 +44,7 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.BASIN_OF_TEARS_SEED.get());
 		this.basicItem(YATMItems.DILUTED_TEAR_BOTTLE.get());
 		
-		this.basicItem(YATMItems.CANDLELILY_ITEM.get());
+		this.basicItem(YATMItems.CANDLELILY.get());
 		
 		this.basicItem(YATMItems.CARBUM_MERISTEM.get());
 		
@@ -65,10 +65,10 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.FIRE_EATER_LILY_UNLIT_DECORATIVE.get());
 		
 		this.basicItem(YATMItems.ICE_CORAL_POLYP.get());
-		this.basicItem(YATMItems.BLEACHED_ICE_CORAL_OLD_ITEM.get());
-		this.basicItem(YATMItems.BLEACHED_ICE_CORAL_ADOLESCENT_ITEM.get());
-		this.basicItem(YATMItems.BLEACHED_ICE_CORAL_YOUNG_ITEM.get());
-		this.basicItem(YATMItems.BLEACHED_ICE_CORAL_POLYP_ITEM.get());
+		this.basicItem(YATMItems.BLEACHED_ICE_CORAL_OLD.get());
+		this.basicItem(YATMItems.BLEACHED_ICE_CORAL_ADOLESCENT.get());
+		this.basicItem(YATMItems.BLEACHED_ICE_CORAL_YOUNG.get());
+		this.basicItem(YATMItems.BLEACHED_ICE_CORAL_POLYP.get());
 		
 		this.basicItem(YATMItems.INFERNALUM_RHIZOME.get());		
 		
@@ -87,31 +87,31 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.VICUM_MERISTEM.get());
 		
 		
-		this.basicItem(YATMItems.HANGING_POT_HOOK_ITEM.get());
+		this.basicItem(YATMItems.HANGING_POT_HOOK.get());
 		
 		
 		
-		this.basicItem(YATMItems.CANDLE_LANTERN_ITEM.get());
-		this.basicItem(YATMItems.WHITE_CANDLE_LANTERN_ITEM.get());
-		this.basicItem(YATMItems.ORANGE_CANDLE_LANTERN_ITEM.get());
-		this.basicItem(YATMItems.MAGENTA_CANDLE_LANTERN_ITEM.get());
-		this.basicItem(YATMItems.LIGHT_BLUE_CANDLE_LANTERN_ITEM.get());
-		this.basicItem(YATMItems.YELLOW_CANDLE_LANTERN_ITEM.get());
-		this.basicItem(YATMItems.LIME_CANDLE_LANTERN_ITEM.get());
-		this.basicItem(YATMItems.PINK_CANDLE_LANTERN_ITEM.get());
-		this.basicItem(YATMItems.GRAY_CANDLE_LANTERN_ITEM.get());
-		this.basicItem(YATMItems.LIGHT_GRAY_CANDLE_LANTERN_ITEM.get());
-		this.basicItem(YATMItems.CYAN_CANDLE_LANTERN_ITEM.get());
-		this.basicItem(YATMItems.PURPLE_CANDLE_LANTERN_ITEM.get());
-		this.basicItem(YATMItems.BLUE_CANDLE_LANTERN_ITEM.get());
-		this.basicItem(YATMItems.BROWN_CANDLE_LANTERN_ITEM.get());
-		this.basicItem(YATMItems.GREEN_CANDLE_LANTERN_ITEM.get());
-		this.basicItem(YATMItems.RED_CANDLE_LANTERN_ITEM.get());
-		this.basicItem(YATMItems.BLACK_CANDLE_LANTERN_ITEM.get());
+		this.basicItem(YATMItems.CANDLE_LANTERN.get());
+		this.basicItem(YATMItems.WHITE_CANDLE_LANTERN.get());
+		this.basicItem(YATMItems.ORANGE_CANDLE_LANTERN.get());
+		this.basicItem(YATMItems.MAGENTA_CANDLE_LANTERN.get());
+		this.basicItem(YATMItems.LIGHT_BLUE_CANDLE_LANTERN.get());
+		this.basicItem(YATMItems.YELLOW_CANDLE_LANTERN.get());
+		this.basicItem(YATMItems.LIME_CANDLE_LANTERN.get());
+		this.basicItem(YATMItems.PINK_CANDLE_LANTERN.get());
+		this.basicItem(YATMItems.GRAY_CANDLE_LANTERN.get());
+		this.basicItem(YATMItems.LIGHT_GRAY_CANDLE_LANTERN.get());
+		this.basicItem(YATMItems.CYAN_CANDLE_LANTERN.get());
+		this.basicItem(YATMItems.PURPLE_CANDLE_LANTERN.get());
+		this.basicItem(YATMItems.BLUE_CANDLE_LANTERN.get());
+		this.basicItem(YATMItems.BROWN_CANDLE_LANTERN.get());
+		this.basicItem(YATMItems.GREEN_CANDLE_LANTERN.get());
+		this.basicItem(YATMItems.RED_CANDLE_LANTERN.get());
+		this.basicItem(YATMItems.BLACK_CANDLE_LANTERN.get());
 		
 	
-		this.basicItem(YATMItems.CONDUIT_VINES_ITEM.get());
-		this.basicItem(YATMItems.CHANNEL_VINES_ITEM.get());
+		this.basicItem(YATMItems.CONDUIT_VINES.get());
+		this.basicItem(YATMItems.CHANNEL_VINES.get());
 		
 		
 		
@@ -208,7 +208,7 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.DECAY_NETHERITE_LEGGINGS.get());
 		this.basicItem(YATMItems.DECAY_NETHERITE_BOOTS.get());
 		
-		this.basicItem(YATMItems.CREATIVE_CURRENT_SOURCE_ITEM.get());
+		this.basicItem(YATMItems.CREATIVE_CURRENT_SOURCE.get());
 		this.basicItem(YATMItems.CREATIVE_FLUID_VOID.get());
 		this.basicItem(YATMItems.CREATIVE_FLUID_STORER.get());
 		this.basicItem(YATMItems.CREATIVE_FLUID_SOURCE.get());

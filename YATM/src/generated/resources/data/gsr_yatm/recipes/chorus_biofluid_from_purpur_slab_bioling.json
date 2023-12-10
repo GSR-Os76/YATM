@@ -2,15 +2,15 @@
   "type": "gsr_yatm:bioling",
   "cost": 6,
   "input": {
-    "ingedient": {
-      "type": "gsr_yatm:item_stack_ingredient",
+    "type": "gsr_yatm:item_stack_ingredient",
+    "stack": {
       "count": 1,
       "item": "minecraft:purpur_slab"
     }
   },
   "result": {
-    "count": 480,
-    "fluid": "gsr_yatm:chorus_bio"
+    "Amount": 480,
+    "FluidName": "gsr_yatm:chorus_bio"
   },
   "time": 96
 }

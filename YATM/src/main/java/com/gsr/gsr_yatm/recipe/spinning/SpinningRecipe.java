@@ -100,7 +100,7 @@ public class SpinningRecipe extends RecipeBase<Container>
 	@Override
 	public ItemStack getToastSymbol()
 	{
-		return new ItemStack(YATMItems.SPINNING_WHEEL_ITEM.get());
+		return new ItemStack(YATMItems.SPINNING_WHEEL.get());
 	} // end getToastSymbol()	
 	
 	@Override

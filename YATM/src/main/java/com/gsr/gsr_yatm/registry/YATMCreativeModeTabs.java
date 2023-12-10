@@ -34,7 +34,7 @@ public class YATMCreativeModeTabs
 	
 	private static final String YATM_GENERAL_ID_PATH = "yatm_general";
 	private static final ResourceLocation YATM_GENERAL_LOCATION = new ResourceLocation(YetAnotherTechMod.MODID, YATM_GENERAL_ID_PATH);
-	public static final RegistryObject<CreativeModeTab> YATM_GENERAL = CREATIVE_MODE_TABS.register(YATM_GENERAL_ID_PATH, () -> CreativeModeTab.builder().title(YATMLanguageProvider.getTranslatableTitleNameFor(YATM_GENERAL_LOCATION)).icon(() -> new ItemStack(YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM_ITEM.get())).build());
+	public static final RegistryObject<CreativeModeTab> YATM_GENERAL = CREATIVE_MODE_TABS.register(YATM_GENERAL_ID_PATH, () -> CreativeModeTab.builder().title(YATMLanguageProvider.getTranslatableTitleNameFor(YATM_GENERAL_LOCATION)).icon(() -> new ItemStack(YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM.get())).build());
 	
 	
 	

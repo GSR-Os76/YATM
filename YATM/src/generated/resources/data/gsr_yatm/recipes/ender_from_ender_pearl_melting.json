@@ -1,0 +1,16 @@
+{
+  "type": "gsr_yatm:melting",
+  "input": {
+    "type": "gsr_yatm:item_stack_ingredient",
+    "stack": {
+      "count": 1,
+      "item": "minecraft:ender_pearl"
+    }
+  },
+  "result": {
+    "Amount": 1000,
+    "FluidName": "gsr_yatm:ender"
+  },
+  "temperature": 2400,
+  "time": 520
+}

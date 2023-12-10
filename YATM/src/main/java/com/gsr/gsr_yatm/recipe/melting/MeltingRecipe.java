@@ -137,7 +137,7 @@ public class MeltingRecipe extends RecipeBase<Container> implements ITimedRecipe
 	@Override
 	public @NotNull ItemStack getToastSymbol()
 	{
-		return new ItemStack(YATMItems.STEEL_CRUCIBLE_ITEM.get());
+		return new ItemStack(YATMItems.STEEL_CRUCIBLE.get());
 	} // end getToastSymbol()
 
 	@Override
