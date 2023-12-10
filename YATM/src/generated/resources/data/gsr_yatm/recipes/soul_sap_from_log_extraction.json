@@ -2,19 +2,16 @@
   "type": "gsr_yatm:extracting",
   "cost": 12,
   "input": {
-    "ingedient": {
-      "type": "gsr_yatm:item_tag_ingredient",
-      "count": 1,
-      "tag": "gsr_yatm:soul_sap_extractable_logs"
-    },
-    "remainder": {
-      "count": 6,
-      "item": "gsr_yatm:wood_pulp"
-    }
+    "type": "gsr_yatm:item_tag_ingredient",
+    "tag": "gsr_yatm:soul_sap_extractable_logs"
+  },
+  "input_remainder": {
+    "count": 6,
+    "item": "gsr_yatm:wood_pulp"
   },
   "result": {
-    "count": 120,
-    "fluid": "gsr_yatm:soul_sap"
+    "Amount": 120,
+    "FluidName": "gsr_yatm:soul_sap"
   },
   "time": 246
 }

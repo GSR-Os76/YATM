@@ -5,14 +5,15 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.recipe.RecipeBase;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
+import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.NonNullList;
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.inventory.CraftingContainer;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CraftingBookCategory;
@@ -22,60 +23,43 @@ import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.util.RecipeMatcher;
 
-public class ToolPartExchangeRecipe implements CraftingRecipe
+public class ToolPartExchangeRecipe extends RecipeBase<CraftingContainer> implements CraftingRecipe
 {
-	private final @NotNull ResourceLocation m_identifier;
 	private final @NotNull ItemStack m_result;
 	private final @NotNull IIngredient<ItemStack> m_tool;
 	private final @NotNull IIngredient<ItemStack> m_part;
-	private final @NotNull String m_group;
 	private final @NotNull CraftingBookCategory m_category;
 	
 	
 	
-	public ToolPartExchangeRecipe(@NotNull ResourceLocation identifier,
-			@NotNull IIngredient<ItemStack> tool,
-			@NotNull IIngredient<ItemStack> part,
-			@NotNull ItemStack result,
-			@NotNull String group, 
-			@NotNull CraftingBookCategory category)
+	public ToolPartExchangeRecipe(@NotNull String group, @NotNull IIngredient<ItemStack> tool, @NotNull IIngredient<ItemStack> part, @NotNull ItemStack result, @NotNull CraftingBookCategory category)
 	{
-		this.m_identifier = Objects.requireNonNull(identifier);
+		super(Objects.requireNonNull(group));
+		
 		this.m_tool = Objects.requireNonNull(tool);
 		this.m_part = Objects.requireNonNull(part);
-		this.m_result = Objects.requireNonNull(result);
-		this.m_group = Objects.requireNonNull(group);
+		this.m_result = result.copy();
 		this.m_category = Objects.requireNonNull(category);
 	} // end constructor
 	
 	
 	
-	public IIngredient<ItemStack> getTool()
+	public @NotNull IIngredient<ItemStack> tool()
 	{
 		return this.m_tool;
-	} // end getTool()
+	} // end tool()
 	
-	public IIngredient<ItemStack> getPart()
+	public @NotNull IIngredient<ItemStack> part()
 	{
 		return this.m_part;
-	} // end getPart()
+	} // end part()
+	
+	public @NotNull ItemStack result()
+	{
+		return this.m_result;
+	} // end result()
 	
 	
-
-	public ResourceLocation getId()
-	{
-		return this.m_identifier;
-	} // end getId()
-
-	public RecipeSerializer<ToolPartExchangeRecipe> getSerializer()
-	{
-		return YATMRecipeSerializers.TOOL_PART_EXCHANGE.get();
-	} // end getSerializer()
-
-	public String getGroup()
-	{
-		return this.m_group;
-	} // end getGroup()
 
 	public CraftingBookCategory category()
 	{
@@ -133,4 +117,17 @@ public class ToolPartExchangeRecipe implements CraftingRecipe
 		return width * height >= this.getIngredients().size();
 	} // end canCraftInDimensions()
 
+	public RecipeSerializer<ToolPartExchangeRecipe> getSerializer()
+	{
+		return YATMRecipeSerializers.TOOL_PART_EXCHANGE.get();
+	} // end getSerializer()
+
+
+
+	@Override
+	public @NotNull ItemStack getToastSymbol()
+	{
+		return new ItemStack(YATMItems.GRAFTING_TABLE.get());
+	} // end getToastSymbol()
+	
 } // end class

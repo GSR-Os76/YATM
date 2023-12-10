@@ -1,14 +1,14 @@
 package com.gsr.gsr_yatm.registry.custom;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.recipe.ingredient.ItemStackIngredientDeserializer;
-import com.gsr.gsr_yatm.recipe.ingredient.ItemTagIngredientDeserializer;
-import com.gsr.gsr_yatm.recipe.ingredient.NBTFluidStackIngredientDeserializer;
-import com.gsr.gsr_yatm.recipe.ingredient.NBTFluidTagIngredientDeserializer;
-import com.gsr.gsr_yatm.recipe.ingredient.NBTItemStackIngredientDeserializer;
-import com.gsr.gsr_yatm.recipe.ingredient.NBTItemTagIngredientDeserializer;
-import com.gsr.gsr_yatm.recipe.ingredient.FluidStackIngredientDeserializer;
-import com.gsr.gsr_yatm.recipe.ingredient.FluidTagIngredientDeserializer;
+import com.gsr.gsr_yatm.recipe.ingredient.fluid_stack.FluidStackIngredientDeserializer;
+import com.gsr.gsr_yatm.recipe.ingredient.fluid_stack.nbt.NBTFluidStackIngredientDeserializer;
+import com.gsr.gsr_yatm.recipe.ingredient.fluid_tag.FluidTagIngredientDeserializer;
+import com.gsr.gsr_yatm.recipe.ingredient.fluid_tag.nbt.NBTFluidTagIngredientDeserializer;
+import com.gsr.gsr_yatm.recipe.ingredient.item_stack.ItemStackIngredientDeserializer;
+import com.gsr.gsr_yatm.recipe.ingredient.item_stack.nbt.NBTItemStackIngredientDeserializer;
+import com.gsr.gsr_yatm.recipe.ingredient.item_tag.ItemTagIngredientDeserializer;
+import com.gsr.gsr_yatm.recipe.ingredient.item_tag.nbt.NBTItemTagIngredientDeserializer;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredientDeserializer;
 
 import net.minecraft.resources.ResourceLocation;

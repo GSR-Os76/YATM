@@ -1,17 +1,21 @@
 package com.gsr.gsr_yatm.recipe.grinding;
 
+import java.util.Objects;
+
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.block.device.grinder.GrinderBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
+import com.gsr.gsr_yatm.recipe.RecipeBase;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
+import com.gsr.gsr_yatm.utilities.contract.Contract;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.RegistryAccess;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
@@ -19,38 +23,47 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.IItemHandler;
 
-public class GrindingRecipe implements ITimedRecipe<Container>
+public class GrindingRecipe extends RecipeBase<Container> implements ITimedRecipe<Container>
 {
-	private final @NotNull ResourceLocation m_identifier;
 	private final @NotNull ItemStack m_result;
 	private final @NotNull IIngredient<ItemStack> m_input;
-	int m_currentPerTick = 8;
-	int m_timeInTicks = 20;
-	
-	@NotNull String m_group = "";
+	private final @NotNegative int m_currentPerTick;
+	private final @NotNegative int m_timeInTicks;
 
 
 
-	public GrindingRecipe(@NotNull ResourceLocation identifier, @NotNull IIngredient<ItemStack> input, @NotNull ItemStack result)
+	public GrindingRecipe(@NotNull String group, @NotNull IIngredient<ItemStack> input, @NotNull ItemStack result, @NotNegative int currentPerTick, @NotNegative int timeInTicks)
 	{
-		this.m_identifier = identifier;
-		this.m_input = input;
+		super(Objects.requireNonNull(group));
+		this.m_input = Objects.requireNonNull(input);
 		this.m_result = result.copy();
+		this.m_currentPerTick = Contract.notNegative(currentPerTick);
+		this.m_timeInTicks = Contract.notNegative(timeInTicks);
 	} // end constructor
 
 
 
-	public int getCurrentPerTick()
+	public @NotNegative int getCurrentPerTick()
 	{
 		return this.m_currentPerTick;
 	} // end getCurrentPerTick()
 
 	@Override
-	public int getTimeInTicks()
+	public @NotNegative int getTimeInTicks()
 	{
 		return this.m_timeInTicks;
 	} // end getTimeInTicks()
 
+	public @NotNull IIngredient<ItemStack> input()
+	{
+		return this.m_input;
+	} // end input()
+
+	public @NotNull ItemStack result() 
+	{
+		return this.m_result.copy();
+	} // end result()
+	
 	
 	
 	public boolean canBeUsedOn(@NotNull IItemHandler inventory)
@@ -97,12 +110,6 @@ public class GrindingRecipe implements ITimedRecipe<Container>
 	} // end getResultItem
 
 	@Override
-	public ResourceLocation getId()
-	{
-		return this.m_identifier;
-	} // end getId()
-
-	@Override
 	public RecipeSerializer<GrindingRecipe> getSerializer()
 	{
 		return YATMRecipeSerializers.GRINDING.get();
@@ -119,13 +126,7 @@ public class GrindingRecipe implements ITimedRecipe<Container>
 	@Override
 	public ItemStack getToastSymbol()
 	{
-		return new ItemStack(YATMItems.STEEL_GRINDER_ITEM.get());
-	} // end getToastSymbol()	
-
-	@Override
-	public String getGroup()
-	{
-		return this.m_group;
-	} // end getGroup()
-
+		return new ItemStack(YATMItems.STEEL_GRINDER.get());
+	} // end getToastSymbol()
+	
 } // end outer class

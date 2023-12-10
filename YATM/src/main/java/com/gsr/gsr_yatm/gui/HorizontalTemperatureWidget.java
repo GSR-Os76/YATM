@@ -5,12 +5,11 @@ import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.ImageWidget;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
-public class HorizontalTemperatureWidget extends ImageWidget implements ITemperatureWidget
+public class HorizontalTemperatureWidget extends FillBarWidget implements ITemperatureWidget
 {
 	// TODO, add marker for required heat
 	
@@ -24,7 +23,7 @@ public class HorizontalTemperatureWidget extends ImageWidget implements ITempera
 	
 	public HorizontalTemperatureWidget(int toX, int toY, @NotNegative int maxTemperature) 
 	{
-		super(toX, toY, HorizontalTemperatureWidget.WIDTH, HorizontalTemperatureWidget.HEIGHT, HorizontalTemperatureWidget.WIDGET_THINGS);
+		super(toX, toY, HorizontalTemperatureWidget.WIDTH, HorizontalTemperatureWidget.HEIGHT, Component.empty());
 		this.m_maxTemperature = Contract.notNegative(maxTemperature);
 		this.updateTooltip();
 	} // end constructor()

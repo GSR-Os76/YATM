@@ -1,6 +1,7 @@
 package com.gsr.gsr_yatm;
 
 import net.minecraftforge.common.ForgeConfigSpec;
+import net.minecraftforge.common.ForgeConfigSpec.BooleanValue;
 import net.minecraftforge.common.ForgeConfigSpec.DoubleValue;
 import net.minecraftforge.common.ForgeConfigSpec.IntValue;
 
@@ -19,7 +20,7 @@ public class YATMConfigs
 	private static ForgeConfigSpec.Builder s_builder = new ForgeConfigSpec.Builder();
 	
 	
-	public static final IntValue FIRE_EATER_LILY_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.push("Fire Eater Lily: ").comment("The average number of boneamealings in which one's successful.").defineInRange("bonemeal_success_rarity", 3, 0, Integer.MAX_VALUE);	
+	public static final IntValue FIRE_EATER_LILY_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.push("Plants: ").push("Fire Eater Lily: ").comment("The average number of boneamealings in which one's successful.").defineInRange("bonemeal_success_rarity", 3, 0, Integer.MAX_VALUE);	
 	public static final IntValue FIRE_EATER_LILY_LIT_DECORATIVE_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.comment("The average number of boneamealings in which one's successful for the decorative lit flower block.").defineInRange("bonemeal_success_rarity_lit_decorative", 3, 0, Integer.MAX_VALUE);
 	public static final IntValue FIRE_EATER_LILY_MAX_HORIZONTAL_SPREAD = YATMConfigs.s_builder.comment("The maximum number of blocks horizontally that a canidate position will be picked out from.").defineInRange("max_horizontal_spread", 2, 0, Integer.MAX_VALUE);
 	public static final IntValue FIRE_EATER_LILY_MAX_SPREAD_ATTEMPTS = YATMConfigs.s_builder.comment("The maximum number of canidate positions to consider while attempting spreading.").defineInRange("max_spread_attempts", 12, 0, Integer.MAX_VALUE);
@@ -86,6 +87,7 @@ public class YATMConfigs
 	public static final DoubleValue VICUM_DAMAGE_TRIGGER_TOLERANCE = YATMConfigs.s_builder.comment("The maximum speed an entity can be moving while inside the block without taking damage.").defineInRange("damage_trigger_tolerance", Double.MAX_VALUE, 0d, Double.MAX_VALUE);
 	public static final IntValue VICUM_GROWTH_RARITY = YATMConfigs.s_builder.comment("The average number of random ticks for which the plant increases in age one time.").defineInRange("growth_rarity", 36, 0, Integer.MAX_VALUE);
 	
+	public static final BooleanValue IS_HORIZONTAL_GROWRTH_UNBOUND = YATMConfigs.s_builder.pop().pop().push("Misc: ").comment("Determines if plants limit their ability to propagate horizontally.").define("is_horizontal_growth_unbound", false);
 	
 	
 	public static final IntValue BIOREACTOR_CURRENT_CAPACITY = YATMConfigs.s_builder.pop().pop().push("Devices: ").push("Bioreactor: ").comment("The maximum number of cu the device can hold.").defineInRange("current_capacity", YATMConfigs.STEEL_DEVICE_CURRENT_CAPACITY, 0, Integer.MAX_VALUE);
@@ -141,8 +143,13 @@ public class YATMConfigs
 	public static final IntValue ADVANCED_CURRENT_BATTERY = YATMConfigs.s_builder.pop().push("Advanced Current Battery: ").comment("The item capacity in cu.").defineInRange("capacity", 393216, 0, Integer.MAX_VALUE);
 
 	
+	
+	public static final DoubleValue COMPOSTABLE_BIOREACTING_CHANCE_TO_QUANTITY = YATMConfigs.s_builder.pop().pop().pop().push("Recipe: ").push("Dynamic: ").push("Compostables to Bioreaction: ").comment("The amount of biofluid produced from an item with a 100% compost level increase chance, is scaled to other chances.").defineInRange("chance_to_quantity", 100d, 0d, Double.MAX_VALUE);
+	public static final DoubleValue COMPOSTABLE_BIOREACTING_CHANCE_TO_TICKS = YATMConfigs.s_builder.comment("The number of ticks it take to complete the recipe at default speed for an item with a 100% compost level increase chance, is scaled to other chances.").defineInRange("chance_to_ticks", 20d, Double.MIN_VALUE, Double.MAX_VALUE);
+	public static final IntValue COMPOSTABLE_BIOREACTING_CURRENT_COST = YATMConfigs.s_builder.comment("The amount of current consumed each tick to preform the recipe.").defineInRange("current_cost", 12, 0, Integer.MAX_VALUE);
+	
+	
+	
 	public static final ForgeConfigSpec SPEC = YATMConfigs.s_builder.pop().pop().pop().build();
 
-
-	
 } // end class

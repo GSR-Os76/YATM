@@ -4,10 +4,10 @@ import java.util.Map;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.recipe.ingredient.ItemStackIngredient;
+import com.gsr.gsr_yatm.YATMConfigs;
+import com.gsr.gsr_yatm.recipe.ingredient.item_stack.ItemStackIngredient;
 import com.gsr.gsr_yatm.registry.YATMFluids;
 
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -17,21 +17,18 @@ public class CompostableBioreactingRecipe extends BioreactingRecipe
 	
 	
 	
-	public CompostableBioreactingRecipe(@NotNull ResourceLocation identifier, @NotNull Map.Entry<ItemLike, Float> entry) 
+	public CompostableBioreactingRecipe(@NotNull Map.Entry<ItemLike, Float> entry) 
 	{
-		this(identifier, entry.getKey(), entry.getValue());
+		this(entry.getKey(), entry.getValue());
 	} // end constructor
 	
-	public CompostableBioreactingRecipe(@NotNull ResourceLocation identifier, @NotNull  ItemLike input, float resultChance)
+	public CompostableBioreactingRecipe(@NotNull ItemLike input, float resultChance)
 	{
-		super(identifier, new ItemStackIngredient(input.asItem()), CompostableBioreactingRecipe.getFluidStackFor(resultChance));
+		super("", 
+				new ItemStackIngredient(input.asItem()), 
+				new FluidStack(YATMFluids.BIO.get(), (int)(resultChance * YATMConfigs.COMPOSTABLE_BIOREACTING_CHANCE_TO_QUANTITY.get())), 
+				YATMConfigs.COMPOSTABLE_BIOREACTING_CURRENT_COST.get(), 
+				(int)(resultChance * YATMConfigs.COMPOSTABLE_BIOREACTING_CHANCE_TO_TICKS.get()));
 	} // end constructor
-	
-	
-	
-	private static @NotNull FluidStack getFluidStackFor(float chance) 
-	{
-		return new FluidStack(YATMFluids.BIO.get(), (int)(chance * CHANCE_TO_QUANTITY_VALUE));
-	} // end getFluidStackFor()
 	
 } // end class

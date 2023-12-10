@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "gsr_yatm:steel_bioler"
+          "name": "gsr_yatm:steel_bioreactor"
         }
       ],
       "rolls": 1.0

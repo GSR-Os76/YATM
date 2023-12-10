@@ -39,11 +39,11 @@ public class YATMChestBoat extends ChestBoat implements IYATMBoat
 
 
 
-	@Override
-	public double getPassengersRidingOffset()
-	{
-		return -0.1D;
-	} // end getPassengersRidingOffset()
+//	@Override
+//	public double getPassengersRidingOffset()
+//	{
+//		return -0.1D;
+//	} // end getPassengersRidingOffset()
 
 	@Override
 	public Item getDropItem()

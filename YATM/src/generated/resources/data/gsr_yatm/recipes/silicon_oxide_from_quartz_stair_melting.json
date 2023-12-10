@@ -1,15 +1,12 @@
 {
   "type": "gsr_yatm:melting",
   "input": {
-    "ingedient": {
-      "type": "gsr_yatm:item_tag_ingredient",
-      "count": 1,
-      "tag": "forge:stairs/quartz"
-    }
+    "type": "gsr_yatm:item_tag_ingredient",
+    "tag": "forge:stairs/quartz"
   },
   "result": {
-    "count": 750,
-    "fluid": "gsr_yatm:silicon_oxide"
+    "Amount": 750,
+    "FluidName": "gsr_yatm:silicon_oxide"
   },
   "temperature": 1989,
   "time": 360

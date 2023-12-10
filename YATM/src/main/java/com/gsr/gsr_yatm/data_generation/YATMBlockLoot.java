@@ -237,8 +237,8 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropSelf(YATMBlocks.GRAFTING_TABLE.get());
 		
 		this.dropSelf(YATMBlocks.SAP_COLLECTOR.get());
-		this.dropOther(YATMBlocks.SAP_COLLECTOR_LATEX.get(), YATMItems.SAP_COLLECTOR_ITEM.get());
-		this.dropOther(YATMBlocks.SAP_COLLECTOR_SOUL_SAP.get(), YATMItems.SAP_COLLECTOR_ITEM.get());
+		this.dropOther(YATMBlocks.SAP_COLLECTOR_LATEX.get(), YATMItems.SAP_COLLECTOR.get());
+		this.dropOther(YATMBlocks.SAP_COLLECTOR_SOUL_SAP.get(), YATMItems.SAP_COLLECTOR.get());
 		
 		
 		this.dropSelf(YATMBlocks.SPINNING_WHEEL.get());

@@ -14,7 +14,7 @@ public interface IIngredient<T> extends Predicate<T>
 	public boolean test(@Nullable T t);
 	
 
-	public @NotNull IIngredientDeserializer<?> deserializer();
+	public @NotNull IIngredientDeserializer<? extends IIngredient<T>> deserializer();
 	
 	public @NotNull JsonObject serialize();
 

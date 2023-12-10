@@ -1,15 +1,15 @@
 {
   "type": "gsr_yatm:melting",
   "input": {
-    "ingedient": {
-      "type": "gsr_yatm:item_stack_ingredient",
+    "type": "gsr_yatm:item_stack_ingredient",
+    "stack": {
       "count": 1,
       "item": "minecraft:medium_amethyst_bud"
     }
   },
   "result": {
-    "count": 500,
-    "fluid": "gsr_yatm:silicon_oxide"
+    "Amount": 500,
+    "FluidName": "gsr_yatm:silicon_oxide"
   },
   "temperature": 1989,
   "time": 200

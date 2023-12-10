@@ -2,10 +2,10 @@
   "type": "gsr_yatm:fluid_injecting",
   "cost": 18,
   "input": {
-    "ingedient": {
-      "type": "gsr_yatm:fluid_stack_ingredient",
-      "count": 80,
-      "fluid": "gsr_yatm:bio"
+    "type": "gsr_yatm:fluid_stack_ingredient",
+    "stack": {
+      "Amount": 80,
+      "FluidName": "gsr_yatm:bio"
     }
   },
   "result": {
@@ -13,11 +13,8 @@
     "item": "minecraft:dirt"
   },
   "substrate": {
-    "ingedient": {
-      "type": "gsr_yatm:item_tag_ingredient",
-      "count": 1,
-      "tag": "gsr_yatm:soil_minerals"
-    }
+    "type": "gsr_yatm:item_tag_ingredient",
+    "tag": "gsr_yatm:soil_minerals"
   },
   "time": 60
 }

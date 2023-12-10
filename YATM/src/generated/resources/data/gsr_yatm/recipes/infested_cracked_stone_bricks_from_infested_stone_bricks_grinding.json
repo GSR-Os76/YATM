@@ -2,8 +2,8 @@
   "type": "gsr_yatm:grinding",
   "cost": 1,
   "input": {
-    "ingedient": {
-      "type": "gsr_yatm:item_stack_ingredient",
+    "type": "gsr_yatm:item_stack_ingredient",
+    "stack": {
       "count": 1,
       "item": "minecraft:infested_stone_bricks"
     }

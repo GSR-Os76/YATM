@@ -31,7 +31,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.gameevent.GameEvent;
 import net.minecraftforge.common.ToolAction;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.network.NetworkHooks;
 
 public abstract class PoweredToolItem extends DiggerItem
 {
@@ -131,19 +130,10 @@ public abstract class PoweredToolItem extends DiggerItem
 		}
 		if(!level.isClientSide && context.getPlayer() instanceof ServerPlayer serverPlayer && serverPlayer.isCrouching()) 
 		{
-			NetworkHooks.openScreen(serverPlayer, this.getMenuProvider(held));
+			serverPlayer.openMenu(this.getMenuProvider(held));
 		}
 		return InteractionResult.PASS;
 	} // end useOn()
-	
-	
-
-//	@Override
-//	public Component getName(@NotNull ItemStack stack)
-//	{
-//		return Component.translatable(this.getDescriptionId(stack))
-//				.append(Component.literal("(" + this.getPower(stack) + "cu/" + this.getMaxPower(stack)+ "cu)"));
-//	} // end getName()
 	
 	
 

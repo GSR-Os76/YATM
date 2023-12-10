@@ -25,7 +25,7 @@ public class SolarPanelScreen extends AbstractContainerScreen<SolarPanelMenu>
 	@Override
 	public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick)
 	{
-		super.renderBackground(graphics);
+		super.renderBackground(graphics, mouseX, mouseY, partialTick);
 		this.renderBg(graphics, partialTick, mouseX, mouseY);
 		super.render(graphics, mouseX, mouseY, partialTick);
 		this.renderTooltip(graphics, mouseX, mouseY);
@@ -34,8 +34,8 @@ public class SolarPanelScreen extends AbstractContainerScreen<SolarPanelMenu>
 	@Override
 	protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY)
 	{
-		RenderSystem.setShaderTexture(0, BACKGROUND);
-		graphics.blit(BACKGROUND, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
+		RenderSystem.setShaderTexture(0, SolarPanelScreen.BACKGROUND);
+		graphics.blit(SolarPanelScreen.BACKGROUND, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 	} // end renderBg()
 	
 } // end class

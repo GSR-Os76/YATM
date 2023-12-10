@@ -1,5 +1,10 @@
 package com.gsr.gsr_yatm.block.device.spinning_wheel;
 
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
+
+import com.gsr.gsr_yatm.block.ShapeBlock;
 import com.gsr.gsr_yatm.recipe.spinning.SpinningRecipe;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
@@ -14,69 +19,58 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.context.BlockPlaceContext;
-import net.minecraft.world.level.BlockGetter;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraft.world.phys.shapes.CollisionContext;
-import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class SpinningWheelBlock extends Block
+public class SpinningWheelBlock extends ShapeBlock
 {
 	public static final DirectionProperty FACING = YATMBlockStateProperties.FACING_HORIZONTAL;
 	
-	private final ICollisionVoxelShapeProvider m_shape;
 	
 	
-	
-	public SpinningWheelBlock(Properties properties, ICollisionVoxelShapeProvider shape)
+	public SpinningWheelBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
-		super(properties);
-		this.m_shape = shape;
-		this.registerDefaultState(this.defaultBlockState().setValue(FACING, Direction.NORTH));
+		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape));
+		this.registerDefaultState(this.defaultBlockState().setValue(SpinningWheelBlock.FACING, Direction.NORTH));
 	} // end constructor
 
 	
 	
 
 	@Override
-	protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
+	protected void createBlockStateDefinition(@NotNull Builder<Block, BlockState> builder)
 	{
-		super.createBlockStateDefinition(builder.add(FACING));
+		super.createBlockStateDefinition(builder.add(SpinningWheelBlock.FACING));
 	} // end createBlockStateDefinition()
 	
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext context)
+	public @NotNull BlockState getStateForPlacement(@NotNull BlockPlaceContext context)
 	{
-		return super.getStateForPlacement(context).setValue(FACING, context.getHorizontalDirection());
+		return super.getStateForPlacement(context).setValue(SpinningWheelBlock.FACING, context.getHorizontalDirection());
 	} // end getStateForPlacement()
 
 
 
 	@Override
-	public InteractionResult use(BlockState blockState, Level level, BlockPos pos, Player player, InteractionHand hand, BlockHitResult blockHitResult)
+	public InteractionResult use(BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Player player, @NotNull InteractionHand hand, BlockHitResult hitResult)
 	{
 		ItemStack held = player.getItemInHand(hand);
-		SpinningRecipe recipe = RecipeUtil.firstRecipeMatching(level, YATMRecipeTypes.SPINNING.get(), (r) -> r.canBeUsedOn(held));
-		if(recipe != null) 
+		RecipeHolder<SpinningRecipe> rHolder = RecipeUtil.firstRecipeMatching(level, YATMRecipeTypes.SPINNING.get(), (r) -> r.matches(held));
+		if(rHolder != null) 
 		{
 			if(!level.isClientSide) 
 			{
-				held.shrink(recipe.getInputCount(held.getItem()));
-				InventoryUtil.drop(level, pos, recipe.getResultItem(level.registryAccess()).copy());
+				held.shrink(rHolder.value().getInputCount(held.getItem()));
+				InventoryUtil.drop(level, position, rHolder.value().getResultItem(level.registryAccess()).copy());
 			}
 			return InteractionResult.sidedSuccess(level.isClientSide);
 		}
 		return InteractionResult.PASS;
 	} // end use()
-
-	@Override
-	public VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
-	{		
-		return this.m_shape.getShape(blockState, blockGetter, blockPos, context);
-	} // end getShape()
 	
 } // end class

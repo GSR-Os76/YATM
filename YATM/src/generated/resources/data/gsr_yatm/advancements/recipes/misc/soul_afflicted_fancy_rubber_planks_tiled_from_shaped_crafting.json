@@ -6,11 +6,6 @@
         "items": [
           {
             "items": [
-              "gsr_yatm:soul_afflicted_rubber_planks"
-            ]
-          },
-          {
-            "items": [
               "gsr_yatm:soul_afflicted_rubber_slab"
             ]
           }
@@ -27,8 +22,8 @@
   },
   "requirements": [
     [
-      "criteria",
-      "has_the_recipe"
+      "has_the_recipe",
+      "criteria"
     ]
   ],
   "rewards": {

@@ -5,12 +5,11 @@ import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.ImageWidget;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
-public class VerticalCurrentWidget extends ImageWidget
+public class VerticalCurrentWidget extends FillBarWidget
 {
 	public static final ResourceLocation WIDGET_THINGS = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/widget_things.png");
 	public static final int WIDTH = 18;
@@ -22,7 +21,7 @@ public class VerticalCurrentWidget extends ImageWidget
 	
 	public VerticalCurrentWidget(int toX, int toY, @NotNegative int capacity) 
 	{
-		super(toX, toY, VerticalCurrentWidget.WIDTH, VerticalCurrentWidget.HEIGHT, VerticalCurrentWidget.WIDGET_THINGS);
+		super(toX, toY, VerticalCurrentWidget.WIDTH, VerticalCurrentWidget.HEIGHT, Component.empty());
 		this.m_capacity = Contract.notNegative(capacity);
 		this.updateTooltip();
 	} // end constructor()

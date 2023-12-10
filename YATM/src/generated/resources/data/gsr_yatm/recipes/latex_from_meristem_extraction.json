@@ -2,15 +2,15 @@
   "type": "gsr_yatm:extracting",
   "cost": 1,
   "input": {
-    "ingedient": {
-      "type": "gsr_yatm:item_stack_ingredient",
+    "type": "gsr_yatm:item_stack_ingredient",
+    "stack": {
       "count": 1,
       "item": "gsr_yatm:rubber_meristem"
     }
   },
   "result": {
-    "count": 2,
-    "fluid": "gsr_yatm:latex"
+    "Amount": 2,
+    "FluidName": "gsr_yatm:latex"
   },
   "time": 12
 }

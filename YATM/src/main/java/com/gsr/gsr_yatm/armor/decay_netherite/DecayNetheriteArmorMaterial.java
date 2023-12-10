@@ -18,19 +18,19 @@ public class DecayNetheriteArmorMaterial implements ArmorMaterial
 	@Override
 	public int getDurabilityForType(Type type)
 	{
-		return (int)((NETHERITE_RELATIVE_DURABILITY_FACTOR * (float)ArmorMaterials.NETHERITE.getDurabilityForType(type)));
+		return (int)((DecayNetheriteArmorMaterial.NETHERITE_RELATIVE_DURABILITY_FACTOR * (float)ArmorMaterials.NETHERITE.getDurabilityForType(type)));
 	} // end getDurabilityForType()
 
 	@Override
 	public int getDefenseForType(Type type)
 	{
-		return (int)((NETHERITE_RELATIVE_DEFENSE_FACTOR * (float)ArmorMaterials.NETHERITE.getDefenseForType(type)));
+		return (int)((DecayNetheriteArmorMaterial.NETHERITE_RELATIVE_DEFENSE_FACTOR * (float)ArmorMaterials.NETHERITE.getDefenseForType(type)));
 	} // end getDefenseForType()
 
 	@Override
 	public int getEnchantmentValue()
 	{
-		return (int)((NETHERITE_RELATIVE_ENCHANTMENT_FACTOR * (float)ArmorMaterials.NETHERITE.getEnchantmentValue()));
+		return (int)((DecayNetheriteArmorMaterial.NETHERITE_RELATIVE_ENCHANTMENT_FACTOR * (float)ArmorMaterials.NETHERITE.getEnchantmentValue()));
 	} // end getEnchantmentValue()
 
 	@Override
@@ -48,13 +48,13 @@ public class DecayNetheriteArmorMaterial implements ArmorMaterial
 	@Override
 	public String getName()
 	{
-		return "gsr_yatm:decaying_soul_adorned_netherite";
+		return "gsr_yatm:decay_netherite";
 	} // end getName()
 
 	@Override
 	public float getToughness()
 	{
-		return (int)((NETHERITE_RELATIVE_TOUGHNESS_FACTOR * (float)ArmorMaterials.NETHERITE.getToughness()));
+		return (int)((DecayNetheriteArmorMaterial.NETHERITE_RELATIVE_TOUGHNESS_FACTOR * (float)ArmorMaterials.NETHERITE.getToughness()));
 	} // end getToughness()
 
 	@Override

@@ -1,98 +1,48 @@
 package com.gsr.gsr_yatm.recipe.spinning;
 
 import java.util.Objects;
-import java.util.function.Consumer;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.recipe.RecipeBuilderBase;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.CriterionTriggerInstance;
-import net.minecraft.data.recipes.FinishedRecipe;
-import net.minecraft.data.recipes.RecipeBuilder;
+import net.minecraft.advancements.AdvancementHolder;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 
-public class SpinningRecipeBuilder implements RecipeBuilder
+public class SpinningRecipeBuilder extends RecipeBuilderBase
 {
-	private @Nullable ResourceLocation m_identifier;
-	private @Nullable ItemStack m_result;
-
-	private @Nullable IIngredient<ItemStack> m_input;
-	
-	private @NotNull String m_group = "";
-	private @NotNull Advancement.Builder m_advancement = Advancement.Builder.advancement();
+	private ItemStack m_result;
+	private IIngredient<ItemStack> m_input;
 	
 	
 	
-	public @NotNull SpinningRecipeBuilder identifier(@Nullable ResourceLocation identifier) 
+	public @NotNull SpinningRecipeBuilder input(@NotNull IIngredient<ItemStack> input)
 	{
-		this.m_identifier = identifier;
-		return this;
-	} // end identifier()
-
-	public @NotNull SpinningRecipeBuilder input(@Nullable IIngredient<ItemStack> input)
-	{
-		this.m_input = input;
+		this.m_input = Objects.requireNonNull(input);
 		return this;
 	} // end input()
 
-	public @NotNull SpinningRecipeBuilder result(@Nullable ItemStack result) 
+	public @NotNull SpinningRecipeBuilder result(@NotNull ItemStack result) 
 	{
-		this.m_result = result;
+		this.m_result = Objects.requireNonNull(result);
 		return this;
 	} // end result()
 
-	
-
-	public @NotNull SpinningRecipe build()
-	{
-		SpinningRecipe temp = new SpinningRecipe(this.m_identifier, this.m_input, this.m_result);
-		temp.m_group = this.m_group;
-		return temp;
-	} // end build()
-
 
 
 	@Override
-	public RecipeBuilder unlockedBy(String triggerName, CriterionTriggerInstance trigger)
-	{
-		this.m_advancement.addCriterion(triggerName, trigger);
-		return this;
-	} // end unlockedBy()
-
-	@Override
-	public RecipeBuilder group(String group)
-	{
-		Objects.requireNonNull(group);
-		this.m_group = group;// == null ? "" : group;
-		return this;
-	} // end group()
-
-	@Override
-	public Item getResult()
+	public @NotNull Item getResult()
 	{
 		return this.m_result.getItem();
 	} // end getResult()
-
+	
 	@Override
-	public void save(Consumer<FinishedRecipe> writer, ResourceLocation fileName)
+	public @NotNull SpinningFinishedRecipe createFinishedRecipe(@NotNull ResourceLocation fileName, @NotNull AdvancementHolder advancement)
 	{
-		this.validate(fileName);
-		writer.accept(new SpinningFinishedRecipe(fileName, this.m_result, this.m_input, this.m_group, fileName.withPrefix("recipes/"), this.m_advancement));
-	} // end save()
+		return new SpinningFinishedRecipe(fileName, advancement, this.m_group, this.m_result, this.m_input);
+	} // end createFinishedRecipe
 	
-	
-	
-	private void validate(@NotNull ResourceLocation wouldBeFileName)
-	{
-		if (this.m_advancement.getCriteria().isEmpty())
-		{
-			throw new IllegalStateException("No way of obtaining recipe: " + wouldBeFileName);
-		}
-	} // end validate()
-
 } // end class

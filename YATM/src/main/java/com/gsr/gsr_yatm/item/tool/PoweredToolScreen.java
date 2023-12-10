@@ -37,7 +37,7 @@ public class PoweredToolScreen extends AbstractContainerScreen<PoweredToolMenu>
 	@Override
 	public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick)
 	{
-		super.renderBackground(graphics);
+		super.renderBackground(graphics, mouseX, mouseY, partialTick);
 		this.renderBg(graphics, partialTick, mouseX, mouseY);
 		this.updateBatteryWidget();
 		super.render(graphics, mouseX, mouseY, partialTick);

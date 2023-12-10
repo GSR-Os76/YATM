@@ -1,24 +1,19 @@
 {
   "type": "gsr_yatm:crystallizing",
+  "consume_seed": false,
   "cost": 36,
   "input": {
-    "ingedient": {
-      "type": "gsr_yatm:fluid_tag_ingredient",
-      "amount": 250,
-      "tag": "forge:silicon_oxide"
-    }
+    "type": "gsr_yatm:fluid_tag_ingredient",
+    "amount": 250,
+    "tag": "forge:silicon_oxide"
   },
   "result": {
     "count": 1,
     "item": "minecraft:amethyst_shard"
   },
   "seed": {
-    "consume": false,
-    "ingedient": {
-      "type": "gsr_yatm:item_tag_ingredient",
-      "count": 1,
-      "tag": "forge:gems/amethyst"
-    }
+    "type": "gsr_yatm:item_tag_ingredient",
+    "tag": "forge:gems/amethyst"
   },
   "time": 300
 }

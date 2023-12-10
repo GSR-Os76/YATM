@@ -1,8 +1,8 @@
-// 1.20.1	2023-12-05T22:09:34.4985855	Tags for minecraft:item mod id gsr_yatm
-13a02f74fd8873c5f04a1528f897487ccadbeba4 data/forge/tags/items/armors/boots.json
-2b93f7f877d30d4f9b3cdc9475c1c55228c0094f data/forge/tags/items/armors/chestplates.json
-cb6c64d7d389b9aebc433bd86e469e5dbf5a6582 data/forge/tags/items/armors/helmets.json
-fad522adc79ea27a306068490b6e5a890f780914 data/forge/tags/items/armors/leggings.json
+// 1.20.2	2023-12-10T18:17:57.6863007	Tags for minecraft:item mod id gsr_yatm
+018848d9a27330dcbc1fe359c480fe037436cb0b data/forge/tags/items/armors/boots.json
+e945a43824d81dcf0c8e03ebffc91b199d68526e data/forge/tags/items/armors/chestplates.json
+7b568e60717571a678a00a1763657a456f8b17bb data/forge/tags/items/armors/helmets.json
+1880eca10f8aeb8267c87176320a0ec935d75010 data/forge/tags/items/armors/leggings.json
 da1d12f678963493519caaff63a76241b220579f data/forge/tags/items/clay.json
 bade3c9b0ab674f2efd3dc51c76e3652a9021029 data/forge/tags/items/ingots/rubber.json
 18795a8c0bcbdd7d7450b4a7ba2b97df86e0d87a data/forge/tags/items/nuggets/netherite.json
@@ -17,7 +17,7 @@ bad73721637de97a32c61f4a2b344b34cf83351f data/forge/tags/items/slabs/quartz.json
 832b7e6675be8ff08fd9a10a451a0f62d2bb9d10 data/forge/tags/items/storage_blocks/quartz.json
 5cde157d29986a1af6fac3eed0972c55ed684ae6 data/forge/tags/items/storage_blocks/rubber.json
 9c955a069c7d44f19a7775e96a97e0c2bf632acd data/forge/tags/items/walls/sandstone.json
-af5a440f5c712d3904c6b50819f04f2a58d71861 data/gsr_yatm/tags/items/armor_pieces/decay_netherite.json
+bdf25e5c240daaa1347abd92fb448a51032b98d5 data/gsr_yatm/tags/items/armor_pieces/decay_netherite.json
 ec857824c3fbff4388d79661bc800d1e9c6b97bf data/gsr_yatm/tags/items/armor_pieces/soul_adorned_netherite.json
 eebcd9ed0e9c3b763459acafdafb1b8fc8df74c7 data/gsr_yatm/tags/items/device_adjusters.json
 2fafa18e275729fc6225beb9ef000a778107c1bd data/gsr_yatm/tags/items/drills.json

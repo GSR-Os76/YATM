@@ -5,12 +5,11 @@ import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.ImageWidget;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
-public class HorizontalCurrentWidget extends ImageWidget
+public class HorizontalCurrentWidget extends FillBarWidget
 {
 	public static final ResourceLocation WIDGET_THINGS = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/widget_things.png");
 	public static final int WIDTH = 90;
@@ -22,11 +21,10 @@ public class HorizontalCurrentWidget extends ImageWidget
 	
 	public HorizontalCurrentWidget(int toX, int toY, @NotNegative int capacity) 
 	{
-		super(toX, toY, HorizontalCurrentWidget.WIDTH, HorizontalCurrentWidget.HEIGHT, HorizontalCurrentWidget.WIDGET_THINGS);
+		super(toX, toY, HorizontalCurrentWidget.WIDTH, HorizontalCurrentWidget.HEIGHT, Component.empty());
 		this.m_capacity = Contract.notNegative(capacity);
-		this.updateTooltip();
+		this.setUpdatedTooltip();
 	} // end constructor()
-	
 	
 	
 
@@ -42,10 +40,10 @@ public class HorizontalCurrentWidget extends ImageWidget
 		this.m_stored = Math.min(Contract.notNegative(amount), this.m_capacity);
 		float storedPercentageOfMax = (this.m_capacity == 0) ? 0 : (((float)this.m_stored) / ((float)this.m_capacity));
 		this.m_pixelsToDrawOverCount = (int)(((float)VerticalCurrentWidget.WIDTH) * storedPercentageOfMax);
-		this.updateTooltip();
+		this.setUpdatedTooltip();
 	} // end setStoredAmount()
 	
-	public void updateTooltip() 
+	public void setUpdatedTooltip() 
 	{
 		this.setTooltip(Tooltip.create(Component.literal(("(" + (this.m_stored + "cu/" + this.m_capacity) + "cu)"))));
 	} // end updateTooltip()

@@ -32,7 +32,7 @@ public class VineMeristemBlock extends GrowingPlantHeadBlock
 
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader level, BlockPos position, BlockState state, boolean unknown)
+	public boolean isValidBonemealTarget(LevelReader level, BlockPos position, BlockState state)
 	{
 		return false;
 	} // end isValidBonemealTarget

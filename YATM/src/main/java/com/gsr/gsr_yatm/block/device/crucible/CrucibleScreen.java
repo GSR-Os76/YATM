@@ -1,7 +1,6 @@
 package com.gsr.gsr_yatm.block.device.crucible;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.gui.ITemperatureWidget;
 import com.gsr.gsr_yatm.gui.VerticalStoredFluidWidget;
 import com.gsr.gsr_yatm.gui.VerticalTemperatureWidget;
 
@@ -16,7 +15,7 @@ public class CrucibleScreen extends AbstractContainerScreen<CrucibleMenu>
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/crucible.png");
 	
 	private VerticalStoredFluidWidget m_resultTankWidget;
-	private ITemperatureWidget m_temperatureWidget;
+	private VerticalTemperatureWidget m_temperatureWidget;
 	
 	
 	
@@ -42,7 +41,7 @@ public class CrucibleScreen extends AbstractContainerScreen<CrucibleMenu>
 	@Override
 	public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick)
 	{
-		super.renderBackground(graphics);
+		super.renderBackground(graphics, mouseX, mouseY, partialTick);
 		this.renderBg(graphics, partialTick, mouseX, mouseY);
 		this.updateResultTankWidget();
 		this.updateTemperatureWidget();
@@ -118,10 +117,10 @@ public class CrucibleScreen extends AbstractContainerScreen<CrucibleMenu>
 	{
 		if(this.m_temperatureWidget != null) 
 		{			
-			this.removeWidget(this.m_temperatureWidget.getThis());
+			this.removeWidget(this.m_temperatureWidget);
 		}
 		
 		this.m_temperatureWidget = new VerticalTemperatureWidget(this.leftPos + 20, this.topPos + 20, this.menu.getMaxTemperature());
-		this.addRenderableWidget(this.m_temperatureWidget.getThis());
+		this.addRenderableWidget(this.m_temperatureWidget);
 	} // end setTemperatureWidget()
 } // end class

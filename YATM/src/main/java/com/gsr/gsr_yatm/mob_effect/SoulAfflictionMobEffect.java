@@ -24,7 +24,7 @@ public class SoulAfflictionMobEffect extends MobEffect
 	} // end applyEffectTick()
 
 	@Override
-	public boolean isDurationEffectTick(int ticksRemaining, int amplifier)
+	public boolean shouldApplyEffectTickThisTick(int ticksRemaining, int amplifier)
 	{
 		int scaledFrequency = 16 >> amplifier;
 		return scaledFrequency == 0 ? true : ticksRemaining % scaledFrequency == 0;

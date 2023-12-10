@@ -25,7 +25,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
-import net.minecraftforge.network.NetworkHooks;
 
 public class GraftingTableBlock extends ShapeBlock
 {
@@ -56,11 +55,12 @@ public class GraftingTableBlock extends ShapeBlock
 	
 	
 	@Override
-	public InteractionResult use(BlockState blockState, @NotNull Level level, BlockPos blockPos, Player player, InteractionHand interactionHand, BlockHitResult blockHitResult)
+	public @NotNull InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
 		if(!level.isClientSide && player instanceof ServerPlayer serverPlayer) 
 		{
-			NetworkHooks.openScreen(serverPlayer, blockState.getMenuProvider(level, blockPos));
+			serverPlayer.openMenu(state.getMenuProvider(level, position));
+			
 		}
 		return InteractionResult.sidedSuccess(level.isClientSide);
 	} // end use()
@@ -68,13 +68,13 @@ public class GraftingTableBlock extends ShapeBlock
 	
 
 	@Override
-	public MenuProvider getMenuProvider(BlockState blockState, Level level, BlockPos blockPos)
+	public @NotNull MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position)
 	{
 		return new SimpleMenuProvider((containerId, playerInv, player) -> new GraftingMenu(
 				containerId, 
 				playerInv, 
-				ContainerLevelAccess.create(level, blockPos), 
-				blockState.getBlock()),
+				ContainerLevelAccess.create(level, position), 
+				state.getBlock()),
 		YATMLanguageProvider.translatableFor(YATMMenuTypes.GRAFTING_TABLE.get())
 				);
 	} // end getMenuProvider

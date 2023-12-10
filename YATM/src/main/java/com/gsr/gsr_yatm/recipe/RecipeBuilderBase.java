@@ -1,26 +1,27 @@
 package com.gsr.gsr_yatm.recipe;
 
+import java.util.LinkedHashMap;
+import java.util.Map;
 import java.util.Objects;
-import java.util.function.Consumer;
-
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.recipe.spinning.SpinningRecipe;
 import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.CriterionTriggerInstance;
+import net.minecraft.advancements.AdvancementHolder;
+import net.minecraft.advancements.AdvancementRequirements;
+import net.minecraft.advancements.AdvancementRewards;
+import net.minecraft.advancements.Criterion;
+import net.minecraft.advancements.critereon.RecipeUnlockedTrigger;
 import net.minecraft.data.recipes.FinishedRecipe;
 import net.minecraft.data.recipes.RecipeBuilder;
+import net.minecraft.data.recipes.RecipeOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.item.Item;
 
-
-// possibly do this and base class builders
 public abstract class RecipeBuilderBase implements RecipeBuilder
 {
 	protected @NotNull ResourceLocation m_identifier;
-	
 	protected @NotNull String m_group = "";
-	protected @NotNull Advancement.Builder m_advancement = Advancement.Builder.advancement();
+	protected final @NotNull Map<String, Criterion<?>> m_criteria = new LinkedHashMap<>();
 	
 	
 	
@@ -31,44 +32,43 @@ public abstract class RecipeBuilderBase implements RecipeBuilder
 		return this;
 	} // end identifier()
 
+
 	
-
-	public abstract @NotNull SpinningRecipe build();
-
-
-
 	@Override
-	public RecipeBuilder unlockedBy(String triggerName, CriterionTriggerInstance trigger)
+	public @NotNull RecipeBuilderBase unlockedBy(@NotNull String criteriaKey, @NotNull Criterion<?> criteria)
 	{
-		this.m_advancement.addCriterion(triggerName, trigger);
+		this.m_criteria.put(criteriaKey, criteria);
 		return this;
-	} // end unlockedBy()
+	}
 
 	@Override
-	public RecipeBuilder group(String group)
+	public @NotNull RecipeBuilderBase group(@Nullable String group)
 	{
 		this.m_group = group == null ? "" : group;
 		return this;
 	} // end group()
 
 	@Override
-	public abstract Item getResult();
-
-	@Override
-	public void save(Consumer<FinishedRecipe> writer, ResourceLocation fileName)
+	public void save(@NotNull RecipeOutput writer, @NotNull ResourceLocation fileName)
 	{
 		this.validate(fileName);
-		// writer.accept(new SpinningFinishedRecipe(fileName, this.m_result, this.m_input, this.m_group, fileName.withPrefix("recipes/"), this.m_advancement));
+		Advancement.Builder advancement = writer.advancement().addCriterion("has_the_recipe", RecipeUnlockedTrigger.unlocked(fileName)).rewards(AdvancementRewards.Builder.recipe(fileName)).requirements(AdvancementRequirements.Strategy.OR);
+	    this.m_criteria.forEach(advancement::addCriterion);
+		writer.accept(this.createFinishedRecipe(fileName, advancement.build(fileName.withPrefix("recipes/"))));
 	} // end save()
 	
 	
 	
-	private void validate(@NotNull ResourceLocation wouldBeFileName)
+	public abstract @NotNull FinishedRecipe createFinishedRecipe(@NotNull ResourceLocation fileName, @NotNull AdvancementHolder advancement);
+	
+	
+	
+	protected void validate(@NotNull ResourceLocation filename)
 	{
-		if (this.m_advancement.getCriteria().isEmpty())
+		if (this.m_criteria.isEmpty())
 		{
-			throw new IllegalStateException("No way of obtaining recipe: " + wouldBeFileName);
+			throw new IllegalStateException("No way of obtaining recipe: " + filename);
 		}
 	} // end validate()
 
-}
+} // end class

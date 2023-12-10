@@ -19,6 +19,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
@@ -98,16 +99,17 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 	protected void tryStartNewRecipe()
 	{
 		this.clearCurrentRecipe();
-		Enumeration<T> recipes = RecipeUtil.getRecipes(this.level, this.m_recipeType);
+		Enumeration<RecipeHolder<T>> recipes = RecipeUtil.getRecipes(this.level, this.m_recipeType);
 		while (recipes.hasMoreElements())
 		{
-			T r = recipes.nextElement();
-			if (this.canUseRecipe(r))
+			RecipeHolder<T> r = recipes.nextElement();
+			if (this.canUseRecipe(r.value()))
 			{
-				this.m_activeRecipe = r;
-				this.m_craftTime = r.getTimeInTicks();
+				this.m_activeRecipe = r.value();
+				this.m_activeRecipeIdentifier = r.id().toString();
+				this.m_craftTime = this.m_activeRecipe.getTimeInTicks();
 				this.m_craftCountDown = this.m_craftTime;
-				this.startRecipe(r);
+				this.startRecipe(this.m_activeRecipe);
 				break;
 			}
 		}
@@ -116,6 +118,7 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 	protected void clearCurrentRecipe() 
 	{
 		this.m_activeRecipe = null;
+		this.m_activeRecipeIdentifier = null;
 		this.m_craftTime = 0;
 		this.m_craftCountDown = 0;		
 	} // end clearCurrentRecipe()
@@ -129,29 +132,32 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 	protected void onRecipeLoad() 
 	{
 		this.m_waitingForLoad = false;
-		this.m_activeRecipe = RecipeUtil.loadRecipe(this.m_activeRecipeIdentifier, this.level, this.m_recipeType);
-		if(this.m_activeRecipe == null || this.m_craftCountDown <= 0 || this.m_craftTime <= 0) 
+		RecipeHolder<T> rHolder = RecipeUtil.loadRecipe(this.m_activeRecipeIdentifier, this.level, this.m_recipeType);
+		if(rHolder == null) 
 		{
 			this.clearCurrentRecipe();
+			return;
 		}
+		this.m_activeRecipe = rHolder.value();
+		this.m_activeRecipeIdentifier = rHolder.id().toString();
 	} // end onRecipeLoad()
 	
 	
 	
-	protected void saveAdditional(CompoundTag tag)
+	protected void saveAdditional(@NotNull CompoundTag tag)
 	{
 		super.saveAdditional(tag);
 		
 		if(this.m_activeRecipe != null && this.m_craftCountDown > 0 && this.m_craftTime > 0) 
 		{
-			tag.putString(CraftingDeviceBlockEntity.RECIPE_IDENTIFIER_TAG_NAME, this.m_activeRecipe.getId().toString());
+			tag.putString(CraftingDeviceBlockEntity.RECIPE_IDENTIFIER_TAG_NAME, this.m_activeRecipeIdentifier);
 			tag.putInt(CraftingDeviceBlockEntity.CRAFT_PROGESS_TAG_NAME, this.m_craftCountDown);
 			tag.putInt(CraftingDeviceBlockEntity.CRAFT_TIME_TAG_NAME, this.m_craftTime);
 		}
 	} // end saveAdditional()
 	
 	@Override
-	public void load(CompoundTag tag)
+	public void load(@NotNull CompoundTag tag)
 	{
 		super.load(tag);	
 		
@@ -160,6 +166,11 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C>, C ext
 			this.m_activeRecipeIdentifier = tag.getString(CraftingDeviceBlockEntity.RECIPE_IDENTIFIER_TAG_NAME);
 			this.m_craftCountDown = tag.getInt(CraftingDeviceBlockEntity.CRAFT_PROGESS_TAG_NAME);
 			this.m_craftTime = tag.getInt(CraftingDeviceBlockEntity.CRAFT_TIME_TAG_NAME);
+			if (this.m_craftCountDown <= 0 || this.m_craftTime <= 0) 
+			{
+				this.clearCurrentRecipe();
+				return;
+			}
 			this.m_waitingForLoad = true;
 			RecipeUtil.addRecipeLoadListener(this::onRecipeLoad);
 		}		

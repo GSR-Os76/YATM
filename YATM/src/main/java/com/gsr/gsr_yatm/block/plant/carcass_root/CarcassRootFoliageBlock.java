@@ -136,10 +136,10 @@ public class CarcassRootFoliageBlock extends CropBlock implements IHarvestableBl
 	
 
 	@Override
-	public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos position, BlockState state, boolean p_52261_)
+	public boolean isValidBonemealTarget(LevelReader levelReader, BlockPos position, BlockState state)
 	{
 		// TODO Auto-generated method stub
-		return super.isValidBonemealTarget(levelReader, position, state, p_52261_) && !this.isGrowthBlocked(levelReader, state, position);
+		return super.isValidBonemealTarget(levelReader, position, state) && !this.isGrowthBlocked(levelReader, state, position);
 	}
 
 	@Override

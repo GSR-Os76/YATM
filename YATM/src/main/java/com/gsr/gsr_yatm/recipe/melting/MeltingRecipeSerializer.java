@@ -1,45 +1,54 @@
 package com.gsr.gsr_yatm.recipe.melting;
 
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
-import com.google.gson.JsonObject;
-import com.gsr.gsr_yatm.utilities.JsonUtil;
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
 
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ExtraCodecs;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
+import net.minecraftforge.fluids.FluidStack;
 
 public class MeltingRecipeSerializer implements RecipeSerializer<MeltingRecipe>
 {
+	private static final @NotNull Codec<MeltingRecipe> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+			ExtraCodecs.strictOptionalField(Codec.STRING, IngredientUtil.GROUP_KEY, "").forGetter(MeltingRecipe::getGroup),
+			IngredientUtil.ingredientCodec().fieldOf(IngredientUtil.INPUT_KEY).forGetter(MeltingRecipe::input),
+			FluidStack.CODEC.fieldOf(IngredientUtil.RESULT_KEY).forGetter(MeltingRecipe::result),
+			Codec.INT.fieldOf(IngredientUtil.TEMPERATURE_KEY).forGetter(MeltingRecipe::getTemperature),
+			Codec.INT.fieldOf(IngredientUtil.TIME_IN_TICKS_KEY).forGetter(MeltingRecipe::getTimeInTicks)
+			).apply(instance, (g, i, r, temp, time) -> new MeltingRecipe(g, i.cast(), r, temp, time)));
+	
 	@Override
-	public @NotNull MeltingRecipe fromJson(@NotNull ResourceLocation resourceLocation, @NotNull JsonObject jsonObject)
+	public Codec<MeltingRecipe> codec()
 	{
-		MeltingRecipeBuilder builder = new MeltingRecipeBuilder();
-		
-		builder.identifier(resourceLocation);
-		builder.result(IngredientUtil.fluidStackFromJson(jsonObject.getAsJsonObject(IngredientUtil.RESULT_KEY)));
-		builder.input(IngredientUtil.readIngredient(jsonObject.getAsJsonObject(IngredientUtil.INPUT_KEY).getAsJsonObject(IngredientUtil.INGREDIENT_KEY)).cast());
-		
-		JsonUtil.ifPresent(jsonObject, IngredientUtil.TEMPERATURE_KEY, (e) -> builder.temperature(e.getAsInt()));
-		JsonUtil.ifPresent(jsonObject, IngredientUtil.TIME_IN_TICKS_KEY, (e) -> builder.timeInTicks(e.getAsInt()));
-		JsonUtil.ifPresent(jsonObject, IngredientUtil.GROUP_KEY, (e) -> builder.group(e.getAsString()));
-		
-		return builder.build();
-	} // end fromJson()
+		return MeltingRecipeSerializer.CODEC;
+	} // end codec()
 
 	@Override
-	public @Nullable MeltingRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf)
+	public @NotNull MeltingRecipe fromNetwork(@NotNull FriendlyByteBuf buffer)
 	{
-		// TODO Auto-generated method stub
-		return null;
-	}
+		String group = buffer.readUtf();
+		IIngredient<ItemStack> input = IngredientUtil.fromNetwork(buffer);
+		FluidStack result = buffer.readFluidStack();
+		int temp = buffer.readVarInt();
+		int time = buffer.readVarInt();
+		
+		return new MeltingRecipe(group, input, result, temp, time);
+	} // end fromNetwork()
 
 	@Override
-	public void toNetwork(FriendlyByteBuf friendlyByteBuf, MeltingRecipe recipe)
+	public void toNetwork(@NotNull FriendlyByteBuf buffer, @NotNull MeltingRecipe recipe)
 	{
-		// TODO Auto-generated method stub		
-	}
+		buffer.writeUtf(recipe.getGroup());
+		IngredientUtil.toNetwork(recipe.input(), buffer);
+		buffer.writeFluidStack(recipe.result());
+		buffer.writeVarInt(recipe.getTemperature());
+		buffer.writeVarInt(recipe.getTimeInTicks());
+	} // end toNetwork()
 
 } // end class

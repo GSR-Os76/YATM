@@ -12,8 +12,8 @@ import org.jetbrains.annotations.NotNull;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.plant.CustomSeedCropBlock;
-import com.gsr.gsr_yatm.command.PlantData;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.Util;
@@ -328,7 +328,7 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 						BlockState setRes = this.getStateForPlacement(level, toCheck, toReplace, simulatedClickedFace);
 						if(setRes != null) 
 						{
-							level.setBlock(toCheck, setRes.setValue(PrismarineCrystalMossBlock.CAN_SPREAD, PlantData.isHorizontalGrowthUnbound(level)), 3);
+							level.setBlock(toCheck, setRes.setValue(PrismarineCrystalMossBlock.CAN_SPREAD, YATMConfigs.IS_HORIZONTAL_GROWRTH_UNBOUND.get()), 3);
 							return;
 						}
 					}

@@ -14,6 +14,7 @@ import com.gsr.gsr_yatm.utilities.recipe.RecipeUtil;
 import it.unimi.dsi.fastutil.objects.Object2FloatMap.Entry;
 import it.unimi.dsi.fastutil.objects.ObjectIterator;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.ItemLike;
 import net.minecraft.world.level.Level;
@@ -22,7 +23,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class CompostableBioreactingRecipeProvider implements IDynamicRecipeProvider<BioreactingRecipe>
 {
-	private Map<Map.Entry<ItemLike, Float>, CompostableBioreactingRecipe> m_cache = new HashMap<>();
+	private Map<Map.Entry<ItemLike, Float>, RecipeHolder<BioreactingRecipe>> m_cache = new HashMap<>();
 	
 
 	
@@ -34,9 +35,9 @@ public class CompostableBioreactingRecipeProvider implements IDynamicRecipeProvi
 	
 	
 	@Override
-	public @NotNull Enumeration<BioreactingRecipe> getEnumerator(@NotNull Level level)
+	public @NotNull Enumeration<RecipeHolder<BioreactingRecipe>> getEnumerator(@NotNull Level level)
 	{
-		return new Enumeration<BioreactingRecipe>() 
+		return new Enumeration<RecipeHolder<BioreactingRecipe>>() 
 		{
 			private final ObjectIterator<Entry<ItemLike>> m_compostablesList = ComposterBlock.COMPOSTABLES.object2FloatEntrySet().iterator();
 			
@@ -49,13 +50,13 @@ public class CompostableBioreactingRecipeProvider implements IDynamicRecipeProvi
 			} // end hasMoreElements()
 
 			@Override
-			public CompostableBioreactingRecipe nextElement()
+			public RecipeHolder<BioreactingRecipe> nextElement()
 			{
 				Entry<ItemLike> t = this.m_compostablesList.next();
 				if(!CompostableBioreactingRecipeProvider.this.m_cache.containsKey(t)) 
 				{
 					CompostableBioreactingRecipeProvider.this.m_cache.put(t, 
-							new CompostableBioreactingRecipe(this.identifierFor(t),	t));
+							new RecipeHolder<>(this.identifierFor(t), new CompostableBioreactingRecipe(t)));
 				}
 				return CompostableBioreactingRecipeProvider.this.m_cache.get(t);
 			} // end nextElement()

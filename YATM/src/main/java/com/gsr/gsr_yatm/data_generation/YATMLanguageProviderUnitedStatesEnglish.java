@@ -1,6 +1,5 @@
 package com.gsr.gsr_yatm.data_generation;
 
-import com.gsr.gsr_yatm.command.YATMRuleCommand;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMCreativeModeTabs;
 import com.gsr.gsr_yatm.registry.YATMFluids;
@@ -45,11 +44,6 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add("biome.gsr_yatm.old_growth_soul_sand_valley", "Old Growth Soul Sand Valley");
 		this.add("biome.gsr_yatm.rubber_forest", "Rubber Forest");
-		
-		
-		
-		this.add(YATMRuleCommand.SET_UNBOUND_HORIZONTAL_GROWTH_TRANSLATION_KEY, "Unbound horizontal growth set to %s for the level");
-		this.add(YATMRuleCommand.READ_UNBOUND_HORIZONTAL_GROWTH_TRANSLATION_KEY, "This level's unbound horizontal growth's set as: %s");
 		
 		
 		
@@ -282,10 +276,10 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		
 		// ITEMS \\
-		this.add(YATMItems.RUBBER_BOAT_ITEM.get(), "Rubber Boat");
-		this.add(YATMItems.RUBBER_CHEST_BOAT_ITEM.get(), "Rubber Chest Boat");
-		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_BOAT_ITEM.get(), "Soul Afflicted Rubber Boat");
-		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT_ITEM.get(), "Soul Afflicted Rubber Chest Boat");
+		this.add(YATMItems.RUBBER_BOAT.get(), "Rubber Boat");
+		this.add(YATMItems.RUBBER_CHEST_BOAT.get(), "Rubber Chest Boat");
+		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_BOAT.get(), "Soul Afflicted Rubber Boat");
+		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT.get(), "Soul Afflicted Rubber Chest Boat");
 					
 		this.add(YATMItems.BASIN_OF_TEARS_SEED.get(), "Crying Plant Seeds");
 		this.add(YATMItems.DILUTED_TEAR_BOTTLE.get(), "Diluted Tear Bottle");		

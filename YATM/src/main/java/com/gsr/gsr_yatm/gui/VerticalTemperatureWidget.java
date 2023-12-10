@@ -1,13 +1,13 @@
 package com.gsr.gsr_yatm.gui;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
+
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.ImageWidget;
 import net.minecraft.client.gui.components.Tooltip;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 
-public class VerticalTemperatureWidget extends ImageWidget implements ITemperatureWidget
+public class VerticalTemperatureWidget extends FillBarWidget implements ITemperatureWidget
 {
 	public static final ResourceLocation WIDGET_THINGS = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/widget_things.png");
 	public static final int WIDTH = 11;
@@ -19,7 +19,7 @@ public class VerticalTemperatureWidget extends ImageWidget implements ITemperatu
 	
 	public VerticalTemperatureWidget(int toX, int toY, int maxTemperature) 
 	{
-		super(toX, toY, VerticalTemperatureWidget.WIDTH, VerticalTemperatureWidget.HEIGHT, VerticalTemperatureWidget.WIDGET_THINGS);
+		super(toX, toY, VerticalTemperatureWidget.WIDTH, VerticalTemperatureWidget.HEIGHT, Component.empty());
 		this.m_maxTemperature = maxTemperature;
 		this.updateTooltip();
 	} // end constructor()

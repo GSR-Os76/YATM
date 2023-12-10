@@ -2,19 +2,19 @@
   "type": "gsr_yatm:extracting",
   "cost": 4,
   "input": {
-    "ingedient": {
-      "type": "gsr_yatm:item_stack_ingredient",
+    "type": "gsr_yatm:item_stack_ingredient",
+    "stack": {
       "count": 1,
       "item": "gsr_yatm:rubber_leaves_flowering"
-    },
-    "remainder": {
-      "count": 2,
-      "item": "gsr_yatm:leaf_mulch"
     }
   },
+  "input_remainder": {
+    "count": 2,
+    "item": "gsr_yatm:leaf_mulch"
+  },
   "result": {
-    "count": 30,
-    "fluid": "gsr_yatm:latex"
+    "Amount": 30,
+    "FluidName": "gsr_yatm:latex"
   },
   "time": 46
 }

@@ -1,7 +1,5 @@
 package com.gsr.gsr_yatm.mob_effect;
 
-import com.gsr.gsr_yatm.YetAnotherTechMod;
-
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
@@ -32,11 +30,9 @@ public class InstantTeleportationMobEffect extends MobEffect
 	@Override
 	public void applyEffectTick(LivingEntity entity, int amplifier)
 	{
-		YetAnotherTechMod.LOGGER.info("applyEffectTick");
 		Level level = entity.level();
 		if (!level.isClientSide)
 		{
-			YetAnotherTechMod.LOGGER.info("was not client");
 			double sourceX = entity.getX();
 			double sourceY = entity.getY();
 			double sourceZ = entity.getZ();
@@ -71,9 +67,9 @@ public class InstantTeleportationMobEffect extends MobEffect
 	} // end applyEffectTick()
 
 	@Override
-	public boolean isDurationEffectTick(int p_19455_, int p_19456_)
+	public boolean shouldApplyEffectTickThisTick(int ticksRemaining, int amplifier)
 	{
 		return true;
-	}
+	} // end shouldApplyEffectTickThisTick()
 	
 } // end class

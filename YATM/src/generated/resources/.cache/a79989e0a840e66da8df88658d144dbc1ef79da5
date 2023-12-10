@@ -1,4 +1,4 @@
-// 1.20.1	2023-11-28T11:46:03.0260801	Item Models: gsr_yatm
+// 1.20.2	2023-12-10T18:17:57.6823105	Item Models: gsr_yatm
 c2ea606d991a81e423cce1d89391873c41111adb assets/gsr_yatm/models/item/adamum_meristem.json
 14f5226a0106e1a4c57981511721fb6c8ffd9059 assets/gsr_yatm/models/item/advanced_current_battery.json
 684ab5903fbcfdbd643eb1efa0d897a0d95283a9 assets/gsr_yatm/models/item/advanced_current_battery_1.json
@@ -45,10 +45,10 @@ d7be4b9637377d2010161bc9b2d452fe22add250 assets/gsr_yatm/models/item/current_bat
 463f2e86470953a8e6e95710f37fb93007dbad58 assets/gsr_yatm/models/item/current_battery_6.json
 1d3c878383fc824106ddfb98dec740d30b197272 assets/gsr_yatm/models/item/current_battery_7.json
 f00926c141b4a5aa6509f4d9b2a36f6ebbb0d5f4 assets/gsr_yatm/models/item/cyan_candle_lantern.json
-6d4c6ec3e07858d329b824cb0549aa0fc31dd0e2 assets/gsr_yatm/models/item/decaying_soul_adorned_netherite_boots.json
-6d9a1e6272e0cd5673a5b386244dda14787c71ed assets/gsr_yatm/models/item/decaying_soul_adorned_netherite_chestplate.json
-3b8f6311b029b2b76abb69823c4b28cb5e2467c4 assets/gsr_yatm/models/item/decaying_soul_adorned_netherite_helmet.json
-9dc5c080daf7e6ead74dd1541298f047c6751a3d assets/gsr_yatm/models/item/decaying_soul_adorned_netherite_leggings.json
+48e59539a8908f1b75e5cf041d5088f8c4c64005 assets/gsr_yatm/models/item/decay_netherite_boots.json
+cffb8a20cd9153d42554dd2b093881cb2dd2ee74 assets/gsr_yatm/models/item/decay_netherite_chestplate.json
+7919b19015ec7f9a606e1858b5066e0d872680a9 assets/gsr_yatm/models/item/decay_netherite_helmet.json
+d5aa818880aa9e5ac9fbca7b20c0774bde59cf5b assets/gsr_yatm/models/item/decay_netherite_leggings.json
 b060226a3a49ed70638365895014ff510ffa3a1f assets/gsr_yatm/models/item/diamond_drill_bit.json
 8ebfb0f4fa6678c70f407ecb49fc7184d7d230d9 assets/gsr_yatm/models/item/diamond_saw_blade.json
 05643f13edd65fd51899712e8fe49563d98a273e assets/gsr_yatm/models/item/diluted_tear_bottle.json

@@ -1,147 +1,47 @@
 package com.gsr.gsr_yatm.recipe.spinning;
 
-import org.jetbrains.annotations.Nullable;
-
-import com.google.gson.JsonObject;
+import org.jetbrains.annotations.NotNull;
+import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
+import com.mojang.serialization.Codec;
+import com.mojang.serialization.codecs.RecordCodecBuilder;
+
 import net.minecraft.network.FriendlyByteBuf;
-import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.ExtraCodecs;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.crafting.CraftingRecipeCodecs;
 import net.minecraft.world.item.crafting.RecipeSerializer;
-import net.minecraftforge.common.crafting.CraftingHelper;
 
 public class SpinningRecipeSerializer implements RecipeSerializer<SpinningRecipe>
 {	
+	private static final @NotNull Codec<SpinningRecipe> CODEC = RecordCodecBuilder.create((instance) -> instance.group(
+			ExtraCodecs.strictOptionalField(Codec.STRING, IngredientUtil.GROUP_KEY, "").forGetter(SpinningRecipe::getGroup),
+			IngredientUtil.ingredientCodec().fieldOf(IngredientUtil.INPUT_KEY).forGetter(SpinningRecipe::input),
+			CraftingRecipeCodecs.ITEMSTACK_OBJECT_CODEC.fieldOf(IngredientUtil.RESULT_KEY).forGetter(SpinningRecipe::result)
+			).apply(instance, (g, i, r) -> new SpinningRecipe(g, i.cast(), r)));
 	
 	@Override
-	public SpinningRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject)
+	public Codec<SpinningRecipe> codec()
 	{
-		SpinningRecipeBuilder builder = new SpinningRecipeBuilder();
-		
-		builder.identifier(resourceLocation);
-		builder.result(CraftingHelper.getItemStack(jsonObject.getAsJsonObject(IngredientUtil.RESULT_KEY), true));
-		builder.input(IngredientUtil.readIngredient(jsonObject.getAsJsonObject(IngredientUtil.INPUT_KEY).getAsJsonObject(IngredientUtil.INGREDIENT_KEY)).cast());
-		
-		if(jsonObject.has(IngredientUtil.GROUP_KEY)) 
-		{
-			builder.group(jsonObject.get(IngredientUtil.GROUP_KEY).getAsString());
-		}
-		
-		return builder.build();		
-	} // end fromJson()
+		return SpinningRecipeSerializer.CODEC;
+	} // end codec()
 
 	@Override
-	public @Nullable SpinningRecipe fromNetwork(ResourceLocation resourceLocation, FriendlyByteBuf friendlyByteBuf)
+	public @NotNull SpinningRecipe fromNetwork(@NotNull FriendlyByteBuf buffer)
 	{
-		// TODO Auto-generated method stub
-		return null;
-	}
+		String group = buffer.readUtf();
+		IIngredient<ItemStack> input = IngredientUtil.fromNetwork(buffer);
+		ItemStack result = buffer.readItem();
+		
+		return new SpinningRecipe(group, input, result);
+	} // end fromNetwork()
 
 	@Override
-	public void toNetwork(FriendlyByteBuf friendlyByteBuf, SpinningRecipe recipe)
+	public void toNetwork(@NotNull FriendlyByteBuf buffer, @NotNull SpinningRecipe recipe)
 	{
-		// TODO Auto-generated method stub
-	}
+		buffer.writeUtf(recipe.getGroup());
+		IngredientUtil.toNetwork(recipe.input(), buffer);
+		buffer.writeItem(recipe.result());		
+	} // end toNetwork()
 	
 } // end class
-/* //SimpleCraftingRecipeSerializer s;
-		ResourceLocation identifier = resourceLocation;
-		ItemStack result = CraftingHelper.getItemStack(jsonObject.getAsJsonObject(RESULT_OBJECT_KEY), false);
-		ExtrusionRecipe.Builder builder = new ExtrusionRecipe.Builder(identifier, result);
-		
-		JsonObject inputObj = jsonObject.getAsJsonObject(INPUT_OBJECT_KEY);
-		JsonObject dieObj = jsonObject.getAsJsonObject(DIE_OBJECT_KEY);
-		
-		
-		
-		ItemStack inputStack = null;
-		ITag<Item> inputTag = null;
-		int inputCount = 1;
-		if(inputObj.has(ITEM_KEY)) 
-		{			
-			inputStack = CraftingHelper.getItemStack(inputObj, false);
-		}
-		if(inputObj.has(TAG_KEY)) 
-		{			
-			inputTag = RecipeUtilities.getTag(inputObj.get(TAG_KEY).getAsString());
-		}
-		if(inputObj.has(COUNT_KEY)) 
-		{			
-			inputCount = inputObj.get(COUNT_KEY).getAsInt();
-		}
-		builder.input(inputTag, inputStack, Math.max(inputCount, inputStack != null ? inputStack.getCount() : 0));
-		
-		
-		
-		ItemStack dieStack = null;
-		ITag<Item> dieTag = null;
-		if(dieObj.has(ITEM_KEY)) 
-		{			
-			dieStack = new ItemStack(CraftingHelper.getItem(dieObj.get(ITEM_KEY).getAsString(), true), 1);
-		}
-		if(dieObj.has(TAG_KEY)) 
-		{
-			dieTag = RecipeUtilities.getTag(dieObj.get(TAG_KEY).getAsString()); 
-		}
-		builder.die(dieTag, dieStack);
-		
-		
-		
-		if(inputObj.has(INPUT_REMAINDER_STACK_KEY)) 
-		{
-			builder.inputRemainder(CraftingHelper.getItemStack(inputObj.getAsJsonObject(INPUT_REMAINDER_STACK_KEY), false));
-		}
-		if(dieObj.has(DIE_REMAINDER_KEY)) 
-		{
-			builder.dieRemainder(CraftingHelper.getItemStack(dieObj.getAsJsonObject(DIE_REMAINDER_KEY), false));
-		}
-		
-		if(jsonObject.has(CURRENT_PER_TICK_KEY)) 
-		{
-			builder.currentPerTick(jsonObject.get(CURRENT_PER_TICK_KEY).getAsInt());
-		}
-		if(jsonObject.has(TIME_IN_TICKS_KEY)) 
-		{
-			builder.timeInTicks(jsonObject.get(TIME_IN_TICKS_KEY).getAsInt());
-		}
-		
-		return builder.build();
-  
-  
- 
- * @Override
-	public ExtrusionRecipe fromJson(ResourceLocation resourceLocation, JsonObject jsonObject)
-	{
-		//SimpleCraftingRecipeSerializer s;
-		ResourceLocation identifier = resourceLocation;
-		ItemStack result = CraftingHelper.getItemStack(jsonObject.getAsJsonObject(RESULT_OBJECT_KEY), false);
-		
-		JsonObject inputObj = jsonObject.getAsJsonObject(INPUT_OBJECT_KEY);
-		JsonObject dieObj = jsonObject.getAsJsonObject(DIE_OBJECT_KEY);
-		
-		ItemStack input = CraftingHelper.getItemStack(inputObj, false);
-		ItemStack die = new ItemStack(CraftingHelper.getItem(dieObj.get(ITEM_KEY).getAsString(), true), 1);
-		
-		ExtrusionRecipe.Builder builder = new ExtrusionRecipe.Builder(identifier, input, die, result);
-		
-		if(inputObj.has(INPUT_REMAINDER_STACK_KEY)) 
-		{
-			builder.inputRemainder(CraftingHelper.getItemStack(inputObj.getAsJsonObject(INPUT_REMAINDER_STACK_KEY), false));
-		}
-		if(dieObj.has(DIE_REMAINDER_KEY)) 
-		{
-			builder.dieRemainder(CraftingHelper.getItemStack(dieObj.getAsJsonObject(DIE_REMAINDER_KEY), false));
-		}
-		
-		if(jsonObject.has(CURRENT_PER_TICK_KEY)) 
-		{
-			builder.currentPerTick(jsonObject.get(CURRENT_PER_TICK_KEY).getAsInt());
-		}
-		if(jsonObject.has(TIME_IN_TICKS_KEY)) 
-		{
-			builder.timeInTicks(jsonObject.get(TIME_IN_TICKS_KEY).getAsInt());
-		}
-		
-		return builder.build();
-	} // end fromJson()
- * */
- 
