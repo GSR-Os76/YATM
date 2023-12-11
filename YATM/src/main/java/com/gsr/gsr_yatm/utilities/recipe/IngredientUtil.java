@@ -59,10 +59,9 @@ public class IngredientUtil
 	
 	
 	
-	// should really read the key to get the deserializer, than read the 
 	public static final Codec<IIngredient<?>> INGREDIENT_CODEC = YATMRegistries.INGREDIENT_DESERIALIZERS.get().getCodec().dispatch(IIngredient::deserializer, IIngredientDeserializer::codec);
 	
-	public static Codec<IIngredient<?>> ingredientCodec() 
+	public static @NotNull Codec<IIngredient<?>> ingredientCodec() 
 	{
 		return IngredientUtil.INGREDIENT_CODEC;
 	} // end ingredientCodec()

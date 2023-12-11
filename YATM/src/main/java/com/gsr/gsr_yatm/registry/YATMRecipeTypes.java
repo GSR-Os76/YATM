@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.registry;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.recipe.bioreacting.BioreactingRecipe;
+import com.gsr.gsr_yatm.recipe.bioreaction.BioreactionRecipe;
 import com.gsr.gsr_yatm.recipe.boiling.BoilingRecipe;
 import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizingRecipe;
 import com.gsr.gsr_yatm.recipe.extracting.ExtractingRecipe;
@@ -24,7 +24,7 @@ public class YATMRecipeTypes
 	
 	public static final RegistryObject<RecipeType<SpinningRecipe>> SPINNING = RECIPE_TYPES.register("spinning", () -> new RecipeType<SpinningRecipe>(){});
 	
-	public static final RegistryObject<RecipeType<BioreactingRecipe>> BIOREACTING = RECIPE_TYPES.register("bioreacting", () -> new RecipeType<BioreactingRecipe>(){});
+	public static final RegistryObject<RecipeType<BioreactionRecipe>> BIOREACTION = RECIPE_TYPES.register("bioreaction", () -> new RecipeType<BioreactionRecipe>(){});
 	public static final RegistryObject<RecipeType<BoilingRecipe>> BOILING = RECIPE_TYPES.register("boiling", () -> new RecipeType<BoilingRecipe>(){});
 	public static final RegistryObject<RecipeType<CrystallizingRecipe>> CRYSTALLIZING = RECIPE_TYPES.register("crystallizating", () -> new RecipeType<CrystallizingRecipe>(){});
 	public static final RegistryObject<RecipeType<ExtractingRecipe>> EXTRACTING = RECIPE_TYPES.register("extracting", () -> new RecipeType<ExtractingRecipe>(){});

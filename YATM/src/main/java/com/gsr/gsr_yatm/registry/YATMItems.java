@@ -13,6 +13,7 @@ import com.gsr.gsr_yatm.entity.boat.YATMBoatType;
 import com.gsr.gsr_yatm.item.BonusType;
 import com.gsr.gsr_yatm.item.DrinkableItem;
 import com.gsr.gsr_yatm.item.EfficiencyUpgradeItem;
+import com.gsr.gsr_yatm.item.LazyArmorItem;
 import com.gsr.gsr_yatm.item.ShulkwartHornItem;
 import com.gsr.gsr_yatm.item.ShulkwartSporesBlockItem;
 import com.gsr.gsr_yatm.item.SpeedUpgradeItem;
@@ -368,15 +369,15 @@ public class YATMItems
 	
 	// ambulatory accelerator foliar steel armor upgrade for spring speed
 	
-	public static final RegistryObject<ArmorItem> SOUL_ADORNED_NETHERITE_HELMET = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_adorned_netherite_helmet", () -> new ArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.HELMET, new Item.Properties().fireResistant()))));
-	public static final RegistryObject<ArmorItem> SOUL_ADORNED_NETHERITE_CHESTPLATE = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_adorned_netherite_chestplate", () -> new ArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()))));
-	public static final RegistryObject<ArmorItem> SOUL_ADORNED_NETHERITE_LEGGINGS = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_adorned_netherite_leggings", () -> new ArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant()))));
-	public static final RegistryObject<ArmorItem> SOUL_ADORNED_NETHERITE_BOOTS = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_adorned_netherite_boots", () -> new ArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()))));
+	public static final RegistryObject<LazyArmorItem> SOUL_ADORNED_NETHERITE_HELMET = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_adorned_netherite_helmet", () -> new LazyArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.HELMET, new Item.Properties().fireResistant()))));
+	public static final RegistryObject<LazyArmorItem> SOUL_ADORNED_NETHERITE_CHESTPLATE = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_adorned_netherite_chestplate", () -> new LazyArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()))));
+	public static final RegistryObject<LazyArmorItem> SOUL_ADORNED_NETHERITE_LEGGINGS = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_adorned_netherite_leggings", () -> new LazyArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant()))));
+	public static final RegistryObject<LazyArmorItem> SOUL_ADORNED_NETHERITE_BOOTS = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_adorned_netherite_boots", () -> new LazyArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()))));
 	
-	public static final RegistryObject<ArmorItem> DECAY_NETHERITE_HELMET = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("decay_netherite_helmet", () -> new ArmorItem(YATMArmorMaterials.DECAY_NETHERITE, ArmorItem.Type.HELMET, new Item.Properties().fireResistant()))));
-	public static final RegistryObject<ArmorItem> DECAY_NETHERITE_CHESTPLATE = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("decay_netherite_chestplate", () -> new ArmorItem(YATMArmorMaterials.DECAY_NETHERITE, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()))));
-	public static final RegistryObject<ArmorItem> DECAY_NETHERITE_LEGGINGS = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("decay_netherite_leggings", () -> new ArmorItem(YATMArmorMaterials.DECAY_NETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant()))));
-	public static final RegistryObject<ArmorItem> DECAY_NETHERITE_BOOTS = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("decay_netherite_boots", () -> new ArmorItem(YATMArmorMaterials.DECAY_NETHERITE, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()))));
+	public static final RegistryObject<LazyArmorItem> DECAY_NETHERITE_HELMET = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("decay_netherite_helmet", () -> new LazyArmorItem(YATMArmorMaterials.DECAY_NETHERITE, ArmorItem.Type.HELMET, new Item.Properties().fireResistant()))));
+	public static final RegistryObject<LazyArmorItem> DECAY_NETHERITE_CHESTPLATE = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("decay_netherite_chestplate", () -> new LazyArmorItem(YATMArmorMaterials.DECAY_NETHERITE, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()))));
+	public static final RegistryObject<LazyArmorItem> DECAY_NETHERITE_LEGGINGS = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("decay_netherite_leggings", () -> new LazyArmorItem(YATMArmorMaterials.DECAY_NETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant()))));
+	public static final RegistryObject<LazyArmorItem> DECAY_NETHERITE_BOOTS = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("decay_netherite_boots", () -> new LazyArmorItem(YATMArmorMaterials.DECAY_NETHERITE, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()))));
 	
 	public static final RegistryObject<BlockItem> CREATIVE_CURRENT_SOURCE = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("creative_current_source", () -> new BlockItem(YATMBlocks.CREATIVE_CURRENT_SOURCE.get(), new Item.Properties()))));
 	

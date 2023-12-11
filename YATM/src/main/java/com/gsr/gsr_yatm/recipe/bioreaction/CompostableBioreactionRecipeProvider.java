@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.recipe.bioreacting;
+package com.gsr.gsr_yatm.recipe.bioreaction;
 
 import java.util.Enumeration;
 import java.util.HashMap;
@@ -21,23 +21,23 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.ComposterBlock;
 import net.minecraftforge.registries.ForgeRegistries;
 
-public class CompostableBioreactingRecipeProvider implements IDynamicRecipeProvider<BioreactingRecipe>
+public class CompostableBioreactionRecipeProvider implements IDynamicRecipeProvider<BioreactionRecipe>
 {
-	private Map<Map.Entry<ItemLike, Float>, RecipeHolder<BioreactingRecipe>> m_cache = new HashMap<>();
+	private Map<Map.Entry<ItemLike, Float>, RecipeHolder<BioreactionRecipe>> m_cache = new HashMap<>();
 	
 
 	
-	public CompostableBioreactingRecipeProvider() 
+	public CompostableBioreactionRecipeProvider() 
 	{
-		RecipeUtil.addPersistentRecipeLoadListener(() -> CompostableBioreactingRecipeProvider.this.m_cache = new HashMap<>());
+		RecipeUtil.addPersistentRecipeLoadListener(() -> CompostableBioreactionRecipeProvider.this.m_cache = new HashMap<>());
 	} // end constructor
 	
 	
 	
 	@Override
-	public @NotNull Enumeration<RecipeHolder<BioreactingRecipe>> getEnumerator(@NotNull Level level)
+	public @NotNull Enumeration<RecipeHolder<BioreactionRecipe>> getEnumerator(@NotNull Level level)
 	{
-		return new Enumeration<RecipeHolder<BioreactingRecipe>>() 
+		return new Enumeration<RecipeHolder<BioreactionRecipe>>() 
 		{
 			private final ObjectIterator<Entry<ItemLike>> m_compostablesList = ComposterBlock.COMPOSTABLES.object2FloatEntrySet().iterator();
 			
@@ -50,15 +50,15 @@ public class CompostableBioreactingRecipeProvider implements IDynamicRecipeProvi
 			} // end hasMoreElements()
 
 			@Override
-			public RecipeHolder<BioreactingRecipe> nextElement()
+			public RecipeHolder<BioreactionRecipe> nextElement()
 			{
 				Entry<ItemLike> t = this.m_compostablesList.next();
-				if(!CompostableBioreactingRecipeProvider.this.m_cache.containsKey(t)) 
+				if(!CompostableBioreactionRecipeProvider.this.m_cache.containsKey(t)) 
 				{
-					CompostableBioreactingRecipeProvider.this.m_cache.put(t, 
-							new RecipeHolder<>(this.identifierFor(t), new CompostableBioreactingRecipe(t)));
+					CompostableBioreactionRecipeProvider.this.m_cache.put(t, 
+							new RecipeHolder<>(this.identifierFor(t), new CompostableBioreactionRecipe(t)));
 				}
-				return CompostableBioreactingRecipeProvider.this.m_cache.get(t);
+				return CompostableBioreactionRecipeProvider.this.m_cache.get(t);
 			} // end nextElement()
 			
 			
@@ -72,9 +72,9 @@ public class CompostableBioreactingRecipeProvider implements IDynamicRecipeProvi
 	} // end getEnumerator
 	
 	@Override
-	public @NotNull RecipeType<BioreactingRecipe> recipeType()
+	public @NotNull RecipeType<BioreactionRecipe> recipeType()
 	{
-		return YATMRecipeTypes.BIOREACTING.get();
+		return YATMRecipeTypes.BIOREACTION.get();
 	} // end recipeType()
 	
 } // end class

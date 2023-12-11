@@ -1,5 +1,5 @@
 {
-  "type": "gsr_yatm:bioling",
+  "type": "gsr_yatm:bioreaction",
   "cost": 6,
   "input": {
     "type": "gsr_yatm:item_stack_ingredient",

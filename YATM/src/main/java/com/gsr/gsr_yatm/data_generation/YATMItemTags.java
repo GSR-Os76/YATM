@@ -20,7 +20,6 @@ import net.minecraft.world.level.block.Block;
 import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.tags.ITag;
 import net.minecraftforge.registries.tags.ITagManager;
 
 public class YATMItemTags extends ItemTagsProvider
@@ -73,11 +72,6 @@ public class YATMItemTags extends ItemTagsProvider
 	public static final TagKey<Item> SPREADS_PHANTASMAL_SHELF_FUNGI_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "spreads_phantasmal_shelf_fungi"));
 	public static final TagKey<Item> WIRE_DIES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "dies/wire"));
 	
-	
-	public static final ITag<Item> DECAY_NETHERITE_ARMOR_PIECES = TM.getTag(YATMItemTags.DECAY_NETHERITE_ARMOR_PIECES_KEY);
-	public static final ITag<Item> SOUL_ADORNED_NETHERITE_ARMOR_PIECES = TM.getTag(YATMItemTags.SOUL_ADORNED_NETHERITE_ARMOR_PIECES_KEY);
-	
-
 	
 	public YATMItemTags(PackOutput packOutput, CompletableFuture<Provider> completableFuture, CompletableFuture<TagLookup<Block>> tagsProvider, @Nullable ExistingFileHelper existingFileHelper)
 	{

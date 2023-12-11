@@ -15,7 +15,7 @@ import com.gsr.gsr_yatm.block.device.behaviors.CurrentFillManager;
 import com.gsr.gsr_yatm.block.device.behaviors.DrainTankManager;
 import com.gsr.gsr_yatm.block.device.behaviors.InputComponentManager;
 import com.gsr.gsr_yatm.block.device.behaviors.OutputComponentManager;
-import com.gsr.gsr_yatm.recipe.bioreacting.BioreactingRecipe;
+import com.gsr.gsr_yatm.recipe.bioreaction.BioreactionRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
@@ -45,7 +45,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 
-public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<BioreactingRecipe, Container>
+public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<BioreactionRecipe, Container>
 {
 	public static final int INVENTORY_SLOT_COUNT = 3;	
 	
@@ -104,7 +104,7 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreacting
 	
 	public BioreactorBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		super(YATMBlockEntityTypes.BIOLER.get(), Objects.requireNonNull(position), Objects.requireNonNull(state), BioreactorBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.BIOREACTING.get());
+		super(YATMBlockEntityTypes.BIOLER.get(), Objects.requireNonNull(position), Objects.requireNonNull(state), BioreactorBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.BIOREACTION.get());
 	} // end constructor
 
 	
@@ -179,13 +179,13 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreacting
 	} // end canTick()
 
 	@Override
-	protected boolean canUseRecipe(@NotNull BioreactingRecipe from)
+	protected boolean canUseRecipe(@NotNull BioreactionRecipe from)
 	{
 		return from.matches(this.m_uncheckedInventory, this.m_resultTank);
 	} // end canUseRecipe()
 	
 	@Override
-	protected void setRecipeResults(@NotNull BioreactingRecipe from)
+	protected void setRecipeResults(@NotNull BioreactionRecipe from)
 	{
 		from.setResults(this.m_uncheckedInventory, this.m_resultTank);
 	} // end setRecipeResults()

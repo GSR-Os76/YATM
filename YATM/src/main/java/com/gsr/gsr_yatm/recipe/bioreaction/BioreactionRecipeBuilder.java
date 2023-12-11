@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.recipe.bioreacting;
+package com.gsr.gsr_yatm.recipe.bioreaction;
 
 import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
@@ -15,7 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraftforge.fluids.FluidStack;
 
-public class BioreactingRecipeBuilder extends RecipeBuilderBase
+public class BioreactionRecipeBuilder extends RecipeBuilderBase
 {
 	private FluidStack m_result;
 	private IIngredient<ItemStack> m_input;
@@ -24,25 +24,25 @@ public class BioreactingRecipeBuilder extends RecipeBuilderBase
 	
 
 
-	public @NotNull BioreactingRecipeBuilder input(@NotNull IIngredient<ItemStack> input)
+	public @NotNull BioreactionRecipeBuilder input(@NotNull IIngredient<ItemStack> input)
 	{
 		this.m_input = Objects.requireNonNull(input);
 		return this;
 	} // end input()
 
-	public @NotNull BioreactingRecipeBuilder result(@NotNull FluidStack result)
+	public @NotNull BioreactionRecipeBuilder result(@NotNull FluidStack result)
 	{
 		this.m_result = result.copy();
 		return this;
 	} // end result()
 
-	public @NotNull BioreactingRecipeBuilder currentPerTick(@NotNegative int currentPerTick)
+	public @NotNull BioreactionRecipeBuilder currentPerTick(@NotNegative int currentPerTick)
 	{
 		this.m_currentPerTick = Contract.notNegative(currentPerTick);
 		return this;
 	} // end currentPerTick()
 
-	public @NotNull BioreactingRecipeBuilder timeInTicks(@NotNegative int timeInTicks)
+	public @NotNull BioreactionRecipeBuilder timeInTicks(@NotNegative int timeInTicks)
 	{
 		this.m_timeInTicks = Contract.notNegative(timeInTicks);
 		return this;
@@ -59,7 +59,7 @@ public class BioreactingRecipeBuilder extends RecipeBuilderBase
 	@Override
 	public @NotNull FinishedRecipe createFinishedRecipe(@NotNull ResourceLocation fileName, @NotNull AdvancementHolder advancement)
 	{
-		return new BioreactingFinishedRecipe(fileName, advancement, this.m_group, this.m_result, this.m_input, this.m_currentPerTick, this.m_timeInTicks);
+		return new BioreactionFinishedRecipe(fileName, advancement, this.m_group, this.m_result, this.m_input, this.m_currentPerTick, this.m_timeInTicks);
 	} // end createFinishedRecipe()
 
 } // end Builder

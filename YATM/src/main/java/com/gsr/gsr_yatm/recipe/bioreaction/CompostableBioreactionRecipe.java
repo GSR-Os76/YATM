@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.recipe.bioreacting;
+package com.gsr.gsr_yatm.recipe.bioreaction;
 
 import java.util.Map;
 
@@ -11,18 +11,18 @@ import com.gsr.gsr_yatm.registry.YATMFluids;
 import net.minecraft.world.level.ItemLike;
 import net.minecraftforge.fluids.FluidStack;
 
-public class CompostableBioreactingRecipe extends BioreactingRecipe
+public class CompostableBioreactionRecipe extends BioreactionRecipe
 {
 	public static final float CHANCE_TO_QUANTITY_VALUE = 100f;
 	
 	
 	
-	public CompostableBioreactingRecipe(@NotNull Map.Entry<ItemLike, Float> entry) 
+	public CompostableBioreactionRecipe(@NotNull Map.Entry<ItemLike, Float> entry) 
 	{
 		this(entry.getKey(), entry.getValue());
 	} // end constructor
 	
-	public CompostableBioreactingRecipe(@NotNull ItemLike input, float resultChance)
+	public CompostableBioreactionRecipe(@NotNull ItemLike input, float resultChance)
 	{
 		super("", 
 				new ItemStackIngredient(input.asItem()), 

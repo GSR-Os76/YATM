@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.recipe.bioreacting;
+package com.gsr.gsr_yatm.recipe.bioreaction;
 
 import java.util.Objects;
 
@@ -17,7 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.RecipeSerializer;
 import net.minecraftforge.fluids.FluidStack;
 
-public class BioreactingFinishedRecipe extends FinishedRecipeBase
+public class BioreactionFinishedRecipe extends FinishedRecipeBase
 {
 	private final @NotNull FluidStack m_result;	
 	private final @NotNull IIngredient<ItemStack> m_input;
@@ -26,7 +26,7 @@ public class BioreactingFinishedRecipe extends FinishedRecipeBase
 	
 	
 	
-	public BioreactingFinishedRecipe(@NotNull ResourceLocation identifier, @NotNull AdvancementHolder advancement, @NotNull String group, @NotNull FluidStack result, @NotNull IIngredient<ItemStack> input, @NotNegative int currentPerTick, @NotNegative int timeInTicks) 
+	public BioreactionFinishedRecipe(@NotNull ResourceLocation identifier, @NotNull AdvancementHolder advancement, @NotNull String group, @NotNull FluidStack result, @NotNull IIngredient<ItemStack> input, @NotNegative int currentPerTick, @NotNegative int timeInTicks) 
 	{
 		super(Objects.requireNonNull(identifier), Objects.requireNonNull(advancement), Objects.requireNonNull(group));	
 		
@@ -50,9 +50,9 @@ public class BioreactingFinishedRecipe extends FinishedRecipeBase
 	} // end serializeRecipeData()
 
 	@Override
-	public @NotNull RecipeSerializer<BioreactingRecipe> type()
+	public @NotNull RecipeSerializer<BioreactionRecipe> type()
 	{
-		return YATMRecipeSerializers.BIOREACTING.get();
+		return YATMRecipeSerializers.BIOREACTION.get();
 	} // end type()
 	
 } // end class

@@ -1,8 +1,8 @@
 package com.gsr.gsr_yatm.registry;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.recipe.bioreacting.BioreactingRecipeSerializer;
-import com.gsr.gsr_yatm.recipe.bioreacting.BioreactingRecipe;
+import com.gsr.gsr_yatm.recipe.bioreaction.BioreactionRecipe;
+import com.gsr.gsr_yatm.recipe.bioreaction.BioreactionRecipeSerializer;
 import com.gsr.gsr_yatm.recipe.boiling.BoilingRecipe;
 import com.gsr.gsr_yatm.recipe.boiling.BoilingRecipeSerializer;
 import com.gsr.gsr_yatm.recipe.crafting.tool_part_exchange.ToolPartExchangeRecipe;
@@ -31,7 +31,7 @@ public class YATMRecipeSerializers
 	
 	
 	
-	public static final RegistryObject<RecipeSerializer<BioreactingRecipe>> BIOREACTING = RECIPE_SERIALIZERS.register("bioling", () -> new BioreactingRecipeSerializer());
+	public static final RegistryObject<RecipeSerializer<BioreactionRecipe>> BIOREACTION = RECIPE_SERIALIZERS.register("bioreaction", () -> new BioreactionRecipeSerializer());
 	public static final RegistryObject<RecipeSerializer<BoilingRecipe>> BOILING = RECIPE_SERIALIZERS.register("boiling", () -> new BoilingRecipeSerializer());
 	public static final RegistryObject<RecipeSerializer<CrystallizingRecipe>> CRYSTALLIZING = RECIPE_SERIALIZERS.register("crystallizing", () -> new CrystallizingRecipeSerializer());
 	public static final RegistryObject<RecipeSerializer<ExtractingRecipe>> EXTRACTING = RECIPE_SERIALIZERS.register("extracting", () -> new ExtractingRecipeSerializer());

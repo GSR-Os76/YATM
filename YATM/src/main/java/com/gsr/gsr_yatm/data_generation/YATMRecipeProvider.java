@@ -7,7 +7,7 @@ import org.apache.logging.log4j.util.TriConsumer;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.recipe.bioreacting.BioreactingRecipeBuilder;
+import com.gsr.gsr_yatm.recipe.bioreaction.BioreactionRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.boiling.BoilingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.crafting.tool_part_exchange.ToolPartExchangeRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizingRecipeBuilder;
@@ -919,7 +919,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	protected void addBiolingRecipe(@NotNull RecipeOutput output, Item input, FluidStack result, int currentPerTick, int timeInTicks, String key) 
 	{
-		new BioreactingRecipeBuilder()
+		new BioreactionRecipeBuilder()
 		.input(new ItemStackIngredient(input))
 		.result(result)
 		.currentPerTick(currentPerTick)

@@ -30,8 +30,9 @@ import com.gsr.gsr_yatm.data_generation.YATMLootTableProvider;
 import com.gsr.gsr_yatm.data_generation.YATMRecipeProvider;
 import com.gsr.gsr_yatm.entity.boat.YATMBoatRenderer;
 import com.gsr.gsr_yatm.entity.boat.YATMBoatType;
+import com.gsr.gsr_yatm.item.LazyArmorItem;
 import com.gsr.gsr_yatm.item.tool.PoweredToolScreen;
-import com.gsr.gsr_yatm.recipe.bioreacting.CompostableBioreactingRecipeProvider;
+import com.gsr.gsr_yatm.recipe.bioreaction.CompostableBioreactionRecipeProvider;
 import com.gsr.gsr_yatm.recipe.smelting.WrappedSmeltingRecipeProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
@@ -177,7 +178,7 @@ public class YATMModEvents
 	private static void commonSetup(FMLCommonSetupEvent event)
 	{
 		event.enqueueWork(() -> YATMItems.addCompostables());
-		event.enqueueWork(() -> RecipeUtil.addDynamicRecipeProvider(new CompostableBioreactingRecipeProvider()));
+		event.enqueueWork(() -> RecipeUtil.addDynamicRecipeProvider(new CompostableBioreactionRecipeProvider()));
 		event.enqueueWork(() -> RecipeUtil.addDynamicRecipeProvider(new WrappedSmeltingRecipeProvider()));
 		event.enqueueWork(() -> YATMBlocks.addSapCollectorVariants());
 		// TODO, add for all types supported by default or situation if appropriate
@@ -203,6 +204,7 @@ public class YATMModEvents
 
 		event.enqueueWork(() -> WoodType.register(YATMBlocks.RUBBER_WOOD_TYPE));
 		event.enqueueWork(() -> WoodType.register(YATMBlocks.SOUL_AFFLICTED_RUBBER_WOOD_TYPE));
+		event.enqueueWork(LazyArmorItem.loader());
 	} // end commonSetup()
 
 	private static void gatherData(GatherDataEvent event)
