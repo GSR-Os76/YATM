@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "item": "gsr_yatm:advanced_current_battery"
+    },
+    "f": {
+      "item": "gsr_yatm:foliar_steel"
+    }
+  },
+  "pattern": [
+    "fbf",
+    "f f",
+    "f f"
+  ],
+  "result": {
+    "item": "gsr_yatm:foliar_steel_leggings"
+  },
+  "show_notification": true
+}

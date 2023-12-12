@@ -1,4 +1,4 @@
-// 1.20.2	2023-12-10T18:17:57.6863007	Tags for minecraft:item mod id gsr_yatm
+// 1.20.2	2023-12-11T21:47:10.9351109	Tags for minecraft:item mod id gsr_yatm
 018848d9a27330dcbc1fe359c480fe037436cb0b data/forge/tags/items/armors/boots.json
 e945a43824d81dcf0c8e03ebffc91b199d68526e data/forge/tags/items/armors/chestplates.json
 7b568e60717571a678a00a1763657a456f8b17bb data/forge/tags/items/armors/helmets.json
@@ -18,6 +18,7 @@ bad73721637de97a32c61f4a2b344b34cf83351f data/forge/tags/items/slabs/quartz.json
 5cde157d29986a1af6fac3eed0972c55ed684ae6 data/forge/tags/items/storage_blocks/rubber.json
 9c955a069c7d44f19a7775e96a97e0c2bf632acd data/forge/tags/items/walls/sandstone.json
 bdf25e5c240daaa1347abd92fb448a51032b98d5 data/gsr_yatm/tags/items/armor_pieces/decay_netherite.json
+cbef802785fd49ecf636285e878d6e7a19d1db70 data/gsr_yatm/tags/items/armor_pieces/foliar_steel.json
 ec857824c3fbff4388d79661bc800d1e9c6b97bf data/gsr_yatm/tags/items/armor_pieces/soul_adorned_netherite.json
 eebcd9ed0e9c3b763459acafdafb1b8fc8df74c7 data/gsr_yatm/tags/items/device_adjusters.json
 2fafa18e275729fc6225beb9ef000a778107c1bd data/gsr_yatm/tags/items/drills.json
@@ -43,7 +44,7 @@ f6a96bbe88878e94afb093182810e68e0ed0459d data/minecraft/tags/items/flowers.json
 9e134361b0aa2b725c402f79a5f39c90a0fca103 data/minecraft/tags/items/piglin_loved.json
 861ac450b90a900a8dbe9dc301248cd0b5ca2f52 data/minecraft/tags/items/planks.json
 59d8edfe056f15f3cff621f10b35fa3ba99c9baf data/minecraft/tags/items/saplings.json
-dc7fb039cbc764f0bf3d6557392efa3f773c3fc3 data/minecraft/tags/items/trimmable_armor.json
+a6e2d3ae9fb7340c557d43ba98590bb1c92d6d5c data/minecraft/tags/items/trimmable_armor.json
 5ca3cdc1e343a1a21ba16f2d2cd526125069fb64 data/minecraft/tags/items/wooden_buttons.json
 7cd0aa6d815501ef6e1b8331aaa504f2ee3d9509 data/minecraft/tags/items/wooden_doors.json
 4f805c86291b5f9990b1e9974956cc6fe91e3262 data/minecraft/tags/items/wooden_fences.json

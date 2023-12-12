@@ -11,8 +11,6 @@ import net.minecraft.world.item.crafting.Ingredient;
 public class SoulAdornedNetheriteArmorMaterial implements ArmorMaterial
 {
 	
-	
-	
 	@Override
 	public int getDurabilityForType(Type type)
 	{

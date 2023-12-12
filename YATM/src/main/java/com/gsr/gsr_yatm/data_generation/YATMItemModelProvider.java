@@ -198,15 +198,21 @@ public class YATMItemModelProvider extends ItemModelProvider
 		
 		this.basicItem(YATMItems.STEEL_WRENCH.get());
 		
+		this.basicItem(YATMItems.DECAY_NETHERITE_HELMET.get());
+		this.basicItem(YATMItems.DECAY_NETHERITE_CHESTPLATE.get());
+		this.basicItem(YATMItems.DECAY_NETHERITE_LEGGINGS.get());
+		this.basicItem(YATMItems.DECAY_NETHERITE_BOOTS.get());
+		
+		this.basicItem(YATMItems.FOLIAR_STEEL_HELMET.get());
+		this.basicItem(YATMItems.FOLIAR_STEEL_CHESTPLATE.get());
+		this.basicItem(YATMItems.FOLIAR_STEEL_LEGGINGS.get());
+		this.basicItem(YATMItems.FOLIAR_STEEL_BOOTS.get());
+		
 		this.basicItem(YATMItems.SOUL_ADORNED_NETHERITE_HELMET.get());
 		this.basicItem(YATMItems.SOUL_ADORNED_NETHERITE_CHESTPLATE.get());
 		this.basicItem(YATMItems.SOUL_ADORNED_NETHERITE_LEGGINGS.get());
 		this.basicItem(YATMItems.SOUL_ADORNED_NETHERITE_BOOTS.get());
 		
-		this.basicItem(YATMItems.DECAY_NETHERITE_HELMET.get());
-		this.basicItem(YATMItems.DECAY_NETHERITE_CHESTPLATE.get());
-		this.basicItem(YATMItems.DECAY_NETHERITE_LEGGINGS.get());
-		this.basicItem(YATMItems.DECAY_NETHERITE_BOOTS.get());
 		
 		this.basicItem(YATMItems.CREATIVE_CURRENT_SOURCE.get());
 		this.basicItem(YATMItems.CREATIVE_FLUID_VOID.get());

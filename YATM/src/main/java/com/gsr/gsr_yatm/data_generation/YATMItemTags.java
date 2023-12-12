@@ -56,6 +56,7 @@ public class YATMItemTags extends ItemTagsProvider
 	public static final TagKey<Item> DECAY_NETHERITE_ARMOR_PIECES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "armor_pieces/decay_netherite"));
 	public static final TagKey<Item> DEVICE_ADJUSTERS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "device_adjusters"));
 	public static final TagKey<Item> DRILLS_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "drills"));
+	public static final TagKey<Item> FOLIAR_STEEL_ARMOR_PIECES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "armor_pieces/foliar_steel"));
 	public static final TagKey<Item> FOLIAR_STEEL_ORES_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "foliar_steel_ores"));
 	public static final TagKey<Item> GOLEM_LIKE_PLANT_FORMERS = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "golem_like_plant_formers"));
 	public static final TagKey<Item> GROWS_PHANTASMAL_SHELF_FUNGI_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "grows_phantasmal_shelf_fungi"));
@@ -96,7 +97,7 @@ public class YATMItemTags extends ItemTagsProvider
 										 */.add(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get());
 		this.copy(BlockTags.PLANKS, ItemTags.PLANKS);
 		this.copy(BlockTags.SAPLINGS, ItemTags.SAPLINGS);
-		this.tag(ItemTags.TRIMMABLE_ARMOR).addTag(DECAY_NETHERITE_ARMOR_PIECES_KEY).addTag(SOUL_ADORNED_NETHERITE_ARMOR_PIECES_KEY);
+		this.tag(ItemTags.TRIMMABLE_ARMOR).addTag(YATMItemTags.DECAY_NETHERITE_ARMOR_PIECES_KEY).addTag(YATMItemTags.SOUL_ADORNED_NETHERITE_ARMOR_PIECES_KEY).addTag(YATMItemTags.FOLIAR_STEEL_ARMOR_PIECES_KEY);
 		this.copy(BlockTags.WOODEN_BUTTONS, ItemTags.WOODEN_BUTTONS);
 		this.copy(BlockTags.WOODEN_DOORS, ItemTags.WOODEN_DOORS);
 		this.copy(BlockTags.WOODEN_FENCES, ItemTags.WOODEN_FENCES);
@@ -134,6 +135,7 @@ public class YATMItemTags extends ItemTagsProvider
 		//.add(YATMItems.STEEL_DRILL_GOLD.get()).add(YATMItems.STEEL_DRILL_DIAMOND.get())
 		.add(YATMItems.STEEL_DRILL_NETHERITE.get());
 		this.copy(YATMBlockTags.FOLIAR_STEEL_ORES_KEY, YATMItemTags.FOLIAR_STEEL_ORES_KEY);
+		this.tag(YATMItemTags.FOLIAR_STEEL_ARMOR_PIECES_KEY).add(YATMItems.FOLIAR_STEEL_HELMET.get()).add(YATMItems.FOLIAR_STEEL_CHESTPLATE.get()).add(YATMItems.FOLIAR_STEEL_LEGGINGS.get()).add(YATMItems.FOLIAR_STEEL_BOOTS.get());
 		this.tag(YATMItemTags.GOLEM_LIKE_PLANT_FORMERS).add(YATMItems.ESSENCE_OF_SOULS_BOTTLE.get());
 		this.tag(YATMItemTags.GROWS_PHANTASMAL_SHELF_FUNGI_KEY).addTag(YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);		
 		this.tag(YATMItemTags.LATEX_EXTRACTABLE_LOGS_KEY).add(YATMItems.RUBBER_LOG.get()).add(YATMItems.RUBBER_WOOD.get());

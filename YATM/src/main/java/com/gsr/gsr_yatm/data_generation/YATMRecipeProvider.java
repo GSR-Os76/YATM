@@ -158,6 +158,11 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addPoweredToolRecipes(output);
 		ShapedRecipeBuilder.shaped(RecipeCategory.TOOLS, YATMItems.STEEL_WRENCH.get(), 1).pattern("f f").pattern("fff").pattern(" f ").define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL.get())).save(output, YetAnotherTechMod.MODID + ":wrench_from_shaped_crafting");
 		
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.FOLIAR_STEEL_HELMET.get(), 1).pattern("fbf").pattern("fgf").pattern("   ").define('b', YATMItems.ADVANCED_CURRENT_BATTERY.get()).define('f', YATMItems.FOLIAR_STEEL.get()).define('g', Tags.Items.GLASS).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL.get())).save(output, YetAnotherTechMod.MODID + ":foliar_steel_helmet_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.FOLIAR_STEEL_CHESTPLATE.get(), 1).pattern("f f").pattern("fbf").pattern("fff").define('b', YATMItems.ADVANCED_CURRENT_BATTERY.get()).define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL.get())).save(output, YetAnotherTechMod.MODID + ":foliar_steel_chestplate_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.FOLIAR_STEEL_LEGGINGS.get(), 1).pattern("fbf").pattern("f f").pattern("f f").define('b', YATMItems.ADVANCED_CURRENT_BATTERY.get()).define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL.get())).save(output, YetAnotherTechMod.MODID + ":foliar_steel_leggings_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.FOLIAR_STEEL_BOOTS.get(), 1).pattern("b b").pattern("f f").pattern("   ").define('b', YATMItems.CURRENT_BATTERY.get()).define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL.get())).save(output, YetAnotherTechMod.MODID + ":foliar_steel_boots_from_shaped_crafting");
+		
 	}// end addCraftingRecipes()
 	
 	private void addStorageBlockNuggetLikeRecipes(@NotNull RecipeOutput output) 

@@ -1,4 +1,4 @@
-// 1.20.2	2023-12-10T18:17:57.6823105	Item Models: gsr_yatm
+// 1.20.2	2023-12-11T21:47:10.9296383	Item Models: gsr_yatm
 c2ea606d991a81e423cce1d89391873c41111adb assets/gsr_yatm/models/item/adamum_meristem.json
 14f5226a0106e1a4c57981511721fb6c8ffd9059 assets/gsr_yatm/models/item/advanced_current_battery.json
 684ab5903fbcfdbd643eb1efa0d897a0d95283a9 assets/gsr_yatm/models/item/advanced_current_battery_1.json
@@ -66,6 +66,10 @@ d7d95a23a1602ab2f8388942b90f9a14082f2469 assets/gsr_yatm/models/item/essence_of_
 dbd0a5777277fc587b4d8ec2d1feb1ec2766af1f assets/gsr_yatm/models/item/fire_eater_lily_unlit_decorative.json
 3e679a51cdd47edcde900fa4d4b66e115a4cc513 assets/gsr_yatm/models/item/flame_gland.json
 bd6d19cb0497c729df1f59e2634d46a4d22982ec assets/gsr_yatm/models/item/foliar_steel.json
+3b8c2bcbb5619762dad63f75b6e509ce33a301f7 assets/gsr_yatm/models/item/foliar_steel_boots.json
+e73d28af6b4aa3452452a6cb55c1dfe3c4772cd7 assets/gsr_yatm/models/item/foliar_steel_chestplate.json
+4af8179074197c41cc720f92b3c7bd2865837346 assets/gsr_yatm/models/item/foliar_steel_helmet.json
+612d5b7c442d99fd90617f5b40edb3b976a04a1b assets/gsr_yatm/models/item/foliar_steel_leggings.json
 9cd193ad480ae717e9bbba34874901e7006e099c assets/gsr_yatm/models/item/foliar_steel_shred.json
 77feae6f71ee41645ee1f59670e7f82c73461193 assets/gsr_yatm/models/item/folium_rhizome.json
 fd0c6790b4ad4922df8113215d9927b4079c689d assets/gsr_yatm/models/item/gold_drill_bit.json
