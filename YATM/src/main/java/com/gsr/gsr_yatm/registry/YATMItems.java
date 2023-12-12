@@ -385,6 +385,7 @@ public class YATMItems
 	// resurrection costing essence of souls
 	// invulnerability to drawning
 	// bonus current generation, maybe mild amount at base line as it's basically a bunch of leaves.
+	// negation of knockback
 	
 	// maybe investigate how trimming works to draw extra details onto textures when different parts are grafted on
 	

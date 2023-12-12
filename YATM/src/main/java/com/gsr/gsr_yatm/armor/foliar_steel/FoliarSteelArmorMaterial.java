@@ -14,19 +14,33 @@ public class FoliarSteelArmorMaterial implements ArmorMaterial
 	@Override
 	public int getDurabilityForType(Type type)
 	{
-		return (int)((YATMConfigs.FOLIAR_STEEL_NETHERITE_RELATIVE_DURABILITY_FACTOR.get() * (float)ArmorMaterials.NETHERITE.getDurabilityForType(type)));
+		return switch(type) 
+		{
+			case HELMET -> YATMConfigs.FOLIAR_STEEL_HELMET_DURABILITY.get();
+			case CHESTPLATE -> YATMConfigs.FOLIAR_STEEL_CHESTPLATE_DURABILITY.get();
+			case LEGGINGS -> YATMConfigs.FOLIAR_STEEL_LEGGINGS_DURABILITY.get();
+			case BOOTS -> YATMConfigs.FOLIAR_STEEL_BOOTS_DURABILITY.get();
+			default -> throw new IllegalArgumentException("Unexpected value of: " + type);
+		};
 	} // end getDurabilityForType()
 
 	@Override
 	public int getDefenseForType(Type type)
 	{
-		return (int)((YATMConfigs.FOLIAR_STEEL_NETHERITE_RELATIVE_DEFENSE_FACTOR.get() * (float)ArmorMaterials.NETHERITE.getDefenseForType(type)));
+		return switch(type) 
+		{
+			case HELMET -> YATMConfigs.FOLIAR_STEEL_HELMET_DEFENSE.get();
+			case CHESTPLATE -> YATMConfigs.FOLIAR_STEEL_CHESTPLATE_DEFENSE.get();
+			case LEGGINGS -> YATMConfigs.FOLIAR_STEEL_LEGGINGS_DEFENSE.get();
+			case BOOTS -> YATMConfigs.FOLIAR_STEEL_BOOTS_DEFENSE.get();
+			default -> throw new IllegalArgumentException("Unexpected value of: " + type);
+		};
 	} // end getDefenseForType()
 
 	@Override
 	public int getEnchantmentValue()
 	{
-		return (int)((YATMConfigs.FOLIAR_STEEL_NETHERITE_RELATIVE_ENCHANTMENT_FACTOR.get() * (float)ArmorMaterials.NETHERITE.getEnchantmentValue()));
+		return YATMConfigs.FOLIAR_STEEL_ENCHANTMENT_VALUE.get();
 	} // end getEnchantmentValue()
 
 	@Override
@@ -50,13 +64,13 @@ public class FoliarSteelArmorMaterial implements ArmorMaterial
 	@Override
 	public float getToughness()
 	{
-		return (float)((YATMConfigs.FOLIAR_STEEL_NETHERITE_RELATIVE_TOUGHNESS_FACTOR.get() * (float)ArmorMaterials.NETHERITE.getToughness()));
+		return YATMConfigs.FOLIAR_STEEL_TOUGHNESS.get();
 	} // end getToughness()
 
 	@Override
 	public float getKnockbackResistance()
 	{
-		return (float)((YATMConfigs.FOLIAR_STEEL_NETHERITE_RELATIVE_KNOCKBACK_RESISTANCE_FACTOR.get() * (float)ArmorMaterials.NETHERITE.getKnockbackResistance()));
+		return YATMConfigs.FOLIAR_STEEL_KNOCKBACK_RESISTANCE.get();
 	} // end getKnockbackResistance()
 	
 } // end class
