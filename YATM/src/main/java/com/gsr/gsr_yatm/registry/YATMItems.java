@@ -212,6 +212,8 @@ public class YATMItems
 	public static final RegistryObject<SignItem> SOUL_AFFLICTED_RUBBER_SIGN = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_afflicted_rubber_sign", () -> new SignItem(new Item.Properties().stacksTo(16), YATMBlocks.SOUL_AFFLICTED_RUBBER_SIGN.get(), YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_SIGN.get()))));
 	public static final RegistryObject<HangingSignItem> SOUL_AFFLICTED_RUBBER_HANGING_SIGN = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_afflicted_rubber_hanging_sign", () -> new HangingSignItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_HANGING_SIGN.get(), YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_HANGING_SIGN.get(), new Item.Properties().stacksTo(16)))));
 	
+	
+	
 	public static final RegistryObject<BlockItem> LARGE_COPPER_HEAT_SINK = /* generalTabEnqueue */(ITEMS.register("large_copper_heat_sink", () -> new BlockItem(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), new Item.Properties())));
 
 	public static final RegistryObject<BlockItem> DATA_STORAGE_BLOCK = /* generalTabEnqueue */(ITEMS.register("data_storage_block", () -> new BlockItem(YATMBlocks.DATA_STORAGE_BLOCK.get(), new Item.Properties())));
@@ -332,6 +334,7 @@ public class YATMItems
 	public static final RegistryObject<YATMBoatItem> SOUL_AFFLICTED_RUBBER_BOAT = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_afflicted_rubber_boat", () -> new YATMBoatItem(false, YATMBoatType.SOUL_AFFLICTED_RUBBER, new Item.Properties().stacksTo(1)))));
 	public static final RegistryObject<YATMBoatItem> SOUL_AFFLICTED_RUBBER_CHEST_BOAT = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_afflicted_rubber_chest_boat", () -> new YATMBoatItem(true, YATMBoatType.SOUL_AFFLICTED_RUBBER, new Item.Properties().stacksTo(1)))));
 
+	// TODO, components should be a capability for compatibility and versatility
 	// TODO, some sort of hydraulic accumulator
 	// TODO, blocks matching against most components
 	public static final RegistryObject<CurrentHeaterItem> EMBER_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("ember_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), YATMConfigs.EMBER_GLAND_HEAT, PrimitiveUtil.toFloatSupplier(YATMConfigs.EMBER_GLAND_KELVIN_PER_CURRENT)))));
@@ -367,8 +370,23 @@ public class YATMItems
 	
 	public static final RegistryObject<Item> STEEL_WRENCH = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_wrench", () -> new Item(new Item.Properties()))));
 	
+	// water breathing electrolyzer, maybe can be used to acquire hygroden as byproduct, or causes bubbles
+	// night vision upgrade
+	// push power to inventory slots, cu or fe
+	// flight, messy and creative mode like. better might cost more to move but not to be still, cost based on the speed
 	// ambulatory accelerator foliar steel armor upgrade for spring speed
+	// fall damage mitigation and removal
+	// automatic feeding ability
+	// auto status removal
+	// mine speed upgrade, maybe other thing like gentle silk touch
+	// invisibilty
+	// invulnerability
+	// teleportation
+	// resurrection costing essence of souls
+	// invulnerability to drawning
+	// bonus current generation, maybe mild amount at base line as it's basically a bunch of leaves.
 	
+	// maybe investigate how trimming works to draw extra details onto textures when different parts are grafted on
 	
 	public static final RegistryObject<LazyArmorItem> FOLIAR_STEEL_HELMET = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("foliar_steel_helmet", () -> new LazyArmorItem(YATMArmorMaterials.FOLIAR_STEEL, ArmorItem.Type.HELMET, new Item.Properties()))));
 	public static final RegistryObject<LazyArmorItem> FOLIAR_STEEL_CHESTPLATE = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("foliar_steel_chestplate", () -> new LazyArmorItem(YATMArmorMaterials.FOLIAR_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties()))));

@@ -13,12 +13,15 @@ import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -60,30 +63,60 @@ public class CrucibleBlock extends DeviceBlock
 			{
 				level.playLocalSound(centX, y, centZ, SoundEvents.FURNACE_FIRE_CRACKLE, SoundSource.BLOCKS, 1.0f, 1.0f, false);
 			}
-			/* TODO, maybe still do the particles, or maybe do them when it's actually burning something, if so do that with boiler maybe etc too
-	         Direction direction = state.getValue(CrucibleBlock.FACING);
-	         Direction.Axis direction$axis = direction.getAxis();
-	         double facingCentDeviation = 0.53d;
-	         double facingPerpOffset = (random.nextDouble() * 0.4d) - 0.2d;
-	         double xOfs = direction$axis == Direction.Axis.X ? ((double)direction.getStepX() * facingCentDeviation) : facingPerpOffset;
-	         double mainYOfs = ((random.nextDouble() * 6.0d) + 2.5d) / 16.0d;
-	         double zOfs = direction$axis == Direction.Axis.Z ? ((double)direction.getStepZ() * facingCentDeviation) : facingPerpOffset;
-	         level.addParticle(ParticleTypes.SMOKE, centX + xOfs, y + mainYOfs, centZ + zOfs, 0.0d, 0.0d, 0.0d);
-	         level.addParticle(ParticleTypes.FLAME, centX + xOfs, y + mainYOfs, centZ + zOfs, 0.0d, 0.0d, 0.0d);
-	         
-	         // todo, the nonmain faces
-	         level.addParticle(ParticleTypes.SMOKE, centX + xOfs, y + yOfs, centZ + zOfs, 0.0d, 0.0d, 0.0d);
-	         level.addParticle(ParticleTypes.FLAME, centX + xOfs, y + yOfs, centZ + zOfs, 0.0d, 0.0d, 0.0d);
-	         level.addParticle(ParticleTypes.SMOKE, centX + xOfs, y + yOfs, centZ + zOfs, 0.0d, 0.0d, 0.0d);
-	         level.addParticle(ParticleTypes.FLAME, centX + xOfs, y + yOfs, centZ + zOfs, 0.0d, 0.0d, 0.0d);
-	         level.addParticle(ParticleTypes.SMOKE, centX + xOfs, y + yOfs, centZ + zOfs, 0.0d, 0.0d, 0.0d);
-	         level.addParticle(ParticleTypes.FLAME, centX + xOfs, y + yOfs, centZ + zOfs, 0.0d, 0.0d, 0.0d);
-	         */
+			Direction facing = state.getValue(CrucibleBlock.FACING);
+			Direction.Axis fAxis = facing.getAxis();
+			double facingCentDeviation = 0.53d;
+			double mainPerpOffset = (random.nextDouble() * 0.4d) - 0.2d;
+			double minorPerpOffset1 = (random.nextDouble() * 0.55d) - 0.275d;
+			double minorPerpOffset2 = (random.nextDouble() * 0.55d) - 0.275d;
+			double minorPerpOffset3 = (random.nextDouble() * 0.55d) - 0.275d;
+			
+			double mainYOfs = ((random.nextDouble() * 6.0d) + 2.5d) / 16.0d;
+			double minorYOfs1 = ((random.nextDouble() * 2.0d) + 1.5d) / 16.0d;
+			double minorYOfs2 = ((random.nextDouble() * 2.0d) + 1.5d) / 16.0d;
+			double minorYOfs3 = ((random.nextDouble() * 2.0d) + 1.5d) / 16.0d;
+
+			boolean isXFacing = fAxis == Direction.Axis.X;
+			double xStep = (double) facing.getStepX();
+			double zStep = (double) facing.getStepZ();
+			double mainXOfs = isXFacing ? (xStep * facingCentDeviation) : mainPerpOffset;
+			double mainZOfs = !isXFacing ? (zStep * facingCentDeviation) : mainPerpOffset;
+			double minorXOfs1 = isXFacing ? (xStep * -facingCentDeviation) : minorPerpOffset1;
+			double minorZOfs1 = !isXFacing ? (zStep * -facingCentDeviation) : minorPerpOffset1;
+			
+			double minorXOfs2 = isXFacing ? (xStep * minorPerpOffset2) : -facingCentDeviation;
+			double minorZOfs2 = !isXFacing ? (zStep * minorPerpOffset2) : -facingCentDeviation;
+			double minorXOfs3 = isXFacing ? (xStep * minorPerpOffset3) : facingCentDeviation;
+			double minorZOfs3 = !isXFacing ? (zStep * minorPerpOffset3) : facingCentDeviation;
+			
+			level.addParticle(ParticleTypes.SMOKE, centX + mainXOfs, y + mainYOfs, centZ + mainZOfs, 0.0d, 0.0d, 0.0d);
+			level.addParticle(ParticleTypes.FLAME, centX + mainXOfs, y + mainYOfs, centZ + mainZOfs, 0.0d, 0.0d, 0.0d);
+
+			// back
+			level.addParticle(ParticleTypes.SMOKE, centX + minorXOfs1, y + minorYOfs1, centZ + minorZOfs1, 0.0d, 0.0d, 0.0d);
+			level.addParticle(ParticleTypes.FLAME, centX + minorXOfs1, y + minorYOfs1, centZ + minorZOfs1, 0.0d, 0.0d, 0.0d);
+			
+			// l and r
+			level.addParticle(ParticleTypes.SMOKE, centX + minorXOfs2, y + minorYOfs2, centZ + minorZOfs2, 0.0d, 0.0d, 0.0d);
+			level.addParticle(ParticleTypes.FLAME, centX + minorXOfs2, y + minorYOfs2, centZ + minorZOfs2, 0.0d, 0.0d, 0.0d);
+			level.addParticle(ParticleTypes.SMOKE, centX + minorXOfs3, y + minorYOfs3, centZ + minorZOfs3, 0.0d, 0.0d, 0.0d);
+			level.addParticle(ParticleTypes.FLAME, centX + minorXOfs3, y + minorYOfs3, centZ + minorZOfs3, 0.0d, 0.0d, 0.0d);
+
 		}
 		super.animateTick(state, level, position, random);
 	} // end animateTick()
 
-
+	@Override
+	public int getLightEmission(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos position)
+	{
+		if (state.getValue(CrucibleBlock.LIT)) 
+		{
+			return 15;
+		}
+		return super.getLightEmission(state, level, position);
+	} // end getLightEmission()
+	
+	
 
 	@Override
 	public @NotNull DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)

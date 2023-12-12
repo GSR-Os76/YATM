@@ -20,6 +20,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -63,17 +64,27 @@ public class BoilerBlock extends DeviceBlock
 	         }
 
 	         Direction direction = state.getValue(BoilerBlock.FACING);
-	         Direction.Axis direction$axis = direction.getAxis();
+	         Direction.Axis axis = direction.getAxis();
 	         double facingCentDeviation = 0.53d;
 	         double facingPerpOffset = (random.nextDouble() * 0.4d) - 0.2d;
-	         double xOfs = direction$axis == Direction.Axis.X ? ((double)direction.getStepX() * facingCentDeviation) : facingPerpOffset;
+	         double xOfs = axis == Direction.Axis.X ? ((double)direction.getStepX() * facingCentDeviation) : facingPerpOffset;
 	         double yOfs = ((random.nextDouble() * 4.0d) + 6.5d) / 16.0d;
-	         double zOfs = direction$axis == Direction.Axis.Z ? ((double)direction.getStepZ() * facingCentDeviation) : facingPerpOffset;
+	         double zOfs = axis == Direction.Axis.Z ? ((double)direction.getStepZ() * facingCentDeviation) : facingPerpOffset;
 	         level.addParticle(ParticleTypes.SMOKE, centX + xOfs, y + yOfs, centZ + zOfs, 0.0d, 0.0d, 0.0d);
 	         level.addParticle(ParticleTypes.FLAME, centX + xOfs, y + yOfs, centZ + zOfs, 0.0d, 0.0d, 0.0d);
 	      }
 	} // end animateTick()
 	
+	@Override
+	public int getLightEmission(@NotNull BlockState state, @NotNull BlockGetter level, @NotNull BlockPos position)
+	{
+		if (state.getValue(BoilerBlock.LIT)) 
+		{
+			return 15;
+		}
+		return super.getLightEmission(state, level, position);
+	} // end getLightEmission()
+
 
 
 	@Override
