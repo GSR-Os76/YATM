@@ -8,11 +8,11 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.api.capability.IComponent;
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.item.IEfficiencyUpgradeItem;
 import com.gsr.gsr_yatm.item.ISpeedUpgradeItem;
-import com.gsr.gsr_yatm.item.component.IComponent;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandlerWrapper;
 import com.gsr.gsr_yatm.utilities.capability.current.ItemStackCurrentHandler;
@@ -131,19 +131,19 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 		if(this.m_cComponent != null) 
 		{
 			this.m_cComponentStack = null;
-			this.m_cComponent.removeRecievingCapability(stack, this.m_batteryCap);
+			this.m_cComponent.removeRecievingCapability(this.m_batteryCap);
 			this.m_cComponent = null;
 			this.m_cComponentCHandler = null;
 			this.m_cComponentOptionals = new HashMap<>();
 		}
-		
-		if(stack.getItem() instanceof IComponent c) 
+		IComponent sC = stack.getCapability(YATMCapabilities.COMPONENT).orElse(null);
+		if(sC != null) 
 		{
-			if(c.getValidCapabilities().contains(YATMCapabilities.CURRENT)) 
+			if(sC.getValidCapabilities().contains(YATMCapabilities.CURRENT)) 
 			{
 				this.m_cComponentStack = stack;
-				this.m_cComponent = c;
-				this.m_cComponent.attachRecievingCapability(stack, YATMCapabilities.CURRENT, this.m_batteryCap);
+				this.m_cComponent = sC;
+				this.m_cComponent.attachRecievingCapability(YATMCapabilities.CURRENT, this.m_batteryCap);
 				this.m_cComponentCHandler = stack.getCapability(YATMCapabilities.CURRENT).orElse(null);
 			}
 		}
@@ -202,7 +202,6 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 	public float getSpeedMultiplier() 
 	{
 		float bonus = 1f;
-		// TODO, possibly make into a loop based system, consolidate with experience
 		ItemStack s1 = this.m_inventory.getStackInSlot(PoweredToolItemStack.UPGRADE_SLOT_ONE);
 		if(s1.getItem() instanceof ISpeedUpgradeItem u)
 		{
@@ -238,7 +237,6 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 	
 	
 	
-	// TODO, could be circular, with hidden exceptions
 	@Override
 	public int recieveCurrent(int amount, boolean simulate)
 	{

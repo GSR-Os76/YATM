@@ -11,7 +11,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.YATMConfigs;
-import com.gsr.gsr_yatm.item.component.IComponent;
+import com.gsr.gsr_yatm.api.capability.IComponent;
+import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
@@ -62,7 +63,8 @@ public class OutputComponentManager implements ICapabilityProvider
 			this.m_componentStack = null;
 		}
 		ItemStack held = this.m_inventory.getStackInSlot(this.m_slot);
-		if(held.getItem() instanceof IComponent fc) 
+		IComponent fc = held.getCapability(YATMCapabilities.COMPONENT).orElse(null);
+		if(fc != null) 
 		{
 			this.m_component = fc;
 			this.m_componentStack = held;
@@ -100,7 +102,7 @@ public class OutputComponentManager implements ICapabilityProvider
 		LazyOptional<T> l = be.getCapability(cap, face);
 		if(l.isPresent() && !this.m_attachments.contains(l)) 
 		{
-			this.m_component.attachRecievingCapability(this.m_componentStack, cap, l);
+			this.m_component.attachRecievingCapability(cap, l);
 			this.m_attachments.add(l);
 			l.addListener(this::removeInvalidatedAttachment);
 		}
@@ -112,7 +114,7 @@ public class OutputComponentManager implements ICapabilityProvider
 	{
 		for(LazyOptional<?> l : this.m_attachments) 
 		{
-			this.m_component.removeRecievingCapability(this.m_componentStack, l);
+			this.m_component.removeRecievingCapability(l);
 		}
 		this.m_attachments = new ArrayList<>();
 	} // end removeDrainResultAttachments()
@@ -122,7 +124,7 @@ public class OutputComponentManager implements ICapabilityProvider
 		if(this.m_attachments.contains(lazyOptional)) 
 		{
 			this.m_attachments.remove(lazyOptional);
-			this.m_component.removeRecievingCapability(this.m_componentStack, lazyOptional);
+			this.m_component.removeRecievingCapability(lazyOptional);
 		}
 	} // removeInvalidatedAttachment()
 	

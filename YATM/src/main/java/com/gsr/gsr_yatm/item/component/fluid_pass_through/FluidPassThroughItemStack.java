@@ -1,9 +1,13 @@
 package com.gsr.gsr_yatm.item.component.fluid_pass_through;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
+
+import com.gsr.gsr_yatm.api.capability.IComponent;
+import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
@@ -15,11 +19,10 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 
-public class FluidPassThroughItemStack implements ICapabilityProvider, IFluidHandlerItem
+public class FluidPassThroughItemStack implements ICapabilityProvider, IComponent, IFluidHandlerItem
 {
-	private final @NotNull LazyOptional<IFluidHandlerItem> m_thisCap = LazyOptional.of(() -> this);
-	private final @NotNull LazyOptional<IFluidHandlerItem> m_thisCapI = LazyOptional.of(() -> this);
-
+	private final @NotNull LazyOptional<?> m_thisCap = LazyOptional.of(() -> this);
+	
 	private final @NotNull ItemStack m_itemStack;
 	
 	private LazyOptional<IFluidHandler> m_attachedCap;
@@ -84,38 +87,47 @@ public class FluidPassThroughItemStack implements ICapabilityProvider, IFluidHan
 	
 	
 
-	public <T> void attach(@NotNull LazyOptional<IFluidHandler> cap)
+	@Override
+	public <T> void attachRecievingCapability(@NotNull Capability<T> capType, @NotNull LazyOptional<T> cap)
 	{
-		if (cap.isPresent())
+		if(!this.getValidCapabilities().contains(capType)) 
 		{
-			cap.addListener((la) -> FluidPassThroughItemStack.this.tryRemove(la));
-			this.m_attachedCap = cap;
-			this.m_attachment = cap.orElse(null);
+			throw new IllegalArgumentException("The capability type " + capType + " is not valid for this.");
 		}
-	} // end attach()
+		
+		LazyOptional<IFluidHandler> c = cap.cast();
+		if (c.isPresent())
+		{
+			this.m_attachedCap = c;
+			this.m_attachment = c.orElse(null);
+			c.addListener(this::removeRecievingCapability);
+		}
+	} // end attachRecievingCapability()
 
-	public void tryRemove(@NotNull LazyOptional<?> cap)
+	@Override
+	public void removeRecievingCapability(@NotNull LazyOptional<?> cap)
 	{
 		if (cap == this.m_attachedCap)
 		{
 			this.m_attachedCap = null;
 			this.m_attachment = null;
 		}
-	} // end tryRemove()
+	} // end removeRecievingCapability()
 
-
+	@Override
+	public @NotNull List<Capability<?>> getValidCapabilities()
+	{
+		return List.of(ForgeCapabilities.FLUID_HANDLER);
+	} // end getValidCapabilities()
+	
+	
 
 	@Override
 	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side)
 	{
-		// TODO, may be simplified, test how generic variance and casting works in java.
-		if (cap == ForgeCapabilities.FLUID_HANDLER)
+		if (cap == ForgeCapabilities.FLUID_HANDLER || cap == ForgeCapabilities.FLUID_HANDLER_ITEM || cap == YATMCapabilities.COMPONENT)
 		{
 			return this.m_thisCap.cast();
-		}
-		else if (cap == ForgeCapabilities.FLUID_HANDLER_ITEM)
-		{
-			return this.m_thisCapI.cast();
 		}
 		return LazyOptional.empty();
 	} // end getCapabilitiy()

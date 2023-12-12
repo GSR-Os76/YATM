@@ -5,7 +5,8 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.item.component.IComponent;
+import com.gsr.gsr_yatm.api.capability.IComponent;
+import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
@@ -47,11 +48,12 @@ public class InputComponentManager<C> implements ICapabilityProvider
 		}
 		
 		ItemStack held = this.m_inventory.getStackInSlot(this.m_slot);
-		if(held.getItem() instanceof IComponent hc && hc.getValidCapabilities().contains(this.m_capability))
+		IComponent hc = held.getCapability(YATMCapabilities.COMPONENT).orElse(null);
+		if(hc != null && hc.getValidCapabilities().contains(this.m_capability))
 		{
 			this.m_component = hc;
 			this.m_componentAttachment = LazyOptional.of(() -> this.m_inwardAttachment);
-			this.m_component.attachRecievingCapability(held, this.m_capability, this.m_componentAttachment);
+			this.m_component.attachRecievingCapability(this.m_capability, this.m_componentAttachment);
 		}
 	} // end updateComponent()
 

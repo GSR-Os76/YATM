@@ -5,7 +5,6 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.item.component.IComponent;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
@@ -87,7 +86,7 @@ public class FillTankManager implements INBTSerializable<CompoundTag>
 		
 		boolean changed = false;
 		
-		if (holding.isEmpty() || heldHandler == null || holding.getItem() instanceof IComponent) 
+		if (holding.isEmpty() || heldHandler == null)// || holding.getCapability(YATMCapabilities.COMPONENT).isPresent()) 
 		{
 			return changed;
 		}

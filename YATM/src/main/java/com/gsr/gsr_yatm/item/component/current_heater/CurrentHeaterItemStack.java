@@ -1,8 +1,11 @@
 package com.gsr.gsr_yatm.item.component.current_heater;
 
+import java.util.List;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.api.capability.IComponent;
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
@@ -14,9 +17,9 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 
-public class CurrentHeaterItemStack implements ICapabilityProvider, ICurrentHandler
+public class CurrentHeaterItemStack implements ICapabilityProvider, IComponent, ICurrentHandler
 {
-	private final @NotNull LazyOptional<ICurrentHandler> m_thisCap = LazyOptional.of(() -> this);
+	private final @NotNull LazyOptional<?> m_thisCap = LazyOptional.of(() -> this);
 	private final @NotNegative int m_maxTemperature; 
 	private final float m_kelvinPerCurrent;
 		
@@ -84,34 +87,45 @@ public class CurrentHeaterItemStack implements ICapabilityProvider, ICurrentHand
 	
 	
 	
-	public <T> void attach(@NotNull LazyOptional<IHeatHandler> cap) 
+	@Override
+	public <T> void attachRecievingCapability(@NotNull Capability<T> capType, @NotNull LazyOptional<T> cap)
 	{
-		if(cap.isPresent()) 
+		if(!this.getValidCapabilities().contains(capType)) 
 		{
-			cap.addListener((la) -> CurrentHeaterItemStack.this.tryRemove(la));
-			this.m_attachedCap = cap;
-			this.m_attachment = cap.orElse(null);
+			throw new IllegalArgumentException("The capability type " + capType + " is not valid for this.");
 		}
-	} // end attach()
-	
-	public void tryRemove(@NotNull LazyOptional<?> cap)
+		
+		LazyOptional<IHeatHandler> c = cap.cast();
+		if(c.isPresent()) 
+		{
+			this.m_attachedCap = c;
+			this.m_attachment = c.orElse(null);
+			c.addListener(this::removeRecievingCapability);
+		}
+	} // end attachRecievingCapability()
+
+	@Override
+	public void removeRecievingCapability(@NotNull LazyOptional<?> cap)
 	{
 		if(cap == this.m_attachedCap) 
 		{
 			this.m_attachedCap = null;
 			this.m_attachment = null;
 		}
-	} // end tryRemove()
-	
-	
-	
+	} // end removeRecievingCapability()
 
+	@Override
+	public @NotNull List<Capability<?>> getValidCapabilities()
+	{
+		return List.of(YATMCapabilities.HEAT);
+	} // end getValidCapabilities()
 
+	
 
 	@Override
 	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side)
 	{
-		if(cap == YATMCapabilities.CURRENT) 
+		if(cap == YATMCapabilities.CURRENT || cap == YATMCapabilities.COMPONENT) 
 		{
 			return this.m_thisCap.cast();
 		}

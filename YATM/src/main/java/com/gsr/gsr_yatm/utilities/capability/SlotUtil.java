@@ -1,17 +1,18 @@
 package com.gsr.gsr_yatm.utilities.capability;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Supplier;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.api.capability.IComponent;
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.item.IEfficiencyUpgradeItem;
 import com.gsr.gsr_yatm.item.ISpeedUpgradeItem;
-import com.gsr.gsr_yatm.item.component.IComponent;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
@@ -99,13 +100,13 @@ public class SlotUtil
 		// TODO, maybe, create recipe type for heating
 		return itemStack.isEmpty() || (getHeatingBurnTime(itemStack) > 0 
 				|| itemStack.getCapability(YATMCapabilities.HEAT).isPresent() 
-				|| (itemStack.getItem() instanceof IComponent component && component.getValidCapabilities().contains(YATMCapabilities.HEAT)));
+				|| SlotUtil.isComponentFor(itemStack, YATMCapabilities.HEAT));
 	} // end isValidHeatingSlotInsert()
 		
 	public static boolean isValidTankFillSlotInsert(ItemStack itemStack)
 	{
 		return itemStack.isEmpty() || (itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).isPresent() || itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER).isPresent()
-				|| (itemStack.getItem() instanceof IComponent component && (component.getValidCapabilities().contains(ForgeCapabilities.FLUID_HANDLER) || component.getValidCapabilities().contains(ForgeCapabilities.FLUID_HANDLER_ITEM))));
+				|| SlotUtil.isComponentFor(itemStack, ForgeCapabilities.FLUID_HANDLER, ForgeCapabilities.FLUID_HANDLER_ITEM));
 	} // end isValidTankFillSlotInsert()
 	
 	public static boolean isValidTankDrainSlotInsert(ItemStack itemStack)
@@ -116,7 +117,7 @@ public class SlotUtil
 	public static boolean isValidPowerSlotInsert(ItemStack itemStack) 
 	{
 		return itemStack.isEmpty() || (itemStack.getCapability(YATMCapabilities.CURRENT).isPresent() 
-				|| (itemStack.getItem() instanceof IComponent component && component.getValidCapabilities().contains(YATMCapabilities.CURRENT)));
+				|| SlotUtil.isComponentFor(itemStack, YATMCapabilities.CURRENT));
 	} // end isValidPowerSlotInsert()
 	
 	public static boolean isValidUpgradeSlotInsert(ItemStack itemStack) 
@@ -124,6 +125,16 @@ public class SlotUtil
 		return itemStack.isEmpty() || (itemStack.getItem() instanceof ISpeedUpgradeItem 
 				|| itemStack.getItem() instanceof IEfficiencyUpgradeItem);
 	} // end isValidUpgradeSlotInsert()
+	
+	public static boolean isComponentFor(ItemStack component, Capability<?>... capTypes) 
+	{
+		IComponent c = component.getCapability(YATMCapabilities.COMPONENT).orElse(null);
+		if(c != null) 
+		{
+			return c.getValidCapabilities().containsAll(List.of(capTypes));
+		}
+		return false;
+	} // end isComponentFor()
 	
 	
 	
