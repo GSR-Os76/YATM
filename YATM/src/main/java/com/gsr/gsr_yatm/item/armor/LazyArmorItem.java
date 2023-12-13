@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.item;
+package com.gsr.gsr_yatm.item.armor;
 
 import java.util.Objects;
 import java.util.UUID;

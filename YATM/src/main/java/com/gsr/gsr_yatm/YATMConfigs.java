@@ -151,10 +151,15 @@ public class YATMConfigs
 	public static final ConfigValue<Double> DECAY_NETHERITE_NETHERITE_RELATIVE_KNOCKBACK_RESISTANCE_FACTOR = YATMConfigs.s_builder.comment("The proportion of knockback resistance which the armor has relative to Netherite armor.").defineInRange("netherite_relative_knockback_resistance_factor", 1.0d, Double.MIN_VALUE, Double.MAX_VALUE);
 	public static final ConfigValue<Double> DECAY_NETHERITE_NETHERITE_RELATIVE_TOUGHNESS_FACTOR = YATMConfigs.s_builder.comment("The proportion of toughness the armor has relative to Netherite armor.").defineInRange("netherite_relative_toughness_factor", 0.72d, Double.MIN_VALUE, Double.MAX_VALUE);
 	
+	
+	
+	// TODO, maybe add the word ARMOR in to be clearer
 	public static final ConfigValue<Integer> FOLIAR_STEEL_BOOTS_DEFENSE = YATMConfigs.s_builder.pop().push("Foliar Steel: ").comment("The boot's defense.").define("boots_defense", 2);
 	public static final ConfigValue<Integer> FOLIAR_STEEL_BOOTS_DURABILITY = YATMConfigs.s_builder.comment("The boot's durability.").define("boots_durability", 13 * 27);
+	public static final ConfigValue<Boolean> FOLIAR_STEEL_CAN_BREAK = YATMConfigs.s_builder.comment("Defines if the armor will break from incoming damage if it would deplete the durability, otherwise the armor simply stops providing bonuses until recharged.").define("can_break", false);
 	public static final ConfigValue<Integer> FOLIAR_STEEL_CHESTPLATE_DEFENSE = YATMConfigs.s_builder.comment("The chestplate's defense.").define("chestplate_defense", 6);
 	public static final ConfigValue<Integer> FOLIAR_STEEL_CHESTPLATE_DURABILITY = YATMConfigs.s_builder.comment("The chestplate's durability.").define("chestplate_durability", 16 * 27);
+	public static final ConfigValue<Integer> FOLIAR_STEEL_CU_PER_DURABILITY = YATMConfigs.s_builder.comment("The current said to be stored in each item per unit of (durability minus one).").defineInRange("chestplate_durability", 1, 1, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> FOLIAR_STEEL_ENCHANTMENT_VALUE = YATMConfigs.s_builder.comment("The enchantment value.").define("enchantment_value", 15);
 	public static final ConfigValue<Integer> FOLIAR_STEEL_HELMET_DEFENSE = YATMConfigs.s_builder.comment("The helmet's defense.").define("helmet_defense", 5);
 	public static final ConfigValue<Integer> FOLIAR_STEEL_HELMET_DURABILITY = YATMConfigs.s_builder.comment("The helmet's durability.").define("helmet_durability", 11 * 27);

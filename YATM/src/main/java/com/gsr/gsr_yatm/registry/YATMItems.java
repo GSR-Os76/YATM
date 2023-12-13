@@ -13,11 +13,12 @@ import com.gsr.gsr_yatm.entity.boat.YATMBoatType;
 import com.gsr.gsr_yatm.item.BonusType;
 import com.gsr.gsr_yatm.item.DrinkableItem;
 import com.gsr.gsr_yatm.item.EfficiencyUpgradeItem;
-import com.gsr.gsr_yatm.item.LazyArmorItem;
 import com.gsr.gsr_yatm.item.ShulkwartHornItem;
 import com.gsr.gsr_yatm.item.ShulkwartSporesBlockItem;
 import com.gsr.gsr_yatm.item.SpeedUpgradeItem;
 import com.gsr.gsr_yatm.item.YATMBoatItem;
+import com.gsr.gsr_yatm.item.armor.LazyArmorItem;
+import com.gsr.gsr_yatm.item.armor.PoweredArmorItem;
 import com.gsr.gsr_yatm.item.component.current_heater.CurrentHeaterItem;
 import com.gsr.gsr_yatm.item.component.current_storer.CurrentStorerItem;
 import com.gsr.gsr_yatm.item.component.fluid_pass_through.FluidPassThroughBlockItem;
@@ -342,9 +343,9 @@ public class YATMItems
 	public static final RegistryObject<CurrentHeaterItem> TORCH_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("torch_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), YATMConfigs.TORCH_GLAND_HEAT, PrimitiveUtil.toFloatSupplier(YATMConfigs.TORCH_GLAND_KELVIN_PER_CURRENT)))));
 	
 	// TODO, draw
-	public static final RegistryObject<CurrentStorerItem> CURRENT_TUBER = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_tuber", () -> new CurrentStorerItem(new Item.Properties().durability(1), YATMConfigs.CURRENT_TUBER))));
-	public static final RegistryObject<CurrentStorerItem> CURRENT_BATTERY = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_battery", () -> new CurrentStorerItem(new Item.Properties().durability(1), YATMConfigs.CURRENT_BATTERY))));
-	public static final RegistryObject<CurrentStorerItem> ADVANCED_CURRENT_BATTERY = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("advanced_current_battery", () -> new CurrentStorerItem(new Item.Properties().durability(1), YATMConfigs.ADVANCED_CURRENT_BATTERY))));
+	public static final RegistryObject<CurrentStorerItem> CURRENT_TUBER = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_tuber", () -> new CurrentStorerItem(new Item.Properties().durability(1).setNoRepair(), YATMConfigs.CURRENT_TUBER))));
+	public static final RegistryObject<CurrentStorerItem> CURRENT_BATTERY = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_battery", () -> new CurrentStorerItem(new Item.Properties().durability(1).setNoRepair(), YATMConfigs.CURRENT_BATTERY))));
+	public static final RegistryObject<CurrentStorerItem> ADVANCED_CURRENT_BATTERY = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("advanced_current_battery", () -> new CurrentStorerItem(new Item.Properties().durability(1).setNoRepair(), YATMConfigs.ADVANCED_CURRENT_BATTERY))));
 	
 	public static final RegistryObject<SpeedUpgradeItem> SPEED_UPGRADE = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("speed_upgrade", () -> new SpeedUpgradeItem(new Item.Properties().stacksTo(4), 1f, BonusType.ADDITIVE))));
 	public static final RegistryObject<EfficiencyUpgradeItem> EFFICIENCY_UPGRADE = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("efficiency_upgrade", () -> new EfficiencyUpgradeItem(new Item.Properties().stacksTo(4), 1f, BonusType.ADDITIVE))));
@@ -373,7 +374,7 @@ public class YATMItems
 	// water breathing electrolyzer, maybe can be used to acquire hygroden as byproduct, or causes bubbles
 	// night vision upgrade
 	// push power to inventory slots, cu or fe
-	// flight, messy and creative mode like. better might cost more to move but not to be still, cost based on the speed
+	// flight, messy and creative mode like. better might cost more to move but not to be still, cost based on the speed. maybe an elytra like option
 	// ambulatory accelerator foliar steel armor upgrade for spring speed
 	// fall damage mitigation and removal
 	// automatic feeding ability
@@ -386,14 +387,17 @@ public class YATMItems
 	// invulnerability to drawning
 	// bonus current generation, maybe mild amount at base line as it's basically a bunch of leaves.
 	// negation of knockback
+	// walk on snow
 	
-	// maybe investigate how trimming works to draw extra details onto textures when different parts are grafted on
+	// maybe investigate how trimming works to draw extra details onto textures when different parts are grafted on, see also IForgeItem.getArmorTexture
 	
-	public static final RegistryObject<LazyArmorItem> FOLIAR_STEEL_HELMET = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("foliar_steel_helmet", () -> new LazyArmorItem(YATMArmorMaterials.FOLIAR_STEEL, ArmorItem.Type.HELMET, new Item.Properties()))));
-	public static final RegistryObject<LazyArmorItem> FOLIAR_STEEL_CHESTPLATE = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("foliar_steel_chestplate", () -> new LazyArmorItem(YATMArmorMaterials.FOLIAR_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties()))));
-	public static final RegistryObject<LazyArmorItem> FOLIAR_STEEL_LEGGINGS = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("foliar_steel_leggings", () -> new LazyArmorItem(YATMArmorMaterials.FOLIAR_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties()))));
-	public static final RegistryObject<LazyArmorItem> FOLIAR_STEEL_BOOTS = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("foliar_steel_boots", () -> new LazyArmorItem(YATMArmorMaterials.FOLIAR_STEEL, ArmorItem.Type.BOOTS, new Item.Properties()))));
+	// TODO, add creative source providing current as item
+	public static final RegistryObject<PoweredArmorItem> FOLIAR_STEEL_HELMET = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("foliar_steel_helmet", () -> new PoweredArmorItem(YATMArmorMaterials.FOLIAR_STEEL, ArmorItem.Type.HELMET, new Item.Properties().setNoRepair(), YATMConfigs.FOLIAR_STEEL_CU_PER_DURABILITY, YATMConfigs.FOLIAR_STEEL_CAN_BREAK))));
+	public static final RegistryObject<PoweredArmorItem> FOLIAR_STEEL_CHESTPLATE = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("foliar_steel_chestplate", () -> new PoweredArmorItem(YATMArmorMaterials.FOLIAR_STEEL, ArmorItem.Type.CHESTPLATE, new Item.Properties().setNoRepair(), YATMConfigs.FOLIAR_STEEL_CU_PER_DURABILITY, YATMConfigs.FOLIAR_STEEL_CAN_BREAK))));
+	public static final RegistryObject<PoweredArmorItem> FOLIAR_STEEL_LEGGINGS = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("foliar_steel_leggings", () -> new PoweredArmorItem(YATMArmorMaterials.FOLIAR_STEEL, ArmorItem.Type.LEGGINGS, new Item.Properties().setNoRepair(), YATMConfigs.FOLIAR_STEEL_CU_PER_DURABILITY, YATMConfigs.FOLIAR_STEEL_CAN_BREAK))));
+	public static final RegistryObject<PoweredArmorItem> FOLIAR_STEEL_BOOTS = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("foliar_steel_boots", () -> new PoweredArmorItem(YATMArmorMaterials.FOLIAR_STEEL, ArmorItem.Type.BOOTS, new Item.Properties().setNoRepair(), YATMConfigs.FOLIAR_STEEL_CU_PER_DURABILITY, YATMConfigs.FOLIAR_STEEL_CAN_BREAK))));
 
+	// TODO, possibly override canBeHurtBy to prevent wither damage
 	public static final RegistryObject<LazyArmorItem> DECAY_NETHERITE_HELMET = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("decay_netherite_helmet", () -> new LazyArmorItem(YATMArmorMaterials.DECAY_NETHERITE, ArmorItem.Type.HELMET, new Item.Properties().fireResistant()))));
 	public static final RegistryObject<LazyArmorItem> DECAY_NETHERITE_CHESTPLATE = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("decay_netherite_chestplate", () -> new LazyArmorItem(YATMArmorMaterials.DECAY_NETHERITE, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()))));
 	public static final RegistryObject<LazyArmorItem> DECAY_NETHERITE_LEGGINGS = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("decay_netherite_leggings", () -> new LazyArmorItem(YATMArmorMaterials.DECAY_NETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant()))));

@@ -30,7 +30,7 @@ import com.gsr.gsr_yatm.data_generation.YATMLootTableProvider;
 import com.gsr.gsr_yatm.data_generation.YATMRecipeProvider;
 import com.gsr.gsr_yatm.entity.boat.YATMBoatRenderer;
 import com.gsr.gsr_yatm.entity.boat.YATMBoatType;
-import com.gsr.gsr_yatm.item.LazyArmorItem;
+import com.gsr.gsr_yatm.item.armor.LazyArmorItem;
 import com.gsr.gsr_yatm.item.tool.PoweredToolScreen;
 import com.gsr.gsr_yatm.recipe.bioreaction.CompostableBioreactionRecipeProvider;
 import com.gsr.gsr_yatm.recipe.smelting.WrappedSmeltingRecipeProvider;

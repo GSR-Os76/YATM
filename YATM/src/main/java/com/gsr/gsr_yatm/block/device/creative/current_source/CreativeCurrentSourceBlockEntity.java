@@ -27,6 +27,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.inventory.ContainerData;
+import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.entity.BlockEntity;
@@ -119,13 +120,18 @@ public class CreativeCurrentSourceBlockEntity extends BlockEntity
 			this.recheckNeighborAttachments(level, position, state);
 			this.m_recheckAttachmentsCounter = 0;
 		}
-		
+		ItemStack s = this.m_inventory.getStackInSlot(CreativeCurrentSourceBlockEntity.CHARGE_SLOT);
+		ICurrentHandler ch = s.getCapability(YATMCapabilities.CURRENT).orElse((ICurrentHandler)null);
+		if(ch != null) 
+		{
+			ch.recieveCurrent(this.m_source.extractCurrent(Integer.MAX_VALUE, false), false);
+		}
 		for(Direction d : Direction.values()) 
 		{
 			if(this.m_source != null && this.m_neighborCaps.containsKey(d) && state.getValue(CreativeCurrentSourceBlock.ATTACHMENT_STATE_BY_FACE.get(d)) == AttachmentState.PUSH) 
 			{
 				ICurrentHandler n = this.m_neighborCaps.get(d).orElse((ICurrentHandler)null);
-				n.recieveCurrent(this.m_source.extractCurrent(n.recieveCurrent(this.m_source.extractCurrent(Integer.MAX_VALUE, true), true), false), false);
+				n.recieveCurrent(this.m_source.extractCurrent(Integer.MAX_VALUE, false), false);
 			}
 		}			
 	} // end serverTick()
