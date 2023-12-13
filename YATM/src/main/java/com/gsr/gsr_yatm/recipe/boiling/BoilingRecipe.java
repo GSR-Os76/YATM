@@ -14,6 +14,7 @@ import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.generic.Tuple3;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.RegistryAccess;
@@ -27,7 +28,7 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 
-public class BoilingRecipe extends RecipeBase<Container> implements ITimedRecipe<Container>, IHeatedRecipe<Container>
+public class BoilingRecipe extends RecipeBase<Container> implements ITimedRecipe<Container, Tuple3<IFluidHandler, IFluidHandler, IHeatHandler>>, IHeatedRecipe<Container>
 {
 	private final @NotNull FluidStack m_result;
 	private final @NotNull IIngredient<FluidStack> m_input;
@@ -62,7 +63,7 @@ public class BoilingRecipe extends RecipeBase<Container> implements ITimedRecipe
 	
 	public @NotNull FluidStack result()
 	{
-		return this.m_result;
+		return this.m_result.copy();
 	} // end result()
 	
 	public @NotNull IIngredient<FluidStack> input()
@@ -71,31 +72,41 @@ public class BoilingRecipe extends RecipeBase<Container> implements ITimedRecipe
 	} // end input()
 	
 	
-
-	public boolean canTick(@NotNull IHeatHandler heat)
-	{
-		return this.m_temperature <= heat.getTemperature();
-	} // end canTick()
 	
-	public boolean matches(@NotNull IFluidHandler inputTank, @NotNull IFluidHandler resultTank)
+	@Override
+	public boolean matches(@NotNull Tuple3<IFluidHandler, IFluidHandler, IHeatHandler> context)
 	{
-		Fluid f = inputTank.getFluidInTank(0).getFluid();
+		Fluid f = context.a().getFluidInTank(0).getFluid();
 		int am = IngredientUtil.getRequiredAmountFor(f, this.m_input);
 		if (am == -1)
 		{
 			return false;
 		}
-		FluidStack inputDrainSimulated = inputTank.drain(new FluidStack(f, am), FluidAction.SIMULATE);
+		FluidStack inputDrainSimulated = context.a().drain(new FluidStack(f, am), FluidAction.SIMULATE);
 		return inputDrainSimulated.getAmount() == am 
-				&& resultTank.fill(this.m_result, FluidAction.SIMULATE) == this.m_result.getAmount(); 
-	} // end canBeUsedOn()
-	
-	public void setResults(@NotNull IFluidHandler inputTank, @NotNull IFluidHandler resultTank)
+				&& context.b().fill(this.m_result, FluidAction.SIMULATE) == this.m_result.getAmount(); 
+	} // end matches()
+
+	@Override
+	public boolean canTick(@NotNull Tuple3<IFluidHandler, IFluidHandler, IHeatHandler> context)
 	{
-		Fluid f = inputTank.getFluidInTank(0).getFluid();
-		inputTank.drain(new FluidStack(f, IngredientUtil.getRequiredAmountFor(f, this.m_input)), FluidAction.EXECUTE);
-		resultTank.fill(this.m_result.copy(), FluidAction.EXECUTE);
-	} // end setResults()
+		return this.m_temperature <= context.c().getTemperature();
+	} // end canTick()
+
+	@Override
+	public void tick(@NotNull Tuple3<IFluidHandler, IFluidHandler, IHeatHandler> context)
+	{
+		// TODO, make consume some heat to perform recipe
+		ITimedRecipe.super.tick(context);
+	} // end tick()
+	
+	@Override
+	public void end(@NotNull Tuple3<IFluidHandler, IFluidHandler, IHeatHandler> context)
+	{
+		Fluid f = context.a().getFluidInTank(0).getFluid();
+		context.a().drain(new FluidStack(f, IngredientUtil.getRequiredAmountFor(f, this.m_input)), FluidAction.EXECUTE);
+		context.b().fill(this.m_result.copy(), FluidAction.EXECUTE);
+	} // end end()
 		
 	
 		

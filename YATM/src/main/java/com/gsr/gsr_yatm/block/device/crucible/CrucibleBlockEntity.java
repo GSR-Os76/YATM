@@ -25,6 +25,7 @@ import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
 import com.gsr.gsr_yatm.utilities.capability.heat.OnChangedHeatHandler;
 import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.generic.Tuple3;
 import com.gsr.gsr_yatm.utilities.network.CompositeAccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
 import com.gsr.gsr_yatm.utilities.network.FluidHandlerContainerData;
@@ -47,7 +48,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 
-public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe, Container>
+public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe, Container, Tuple3<IItemHandler, IFluidHandler, IHeatHandler>>
 {
 	// TODO, make recipe progress reverse slowly when heat is lacking?
 	public static final int INVENTORY_SLOT_COUNT = 3;
@@ -89,7 +90,7 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 
 	private final @NotNull OutputComponentManager m_drainResultComponentManager = new OutputComponentManager(this.m_inventory, CrucibleBlockEntity.DRAIN_RESULT_TANK_SLOT, () -> List.of(Direction.DOWN), YATMConfigs.CRUCIBLE_DRAIN_RECHECK_PERIOD.get());
 	private final @NotNull DrainTankManager m_drainResultTankManager = new DrainTankManager(this.m_inventory, CrucibleBlockEntity.DRAIN_RESULT_TANK_SLOT, this.m_resultTank, YATMConfigs.CRUCIBLE_MAX_FLUID_TRANSFER_RATE.get());
-	private final @NotNull HeatAcceleratedCraftingManager m_heatAcceleratedCraftingManager = new HeatAcceleratedCraftingManager(CrucibleBlockEntity.this::doCrafting, this.m_heatHandler, () -> CrucibleBlockEntity.this.m_activeRecipe);
+	private final @NotNull HeatAcceleratedCraftingManager m_heatAcceleratedCraftingManager = new HeatAcceleratedCraftingManager(CrucibleBlockEntity.this.m_craftingManager::tick, this.m_heatHandler,  CrucibleBlockEntity.this.m_craftingManager::getActiveRecipe);
 	private final @NotNull InputComponentManager<IHeatHandler> m_heatComponentManager = new InputComponentManager<>(this.m_inventory, CrucibleBlockEntity.HEAT_SLOT, this.m_heatHandler, YATMCapabilities.HEAT);
 	private final @NotNull HeatingManager m_heatingManager = new HeatingManager(this.m_inventory, CrucibleBlockEntity.HEAT_SLOT, this.m_heatHandler);
 	
@@ -102,8 +103,7 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 			Map.entry(CrucibleBlockEntity.MAX_TEMPERATURE_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY)
 			));
 	protected final @NotNull ContainerData m_data = new ContainerDataBuilder()
-			.addProperty(() -> this.m_craftCountDown, (i) -> {})
-			.addProperty(() -> this.m_craftTime, (i) -> {})
+			.addContainerData(this.m_craftProgressC)
 			.addProperty(() -> this.m_heatingManager.burnProgress(), (i) -> {})
 			.addProperty(() -> this.m_heatingManager.burnTime(), (i) -> {})
 			.addProperty(() -> this.m_drainResultTankManager.countDown(), (i) -> {})
@@ -118,9 +118,13 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	{
 		super(YATMBlockEntityTypes.CRUCIBLE.get(), Objects.requireNonNull(blockPos), Objects.requireNonNull(blockState), CrucibleBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.MELTING.get());
 	} // end constructor
-	
-	
-	
+
+	@Override
+	public @NotNull Tuple3<IItemHandler, IFluidHandler, IHeatHandler> getContext()
+	{
+		return new Tuple3<>(this.m_inventory, this.m_resultTank, this.m_heatHandler);
+	} // end getContext
+
 	@Override
 	public @NotNull ContainerData getDataAccessor()
 	{
@@ -185,33 +189,6 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 			level.setBlock(position, state.setValue(CrucibleBlock.LIT, shouldBeLit), Block.UPDATE_CLIENTS);
 		}
 	} // end serverTick()
-
-	
-	
-	@Override
-	protected boolean canTick()
-	{	
-		return this.m_activeRecipe.canTick(this.m_heatHandler);
-	} // end canTick()
-	
-	@Override
-	protected boolean canUseRecipe(@NotNull MeltingRecipe from)
-	{
-		return from.matches(this.m_uncheckedInventory, this.m_resultTank);
-	} // end canUseRecipe()
-
-	@Override
-	protected void setRecipeResults(@NotNull MeltingRecipe from)
-	{
-		from.setResults(this.m_uncheckedInventory, this.m_resultTank);
-		this.m_heatAcceleratedCraftingManager.clearCounters();
-	} // end setRecipeResults()
-	
-	@Override
-	protected void recipeTick()
-	{
-		// TODO, make crucible consume some heat to perform a recipe
-	} // end recipeTick()
 
 
 

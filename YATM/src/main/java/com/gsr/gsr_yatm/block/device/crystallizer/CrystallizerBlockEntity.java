@@ -23,6 +23,7 @@ import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
 import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
 import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.generic.Tuple3;
 import com.gsr.gsr_yatm.utilities.network.CompositeAccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
 import com.gsr.gsr_yatm.utilities.network.CurrentHandlerContainerData;
@@ -45,7 +46,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 
-public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<CrystallizingRecipe, Container>
+public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<CrystallizingRecipe, Container, Tuple3<IFluidHandler, IItemHandler, ICurrentHandler>>
 {
 	public static final int INVENTORY_SLOT_COUNT = 5;
 	
@@ -101,8 +102,7 @@ public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<Crystalli
 			));
 	
 	protected final @NotNull ContainerData m_data = new ContainerDataBuilder()
-			.addProperty(() -> this.m_craftCountDown, (i) -> {})
-			.addProperty(() -> this.m_craftTime, (i) -> {})
+			.addContainerData(this.m_craftProgressC)
 			.addContainerData(new FluidHandlerContainerData(this.m_inputTank, 0))
 			.addContainerData(new CurrentHandlerContainerData(this.m_currentStorer))
 			.addProperty(() -> this.m_drainInputTankManager.countDown(), (i) -> {})
@@ -118,12 +118,18 @@ public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<Crystalli
 		super(YATMBlockEntityTypes.CRYSTALLIZER.get(), position, state, CrystallizerBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.CRYSTALLIZING.get());
 	} // end constructor
 	
-	
+	@Override
+	public @NotNull Tuple3<IFluidHandler, IItemHandler, ICurrentHandler> getContext()
+	{
+		return new Tuple3<>(this.m_inputTank, this.m_uncheckedInventory, this.m_currentStorer);
+	} // end getContext()
 	
 	public @NotNull ContainerData getDataAccessor()
 	{
 		return this.m_data;
 	} // end getDataAccessor()
+	
+	
 	
 	@Override
 	protected boolean itemInsertionValidator(@NotNegative int slot, @NotNull ItemStack stack, boolean simulate)
@@ -172,7 +178,7 @@ public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<Crystalli
 		
 		boolean changed = this.m_currentFillManager.tick(level, position);
 		changed |= this.m_fillInputTankManager.tick(level, position);
-		changed |= this.doCrafting();
+		changed |= this.m_craftingManager.tick(level, position);
 		changed |= this.m_drainInputTankManager.tick(level, position);
 		this.m_drainInputComponentManager.tick(level, position);
 
@@ -181,32 +187,6 @@ public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<Crystalli
 			this.setChanged();
 		}
 	} // end serverTick()
-	
-	
-	
-	@Override
-	protected boolean canTick()
-	{
-		return this.m_activeRecipe.canTick(this.m_currentStorer);
-	} // end canTick()
-	
-	@Override
-	protected void setRecipeResults(@NotNull CrystallizingRecipe from)
-	{
-		from.setResults(this.m_uncheckedInventory, this.m_inputTank);
-	} // end setRecipeResults()
-
-	@Override
-	protected boolean canUseRecipe(@NotNull CrystallizingRecipe from)
-	{
-		return from.matches(this.m_uncheckedInventory, this.m_inputTank);
-	} // end canUseRecipe()
-
-	@Override
-	protected void recipeTick()
-	{
-		this.m_activeRecipe.tick(this.m_currentStorer);
-	} // end recipeTick()
 	
 	
 

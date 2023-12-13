@@ -5,14 +5,15 @@ import java.util.List;
 import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
-import com.gsr.gsr_yatm.block.device.TestCraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.injecting.InjectingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
+import com.gsr.gsr_yatm.utilities.generic.Tuple3;
 import com.gsr.gsr_yatm.utilities.network.AccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.CompositeAccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
@@ -27,10 +28,12 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.items.IItemHandler;
 
-public class InjectorBlockEntity extends TestCraftingDeviceBlockEntity<InjectingRecipe, Container>
+public class InjectorBlockEntity extends CraftingDeviceBlockEntity<InjectingRecipe, Container, Tuple3<IFluidHandler, IItemHandler, ICurrentHandler>>
 {
 	public static final int INVENTORY_SLOT_COUNT = 5;
 	
@@ -77,6 +80,18 @@ public class InjectorBlockEntity extends TestCraftingDeviceBlockEntity<Injecting
 	} // end constructor
 
 	@Override
+	public @NotNull Tuple3<IFluidHandler, IItemHandler, ICurrentHandler> getContext()
+	{
+		return new Tuple3<>(this.m_inputTank, this.m_inventory, null);
+	}
+
+	@Override
+	public @NotNull ContainerData getDataAccessor()
+	{
+		return this.m_craftProgressC;
+	} // end getDataAccessor()
+	
+	@Override
 	protected @NotNull CompoundTag setupToNBT()
 	{
 		CompoundTag tag = new CompoundTag();
@@ -108,11 +123,9 @@ public class InjectorBlockEntity extends TestCraftingDeviceBlockEntity<Injecting
 		this.m_fillInputTankBuffer = new FluidTank(tankCapacities);
 		this.m_rawInputTank = new FluidTank(tankCapacities);
 		this.m_inputTank = new TankWrapper(this.m_rawInputTank, this::onFluidContentsChanged);
-		this.initializeContainerData();
+		
 	} // end setup()
 
-	@SuppressWarnings("unchecked")
-	@Override
 	protected @NotNull IContainerDataProvider<InjectorBlockEntity> createContainerDataProvider()
 	{
 		return new IContainerDataProvider<InjectorBlockEntity>() 
@@ -176,13 +189,7 @@ public class InjectorBlockEntity extends TestCraftingDeviceBlockEntity<Injecting
 
 		boolean changed = this.doAcceptPower();
 		changed |= this.doFillInputTank();
-		changed |= this.m_waitingForLoad 
-				? false 
-				: 
-					this.m_activeRecipe != null 
-					&& true//this.m_currentTransferedThisTick < this.m_activeRecipe.getCurrentPerTick() 
-					? false 
-					: this.doCrafting();
+		changed |= this.m_craftingManager.tick(level, blockPos);
 		changed |= this.doDrainInputTank();
 
 		if (changed)
@@ -246,26 +253,6 @@ public class InjectorBlockEntity extends TestCraftingDeviceBlockEntity<Injecting
 
 
 	@Override
-	protected void setRecipeResults(InjectingRecipe from)
-	{
-		from.setResults(this.m_uncheckedInventory);
-	} // end setRecipeResults()
-
-	@Override
-	protected boolean canUseRecipe(InjectingRecipe from)
-	{
-		return from.canBeUsedOn(this.m_uncheckedInventory, this.m_inputTank);
-	} // end canUseRecipe()
-
-	@Override
-	protected void startRecipe(InjectingRecipe from)
-	{
-		from.startRecipe(this.m_uncheckedInventory, this.m_inputTank);
-	} // end startRecipe()
-
-
-
-	@Override
 	protected void saveAdditional(CompoundTag tag)
 	{
 		super.saveAdditional(tag);
@@ -305,5 +292,7 @@ public class InjectorBlockEntity extends TestCraftingDeviceBlockEntity<Injecting
 			this.m_drainInputTankInitialTransferSize = tag.getInt(InjectorBlockEntity.DRAIN_INPUT_TRANSFER_INITIAL_TAG_NAME);
 		}
 	} // end load()
+
+	
 
 } // end class

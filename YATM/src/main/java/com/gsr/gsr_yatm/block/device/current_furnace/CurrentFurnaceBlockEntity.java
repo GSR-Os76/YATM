@@ -8,12 +8,15 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.YATMConfigs;
+import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.smelting.WrappedSmeltingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
+import com.gsr.gsr_yatm.utilities.capability.heat.OnChangedHeatHandler;
+import com.gsr.gsr_yatm.utilities.generic.Tuple2;
 import com.gsr.gsr_yatm.utilities.network.AccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.CompositeAccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
@@ -28,8 +31,9 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.items.IItemHandler;
 
-public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<WrappedSmeltingRecipe, Container>
+public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<WrappedSmeltingRecipe, Container, Tuple2<IItemHandler, IHeatHandler>>
 {
 	// TODO, allow placing food items on top to cook them, rend them too. NOTE: campfires might have this functionality as well, refrenceable
 	public static final int INVENTORY_SLOT_COUNT = 3;
@@ -67,6 +71,12 @@ public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<Wrapped
 		super(YATMBlockEntityTypes.FURNACE_PLUS.get(), Objects.requireNonNull(position), Objects.requireNonNull(state), CurrentFurnaceBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.SMELTING_PLUS.get());
 		// this.setup(Contract.notNegative(constants.maxTemperature()));
 	} // end constructor()
+	
+	@Override
+	public @NotNull Tuple2<IItemHandler, IHeatHandler> getContext()
+	{
+		return new Tuple2<>(this.m_inventory, new OnChangedHeatHandler(3233, (i) -> {}));
+	} // end getContext()
 //	
 //	@Override
 //	protected @NotNull CompoundTag setupToNBT()
@@ -167,7 +177,7 @@ public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<Wrapped
 	{
 		boolean wasLitInitially = this.isLit();
 		boolean changed = doHeat();
-		changed |= ((this.m_waitingForLoad || this.isLit()) ? false : this.doCrafting());
+		changed |= this.m_craftingManager.tick(level, position);
 		
 		if (wasLitInitially != this.isLit())
 		{
@@ -211,28 +221,7 @@ public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<Wrapped
 		return changed;
 	} // end doHeat()
 	
-	@Override
-	protected void setRecipeResults(WrappedSmeltingRecipe from)
-	{
-		from.setResults(this.m_uncheckedInventory);
-	} // end setRecipeResults()
 
-	@Override
-	protected boolean canUseRecipe(WrappedSmeltingRecipe from)
-	{
-		return from.canBeUsedOn(this.m_uncheckedInventory);
-	} // end canUseRecipe()
-
-	@Override
-	protected void startRecipe(WrappedSmeltingRecipe from)
-	{
-		from.startRecipe(this.m_uncheckedInventory);
-	} // end startRecipe()
-	
-	
-	
-	
-	
 	
 	@Override
  	protected void saveAdditional(CompoundTag tag)
@@ -262,5 +251,6 @@ public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<Wrapped
 			this.m_burnTime = tag.getInt(BURN_TIME_INITIAL_TAG_NAME);
 		}
 	} // end load()
+	
 	
 } // end class

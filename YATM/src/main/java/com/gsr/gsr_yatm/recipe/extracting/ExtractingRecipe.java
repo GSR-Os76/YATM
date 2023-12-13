@@ -4,6 +4,8 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
+import com.gsr.gsr_yatm.block.device.bioreactor.BioreactorBlockEntity;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.recipe.RecipeBase;
@@ -13,6 +15,8 @@ import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.generic.Tuple3;
+import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.RegistryAccess;
 import net.minecraft.world.Container;
@@ -25,7 +29,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.items.IItemHandler;
 
-public class ExtractingRecipe extends RecipeBase<Container> implements ITimedRecipe<Container>
+public class ExtractingRecipe extends RecipeBase<Container> implements ITimedRecipe<Container, Tuple3<IItemHandler, IFluidHandler, ICurrentHandler>>
 {
 	private final @NotNull FluidStack m_result;	
 	private final @NotNull IIngredient<ItemStack> m_input;
@@ -81,31 +85,39 @@ public class ExtractingRecipe extends RecipeBase<Container> implements ITimedRec
 	
 	
 	
-	public boolean canBeUsedOn(@NotNull IItemHandler inventory, @NotNull IFluidHandler resultTank)
+	@Override
+	public boolean matches(@NotNull Tuple3<IItemHandler, IFluidHandler, ICurrentHandler> context)
 	{
-		return this.m_input.test(inventory.getStackInSlot(ExtractorBlockEntity.INPUT_SLOT)) && 
-				inventory.insertItem(ExtractorBlockEntity.INPUT_REMAINDER_SLOT, this.m_inputRemainder, true).isEmpty() &&
-				resultTank.fill(this.m_result, FluidAction.SIMULATE) == this.m_result.getAmount();
-	} // end canBeUsedOn()
+		return this.m_input.test(context.a().getStackInSlot(ExtractorBlockEntity.INPUT_SLOT)) && 
+				context.a().insertItem(ExtractorBlockEntity.INPUT_REMAINDER_SLOT, this.m_inputRemainder, true).isEmpty() &&
+				context.b().fill(this.m_result, FluidAction.SIMULATE) == this.m_result.getAmount();
+	} // end matches()
 	
-	public void startRecipe(@NotNull IItemHandler inventory)
+	@Override
+	public boolean canTick(@NotNull Tuple3<IItemHandler, IFluidHandler, ICurrentHandler> context) 
 	{
-		inventory.extractItem(ExtractorBlockEntity.INPUT_SLOT, 1, false);
-	} // end startRecipe()
+		return context.c().extractCurrent(this.m_currentPerTick, true) == this.m_currentPerTick;
+	} // end canTick()
 	
-	public void setResults(@NotNull IItemHandler inventory, @NotNull IFluidHandler resultTank)
+	@Override
+	public void tick(@NotNull Tuple3<IItemHandler, IFluidHandler, ICurrentHandler> context) 
 	{
-		inventory.insertItem(ExtractorBlockEntity.INPUT_REMAINDER_SLOT, this.m_inputRemainder.copy(), false);
-		resultTank.fill(this.m_result.copy(), FluidAction.EXECUTE);
-	} // end setResults()
+		context.c().extractCurrent(this.m_currentPerTick, false);
+	} // end tick()
+	
+	@Override
+	public void end(@NotNull Tuple3<IItemHandler, IFluidHandler, ICurrentHandler> context)
+	{
+		context.a().extractItem(BioreactorBlockEntity.INPUT_SLOT, IngredientUtil.getReqiuredCountFor(context.a().getStackInSlot(BioreactorBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
+		context.a().insertItem(ExtractorBlockEntity.INPUT_REMAINDER_SLOT, this.m_inputRemainder.copy(), false);
+		context.b().fill(this.m_result.copy(), FluidAction.EXECUTE);
+	} // end end()
 		
 	
 		
-	// use canBeUsedOn() instead
 	@Override
 	public boolean matches(Container container, Level level)
 	{
-		// TODO, maybe implement this to some limited extent.
 		return false;
 	} // end matches()
 

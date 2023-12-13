@@ -1,6 +1,7 @@
 package com.gsr.gsr_yatm.block.device.behaviors;
 
 import java.util.Objects;
+import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
 import org.jetbrains.annotations.NotNull;
@@ -19,7 +20,7 @@ public class HeatAcceleratedCraftingManager implements INBTSerializable<Compound
 	private static final String TICKS_PERFORMED_TAG_NAME = "ticksPerformed";
 	private static final String TICKS_SCHEDULED_TAG_NAME = "ticksScheduled";
 	
-	private final @NotNull Supplier<@NotNull Boolean> m_baseCrafting;
+	private final @NotNull BiFunction<@NotNull Level, @NotNull BlockPos, @NotNull Boolean> m_baseCrafting;
 	private final @NotNull IHeatHandler m_heatHandler;
 	private final @NotNull Supplier<@Nullable IHeatedRecipe<?>> m_recipeSupplier;
 	
@@ -28,7 +29,7 @@ public class HeatAcceleratedCraftingManager implements INBTSerializable<Compound
 	
 	
 	
-	public HeatAcceleratedCraftingManager(@NotNull Supplier<@NotNull Boolean> baseCrafting, @NotNull IHeatHandler heatHandler, @NotNull Supplier<@Nullable IHeatedRecipe<?>> recipeSupplier) 
+	public HeatAcceleratedCraftingManager(@NotNull BiFunction<@NotNull Level, @NotNull BlockPos, @NotNull Boolean> baseCrafting, @NotNull IHeatHandler heatHandler, @NotNull Supplier<@Nullable IHeatedRecipe<?>> recipeSupplier) 
 	{
 		this.m_baseCrafting = Objects.requireNonNull(baseCrafting);
 		this.m_heatHandler = Objects.requireNonNull(heatHandler);
@@ -39,7 +40,7 @@ public class HeatAcceleratedCraftingManager implements INBTSerializable<Compound
 	
 	public boolean tick(@NotNull Level level, @NotNull BlockPos position)
 	{
-		boolean changed = this.m_baseCrafting.get();
+		boolean changed = this.m_baseCrafting.apply(level, position);
 		if (this.m_recipeSupplier.get() != null)
 		{
 			this.m_ticksPerformed += 1;
@@ -47,7 +48,7 @@ public class HeatAcceleratedCraftingManager implements INBTSerializable<Compound
 			int bonusTicks = ((int) this.m_ticksScheduled) - this.m_ticksPerformed;
 			for (int i = 0; (this.m_recipeSupplier.get() != null) && (i < bonusTicks); i++)
 			{
-				changed |= this.m_baseCrafting.get();
+				changed |= this.m_baseCrafting.apply(level, position);
 				this.m_ticksPerformed += 1;
 			}
 		}

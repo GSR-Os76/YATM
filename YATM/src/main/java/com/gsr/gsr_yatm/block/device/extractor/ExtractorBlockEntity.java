@@ -11,6 +11,7 @@ import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
 import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
+import com.gsr.gsr_yatm.utilities.generic.Tuple3;
 import com.gsr.gsr_yatm.utilities.network.BooleanFlagHandler;
 import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
 
@@ -26,8 +27,9 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.items.IItemHandler;
 
-public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractingRecipe, Container>
+public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractingRecipe, Container, Tuple3<IItemHandler, IFluidHandler, ICurrentHandler>>
 {
 	public static final int DATA_SLOT_COUNT = 11;
 	public static final int INVENTORY_SLOT_COUNT = 4;
@@ -74,7 +76,6 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractingRe
 	@Deprecated(forRemoval = true) public ICurrentHandler m_internalCurrentStorer;
 	@Deprecated(forRemoval = true) public int m_maxSafeCurrentTransfer;
 	
-	// TODO, allegedly can transfer at most the lowest 16 bits, to show reasonable amounts of power somewheres maybe use two then and merge on client, confirm this detail
 	private ContainerData m_data = new ContainerData()
 	{
 		@Override
@@ -82,8 +83,8 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractingRe
 		{
 			return switch(index) 
 			{
-				case ExtractorBlockEntity.EXTRACT_PROGRESS_SLOT -> ExtractorBlockEntity.this.m_craftCountDown;
-				case ExtractorBlockEntity.EXTRACT_TIME_SLOT -> ExtractorBlockEntity.this.m_craftTime;
+				case ExtractorBlockEntity.EXTRACT_PROGRESS_SLOT -> 0;//ExtractorBlockEntity.this.m_craftCountDown;
+				case ExtractorBlockEntity.EXTRACT_TIME_SLOT -> 0;//ExtractorBlockEntity.this.m_craftTime;
 				case ExtractorBlockEntity.STORED_FlUID_AMOUNT_SLOT -> ExtractorBlockEntity.this.m_rawResultTank.getFluidAmount();
 				case ExtractorBlockEntity.FLUID_CAPACITY_SLOT -> ExtractorBlockEntity.this.m_rawResultTank.getCapacity();
 				case ExtractorBlockEntity.FLUID_TRANSFER_COUNT_DOWN_SLOT -> ExtractorBlockEntity.this.m_resultTankDrainCountDown;
@@ -125,6 +126,12 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractingRe
 		super(YATMBlockEntityTypes.EXTRACTOR.get(), blockPos, blockState, ExtractorBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.EXTRACTING.get());
 		this.setup(currentCapacity, maxCurrentTransfer, fluidCapacity, maxFluidTransferRate);
 	} // end constructor
+	
+	@Override
+	public @NotNull Tuple3<IItemHandler, IFluidHandler, ICurrentHandler> getContext()
+	{
+		return new Tuple3<>(this.m_inventory, this.m_resultTank, this.m_internalCurrentStorer);
+	} // end getContext()
 
 	@Override
 	protected @NotNull CompoundTag setupToNBT()
@@ -199,7 +206,7 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractingRe
 	@Override
 	public void serverTick(Level level, BlockPos blockPos, BlockState state)
 	{
-		boolean changed = this.m_waitingForLoad ? false : this.doCrafting();
+		boolean changed = this.m_craftingManager.tick(level, blockPos);
 		changed |= this.doDrainResultTank();
 		
 		if(changed) 
@@ -228,33 +235,6 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractingRe
 		}
 		return changed;
 	} // end doDrainResultTank()
-	
-	@Override
-	protected void setRecipeResults(ExtractingRecipe from)
-	{
-		from.setResults(this.m_uncheckedInventory, this.m_resultTank);
-		this.setRemainderFlag(false);
-	} // end setRecipeResults()
-
-	@Override
-	protected boolean canUseRecipe(ExtractingRecipe from)
-	{
-		return from.canBeUsedOn(this.m_uncheckedInventory, this.m_resultTank);
-	} // end canUseRecipe()
-	
-	@Override
-	protected void startRecipe(ExtractingRecipe from)
-	{
-		from.startRecipe(this.m_uncheckedInventory);
-		this.setRemainderFlag(from.hasRemainder());
-	} // end startRecipe()
-	
-	@Override
-	protected void onRecipeLoad()
-	{
-		super.onRecipeLoad();
-		this.setRemainderFlag(this.m_activeRecipe != null && this.m_activeRecipe.hasRemainder());
-	} // end onRecipeLoad()
 	
 	protected void setRemainderFlag(boolean value) 
 	{
@@ -308,4 +288,6 @@ public class ExtractorBlockEntity extends CraftingDeviceBlockEntity<ExtractingRe
 		// TODO Auto-generated method stub
 		super.reviveCaps();
 	}
+
+
 } // end class

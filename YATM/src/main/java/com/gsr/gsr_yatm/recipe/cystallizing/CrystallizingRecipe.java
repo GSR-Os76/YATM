@@ -14,6 +14,7 @@ import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.generic.Tuple3;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.RegistryAccess;
@@ -28,7 +29,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.items.IItemHandler;
 
-public class CrystallizingRecipe extends RecipeBase<Container> implements ITimedRecipe<Container>
+public class CrystallizingRecipe extends RecipeBase<Container> implements ITimedRecipe<Container, Tuple3<IFluidHandler, IItemHandler, ICurrentHandler>>
 {
 	private final @NotNull ItemStack m_result;
 	private final @NotNull IIngredient<FluidStack> m_input;
@@ -81,43 +82,47 @@ public class CrystallizingRecipe extends RecipeBase<Container> implements ITimed
 	
 	public @NotNull ItemStack result()
 	{
-		return this.m_result;
+		return this.m_result.copy();
 	} // end result()
 	
 	
 	
-	public boolean canTick(@NotNull ICurrentHandler battery) 
+	@Override
+	public boolean matches(@NotNull Tuple3<IFluidHandler, IItemHandler, ICurrentHandler> context)
 	{
-		return battery.extractCurrent(this.m_currentPerTick, true) == this.m_currentPerTick;
-	} // end canTick()
-	
-	public void tick(@NotNull ICurrentHandler battery) 
-	{
-		battery.extractCurrent(this.m_currentPerTick, false);
-	} // end canTick()
-	
-	public boolean matches(@NotNull IItemHandler inventory, @NotNull IFluidHandler inputTank)
-	{
-		Fluid f = inputTank.getFluidInTank(0).getFluid();
+		Fluid f = context.a().getFluidInTank(0).getFluid();
 		int am = IngredientUtil.getRequiredAmountFor(f, this.m_input);
-		FluidStack inputDrainSimulated = inputTank.drain(new FluidStack(f, am), FluidAction.SIMULATE);
+		FluidStack inputDrainSimulated = context.a().drain(new FluidStack(f, am), FluidAction.SIMULATE);
 		
 		return am != -1 
 				&& inputDrainSimulated.getAmount() == am 
-				&& this.m_seed.test(inventory.getStackInSlot(CrystallizerBlockEntity.SEED_SLOT)) 
-				&& inventory.insertItem(CrystallizerBlockEntity.RESULT_SLOT, this.m_result, true).isEmpty();
-	} // end canBeUsedOn()
+				&& this.m_seed.test(context.b().getStackInSlot(CrystallizerBlockEntity.SEED_SLOT)) 
+				&& context.b().insertItem(CrystallizerBlockEntity.RESULT_SLOT, this.m_result, true).isEmpty();
+	} // end matches()
 	
-	public void setResults(@NotNull IItemHandler inventory, @NotNull IFluidHandler inputTank)
+	@Override
+	public boolean canTick(@NotNull Tuple3<IFluidHandler, IItemHandler, ICurrentHandler> context) 
 	{
-		Fluid f = inputTank.getFluidInTank(0).getFluid();
-		inputTank.drain(new FluidStack(f, IngredientUtil.getRequiredAmountFor(f, this.m_input)), FluidAction.EXECUTE);
+		return context.c().extractCurrent(this.m_currentPerTick, true) == this.m_currentPerTick;
+	} // end canTick()
+	
+	@Override
+	public void tick(@NotNull Tuple3<IFluidHandler, IItemHandler, ICurrentHandler> context) 
+	{
+		context.c().extractCurrent(this.m_currentPerTick, false);
+	} // end tick()
+	
+	@Override
+	public void end(@NotNull Tuple3<IFluidHandler, IItemHandler, ICurrentHandler> context)
+	{
+		Fluid f = context.a().getFluidInTank(0).getFluid();
+		context.a().drain(new FluidStack(f, IngredientUtil.getRequiredAmountFor(f, this.m_input)), FluidAction.EXECUTE);
 		if(this.m_consumeSeed) 
 		{
-			inventory.extractItem(CrystallizerBlockEntity.SEED_SLOT, 1, false);
+			context.b().extractItem(CrystallizerBlockEntity.SEED_SLOT, 1, false);
 		}
-		inventory.insertItem(CrystallizerBlockEntity.RESULT_SLOT, this.m_result.copy(), false);
-	} // end setResults()
+		context.b().insertItem(CrystallizerBlockEntity.RESULT_SLOT, this.m_result.copy(), false);
+	} // end end()
 		
 	
 		

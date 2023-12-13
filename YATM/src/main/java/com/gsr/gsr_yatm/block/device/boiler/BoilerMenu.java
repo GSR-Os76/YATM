@@ -43,7 +43,7 @@ public class BoilerMenu extends AbstractContainerMenu
 	// client side constructor
 	public BoilerMenu(int inventoryId, Inventory playerInventory)
 	{
-		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(BoilerBlockEntity.INVENTORY_SLOT_COUNT), new SimpleContainerData(BoilerBlockEntity.DATA_SLOT_COUNT));
+		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(BoilerBlockEntity.INVENTORY_SLOT_COUNT), new SimpleContainerData(BoilerBlockEntity.ACCESS_SPEC.getCount()));
 	} // end client constructor
 
 	// server side constructor

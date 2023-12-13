@@ -15,6 +15,7 @@ import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.generic.Tuple3;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.NonNullList;
@@ -30,7 +31,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.items.IItemHandler;
 
-public class MeltingRecipe extends RecipeBase<Container> implements ITimedRecipe<Container>, IHeatedRecipe<Container>
+public class MeltingRecipe extends RecipeBase<Container> implements ITimedRecipe<Container, Tuple3<IItemHandler, IFluidHandler, IHeatHandler>>, IHeatedRecipe<Container>
 {
 	private final @NotNull FluidStack m_result;
 	private final @NotNull IIngredient<ItemStack> m_input;
@@ -76,23 +77,34 @@ public class MeltingRecipe extends RecipeBase<Container> implements ITimedRecipe
 
 
 	
-	public boolean canTick(@NotNull IHeatHandler heat)
-	{
-		return this.m_temperature <= heat.getTemperature();
-	} // end canTick()
+	
 
-	public boolean matches(@NotNull IItemHandler inventory, @NotNull IFluidHandler tank)
+	@Override
+	public boolean matches(@NotNull Tuple3<IItemHandler, IFluidHandler, IHeatHandler> context)
 	{
-		return this.m_input.test(inventory.getStackInSlot(CrucibleBlockEntity.INPUT_SLOT)) 
-				&& tank.fill(this.m_result.copy(), FluidAction.SIMULATE) == this.m_result.getAmount();
+		return this.m_input.test(context.a().getStackInSlot(CrucibleBlockEntity.INPUT_SLOT)) 
+				&& context.b().fill(this.m_result.copy(), FluidAction.SIMULATE) == this.m_result.getAmount();
 	} // end matches()
-
-	public void setResults(@NotNull IItemHandler inventory, @NotNull IFluidHandler tank)
+	
+	@Override
+	public boolean canTick(@NotNull Tuple3<IItemHandler, IFluidHandler, IHeatHandler> context)
 	{
-		inventory.extractItem(CrucibleBlockEntity.INPUT_SLOT, 
-				IngredientUtil.getReqiuredCountFor(inventory.getStackInSlot(CrucibleBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
-		tank.fill(this.m_result.copy(), FluidAction.EXECUTE);
-	} // end setResults()
+		return this.m_temperature <= context.c().getTemperature();
+	} // end canTick()
+	
+	@Override
+	public void tick(@NotNull Tuple3<IItemHandler, IFluidHandler, IHeatHandler> context)
+	{
+		// TODO, make consume some heat to perform recipe
+		ITimedRecipe.super.tick(context);
+	} // end tick()
+
+	@Override
+	public void end(@NotNull Tuple3<IItemHandler, IFluidHandler, IHeatHandler> context)
+	{
+		context.a().extractItem(CrucibleBlockEntity.INPUT_SLOT, IngredientUtil.getReqiuredCountFor(context.a().getStackInSlot(CrucibleBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
+		context.b().fill(this.m_result.copy(), FluidAction.EXECUTE);
+	} // end end()
 
 
 

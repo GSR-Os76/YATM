@@ -14,6 +14,7 @@ import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.generic.Tuple3;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.RegistryAccess;
@@ -27,7 +28,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.items.IItemHandler;
 
-public class BioreactionRecipe extends RecipeBase<Container> implements ITimedRecipe<Container>
+public class BioreactionRecipe extends RecipeBase<Container> implements ITimedRecipe<Container, Tuple3<IItemHandler, IFluidHandler, ICurrentHandler>>
 {
 	protected final @NotNull FluidStack m_result;	
 	protected final @NotNull IIngredient<ItemStack> m_input;
@@ -61,7 +62,7 @@ public class BioreactionRecipe extends RecipeBase<Container> implements ITimedRe
 	
 	public @NotNull FluidStack result()
 	{
-		return this.m_result;
+		return this.m_result.copy();
 	} // end result()
 	
 	public @NotNull IIngredient<ItemStack> input()
@@ -71,32 +72,34 @@ public class BioreactionRecipe extends RecipeBase<Container> implements ITimedRe
 	
 	
 	
-	
-	public boolean canTick(@NotNull ICurrentHandler battery) 
+	@Override
+	public boolean matches(@NotNull Tuple3<IItemHandler, IFluidHandler, ICurrentHandler> context)
 	{
-		return battery.extractCurrent(this.m_currentPerTick, true) == this.m_currentPerTick;
+		return this.m_input.test(context.a().getStackInSlot(BioreactorBlockEntity.INPUT_SLOT)) && 
+				context.b().fill(this.m_result, FluidAction.SIMULATE) == this.m_result.getAmount();
+	} // end matches()
+	
+	@Override
+	public boolean canTick(@NotNull Tuple3<IItemHandler, IFluidHandler, ICurrentHandler> context) 
+	{
+		return context.c().extractCurrent(this.m_currentPerTick, true) == this.m_currentPerTick;
 	} // end canTick()
 	
-	public void tick(@NotNull ICurrentHandler battery) 
+	@Override
+	public void tick(@NotNull Tuple3<IItemHandler, IFluidHandler, ICurrentHandler> context) 
 	{
-		battery.extractCurrent(this.m_currentPerTick, false);
-	} // end canTick()
+		context.c().extractCurrent(this.m_currentPerTick, false);
+	} // end tick()
 	
-	public boolean matches(@NotNull IItemHandler inventory, @NotNull IFluidHandler resultTank)
+	@Override
+	public void end(@NotNull Tuple3<IItemHandler, IFluidHandler, ICurrentHandler> context)
 	{
-		return this.m_input.test(inventory.getStackInSlot(BioreactorBlockEntity.INPUT_SLOT)) && 
-				resultTank.fill(this.m_result, FluidAction.SIMULATE) == this.m_result.getAmount();
-	} // end canBeUsedOn()
-	
-	public void setResults(@NotNull IItemHandler inventory, @NotNull IFluidHandler resultTank)
-	{
-		inventory.extractItem(BioreactorBlockEntity.INPUT_SLOT, IngredientUtil.getReqiuredCountFor(inventory.getStackInSlot(BioreactorBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
-		resultTank.fill(this.m_result.copy(), FluidAction.EXECUTE);
-	} // end setResults()
+		context.a().extractItem(BioreactorBlockEntity.INPUT_SLOT, IngredientUtil.getReqiuredCountFor(context.a().getStackInSlot(BioreactorBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
+		context.b().fill(this.m_result.copy(), FluidAction.EXECUTE);
+	} // end end()
 		
 	
 		
-	// use canBeUsedOn() instead
 	@Override
 	public boolean matches(Container container, Level level)
 	{

@@ -170,7 +170,7 @@ public class CrystallizerMenu extends AbstractContainerMenu
 	
 	public float getCraftProgress()
 	{
-		return NetworkUtil.getProgess(CrystallizerBlockEntity.ACCESS_SPEC.get(CrystallizerBlockEntity.CRAFT_PROGESS_TAG_NAME), this.m_data);
+		return NetworkUtil.getProgess(CrystallizerBlockEntity.ACCESS_SPEC.get(CrystallizerBlockEntity.CRAFT_PROGRESS_SPEC_KEY), this.m_data);
 	} // end getCraftProgess()
 	
 	public float getInputTankDrainProgress()

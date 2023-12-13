@@ -23,6 +23,7 @@ import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
 import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
 import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.generic.Tuple3;
 import com.gsr.gsr_yatm.utilities.network.CompositeAccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
 import com.gsr.gsr_yatm.utilities.network.CurrentHandlerContainerData;
@@ -45,7 +46,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 
-public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<BioreactionRecipe, Container>
+public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<BioreactionRecipe, Container, Tuple3<IItemHandler, IFluidHandler, ICurrentHandler>>
 {
 	public static final int INVENTORY_SLOT_COUNT = 3;	
 	
@@ -92,8 +93,7 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreaction
 			));
 	
 	protected final @NotNull ContainerData m_data = new ContainerDataBuilder()
-			.addProperty(() -> this.m_craftCountDown, (i) -> {})
-			.addProperty(() -> this.m_craftTime, (i) -> {})
+			.addContainerData(this.m_craftProgressC)
 			.addContainerData(new FluidHandlerContainerData(this.m_resultTank, 0))
 			.addContainerData(new CurrentHandlerContainerData(this.m_currentStorer))
 			.addProperty(() -> this.m_drainResultTankManager.countDown(), (i) -> {})
@@ -107,7 +107,11 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreaction
 		super(YATMBlockEntityTypes.BIOLER.get(), Objects.requireNonNull(position), Objects.requireNonNull(state), BioreactorBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.BIOREACTION.get());
 	} // end constructor
 
-	
+	@Override
+	public @NotNull Tuple3<@NotNull IItemHandler, @NotNull IFluidHandler, @NotNull ICurrentHandler> getContext()
+	{
+		return new Tuple3<>(this.m_inventory, this.m_resultTank, this.m_currentStorer);
+	} // end getContext()
 	
 	@Override
 	public @NotNull ContainerData getDataAccessor()
@@ -158,7 +162,7 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreaction
 		
 		
 		boolean changed = this.m_currentFillManager.tick(level, position);
-		changed |= this.doCrafting();
+		changed |= this.m_craftingManager.tick(level, position);
 		changed |= this.m_drainResultTankManager.tick(level, position);
 		this.m_drainResultComponentManager.tick(level, position);
 		
@@ -168,33 +172,6 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreaction
 			this.setChanged();
 		}
 	} // end serverTick()
-	
-	
-	
-	
-	@Override
-	protected boolean canTick()
-	{
-		return this.m_activeRecipe.canTick(this.m_currentStorer);
-	} // end canTick()
-
-	@Override
-	protected boolean canUseRecipe(@NotNull BioreactionRecipe from)
-	{
-		return from.matches(this.m_uncheckedInventory, this.m_resultTank);
-	} // end canUseRecipe()
-	
-	@Override
-	protected void setRecipeResults(@NotNull BioreactionRecipe from)
-	{
-		from.setResults(this.m_uncheckedInventory, this.m_resultTank);
-	} // end setRecipeResults()
-	
-	@Override
-	protected void recipeTick()
-	{
-		this.m_activeRecipe.tick(this.m_currentStorer);
-	} // end recipeTick()
 
 
 
@@ -304,4 +281,5 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreaction
 		this.m_currentComponentManager.updateComponent();
 		this.m_drainResultComponentManager.updateComponent();
 	} // end reviveCaps()
+
 } // end class 

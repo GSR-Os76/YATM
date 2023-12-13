@@ -9,6 +9,7 @@ import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
+import com.gsr.gsr_yatm.utilities.generic.Tuple2;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -17,8 +18,9 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.items.IItemHandler;
 
-public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe, Container>
+public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe, Container, Tuple2<IItemHandler, ICurrentHandler>>
 {	
 	public static final int INVENTORY_SLOT_COUNT = 3;
 	public static final int DATA_SLOT_COUNT = 4;
@@ -48,14 +50,13 @@ public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe
 			return switch(index) 
 			{
 				// seperate this out
-				case GRIND_PROGESS_INDEX -> GrinderBlockEntity.this.m_craftCountDown;
-				case GRIND_TIME_INDEX -> GrinderBlockEntity.this.m_craftTime;
+				case GRIND_PROGESS_INDEX -> 0;//GrinderBlockEntity.this.m_craftCountDown;
+				case GRIND_TIME_INDEX -> 0;//GrinderBlockEntity.this.m_craftTime;
 				// end
 				// maybe start again
 				case CURRENT_STORED_INDEX -> GrinderBlockEntity.this.m_internalCurrentStorer.stored();
 				case CURRENT_CAPACITY_INDEX -> GrinderBlockEntity.this.m_internalCurrentStorer.capacity();
 				// maybe end again
-				// TODO, note, this value was transmitted entirely, not low sixteen, the preported effective short limitation might not be accurate, or might only happen for dedicated server? more tests needed
 				//case TEST -> 0b0111_1111_1111_1111_1111_1111_1111_1111;
 				default -> throw new IllegalArgumentException("Unexpected value of: " + index);
 			};
@@ -86,6 +87,12 @@ public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe
 		super(YATMBlockEntityTypes.GRINDER.get(), blockPos, blockState, GrinderBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.GRINDING.get());
 		this.setup(currentCapacity, maxCurrentTransfer);
 	} // end constructor
+
+	@Override
+	public @NotNull Tuple2<IItemHandler, ICurrentHandler> getContext()
+	{
+		return new Tuple2<>(this.m_inventory, this.m_internalCurrentStorer);
+	} // end getContext()
 
 	protected @NotNull CompoundTag setupToNBT()
 	{
@@ -147,31 +154,12 @@ public class GrinderBlockEntity extends CraftingDeviceBlockEntity<GrindingRecipe
 	@Override
 	public void serverTick(Level level, BlockPos position, BlockState state)
 	{
-		boolean changed = /* this.m_activeRecipe != null && */this.m_waitingForLoad ? false : this.doCrafting();
+		boolean changed = this.m_craftingManager.tick(level, position);
 		
 		if(changed) 
 		{
 			this.setChanged();
 		}
 	} // end serverTick()
-	
-	@Override
-	protected void setRecipeResults(GrindingRecipe from)
-	{
-		from.setResults(this.m_uncheckedInventory);
-	} // end setRecipeResults()
-
-	@Override
-	protected boolean canUseRecipe(GrindingRecipe from)
-	{
-		return from.canBeUsedOn(this.m_uncheckedInventory);
-	} // end canUseRecipe()
-
-	@Override
-	protected void startRecipe(GrindingRecipe from)
-	{
-		from.startRecipe(this.m_uncheckedInventory);
-	} // end startRecipe()
-
 
 } // end class

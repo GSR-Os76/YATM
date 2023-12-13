@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.block.device.grinder.GrinderBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.recipe.RecipeBase;
@@ -13,6 +14,7 @@ import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.generic.Tuple2;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.RegistryAccess;
@@ -23,7 +25,7 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.IItemHandler;
 
-public class GrindingRecipe extends RecipeBase<Container> implements ITimedRecipe<Container>
+public class GrindingRecipe extends RecipeBase<Container> implements ITimedRecipe<Container, Tuple2<IItemHandler, ICurrentHandler>>
 {
 	private final @NotNull ItemStack m_result;
 	private final @NotNull IIngredient<ItemStack> m_input;
@@ -66,22 +68,31 @@ public class GrindingRecipe extends RecipeBase<Container> implements ITimedRecip
 	
 	
 	
-	public boolean canBeUsedOn(@NotNull IItemHandler inventory)
+	@Override
+	public boolean matches(@NotNull Tuple2<IItemHandler, ICurrentHandler> context)
 	{
-		return this.m_input.test(inventory.getStackInSlot(GrinderBlockEntity.INPUT_SLOT)) &&
-				inventory.insertItem(GrinderBlockEntity.RESULT_SLOT, this.m_result.copy(), true).isEmpty();
+		return this.m_input.test(context.a().getStackInSlot(GrinderBlockEntity.INPUT_SLOT)) &&
+				context.a().insertItem(GrinderBlockEntity.RESULT_SLOT, this.m_result.copy(), true).isEmpty();
 	} // end canBeUsedOn()
 
-	public void startRecipe(@NotNull IItemHandler inventory)
+	@Override
+	public boolean canTick(@NotNull Tuple2<IItemHandler, ICurrentHandler> context) 
 	{
-		inventory.extractItem(GrinderBlockEntity.INPUT_SLOT, 
-				IngredientUtil.getReqiuredCountFor(inventory.getStackInSlot(GrinderBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
-	} // end startRecipe()
-
-	public void setResults(@NotNull IItemHandler inventory)
+		return context.b().extractCurrent(this.m_currentPerTick, true) == this.m_currentPerTick;
+	} // end canTick()
+	
+	@Override
+	public void tick(@NotNull Tuple2<IItemHandler, ICurrentHandler> context) 
 	{
-		inventory.insertItem(GrinderBlockEntity.RESULT_SLOT, this.m_result.copy(), false);
-	} // end setResults()
+		context.b().extractCurrent(this.m_currentPerTick, false);
+	} // end tick()
+	
+	@Override
+	public void end(@NotNull Tuple2<IItemHandler, ICurrentHandler> context)
+	{
+		context.a().extractItem(GrinderBlockEntity.INPUT_SLOT, IngredientUtil.getReqiuredCountFor(context.a().getStackInSlot(GrinderBlockEntity.INPUT_SLOT).getItem(), this.m_input), false);
+		context.a().insertItem(GrinderBlockEntity.RESULT_SLOT, this.m_result.copy(), false);
+	} // end end()
 
 
 

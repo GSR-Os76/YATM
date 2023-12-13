@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.block.device.injector.InjectorBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.recipe.RecipeBase;
@@ -13,6 +14,7 @@ import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.generic.Tuple3;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.NonNullList;
@@ -29,7 +31,7 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.items.IItemHandler;
 
-public class InjectingRecipe extends RecipeBase<Container> implements ITimedRecipe<Container>
+public class InjectingRecipe extends RecipeBase<Container> implements ITimedRecipe<Container, Tuple3<IFluidHandler, IItemHandler, ICurrentHandler>>
 {
 	private final @NotNull ItemStack m_result;
 	private final @NotNull IIngredient<FluidStack> m_input;
@@ -80,25 +82,34 @@ public class InjectingRecipe extends RecipeBase<Container> implements ITimedReci
 	
 
 
-	public boolean canBeUsedOn(@NotNull IItemHandler inventory, @NotNull IFluidHandler tank)
+	@Override
+	public boolean matches(@NotNull Tuple3<IFluidHandler, IItemHandler, ICurrentHandler> context)
 	{
-		return this.m_input.test(tank.getFluidInTank(0)) 
-				&& this.m_substrate.test(inventory.getStackInSlot(InjectorBlockEntity.SUBSTRATE_SLOT)) 
-				&& inventory.insertItem(InjectorBlockEntity.RESULT_SLOT, this.m_result.copy(), true).isEmpty();
-	} // end canBeUsedOn()
+		return this.m_input.test(context.a().getFluidInTank(0)) 
+				&& this.m_substrate.test(context.b().getStackInSlot(InjectorBlockEntity.SUBSTRATE_SLOT)) 
+				&& context.b().insertItem(InjectorBlockEntity.RESULT_SLOT, this.m_result.copy(), true).isEmpty();
+	} // end matches()
 
-	public void startRecipe(@NotNull IItemHandler inventory, @NotNull IFluidHandler tank)
+	@Override
+	public boolean canTick(@NotNull Tuple3<IFluidHandler, IItemHandler, ICurrentHandler> context) 
 	{
-		Fluid f = tank.getFluidInTank(0).getFluid();
-		tank.drain(new FluidStack(f, IngredientUtil.getRequiredAmountFor(f, this.m_input)), FluidAction.EXECUTE);
-		inventory.extractItem(InjectorBlockEntity.SUBSTRATE_SLOT, 
-				IngredientUtil.getReqiuredCountFor(inventory.getStackInSlot(InjectorBlockEntity.SUBSTRATE_SLOT).getItem(), this.m_substrate), false);
-	} // end startRecipe()
-
-	public void setResults(@NotNull IItemHandler inventory)
+		return context.c().extractCurrent(this.m_currentPerTick, true) == this.m_currentPerTick;
+	} // end canTick()
+	
+	@Override
+	public void tick(@NotNull Tuple3<IFluidHandler, IItemHandler, ICurrentHandler> context) 
 	{
-		inventory.insertItem(InjectorBlockEntity.RESULT_SLOT, this.m_result.copy(), false);
-	} // end setResults()
+		context.c().extractCurrent(this.m_currentPerTick, false);
+	} // end tick()
+	
+	@Override
+	public void end(@NotNull Tuple3<IFluidHandler, IItemHandler, ICurrentHandler> context)
+	{
+		Fluid f = context.a().getFluidInTank(0).getFluid();
+		context.a().drain(new FluidStack(f, IngredientUtil.getRequiredAmountFor(f, this.m_input)), FluidAction.EXECUTE);
+		context.b().extractItem(InjectorBlockEntity.SUBSTRATE_SLOT, IngredientUtil.getReqiuredCountFor(context.b().getStackInSlot(InjectorBlockEntity.SUBSTRATE_SLOT).getItem(), this.m_substrate), false);
+		context.b().insertItem(InjectorBlockEntity.RESULT_SLOT, this.m_result.copy(), false);
+	} // end end()
 
 
 

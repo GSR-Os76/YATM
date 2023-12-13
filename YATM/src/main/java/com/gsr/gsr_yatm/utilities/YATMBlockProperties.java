@@ -87,7 +87,7 @@ public class YATMBlockProperties
 	public static final Properties DATA_DEVICE = Properties.of().mapColor(MapColor.METAL).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2.0f, 3.0f).sound(SoundType.FROGLIGHT);
 	
 	public static final Properties STEEL_MACHINE = Properties.of().instrument(NoteBlockInstrument.IRON_XYLOPHONE).mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(5.5F, 6.0F);
-	public static final Properties STEEL_PLANT_MACHINE = Properties.of().mapColor(MapColor.COLOR_GREEN).noCollission().noOcclusion().requiresCorrectToolForDrops().sound(SoundType.METAL).strength(5.5F, 6.0F);
+	@Deprecated(forRemoval=true)public static final Properties STEEL_PLANT_MACHINE = Properties.of().mapColor(MapColor.COLOR_GREEN).noCollission().noOcclusion().requiresCorrectToolForDrops().sound(SoundType.METAL).strength(5.5F, 6.0F);
 	public static final Properties SOLAR_PANEL = Properties.of().instrument(NoteBlockInstrument.PLING).mapColor(MapColor.METAL).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(3.0f);
 	public static final Properties WIRE = Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2.0f);
 	public static final Properties STEEL_TANK = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2F, 6.0F);

@@ -161,7 +161,7 @@ public class BioreactorMenu extends AbstractContainerMenu
 	
 	public float getCraftProgress()
 	{
-		return NetworkUtil.getProgess(BioreactorBlockEntity.ACCESS_SPEC.get(BioreactorBlockEntity.CRAFT_PROGESS_TAG_NAME), this.m_data);
+		return NetworkUtil.getProgess(BioreactorBlockEntity.ACCESS_SPEC.get(BioreactorBlockEntity.CRAFT_PROGRESS_SPEC_KEY), this.m_data);
 	} // end getCraftProgess()
 	
 	public float getResultTankDrainProgress()

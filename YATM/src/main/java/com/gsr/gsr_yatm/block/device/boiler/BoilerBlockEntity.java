@@ -27,6 +27,7 @@ import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
 import com.gsr.gsr_yatm.utilities.capability.heat.OnChangedHeatHandler;
 import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.generic.Tuple3;
 import com.gsr.gsr_yatm.utilities.network.CompositeAccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
 import com.gsr.gsr_yatm.utilities.network.FluidHandlerContainerData;
@@ -49,12 +50,12 @@ import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 
-public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, Container>
+public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, Container, Tuple3<IFluidHandler, IFluidHandler, IHeatHandler>>
 {
 	public static final int INVENTORY_SLOT_COUNT = 4;
-	public static final int DATA_SLOT_COUNT = 20;
 
 
+	
 	public static final int FILL_INPUT_TANK_SLOT = 0;
 	public static final int DRAIN_INPUT_TANK_SLOT = 1;
 	public static final int DRAIN_RESULT_TANK_SLOT = 2;
@@ -118,7 +119,7 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 	private final @NotNull DrainTankManager m_drainResultTankManager = new DrainTankManager(this.m_inventory, BoilerBlockEntity.DRAIN_RESULT_TANK_SLOT, this.m_resultTank, YATMConfigs.BOILER_DRAIN_RESULT_MAX_FLUID_TRANSFER_RATE.get());
 	private final @NotNull InputComponentManager<IFluidHandler> m_fillInputComponentManager = new InputComponentManager<>(this.m_inventory, BoilerBlockEntity.FILL_INPUT_TANK_SLOT, TankWrapper.Builder.of(this.m_inputTank).canDrain(() -> false).build(), ForgeCapabilities.FLUID_HANDLER);
 	private final @NotNull FillTankManager m_fillInputTankManager = new FillTankManager(this.m_inventory, BoilerBlockEntity.FILL_INPUT_TANK_SLOT, TankWrapper.Builder.of(this.m_inputTank).canDrain(() -> false).build() /* this.m_inputTank */, YATMConfigs.BOILER_FILL_INPUT_MAX_FLUID_TRANSFER_RATE.get());
-	private final @NotNull HeatAcceleratedCraftingManager m_heatAcceleratedCraftingManager = new HeatAcceleratedCraftingManager(BoilerBlockEntity.this::doCrafting, this.m_heatHandler, () -> BoilerBlockEntity.this.m_activeRecipe);
+	private final @NotNull HeatAcceleratedCraftingManager m_heatAcceleratedCraftingManager = new HeatAcceleratedCraftingManager(BoilerBlockEntity.this.m_craftingManager::tick, this.m_heatHandler, BoilerBlockEntity.this.m_craftingManager::getActiveRecipe);
 	private final @NotNull InputComponentManager<IHeatHandler> m_heatComponentManager = new InputComponentManager<>(this.m_inventory, BoilerBlockEntity.HEAT_SLOT, this.m_heatHandler, YATMCapabilities.HEAT);
 	private final @NotNull HeatingManager m_heatingManager = new HeatingManager(this.m_inventory, BoilerBlockEntity.HEAT_SLOT, this.m_heatHandler);
 	
@@ -134,8 +135,7 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 			Map.entry(BoilerBlockEntity.DRAIN_RESULT_PROGRESS_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY * 2) 
 			));
 	protected final @NotNull ContainerData m_data = new ContainerDataBuilder()
-			.addProperty(() -> this.m_craftCountDown, (i) -> {})
-			.addProperty(() -> this.m_craftTime, (i) -> {})
+			.addContainerData(this.m_craftProgressC)
 			.addProperty(() -> this.m_heatingManager.burnProgress(), (i) -> {})
 			.addProperty(() -> this.m_heatingManager.burnTime(), (i) -> {})
 			.addProperty(() -> this.m_heatHandler.getTemperature(), (i) -> {})
@@ -161,11 +161,12 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 	} // end constructor
 	
 
-
-	public @NotNull LazyOptional<IFluidHandler> getInputTank()
+	
+	@Override
+	public @NotNull Tuple3<IFluidHandler, IFluidHandler, IHeatHandler> getContext()
 	{
-		return this.m_inputTankLazyOptional;
-	} // end getInputTank()
+		return new Tuple3<>(this.m_inputTank, this.m_resultTank, this.m_heatHandler);
+	} // end getContext()
 
 	@Override
 	public @NotNull ContainerData getDataAccessor()
@@ -245,32 +246,6 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 		}
 	} // end serverTick()
 
-	
-	
-	@Override
-	protected boolean canTick()
-	{
-		return this.m_activeRecipe.canTick(this.m_heatHandler);
-	} // end canTick()
-
-	@Override
-	protected void setRecipeResults(@NotNull BoilingRecipe from)
-	{
-		from.setResults(this.m_rawInputTank, this.m_rawResultTank);
-	} // setRecipeResults()
-
-	@Override
-	protected boolean canUseRecipe(@NotNull BoilingRecipe from)
-	{
-		return from.matches(this.m_inputTank, this.m_resultTank);
-	} // end canUseRecipe()
-
-	@Override
-	protected void recipeTick()
-	{
-		// TODO, make boiler consume some heat to perform a recipe
-	} // end recipeTick()
-	
 	
 	
 	@Override
@@ -437,5 +412,5 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 		this.m_fillInputComponentManager.updateComponent();
 		this.m_heatComponentManager.updateComponent();
 	} // end revivieCaps()
-
+	
 } // end class
