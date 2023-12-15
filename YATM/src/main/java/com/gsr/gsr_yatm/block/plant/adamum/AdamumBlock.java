@@ -95,9 +95,9 @@ public class AdamumBlock extends ShapeBlock implements IAgingBlock, IHarvestable
 
 
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
+	public InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Player player, @NotNull InteractionHand hand, BlockHitResult hitResult)
 	{
-		return IHarvestableBlock.use(this, level, state, position, player, hand, hitResult);
+		return IHarvestableBlock.use(this, level, state, position, player, hand);
 	} // end use()
 
 
@@ -176,14 +176,14 @@ public class AdamumBlock extends ShapeBlock implements IAgingBlock, IHarvestable
 	@Override
 	public @Nullable BlockState getResultingState(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
 	{
-		return this.isHarvestable(level, state, position, action) ? state.setValue(AdamumBlock.HAS_FRUIT, false) : null;
+		return this.validActions(level, state, position).contains(action) ? state.setValue(AdamumBlock.HAS_FRUIT, false) : null;
 	} // end getResultingState()
 
 	@Override
-	public @Nullable NonNullList<ItemStack> getResults(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
+	public @Nullable NonNullList<ItemStack> getResults(@NotNull ServerLevel level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
 	{
 		// TODO, add loottable instead
-		return this.isHarvestable(level, state, position, action) ? NonNullList.of((ItemStack)null, new ItemStack(Items.DIAMOND, level.random.nextIntBetweenInclusive(1, 2))) : null;
+		return this.validActions(level, state, position).contains(action) ? NonNullList.of((ItemStack)null, new ItemStack(Items.DIAMOND, level.random.nextIntBetweenInclusive(1, 2))) : null;
 	} // end getResults()
 	
 } // end class

@@ -17,6 +17,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.core.Direction.Axis;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -212,15 +213,15 @@ public class YATMGameEvents
 		if(state.getBlock() instanceof IHarvestableBlock harvestable && harvestable.allowEventHandling()) 
 		{
 			Level level = event.getContext().getLevel();
-			BlockPos positiion = event.getPos();
+			BlockPos position = event.getPos();
 			ToolAction action = event.getToolAction();
-			if(harvestable.isHarvestable(level, state, positiion, action)) 
+			if(harvestable.validActions(level, state, position).contains(action)) 
 			{
-				event.setFinalState(harvestable.getResultingState(level, state, positiion, action));
-				if(!event.isSimulated()) 
+				event.setFinalState(harvestable.getResultingState(level, state, position, action));
+				if(!event.isSimulated() && level instanceof ServerLevel sl) 
 				{
-					InventoryUtil.drop(level, positiion, harvestable.getResults(level, state, positiion, action));
-					harvestable.onHarvest(level, state, positiion, action);
+					InventoryUtil.drop(level, position, harvestable.getResults(sl, state, position, action));
+					harvestable.onHarvest(level, state, position, action);
 				}
 				return true;
 			}

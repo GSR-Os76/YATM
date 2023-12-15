@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.block.FaceBlock;
+import com.gsr.gsr_yatm.block.IAgingBlock;
 import com.gsr.gsr_yatm.block.plant.OnceFruitingPlantStages;
 import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
@@ -53,7 +54,10 @@ import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 
 public class YATMBlockLoot extends VanillaBlockLoot
 {
-
+	private static final Function<IAgingBlock, LootItemCondition.Builder> MAX_AGE_CONDITION = (a) -> LootItemBlockStatePropertyCondition
+			.hasBlockStateProperties((Block)a)
+			.setProperties(StatePropertiesPredicate.Builder.properties()
+					.hasProperty(a.getAgeProperty(), a.getMaxAge()));
 	@Override
 	protected void generate()
 	{
@@ -165,9 +169,14 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.add(YATMBlocks.LAPUM.get(), (b) -> this.createLapumTable());
 		this.dropPottedContents(YATMBlocks.POTTED_LAPUM.get());
 		
+		this.add(YATMBlocks.DWARF_PERSIMMON.get(), LootTable.lootTable().withPool(LootPool.lootPool().when(MAX_AGE_CONDITION.apply(YATMBlocks.DWARF_PERSIMMON.get())).add(LootItem.lootTableItem(YATMItems.PERSIMMON.get()).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0f, 3.0f))))));
+		
 		this.dropSelf(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get());
+		
 		this.dropSelf(YATMBlocks.PITCHER_CLUSTER.get());
+		
 		this.add(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), (b) -> this.createPrismarineCrystalMossTable());
+		
 		this.dropOther(YATMBlocks.FALLEN_SHULKWART_SPORES.get(), YATMItems.SHULKWART_SPORES.get());
 		this.addShulkwart(YATMBlocks.SHULKWART.get(), YATMItems.SHULKWART_HORN.get());
 		this.addShulkwart(YATMBlocks.WHITE_SHULKWART.get(), YATMItems.WHITE_SHULKWART_HORN.get());
@@ -193,7 +202,7 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.add(YATMBlocks.SAMARAGDUM.get(), (b) -> this.createSamaragdumTable());
 		this.dropPottedContents(YATMBlocks.POTTED_SAMARAGDUM.get());
 		
-		this.add(YATMBlocks.SPIDER_VINE.get(), (b) -> LootTable.lootTable().withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(b).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(OnceFruitVineBodyBlock.FRUITING_STAGE, OnceFruitingPlantStages.FRUITING))).add(LootItem.lootTableItem(YATMItems.SPIDER_VINE_FRUITS.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0f))))));
+		this.add(YATMBlocks.SPIDER_VINE.get(), (b) -> LootTable.lootTable().withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(b).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(OnceFruitVineBodyBlock.FRUITING_STAGE, OnceFruitingPlantStages.FRUITING))).add(LootItem.lootTableItem(YATMItems.BRANCH_OF_GLARING_FRUIT.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0f))))));
 		this.add(YATMBlocks.SPIDER_VINE_MERISTEM.get(), BlockLootSubProvider.noDrop());
 
 		this.dropSelf(YATMBlocks.VARIEGATED_CACTUS.get());

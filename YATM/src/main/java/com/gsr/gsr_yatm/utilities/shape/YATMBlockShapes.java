@@ -195,6 +195,16 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 	
+	// 
+	public static final ICollisionVoxelShapeProvider DWARF_PERSIMMON = new ICollisionVoxelShapeProvider() 
+	{
+		@Override
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
+		{
+			return CUBE.getShape(state, blockGetter, position, context);
+		} // end getShape()
+	};
+	
 	public static final ICollisionVoxelShapeProvider FERRUM = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape YOUNG = Block.box(4d, 0d, 4d, 12d, 7d, 12d);

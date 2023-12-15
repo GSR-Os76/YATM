@@ -95,7 +95,7 @@ public class FerrumBlock extends ShapeBlock implements IAgingBlock, IHarvestable
 	@Override
 	public InteractionResult use(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
-		return IHarvestableBlock.use(this, level, state, position, player, hand, hitResult);
+		return IHarvestableBlock.use(this, level, state, position, player, hand);
 	} // end use()
 
 
@@ -169,7 +169,7 @@ public class FerrumBlock extends ShapeBlock implements IAgingBlock, IHarvestable
 	} // end getResultingState()
 
 	@Override
-	public @Nullable NonNullList<ItemStack> getResults(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
+	public @Nullable NonNullList<ItemStack> getResults(@NotNull ServerLevel level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
 	{
 		return NonNullList.of((ItemStack)null, this.getHarvestResult());
 	} // end getResults()

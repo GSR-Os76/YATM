@@ -20,7 +20,12 @@ public class YATMConfigs
 	// TODO, change doubles into float where a float is desired to remove unnecessary casting and code
 	// TODO, don't defineInRange when the valid range is all values.
 	
-	public static final ConfigValue<Integer> FIRE_EATER_LILY_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.push("Plants: ").push("Fire Eater Lily: ").comment("The average number of boneamealings in which one's successful.").defineInRange("bonemeal_success_rarity", 3, 0, Integer.MAX_VALUE);	
+	public static final ConfigValue<Integer> DWARF_PERSIMMON_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.push("Plants: ").push("Dwarf Persimmon: ").comment("The average number of boneamealings in which one's successful.").defineInRange("bonemeal_success_rarity", 3, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> DWARF_PERSIMMON_GROWTH_RARITY  = YATMConfigs.s_builder.comment("The average number of random ticks for which the plant increases in age one time.").defineInRange("growth_rarity", 64, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> DWARF_PERSIMMON_MAX_AGE_INCREASE = YATMConfigs.s_builder.comment("The maximum amount the age block state property will increase on bonemeal success. Note: technically interchangeable with the min.").defineInRange("max_boneameal_age_increase", 3, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> DWARF_PERSIMMON_MIN_AGE_INCREASE = YATMConfigs.s_builder.comment("The minimum amount the age block state property will increase on bonemeal success. Note: technically interchangeable with the max.").defineInRange("min_boneameal_age_increase", 1, 0, Integer.MAX_VALUE);
+	
+	public static final ConfigValue<Integer> FIRE_EATER_LILY_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.pop().push("Fire Eater Lily: ").comment("The average number of boneamealings in which one's successful.").defineInRange("bonemeal_success_rarity", 3, 0, Integer.MAX_VALUE);	
 	public static final ConfigValue<Integer> FIRE_EATER_LILY_LIT_DECORATIVE_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.comment("The average number of boneamealings in which one's successful for the decorative lit flower block.").defineInRange("bonemeal_success_rarity_lit_decorative", 3, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> FIRE_EATER_LILY_MAX_HORIZONTAL_SPREAD = YATMConfigs.s_builder.comment("The maximum number of blocks horizontally that a canidate position will be picked out from.").defineInRange("max_horizontal_spread", 2, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> FIRE_EATER_LILY_MAX_SPREAD_ATTEMPTS = YATMConfigs.s_builder.comment("The maximum number of canidate positions to consider while attempting spreading.").defineInRange("max_spread_attempts", 12, 0, Integer.MAX_VALUE);
@@ -33,7 +38,7 @@ public class YATMConfigs
 	public static final ConfigValue<Double> ADAMUM_DAMAGE_FACTOR = YATMConfigs.s_builder.pop().push("Ore Themed Plants: ").push("Adamum: ").comment("The factor by which the damage done by walking through the block's scaled.").defineInRange("damage_factor", 0d, 0d, Float.MAX_VALUE);
 	public static final ConfigValue<Double> ADAMUM_DAMAGE_TRIGGER_TOLERANCE = YATMConfigs.s_builder.comment("The maximum speed an entity can be moving while inside the block without taking damage.").defineInRange("damage_trigger_tolerance", Double.MAX_VALUE, 0d, Double.MAX_VALUE);
 	public static final ConfigValue<Integer> ADAMUM_FRUITING_RARITY = YATMConfigs.s_builder.comment("The average number of blocks matured for which one bears \"fruit\".").defineInRange("fruit_rarity", 3, 0, Integer.MAX_VALUE);	
-	public static final ConfigValue<Integer> ADAMUM_GROWTH_RARITY = YATMConfigs.s_builder.comment("The average number of random ticks for which the plant increases in age one time..").defineInRange("growth_rarity", 64, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> ADAMUM_GROWTH_RARITY = YATMConfigs.s_builder.comment("The average number of random ticks for which the plant increases in age one time.").defineInRange("growth_rarity", 64, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> ADAMUM_MIN_MAJOR_AGE_INCREASE = YATMConfigs.s_builder.comment("Every time the block chain grows longer the next one down will have it's major age increased by at least this, inclusive.").defineInRange("min_major_age_increase", 1, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> ADAMUM_MAX_MAJOR_AGE_INCREASE = YATMConfigs.s_builder.comment("Every time the block chain grows longer the next one down will have it's major age increased by at most this, inclusive.").defineInRange("max_major_age_increase", 2, 0, Integer.MAX_VALUE);
 	
@@ -120,6 +125,11 @@ public class YATMConfigs
 	public static final ConfigValue<Integer> CRYSTALLIZER_MAX_CURRENT_TRANSFER = YATMConfigs.s_builder.comment("The most current that can be moved per tick.").defineInRange("max_current_transfer_rate", YATMConfigs.STEEL_DEVICE_MAX_CURRENT_TRANSFER_RATE, 0, Integer.MAX_VALUE);
 	
 	public static final ConfigValue<Integer> CURRENT_FURNACE_MAX_TEMPERATURE = YATMConfigs.s_builder.pop().push("Current Furnace: ").comment("The highest possible temperature for the device.").defineInRange("max_temperature", YATMConfigs.STEEL_DEVICE_MAX_TEMPERATURE, 0, Integer.MAX_VALUE);
+	
+	public static final ConfigValue<Integer> STILL_FILL_INPUT_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.pop().push("Still: ").comment("The most fluid that can be moved per tick while filling up it's input taking.").defineInRange("fill_input_max_fluid_transfer_rate", YATMConfigs.STEEL_DEVICE_MAX_FLUID_TRANSFER_RATE, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> STILL_INPUT_TANK_CAPACITY = YATMConfigs.s_builder.comment("The input tank's fluid capacity.").defineInRange("input_tank_capacity", YATMConfigs.STEEL_DEVICE_TANK_CAPACITY, 0, Integer.MAX_VALUE);
+	
+	
 	
 	
 	

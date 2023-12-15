@@ -1,4 +1,4 @@
-// 1.20.2	2023-12-10T16:54:07.6918235	Tags for minecraft:block mod id gsr_yatm
+// 1.20.2	2023-12-14T21:28:43.0076938	Tags for minecraft:block mod id gsr_yatm
 c66ff3626edc7c0f108f497fa9aec78cbf9db39f data/forge/tags/blocks/basalt.json
 ea459db540b319f4bdead7b7f1142fc238c09a8e data/forge/tags/blocks/cactuses.json
 ebcf7881dcf42cb3d8c8b5c2e92ebf16fd9d7284 data/forge/tags/blocks/calcite.json
@@ -70,6 +70,8 @@ c7cf498dd11b4becfc703ca6d155b77406279d34 data/gsr_yatm/tags/blocks/mediums/basin
 68125b8f5883297e885700288831442419c548f8 data/gsr_yatm/tags/blocks/mediums/carcass_root_rooted_netherack_roots_from.json
 8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/cuprum_can_grow_in.json
 61064ec33852a4a02609c7e6edc2de09c480a0f8 data/gsr_yatm/tags/blocks/mediums/cuprum_can_grow_on.json
+8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/dwarf_persimmon_can_grow_in.json
+69c396cb051bbe9a130e6979b67065e5041b179d data/gsr_yatm/tags/blocks/mediums/dwarf_persimmon_can_grow_on.json
 61064ec33852a4a02609c7e6edc2de09c480a0f8 data/gsr_yatm/tags/blocks/mediums/ferrum_can_grow_on.json
 8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/fire_eater_lily_can_grow_in.json
 f738b99c239d8fa447dd0744af550624426fb4a0 data/gsr_yatm/tags/blocks/mediums/fire_eater_lily_can_grow_on.json
