@@ -90,7 +90,7 @@ public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestable
 	@Override
 	public InteractionResult use(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
-		InteractionResult hrvRes = IHarvestableBlock.use(this, level, state, position, player, hand, hitResult);
+		InteractionResult hrvRes = IHarvestableBlock.use(this, level, state, position, player, hand);
 		if(hrvRes != InteractionResult.PASS) 
 		{
 			return hrvRes;
@@ -258,7 +258,7 @@ public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestable
 	} // end getResultingState()
 
 	@Override
-	public @Nullable NonNullList<ItemStack> getResults(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
+	public @Nullable NonNullList<ItemStack> getResults(@NotNull ServerLevel level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
 	{
 		if(this.isHarvestable(level, state, position, action)) 
 		{

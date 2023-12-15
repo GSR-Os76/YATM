@@ -98,7 +98,7 @@ public class ShulkwartBlock extends Block implements IAgingBlock, IHarvestableBl
 	@Override
 	public InteractionResult use(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
-		return IHarvestableBlock.use(this, level, state, position, player, hand, hitResult);
+		return IHarvestableBlock.use(this, level, state, position, player, hand);
 	} // end use()
 
 
@@ -237,7 +237,7 @@ public class ShulkwartBlock extends Block implements IAgingBlock, IHarvestableBl
 	} // end getResultingState()
 
 	@Override
-	public @Nullable NonNullList<ItemStack> getResults(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
+	public @Nullable NonNullList<ItemStack> getResults(@NotNull ServerLevel level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
 	{
 		if(this.isHarvestable(level, state, position, action)) 
 		{

@@ -1,6 +1,6 @@
 {
   "parent": "minecraft:item/generated",
   "textures": {
-    "layer0": "gsr_yatm:item/spider_vine_fruits"
+    "layer0": "gsr_yatm:item/branch_of_glaring_fruit"
   }
 }

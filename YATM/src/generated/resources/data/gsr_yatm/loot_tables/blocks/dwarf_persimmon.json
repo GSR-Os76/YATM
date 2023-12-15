@@ -5,10 +5,10 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "gsr_yatm:spider_vine",
+          "block": "gsr_yatm:dwarf_persimmon",
           "condition": "minecraft:block_state_property",
           "properties": {
-            "stage": "fruiting"
+            "age": "7"
           }
         }
       ],
@@ -18,15 +18,19 @@
           "functions": [
             {
               "add": false,
-              "count": 1.0,
+              "count": {
+                "type": "minecraft:uniform",
+                "max": 3.0,
+                "min": 1.0
+              },
               "function": "minecraft:set_count"
             }
           ],
-          "name": "gsr_yatm:branch_of_glaring_fruit"
+          "name": "gsr_yatm:persimmon"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "gsr_yatm:blocks/spider_vine"
+  "random_sequence": "gsr_yatm:blocks/dwarf_persimmon"
 }

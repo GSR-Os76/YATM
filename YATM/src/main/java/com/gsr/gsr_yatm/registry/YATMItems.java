@@ -195,7 +195,9 @@ public class YATMItems
 
 	public static final RegistryObject<ItemNameBlockItem> FIRE_EATER_LILY_BULB = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("fire_eater_lily_bulb", () -> new ItemNameBlockItem(YATMBlocks.FIRE_EATER_LILY.get(), new Item.Properties()))));
 	
-	public static final RegistryObject<ItemNameBlockItem> SPIDER_VINE_FRUITS = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("spider_vine_fruits", () -> new ItemNameBlockItem(YATMBlocks.SPIDER_VINE_MERISTEM.get(), new Item.Properties()))));
+	public static final RegistryObject<ItemNameBlockItem> PERSIMMON = foodTabEnqueue(naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("persimmon", () -> new ItemNameBlockItem(YATMBlocks.DWARF_PERSIMMON.get(), new Item.Properties().food(YATMFoods.PERSIMMON))))));
+	
+	public static final RegistryObject<ItemNameBlockItem> BRANCH_OF_GLARING_FRUIT = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("branch_of_glaring_fruit", () -> new ItemNameBlockItem(YATMBlocks.SPIDER_VINE_MERISTEM.get(), new Item.Properties()))));
 	
 	
 	

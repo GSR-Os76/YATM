@@ -151,6 +151,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.LAPUM.get(), "Lapum");		
 		this.add(YATMBlocks.POTTED_LAPUM.get(), "Potted Lapum");
 		
+		this.add(YATMBlocks.DWARF_PERSIMMON.get(), "Dwarf Persimmon");
+		
 		this.add(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), "Phantasmal Shelf Fungi");
 		
 		this.add(YATMBlocks.PITCHER_CLUSTER.get(), "Pitcher Cluster");
@@ -294,6 +296,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMItems.ICE_CORAL_POLYP.get(), "Ice Coral Polyp");
 
+		this.add(YATMItems.PERSIMMON.get(), "Persimmon");
+		
 		this.add(YATMItems.PRISMARINE_CRYSTAL_MOSS_SPORES.get(), "Prismarine Crystal Moss Spores");
 
 		this.add(YATMItems.SHULKWART_SPORES.get(), "Shulkwart Spores");
@@ -315,7 +319,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.RED_SHULKWART_HORN.get(), "Red Shulkwar Hornt");
 		this.add(YATMItems.BLACK_SHULKWART_HORN.get(), "Black Shulkwart Horn");
 		
-		this.add(YATMItems.SPIDER_VINE_FRUITS.get(), "Branch Of Glaring Fruit");
+		this.add(YATMItems.BRANCH_OF_GLARING_FRUIT.get(), "Branch Of Glaring Fruit");
 		
 		this.add(YATMItems.RAW_EXOTHEMIC_GLAND.get(), "Raw Exothermal Gland");
 		

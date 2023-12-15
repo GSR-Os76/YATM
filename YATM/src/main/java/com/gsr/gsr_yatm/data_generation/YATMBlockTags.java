@@ -67,6 +67,10 @@ public class YATMBlockTags extends BlockTagsProvider
 	public static final TagKey<Block> CHANNEL_NEUTRAL_ONLY_ATTACHMENT_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "change_neutral_only_attachment"));
 	public static final TagKey<Block> CUPRUM_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/cuprum_can_grow_in"));
 	public static final TagKey<Block> CUPRUM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/cuprum_can_grow_on"));
+	
+	public static final TagKey<Block> DWARF_PERSIMMON_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/dwarf_persimmon_can_grow_in"));
+	public static final TagKey<Block> DWARF_PERSIMMON_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/dwarf_persimmon_can_grow_on"));
+	
 	public static final TagKey<Block> FERRUM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/ferrum_can_grow_on"));
 	public static final TagKey<Block> FIRE_EATER_LILY_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/fire_eater_lily_can_grow_in"));
 	public static final TagKey<Block> FIRE_EATER_LILY_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/fire_eater_lily_can_grow_on"));
@@ -246,6 +250,8 @@ public class YATMBlockTags extends BlockTagsProvider
 		this.tag(YATMBlockTags.CUPRUM_CAN_GROW_IN_KEY).add(Blocks.AIR);
 		this.tag(YATMBlockTags.CUPRUM_CAN_GROW_ON_KEY).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER);
 		// this.tag(YATMBlockTags.DATA_BLOCKS).add(YATMBlocks.DATA_STORAGE_BLOCK.get()).add(YATMBlocks.DATA_SCAN_COLLECTOR.get()).add(YATMBlocks.DESTRUCTIVE_DATA_SCANNER.get()).add(YATMBlocks.DATA_PROCESSOR.get())
+		this.tag(YATMBlockTags.DWARF_PERSIMMON_CAN_GROW_IN_KEY).add(Blocks.AIR);
+		this.tag(YATMBlockTags.DWARF_PERSIMMON_CAN_GROW_ON_KEY).addTag(BlockTags.DIRT);
 		this.tag(YATMBlockTags.FERRUM_CAN_GROW_ON_KEY).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER);
 		this.tag(YATMBlockTags.FIRE_EATER_LILY_CAN_GROW_IN_KEY).add(Blocks.AIR);
 		this.tag(YATMBlockTags.FIRE_EATER_LILY_CAN_GROW_ON_KEY).addTag(BlockTags.DIRT).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER).add(Blocks.MAGMA_BLOCK);

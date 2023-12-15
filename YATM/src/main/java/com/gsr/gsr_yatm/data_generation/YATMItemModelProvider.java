@@ -27,6 +27,26 @@ public class YATMItemModelProvider extends ItemModelProvider
 	@Override
 	protected void registerModels()
 	{
+		// TODO, alphabetize the rest
+		this.addCurrentStorer(YATMItems.ADVANCED_CURRENT_BATTERY.get());
+		this.addCurrentStorer(YATMItems.CURRENT_BATTERY.get());
+		// this.addCurrentStorer(YATMItems.CURRENT_TUBER.get());
+		this.basicItem(YATMItems.EMBER_GLAND.get());
+		this.basicItem(YATMItems.FLAME_GLAND.get());
+		this.basicItem(YATMItems.FOLIAR_STEEL.get());
+		this.basicItem(YATMItems.FOLIAR_STEEL_SHRED.get());
+		this.basicItem(YATMItems.KINETIC_DRIVER.get());		
+		this.basicItem(YATMItems.NETHERITE_NUGGET.get());
+		this.basicItem(YATMItems.PERSIMMON.get());
+		this.basicItem(YATMItems.RAW_EXOTHEMIC_GLAND.get());
+		this.basicItem(YATMItems.RUBBER_BAR.get());
+		this.basicItem(YATMItems.STAR_ADOLESCENT.get());
+		this.basicItem(YATMItems.STAR_GERMLING.get());
+		this.basicItem(YATMItems.STAR_SEED.get());
+		this.basicItem(YATMItems.STAR_SPROUT.get());
+		this.basicItem(YATMItems.TORCH_GLAND.get());
+		this.basicItem(YATMItems.WOOD_PULP.get());
+		
 		this.basicItem(YATMItems.RUBBER_SIGN.get());
 		this.basicItem(YATMItems.RUBBER_HANGING_SIGN.get());
 		this.basicItem(YATMItems.RUBBER_BOAT.get());
@@ -82,7 +102,7 @@ public class YATMItemModelProvider extends ItemModelProvider
 		
 		this.basicItem(YATMItems.SHULKWART_SPORES.get());
 		
-		this.basicItem(YATMItems.SPIDER_VINE_FRUITS.get());	
+		this.basicItem(YATMItems.BRANCH_OF_GLARING_FRUIT.get());	
 		
 		this.basicItem(YATMItems.VICUM_MERISTEM.get());
 		
@@ -139,24 +159,7 @@ public class YATMItemModelProvider extends ItemModelProvider
 		
 		
 		
-		// TODO, alphabetize the rest
-		this.addCurrentStorer(YATMItems.ADVANCED_CURRENT_BATTERY.get());
-		this.addCurrentStorer(YATMItems.CURRENT_BATTERY.get());
-		// this.addCurrentStorer(YATMItems.CURRENT_TUBER.get());
-		this.basicItem(YATMItems.EMBER_GLAND.get());
-		this.basicItem(YATMItems.FLAME_GLAND.get());
-		this.basicItem(YATMItems.FOLIAR_STEEL.get());
-		this.basicItem(YATMItems.FOLIAR_STEEL_SHRED.get());
-		this.basicItem(YATMItems.KINETIC_DRIVER.get());		
-		this.basicItem(YATMItems.NETHERITE_NUGGET.get());
-		this.basicItem(YATMItems.RAW_EXOTHEMIC_GLAND.get());
-		this.basicItem(YATMItems.RUBBER_BAR.get());
-		this.basicItem(YATMItems.STAR_ADOLESCENT.get());
-		this.basicItem(YATMItems.STAR_GERMLING.get());
-		this.basicItem(YATMItems.STAR_SEED.get());
-		this.basicItem(YATMItems.STAR_SPROUT.get());
-		this.basicItem(YATMItems.TORCH_GLAND.get());
-		this.basicItem(YATMItems.WOOD_PULP.get());
+		
 		
 		
 		
