@@ -126,7 +126,6 @@ public class CrystallizingRecipe extends RecipeBase<Container> implements ITimed
 		
 	
 		
-	// use canBeUsedOn() instead
 	@Override
 	public boolean matches(Container container, Level level)
 	{

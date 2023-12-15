@@ -9,6 +9,8 @@ import com.gsr.gsr_yatm.recipe.crafting.tool_part_exchange.ToolPartExchangeRecip
 import com.gsr.gsr_yatm.recipe.crafting.tool_part_exchange.ToolPartExchangeRecipeSerializer;
 import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizingRecipe;
 import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizingRecipeSerializer;
+import com.gsr.gsr_yatm.recipe.distilling.DistillingRecipe;
+import com.gsr.gsr_yatm.recipe.distilling.DistillingRecipeSerializer;
 import com.gsr.gsr_yatm.recipe.extracting.ExtractingRecipe;
 import com.gsr.gsr_yatm.recipe.extracting.ExtractingRecipeSerializer;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipe;
@@ -31,15 +33,16 @@ public class YATMRecipeSerializers
 	
 	
 	
-	public static final RegistryObject<RecipeSerializer<BioreactionRecipe>> BIOREACTION = RECIPE_SERIALIZERS.register("bioreaction", () -> new BioreactionRecipeSerializer());
-	public static final RegistryObject<RecipeSerializer<BoilingRecipe>> BOILING = RECIPE_SERIALIZERS.register("boiling", () -> new BoilingRecipeSerializer());
-	public static final RegistryObject<RecipeSerializer<CrystallizingRecipe>> CRYSTALLIZING = RECIPE_SERIALIZERS.register("crystallizing", () -> new CrystallizingRecipeSerializer());
-	public static final RegistryObject<RecipeSerializer<ExtractingRecipe>> EXTRACTING = RECIPE_SERIALIZERS.register("extracting", () -> new ExtractingRecipeSerializer());
-//	Spublic static final RegistryObject<RecipeSerializer<ExtrudingRecipe>> EXTRUDING = RECIPE_SERIALIZERS.register("extruding", () -> new ExtrudingRecipeSerializer());
-	public static final RegistryObject<RecipeSerializer<GrindingRecipe>> GRINDING = RECIPE_SERIALIZERS.register("grinding", () -> new GrindingRecipeSerializer());
-	public static final RegistryObject<RecipeSerializer<InjectingRecipe>> INJECTING = RECIPE_SERIALIZERS.register("fluid_injecting", () -> new InjectingRecipeSerializer());
-	public static final RegistryObject<RecipeSerializer<MeltingRecipe>> MELTING = RECIPE_SERIALIZERS.register("melting", () -> new MeltingRecipeSerializer());
-	public static final RegistryObject<RecipeSerializer<SpinningRecipe>> SPINNING = RECIPE_SERIALIZERS.register("spinning", () -> new SpinningRecipeSerializer());
-	public static final RegistryObject<RecipeSerializer<ToolPartExchangeRecipe>> TOOL_PART_EXCHANGE = RECIPE_SERIALIZERS.register("tool_part_exchange", () -> new ToolPartExchangeRecipeSerializer());
+	public static final RegistryObject<RecipeSerializer<BioreactionRecipe>> BIOREACTION = RECIPE_SERIALIZERS.register("bioreaction", BioreactionRecipeSerializer::new);
+	public static final RegistryObject<RecipeSerializer<BoilingRecipe>> BOILING = RECIPE_SERIALIZERS.register("boiling", BoilingRecipeSerializer::new);
+	public static final RegistryObject<RecipeSerializer<CrystallizingRecipe>> CRYSTALLIZING = RECIPE_SERIALIZERS.register("crystallizing", CrystallizingRecipeSerializer::new);
+	public static final RegistryObject<RecipeSerializer<DistillingRecipe>> DISTILLING = RECIPE_SERIALIZERS.register("distilling", DistillingRecipeSerializer::new);
+	public static final RegistryObject<RecipeSerializer<ExtractingRecipe>> EXTRACTING = RECIPE_SERIALIZERS.register("extracting", ExtractingRecipeSerializer::new);
+//	public static final RegistryObject<RecipeSerializer<ExtrudingRecipe>> EXTRUDING = RECIPE_SERIALIZERS.register("extruding", ExtrudingRecipeSerializer::new);
+	public static final RegistryObject<RecipeSerializer<GrindingRecipe>> GRINDING = RECIPE_SERIALIZERS.register("grinding", GrindingRecipeSerializer::new);
+	public static final RegistryObject<RecipeSerializer<InjectingRecipe>> INJECTING = RECIPE_SERIALIZERS.register("fluid_injecting", InjectingRecipeSerializer::new);
+	public static final RegistryObject<RecipeSerializer<MeltingRecipe>> MELTING = RECIPE_SERIALIZERS.register("melting", MeltingRecipeSerializer::new);
+	public static final RegistryObject<RecipeSerializer<SpinningRecipe>> SPINNING = RECIPE_SERIALIZERS.register("spinning", SpinningRecipeSerializer::new);
+	public static final RegistryObject<RecipeSerializer<ToolPartExchangeRecipe>> TOOL_PART_EXCHANGE = RECIPE_SERIALIZERS.register("tool_part_exchange", ToolPartExchangeRecipeSerializer::new);
 	
 } // end class
