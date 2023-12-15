@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.device.behaviors;
+package com.gsr.gsr_yatm.block.device.behaviors.implementation.component;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,9 +10,11 @@ import java.util.function.Supplier;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.api.capability.IComponent;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
+import com.gsr.gsr_yatm.block.device.behaviors.IInventoryChangeListenerBehavior;
+import com.gsr.gsr_yatm.block.device.behaviors.ILoadListenerBehavior;
+import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
@@ -27,7 +29,7 @@ import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 
-public class OutputComponentManager implements ICapabilityProvider
+public class OutputComponentManager implements ICapabilityProvider, IInventoryChangeListenerBehavior, ILoadListenerBehavior, ITickableBehavior
 {
 	private final @NotNull IItemHandler m_inventory;
 	private final @NotNegative int m_slot;
@@ -40,7 +42,7 @@ public class OutputComponentManager implements ICapabilityProvider
 	private @Nullable IComponent m_component = null;
 	private @NotNull List<LazyOptional<?>> m_attachments = new ArrayList<>();
 	private @NotNull Map<Capability<?>, LazyOptional<?>> m_sterileCaps = new HashMap<>();
-	
+	private boolean m_needsUpdate = false;
 	
 	
 	public OutputComponentManager(@NotNull IItemHandler inventory, @NotNegative int slot, @NotNull Supplier<@NotNull List<@NotNull Direction>> attachmentDirections, @NotNegative int recheckPeriod) 
@@ -51,6 +53,25 @@ public class OutputComponentManager implements ICapabilityProvider
 		this.m_recheckPeriod = Contract.notNegative(recheckPeriod);
 	} // end constructor
 	
+	
+	
+	@Override
+	public void onLoad()
+	{
+		this.updateComponent();
+	} // end onLoad()
+	
+	@Override
+	public @NotNull List<@NotNegative Integer> getSlotIndices()
+	{
+		return List.of(this.m_slot);
+	} // end getSlotIndex()
+	
+	@Override
+	public void onSlotChanged(@NotNegative int slot)
+	{
+		this.m_needsUpdate = true;
+	} // end onChange()
 	
 	
 	public void updateComponent() 
@@ -73,12 +94,19 @@ public class OutputComponentManager implements ICapabilityProvider
 	
 	
 	
-	public void tick(@NotNull Level level, @NotNull BlockPos position) 
+	@Override
+	public boolean tick(@NotNull Level level, @NotNull BlockPos position) 
 	{
-		if(++this.m_recheckCounter >= YATMConfigs.CRUCIBLE_DRAIN_RECHECK_PERIOD.get()) 
+		if(this.m_needsUpdate) 
+		{
+			this.updateComponent();
+		}
+		
+		if(++this.m_recheckCounter >= this.m_recheckPeriod) 
 		{
 			this.m_attachmentDirections.get().forEach((d) ->  this.tryAttach(level, position, d));
 		}
+		return false;
 	} // end tick()
 	
 	

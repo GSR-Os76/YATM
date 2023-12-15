@@ -1,5 +1,6 @@
-package com.gsr.gsr_yatm.block.device.behaviors;
+package com.gsr.gsr_yatm.block.device.behaviors.implementation.component;
 
+import java.util.List;
 import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
@@ -7,17 +8,20 @@ import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.api.capability.IComponent;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
+import com.gsr.gsr_yatm.block.device.behaviors.IInventoryChangeListenerBehavior;
+import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
 import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 
-public class InputComponentManager<C> implements ICapabilityProvider
+public class InputComponentManager<C> implements ICapabilityProvider, IInventoryChangeListenerBehavior, ISerializableBehavior
 {
 	private final @NotNull IItemHandler m_inventory;
 	private final @NotNegative int m_slot;
@@ -36,6 +40,20 @@ public class InputComponentManager<C> implements ICapabilityProvider
 		this.m_inwardAttachment = Objects.requireNonNull(inwardAttachment);
 		this.m_capability = Objects.requireNonNull(capability);
 	} // end constructor
+	
+	
+	
+	@Override
+	public @NotNull List<@NotNegative Integer> getSlotIndices()
+	{
+		return List.of(this.m_slot);
+	} // end getSlotIndex()
+	
+	@Override
+	public void onSlotChanged(@NotNegative int slot)
+	{
+		this.updateComponent();
+	} // end onChange()
 	
 	
 	
@@ -80,5 +98,19 @@ public class InputComponentManager<C> implements ICapabilityProvider
 			this.m_componentAttachment.invalidate();
 		}
 	} // end invalidateCaps()
+
+
+
+	@Override
+	public @Nullable CompoundTag serializeNBT()
+	{
+		return null;
+	} // end serializeNBT()
+
+	@Override
+	public void deserializeNBT(@NotNull CompoundTag nbt)
+	{
+		this.updateComponent();
+	}
 	
 } // end class

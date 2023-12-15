@@ -1,10 +1,12 @@
-package com.gsr.gsr_yatm.block.device.behaviors;
+package com.gsr.gsr_yatm.block.device.behaviors.implementation.fluid;
 
 import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
+import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
@@ -14,7 +16,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
-import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
@@ -22,7 +23,7 @@ import net.minecraftforge.fluids.capability.IFluidHandlerItem;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 
-public class FillTankManager implements INBTSerializable<CompoundTag>
+public class FillTankManager implements ISerializableBehavior, ITickableBehavior
 {
 	private static final String BUFFER_TAG_NAME = "buffer";
 	private static final String INITIAL_TAG_NAME = "initial";

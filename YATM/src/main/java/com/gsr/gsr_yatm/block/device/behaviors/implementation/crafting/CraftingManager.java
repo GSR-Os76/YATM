@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.device.behaviors;
+package com.gsr.gsr_yatm.block.device.behaviors.implementation.crafting;
 
 import java.util.Enumeration;
 import java.util.List;
@@ -9,6 +9,9 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.YATMConfigs;
+import com.gsr.gsr_yatm.block.device.behaviors.IChangedListenerBehavior;
+import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
+import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.network.Property;
@@ -22,9 +25,8 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.util.INBTSerializable;
 
-public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, A> implements IChangeListener, INBTSerializable<CompoundTag>, ITickableBehavior
+public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, A> implements IChangedListenerBehavior, ISerializableBehavior, ITickableBehavior
 {
 	public static final String CRAFT_PROGRESS_SPEC_KEY = "craftProgress";
 	
@@ -72,7 +74,7 @@ public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, 
 	
 	
 
-	public void onChanges()
+	public void onChanged()
 	{
 		this.m_timeSinceRecheck = CraftingManager.RECHECK_PERIOD;
 	} // end setChanged()
@@ -159,18 +161,15 @@ public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, 
 	@Override
 	public @Nullable CompoundTag serializeNBT()
 	{
-		CompoundTag tag = new CompoundTag();
 		if(this.m_activeRecipe != null && this.m_craftCountDown > 0 && this.m_craftTime > 0) 
 		{
+			CompoundTag tag = new CompoundTag();
 			tag.putString(CraftingManager.RECIPE_IDENTIFIER_TAG_NAME, this.m_activeRecipeIdentifier);
 			tag.putInt(CraftingManager.CRAFT_PROGESS_TAG_NAME, this.m_craftCountDown);
 			tag.putInt(CraftingManager.CRAFT_TIME_TAG_NAME, this.m_craftTime);
+			return tag;
 		}
-		else 
-		{
-			tag = null;
-		}
-		return tag;
+		return null;
 	} // end saveAdditional()
 	
 	@Override

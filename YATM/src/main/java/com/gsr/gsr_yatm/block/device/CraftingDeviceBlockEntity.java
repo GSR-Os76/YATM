@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.block.device.behaviors.CraftingManager;
+import com.gsr.gsr_yatm.block.device.behaviors.implementation.crafting.CraftingManager;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
@@ -42,7 +42,7 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C, A>, C 
 	public void setChanged()
 	{
 		super.setChanged();
-		this.m_craftingManager.onChanges();
+		this.m_craftingManager.onChanged();
 	} // end setChanged()
 
 

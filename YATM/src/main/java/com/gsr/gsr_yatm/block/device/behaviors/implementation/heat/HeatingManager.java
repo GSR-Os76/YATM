@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.device.behaviors;
+package com.gsr.gsr_yatm.block.device.behaviors.implementation.heat;
 
 import java.util.Objects;
 
@@ -6,6 +6,8 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
+import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
+import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
@@ -15,10 +17,9 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.items.IItemHandler;
 
-public class HeatingManager implements INBTSerializable<CompoundTag>
+public class HeatingManager implements ISerializableBehavior, ITickableBehavior
 {
 	private static final String BURN_TIME_ELAPSED_TAG_NAME = "burnTimeElapsed";
 	private static final String BURN_TIME_INITIAL_TAG_NAME = "burnTimeInitial";

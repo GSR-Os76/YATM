@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.device.behaviors;
+package com.gsr.gsr_yatm.block.device.behaviors.implementation.current;
 
 import java.util.Objects;
 
@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
+import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
@@ -13,7 +14,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.IItemHandler;
 
-public class CurrentFillManager
+public class CurrentFillManager implements ITickableBehavior
 {
 	private final @NotNull IItemHandler m_inventory;
 	private final @NotNegative int m_slot;
