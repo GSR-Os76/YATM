@@ -269,7 +269,10 @@ public class YATMBlockLoot extends VanillaBlockLoot
 //		this.dropSelf(YATMBlocks.STEEL_EXTRUDER.get());
 		this.dropSelf(YATMBlocks.STEEL_GRINDER.get());
 		this.dropSelf(YATMBlocks.STEEL_INJECTOR.get());
+<<<<<<< Upstream, based on github/device_builder_system
 		this.dropSelf(YATMBlocks.STEEL_STILL.get());
+=======
+>>>>>>> 36a86c5 Added the Dwarf Persimmon plant.
 			
 		this.dropSelf(YATMBlocks.C_U_F_E_I.get());
 		

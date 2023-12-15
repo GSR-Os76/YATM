@@ -4,7 +4,10 @@ import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.recipe.bioreaction.BioreactionRecipe;
 import com.gsr.gsr_yatm.recipe.boiling.BoilingRecipe;
 import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizingRecipe;
+<<<<<<< Upstream, based on github/device_builder_system
 import com.gsr.gsr_yatm.recipe.distilling.DistillingRecipe;
+=======
+>>>>>>> 36a86c5 Added the Dwarf Persimmon plant.
 import com.gsr.gsr_yatm.recipe.extracting.ExtractingRecipe;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipe;
 import com.gsr.gsr_yatm.recipe.injecting.InjectingRecipe;
@@ -28,7 +31,11 @@ public class YATMRecipeTypes
 	public static final RegistryObject<RecipeType<BioreactionRecipe>> BIOREACTION = RECIPE_TYPES.register("bioreaction", () -> new RecipeType<BioreactionRecipe>(){});
 	public static final RegistryObject<RecipeType<BoilingRecipe>> BOILING = RECIPE_TYPES.register("boiling", () -> new RecipeType<BoilingRecipe>(){});
 	public static final RegistryObject<RecipeType<CrystallizingRecipe>> CRYSTALLIZING = RECIPE_TYPES.register("crystallizating", () -> new RecipeType<CrystallizingRecipe>(){});
+<<<<<<< Upstream, based on github/device_builder_system
 	public static final RegistryObject<RecipeType<DistillingRecipe>> DISTILLING = RECIPE_TYPES.register("distilling", () -> new RecipeType<DistillingRecipe>(){});
+=======
+	
+>>>>>>> 36a86c5 Added the Dwarf Persimmon plant.
 	public static final RegistryObject<RecipeType<ExtractingRecipe>> EXTRACTING = RECIPE_TYPES.register("extracting", () -> new RecipeType<ExtractingRecipe>(){});
 //	public static final RegistryObject<RecipeType<ExtrudingRecipe>> EXTRUDING = RECIPE_TYPES.register("extruding", () -> new RecipeType<ExtrudingRecipe>(){});
 	public static final RegistryObject<RecipeType<GrindingRecipe>> GRINDING = RECIPE_TYPES.register("grinding", () -> new RecipeType<GrindingRecipe>(){});

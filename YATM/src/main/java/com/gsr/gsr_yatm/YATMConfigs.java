@@ -125,6 +125,7 @@ public class YATMConfigs
 	
 	public static final ConfigValue<Integer> CURRENT_FURNACE_MAX_TEMPERATURE = YATMConfigs.s_builder.pop().push("Current Furnace: ").comment("The highest possible temperature for the device.").defineInRange("max_temperature", YATMConfigs.STEEL_DEVICE_MAX_TEMPERATURE, 0, Integer.MAX_VALUE);
 	
+<<<<<<< Upstream, based on github/device_builder_system
 	public static final ConfigValue<Integer> STILL_DISTILLATE_TANK_CAPACITY = YATMConfigs.s_builder.pop().push("Still: ").comment("The distillate tank's fluid capacity.").defineInRange("distillate_tank_capacity", YATMConfigs.STEEL_DEVICE_TANK_CAPACITY, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> STILL_DRAIN_DISTILLATE_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick while draining out it's distillate tank.").defineInRange("drain_distillate_max_fluid_transfer_rate", YATMConfigs.STEEL_DEVICE_MAX_FLUID_TRANSFER_RATE, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> STILL_DRAIN_DISTILLATE_RECHECK_PERIOD = YATMConfigs.s_builder.comment("The period in ticks of the device trying to reattach a slotted distillate tank draining component to relavent neighbors.").defineInRange("drain_distillate_recheck_period", YATMConfigs.DRAIN_RECHECK_PERIOD, 0, Integer.MAX_VALUE);
@@ -137,6 +138,12 @@ public class YATMConfigs
 	public static final ConfigValue<Integer> STILL_LIT_ABOVE_TEMPERATURE = YATMConfigs.s_builder.comment("The temperature above which the device will be switched to the lit state.").defineInRange("lit_above", YATMConfigs.LIT_ABOVE_TEMPERATURE, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> STILL_MAX_TEMPERATURE = YATMConfigs.s_builder.comment("The highest possible temperature for the device.").defineInRange("max_temperature", YATMConfigs.STEEL_DEVICE_MAX_TEMPERATURE, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> STILL_REMAINDER_TANK_CAPACITY = YATMConfigs.s_builder.comment("The remainder tank's fluid capacity.").defineInRange("remainder_tank_capacity", YATMConfigs.STEEL_DEVICE_TANK_CAPACITY, 0, Integer.MAX_VALUE);
+=======
+	public static final ConfigValue<Integer> STILL_FILL_INPUT_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.pop().push("Still: ").comment("The most fluid that can be moved per tick while filling up it's input taking.").defineInRange("fill_input_max_fluid_transfer_rate", YATMConfigs.STEEL_DEVICE_MAX_FLUID_TRANSFER_RATE, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> STILL_INPUT_TANK_CAPACITY = YATMConfigs.s_builder.comment("The input tank's fluid capacity.").defineInRange("input_tank_capacity", YATMConfigs.STEEL_DEVICE_TANK_CAPACITY, 0, Integer.MAX_VALUE);
+	
+	
+>>>>>>> 36a86c5 Added the Dwarf Persimmon plant.
 	
 	
 	
