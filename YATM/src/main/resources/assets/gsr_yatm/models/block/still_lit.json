@@ -1,0 +1,6 @@
+{
+	"parent": "gsr_yatm:block/still",
+	"textures": {
+		"front": "gsr_yatm:block/device/still/front_lit"
+	}
+}

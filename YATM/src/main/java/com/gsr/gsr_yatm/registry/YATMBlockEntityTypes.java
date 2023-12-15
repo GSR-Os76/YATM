@@ -17,6 +17,7 @@ import com.gsr.gsr_yatm.block.device.injector.InjectorBlockEntity;
 import com.gsr.gsr_yatm.block.device.sap_collector.SapCollectorBlockEntity;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlockEntity;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelBlockEntity;
+import com.gsr.gsr_yatm.block.device.still.StillBlockEntity;
 import com.gsr.gsr_yatm.block.device.tank.TankBlockEntity;
 import com.gsr.gsr_yatm.block.hanging_pot.HangingPotHookBlockEntity;
 import com.gsr.gsr_yatm.block.sign.YATMHangingSignBlockEntity;
@@ -48,6 +49,7 @@ public class YATMBlockEntityTypes
 	public static final RegistryObject<BlockEntityType<CurrentFurnaceBlockEntity>> FURNACE_PLUS = BLOCK_ENTITY_TYPES.register("current_furnace", () -> BlockEntityType.Builder.of(CurrentFurnaceBlockEntity::new, YATMBlocks.STEEL_CRYSTALLIZER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<GrinderBlockEntity>> GRINDER = BLOCK_ENTITY_TYPES.register("grinder", () -> BlockEntityType.Builder.of(GrinderBlockEntity::new, YATMBlocks.STEEL_GRINDER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<InjectorBlockEntity>> INJECTOR = BLOCK_ENTITY_TYPES.register("injector", () -> BlockEntityType.Builder.of(InjectorBlockEntity::new, YATMBlocks.STEEL_INJECTOR.get()).build(null));
+	public static final RegistryObject<BlockEntityType<StillBlockEntity>> STILL = BLOCK_ENTITY_TYPES.register("still", () -> BlockEntityType.Builder.of(StillBlockEntity::new, YATMBlocks.STEEL_STILL.get()).build(null));
 	
 	public static final RegistryObject<BlockEntityType<DataScanCollectorBlockEntity>> DATA_SCAN_COLLECTOR = BLOCK_ENTITY_TYPES.register("data_scan_collector", () -> BlockEntityType.Builder.of(DataScanCollectorBlockEntity::new, YATMBlocks.DATA_SCAN_COLLECTOR.get()).build(null));
 	// public static final RegistryObject<BlockEntityType<DestructiveScannerBlockEntity>> DESTRUCTIVE_SCANNER = BLOCK_ENTITY_TYPES.register("destructive_scanner", () -> BlockEntityType.Builder.of(DestructiveScannerBlockEntity::new, YATMBlocks..get()).build(null));

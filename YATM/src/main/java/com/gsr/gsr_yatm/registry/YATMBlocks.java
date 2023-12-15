@@ -32,6 +32,7 @@ import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlock;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelBlock;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelSettings;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
+import com.gsr.gsr_yatm.block.device.still.StillBlock;
 import com.gsr.gsr_yatm.block.device.tank.TankBlock;
 import com.gsr.gsr_yatm.block.hanging_pot.HangingPotHookBlock;
 import com.gsr.gsr_yatm.block.plant.CustomSeedCropBlock;
@@ -367,6 +368,7 @@ public class YATMBlocks
 //	public static final RegistryObject<ExtruderBlock> STEEL_EXTRUDER = BLOCKS.register("steel_extruder", () -> new ExtruderBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_CURRENT_CAPACITY, DeviceTierConstants.STEEL_MAX_CURRENT_TRANSFER));
 	public static final RegistryObject<GrinderBlock> STEEL_GRINDER = BLOCKS.register("steel_grinder", () -> new GrinderBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_CURRENT_CAPACITY, DeviceTierConstants.STEEL_MAX_CURRENT_TRANSFER));
 	public static final RegistryObject<InjectorBlock> STEEL_INJECTOR = BLOCKS.register("steel_injector", () -> new InjectorBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_DEVICE));
+	public static final RegistryObject<StillBlock> STEEL_STILL = BLOCKS.register("steel_still", () -> new StillBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE));
 	
 	// TODO, refactor property out
 	public static final RegistryObject<CurrentUnitForgeEnergyInterchangerBlock> C_U_F_E_I = BLOCKS.register("current_unit_forge_energy_interchanger", () -> new CurrentUnitForgeEnergyInterchangerBlock(BlockBehaviour.Properties.of()));

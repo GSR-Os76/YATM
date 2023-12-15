@@ -1,5 +1,4 @@
 {
-	"credit": "Made with Blockbench",
 	"parent": "gsr_yatm:block/crucible",
 	"textures": {
 		"front": "gsr_yatm:block/device/crucible/front_lit",
