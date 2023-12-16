@@ -198,10 +198,22 @@ public class YATMBlockShapes
 	// 
 	public static final ICollisionVoxelShapeProvider DWARF_PERSIMMON = new ICollisionVoxelShapeProvider() 
 	{
+		private static final VoxelShape SPROUT = Block.box(4d, 0d, 4d, 12d, 7d, 12d);
+		private static final VoxelShape YOUNG = Block.box(2d, 0d, 2d, 14d, 14d, 14d);
+		private static final VoxelShape OLD = Block.box(0d, 0d, 0d, 16d, 6d, 16d);
+		private static final VoxelShape OLD_FRUITING = OLD;
+		
 		@Override
 		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
 		{
-			return CUBE.getShape(state, blockGetter, position, context);
+			return switch(state.getValue(FerrumBlock.AGE)) 
+			{
+				case 0, 1, 2 -> SPROUT;
+				case 3, 4, 5 -> YOUNG;
+				case 6 -> OLD;
+				case 7 -> OLD_FRUITING;
+				default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(FerrumBlock.AGE));
+			};
 		} // end getShape()
 	};
 	

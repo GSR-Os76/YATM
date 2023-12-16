@@ -1,4 +1,8 @@
+<<<<<<< Upstream, based on github/device_builder_system
 // 1.20.2	2023-12-15T15:46:33.0314688	Block States: gsr_yatm
+=======
+// 1.20.2	2023-12-15T17:57:20.381983	Block States: gsr_yatm
+>>>>>>> 9e81547 Added working textures, and models to Dwarf Persimmon.
 11aad184ca6aaadbd7319a44c5a1985f7c029a1c assets/gsr_yatm/blockstates/adamum.json
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 a2a385d05e4f86cda9dd2c5a246077dac4e32579 assets/gsr_yatm/blockstates/advanced_solar_panel.json
@@ -36,6 +40,7 @@ fe570632433438cfc9eb73f919d7bc5e0350592c assets/gsr_yatm/blockstates/cyan_shulkw
 a6dcfbc2f9d93623be52685817df2b7a2b3592cc assets/gsr_yatm/blockstates/data_scan_collector.json
 46f0d4b049689b0f5fb137b1738da5f7c7d428ad assets/gsr_yatm/blockstates/deepslate_foliar_steel_ore.json
 fa5ee499a28de4ee8a41b31219ca490278fa72b1 assets/gsr_yatm/blockstates/default_hanging_pot_support_chains.json
+088d80bf0127edfe34b6a2370e18bf67cb2b1975 assets/gsr_yatm/blockstates/dwarf_persimmon.json
 007e187d21279adb5e5d40d115af8c4a2e343c04 assets/gsr_yatm/blockstates/ender.json
 87ffdc016892c75ab81681d5a9d1672bfc2bb7ef assets/gsr_yatm/blockstates/essence_of_decay.json
 1f9fe07108db93f2b6b75c4638a864ec7f2fc9a1 assets/gsr_yatm/blockstates/essence_of_souls.json
@@ -257,6 +262,10 @@ df6b8701f37415905a5bb809b8568459408a3f2a assets/gsr_yatm/models/block/cyan_candl
 1e8ce3763567819f458e785b1b2a2a71db5fe174 assets/gsr_yatm/models/block/cyan_shulkwart_grown.json
 b1fd5a96884c788cd60b4004145f0e587065795d assets/gsr_yatm/models/block/data_scan_collector.json
 d987e73b7800b5aa57fd4e38d1ed0b4edc6e7c2d assets/gsr_yatm/models/block/deepslate_foliar_steel_ore.json
+6d19e3d06bf5e1612ee2ae64991793203a3817a3 assets/gsr_yatm/models/block/dwarf_persimmon_old.json
+2238e5a00dc463529f2f05a43e7ad125bf4796e0 assets/gsr_yatm/models/block/dwarf_persimmon_old_fruiting.json
+3ad02512741a9f053f61cfbbe260a866e8b69456 assets/gsr_yatm/models/block/dwarf_persimmon_sprout.json
+0bb13f834c4c16d6ed7b364c20ffe49329b12053 assets/gsr_yatm/models/block/dwarf_persimmon_young.json
 6f00323a215a25836457c7a475944a1fd3ec1064 assets/gsr_yatm/models/block/ender.json
 4b57628765d41a08dd7075afa9e0218b36ee7e6f assets/gsr_yatm/models/block/essence_of_decay.json
 4685aabdcd454332bba92d92d26f1b8cb66fed0d assets/gsr_yatm/models/block/essence_of_souls.json
