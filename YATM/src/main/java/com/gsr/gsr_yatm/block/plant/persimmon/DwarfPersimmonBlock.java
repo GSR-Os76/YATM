@@ -117,9 +117,9 @@ public class DwarfPersimmonBlock extends ShapeBlock implements BonemealableBlock
 	public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos position, @NotNull RandomSource random)
 	{
 		// TODO, alternative? neccessity?
-		if (!level.isAreaLoaded(position, 1) || level.getRawBrightness(position, 0) >= 9) 
+		if (!level.isAreaLoaded(position, 1) && level.getRawBrightness(position, 0) < YATMConfigs.DWARF_PERSIMMON_MINIMUM_LIGHT_LEVEL.get()) 
 		{
-			return; 
+			return;
 		}
 		int age = this.getAge(state);
 		int maxAge = this.getMaxAge();

@@ -194,6 +194,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addIceCoral();
 		this.addInfernalum();
 		this.addLapum();
+		this.addDwarfPersimmon();
 		this.createPhantasmalShelfFungus(YATMBlocks.PHANTASMAL_SHELF_FUNGUS.get(), YATMItems.PHANTASMAL_SHELF_FUNGUS.get());
 		this.createBlockWithItem(YATMBlocks.PITCHER_CLUSTER.get(), YATMBlockStateProvider.PITCHER_CLUSTER);
 		this.createPrismarineCrystalMossLike(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), 
@@ -500,6 +501,15 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				oldTexture);
 		this.createStoneSoilPottedCross(YATMBlocks.POTTED_LAPUM.get(), oldTexture);
 	} // end addLapum()
+	
+	private void addDwarfPersimmon() 
+	{
+		this.createDwarfPersimmon(YATMBlocks.DWARF_PERSIMMON.get(), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/dwarf_persimmon/sprout"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/dwarf_persimmon/young"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/dwarf_persimmon/old"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/dwarf_persimmon/old_fruiting"));
+	} // end addDwarfPersimmon()
 	
 	private void addRuberum() 
 	{
@@ -1106,6 +1116,28 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		ModelFile modelA = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameA));
 		ModelFile modelO = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameO));
 		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forEightAge(bs, modelM, modelM, modelY, modelY, modelA, modelA, modelA, modelO));
+	} // end createLapum()
+	
+	private void createDwarfPersimmon(@NotNull Block block, 
+			@NotNull ResourceLocation sproutTexture, 
+			@NotNull ResourceLocation youngTexture,
+			@NotNull ResourceLocation oldTexture,
+			@NotNull ResourceLocation oldFruitingTexture) 
+	{
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
+		String nameS = name + "_sprout";
+		String nameY = name + "_young";
+		String nameO = name + "_old";
+		String nameOF = name + "_old_fruiting";
+		this.models().cross(nameS, sproutTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameY, youngTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameO, oldTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameOF, oldFruitingTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		ModelFile modelS = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameS));
+		ModelFile modelY = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameY));
+		ModelFile modelO = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameO));
+		ModelFile modelOF = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameOF));
+		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forEightAge(bs, modelS, modelS, modelS, modelY, modelY, modelY, modelO, modelOF));
 	} // end createLapum()
 	
 	private void createRuberum(@NotNull RuberumBlock block, 
