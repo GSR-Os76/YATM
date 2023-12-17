@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.utilities.generic;
+package com.gsr.gsr_yatm.utilities.generic.tuples;
 
 import org.jetbrains.annotations.Nullable;
 

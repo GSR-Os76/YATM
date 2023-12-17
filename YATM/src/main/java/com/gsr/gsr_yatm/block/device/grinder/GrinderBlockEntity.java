@@ -9,7 +9,7 @@ import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
-import com.gsr.gsr_yatm.utilities.generic.Tuple2;
+import com.gsr.gsr_yatm.utilities.generic.tuples.Tuple2;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;

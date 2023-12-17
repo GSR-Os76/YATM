@@ -1,8 +1,10 @@
-package com.gsr.gsr_yatm.utilities.network;
+package com.gsr.gsr_yatm.utilities.network.container_data.implementation.current;
 
 import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
+
+import com.gsr.gsr_yatm.utilities.network.container_data.AccessSpecification;
 
 import net.minecraft.world.inventory.ContainerData;
 

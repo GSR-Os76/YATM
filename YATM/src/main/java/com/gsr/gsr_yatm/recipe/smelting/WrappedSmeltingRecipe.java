@@ -6,7 +6,8 @@ import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.block.device.current_furnace.CurrentFurnaceBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.registry.YATMItems;
-import com.gsr.gsr_yatm.utilities.generic.Tuple2;
+import com.gsr.gsr_yatm.utilities.generic.tuples.Tuple2;
+
 import net.minecraft.world.Container;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.crafting.CookingBookCategory;

@@ -9,11 +9,12 @@ import org.jetbrains.annotations.Nullable;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
-import com.gsr.gsr_yatm.utilities.network.AccessSpecification;
-import com.gsr.gsr_yatm.utilities.network.CompositeAccessSpecification;
-import com.gsr.gsr_yatm.utilities.network.FluidTankDataReader;
-import com.gsr.gsr_yatm.utilities.network.ICompositeAccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
+import com.gsr.gsr_yatm.utilities.network.container_data.AccessSpecification;
+import com.gsr.gsr_yatm.utilities.network.container_data.CompositeAccessSpecification;
+import com.gsr.gsr_yatm.utilities.network.container_data.ICompositeAccessSpecification;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.fluid.FluidTankDataReader;
+
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;

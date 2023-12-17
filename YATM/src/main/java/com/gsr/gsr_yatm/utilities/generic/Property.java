@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.utilities.network;
+package com.gsr.gsr_yatm.utilities.generic;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;

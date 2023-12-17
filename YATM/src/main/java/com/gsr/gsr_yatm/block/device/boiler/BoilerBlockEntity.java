@@ -27,12 +27,12 @@ import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
 import com.gsr.gsr_yatm.utilities.capability.heat.OnChangedHeatHandler;
 import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
-import com.gsr.gsr_yatm.utilities.generic.Tuple3;
-import com.gsr.gsr_yatm.utilities.network.CompositeAccessSpecification;
-import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
-import com.gsr.gsr_yatm.utilities.network.FluidHandlerContainerData;
-import com.gsr.gsr_yatm.utilities.network.ICompositeAccessSpecification;
-import com.gsr.gsr_yatm.utilities.network.PropertyContainerData;
+import com.gsr.gsr_yatm.utilities.generic.tuples.Tuple3;
+import com.gsr.gsr_yatm.utilities.network.container_data.CompositeAccessSpecification;
+import com.gsr.gsr_yatm.utilities.network.container_data.ContainerDataBuilder;
+import com.gsr.gsr_yatm.utilities.network.container_data.ICompositeAccessSpecification;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.PropertyContainerData;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.fluid.FluidHandlerContainerData;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

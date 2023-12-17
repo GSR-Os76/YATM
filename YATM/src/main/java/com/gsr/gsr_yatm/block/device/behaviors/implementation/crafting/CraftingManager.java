@@ -14,8 +14,8 @@ import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
-import com.gsr.gsr_yatm.utilities.network.Property;
-import com.gsr.gsr_yatm.utilities.network.PropertyContainerData;
+import com.gsr.gsr_yatm.utilities.generic.Property;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.PropertyContainerData;
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtil;
 
 import net.minecraft.core.BlockPos;

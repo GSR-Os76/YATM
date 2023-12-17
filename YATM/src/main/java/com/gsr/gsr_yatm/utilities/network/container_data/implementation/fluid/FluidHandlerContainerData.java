@@ -1,10 +1,11 @@
-package com.gsr.gsr_yatm.utilities.network;
+package com.gsr.gsr_yatm.utilities.network.container_data.implementation.fluid;
 
 import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
 
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraftforge.fluids.FluidStack;

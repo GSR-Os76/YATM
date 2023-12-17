@@ -18,10 +18,10 @@ import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.current.CurrentSource;
 import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
-import com.gsr.gsr_yatm.utilities.network.CompositeAccessSpecification;
-import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
-import com.gsr.gsr_yatm.utilities.network.ICompositeAccessSpecification;
-import com.gsr.gsr_yatm.utilities.network.PropertyContainerData;
+import com.gsr.gsr_yatm.utilities.network.container_data.CompositeAccessSpecification;
+import com.gsr.gsr_yatm.utilities.network.container_data.ContainerDataBuilder;
+import com.gsr.gsr_yatm.utilities.network.container_data.ICompositeAccessSpecification;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.PropertyContainerData;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

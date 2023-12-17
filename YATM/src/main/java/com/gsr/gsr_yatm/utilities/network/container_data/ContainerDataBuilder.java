@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.utilities.network;
+package com.gsr.gsr_yatm.utilities.network.container_data;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,6 +7,10 @@ import java.util.function.Consumer;
 import java.util.function.Supplier;
 
 import org.jetbrains.annotations.NotNull;
+
+import com.gsr.gsr_yatm.utilities.generic.Property;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.AggregatedContainerData;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.PropertyContainerData;
 
 import net.minecraft.world.inventory.ContainerData;
 

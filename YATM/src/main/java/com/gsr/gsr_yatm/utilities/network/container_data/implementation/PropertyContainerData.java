@@ -1,8 +1,9 @@
-package com.gsr.gsr_yatm.utilities.network;
+package com.gsr.gsr_yatm.utilities.network.container_data.implementation;
 
 import java.util.List;
 
 import com.google.common.collect.ImmutableList;
+import com.gsr.gsr_yatm.utilities.generic.Property;
 
 import net.minecraft.world.inventory.ContainerData;
 

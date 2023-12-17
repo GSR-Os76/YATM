@@ -2,8 +2,8 @@ package com.gsr.gsr_yatm.block.device.extractor;
 
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
-import com.gsr.gsr_yatm.utilities.network.BooleanFlagHandler;
 import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.BooleanFlagHandler;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;

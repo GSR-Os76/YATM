@@ -1,10 +1,11 @@
-package com.gsr.gsr_yatm.utilities.network;
+package com.gsr.gsr_yatm.utilities.network.container_data.implementation;
 
 import java.util.EnumMap;
 import java.util.List;
 import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
+import com.gsr.gsr_yatm.utilities.network.container_data.ContainerDataBuilder;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.inventory.ContainerData;

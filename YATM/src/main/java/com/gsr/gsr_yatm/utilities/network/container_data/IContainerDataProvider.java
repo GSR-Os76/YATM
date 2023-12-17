@@ -1,9 +1,10 @@
-package com.gsr.gsr_yatm.utilities.network;
+package com.gsr.gsr_yatm.utilities.network.container_data;
 
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.world.inventory.ContainerData;
 
+@Deprecated(forRemoval = true)
 public interface IContainerDataProvider<T>
 {
 	// but then what of the access spec?

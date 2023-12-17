@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.utilities.network;
+package com.gsr.gsr_yatm.utilities.network.container_data.implementation;
 
 import java.util.List;
 import java.util.Objects;
@@ -10,6 +10,7 @@ import com.google.common.collect.ImmutableList;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.generic.Event;
+import com.gsr.gsr_yatm.utilities.network.container_data.IEventContainerData;
 
 public class SimpleEventContainerData implements IEventContainerData
 {

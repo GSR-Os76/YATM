@@ -1,4 +1,6 @@
-package com.gsr.gsr_yatm.utilities.network;
+package com.gsr.gsr_yatm.utilities.network.container_data.implementation;
+
+import com.gsr.gsr_yatm.utilities.network.container_data.AccessSpecification;
 
 import net.minecraft.world.inventory.ContainerData;
 

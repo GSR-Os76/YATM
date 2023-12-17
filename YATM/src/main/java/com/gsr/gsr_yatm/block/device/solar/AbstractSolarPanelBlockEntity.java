@@ -13,9 +13,9 @@ import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
 import com.gsr.gsr_yatm.utilities.capability.current.ExtractOnlyCurrentHandler;
-import com.gsr.gsr_yatm.utilities.network.AccessSpecification;
-import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
-import com.gsr.gsr_yatm.utilities.network.CurrentHandlerContainerData;
+import com.gsr.gsr_yatm.utilities.network.container_data.AccessSpecification;
+import com.gsr.gsr_yatm.utilities.network.container_data.ContainerDataBuilder;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.current.CurrentHandlerContainerData;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
