@@ -1,23 +1,13 @@
-package com.gsr.gsr_yatm.block.device.builder;
-
-import java.util.List;
+package com.gsr.gsr_yatm.block.device.builder.inventory;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.block.device.builder.IBuilder;
+import com.gsr.gsr_yatm.block.device.builder.inventory.slot.ISlotBuilder;
 
-public interface IInventoryBuilder
+public interface IInventoryBuilder<T> extends IBuilder<T>
 {
-	public @NotNull List<@NotNull SlotDefinition> getSlots();
 	
-	public void addSlot(@NotNull SlotDefinition slot);
-	
-	
-	
-	public default @NotNegative int nextIndex() 
-	{
-		return this.getSlots().size();
-	} // end nextIndex()
-
-	
+	@NotNull ISlotBuilder<? extends IInventoryBuilder<T>> slot();
+		
 } // end interface

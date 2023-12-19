@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.device.builder;
+package com.gsr.gsr_yatm.block.device.builder.inventory.slot;
 
 import java.util.Objects;
 import java.util.function.Predicate;
