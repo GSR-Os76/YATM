@@ -5,15 +5,20 @@ import java.util.function.BiFunction;
 import java.util.function.Consumer;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
+import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
+import net.minecraft.nbt.CompoundTag;
 import oshi.util.tuples.Pair;
 
-public class OnChangedHeatHandler implements IHeatHandler
+public class OnChangedHeatHandler implements IHeatHandler, ISerializableBehavior
 {
+	private static final String TEMPERATURE_TAG_NAME = "temp";
+	
 	private final @NotNull BiFunction<Integer, Integer, Pair<Integer, Integer>> m_heatEquation;
 	private final @NotNull Consumer<Integer> m_onChanged;
 	private final @NotNegative int m_maxTemperature;
@@ -65,5 +70,23 @@ public class OnChangedHeatHandler implements IHeatHandler
 		this.m_temperature = Math.min(this.m_maxTemperature, Contract.notNegative(temperature));
 		this.m_onChanged.accept(this.m_temperature);
 	} // end setTemperature()
+
+	
+	
+	
+	
+	@Override
+	public @Nullable CompoundTag serializeNBT()
+	{
+		CompoundTag tag = new CompoundTag();
+		tag.putInt(OnChangedHeatHandler.TEMPERATURE_TAG_NAME, this.m_temperature);
+		return tag;
+	} // end serializeNBT()
+
+	@Override
+	public void deserializeNBT(@NotNull CompoundTag nbt)
+	{
+		this.setTemperature(nbt.getInt(OnChangedHeatHandler.TEMPERATURE_TAG_NAME));
+	} // end deserializeNBT()
 	
 } // end class

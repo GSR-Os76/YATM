@@ -12,6 +12,7 @@ import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.AttachmentState;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
+import com.gsr.gsr_yatm.block.device.IDeviceBlockEntity;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
@@ -25,6 +26,7 @@ import com.gsr.gsr_yatm.utilities.network.container_data.implementation.Property
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
@@ -38,7 +40,7 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 
-public class CreativeCurrentSourceBlockEntity extends BlockEntity
+public class CreativeCurrentSourceBlockEntity extends BlockEntity implements IDeviceBlockEntity
 {
 	public static final int INVENTORY_SLOT_COUNT = 1;
 	public static final int CHARGE_SLOT = 0;
@@ -105,14 +107,7 @@ public class CreativeCurrentSourceBlockEntity extends BlockEntity
 	
 	
 	
-	public static void tick(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state, @NotNull CreativeCurrentSourceBlockEntity blockEntity)
-	{
-		if (!blockEntity.isRemoved() && !level.isClientSide)
-		{
-			blockEntity.serverTick(level, position, state);
-		}
-	} // end tick()
-	
+	@Override
 	public void serverTick(@NotNull Level level, @NotNull BlockPos position,  @NotNull BlockState state)
 	{
 		if(++this.m_recheckAttachmentsCounter >= CreativeCurrentSourceBlockEntity.RECHECK_ATTACHMENTS_PERIOD) 
@@ -198,11 +193,12 @@ public class CreativeCurrentSourceBlockEntity extends BlockEntity
 	*/
 	
 	
-	
-	public void blockBroken() 
+
+	@Override
+	public @NotNull NonNullList<ItemStack> getDropInventory()
 	{
-		InventoryUtil.drop(this.level, this.worldPosition, this.m_rawInventory);
-	} // end blockBroken()
+		return InventoryUtil.toNNList(this.m_rawInventory);
+	} // end getDropInventory()
 	
 	
 	

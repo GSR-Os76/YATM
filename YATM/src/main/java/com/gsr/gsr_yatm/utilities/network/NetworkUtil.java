@@ -14,31 +14,27 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class NetworkUtil
 {
-	public static @NotNull ContainerData emptyCD() 
+	
+	public static final @NotNull ContainerData EMPTY_CD = new ContainerData() 
 	{
-		return new ContainerData() 
+		@Override
+		public int get(int index)
+		{
+			return 0;
+		} // end get()
+
+		@Override
+		public void set(int index, int value)
 		{
 
-			@Override
-			public int get(int index)
-			{
-				return 0;
-			} // end get()
+		} // end set()
 
-			@Override
-			public void set(int index, int value)
-			{
-
-			} // end set()
-
-			@Override
-			public int getCount()
-			{
-				return 0;
-			} // end getCount()
-			
-		};
-	} // end emptyCD()
+		@Override
+		public int getCount()
+		{
+			return 0;
+		} // end getCount()
+	};
 	
 	// can we confirm that client and server will list these in the exact same order?
 	public static int getFluidIndex(Fluid fluid) 

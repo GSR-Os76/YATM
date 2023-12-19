@@ -17,6 +17,8 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
+/**manually use the CraftingManager behavior*/
+@Deprecated(forRemoval=true)
 public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C, A>, C extends Container, A> extends DeviceBlockEntity 
 {	
 	public static final String CRAFT_PROGRESS_SPEC_KEY = CraftingManager.CRAFT_PROGRESS_SPEC_KEY;

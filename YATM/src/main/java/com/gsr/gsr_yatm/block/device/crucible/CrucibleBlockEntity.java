@@ -12,6 +12,7 @@ import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
+import com.gsr.gsr_yatm.block.device.IDeviceBlockEntity;
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.component.InputComponentManager;
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.component.OutputComponentManager;
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.crafting.HeatAcceleratedCraftingManager;
@@ -76,7 +77,7 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	private final @NotNull IItemHandler m_heatingSlot = InventoryWrapper.Builder.of(this.m_inventory).slotTranslationTable(new int[] {CrucibleBlockEntity.HEAT_SLOT}).build();;
 	private final @NotNull FluidTank m_rawResultTank = new FluidTank(YATMConfigs.CRUCIBLE_RESULT_TANK_CAPACITY.get());
 	private final @NotNull TankWrapper m_resultTank = new TankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);	
-	private final @NotNull OnChangedHeatHandler m_heatHandler = new OnChangedHeatHandler(IHeatHandler.getAmbientTemp(), (i) -> this.setChanged(), DeviceBlockEntity::deviceHeatEquation, YATMConfigs.CRUCIBLE_MAX_TEMPERATURE.get());
+	private final @NotNull OnChangedHeatHandler m_heatHandler = new OnChangedHeatHandler(IHeatHandler.getAmbientTemp(), (i) -> this.setChanged(), IDeviceBlockEntity::deviceHeatEquation, YATMConfigs.CRUCIBLE_MAX_TEMPERATURE.get());
 	
 	// TODO, investigate why the update pattern necessitates this, and fix it
 	private boolean m_updateDrainResultComponentQueued = false;

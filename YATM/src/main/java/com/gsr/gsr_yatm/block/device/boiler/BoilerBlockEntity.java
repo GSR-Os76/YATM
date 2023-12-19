@@ -11,7 +11,7 @@ import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
-import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
+import com.gsr.gsr_yatm.block.device.IDeviceBlockEntity;
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.component.InputComponentManager;
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.component.OutputComponentManager;
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.crafting.HeatAcceleratedCraftingManager;
@@ -98,7 +98,7 @@ public class BoilerBlockEntity extends CraftingDeviceBlockEntity<BoilingRecipe, 
 	private final @NotNull FluidTank m_rawResultTank = new FluidTank(YATMConfigs.BOILER_RESULT_TANK_CAPACITY.get());
 	private final @NotNull TankWrapper m_resultTank =  new TankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);
 	private final @NotNull IFluidHandler m_compoundTank = new CompoundTank(this.m_resultTank, this.m_inputTank);
-	private final @NotNull OnChangedHeatHandler m_heatHandler = new OnChangedHeatHandler(IHeatHandler.getAmbientTemp(), (i) -> this.setChanged(), DeviceBlockEntity::deviceHeatEquation, YATMConfigs.BOILER_MAX_TEMPERATURE.get());
+	private final @NotNull OnChangedHeatHandler m_heatHandler = new OnChangedHeatHandler(IHeatHandler.getAmbientTemp(), (i) -> this.setChanged(), IDeviceBlockEntity::deviceHeatEquation, YATMConfigs.BOILER_MAX_TEMPERATURE.get());
 	
 	private boolean m_updateDrainInputComponentQueued = false;
 	private boolean m_updateDrainResultComponentQueued = false;
