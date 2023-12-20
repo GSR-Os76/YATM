@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.Supplier;
 
 import org.jetbrains.annotations.NotNull;
@@ -12,8 +13,10 @@ import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.api.capability.IComponent;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
+import com.gsr.gsr_yatm.block.device.behaviors.IBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.IInventoryChangeListenerBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ILoadListenerBehavior;
+import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
@@ -31,6 +34,12 @@ import net.minecraftforge.items.IItemHandler;
 
 public class OutputComponentManager implements ICapabilityProvider, IInventoryChangeListenerBehavior, ILoadListenerBehavior, ITickableBehavior
 {
+	@Override
+	public @NotNull Set<Class<? extends IBehavior>> behaviorTypes()
+	{
+		return Set.of(IInventoryChangeListenerBehavior.class, ILoadListenerBehavior.class, ISerializableBehavior.class);
+	} // end behaviorTypes()
+	
 	private final @NotNull IItemHandler m_inventory;
 	private final @NotNegative int m_slot;
 	private final @NotNull Supplier<@NotNull List<@NotNull Direction>> m_attachmentDirections;

@@ -1,10 +1,12 @@
 package com.gsr.gsr_yatm.block.device.behaviors.implementation.fluid;
 
 import java.util.Objects;
+import java.util.Set;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.block.device.behaviors.IBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
@@ -25,6 +27,12 @@ import net.minecraftforge.items.IItemHandler;
 
 public class FillTankManager implements ISerializableBehavior, ITickableBehavior
 {
+	@Override
+	public @NotNull Set<Class<? extends IBehavior>> behaviorTypes()
+	{
+		return Set.of(ISerializableBehavior.class, ITickableBehavior.class);
+	} // end behaviorTypes()
+	
 	private static final String BUFFER_TAG_NAME = "buffer";
 	private static final String INITIAL_TAG_NAME = "initial";
 	private static final String STACK_TAG_NAME = "stack";

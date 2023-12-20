@@ -2,12 +2,14 @@ package com.gsr.gsr_yatm.block.device.behaviors.implementation.component;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.api.capability.IComponent;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
+import com.gsr.gsr_yatm.block.device.behaviors.IBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.IInventoryChangeListenerBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
@@ -23,6 +25,12 @@ import net.minecraftforge.items.IItemHandler;
 
 public class InputComponentManager<C> implements ICapabilityProvider, IInventoryChangeListenerBehavior, ISerializableBehavior
 {
+	@Override
+	public @NotNull Set<Class<? extends IBehavior>> behaviorTypes()
+	{
+		return Set.of(IInventoryChangeListenerBehavior.class, ISerializableBehavior.class);
+	} // end behaviorTypes()
+	
 	private final @NotNull IItemHandler m_inventory;
 	private final @NotNegative int m_slot;
 	private final @NotNull Capability<C> m_capability;

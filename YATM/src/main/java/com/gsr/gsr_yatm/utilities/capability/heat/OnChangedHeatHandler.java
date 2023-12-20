@@ -8,15 +8,16 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
-import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
 import net.minecraft.nbt.CompoundTag;
+import net.minecraftforge.common.util.INBTSerializable;
 import oshi.util.tuples.Pair;
 
-public class OnChangedHeatHandler implements IHeatHandler, ISerializableBehavior
+public class OnChangedHeatHandler implements IHeatHandler, INBTSerializable<CompoundTag>
 {
+	
 	private static final String TEMPERATURE_TAG_NAME = "temp";
 	
 	private final @NotNull BiFunction<Integer, Integer, Pair<Integer, Integer>> m_heatEquation;

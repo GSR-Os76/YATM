@@ -3,6 +3,7 @@ package com.gsr.gsr_yatm.block.device.builder.behavior;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Consumer;
+
 import org.apache.commons.compress.utils.Lists;
 import org.jetbrains.annotations.NotNull;
 
@@ -44,15 +45,23 @@ public class BehaviorBuilder<T> implements IBehaviorBuilder<T>
 		return this;
 	} // end asSerializableWithKey()
 	
+	@Override
+	public @NotNull IBehaviorBuilder<T> allDefaults()
+	{
+		this.m_of.behaviorTypes().forEach(this::addAs);
+		return this; 
+	} // end allDefaults()
+	
 	@SuppressWarnings("unchecked")
 	protected <X extends IBehavior> void tryAdd(@NotNull Class<X> type, IBehavior behavior) 
 	{
-		try
-		{
-			X x =(X)this.m_of;
-			this.m_behaviors.add(new BehaviorDefinition<X>(type, x));
-		}
-		catch(ClassCastException e) { }
+//		try
+//		{
+//			YetAnotherTechMod.LOGGER.info("instanceofCheck: " + (behavior instanceof X));
+		// TODO, casting throws no exception when it's invalid, problematically, instanceof as well doesn't work 
+			this.m_behaviors.add(new BehaviorDefinition<X>(type, (X) behavior));
+//		}
+//		catch(ClassCastException e) { }
 	} // end behavior()
 	
 	

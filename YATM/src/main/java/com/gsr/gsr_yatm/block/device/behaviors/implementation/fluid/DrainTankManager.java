@@ -1,10 +1,12 @@
 package com.gsr.gsr_yatm.block.device.behaviors.implementation.fluid;
 
 import java.util.Objects;
+import java.util.Set;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.block.device.behaviors.IBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
@@ -23,6 +25,12 @@ import net.minecraftforge.items.IItemHandler;
 
 public class DrainTankManager implements ISerializableBehavior, ITickableBehavior
 {
+	@Override
+	public @NotNull Set<Class<? extends IBehavior>> behaviorTypes()
+	{
+		return Set.of(ISerializableBehavior.class, ITickableBehavior.class);
+	} // end behaviorTypes()
+	
 	private static final String COUNT_DOWN_TAG_NAME = "drainResultCount";
 	private static final String TRANSFER_INITIAL_TAG_NAME = "drainResultInitial";
 	private static final String STACK_TAG_NAME = "stack";

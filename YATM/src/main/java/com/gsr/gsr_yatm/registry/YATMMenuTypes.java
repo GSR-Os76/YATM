@@ -27,17 +27,17 @@ public class YATMMenuTypes
 	
 	
 	
-	public static final RegistryObject<MenuType<GraftingMenu>> GRAFTING_TABLE = MENU_TYPES.register("grafting_menu", () -> new MenuType<>(GraftingMenu::new, FeatureFlagSet.of()));
+	public static final RegistryObject<MenuType<GraftingMenu>> GRAFTING_TABLE = MENU_TYPES.register("grafting", () -> new MenuType<>(GraftingMenu::new, FeatureFlagSet.of()));
 
-	public static final RegistryObject<MenuType<BioreactorMenu>> BIOREACTOR = MENU_TYPES.register("bioreactor_menu", () -> new MenuType<>(BioreactorMenu::new, FeatureFlagSet.of()));
-	public static final RegistryObject<MenuType<BoilerMenu>> BOILER = MENU_TYPES.register("boiler_menu", () -> new MenuType<>(BoilerMenu::new, FeatureFlagSet.of()));
-	public static final RegistryObject<MenuType<CrucibleMenu>> CRUCIBLE = MENU_TYPES.register("crucible_menu", () -> new MenuType<>(CrucibleMenu::new, FeatureFlagSet.of()));
-	public static final RegistryObject<MenuType<CrystallizerMenu>> CRYSTALLIZER = MENU_TYPES.register("crystallizer_menu", () -> new MenuType<>(CrystallizerMenu::new, FeatureFlagSet.of()));
-	public static final RegistryObject<MenuType<ExtractorMenu>> EXTRACTOR = MENU_TYPES.register("extractor_menu", () -> new MenuType<>(ExtractorMenu::new, FeatureFlagSet.of()));
+	public static final RegistryObject<MenuType<BioreactorMenu>> BIOREACTOR = MENU_TYPES.register("bioreactor", () -> new MenuType<>(BioreactorMenu::new, FeatureFlagSet.of()));
+	public static final RegistryObject<MenuType<BoilerMenu>> BOILER = MENU_TYPES.register("boiler", () -> new MenuType<>(BoilerMenu::new, FeatureFlagSet.of()));
+	public static final RegistryObject<MenuType<CrucibleMenu>> CRUCIBLE = MENU_TYPES.register("crucible", () -> new MenuType<>(CrucibleMenu::new, FeatureFlagSet.of()));
+	public static final RegistryObject<MenuType<CrystallizerMenu>> CRYSTALLIZER = MENU_TYPES.register("crystallizer", () -> new MenuType<>(CrystallizerMenu::new, FeatureFlagSet.of()));
+	public static final RegistryObject<MenuType<ExtractorMenu>> EXTRACTOR = MENU_TYPES.register("extractor", () -> new MenuType<>(ExtractorMenu::new, FeatureFlagSet.of()));
 //	public static final RegistryObject<MenuType<ExtruderMenu>> EXTRUDER = MENU_TYPES.register("extruder_menu", () -> new MenuType<>(ExtruderMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<CurrentFurnaceMenu>> CURRENT_FURNACE = MENU_TYPES.register("current_furnace", () -> new MenuType<>(CurrentFurnaceMenu::new, FeatureFlagSet.of()));
-	public static final RegistryObject<MenuType<GrinderMenu>> GRINDER = MENU_TYPES.register("grinder_menu", () -> new MenuType<>(GrinderMenu::new, FeatureFlagSet.of()));
-	public static final RegistryObject<MenuType<InjectorMenu>> INJECTOR = MENU_TYPES.register("injector_menu", () -> new MenuType<>(InjectorMenu::new, FeatureFlagSet.of()));
+	public static final RegistryObject<MenuType<GrinderMenu>> GRINDER = MENU_TYPES.register("grinder", () -> new MenuType<>(GrinderMenu::new, FeatureFlagSet.of()));
+	public static final RegistryObject<MenuType<InjectorMenu>> INJECTOR = MENU_TYPES.register("injector", () -> new MenuType<>(InjectorMenu::new, FeatureFlagSet.of()));
 	
 	public static final RegistryObject<MenuType<BatterySolarPanelMenu>> BATTERY_SOLAR_PANEL = MENU_TYPES.register("battery_solar_panel", () -> new MenuType<>(BatterySolarPanelMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<SolarPanelMenu>> SOLAR_PANEL = MENU_TYPES.register("solar_panel", () -> new MenuType<>(SolarPanelMenu::new, FeatureFlagSet.of()));
@@ -45,5 +45,5 @@ public class YATMMenuTypes
 	public static final RegistryObject<MenuType<CreativeCurrentSourceMenu>> CREATIVE_CURRENT_SOURCE = MENU_TYPES.register("creative_current_source", () -> new MenuType<>(CreativeCurrentSourceMenu::new, FeatureFlagSet.of()));
 
 	public static final RegistryObject<MenuType<PoweredToolMenu>> POWERED_TOOL = MENU_TYPES.register("powered_tool", () -> new MenuType<>(PoweredToolMenu::new, FeatureFlagSet.of()));
-	
+ 
 } // end class

@@ -44,7 +44,8 @@ public class SoulAdornedNetheriteArmorSet implements IArmorSet
 				}
 				if(random.nextInt(YATMConfigs.SOUL_ADORNED_NETHERITE_WEARER_HEAL_RARITY.get()) == 0) 
 				{
-					event.getEntity().heal(YATMConfigs.SOUL_ADORNED_NETHERITE_WEARER_HEAL_AMOUNT.get());
+					double d = YATMConfigs.SOUL_ADORNED_NETHERITE_WEARER_HEAL_AMOUNT.get();
+					event.getEntity().heal((float)d);
 				}
 			}
 		}

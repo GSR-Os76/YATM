@@ -1,11 +1,13 @@
 package com.gsr.gsr_yatm.block.device.behaviors.implementation.heat;
 
 import java.util.Objects;
+import java.util.Set;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
+import com.gsr.gsr_yatm.block.device.behaviors.IBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
@@ -21,6 +23,12 @@ import net.minecraftforge.items.IItemHandler;
 
 public class HeatingManager implements ISerializableBehavior, ITickableBehavior
 {
+	@Override
+	public @NotNull Set<Class<? extends IBehavior>> behaviorTypes()
+	{
+		return Set.of(ISerializableBehavior.class, ITickableBehavior.class);
+	} // end behaviorTypes()
+	
 	private static final String BURN_TIME_ELAPSED_TAG_NAME = "burnTimeElapsed";
 	private static final String BURN_TIME_INITIAL_TAG_NAME = "burnTimeInitial";
 	private static final String BURN_TEMP_TAG_NAME = "burnTemperature";

@@ -50,19 +50,28 @@ public class LazyBehaviorBuilder<T> implements IBehaviorBuilder<T>
 		return this;
 	} // end asSerializableWithKey()
 	
+	@Override
+	public @NotNull IBehaviorBuilder<T> allDefaults()
+	{
+		this.m_runs.add(() -> this.m_of.get().behaviorTypes().forEach(this::addAs));
+		return this; 
+	} // end allDefaults()
+	
 	@SuppressWarnings("unchecked")
 	protected <X extends IBehavior> void tryAdd(@NotNull Class<X> type, @NotNull Supplier<? extends IBehavior> behavior) 
 	{
 		Objects.requireNonNull(type);
 		Objects.requireNonNull(behavior);
-		this.m_runs.add(() -> {
-			try
-			{
-				X x = (X) behavior.get();
-				this.m_behaviors.add(() -> new BehaviorDefinition<X>(type, x));
-			} 
-			catch (ClassCastException e) { }
-		});
+		this.m_runs.add(() -> 
+//		{
+//			try
+//			{
+				
+				this.m_behaviors.add(() -> new BehaviorDefinition<X>(type, (X) behavior.get()))//;
+//			} 
+//			catch (ClassCastException e) { }
+//		}
+		);
 	} // end behavior()
 	
 	

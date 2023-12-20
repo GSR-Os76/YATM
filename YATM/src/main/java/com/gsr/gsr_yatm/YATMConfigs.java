@@ -17,7 +17,6 @@ public class YATMConfigs
 	
 	private static ForgeConfigSpec.Builder s_builder = new ForgeConfigSpec.Builder();
 	
-	// TODO, change doubles into float where a float is desired to remove unnecessary casting and code
 	// TODO, don't defineInRange when the valid range is all values.
 	
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.push("Plants: ").push("Dwarf Persimmon: ").comment("The average number of boneamealings in which one's successful.").defineInRange("bonemeal_success_rarity", 3, 0, Integer.MAX_VALUE);
@@ -173,10 +172,10 @@ public class YATMConfigs
 	public static final ConfigValue<Integer> FOLIAR_STEEL_ENCHANTMENT_VALUE = YATMConfigs.s_builder.comment("The enchantment value.").define("enchantment_value", 15);
 	public static final ConfigValue<Integer> FOLIAR_STEEL_HELMET_DEFENSE = YATMConfigs.s_builder.comment("The helmet's defense.").define("helmet_defense", 5);
 	public static final ConfigValue<Integer> FOLIAR_STEEL_HELMET_DURABILITY = YATMConfigs.s_builder.comment("The helmet's durability.").define("helmet_durability", 11 * 27);
-	public static final ConfigValue<Float> FOLIAR_STEEL_KNOCKBACK_RESISTANCE = YATMConfigs.s_builder.comment("The knockback resistance.").define("knockback_resistance", 0.1f);
+	public static final ConfigValue<Double> FOLIAR_STEEL_KNOCKBACK_RESISTANCE = YATMConfigs.s_builder.comment("The knockback resistance.").define("knockback_resistance", 0.1d);
 	public static final ConfigValue<Integer> FOLIAR_STEEL_LEGGINGS_DEFENSE = YATMConfigs.s_builder.comment("The legging's defense.").define("leggings_defense", 2);
 	public static final ConfigValue<Integer> FOLIAR_STEEL_LEGGINGS_DURABILITY = YATMConfigs.s_builder.comment("The legging's durability.").define("leggings_durability", 15 * 27);
-	public static final ConfigValue<Float> FOLIAR_STEEL_TOUGHNESS = YATMConfigs.s_builder.comment("The armor's toughness.").define("toughness", 3f);
+	public static final ConfigValue<Double> FOLIAR_STEEL_TOUGHNESS = YATMConfigs.s_builder.comment("The armor's toughness.").define("toughness", 3d);
 	
 	public static final ConfigValue<Integer> SOUL_ADORNED_NETHERITE_ITEM_DAMAGE_REDUCTION = YATMConfigs.s_builder.pop().push("Soul Adorned Netherite: ").comment("The amount of damage removed from the armor piece's itemstack each repair tick.").define("repair_damage_reduction", 1);
 	public static final ConfigValue<Double> SOUL_ADORNED_NETHERITE_NETHERITE_RELATIVE_DEFENSE_FACTOR = YATMConfigs.s_builder.comment("The proportion of defence the armor pieces have relative to the corresponding Netherite armor piece.").defineInRange("netherite_relative_defense_factor", 0.625d, Double.MIN_VALUE, Double.MAX_VALUE);
@@ -185,7 +184,7 @@ public class YATMConfigs
 	public static final ConfigValue<Double> SOUL_ADORNED_NETHERITE_NETHERITE_RELATIVE_KNOCKBACK_RESISTANCE_FACTOR = YATMConfigs.s_builder.comment("The proportion of knockback resistance which the armor has relative to Netherite armor.").defineInRange("netherite_relative_knockback_resistance_factor", 1.0d, Double.MIN_VALUE, Double.MAX_VALUE);
 	public static final ConfigValue<Double> SOUL_ADORNED_NETHERITE_NETHERITE_RELATIVE_TOUGHNESS_FACTOR = YATMConfigs.s_builder.comment("The proportion of toughness the armor has relative to Netherite armor.").defineInRange("netherite_relative_toughness_factor", 1.33d, Double.MIN_VALUE, Double.MAX_VALUE);
 	public static final ConfigValue<Integer> SOUL_ADORNED_NETHERITE_SELF_REPAIR_RARITY = YATMConfigs.s_builder.comment("The number of entity ticks it takes on average for a repair tick to occur.").defineInRange("self_repair_rarity", 120, 1, Integer.MAX_VALUE);
-	public static final ConfigValue<Float> SOUL_ADORNED_NETHERITE_WEARER_HEAL_AMOUNT = YATMConfigs.s_builder.comment("The amount of health returned to the wearer each heal tick.").define("wearer_heal_amount", .002f);
+	public static final ConfigValue<Double> SOUL_ADORNED_NETHERITE_WEARER_HEAL_AMOUNT = YATMConfigs.s_builder.comment("The amount of health returned to the wearer each heal tick.").define("wearer_heal_amount", .002d);
 	public static final ConfigValue<Integer> SOUL_ADORNED_NETHERITE_WEARER_HEAL_RARITY = YATMConfigs.s_builder.comment("The number of entity ticks it takes on average for a heal tick to occur.").defineInRange("wearer_heal_rarity", 1, 1, Integer.MAX_VALUE);
 	
 	

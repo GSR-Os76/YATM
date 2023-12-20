@@ -1,84 +1,85 @@
 package com.gsr.gsr_yatm.block.device.builder;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.HashSet;
 import java.util.Objects;
+import java.util.Set;
+import java.util.function.Consumer;
 import java.util.function.Function;
 
+import org.apache.commons.lang3.NotImplementedException;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import com.google.common.collect.ImmutableList;
 import com.gsr.gsr_yatm.block.device.behaviors.IBehavior;
+import com.gsr.gsr_yatm.block.device.builder.behavior.BehaviorBuilder;
+import com.gsr.gsr_yatm.block.device.builder.behavior.BehaviorDefinition;
+import com.gsr.gsr_yatm.block.device.builder.behavior.IBehaviorBuilder;
+import com.gsr.gsr_yatm.block.device.builder.capability_provider.ICapabilityProviderBuilder;
+import com.gsr.gsr_yatm.block.device.builder.capability_provider.IInvalidatableCapabilityProvider;
+import com.gsr.gsr_yatm.block.device.builder.container_data.ContainerDataBuilder;
+import com.gsr.gsr_yatm.block.device.builder.container_data.IContainerDataBuilder;
+import com.gsr.gsr_yatm.block.device.builder.inventory.IInventoryBuilder;
+import com.gsr.gsr_yatm.block.device.builder.inventory.InventoryBuilder;
+import com.gsr.gsr_yatm.block.device.builder.inventory.InventoryDefinition;
+import com.gsr.gsr_yatm.utilities.capability.CapabilityUtil;
+import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
 
-import net.minecraft.world.level.block.entity.BlockEntityType;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraftforge.items.IItemHandler;
 
-public class DeviceBuilder implements IBehavioralBuilder, IInventoryBuilder
+public class DeviceBuilder<T, I extends IItemHandler> implements IDeviceBuilder<T, I>
 {
-	public final @NotNull BlockEntityType<?> entityType;
+	private final @Nullable T m_parent;
+	private final @NotNull Function<InventoryDefinition, I> m_inventoryAssembler;
+	private final @NotNull Consumer<DeviceDefinition> m_buildReceiver;
 	
-	private final @NotNull List<SlotDefinition> m_slots = new ArrayList<>();
-	private final @NotNull Map<Class<? extends IBehavior>, List<IBehavior>> m_behaviors = new HashMap<>();
+	private I m_inventory;
+	private final @NotNull Set<BehaviorDefinition<?>> m_behaviors = new HashSet<>();
+	private ContainerData m_containerData;
+	private IInvalidatableCapabilityProvider m_capabilityProvider;
 	
 
-
-	public DeviceBuilder(@NotNull BlockEntityType<?> entityType) 
+	
+	public DeviceBuilder(@Nullable T parent, @NotNull Function<InventoryDefinition, I> inventoryAssembler, @NotNull Consumer<DeviceDefinition> buildReceiver) 
 	{
-		this.entityType = Objects.requireNonNull(entityType);
+		this.m_parent = parent;
+		this.m_inventoryAssembler = Objects.requireNonNull(inventoryAssembler);
+		this.m_buildReceiver = Objects.requireNonNull(buildReceiver);
 	} // end constructor
 	
-	public static DeviceBuilder of(@NotNull BlockEntityType<?> entityType) 
-	{
-		return new DeviceBuilder(entityType);
-	} // end of()
 	
-	
-	
-	@SuppressWarnings("unchecked")
-	public <X extends IBehavior> List<X> getBehaviors(@NotNull Class<X> type)
-	{
-		return !this.m_behaviors.containsKey(type) ? List.of() : this.m_behaviors.get(type).stream().map((b) -> (X)b).collect(ImmutableList.toImmutableList());
-	} // end getBehaviors()
 	
 	@Override
-	public <X extends IBehavior> void addBehavior(@NotNull X behavior)
+	public @NotNull IInventoryBuilder<IDeviceBuilder<T, I>> inventory()
 	{
-		if(!this.m_behaviors.containsKey(behavior.getClass())) 
-		{
-			this.m_behaviors.put(behavior.getClass(), new ArrayList<IBehavior>());
-		}
-		this.m_behaviors.get(behavior.getClass()).add(behavior);
-	} // end addBehavior()
+		return new InventoryBuilder<>(this, (i) -> this.m_inventory = this.m_inventoryAssembler.apply(i));
+	} // end inventory()
 	
-	public @NotNull BehaviorBuilder<DeviceBuilder> behavior(@NotNull IBehavior behavior) 
+	@Override
+	public @NotNull IBehaviorBuilder<IDeviceBuilder<T, I>> behavior(@NotNull Function<I, IBehavior> behavior) 
 	{
-		return new BehaviorBuilder<>(this, Objects.requireNonNull(behavior));
+		return new BehaviorBuilder<>(this, behavior.apply(this.m_inventory), (b) -> b.forEach(this.m_behaviors::add));
 	} // end behavior()
 	
-	public @NotNull BehaviorBuilder<DeviceBuilder> behavior(@NotNull Function<IItemHandler, IBehavior> behavior) 
+	@Override
+	public @NotNull IContainerDataBuilder<IDeviceBuilder<T, I>> containerData()
 	{
-		return new BehaviorBuilder<>(this, Objects.requireNonNull(behavior.apply(null)));//TODO, inventory builder proper, this.m_inventory)));
-	} // end behavior()
+		return new ContainerDataBuilder<>(this, (c) -> this.m_containerData = c);
+	} // end containerData()
+	
+	@Override
+	public @NotNull ICapabilityProviderBuilder<IDeviceBuilder<T, I>> capabilityProvider()
+	{
+		throw new NotImplementedException();//TODO return new InvLazyCapabilityProviderBuilder<>(this, () -> this.m_inventory, (c) -> this.m_capabilityProvider = c, (r) -> this.m_capabilityProviderRun = r);
+	} // end capabilityProvider()
 	
 	
 	
 	@Override
-	public @NotNull List<@NotNull SlotDefinition> getSlots()
+	public @Nullable T end() 
 	{
-		return List.copyOf(this.m_slots);
-	} // end getSlots()
-
-	@Override
-	public void addSlot(@NotNull SlotDefinition slot)
-	{
-		this.m_slots.add(slot);
-	} // end addSlot()
-	
-	public @NotNull SlotBuilder<DeviceBuilder> slot() 
-	{
-		return new SlotBuilder<>(this);
-	} // end slot
+		this.m_buildReceiver.accept(new DeviceDefinition(this.m_inventory, this.m_behaviors, this.m_containerData != null ? this.m_containerData : NetworkUtil.EMPTY_CD, this.m_capabilityProvider != null ? this.m_capabilityProvider : CapabilityUtil.EMPTY_PROVIDER));
+		return this.m_parent;
+	} // end()
 	
 } // end class

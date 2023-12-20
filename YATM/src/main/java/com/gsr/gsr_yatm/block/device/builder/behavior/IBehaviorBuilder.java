@@ -12,23 +12,37 @@ import com.gsr.gsr_yatm.block.device.builder.IBuilder;
 
 public interface IBehaviorBuilder<T> extends IBuilder<T>
 {	
-	/** must do nothing if X can't match*/
 	<X extends IBehavior> IBehaviorBuilder<T> addAs(@NotNull Class<X> type);
 
 	@NotNull IBehaviorBuilder<T> asSerializableWithKey(@NotNull String key);
 
+	@NotNull IBehaviorBuilder<T> allDefaults();
 	
 	
-	default @NotNull IBehaviorBuilder<T> tryAllDefault() 
+	
+	default @NotNull IBehaviorBuilder<T> tickable()
 	{
-		// TODO, could replace with a set of types, and allow adding to it
-		this.addAs(ITickableBehavior.class);
-		this.addAs(ISerializableBehavior.class);
-		this.addAs(IChangedListenerBehavior.class);
-		this.addAs(IInventoryChangeListenerBehavior.class);
-		this.addAs(ILoadListenerBehavior.class);
-		
-		return this;
-	} // end tryAllDefault()
+		return this.addAs(ITickableBehavior.class);
+	} // end tickable()
 	
+	default @NotNull IBehaviorBuilder<T> serializable()
+	{
+		return this.addAs(ISerializableBehavior.class);
+	} // end serializable()
+	
+	default @NotNull IBehaviorBuilder<T> changeListener()
+	{
+		return this.addAs(IChangedListenerBehavior.class);
+	} // end changeListener()
+	
+	default @NotNull IBehaviorBuilder<T> invListener()
+	{
+		return this.addAs(IInventoryChangeListenerBehavior.class);
+	} // end invListener()
+	
+	default @NotNull IBehaviorBuilder<T> loadListener()
+	{
+		return this.addAs(ILoadListenerBehavior.class);
+	} // end loadListener()
+
 } // end interface

@@ -1,6 +1,7 @@
 package com.gsr.gsr_yatm.block.device.behaviors.implementation.crafting;
 
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.BiFunction;
 import java.util.function.Supplier;
 
@@ -8,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
+import com.gsr.gsr_yatm.block.device.behaviors.IBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
 import com.gsr.gsr_yatm.recipe.IHeatedRecipe;
@@ -18,6 +20,12 @@ import net.minecraft.world.level.Level;
 
 public class HeatAcceleratedCraftingManager implements ISerializableBehavior, ITickableBehavior
 {
+	@Override
+	public @NotNull Set<Class<? extends IBehavior>> behaviorTypes()
+	{
+		return Set.of(ISerializableBehavior.class, ITickableBehavior.class);
+	} // end behaviorTypes()
+	
 	private static final String TICKS_PERFORMED_TAG_NAME = "ticksPerformed";
 	private static final String TICKS_SCHEDULED_TAG_NAME = "ticksScheduled";
 	

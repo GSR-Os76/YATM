@@ -3,12 +3,14 @@ package com.gsr.gsr_yatm.block.device.behaviors.implementation.crafting;
 import java.util.Enumeration;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.Supplier;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.YATMConfigs;
+import com.gsr.gsr_yatm.block.device.behaviors.IBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.IChangedListenerBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
@@ -28,6 +30,12 @@ import net.minecraft.world.level.Level;
 
 public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, A> implements IChangedListenerBehavior, ISerializableBehavior, ITickableBehavior
 {
+	@Override
+	public @NotNull Set<Class<? extends IBehavior>> behaviorTypes()
+	{
+		return Set.of(IChangedListenerBehavior.class, ISerializableBehavior.class, ITickableBehavior.class);
+	} // end behaviorTypes()
+	
 	public static final String CRAFT_PROGRESS_SPEC_KEY = "craftProgress";
 	
 	public static final String RECIPE_IDENTIFIER_TAG_NAME = "recipe";	
