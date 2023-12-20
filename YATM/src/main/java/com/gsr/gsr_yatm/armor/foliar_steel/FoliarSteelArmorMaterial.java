@@ -64,13 +64,15 @@ public class FoliarSteelArmorMaterial implements ArmorMaterial
 	@Override
 	public float getToughness()
 	{
-		return YATMConfigs.FOLIAR_STEEL_TOUGHNESS.get();
+		double d = YATMConfigs.FOLIAR_STEEL_TOUGHNESS.get();
+		return (float)d;
 	} // end getToughness()
 
 	@Override
 	public float getKnockbackResistance()
 	{
-		return YATMConfigs.FOLIAR_STEEL_KNOCKBACK_RESISTANCE.get();
+		double d = YATMConfigs.FOLIAR_STEEL_KNOCKBACK_RESISTANCE.get();
+		return (float)d;
 	} // end getKnockbackResistance()
 	
 } // end class
