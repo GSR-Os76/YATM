@@ -43,7 +43,7 @@ public class InventoryUtil
 	public static @NotNull NonNullList<ItemStack> toNNList(@NotNull IItemHandler inv)
 	{
 		NonNullList<ItemStack> nl = NonNullList.createWithCapacity(inv.getSlots());
-		IntStream.rangeClosed(0, inv.getSlots()).boxed().map((i) -> inv.getStackInSlot(i).copy()).forEach(nl::add);
+		IntStream.rangeClosed(0, inv.getSlots() - 1).boxed().map((i) -> inv.getStackInSlot(i).copy()).forEach(nl::add);
 		return nl;
 	} // end toNNList()
 	

@@ -16,6 +16,7 @@ import com.gsr.gsr_yatm.block.device.grinder.GrinderScreen;
 import com.gsr.gsr_yatm.block.device.injector.InjectorScreen;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelScreen;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelScreen;
+import com.gsr.gsr_yatm.block.device.still.StillScreen;
 import com.gsr.gsr_yatm.block.device.tank.TankRenderer;
 import com.gsr.gsr_yatm.block.hanging_pot.HangingPotHookRenderer;
 import com.gsr.gsr_yatm.data_generation.YATMBiomeTags;
@@ -138,6 +139,7 @@ public class YATMModEvents
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.CURRENT_FURNACE.get(), CurrentFurnaceScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.GRINDER.get(), GrinderScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.INJECTOR.get(), InjectorScreen::new));
+		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.STILL.get(), StillScreen::new));
 		
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BATTERY_SOLAR_PANEL.get(), BatterySolarPanelScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.SOLAR_PANEL.get(), SolarPanelScreen::new));

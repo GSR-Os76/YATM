@@ -13,6 +13,7 @@ import com.gsr.gsr_yatm.block.device.grinder.GrinderMenu;
 import com.gsr.gsr_yatm.block.device.injector.InjectorMenu;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelMenu;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelMenu;
+import com.gsr.gsr_yatm.block.device.still.StillMenu;
 import com.gsr.gsr_yatm.item.tool.PoweredToolMenu;
 
 import net.minecraft.world.flag.FeatureFlagSet;
@@ -38,7 +39,8 @@ public class YATMMenuTypes
 	public static final RegistryObject<MenuType<CurrentFurnaceMenu>> CURRENT_FURNACE = MENU_TYPES.register("current_furnace", () -> new MenuType<>(CurrentFurnaceMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<GrinderMenu>> GRINDER = MENU_TYPES.register("grinder", () -> new MenuType<>(GrinderMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<InjectorMenu>> INJECTOR = MENU_TYPES.register("injector", () -> new MenuType<>(InjectorMenu::new, FeatureFlagSet.of()));
-	
+	public static final RegistryObject<MenuType<StillMenu>> STILL = MENU_TYPES.register("still_menu", () -> new MenuType<>(StillMenu::new, FeatureFlagSet.of()));
+          
 	public static final RegistryObject<MenuType<BatterySolarPanelMenu>> BATTERY_SOLAR_PANEL = MENU_TYPES.register("battery_solar_panel", () -> new MenuType<>(BatterySolarPanelMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<SolarPanelMenu>> SOLAR_PANEL = MENU_TYPES.register("solar_panel", () -> new MenuType<>(SolarPanelMenu::new, FeatureFlagSet.of()));
 

@@ -1,0 +1,20 @@
+{
+  "type": "gsr_yatm:distilling",
+  "distillate": {
+    "Amount": 70,
+    "FluidName": "gsr_yatm:chorus"
+  },
+  "input": {
+    "type": "gsr_yatm:fluid_stack_ingredient",
+    "stack": {
+      "Amount": 100,
+      "FluidName": "gsr_yatm:chorus_bio"
+    }
+  },
+  "remainder": {
+    "Amount": 30,
+    "FluidName": "gsr_yatm:bio"
+  },
+  "temperature": 923,
+  "time": 180
+}

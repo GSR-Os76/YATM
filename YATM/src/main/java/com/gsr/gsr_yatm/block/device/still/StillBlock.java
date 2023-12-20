@@ -4,8 +4,11 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.block.ShapeBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlock;
+import com.gsr.gsr_yatm.block.device.IDeviceBlockEntity;
+import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
+import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
+import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
@@ -15,7 +18,9 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.item.context.BlockPlaceContext;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.SimpleMenuProvider;
+import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
@@ -24,7 +29,7 @@ import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
-public class StillBlock extends ShapeBlock
+public class StillBlock extends DeviceBlock
 {
 	public static final DirectionProperty FACING = YATMBlockStateProperties.FACING_HORIZONTAL;
 	public static final BooleanProperty LIT = YATMBlockStateProperties.LIT;
@@ -33,7 +38,7 @@ public class StillBlock extends ShapeBlock
 	
 	public StillBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
-		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape));
+		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.STILL::get);
 		this.registerDefaultState(this.defaultBlockState().setValue(StillBlock.FACING, Direction.NORTH).setValue(StillBlock.LIT, false));
 	} // end constructor
 
@@ -42,14 +47,8 @@ public class StillBlock extends ShapeBlock
 	@Override
 	protected void createBlockStateDefinition(@NotNull Builder<Block, BlockState> builder)
 	{
-		super.createBlockStateDefinition(builder.add(StillBlock.LIT, StillBlock.FACING));
+		super.createBlockStateDefinition(builder.add(StillBlock.LIT));
 	} // end createBlockStateDefinition()
-
-	@Override
-	public BlockState getStateForPlacement(@NotNull BlockPlaceContext context)
-	{
-		return this.defaultBlockState().setValue(DeviceBlock.FACING, context.getHorizontalDirection().getOpposite());
-	} // end getStateForPlacement()
 	
 	
 
@@ -94,4 +93,29 @@ public class StillBlock extends ShapeBlock
 		}
 		return super.getLightEmission(state, level, position);
 	} // end getLightEmission()
+ 
+	
+	
+	@Override
+	public @NotNull IDeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
+	{
+		return new StillBlockEntity(position, state);
+	} // end newDeviceBlockEntity()
+	
+
+
+
+	@Override
+	public @NotNull MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position)
+	{
+		StillBlockEntity ebe = (StillBlockEntity)level.getBlockEntity(position);
+		return new SimpleMenuProvider((containerId, playerInv, player) -> new StillMenu(
+				containerId,
+				playerInv, 
+				ContainerLevelAccess.create(level, position), 
+				state.getBlock(), 
+				ebe.getInventory(), 
+				ebe.getDataAccessor()),
+		YATMLanguageProvider.translatableFor(YATMMenuTypes.STILL.get()));
+	}
 } // end class

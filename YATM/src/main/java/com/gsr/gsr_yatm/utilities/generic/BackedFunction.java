@@ -2,14 +2,16 @@ package com.gsr.gsr_yatm.utilities.generic;
 
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.function.Supplier;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-public class BackedFunction<T, R>
+public class BackedFunction<T, R> implements Function<T, R>, Supplier<R>
 {
 	private @Nullable Function<T, R> m_function;
 	private R m_result;
+	
 	
 	
 	public BackedFunction(@NotNull Function<T, R> function) 
@@ -19,6 +21,7 @@ public class BackedFunction<T, R>
 	
 	
 	
+	@Override
 	public R apply(T t) 
 	{
 		if(this.m_function != null) 
@@ -29,6 +32,7 @@ public class BackedFunction<T, R>
 		return this.m_result;
 	} // end apply()
 	
+	@Override
 	public R get() 
 	{
 		if(this.m_function != null) 

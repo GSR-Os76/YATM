@@ -6,7 +6,6 @@ import java.util.Set;
 import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.ImmutableSet;
-import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.device.behaviors.IBehavior;
 import com.gsr.gsr_yatm.block.device.builder.behavior.BehaviorDefinition;
 import com.gsr.gsr_yatm.block.device.builder.capability_provider.IInvalidatableCapabilityProvider;
@@ -29,16 +28,6 @@ public record DeviceDefinition(@NotNull IItemHandler inventory, Set<BehaviorDefi
 	@SuppressWarnings("unchecked")
 	public <X extends IBehavior> @NotNull Set<X> getBehaviors(@NotNull Class<X> type)
 	{
-		YetAnotherTechMod.LOGGER.info("CALLED-------------------------------------------------------------------------------------------------");
-		YetAnotherTechMod.LOGGER.info("CALLED-------------------------------------------------------------------------------------------------");
-		YetAnotherTechMod.LOGGER.info("CALLED-------------------------------------------------------------------------------------------------");
-		YetAnotherTechMod.LOGGER.info("CALLED-------------------------------------------------------------------------------------------------");
-		YetAnotherTechMod.LOGGER.info("CALLED-------------------------------------------------------------------------------------------------");
-		YetAnotherTechMod.LOGGER.info("CALLED-------------------------------------------------------------------------------------------------");
-		YetAnotherTechMod.LOGGER.info("CALLED-------------------------------------------------------------------------------------------------");
-		YetAnotherTechMod.LOGGER.info("CALLED-------------------------------------------------------------------------------------------------");
-		YetAnotherTechMod.LOGGER.info("CALLED-------------------------------------------------------------------------------------------------");
-		// type() + ", type: " + type
-return this.behaviors.stream().filter((b) -> { YetAnotherTechMod.LOGGER.info("wRet: " + (b.type() == type) + ", for: b: " + b.type() + ", type: " + type + ", bC;ass: " + b.behavior().getClass());; return b.type() == type;}).map((b) -> (X)b.behavior()).collect(ImmutableSet.toImmutableSet());
+		return this.behaviors.stream().filter((b) -> b.type() == type).map((b) -> (X)b.behavior()).collect(ImmutableSet.toImmutableSet());
 	} // end getBehaviors()
 } // end record

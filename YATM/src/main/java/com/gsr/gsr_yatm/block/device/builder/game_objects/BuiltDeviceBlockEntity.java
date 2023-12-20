@@ -245,5 +245,6 @@ public abstract class BuiltDeviceBlockEntity extends BlockEntity implements IDev
 		super.reviveCaps();
 		this.m_capabilityProvider.invalidateCaps();
 	} // end reviveCaps()
+	
 
 } // end class

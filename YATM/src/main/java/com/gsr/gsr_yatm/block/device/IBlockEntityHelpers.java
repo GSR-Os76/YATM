@@ -17,7 +17,7 @@ public interface IBlockEntityHelpers
 		return (BlockEntity) this;
 	} // end self
 
-	default @NotNull FluidTank newInTank(@NotNegative int capacity)
+	default @NotNull FluidTank newTank(@NotNegative int capacity)
 	{
 		return new FluidTank(Contract.notNegative(capacity))
 		{

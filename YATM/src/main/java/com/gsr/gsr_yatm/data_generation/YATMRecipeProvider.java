@@ -11,6 +11,7 @@ import com.gsr.gsr_yatm.recipe.bioreaction.BioreactionRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.boiling.BoilingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.crafting.tool_part_exchange.ToolPartExchangeRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.cystallizing.CrystallizingRecipeBuilder;
+import com.gsr.gsr_yatm.recipe.distilling.DistillingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.extracting.ExtractingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.grinding.GrindingRecipeBuilder;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;
@@ -71,6 +72,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addBioreactionRecipes(output);
 		this.addBoilingRecipes(output);
 		this.addCrystallizationRecipes(output);
+		this.addDistillationRecipes(output);
 		this.addExtractionRecipes(output);
 		this.addGrindingRecipes(output);
 		this.addInjectingRecipes(output);
@@ -376,6 +378,13 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addCrystallizationRecipe(output, YATMFluidTags.FORGE_SILICON_OXIDE_KEY, 250, Tags.Items.GEMS_AMETHYST, new ItemStack(Items.AMETHYST_SHARD, 1), false, 36, 300, YetAnotherTechMod.MODID + ":amethyst_shards_from_silicon_oxide_crystallization");
 		this.addCrystallizationRecipe(output, YATMFluidTags.FORGE_SILICON_OXIDE_KEY, 250, Tags.Items.GEMS_QUARTZ, new ItemStack(Items.QUARTZ, 1), false, 36, 300, YetAnotherTechMod.MODID + ":quartz_from_silicon_oxide_crystallization");
 	} // end addSiliconOxideCrystallizations()
+	
+	
+	
+	private void addDistillationRecipes(@NotNull RecipeOutput output) 
+	{
+		new DistillingRecipeBuilder().input(new FluidStackIngredient(new FluidStack(YATMFluids.CHORUS_BIO.get(), 100))).remainder(new FluidStack(YATMFluids.BIO.get(), 30)).distillate(new FluidStack(YATMFluids.CHORUS.get(), 70)).temperature(923).timeInTicks(180).unlockedBy("has_device", has(YATMItems.STEEL_STILL.get())).save(output, YetAnotherTechMod.MODID + ":chorus_from_distillation");;
+	} // end addDistillationRecipes()
 	
 	
 	
