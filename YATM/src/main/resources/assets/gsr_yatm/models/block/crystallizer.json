@@ -1,36 +1,24 @@
 {
 	"credit": "Made with Blockbench",
 	"parent": "minecraft:block/block",
-	"render_type": "minecraft:cutout",
 	"textures": {
-		"0": "gsr_yatm:block/device/crystallizer/cross_north_south",
-		"1": "gsr_yatm:block/device/crystallizer/cross_west_east",
-		"2": "gsr_yatm:block/device/crystallizer/cross_west_east_the_second",
-		"particle": "#0"
+		"front": "gsr_yatm:block/device/crystallizer/front",
+		"sides": "gsr_yatm:block/device/crystallizer/sides",
+		"back": "gsr_yatm:block/device/crystallizer/back",
+		"ends": "gsr_yatm:block/device/crystallizer/ends",
+		"particle": "#front"
 	},
 	"elements": [
 		{
-			"from": [0, 0, 8],
-			"to": [16, 16, 8],
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
 			"faces": {
-				"north": {"uv": [16, 0, 0, 16], "texture": "#1"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#1"}
-			}
-		},
-		{
-			"from": [0, 0, 7],
-			"to": [16, 16, 7],
-			"faces": {
-				"north": {"uv": [16, 0, 0, 16], "texture": "#2"},
-				"south": {"uv": [0, 0, 16, 16], "texture": "#2"}
-			}
-		},
-		{
-			"from": [8, 0, 0],
-			"to": [8, 16, 16],
-			"faces": {
-				"east": {"uv": [16, 0, 0, 16], "texture": "#0"},
-				"west": {"uv": [0, 0, 16, 16], "texture": "#0"}
+				"north": {"uv": [0, 0, 16, 16], "texture": "#front"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#sides"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#back"},
+				"west": {"uv": [16, 0, 0, 16], "texture": "#sides"},
+				"up": {"uv": [0, 0, 16, 16], "texture": "#ends"},
+				"down": {"uv": [0, 0, 16, 16], "texture": "#ends"}
 			}
 		}
 	]
