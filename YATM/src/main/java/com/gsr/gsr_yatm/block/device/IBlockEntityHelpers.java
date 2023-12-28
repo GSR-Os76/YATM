@@ -1,5 +1,7 @@
 package com.gsr.gsr_yatm.block.device;
 
+import java.util.function.BiFunction;
+
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.utilities.capability.heat.OnChangedHeatHandler;
@@ -9,6 +11,7 @@ import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import oshi.util.tuples.Pair;
 
 public interface IBlockEntityHelpers
 {
@@ -55,9 +58,14 @@ public interface IBlockEntityHelpers
 		};
 	} // end newOutTank()
 
-	default @NotNull OnChangedHeatHandler newHeatHandler(@NotNegative int maxTemp)
+	default @NotNull OnChangedHeatHandler newHeatHandler(@NotNegative int temp, @NotNegative int maxTemp)
 	{
-		return new OnChangedHeatHandler(maxTemp, (t) -> this.self().setChanged());
+		return new OnChangedHeatHandler(temp, (t) -> this.self().setChanged(), IDeviceBlockEntity::deviceHeatEquation, maxTemp);
+	} // end newHeatHandler()
+	
+	default @NotNull OnChangedHeatHandler newHeatHandler(@NotNegative int temp, @NotNull BiFunction<Integer, Integer, Pair<Integer, Integer>> heatEquation, @NotNegative int maxTemp)
+	{
+		return new OnChangedHeatHandler(temp, (t) -> this.self().setChanged(), heatEquation, maxTemp);
 	} // end newHeatHandler()
 
 } // end interface

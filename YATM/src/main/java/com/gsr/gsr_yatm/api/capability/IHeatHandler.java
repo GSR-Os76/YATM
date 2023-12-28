@@ -5,6 +5,8 @@ import org.jetbrains.annotations.NotNull;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 import oshi.util.tuples.Pair;
 
@@ -31,6 +33,11 @@ public interface IHeatHandler
 	public static @NotNegative int getAmbientTemp()
 	{
 		return 298;
+	} // end getAmbientTemp()
+	
+	public static @NotNegative int getAmbientTemp(@NotNull Level level, @NotNull BlockPos position)
+	{
+		return IHeatHandler.getAmbientTemp();
 	} // end getAmbientTemp()
 	
 	public static @NotNull Pair<Integer, Integer> levelTemperatures(@NotNegative int temperatureA, @NotNegative int temperatureB)

@@ -39,7 +39,7 @@ public class StillBlock extends DeviceBlock
 	public StillBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
 		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.STILL::get);
-		this.registerDefaultState(this.defaultBlockState().setValue(StillBlock.FACING, Direction.NORTH).setValue(StillBlock.LIT, false));
+		this.registerDefaultState(this.defaultBlockState().setValue(StillBlock.LIT, false));
 	} // end constructor
 
 
@@ -117,5 +117,5 @@ public class StillBlock extends DeviceBlock
 				ebe.getInventory(), 
 				ebe.getDataAccessor()),
 		YATMLanguageProvider.translatableFor(YATMMenuTypes.STILL.get()));
-	}
+	} // end getMenuProvider()
 } // end class

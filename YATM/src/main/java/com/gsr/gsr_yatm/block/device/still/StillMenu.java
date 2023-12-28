@@ -7,6 +7,10 @@ import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.fluid.FluidTankDataReader;
+
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
@@ -16,6 +20,7 @@ import net.minecraft.world.inventory.SimpleContainerData;
 import net.minecraft.world.inventory.Slot;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.block.Block;
+import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
@@ -29,19 +34,18 @@ public class StillMenu extends AbstractContainerMenu
 	
 	private final @NotNull ContainerLevelAccess m_access;
 	private final @NotNull ContainerData m_data;
-	// private final @NotNull FluidTankDataReader m_inputTankReader;
+	private final @NotNull FluidTankDataReader m_distillateTankReader;
+	private final @NotNull FluidTankDataReader m_inputTankReader;
 	private final @Nullable Block m_openingBlockType;
-	//private final @NotNull FluidTankDataReader m_resultTankReader;
+	private final @NotNull FluidTankDataReader m_remainderTankReader;
 	
 
 
-	// client side constructor
 	public StillMenu(int inventoryId, Inventory playerInventory)
 	{
-		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(StillBlockEntity.INVENTORY_SLOT_COUNT), new SimpleContainerData(0));//StillBlockEntity.ACCESS_SPEC.getCount()));
+		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(StillBlockEntity.INVENTORY_SLOT_COUNT), new SimpleContainerData(StillBlockEntity.ACCESS_SPEC.getCount()));
 	} // end client constructor
 
-	// server side constructor
 	public StillMenu(int inventoryId, @NotNull Inventory playerInventory, @NotNull ContainerLevelAccess access, @Nullable Block openingBlockType, @NotNull IItemHandler objInventory, @NotNull ContainerData data)
 	{
 		super(YATMMenuTypes.STILL.get(), inventoryId);
@@ -50,12 +54,11 @@ public class StillMenu extends AbstractContainerMenu
 		this.m_openingBlockType = openingBlockType;
 		this.m_data = Objects.requireNonNull(data);
 
-		// this.m_inputTankReader = new FluidTankDataReader(this.m_data, StillBlockEntity.ACCESS_SPEC.get(StillBlockEntity.INPUT_TANK_DATA_SPEC_KEY));
-		// this.m_resultTankReader = new FluidTankDataReader(this.m_data, StillBlockEntity.ACCESS_SPEC.get(StillBlockEntity.RESULT_TANK_DATA_SPEC_KEY));
+		this.m_inputTankReader = new FluidTankDataReader(this.m_data, StillBlockEntity.ACCESS_SPEC.get(StillBlockEntity.INPUT_TANK_SPEC_KEY));
+		this.m_remainderTankReader = new FluidTankDataReader(this.m_data, StillBlockEntity.ACCESS_SPEC.get(StillBlockEntity.REMAINDER_TANK_SPEC_KEY));
+		this.m_distillateTankReader = new FluidTankDataReader(this.m_data, StillBlockEntity.ACCESS_SPEC.get(StillBlockEntity.DISTILLATE_TANK_SPEC_KEY));
 		
 		int newYDownShift = 36;
-		int yPos = 51 + newYDownShift;
-		
 		this.addSlot(new SlotItemHandler(objInventory, StillBlockEntity.FILL_INPUT_TANK_SLOT, 22, 87));
 		this.addSlot(new SlotItemHandler(objInventory, StillBlockEntity.DRAIN_INPUT_TANK_SLOT, 40, 87));
 		this.addSlot(new SlotItemHandler(objInventory, StillBlockEntity.DRAIN_DISTILLATE_TANK_SLOT, 152, 21));
@@ -160,13 +163,13 @@ public class StillMenu extends AbstractContainerMenu
 	} // end stillValid();
 
 	
-/*
+
 	public float craftProgress() 
 	{
-		return NetworkUtil.getProgess(StillBlockEntity.ACCESS_SPEC.get(CraftingDeviceBlockEntity.CRAFT_PROGRESS_SPEC_KEY), this.m_data);
+		return NetworkUtil.getProgess(StillBlockEntity.ACCESS_SPEC.get(StillBlockEntity.CRAFT_PROGRESS_SPEC_KEY), this.m_data);
 	} // end craftProgress()
 	
-	public float burnProgress() 
+/*	public float burnProgress() 
 	{
 		return NetworkUtil.getRemainingZeroIfNotRunning(StillBlockEntity.ACCESS_SPEC.get(StillBlockEntity.BURN_PROGRESS_SPEC_KEY), this.m_data);
 	} // end heatProgress()
@@ -192,7 +195,7 @@ public class StillMenu extends AbstractContainerMenu
 	} // end drainResultTankTransferProgress()
 	
 	
-	
+	*/
 	public int getTemperature() 
 	{
 		return NetworkUtil.getPropertyValue(StillBlockEntity.ACCESS_SPEC.get(StillBlockEntity.TEMPERATURE_SPEC_KEY), this.m_data);	
@@ -203,29 +206,34 @@ public class StillMenu extends AbstractContainerMenu
 		return NetworkUtil.getPropertyValue(StillBlockEntity.ACCESS_SPEC.get(StillBlockEntity.MAX_TEMPERATURE_SPEC_KEY), this.m_data);
 	} // end maxTemperature()
 	
-	
-	
-	public int getInputTankCapacity() 
+	public @NotNegative int getInputTankCapacity() 
 	{
 		return this.m_inputTankReader.getCapacity();
 	} // end getInputTankCapacity() 
 	
-	public FluidStack getInputTankContents()
+	public @NotNull FluidStack getInputTankContents()
 	{
 		return this.m_inputTankReader.getFluidStack();
 	} // end getInputTankFluid()
 	
-
-
-	
-	public int getOutputTankCapacity() 
+	public @NotNegative int getRemainderTankCapacity() 
 	{
-		return this.m_resultTankReader.getCapacity();
-	} // end getOutputTankCapacity() 
+		return this.m_remainderTankReader.getCapacity();
+	} // end getRemainderTankCapacity() 
 	
-	public FluidStack getOutputTankContents()
+	public @NotNull FluidStack getRemainderTankContents()
 	{
-		return this.m_resultTankReader.getFluidStack();
-	} // end getOutputTankFluid()
-*/
+		return this.m_remainderTankReader.getFluidStack();
+	} // end getRemainderTankContents()
+
+	public @NotNegative int getDistillateTankCapacity() 
+	{
+		return this.m_distillateTankReader.getCapacity();
+	} // end getRemainderTankCapacity() 
+	
+	public @NotNull FluidStack getDistillateTankContents()
+	{
+		return this.m_distillateTankReader.getFluidStack();
+	} // end getRemainderTankContents()
+	
 } // end class

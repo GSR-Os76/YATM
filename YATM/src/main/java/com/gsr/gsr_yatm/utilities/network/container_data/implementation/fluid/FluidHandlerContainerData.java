@@ -25,6 +25,11 @@ public class FluidHandlerContainerData implements ContainerData
 	
 	
 	
+	public FluidHandlerContainerData(@NotNull IFluidHandler fluidHandler) 
+	{
+		this(Objects.requireNonNull(fluidHandler), 0, false);
+	} // end constructor
+	
 	public FluidHandlerContainerData(@NotNull IFluidHandler fluidHandler, int tank) 
 	{
 		this(Objects.requireNonNull(fluidHandler), tank, false);

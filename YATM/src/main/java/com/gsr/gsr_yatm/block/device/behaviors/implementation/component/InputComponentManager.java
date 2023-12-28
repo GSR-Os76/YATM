@@ -11,24 +11,23 @@ import com.gsr.gsr_yatm.api.capability.IComponent;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.behaviors.IBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.IInventoryChangeListenerBehavior;
-import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
+import com.gsr.gsr_yatm.block.device.behaviors.ILoadListenerBehavior;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
 import net.minecraft.core.Direction;
-import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 
-public class InputComponentManager<C> implements ICapabilityProvider, IInventoryChangeListenerBehavior, ISerializableBehavior
+public class InputComponentManager<C> implements ICapabilityProvider, IInventoryChangeListenerBehavior, ILoadListenerBehavior
 {
 	@Override
 	public @NotNull Set<Class<? extends IBehavior>> behaviorTypes()
 	{
-		return Set.of(IInventoryChangeListenerBehavior.class, ISerializableBehavior.class);
+		return Set.of(IInventoryChangeListenerBehavior.class, ILoadListenerBehavior.class);
 	} // end behaviorTypes()
 	
 	private final @NotNull IItemHandler m_inventory;
@@ -62,7 +61,13 @@ public class InputComponentManager<C> implements ICapabilityProvider, IInventory
 	{
 		this.updateComponent();
 	} // end onChange()
-	
+
+	@Override
+	public void onLoad()
+	{
+		this.updateComponent();
+	} // end onLoad()
+
 	
 	
 	public void updateComponent() 
@@ -106,19 +111,5 @@ public class InputComponentManager<C> implements ICapabilityProvider, IInventory
 			this.m_componentAttachment.invalidate();
 		}
 	} // end invalidateCaps()
-
-
-
-	@Override
-	public @Nullable CompoundTag serializeNBT()
-	{
-		return null;
-	} // end serializeNBT()
-
-	@Override
-	public void deserializeNBT(@NotNull CompoundTag nbt)
-	{
-		this.updateComponent();
-	}
 	
 } // end class

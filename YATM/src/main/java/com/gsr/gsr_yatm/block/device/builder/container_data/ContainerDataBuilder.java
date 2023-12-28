@@ -31,15 +31,12 @@ public class ContainerDataBuilder<T> implements IContainerDataBuilder<T>
 	} // end constructor
 	
 
+	
 	@Override
 	public @NotNull IContainerDataBuilder<T> addContainerData(@NotNull ContainerData data)
 	{
 		Objects.requireNonNull(data);
-		if(this.m_propertyHolder.size() > 0) 
-		{
-			this.m_members.add(new PropertyContainerData(this.m_propertyHolder));
-			this.m_members.clear();
-		}
+		this.pushProperties();
 		this.m_members.add(data);
 		return this;
 	} // end addContainerData()
@@ -47,14 +44,27 @@ public class ContainerDataBuilder<T> implements IContainerDataBuilder<T>
 	@Override
 	public @NotNull IContainerDataBuilder<T> addProperty(@NotNull Property<Integer> property)
 	{
-		Objects.requireNonNull(property);
-		this.m_propertyHolder.add(property);
+		;
+		this.m_propertyHolder.add(Objects.requireNonNull(property));
 		return this;
 	} // end addProperty()
+	
+	public @NotNull IContainerDataBuilder<T> pushProperties() 
+	{
+		if(this.m_propertyHolder.size() > 0) 
+		{
+			this.m_members.add(new PropertyContainerData(this.m_propertyHolder));
+			this.m_propertyHolder.clear();
+		}
+		return this;
+	} // end pushProperties()
+	
+	
 	
 	@Override
 	public @Nullable T end()
 	{
+		this.pushProperties();
 		this.m_buildReceiver.accept(new AggregatedContainerData(this.m_members));
 		return this.m_parent;
 	} // end end()

@@ -16,7 +16,6 @@ import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.behaviors.IBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.IInventoryChangeListenerBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ILoadListenerBehavior;
-import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
@@ -37,7 +36,7 @@ public class OutputComponentManager implements ICapabilityProvider, IInventoryCh
 	@Override
 	public @NotNull Set<Class<? extends IBehavior>> behaviorTypes()
 	{
-		return Set.of(IInventoryChangeListenerBehavior.class, ILoadListenerBehavior.class, ISerializableBehavior.class);
+		return Set.of(IInventoryChangeListenerBehavior.class, ILoadListenerBehavior.class, ITickableBehavior.class);
 	} // end behaviorTypes()
 	
 	private final @NotNull IItemHandler m_inventory;

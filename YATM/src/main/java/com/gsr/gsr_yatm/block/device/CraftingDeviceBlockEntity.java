@@ -21,7 +21,7 @@ import net.minecraft.world.level.block.state.BlockState;
 @Deprecated(forRemoval=true)
 public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C, A>, C extends Container, A> extends DeviceBlockEntity 
 {	
-	public static final String CRAFT_PROGRESS_SPEC_KEY = CraftingManager.CRAFT_PROGRESS_SPEC_KEY;
+	public static final String CRAFT_PROGRESS_SPEC_KEY = CraftingManager.SPEC_KEY;
 	
 	public static final String CRAFTING_MANAGER_TAG_NAME = "craftManager";
 	

@@ -2,8 +2,8 @@ package com.gsr.gsr_yatm.block.device.still;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.gui.VerticalStoredFluidWidget;
-import com.gsr.gsr_yatm.gui.HorizontalTemperatureWidget;
-
+import com.gsr.gsr_yatm.gui.VerticalTemperatureWidget;
+import com.gsr.gsr_yatm.gui.HorizontalStoredFluidWidget;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
@@ -15,8 +15,9 @@ public class StillScreen extends AbstractContainerScreen<StillMenu>
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/still.png");
 
 	private VerticalStoredFluidWidget m_inputTankWidget;
-	private VerticalStoredFluidWidget m_resultTankWidget;
-	private HorizontalTemperatureWidget m_temperatureWidget;
+	private HorizontalStoredFluidWidget m_remainderTankWidget;
+	private HorizontalStoredFluidWidget m_distillateTankWidget;
+	private VerticalTemperatureWidget/*ITemperatureWidget*/ m_temperatureWidget;
 
 	
 	
@@ -34,9 +35,10 @@ public class StillScreen extends AbstractContainerScreen<StillMenu>
 	protected void init()
 	{
 		super.init();
-//		this.setInputTankWidget();
-//		this.setResultTankWidget();
-//		this.setTemperatureWidget();
+		this.setInputTankWidget();
+		this.setRemainderTankWidget();
+		this.setDistillateTankWidget();
+		this.setTemperatureWidget();
 	} // end init()
 
 	@Override
@@ -44,25 +46,25 @@ public class StillScreen extends AbstractContainerScreen<StillMenu>
 	{
 		super.renderBackground(graphics, mouseX, mouseY, partialTick);
 		this.renderBg(graphics, partialTick, mouseX, mouseY);
-//		this.updateInputTankWidget();
-//		this.updateResultTankWidget();
-//		this.updateTemperatureWidget();
+		this.updateInputTankWidget();
+		this.updateRemainderTankWidget();
+		this.updateDistillateTankWidget();
+		this.updateTemperatureWidget();
 		super.render(graphics, mouseX, mouseY, partialTick);
 		this.renderTooltip(graphics, mouseX, mouseY);
-		;
 	} // end render()
 
 	@Override
 	protected void renderBg(GuiGraphics graphics, float partialTick, int mouseX, int mouseY)
 	{
 		graphics.blit(StillScreen.BACKGROUND, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
-		/*
+		
 		float bP = this.menu.craftProgress();
 		if(bP > 0) 
 		{
 			graphics.blit(StillScreen.BACKGROUND, this.leftPos + 37, this.topPos + 23, 0, 202, (int)(102f * bP), 16);
 		}
-		
+		/*
 		
 		// burn square is 14x14, at 177 0
 		// draw it to 80 70
@@ -112,7 +114,7 @@ public class StillScreen extends AbstractContainerScreen<StillMenu>
 
 	
 	
-	/*
+	
 	public void updateInputTankWidget() 
 	{
 		// TODO, ideally we could have the menu tell us when that value has changed, rather than constantly having to recheck it to see if it's been set. see if this is possible.
@@ -133,36 +135,61 @@ public class StillScreen extends AbstractContainerScreen<StillMenu>
 		{			
 			this.removeWidget(this.m_inputTankWidget);
 		}
-		this.m_inputTankWidget = new VerticalStoredFluidWidget(this.leftPos + 7, this.topPos + 20, this.menu.getInputTankCapacity(), this.menu.getInputTankContents().getFluid());
+		this.m_inputTankWidget = new VerticalStoredFluidWidget(this.leftPos + 21, this.topPos + 20, this.menu.getInputTankCapacity(), this.menu.getInputTankContents().getFluid());
 		this.addRenderableWidget(this.m_inputTankWidget);
 	} // end setInputTankWidget()
 
 	
 	
-	public void updateResultTankWidget() 
+	public void updateRemainderTankWidget() 
 	{
 		// TODO, ideally we could have the menu tell us when that value has changed, rather than constantly having to recheck it to see if it's been set. see if this is possible.
-		if(this.m_resultTankWidget == null || this.menu.getOutputTankCapacity() != this.m_resultTankWidget.getCapacity()) 
+		if(this.m_remainderTankWidget == null || this.menu.getRemainderTankCapacity() != this.m_remainderTankWidget.getCapacity()) 
 		{
-			this.setResultTankWidget();
+			this.setRemainderTankWidget();
 		}
-		if(this.m_resultTankWidget.getFluid() != this.menu.getOutputTankContents().getFluid()) 
+		if(this.m_remainderTankWidget.getFluid() != this.menu.getRemainderTankContents().getFluid()) 
 		{
-			this.m_resultTankWidget.setStoredFluid(this.menu.getOutputTankContents().getFluid());
+			this.m_remainderTankWidget.setStoredFluid(this.menu.getRemainderTankContents().getFluid());
 		}
-		this.m_resultTankWidget.setStoredAmount(this.menu.getOutputTankContents().getAmount());
-	} // end updateResultTankWidget()
+		this.m_remainderTankWidget.setStoredAmount(this.menu.getRemainderTankContents().getAmount());
+	} // end updateRemainderTankWidget()
 	
-	public void setResultTankWidget() 
+	public void setRemainderTankWidget() 
 	{
-		if(this.m_resultTankWidget != null) 
+		if(this.m_remainderTankWidget != null) 
 		{			
-			this.removeWidget(this.m_resultTankWidget);
+			this.removeWidget(this.m_remainderTankWidget);
 		}
 		
-		this.m_resultTankWidget = new VerticalStoredFluidWidget(this.leftPos + 151, this.topPos + 20, this.menu.getOutputTankCapacity(), this.menu.getOutputTankContents().getFluid());
-		this.addRenderableWidget(this.m_resultTankWidget);
-	} // end setResultTankWidget()
+		this.m_remainderTankWidget = new HorizontalStoredFluidWidget(this.leftPos + 85, this.topPos + 86, this.menu.getRemainderTankCapacity(), this.menu.getRemainderTankContents().getFluid());
+		this.addRenderableWidget(this.m_remainderTankWidget);
+	} // end setRemainderTankWidget()
+	
+	public void updateDistillateTankWidget() 
+	{
+		// TODO, ideally we could have the menu tell us when that value has changed, rather than constantly having to recheck it to see if it's been set. see if this is possible.
+		if(this.m_distillateTankWidget == null || this.menu.getDistillateTankCapacity() != this.m_distillateTankWidget.getCapacity()) 
+		{
+			this.setDistillateTankWidget();
+		}
+		if(this.m_distillateTankWidget.getFluid() != this.menu.getDistillateTankContents().getFluid()) 
+		{
+			this.m_distillateTankWidget.setStoredFluid(this.menu.getDistillateTankContents().getFluid());
+		}
+		this.m_distillateTankWidget.setStoredAmount(this.menu.getDistillateTankContents().getAmount());
+	} // end updateDistillateTankWidget()
+	
+	public void setDistillateTankWidget() 
+	{
+		if(this.m_distillateTankWidget != null) 
+		{			
+			this.removeWidget(this.m_distillateTankWidget);
+		}
+		
+		this.m_distillateTankWidget = new HorizontalStoredFluidWidget(this.leftPos + 85, this.topPos + 20, this.menu.getDistillateTankCapacity(), this.menu.getDistillateTankContents().getFluid());
+		this.addRenderableWidget(this.m_distillateTankWidget);
+	} // end setRemainderTankWidget()
 	
 	
 	
@@ -183,10 +210,9 @@ public class StillScreen extends AbstractContainerScreen<StillMenu>
 		{			
 			this.removeWidget(this.m_temperatureWidget);
 		}
-		
-		this.m_temperatureWidget = new HorizontalTemperatureWidget(this.leftPos + 37, this.topPos + 43, this.menu.getMaxTemperature());
+
+		this.m_temperatureWidget = new VerticalTemperatureWidget(this.leftPos + 7, this.topPos + 20, this.menu.getMaxTemperature());
 		this.addRenderableWidget(this.m_temperatureWidget);
 	} // end setTemperatureWidget()
-	 */
-
+	
 } // end class

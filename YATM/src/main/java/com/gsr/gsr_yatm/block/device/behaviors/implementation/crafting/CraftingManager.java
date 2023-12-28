@@ -36,7 +36,8 @@ public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, 
 		return Set.of(IChangedListenerBehavior.class, ISerializableBehavior.class, ITickableBehavior.class);
 	} // end behaviorTypes()
 	
-	public static final String CRAFT_PROGRESS_SPEC_KEY = "craftProgress";
+	public static final int SLOT_COUNT = PropertyContainerData.LENGTH_PER_PROPERTY * 2;
+	public static final String SPEC_KEY = "craftProgress";
 	
 	public static final String RECIPE_IDENTIFIER_TAG_NAME = "recipe";	
 	public static final String CRAFT_PROGESS_TAG_NAME = "craftProgress";

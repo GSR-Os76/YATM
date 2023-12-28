@@ -1,5 +1,7 @@
 package com.gsr.gsr_yatm.block.device.still;
 
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Consumer;
 
@@ -7,7 +9,10 @@ import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
+import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.SerializableBehavior;
+import com.gsr.gsr_yatm.block.device.behaviors.implementation.component.InputComponentManager;
+import com.gsr.gsr_yatm.block.device.behaviors.implementation.component.OutputComponentManager;
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.crafting.CraftingManager;
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.crafting.HeatAcceleratedCraftingManager;
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.fluid.DrainTankManager;
@@ -21,14 +26,22 @@ import com.gsr.gsr_yatm.recipe.distilling.DistillingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
+import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
 import com.gsr.gsr_yatm.utilities.capability.heat.OnChangedHeatHandler;
 import com.gsr.gsr_yatm.utilities.generic.BackedFunction;
+import com.gsr.gsr_yatm.utilities.generic.Property;
 import com.gsr.gsr_yatm.utilities.generic.tuples.Tuple4;
+import com.gsr.gsr_yatm.utilities.network.container_data.CompositeAccessSpecification;
+import com.gsr.gsr_yatm.utilities.network.container_data.ICompositeAccessSpecification;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.PropertyContainerData;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.fluid.FluidHandlerContainerData;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Container;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
@@ -48,6 +61,35 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 	public static final int FIRST_DRAIN_FLUID_SLOT = StillBlockEntity.DRAIN_INPUT_TANK_SLOT;
 	public static final int LAST_DRAIN_FLUID_SLOT = StillBlockEntity.DRAIN_REMAINDER_TANK_SLOT;
 
+	public static final String INPUT_TANK_SPEC_KEY = "inputTank";
+	public static final String REMAINDER_TANK_SPEC_KEY = "remainderTank";
+	public static final String DISTILLATE_TANK_SPEC_KEY = "distillateTank";
+	public static final String TEMPERATURE_SPEC_KEY = "temperature";
+	public static final String MAX_TEMPERATURE_SPEC_KEY = "maxTemperature";
+	public static final String CRAFT_PROGRESS_SPEC_KEY = "craftProgress";
+	
+	public static final String BURN_PROGRESS_SPEC_KEY = "burnProgress";
+	public static final String FILL_INPUT_PROGRESS_SPEC_KEY = "fillInputProgress";
+	public static final String DRAIN_INPUT_PROGRESS_SPEC_KEY = "drainInputProgress";
+	public static final String DRAIN_RESULT_PROGRESS_SPEC_KEY = "drainResultProgress";
+	
+	public static final ICompositeAccessSpecification ACCESS_SPEC = CompositeAccessSpecification.of(List.of(
+			Map.entry(INPUT_TANK_SPEC_KEY, FluidHandlerContainerData.SLOT_COUNT),
+			Map.entry(REMAINDER_TANK_SPEC_KEY, FluidHandlerContainerData.SLOT_COUNT),
+			Map.entry(DISTILLATE_TANK_SPEC_KEY, FluidHandlerContainerData.SLOT_COUNT),
+			Map.entry(TEMPERATURE_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY),
+			Map.entry(MAX_TEMPERATURE_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY),
+			Map.entry(CRAFT_PROGRESS_SPEC_KEY, CraftingManager.SLOT_COUNT)
+			//			Map.entry(BoilerBlockEntity.BURN_PROGRESS_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY * 2), 
+//			Map.entry(BoilerBlockEntity.TEMPERATURE_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY),
+//			Map.entry(BoilerBlockEntity.MAX_TEMPERATURE_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY),
+//			Map.entry(BoilerBlockEntity.INPUT_TANK_DATA_SPEC_KEY, FluidHandlerContainerData.SLOT_COUNT), 
+//			Map.entry(BoilerBlockEntity.RESULT_TANK_DATA_SPEC_KEY, FluidHandlerContainerData.SLOT_COUNT), 
+//			Map.entry(BoilerBlockEntity.FILL_INPUT_PROGRESS_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY * 2),
+//			Map.entry(BoilerBlockEntity.DRAIN_INPUT_PROGRESS_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY * 2), 
+//			Map.entry(BoilerBlockEntity.DRAIN_RESULT_PROGRESS_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY * 2) 
+			));
+	
 	
 
 	public StillBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
@@ -62,14 +104,20 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 		FluidTank r = this.m_helpers.newTank(YATMConfigs.STILL_REMAINDER_TANK_CAPACITY.get());
 		FluidTank d = this.m_helpers.newTank(YATMConfigs.STILL_DISTILLATE_TANK_CAPACITY.get());
 //		TankWrapper dW = TankWrapper.Builder.of(d).fillValidator((f) -> false).build();
-		OnChangedHeatHandler h = this.m_helpers.newHeatHandler(YATMConfigs.STILL_MAX_TEMPERATURE.get());
+		OnChangedHeatHandler h = this.m_helpers.newHeatHandler(IHeatHandler.getAmbientTemp(this.getLevel(), this.getBlockPos()), YATMConfigs.STILL_MAX_TEMPERATURE.get());
 		
 		BackedFunction<IItemHandler, FillTankManager> inFM = new BackedFunction<>((i) -> new FillTankManager(i, StillBlockEntity.FILL_INPUT_TANK_SLOT, in, YATMConfigs.STILL_FILL_INPUT_MAX_FLUID_TRANSFER_RATE.get()));
 		BackedFunction<IItemHandler, HeatingManager> hM = new BackedFunction<>((i) -> new HeatingManager(i, StillBlockEntity.HEAT_SLOT, h));
+		BackedFunction<IItemHandler, InputComponentManager<IFluidHandler>> inFCM = new BackedFunction<>((i) -> new InputComponentManager<>(i, StillBlockEntity.FILL_INPUT_TANK_SLOT, TankWrapper.Builder.of(in).canDrain(() -> false).build(), ForgeCapabilities.FLUID_HANDLER));
+		BackedFunction<IItemHandler, InputComponentManager<IHeatHandler>> hFCM = new BackedFunction<>((i) -> new InputComponentManager<>(i, StillBlockEntity.HEAT_SLOT, h, YATMCapabilities.HEAT));
+
 		BackedFunction<IItemHandler, CraftingManager<DistillingRecipe, Container, Tuple4<IFluidHandler, IFluidHandler, IFluidHandler, IHeatHandler>>> cM = new BackedFunction<>((i) -> new CraftingManager<>(YATMRecipeTypes.DISTILLING.get(), () -> new Tuple4<IFluidHandler, IFluidHandler, IFluidHandler, IHeatHandler>(in, r, d, h)));
 		BackedFunction<IItemHandler, DrainTankManager> inDM = new BackedFunction<>((i) -> new DrainTankManager(i, StillBlockEntity.DRAIN_INPUT_TANK_SLOT, in, YATMConfigs.STILL_DRAIN_INPUT_MAX_FLUID_TRANSFER_RATE.get()));
 		BackedFunction<IItemHandler, DrainTankManager> dDM = new BackedFunction<>((i) -> new DrainTankManager(i, StillBlockEntity.DRAIN_DISTILLATE_TANK_SLOT, d, YATMConfigs.STILL_DRAIN_DISTILLATE_MAX_FLUID_TRANSFER_RATE.get()));
 		BackedFunction<IItemHandler, DrainTankManager> rDM = new BackedFunction<>((i) -> new DrainTankManager(i, StillBlockEntity.DRAIN_REMAINDER_TANK_SLOT, r, YATMConfigs.STILL_DRAIN_REMAINDER_MAX_FLUID_TRANSFER_RATE.get()));
+		BackedFunction<IItemHandler, OutputComponentManager> inDCM = new BackedFunction<>((i) -> new OutputComponentManager(i, StillBlockEntity.DRAIN_INPUT_TANK_SLOT, () -> List.of(), YATMConfigs.STILL_DRAIN_INPUT_RECHECK_PERIOD.get()));
+		BackedFunction<IItemHandler, OutputComponentManager> rDCM = new BackedFunction<>((i) -> new OutputComponentManager(i, StillBlockEntity.DRAIN_REMAINDER_TANK_SLOT, () -> List.of(Direction.DOWN), YATMConfigs.STILL_DRAIN_REMAINDER_RECHECK_PERIOD.get()));
+		BackedFunction<IItemHandler, OutputComponentManager> dDCM = new BackedFunction<>((i) -> new OutputComponentManager(i, StillBlockEntity.DRAIN_DISTILLATE_TANK_SLOT, () -> List.of(Direction.UP), YATMConfigs.STILL_DRAIN_DISTILLATE_RECHECK_PERIOD.get()));
 		
 		new DeviceBuilder<>((Void)null, this::createInventory, definitionReceiver)
 				.inventory()
@@ -79,23 +127,44 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 				.slot().insertionValidator(SlotUtil::isValidTankDrainSlotInsert).end()
 				.slot().insertionValidator(SlotUtil::isValidHeatingSlotInsert).end()
 				.end()
+				
+				
+				
 				.behavior((i) -> new SerializableBehavior(i, "inventory")).allDefaults().end()
 				.behavior(new SerializableBehavior(() -> in.writeToNBT(new CompoundTag()), in::readFromNBT, "inputTank")).allDefaults().end()
 				.behavior(new SerializableBehavior(() -> d.writeToNBT(new CompoundTag()), d::readFromNBT, "distillateTank")).allDefaults().end()
 				.behavior(new SerializableBehavior(() -> r.writeToNBT(new CompoundTag()), r::readFromNBT, "remainderTank")).allDefaults().end()
 				.behavior(new SerializableBehavior(h, "heatHandler")).allDefaults().end()
+				
 				.behavior(inFM::apply).allDefaults().end()
 				.behavior(hM::apply).allDefaults().end()
-				.behavior(new LitSetterBehavior(h, YATMConfigs.STILL_LIT_ABOVE_TEMPERATURE)).allDefaults().end()
-				// components, in
-				// TODO, crafting may not be working, seemingly is not
+				.behavior(inFCM::apply).allDefaults().end()
+				.behavior(hFCM::apply).allDefaults().end()
+				
+				// TODO, on world reopen crafting that was working has stopped, and that wasn't starts again
 				.behavior(cM::apply).changeListener().serializable().end()
 				.behavior(new HeatAcceleratedCraftingManager(cM.get()::tick, h, cM.get()::getActiveRecipe)).allDefaults().end()
+				
 				.behavior(inDM::apply).tickable().asSerializableWithKey("inputDrainManager").end()
 				.behavior(dDM::apply).tickable().asSerializableWithKey("distillateDrainManager").end()
 				.behavior(rDM::apply).tickable().asSerializableWithKey("remainderDrainManager").end()
-				// components, out
-				// containerData
+				.behavior(inDCM::apply).allDefaults().end()
+				.behavior(rDCM::apply).allDefaults().end()
+				.behavior(dDCM::apply).allDefaults().end()
+				.behavior(new LitSetterBehavior(h, YATMConfigs.STILL_LIT_ABOVE_TEMPERATURE)).allDefaults().end()
+				
+				
+				
+				.containerData()
+				.addContainerData(new FluidHandlerContainerData(in))
+				.addContainerData(new FluidHandlerContainerData(r))
+				.addContainerData(new FluidHandlerContainerData(d))
+				.addProperty(new Property<>(h::getTemperature, (i) -> {}))
+				.addProperty(new Property<>(h::maxTemperature, (i) -> {}))
+				.addContainerData(cM.get().getData())
+				// add on all the other progress markers
+				.end()
+				
 				// capabilities
 				.end();
 	} // end getDeviceDefinition()
