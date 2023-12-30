@@ -1,5 +1,6 @@
 package com.gsr.gsr_yatm.block.device.behaviors.implementation.heat;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -14,9 +15,12 @@ import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.generic.Property;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.PropertyContainerData;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.IItemHandler;
@@ -29,6 +33,7 @@ public class HeatingManager implements ISerializableBehavior, ITickableBehavior
 		return Set.of(ISerializableBehavior.class, ITickableBehavior.class);
 	} // end behaviorTypes()
 	
+	public static final int SLOT_COUNT = PropertyContainerData.LENGTH_PER_PROPERTY * 2;
 	private static final String BURN_TIME_ELAPSED_TAG_NAME = "burnTimeElapsed";
 	private static final String BURN_TIME_INITIAL_TAG_NAME = "burnTimeInitial";
 	private static final String BURN_TEMP_TAG_NAME = "burnTemperature";
@@ -41,6 +46,8 @@ public class HeatingManager implements ISerializableBehavior, ITickableBehavior
 	private @NotNegative int m_burnTime = 0;
 	private @NotNegative int m_burnTemperature;
 	
+	protected final @NotNull ContainerData m_data = new PropertyContainerData(List.of(new Property<>(this::burnProgress, (i) -> {}), new Property<>(this::burnProgress, (i) -> {})));
+	
 	
 	
 	public HeatingManager(@NotNull IItemHandler inventory, @NotNegative int slot, @NotNull IHeatHandler heatHandler) 
@@ -51,6 +58,11 @@ public class HeatingManager implements ISerializableBehavior, ITickableBehavior
 	} // end constructor
 
 
+	
+	public @NotNull ContainerData getData()
+	{
+		return this.m_data;
+	} // end getData()
 	
 	public @NotNegative int burnProgress()
 	{

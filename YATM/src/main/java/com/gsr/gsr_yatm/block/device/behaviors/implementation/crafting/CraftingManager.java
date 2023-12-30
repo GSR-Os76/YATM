@@ -61,7 +61,7 @@ public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, 
 	
 	protected @NotNull Level m_level;
 	
-	protected final @NotNull ContainerData m_craftProgressC = new PropertyContainerData(List.of(new Property<>(() -> this.m_craftCountDown, (i) -> {}), new Property<>(() -> this.m_craftTime, (i) -> {})));
+	protected final @NotNull ContainerData m_data = new PropertyContainerData(List.of(new Property<>(() -> this.m_craftCountDown, (i) -> {}), new Property<>(() -> this.m_craftTime, (i) -> {})));
 	
 	
 	
@@ -73,7 +73,7 @@ public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, 
 
 	public @NotNull ContainerData getData()
 	{
-		return this.m_craftProgressC;
+		return this.m_data;
 	} // end getData()
 	
 	public @NotNull T getActiveRecipe() 

@@ -67,11 +67,12 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 	public static final String TEMPERATURE_SPEC_KEY = "temperature";
 	public static final String MAX_TEMPERATURE_SPEC_KEY = "maxTemperature";
 	public static final String CRAFT_PROGRESS_SPEC_KEY = "craftProgress";
-	
 	public static final String BURN_PROGRESS_SPEC_KEY = "burnProgress";
+	
 	public static final String FILL_INPUT_PROGRESS_SPEC_KEY = "fillInputProgress";
 	public static final String DRAIN_INPUT_PROGRESS_SPEC_KEY = "drainInputProgress";
-	public static final String DRAIN_RESULT_PROGRESS_SPEC_KEY = "drainResultProgress";
+	public static final String DRAIN_REMAINDER_PROGRESS_SPEC_KEY = "drainRemainderProgress";
+	public static final String DRAIN_DISTILLATE_PROGRESS_SPEC_KEY = "drainDistillateProgress";
 	
 	public static final ICompositeAccessSpecification ACCESS_SPEC = CompositeAccessSpecification.of(List.of(
 			Map.entry(INPUT_TANK_SPEC_KEY, FluidHandlerContainerData.SLOT_COUNT),
@@ -79,15 +80,13 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 			Map.entry(DISTILLATE_TANK_SPEC_KEY, FluidHandlerContainerData.SLOT_COUNT),
 			Map.entry(TEMPERATURE_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY),
 			Map.entry(MAX_TEMPERATURE_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY),
-			Map.entry(CRAFT_PROGRESS_SPEC_KEY, CraftingManager.SLOT_COUNT)
-			//			Map.entry(BoilerBlockEntity.BURN_PROGRESS_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY * 2), 
-//			Map.entry(BoilerBlockEntity.TEMPERATURE_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY),
-//			Map.entry(BoilerBlockEntity.MAX_TEMPERATURE_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY),
-//			Map.entry(BoilerBlockEntity.INPUT_TANK_DATA_SPEC_KEY, FluidHandlerContainerData.SLOT_COUNT), 
-//			Map.entry(BoilerBlockEntity.RESULT_TANK_DATA_SPEC_KEY, FluidHandlerContainerData.SLOT_COUNT), 
-//			Map.entry(BoilerBlockEntity.FILL_INPUT_PROGRESS_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY * 2),
-//			Map.entry(BoilerBlockEntity.DRAIN_INPUT_PROGRESS_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY * 2), 
-//			Map.entry(BoilerBlockEntity.DRAIN_RESULT_PROGRESS_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY * 2) 
+			Map.entry(CRAFT_PROGRESS_SPEC_KEY, CraftingManager.SLOT_COUNT),
+			Map.entry(BURN_PROGRESS_SPEC_KEY, HeatingManager.SLOT_COUNT),
+			Map.entry(FILL_INPUT_PROGRESS_SPEC_KEY, FillTankManager.SLOT_COUNT),
+			Map.entry(DRAIN_INPUT_PROGRESS_SPEC_KEY, DrainTankManager.SLOT_COUNT),
+			Map.entry(DRAIN_REMAINDER_PROGRESS_SPEC_KEY, DrainTankManager.SLOT_COUNT),
+			Map.entry(DRAIN_DISTILLATE_PROGRESS_SPEC_KEY, DrainTankManager.SLOT_COUNT)
+			
 			));
 	
 	
@@ -141,7 +140,7 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 				.behavior(inFCM::apply).allDefaults().end()
 				.behavior(hFCM::apply).allDefaults().end()
 				
-				// TODO, on world reopen crafting that was working has stopped, and that wasn't starts again
+				// TODO, on world reopen crafting that was working has stopped, and that wasn't starts again. update, might not be perfectly cyclic
 				.behavior(cM::apply).changeListener().serializable().end()
 				.behavior(new HeatAcceleratedCraftingManager(cM.get()::tick, h, cM.get()::getActiveRecipe)).allDefaults().end()
 				
@@ -162,7 +161,11 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 				.addProperty(new Property<>(h::getTemperature, (i) -> {}))
 				.addProperty(new Property<>(h::maxTemperature, (i) -> {}))
 				.addContainerData(cM.get().getData())
-				// add on all the other progress markers
+				.addContainerData(hM.get().getData())
+				.addContainerData(inFM.get().getData())
+				.addContainerData(inDM.get().getData())
+				.addContainerData(rDM.get().getData())
+				.addContainerData(dDM.get().getData())
 				.end()
 				
 				// capabilities

@@ -1,5 +1,6 @@
 package com.gsr.gsr_yatm.block.device.behaviors.implementation.fluid;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Set;
 
@@ -12,9 +13,12 @@ import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.generic.Property;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.PropertyContainerData;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
@@ -31,6 +35,7 @@ public class DrainTankManager implements ISerializableBehavior, ITickableBehavio
 		return Set.of(ISerializableBehavior.class, ITickableBehavior.class);
 	} // end behaviorTypes()
 	
+	public static final int SLOT_COUNT = PropertyContainerData.LENGTH_PER_PROPERTY * 2;
 	private static final String COUNT_DOWN_TAG_NAME = "drainResultCount";
 	private static final String TRANSFER_INITIAL_TAG_NAME = "drainResultInitial";
 	private static final String STACK_TAG_NAME = "stack";
@@ -45,7 +50,9 @@ public class DrainTankManager implements ISerializableBehavior, ITickableBehavio
 	private @NotNegative int m_initial = 0;	
 	private @Nullable ItemStack m_initialItemStack = null;
 
-
+	protected final @NotNull ContainerData m_data = new PropertyContainerData(List.of(new Property<>(this::countDown, (i) -> {}), new Property<>(this::initial, (i) -> {})));
+	
+	
 	
 	public DrainTankManager(@NotNull IItemHandler inventory, @NotNegative int slot, @NotNull IFluidHandler fluidHandler, @NotNegative int transferRate) 
 	{
@@ -63,6 +70,11 @@ public class DrainTankManager implements ISerializableBehavior, ITickableBehavio
 	} // end constructor
 	
 	
+	
+	public @NotNull ContainerData getData()
+	{
+		return this.m_data;
+	} // end getData()
 	
 	public @NotNegative int countDown() 
 	{

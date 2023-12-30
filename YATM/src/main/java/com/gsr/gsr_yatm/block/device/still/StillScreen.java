@@ -59,57 +59,82 @@ public class StillScreen extends AbstractContainerScreen<StillMenu>
 	{
 		graphics.blit(StillScreen.BACKGROUND, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 		
-		float bP = this.menu.craftProgress();
-		if(bP > 0) 
+		float cP = this.menu.craftProgress();
+		if(cP > 0f) 
 		{
-			graphics.blit(StillScreen.BACKGROUND, this.leftPos + 37, this.topPos + 23, 0, 202, (int)(102f * bP), 16);
+			// main branch to 41 57, s59(scl) 3, from 176 22
+			// down branch visually start at 94 60, 25dep. 
+			// down branch to 90 60, s11 25(scl), from 225 25
+			// up branch arguably of 18dep, start when ready shouldn't cause excess acceleration
+			// up branch to 94 39, from bottom default to 3, s11 21(scl), from 229 4
+			
+			// 81 or 80 path length
+			int pTD = (int)(((float)77/*81*/) * cP);
+			if(pTD > 0) 
+			{
+				int mBTD = Math.min(59, pTD);
+				graphics.blit(StillScreen.BACKGROUND, this.leftPos + 41, this.topPos + 57, 176, 22, mBTD, 3);
+				if(mBTD > 54) 
+				{
+					int dBTD = Math.min(25, pTD - 54);
+					graphics.blit(StillScreen.BACKGROUND, this.leftPos + 90, this.topPos + 60, 225, 25, 11, dBTD);
+				}
+				if(mBTD == 59) 
+				{
+					int uBTD = Math.min(18, pTD - 59);
+					graphics.blit(StillScreen.BACKGROUND, this.leftPos + 94, this.topPos + 39 + (18 - uBTD), 
+							229, 4 + (18 - uBTD),  // from
+							11, 3 + uBTD);
+				}
+			}
 		}
-		/*
+		
 		
 		// burn square is 14x14, at 177 0
 		// draw it to 80 70
-		float burnFractionRemaining = this.menu.burnProgress();
-		if (burnFractionRemaining > 0f)
+		float bP = this.menu.burnProgress();
+		if (bP > 0f)
 		{
-			int renderDownSet = 14 - ((int) (14 * burnFractionRemaining));
-			graphics.blit(StillScreen.BACKGROUND, this.leftPos + 80, (this.topPos + 70) + renderDownSet, 176, 0 + renderDownSet, 14, 14 - renderDownSet);
+			int renderDownSet = 14 - ((int) (14 * bP));
+			graphics.blit(StillScreen.BACKGROUND, this.leftPos + 63, (this.topPos + 70) + renderDownSet, 176, 0 + renderDownSet, 14, 14 - renderDownSet);
 		}
 
 
 
-		// draw input tank fill progress
 		float iFP = this.menu.fillInputTankTransferProgress();
-		if (iFP > 0)
+		if (iFP > 0f)
 		{
-			// 176, 14. 9x8 to 11, 78
-			int renderDownSet = 8 - ((int) (8f * iFP));
-			graphics.blit(StillScreen.BACKGROUND, this.leftPos + 11, (this.topPos + 78) + renderDownSet, 176, 14 + renderDownSet, 9, 8 - renderDownSet);
+			int pTD = (int)(6f * iFP);
+			graphics.blit(StillScreen.BACKGROUND, this.leftPos + 25, (this.topPos + 79) + (6 - pTD), 176, 25 + (6 - pTD), 7, pTD);
 		}
 
-		// draw input tank drain progress
 		float iDP = this.menu.drainInputTankTransferProgress();
-		if (iDP > 0)
+		if (iDP > 0f)
 		{
-			// 186, 14. 9x4 to 27, 65
-			// 189, 18. 8x16 to 29, 69
-			// 25 steps along, first line's 9, next is 16
 			float hP = iDP >= .36f ? 1f : (iDP / .36f);
 			float vP = iDP < .36f ? 0f : (iDP - .36f) / .64f;
 			int renderRightSet = 9 - ((int) (9f * hP));
-			graphics.blit(StillScreen.BACKGROUND, (this.leftPos + 27), this.topPos + 65, 185, 14, 9 - renderRightSet, 4);
+			graphics.blit(StillScreen.BACKGROUND, (this.leftPos + 41), this.topPos + 65, 184, 25, 9 - renderRightSet, 4);
 			int renderDownSet = 16 - ((int) (16f * vP));
-			graphics.blit(StillScreen.BACKGROUND, this.leftPos + 29, this.topPos + 69, 188, 18, 9, 16 - renderDownSet);
+			graphics.blit(StillScreen.BACKGROUND, this.leftPos + 44, this.topPos + 69, 187, 29, 9, 16 - renderDownSet);
 		}
 
-		// draw result tank drain progress
-		float rDP = this.menu.drainResultTankTransferProgress();
-		if (rDP > 0)
+
+		
+		
+		float rDP = this.menu.drainRemainderTankTransferProgress();
+		if (rDP > 0f)
 		{
-			// 197, 14. 9x8 to 155, 78
-			int renderDownSet = 8 - ((int) (8f * rDP));
-			graphics.blit(StillScreen.BACKGROUND, this.leftPos + 155, this.topPos + 78, 197, 14, 9, 8 - renderDownSet);
+			int pTD = (int)(6f * rDP);
+			graphics.blit(StillScreen.BACKGROUND, this.leftPos + 144, this.topPos + 90, 176, 14, pTD, 7);
 		}
-		 */
+		 
+		float dDP = this.menu.drainDistillateTankTransferProgress();
+		if (dDP > 0f)
+		{
+			int pTD = (int)(6f * dDP);
+			graphics.blit(StillScreen.BACKGROUND, this.leftPos + 144, this.topPos + 24, 176, 14, pTD, 7);
+		}
 	} // end renderBg
 
 	

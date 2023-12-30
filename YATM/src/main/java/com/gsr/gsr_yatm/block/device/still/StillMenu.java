@@ -169,7 +169,7 @@ public class StillMenu extends AbstractContainerMenu
 		return NetworkUtil.getProgess(StillBlockEntity.ACCESS_SPEC.get(StillBlockEntity.CRAFT_PROGRESS_SPEC_KEY), this.m_data);
 	} // end craftProgress()
 	
-/*	public float burnProgress() 
+	public float burnProgress() 
 	{
 		return NetworkUtil.getRemainingZeroIfNotRunning(StillBlockEntity.ACCESS_SPEC.get(StillBlockEntity.BURN_PROGRESS_SPEC_KEY), this.m_data);
 	} // end heatProgress()
@@ -187,15 +187,15 @@ public class StillMenu extends AbstractContainerMenu
 	public float drainDistillateTankTransferProgress() 
 	{
 		return NetworkUtil.getProgess(StillBlockEntity.ACCESS_SPEC.get(StillBlockEntity.DRAIN_DISTILLATE_PROGRESS_SPEC_KEY), this.m_data);
-	} // end drainResultTankTransferProgress()
+	} // end drainDistillateTankTransferProgress()
 	
 	public float drainRemainderTankTransferProgress() 
 	{
 		return NetworkUtil.getProgess(StillBlockEntity.ACCESS_SPEC.get(StillBlockEntity.DRAIN_REMAINDER_PROGRESS_SPEC_KEY), this.m_data);
-	} // end drainResultTankTransferProgress()
+	} // end drainRemainderTankTransferProgress()
 	
 	
-	*/
+	
 	public int getTemperature() 
 	{
 		return NetworkUtil.getPropertyValue(StillBlockEntity.ACCESS_SPEC.get(StillBlockEntity.TEMPERATURE_SPEC_KEY), this.m_data);	
