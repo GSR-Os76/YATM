@@ -140,8 +140,6 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 				.behavior(inFCM::apply).allDefaults().end()
 				.behavior(hFCM::apply).allDefaults().end()
 				
-				// TODO, on world reopen crafting that was working has stopped, and that wasn't starts again. update, might not be perfectly cyclic.
-				// does apply seemingly to other device actually after all, thus the nature of the bug may very likely be within the CraftingManager.
 				.behavior(cM::apply).changeListener().serializable().end()
 				.behavior(new HeatAcceleratedCraftingManager(cM.get()::tick, h, cM.get()::getActiveRecipe)).allDefaults().end()
 				

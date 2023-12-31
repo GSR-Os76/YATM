@@ -10,7 +10,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.YATMConfigs;
-import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.device.behaviors.IBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.IChangedListenerBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
@@ -29,6 +28,7 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
+// I HATE MUTABILITY
 public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, A> implements IChangedListenerBehavior, ISerializableBehavior, ITickableBehavior
 {
 	@Override
@@ -81,7 +81,7 @@ public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, 
 	{
 		return this.m_activeRecipe;
 	} // end getActiveRecipe()
-	
+			
 	
 
 	public void onChanged()
@@ -93,9 +93,15 @@ public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, 
 
 	@Override
 	public boolean tick(@NotNull Level level, @NotNull BlockPos position) 
-	{
+	{		
 		boolean changed = false;
 		this.m_level = Objects.requireNonNull(level);
+		if(this.m_waitingForLoad && this.tryLoadRecipe()) 
+		{
+			this.m_waitingForLoad = false;
+		}
+		
+		
 		if(this.m_waitingForLoad || (this.m_activeRecipe != null && !this.m_activeRecipe.canTick(this.m_context.get()))) 
 		{
 			return changed;
@@ -153,18 +159,32 @@ public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, 
 		this.m_craftCountDown = 0;		
 	} // end clearCurrentRecipe()
 	
+	
+	
 	protected void onRecipeLoad() 
 	{
+		if(!this.m_waitingForLoad) 
+		{
+			return;
+		}
 		this.m_waitingForLoad = false;
+		if(!this.tryLoadRecipe()) 
+		{
+			this.clearCurrentRecipe();
+		}
+	} // end onRecipeLoad()
+	
+	protected boolean tryLoadRecipe() 
+	{
 		RecipeHolder<T> rHolder = RecipeUtil.loadRecipe(this.m_activeRecipeIdentifier, this.m_level, this.m_recipeType);
 		if(rHolder == null) 
 		{
-			this.clearCurrentRecipe();
-			return;
+			return false;
 		}
 		this.m_activeRecipe = rHolder.value();
 		this.m_activeRecipeIdentifier = rHolder.id().toString();
-	} // end onRecipeLoad()
+		return true;
+	} // end tryLoadRecipe()
 	
 	
 	
@@ -177,12 +197,10 @@ public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, 
 			tag.putString(CraftingManager.RECIPE_IDENTIFIER_TAG_NAME, this.m_activeRecipeIdentifier);
 			tag.putInt(CraftingManager.CRAFT_PROGESS_TAG_NAME, this.m_craftCountDown);
 			tag.putInt(CraftingManager.CRAFT_TIME_TAG_NAME, this.m_craftTime);
-			YetAnotherTechMod.LOGGER.info("cm save addition not null");
 			return tag;
-			
 		}
 		return null;
-	} // end saveAdditional()
+	} // end serializeNBT()
 	
 	@Override
 	public void deserializeNBT(@NotNull CompoundTag tag)
@@ -197,9 +215,12 @@ public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, 
 				this.clearCurrentRecipe();
 				return;
 			}
-			this.m_waitingForLoad = true;
-			RecipeUtil.addRecipeLoadListener(this::onRecipeLoad);
+			if(this.m_level == null || !this.tryLoadRecipe()) 
+			{
+				this.m_waitingForLoad = true;
+				RecipeUtil.addRecipeLoadListener(this::onRecipeLoad);
+			}
 		}		
-	} // end load()
+	} // end deserializeNBT()
 	
 } // end class
