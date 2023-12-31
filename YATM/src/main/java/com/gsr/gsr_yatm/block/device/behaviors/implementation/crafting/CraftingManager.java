@@ -10,6 +10,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.YATMConfigs;
+import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.device.behaviors.IBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.IChangedListenerBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
@@ -176,7 +177,9 @@ public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, 
 			tag.putString(CraftingManager.RECIPE_IDENTIFIER_TAG_NAME, this.m_activeRecipeIdentifier);
 			tag.putInt(CraftingManager.CRAFT_PROGESS_TAG_NAME, this.m_craftCountDown);
 			tag.putInt(CraftingManager.CRAFT_TIME_TAG_NAME, this.m_craftTime);
+			YetAnotherTechMod.LOGGER.info("cm save addition not null");
 			return tag;
+			
 		}
 		return null;
 	} // end saveAdditional()

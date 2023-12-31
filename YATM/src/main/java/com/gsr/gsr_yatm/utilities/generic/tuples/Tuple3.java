@@ -14,7 +14,7 @@ public record Tuple3<A, B, C>(@Nullable A a, @Nullable B b, @Nullable C c)
 
 	public Tuple3(@Nullable A a, @Nullable B b) 
 	{
-		this(a, b, null);
+		this(a, b, (C)null);
 	} // end constructor
 	
 	public Tuple3(@Nullable A a) 

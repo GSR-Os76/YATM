@@ -46,7 +46,7 @@ public class HeatingManager implements ISerializableBehavior, ITickableBehavior
 	private @NotNegative int m_burnTime = 0;
 	private @NotNegative int m_burnTemperature;
 	
-	protected final @NotNull ContainerData m_data = new PropertyContainerData(List.of(new Property<>(this::burnProgress, (i) -> {}), new Property<>(this::burnProgress, (i) -> {})));
+	protected final @NotNull ContainerData m_data = new PropertyContainerData(List.of(new Property<>(this::burnProgress, (i) -> {}), new Property<>(this::burnTime, (i) -> {})));
 	
 	
 	

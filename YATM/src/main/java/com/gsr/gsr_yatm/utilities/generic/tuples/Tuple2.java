@@ -13,7 +13,7 @@ public record Tuple2<A, B>(@Nullable A a, @Nullable B b)
 
 	public Tuple2(@Nullable A a) 
 	{
-		this(a, null);
+		this(a, (B)null);
 	} // end constructor
 	
 } // end RecipeContext()
