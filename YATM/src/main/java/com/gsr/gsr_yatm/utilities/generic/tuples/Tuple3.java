@@ -11,15 +11,5 @@ public record Tuple3<A, B, C>(@Nullable A a, @Nullable B b, @Nullable C c)
 		this.b = b;
 		this.c = c;
 	} // end constructor
-
-	public Tuple3(@Nullable A a, @Nullable B b) 
-	{
-		this(a, b, (C)null);
-	} // end constructor
-	
-	public Tuple3(@Nullable A a) 
-	{
-		this(a, null);
-	} // end constructor
 	
 } // end RecipeContext()

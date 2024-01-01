@@ -14,24 +14,4 @@ public record Tuple5<A, B, C, D, E>(@Nullable A a, @Nullable B b, @Nullable C c,
 		this.e = e;
 	} // end constructor
 	
-	public Tuple5(@Nullable A a, @Nullable B b, @Nullable C c, @Nullable D d) 
-	{
-		this(a, b, c, d, null);
-	} // end constructor
-	
-	public Tuple5(@Nullable A a, @Nullable B b, @Nullable C c) 
-	{
-		this(a, b, c, null);
-	} // end constructor
-	
-	public Tuple5(@Nullable A a, @Nullable B b) 
-	{
-		this(a, b, null);
-	} // end constructor
-	
-	public Tuple5(@Nullable A a) 
-	{
-		this(a, null);
-	} // end constructor
-	
 } // end RecipeContext()

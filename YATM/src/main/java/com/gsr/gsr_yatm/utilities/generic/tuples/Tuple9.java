@@ -18,44 +18,4 @@ public record Tuple9<A, B, C, D, E, F, G, H, I>(@Nullable A a, @Nullable B b, @N
 		this.i = i;
 	} // end constructor
 	
-	public Tuple9(@Nullable A a, @Nullable B b, @Nullable C c, @Nullable D d, @Nullable E e, @Nullable F f, @Nullable G g, @Nullable H h) 
-	{
-		this(a, b, c, d, e, f, g, h, null);
-	} // end constructor
-	
-	public Tuple9(@Nullable A a, @Nullable B b, @Nullable C c, @Nullable D d, @Nullable E e, @Nullable F f, @Nullable G g) 
-	{
-		this(a, b, c, d, e, f, g, null);
-	} // end constructor
-	
-	public Tuple9(@Nullable A a, @Nullable B b, @Nullable C c, @Nullable D d, @Nullable E e, @Nullable F f) 
-	{
-		this(a, b, c, d, e, f, null);
-	} // end constructor
-	
-	public Tuple9(@Nullable A a, @Nullable B b, @Nullable C c, @Nullable D d, @Nullable E e) 
-	{
-		this(a, b, c, d, e, null);
-	} // end constructor
-	
-	public Tuple9(@Nullable A a, @Nullable B b, @Nullable C c, @Nullable D d) 
-	{
-		this(a, b, c, d, null);
-	} // end constructor
-	
-	public Tuple9(@Nullable A a, @Nullable B b, @Nullable C c) 
-	{
-		this(a, b, c, null);
-	} // end constructor
-	
-	public Tuple9(@Nullable A a, @Nullable B b) 
-	{
-		this(a, b, null);
-	} // end constructor
-	
-	public Tuple9(@Nullable A a) 
-	{
-		this(a, null);
-	} // end constructor
-	
 } // end RecipeContext()

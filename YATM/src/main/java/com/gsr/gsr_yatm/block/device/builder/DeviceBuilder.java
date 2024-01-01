@@ -6,7 +6,6 @@ import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Function;
 
-import org.apache.commons.lang3.NotImplementedException;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -14,6 +13,7 @@ import com.gsr.gsr_yatm.block.device.behaviors.IBehavior;
 import com.gsr.gsr_yatm.block.device.builder.behavior.BehaviorBuilder;
 import com.gsr.gsr_yatm.block.device.builder.behavior.BehaviorDefinition;
 import com.gsr.gsr_yatm.block.device.builder.behavior.IBehaviorBuilder;
+import com.gsr.gsr_yatm.block.device.builder.capability_provider.CapabilityProviderBuilder;
 import com.gsr.gsr_yatm.block.device.builder.capability_provider.ICapabilityProviderBuilder;
 import com.gsr.gsr_yatm.block.device.builder.capability_provider.IInvalidatableCapabilityProvider;
 import com.gsr.gsr_yatm.block.device.builder.container_data.ContainerDataBuilder;
@@ -70,7 +70,7 @@ public class DeviceBuilder<T, I extends IItemHandler> implements IDeviceBuilder<
 	@Override
 	public @NotNull ICapabilityProviderBuilder<IDeviceBuilder<T, I>> capabilityProvider()
 	{
-		throw new NotImplementedException();//TODO return new InvLazyCapabilityProviderBuilder<>(this, () -> this.m_inventory, (c) -> this.m_capabilityProvider = c, (r) -> this.m_capabilityProviderRun = r);
+		return new CapabilityProviderBuilder<>(this, (c) -> this.m_capabilityProvider = c);
 	} // end capabilityProvider()
 	
 	
