@@ -71,7 +71,7 @@ public class CapabilityProviderBuilder<T> implements ICapabilityProviderBuilder<
 	@Override
 	public @Nullable T end()
 	{
-		this.m_buildReceiver.accept(new BuiltCapabilityProvider(this.m_options, this.m_invalidationListeners, this.m_reviveListeners));
+		this.m_buildReceiver.accept(new BuiltCapabilityProvider(this.m_options, this.m_invalidationListeners, this.m_reviveListeners, this.m_last));
 		return this.m_parent;
 	} // end end()
 	
