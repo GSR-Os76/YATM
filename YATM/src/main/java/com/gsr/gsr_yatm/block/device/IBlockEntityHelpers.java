@@ -5,12 +5,14 @@ import java.util.function.BiFunction;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.utilities.capability.heat.OnChangedHeatHandler;
+import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
+import net.minecraftforge.items.IItemHandler;
 import oshi.util.tuples.Pair;
 
 public interface IBlockEntityHelpers
@@ -67,5 +69,10 @@ public interface IBlockEntityHelpers
 	{
 		return new OnChangedHeatHandler(temp, (t) -> this.self().setChanged(), heatEquation, maxTemp);
 	} // end newHeatHandler()
+
+	default @NotNull IItemHandler slot(@NotNull IItemHandler inv, @NotNegative int index) 
+	{
+		return InventoryWrapper.Builder.of(inv).slotTranslationTable(new int[] {Contract.notNegative(index)}).build();
+	} // end slot()
 
 } // end interface

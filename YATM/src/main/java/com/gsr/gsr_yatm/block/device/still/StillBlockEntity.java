@@ -3,10 +3,12 @@ package com.gsr.gsr_yatm.block.device.still;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.Consumer;
-
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
+import com.google.common.collect.ImmutableSet;
 import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
@@ -21,11 +23,14 @@ import com.gsr.gsr_yatm.block.device.behaviors.implementation.heat.HeatingManage
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.heat.LitSetterBehavior;
 import com.gsr.gsr_yatm.block.device.builder.DeviceBuilder;
 import com.gsr.gsr_yatm.block.device.builder.DeviceDefinition;
+import com.gsr.gsr_yatm.block.device.builder.capability_provider.IInvalidatableCapabilityProvider;
 import com.gsr.gsr_yatm.block.device.builder.game_objects.BuiltDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.distilling.DistillingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
+import com.gsr.gsr_yatm.utilities.capability.CapabilityUtil;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
+import com.gsr.gsr_yatm.utilities.capability.fluid.CompoundTank;
 import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
 import com.gsr.gsr_yatm.utilities.capability.heat.OnChangedHeatHandler;
 import com.gsr.gsr_yatm.utilities.generic.BackedFunction;
@@ -41,8 +46,10 @@ import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Container;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
@@ -102,7 +109,7 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 		FluidTank in = this.m_helpers.newTank(YATMConfigs.STILL_INPUT_TANK_CAPACITY.get());
 		FluidTank r = this.m_helpers.newTank(YATMConfigs.STILL_REMAINDER_TANK_CAPACITY.get());
 		FluidTank d = this.m_helpers.newTank(YATMConfigs.STILL_DISTILLATE_TANK_CAPACITY.get());
-//		TankWrapper dW = TankWrapper.Builder.of(d).fillValidator((f) -> false).build();
+		IFluidHandler cT = new CompoundTank(in, r, d);
 		OnChangedHeatHandler h = this.m_helpers.newHeatHandler(IHeatHandler.getAmbientTemp(this.getLevel(), this.getBlockPos()), YATMConfigs.STILL_MAX_TEMPERATURE.get());
 		
 		BackedFunction<IItemHandler, FillTankManager> inFM = new BackedFunction<>((i) -> new FillTankManager(i, StillBlockEntity.FILL_INPUT_TANK_SLOT, in, YATMConfigs.STILL_FILL_INPUT_MAX_FLUID_TRANSFER_RATE.get()));
@@ -118,6 +125,36 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 		BackedFunction<IItemHandler, OutputComponentManager> rDCM = new BackedFunction<>((i) -> new OutputComponentManager(i, StillBlockEntity.DRAIN_REMAINDER_TANK_SLOT, () -> List.of(Direction.DOWN), YATMConfigs.STILL_DRAIN_REMAINDER_RECHECK_PERIOD.get()));
 		BackedFunction<IItemHandler, OutputComponentManager> dDCM = new BackedFunction<>((i) -> new OutputComponentManager(i, StillBlockEntity.DRAIN_DISTILLATE_TANK_SLOT, () -> List.of(Direction.UP), YATMConfigs.STILL_DRAIN_DISTILLATE_RECHECK_PERIOD.get()));
 		
+		BackedFunction<IItemHandler, IItemHandler> inv = new BackedFunction<>((i) -> i);
+				
+		
+		IInvalidatableCapabilityProvider fCP = new IInvalidatableCapabilityProvider()
+		{
+			private @NotNull LazyOptional<IHeatHandler> hL = LazyOptional.of(() -> h);
+			@Override
+			public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side)
+			{
+				if(cap == YATMCapabilities.HEAT) 
+				{
+					this.hL.cast();
+				}
+				return defaultCapabilityProvider.getCapability(cap);
+			} // end getCapability()
+
+			@Override
+			public void invalidateCaps()
+			{
+				hL.invalidate();
+			} // end invalidateCaps()
+
+			@Override
+			public void reviveCaps()
+			{
+				hL = LazyOptional.of(() -> h);
+			} // end reviveCaps()
+			
+		};
+		
 		new DeviceBuilder<>((Void)null, this::createInventory, definitionReceiver)
 				.inventory()
 				.slot().insertionValidator(SlotUtil::isValidTankFillSlotInsert).end()
@@ -127,22 +164,17 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 				.slot().insertionValidator(SlotUtil::isValidHeatingSlotInsert).end()
 				.end()
 				
-				
-				
-				.behavior((i) -> new SerializableBehavior(i, "inventory")).allDefaults().end()
+				.behavior((i) -> { inv.apply(i); return new SerializableBehavior(i, "inventory");}).allDefaults().end()
 				.behavior(new SerializableBehavior(() -> in.writeToNBT(new CompoundTag()), in::readFromNBT, "inputTank")).allDefaults().end()
 				.behavior(new SerializableBehavior(() -> d.writeToNBT(new CompoundTag()), d::readFromNBT, "distillateTank")).allDefaults().end()
 				.behavior(new SerializableBehavior(() -> r.writeToNBT(new CompoundTag()), r::readFromNBT, "remainderTank")).allDefaults().end()
 				.behavior(new SerializableBehavior(h, "heatHandler")).allDefaults().end()
-				
 				.behavior(inFM::apply).allDefaults().end()
 				.behavior(hM::apply).allDefaults().end()
 				.behavior(inFCM::apply).allDefaults().end()
 				.behavior(hFCM::apply).allDefaults().end()
-				
 				.behavior(cM::apply).changeListener().serializable().end()
 				.behavior(new HeatAcceleratedCraftingManager(cM.get()::tick, h, cM.get()::getActiveRecipe)).allDefaults().end()
-				
 				.behavior(inDM::apply).tickable().asSerializableWithKey("inputDrainManager").end()
 				.behavior(dDM::apply).tickable().asSerializableWithKey("distillateDrainManager").end()
 				.behavior(rDM::apply).tickable().asSerializableWithKey("remainderDrainManager").end()
@@ -150,8 +182,6 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 				.behavior(rDCM::apply).allDefaults().end()
 				.behavior(dDCM::apply).allDefaults().end()
 				.behavior(new LitSetterBehavior(h, YATMConfigs.STILL_LIT_ABOVE_TEMPERATURE)).allDefaults().end()
-				
-				
 				
 				.containerData()
 				.addContainerData(new FluidHandlerContainerData(in))
@@ -167,7 +197,27 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 				.addContainerData(dDM.get().getData())
 				.end()
 				
-				// capabilities
+				.capabilityProvider()
+				.onInvalidate(() -> {inFCM.get().invalidateCaps(); hFCM.get().invalidateCaps(); inDCM.get().invalidateCaps(); rDCM.get().invalidateCaps(); dDCM.get().invalidateCaps(); fCP.invalidateCaps();})
+				.onRevive(fCP::reviveCaps)
+				.face((Direction)null)
+				.returnsWhen(ForgeCapabilities.ITEM_HANDLER, inv.get())
+				.elifReturnsWhen(ForgeCapabilities.FLUID_HANDLER, cT)
+				.elifReturnsWhen(YATMCapabilities.HEAT, h).end().end()
+				.face(Direction.UP)
+				.returns(dDCM.get())
+				.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), StillBlockEntity.DRAIN_DISTILLATE_TANK_SLOT)).end().end()
+				.face(() -> Set.of(this.getBlockState().getValue(StillBlock.FACING)))
+				.returns(inFCM.get())
+				.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), StillBlockEntity.FILL_INPUT_TANK_SLOT)).end().end()
+				.face(() -> Direction.Plane.HORIZONTAL.stream().filter((f) -> f != this.getBlockState().getValue(StillBlock.FACING)).collect(ImmutableSet.toImmutableSet())) 
+				.returns(hFCM.get())
+				.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), StillBlockEntity.HEAT_SLOT)).end().end()
+				.face(Direction.DOWN)
+				.returns(rDCM.get())
+				.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), StillBlockEntity.DRAIN_REMAINDER_TANK_SLOT)).end().end()
+				.last(fCP)
+				
 				.end();
 	} // end getDeviceDefinition()
 
