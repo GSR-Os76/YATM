@@ -3,13 +3,13 @@ package com.gsr.gsr_yatm.block.device.still;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.Set;
 import java.util.function.Consumer;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.google.common.collect.ImmutableSet;
 import com.gsr.gsr_yatm.YATMConfigs;
+import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.SerializableBehavior;
@@ -28,13 +28,14 @@ import com.gsr.gsr_yatm.block.device.builder.game_objects.BuiltDeviceBlockEntity
 import com.gsr.gsr_yatm.recipe.distilling.DistillingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
-import com.gsr.gsr_yatm.utilities.capability.CapabilityUtil;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.fluid.CompoundTank;
 import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
 import com.gsr.gsr_yatm.utilities.capability.heat.OnChangedHeatHandler;
 import com.gsr.gsr_yatm.utilities.generic.BackedFunction;
 import com.gsr.gsr_yatm.utilities.generic.Property;
+import com.gsr.gsr_yatm.utilities.generic.SetUtil;
+import com.gsr.gsr_yatm.utilities.generic.tuples.Tuple;
 import com.gsr.gsr_yatm.utilities.generic.tuples.Tuple4;
 import com.gsr.gsr_yatm.utilities.network.container_data.CompositeAccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.container_data.ICompositeAccessSpecification;
@@ -60,8 +61,8 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 	
 	public static final int FILL_INPUT_TANK_SLOT = 0;
 	public static final int DRAIN_INPUT_TANK_SLOT = 1;
-	public static final int DRAIN_DISTILLATE_TANK_SLOT = 2;
 	public static final int DRAIN_REMAINDER_TANK_SLOT = 3;
+	public static final int DRAIN_DISTILLATE_TANK_SLOT = 2;
 	public static final int HEAT_SLOT = 4;
 
 	public static final int LAST_INVENTORY_SLOT = StillBlockEntity.INVENTORY_SLOT_COUNT - 1;
@@ -93,7 +94,6 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 			Map.entry(DRAIN_INPUT_PROGRESS_SPEC_KEY, DrainTankManager.SLOT_COUNT),
 			Map.entry(DRAIN_REMAINDER_PROGRESS_SPEC_KEY, DrainTankManager.SLOT_COUNT),
 			Map.entry(DRAIN_DISTILLATE_PROGRESS_SPEC_KEY, DrainTankManager.SLOT_COUNT)
-			
 			));
 	
 	
@@ -117,7 +117,7 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 		BackedFunction<IItemHandler, InputComponentManager<IFluidHandler>> inFCM = new BackedFunction<>((i) -> new InputComponentManager<>(i, StillBlockEntity.FILL_INPUT_TANK_SLOT, TankWrapper.Builder.of(in).canDrain(() -> false).build(), ForgeCapabilities.FLUID_HANDLER));
 		BackedFunction<IItemHandler, InputComponentManager<IHeatHandler>> hFCM = new BackedFunction<>((i) -> new InputComponentManager<>(i, StillBlockEntity.HEAT_SLOT, h, YATMCapabilities.HEAT));
 
-		BackedFunction<IItemHandler, CraftingManager<DistillingRecipe, Container, Tuple4<IFluidHandler, IFluidHandler, IFluidHandler, IHeatHandler>>> cM = new BackedFunction<>((i) -> new CraftingManager<>(YATMRecipeTypes.DISTILLING.get(), () -> new Tuple4<IFluidHandler, IFluidHandler, IFluidHandler, IHeatHandler>(in, r, d, h)));
+		BackedFunction<IItemHandler, CraftingManager<DistillingRecipe, Container, Tuple4<IFluidHandler, IFluidHandler, IFluidHandler, IHeatHandler>>> cM = new BackedFunction<>((i) -> new CraftingManager<>(YATMRecipeTypes.DISTILLING.get(), () -> Tuple.of(in, r, d, h)));
 		BackedFunction<IItemHandler, DrainTankManager> inDM = new BackedFunction<>((i) -> new DrainTankManager(i, StillBlockEntity.DRAIN_INPUT_TANK_SLOT, in, YATMConfigs.STILL_DRAIN_INPUT_MAX_FLUID_TRANSFER_RATE.get()));
 		BackedFunction<IItemHandler, DrainTankManager> dDM = new BackedFunction<>((i) -> new DrainTankManager(i, StillBlockEntity.DRAIN_DISTILLATE_TANK_SLOT, d, YATMConfigs.STILL_DRAIN_DISTILLATE_MAX_FLUID_TRANSFER_RATE.get()));
 		BackedFunction<IItemHandler, DrainTankManager> rDM = new BackedFunction<>((i) -> new DrainTankManager(i, StillBlockEntity.DRAIN_REMAINDER_TANK_SLOT, r, YATMConfigs.STILL_DRAIN_REMAINDER_MAX_FLUID_TRANSFER_RATE.get()));
@@ -154,7 +154,8 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 			} // end reviveCaps()
 			
 		};
-		
+		YetAnotherTechMod.LOGGER.info("facing on constuct: " + this.getBlockState().getValue(StillBlock.FACING));
+		Direction.Plane.HORIZONTAL.stream().filter((f) -> f != this.getBlockState().getValue(StillBlock.FACING)).forEach((x) -> YetAnotherTechMod.LOGGER.info("other horizontal faces: " + x));
 		new DeviceBuilder<>((Void)null, this::createInventory, definitionReceiver)
 				.inventory()
 				.slot().insertionValidator(SlotUtil::isValidTankFillSlotInsert).end()
@@ -203,23 +204,31 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 				.face((Direction)null)
 				.returnsWhen(ForgeCapabilities.ITEM_HANDLER, inv.get())
 				.elifReturnsWhen(ForgeCapabilities.FLUID_HANDLER, cT)
-				.elifReturnsWhen(YATMCapabilities.HEAT, h).end().end()
-				.face(Direction.UP)
-				.returns(dDCM.get())
-				.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), StillBlockEntity.DRAIN_DISTILLATE_TANK_SLOT)).end().end()
-				.face(() -> Set.of(this.getBlockState().getValue(StillBlock.FACING)))
+				.elifReturnsWhen(YATMCapabilities.HEAT, h).end()
+				// ordered by index
+				// fill input tank
+				.face(() -> SetUtil.of(this.getBlockState().getValue(StillBlock.FACING)))
 				.returns(inFCM.get())
-				.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), StillBlockEntity.FILL_INPUT_TANK_SLOT)).end().end()
-				.face(() -> Direction.Plane.HORIZONTAL.stream().filter((f) -> f != this.getBlockState().getValue(StillBlock.FACING)).collect(ImmutableSet.toImmutableSet())) 
-				.returns(hFCM.get())
-				.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), StillBlockEntity.HEAT_SLOT)).end().end()
+				.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), StillBlockEntity.FILL_INPUT_TANK_SLOT)).end()
+				// drain input tank
+				.face(() -> SetUtil.of())
+				.returns(inDCM.get())
+				.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), StillBlockEntity.DRAIN_INPUT_TANK_SLOT)).end()
+				// drain remainder tank
 				.face(Direction.DOWN)
 				.returns(rDCM.get())
-				.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), StillBlockEntity.DRAIN_REMAINDER_TANK_SLOT)).end().end()
+				.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), StillBlockEntity.DRAIN_REMAINDER_TANK_SLOT)).end()
+				// drain distillate tank
+				.face(Direction.UP)
+				.returns(dDCM.get())
+				.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), StillBlockEntity.DRAIN_DISTILLATE_TANK_SLOT)).end()
+				// heat
+				.face(() -> SetUtil.of(Direction.Plane.HORIZONTAL.stream().filter((f) -> f != this.getBlockState().getValue(StillBlock.FACING)))) 
+				.returns(hFCM.get())
+				.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), StillBlockEntity.HEAT_SLOT)).end()
 				.last(fCP)
 				
 				.end();
 	} // end getDeviceDefinition()
 
-	
 } // end class

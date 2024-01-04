@@ -12,6 +12,6 @@ public interface ICapabilityChainBuilder<T> extends IBuilder<T>
 	// elif based on cap chain
 	@NotNull <C> ICapabilityChainBuilder<T> elifReturnsWhen(@NotNull Capability<C> cap, @NotNull C result);
 	
-	@NotNull <C> ICapabilityProviderChainBuilder<? extends IOptionBuilder<T>> elifReturns(@NotNull ICapabilityProvider result);
+	@NotNull ICapabilityProviderChainBuilder<T> elifReturns(@NotNull ICapabilityProvider result);
 
 } // end interface

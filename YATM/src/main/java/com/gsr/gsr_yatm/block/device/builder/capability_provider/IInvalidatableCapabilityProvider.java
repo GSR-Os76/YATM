@@ -18,6 +18,11 @@ public interface IInvalidatableCapabilityProvider extends ICapabilityProvider
 
 	
 	
+	public static @NotNull IInvalidatableCapabilityProvider of(@NotNull ICapabilityProvider capabilityProvider)
+	{
+		return IInvalidatableCapabilityProvider.of(capabilityProvider::getCapability, () -> {}, () -> {});
+	} // end of()
+	
 	public static @NotNull IInvalidatableCapabilityProvider of(@NotNull BiFunction<@NotNull Capability<?>, @Nullable Direction, @NotNull LazyOptional<?>> getCapability, @NotNull Runnable invalidateCaps, @NotNull Runnable reviveCaps)
 	{
 		return new IInvalidatableCapabilityProvider() 

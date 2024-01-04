@@ -11,7 +11,6 @@ import org.apache.commons.compress.utils.Lists;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.block.device.builder.capability_provider.option.IOption;
 import com.gsr.gsr_yatm.block.device.builder.capability_provider.option.IOptionBuilder;
 import com.gsr.gsr_yatm.block.device.builder.capability_provider.option.OptionBuilder;
 import com.gsr.gsr_yatm.utilities.capability.CapabilityUtil;
@@ -28,7 +27,7 @@ public class CapabilityProviderBuilder<T> implements ICapabilityProviderBuilder<
 	
 	private final @NotNull List<Runnable> m_invalidationListeners = Lists.newArrayList();
 	private final @NotNull List<Runnable> m_reviveListeners = Lists.newArrayList();
-	private final @NotNull List<Tuple2<Predicate<Direction>, IOption>> m_options = Lists.newArrayList();
+	private final @NotNull List<Tuple2<Predicate<Direction>, IInvalidatableCapabilityProvider>> m_options = Lists.newArrayList();
 	private @NotNull ICapabilityProvider m_last = CapabilityUtil.EMPTY_PROVIDER;
 	
 	
@@ -56,9 +55,9 @@ public class CapabilityProviderBuilder<T> implements ICapabilityProviderBuilder<
 	} // end onRevive()
 
 	@Override
-	public @NotNull IOptionBuilder<? extends ICapabilityProviderBuilder<T>> face(@Nullable Supplier<Set<Direction>> face)
+	public @NotNull IOptionBuilder<? extends ICapabilityProviderBuilder<T>> face(@Nullable Supplier<Set<Direction>> faces)
 	{
-		return new OptionBuilder<>(this, (o) -> this.m_options.add(Tuple.of(face.get()::contains, o)));
+		return new OptionBuilder<>(this, (o) -> this.m_options.add(Tuple.of(faces.get()::contains, o)));
 	} // end face()
 
 	@Override

@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.block.device.builder.IBuilder;
 import com.gsr.gsr_yatm.block.device.builder.capability_provider.option.IOptionBuilder;
+import com.gsr.gsr_yatm.utilities.generic.SetUtil;
 
 import net.minecraft.core.Direction;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
@@ -20,12 +21,12 @@ public interface ICapabilityProviderBuilder<T> extends IBuilder<T>
 
 	default @NotNull IOptionBuilder<? extends ICapabilityProviderBuilder<T>> face(@Nullable Direction face)
 	{
-		return this.face(()-> Set.of(face));
+		return this.face(() -> SetUtil.of(face));
 	} // end face()
 	
 //	@NotNull IOptionBuilder<? extends ICapabilityProviderBuilder<T>> face(@Nullable Supplier<Direction> face);
 	
-	@NotNull IOptionBuilder<? extends ICapabilityProviderBuilder<T>> face(@Nullable Supplier<Set<Direction>> face);
+	@NotNull IOptionBuilder<? extends ICapabilityProviderBuilder<T>> face(@Nullable Supplier<Set<Direction>> faces);
 
 	@NotNull T last(@NotNull ICapabilityProvider last);
 	

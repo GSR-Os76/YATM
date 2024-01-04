@@ -229,7 +229,7 @@ public abstract class BuiltDeviceBlockEntity extends BlockEntity implements IDev
 		{
 			return super.getCapability(cap, side);
 		}
-		return this.m_capabilityProvider.getCapability(cap);
+		return this.m_capabilityProvider.getCapability(cap, side);
 	} // end getCapability()
 
 	@Override
