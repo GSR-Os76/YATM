@@ -84,6 +84,7 @@ public class OutputComponentManager implements ICapabilityProvider, IInventoryCh
 	
 	public void updateComponent() 
 	{
+		this.m_needsUpdate = false;
 		if(this.m_component != null) 
 		{
 			this.removeSterileCaps();

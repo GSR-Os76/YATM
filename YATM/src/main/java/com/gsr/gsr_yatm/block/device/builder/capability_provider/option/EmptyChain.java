@@ -2,6 +2,7 @@ package com.gsr.gsr_yatm.block.device.builder.capability_provider.option;
 
 import java.util.List;
 import java.util.Objects;
+
 import org.apache.commons.compress.utils.Lists;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;

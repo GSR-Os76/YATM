@@ -9,7 +9,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.YATMConfigs;
-import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.SerializableBehavior;
@@ -154,8 +153,6 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 			} // end reviveCaps()
 			
 		};
-		YetAnotherTechMod.LOGGER.info("facing on constuct: " + this.getBlockState().getValue(StillBlock.FACING));
-		Direction.Plane.HORIZONTAL.stream().filter((f) -> f != this.getBlockState().getValue(StillBlock.FACING)).forEach((x) -> YetAnotherTechMod.LOGGER.info("other horizontal faces: " + x));
 		new DeviceBuilder<>((Void)null, this::createInventory, definitionReceiver)
 				.inventory()
 				.slot().insertionValidator(SlotUtil::isValidTankFillSlotInsert).end()
@@ -215,6 +212,7 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 				.returns(inDCM.get())
 				.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), StillBlockEntity.DRAIN_INPUT_TANK_SLOT)).end()
 				// drain remainder tank
+				// TODO, channel vines are visually detached most of the time, give or take a frame. only with down
 				.face(Direction.DOWN)
 				.returns(rDCM.get())
 				.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), StillBlockEntity.DRAIN_REMAINDER_TANK_SLOT)).end()

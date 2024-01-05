@@ -9,7 +9,6 @@ import org.jetbrains.annotations.Nullable;
 import com.gsr.gsr_yatm.block.device.builder.capability_provider.IInvalidatableCapabilityProvider;
 
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class OptionBuilder<T> implements IOptionBuilder<T>
 {
@@ -35,7 +34,7 @@ public class OptionBuilder<T> implements IOptionBuilder<T>
 	} // end returnsWhen()
 
 	@Override
-	public <C> @NotNull ICapabilityProviderChainBuilder<T> returns(@NotNull ICapabilityProvider result)
+	public <C> @NotNull ICapabilityProviderChainBuilder<T> returns(@NotNull IInvalidatableCapabilityProvider result)
 	{
 		return new CapabilityProviderChainBuilder<>(this.m_parent, this.m_buildReceiver::accept, result);
 	} // end returns()

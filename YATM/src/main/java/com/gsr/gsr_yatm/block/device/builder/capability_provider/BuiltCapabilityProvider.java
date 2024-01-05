@@ -43,11 +43,7 @@ public class BuiltCapabilityProvider implements IInvalidatableCapabilityProvider
 		{
 			if(o.a().test(side)) 
 			{
-				LazyOptional<T> l = o.b().getCapability(cap, side);
-				if(l != null) 
-				{
-					return l;
-				}
+				return o.b().getCapability(cap, side);
 			}
 		}
 		return this.m_lastly.getCapability(cap, side);
@@ -57,12 +53,14 @@ public class BuiltCapabilityProvider implements IInvalidatableCapabilityProvider
 	public void invalidateCaps()
 	{
 		this.m_onInvalidate.run();
+		this.m_options.forEach((t) -> t.b().invalidateCaps());
 	} // end invalidateCaps()
 
 	@Override
 	public void reviveCaps()
 	{
 		this.m_onRevive.run();
+		this.m_options.forEach((t) -> t.b().reviveCaps());
 	} // end reviveCaps()
 
 } // end class()

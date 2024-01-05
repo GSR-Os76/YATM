@@ -11,7 +11,6 @@ import org.jetbrains.annotations.Nullable;
 import com.gsr.gsr_yatm.block.device.builder.capability_provider.IInvalidatableCapabilityProvider;
 
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class CapabilityProviderChainBuilder<T> implements ICapabilityProviderChainBuilder<T>
 {
@@ -21,10 +20,11 @@ public class CapabilityProviderChainBuilder<T> implements ICapabilityProviderCha
 	
 	
 	
-	public CapabilityProviderChainBuilder(@Nullable T parent, @NotNull Consumer<IInvalidatableCapabilityProvider> buildReceiver, @NotNull ICapabilityProvider result) 
+	public CapabilityProviderChainBuilder(@Nullable T parent, @NotNull Consumer<IInvalidatableCapabilityProvider> buildReceiver, @NotNull IInvalidatableCapabilityProvider result) 
 	{
 		this.m_parent = parent;
 		this.m_buildReceiver = Objects.requireNonNull(buildReceiver);
+		this.m_chain.add(result);
 	} // end constructor
 	
 	

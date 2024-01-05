@@ -8,6 +8,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.google.common.collect.ImmutableList;
+import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.device.IBlockEntityHelpers;
 import com.gsr.gsr_yatm.block.device.IDeviceBlockEntity;
 import com.gsr.gsr_yatm.block.device.behaviors.IChangedListenerBehavior;
@@ -227,6 +228,7 @@ public abstract class BuiltDeviceBlockEntity extends BlockEntity implements IDev
 	{
 		if(this.m_capabilityProvider == CapabilityUtil.EMPTY_PROVIDER) 
 		{
+			YetAnotherTechMod.LOGGER.info("builtDeviceBlockEntity, cp wasn't the empty instance");
 			return super.getCapability(cap, side);
 		}
 		return this.m_capabilityProvider.getCapability(cap, side);
@@ -243,8 +245,7 @@ public abstract class BuiltDeviceBlockEntity extends BlockEntity implements IDev
 	public void reviveCaps()
 	{
 		super.reviveCaps();
-		this.m_capabilityProvider.invalidateCaps();
+		this.m_capabilityProvider.reviveCaps();
 	} // end reviveCaps()
 	
-
 } // end class

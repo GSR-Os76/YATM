@@ -13,7 +13,6 @@ import com.gsr.gsr_yatm.utilities.generic.tuples.Tuple;
 import com.gsr.gsr_yatm.utilities.generic.tuples.Tuple2;
 
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
 public class CapabilityChainBuilder<T> implements ICapabilityChainBuilder<T>
 {
@@ -41,7 +40,7 @@ public class CapabilityChainBuilder<T> implements ICapabilityChainBuilder<T>
 	} // end elifReturnsWhen()
 
 	@Override
-	public @NotNull ICapabilityProviderChainBuilder<T> elifReturns(@NotNull ICapabilityProvider result)
+	public @NotNull ICapabilityProviderChainBuilder<T> elifReturns(@NotNull IInvalidatableCapabilityProvider result)
 	{
 		return new CapabilityProviderChainBuilder<>(this.m_parent, (o) -> this.m_buildReceiver.accept(new CapabiltyChain(this.m_capabilityChain, o)), result);
 	} // end elifReturns()

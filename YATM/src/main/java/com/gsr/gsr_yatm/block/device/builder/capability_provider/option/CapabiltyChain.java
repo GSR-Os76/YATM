@@ -3,6 +3,7 @@ package com.gsr.gsr_yatm.block.device.builder.capability_provider.option;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+
 import org.apache.commons.compress.utils.Lists;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
@@ -48,7 +49,7 @@ public class CapabiltyChain implements IInvalidatableCapabilityProvider
 	{
 		LazyOptional<T> r = this.getLazyOptional(cap);
 		return r.isPresent() || this.m_lastly == null ? r : this.m_lastly.getCapability(cap, side);
-	}
+	} // end getCapability()
 
 	@Override
 	public void invalidateCaps()
@@ -91,9 +92,6 @@ public class CapabiltyChain implements IInvalidatableCapabilityProvider
 			}
 		}
 		return l == null ? LazyOptional.empty() : l.cast();
-	} // end getCapabilty()
+	} // end getLazyOptional()
 
-
-
-	
 } // end class
