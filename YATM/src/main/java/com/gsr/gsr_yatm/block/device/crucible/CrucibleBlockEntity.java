@@ -12,11 +12,12 @@ import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
-import com.gsr.gsr_yatm.block.device.behaviors.DrainTankManager;
-import com.gsr.gsr_yatm.block.device.behaviors.HeatAcceleratedCraftingManager;
-import com.gsr.gsr_yatm.block.device.behaviors.HeatingManager;
-import com.gsr.gsr_yatm.block.device.behaviors.InputComponentManager;
-import com.gsr.gsr_yatm.block.device.behaviors.OutputComponentManager;
+import com.gsr.gsr_yatm.block.device.IDeviceBlockEntity;
+import com.gsr.gsr_yatm.block.device.behaviors.implementation.component.InputComponentManager;
+import com.gsr.gsr_yatm.block.device.behaviors.implementation.component.OutputComponentManager;
+import com.gsr.gsr_yatm.block.device.behaviors.implementation.crafting.HeatAcceleratedCraftingManager;
+import com.gsr.gsr_yatm.block.device.behaviors.implementation.fluid.DrainTankManager;
+import com.gsr.gsr_yatm.block.device.behaviors.implementation.heat.HeatingManager;
 import com.gsr.gsr_yatm.recipe.melting.MeltingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
@@ -25,12 +26,12 @@ import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
 import com.gsr.gsr_yatm.utilities.capability.heat.OnChangedHeatHandler;
 import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
-import com.gsr.gsr_yatm.utilities.generic.Tuple3;
-import com.gsr.gsr_yatm.utilities.network.CompositeAccessSpecification;
-import com.gsr.gsr_yatm.utilities.network.ContainerDataBuilder;
-import com.gsr.gsr_yatm.utilities.network.FluidHandlerContainerData;
-import com.gsr.gsr_yatm.utilities.network.ICompositeAccessSpecification;
-import com.gsr.gsr_yatm.utilities.network.PropertyContainerData;
+import com.gsr.gsr_yatm.utilities.generic.tuples.Tuple3;
+import com.gsr.gsr_yatm.utilities.network.container_data.CompositeAccessSpecification;
+import com.gsr.gsr_yatm.utilities.network.container_data.ContainerDataBuilder;
+import com.gsr.gsr_yatm.utilities.network.container_data.ICompositeAccessSpecification;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.PropertyContainerData;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.fluid.FluidHandlerContainerData;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -76,7 +77,7 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	private final @NotNull IItemHandler m_heatingSlot = InventoryWrapper.Builder.of(this.m_inventory).slotTranslationTable(new int[] {CrucibleBlockEntity.HEAT_SLOT}).build();;
 	private final @NotNull FluidTank m_rawResultTank = new FluidTank(YATMConfigs.CRUCIBLE_RESULT_TANK_CAPACITY.get());
 	private final @NotNull TankWrapper m_resultTank = new TankWrapper(this.m_rawResultTank, this::onFluidContentsChanged);	
-	private final @NotNull OnChangedHeatHandler m_heatHandler = new OnChangedHeatHandler(IHeatHandler.getAmbientTemp(), (i) -> this.setChanged(), DeviceBlockEntity::deviceHeatEquation, YATMConfigs.CRUCIBLE_MAX_TEMPERATURE.get());
+	private final @NotNull OnChangedHeatHandler m_heatHandler = new OnChangedHeatHandler(IHeatHandler.getAmbientTemp(), (i) -> this.setChanged(), IDeviceBlockEntity::deviceHeatEquation, YATMConfigs.CRUCIBLE_MAX_TEMPERATURE.get());
 	
 	// TODO, investigate why the update pattern necessitates this, and fix it
 	private boolean m_updateDrainResultComponentQueued = false;

@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 // 1.20.2	2023-12-14T21:28:43.015674	Recipes
+=======
+<<<<<<< Upstream, based on github/device_builder_system
+// 1.20.2	2023-12-20T10:52:55.7959042	Recipes
+=======
+// 1.20.2	2023-12-14T21:28:43.015674	Recipes
+>>>>>>> 36a86c5 Added the Dwarf Persimmon plant.
+>>>>>>> refs/heads/device_builder_system
 e35a5bce9e689767e4d41d5688355b6297230373 data/gsr_yatm/advancements/recipes/amethyst_shards_from_silicon_oxide_crystallization.json
 9a839a826b718109202df4f4407c9e0bd008939c data/gsr_yatm/advancements/recipes/biofluid_from_poisonous_potato_bioling.json
 9da384f312f1a5490ea89c5df03846f31a106aca data/gsr_yatm/advancements/recipes/building_blocks/rubber_slab_from_shaped_crafting.json
@@ -13,6 +21,7 @@ a892915e6fcd793af1acd3d3f51bbaa24e8ddb42 data/gsr_yatm/advancements/recipes/chor
 2ee270ea1fdd32f609bd86dbb0101642a02c248d data/gsr_yatm/advancements/recipes/chorus_biofluid_from_purpur_pillar_bioling.json
 c1e5c2604a7733f294bcee94be412bef66aaefce data/gsr_yatm/advancements/recipes/chorus_biofluid_from_purpur_slab_bioling.json
 7cb60aac377775c19a6bea64b4f51857bceb5ec2 data/gsr_yatm/advancements/recipes/chorus_biofluid_from_purpur_stairs_bioling.json
+17814273b93a60e3b957581e8a007038598ed28a data/gsr_yatm/advancements/recipes/chorus_from_distillation.json
 35e804b728cfbd8394aba08b7e09e350bb121371 data/gsr_yatm/advancements/recipes/cobblestone_from_chiseled_stone_bricks_grinding.json
 63d1823fdd474a254406fae309173f066c74d8bc data/gsr_yatm/advancements/recipes/cobblestone_from_cracked_stone_bricks_grinding.json
 7bd0a7824e93fc0625f75934c86bafb5177a82df data/gsr_yatm/advancements/recipes/cobblestone_from_infested_stone_grinding.json
@@ -236,6 +245,7 @@ e391442bfb3d41a812d8fcd8d929fd95d45a1271 data/gsr_yatm/recipes/chorus_biofluid_f
 69e00b82a08a166f482b6bcba4e4ee5b42896d73 data/gsr_yatm/recipes/chorus_biofluid_from_purpur_pillar_bioling.json
 613d1f541c0dfeed0df12a16674f29281fd0641e data/gsr_yatm/recipes/chorus_biofluid_from_purpur_slab_bioling.json
 ec322c2dc90b76d6e08f4403576cb32f5173e670 data/gsr_yatm/recipes/chorus_biofluid_from_purpur_stairs_bioling.json
+fceebeccd90d1cd83a6468764dde6051008f04b9 data/gsr_yatm/recipes/chorus_from_distillation.json
 4d5fc52fef4baad9ad0b5d973758c993ecc77515 data/gsr_yatm/recipes/cobblestone_from_chiseled_stone_bricks_grinding.json
 41665197e0fd6c249a61ba2b3e4922b21f21aa73 data/gsr_yatm/recipes/cobblestone_from_cracked_stone_bricks_grinding.json
 69081ae16cbd35a1ac52aef58bf780072f9940cd data/gsr_yatm/recipes/cobblestone_from_infested_stone_grinding.json

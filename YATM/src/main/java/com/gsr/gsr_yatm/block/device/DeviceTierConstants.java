@@ -2,6 +2,7 @@ package com.gsr.gsr_yatm.block.device;
 
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
+@Deprecated(forRemoval=true)
 public record DeviceTierConstants(@NotNegative int maxTemperature, @NotNegative int tankCapacity, @NotNegative int maxFluidTransferRate, @NotNegative int currentCapacity, @NotNegative int maxSafeCurrentTransfer, @NotNegative int maxCurrentTransfer)
 {
 	public static final DeviceTierConstants EMPTY = new DeviceTierConstants(0, 0, 0, 0, 0, 0);

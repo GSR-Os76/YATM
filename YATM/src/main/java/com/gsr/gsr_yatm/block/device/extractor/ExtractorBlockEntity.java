@@ -11,9 +11,9 @@ import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
 import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
-import com.gsr.gsr_yatm.utilities.generic.Tuple3;
-import com.gsr.gsr_yatm.utilities.network.BooleanFlagHandler;
+import com.gsr.gsr_yatm.utilities.generic.tuples.Tuple3;
 import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.BooleanFlagHandler;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;

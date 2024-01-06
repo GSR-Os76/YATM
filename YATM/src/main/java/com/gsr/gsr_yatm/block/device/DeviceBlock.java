@@ -7,6 +7,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.block.ShapeBlock;
+import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
@@ -34,11 +35,11 @@ public abstract class DeviceBlock extends ShapeBlock implements EntityBlock
 {
 	public static final DirectionProperty FACING = YATMBlockStateProperties.FACING_HORIZONTAL;
 	
-	protected final Supplier<BlockEntityType<? extends DeviceBlockEntity>> m_type;
+	protected final Supplier<BlockEntityType<? extends IDeviceBlockEntity>> m_type;
 	
 	
 	
-	public DeviceBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, @NotNull Supplier<BlockEntityType<? extends DeviceBlockEntity>> type)
+	public DeviceBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, @NotNull Supplier<BlockEntityType<? extends IDeviceBlockEntity>> type)
 	{
 		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape));
 		this.registerDefaultState(this.defaultBlockState().setValue(DeviceBlock.FACING, Direction.NORTH));
@@ -61,18 +62,18 @@ public abstract class DeviceBlock extends ShapeBlock implements EntityBlock
 	
 	
 	
-	public abstract @NotNull DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state);
+	public abstract @NotNull IDeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state);
 	
 	@Override
 	public final @NotNull BlockEntity newBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		return this.newDeviceBlockEntity(position, state);
+		return this.newDeviceBlockEntity(position, state).self();
 	} // end newBlockEntity()
 
 	@Override
 	public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState blockState, @NotNull BlockEntityType<T> blockEntityType)
 	{
-		return blockEntityType == this.m_type.get() ? (l, bp, bs, be) -> DeviceBlockEntity.tick(l, bp, bs, (DeviceBlockEntity)be) : null;
+		return blockEntityType == this.m_type.get() ? (l, bp, bs, be) -> IDeviceBlockEntity.tick(l, bp, bs, (IDeviceBlockEntity)be) : null;
 	} // end getTicker()
 
 	
@@ -98,10 +99,9 @@ public abstract class DeviceBlock extends ShapeBlock implements EntityBlock
 	{
 		if(!state.is(toState.getBlock())) 
 		{
-			BlockEntity be = level.getBlockEntity(position);
-			if(be instanceof DeviceBlockEntity dbe && level instanceof ServerLevel) 
+			if(level.getBlockEntity(position) instanceof IDeviceBlockEntity dbe && level instanceof ServerLevel) 
 			{
-				dbe.blockBroken();
+				InventoryUtil.drop(level, position, dbe.getDropInventory());
 			}
 		}
 		super.onRemove(state, level, position, toState, dunno);

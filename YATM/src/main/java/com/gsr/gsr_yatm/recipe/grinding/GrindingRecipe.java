@@ -14,7 +14,7 @@ import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
-import com.gsr.gsr_yatm.utilities.generic.Tuple2;
+import com.gsr.gsr_yatm.utilities.generic.tuples.Tuple2;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.RegistryAccess;

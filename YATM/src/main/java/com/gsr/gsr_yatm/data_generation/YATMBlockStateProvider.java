@@ -136,6 +136,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile EXTRACTOR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/extractor"));
 	public static final ModelFile GRINDER_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/grinder"));
 	public static final ModelFile INJECTOR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/injector"));
+	public static final ModelFile STILL_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/still"));
+	public static final ModelFile STILL_LIT_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/still_lit"));
 	
 	public static final ModelFile SOLAR_PANEL_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/solar_panel"));
 	
@@ -234,6 +236,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addExtractors();
 		this.createFacingBlock(YATMBlocks.STEEL_GRINDER.get(), YATMItems.STEEL_GRINDER.get(), YATMBlockStateProvider.GRINDER_MODEL);
 		this.addInjectors();
+		this.addStills();
 		
 		this.createAllBlock(YATMBlocks.C_U_F_E_I.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/energy_converter/energy_converter"));
 		this.addSolarPanels();		
@@ -687,6 +690,13 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createFacingBlock(YATMBlocks.STEEL_INJECTOR.get(), YATMItems.STEEL_INJECTOR.get(), YATMBlockStateProvider.INJECTOR_MODEL);
 		
 	} // end addInjectors()
+	
+	private void addStills() 
+	{
+		this.createLitFacingBlock(YATMBlocks.STEEL_STILL.get(), YATMItems.STEEL_STILL.get(), YATMBlockStateProvider.STILL_MODEL, YATMBlockStateProvider.STILL_LIT_MODEL);
+		
+	} // end addCrucibles()
+	
 	
 	private void addSolarPanels() 
 	{

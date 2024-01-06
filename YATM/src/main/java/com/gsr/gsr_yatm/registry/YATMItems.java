@@ -233,6 +233,7 @@ public class YATMItems
 //	public static final RegistryObject<BlockItem> STEEL_EXTRUDER = /* generalTabEnqueue */(ITEMS.register("steel_extruder", () -> new BlockItem(YATMBlocks.STEEL_EXTRUDER.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> STEEL_GRINDER = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_grinder", () -> new BlockItem(YATMBlocks.STEEL_GRINDER.get(), new Item.Properties()))));
 	public static final RegistryObject<BlockItem> STEEL_INJECTOR = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_injector", () -> new BlockItem(YATMBlocks.STEEL_INJECTOR.get(), new Item.Properties()))));
+	public static final RegistryObject<BlockItem> STEEL_STILL = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_still", () -> new BlockItem(YATMBlocks.STEEL_STILL.get(), new Item.Properties()))));
 
 	public static final RegistryObject<BlockItem> STEEL_TANK = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_tank", () -> new BlockItem(YATMBlocks.STEEL_TANK.get(), new Item.Properties()))));
 	
@@ -419,7 +420,6 @@ public class YATMItems
 	
 	
 
-	
 	
 	public static void addCompostables() 
 	{	

@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.block.device.behaviors.CraftingManager;
+import com.gsr.gsr_yatm.block.device.behaviors.implementation.crafting.CraftingManager;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
@@ -17,9 +17,11 @@ import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
+/**manually use the CraftingManager behavior*/
+@Deprecated(forRemoval=true)
 public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C, A>, C extends Container, A> extends DeviceBlockEntity 
 {	
-	public static final String CRAFT_PROGRESS_SPEC_KEY = CraftingManager.CRAFT_PROGRESS_SPEC_KEY;
+	public static final String CRAFT_PROGRESS_SPEC_KEY = CraftingManager.SPEC_KEY;
 	
 	public static final String CRAFTING_MANAGER_TAG_NAME = "craftManager";
 	
@@ -42,7 +44,7 @@ public abstract class CraftingDeviceBlockEntity<T extends ITimedRecipe<C, A>, C 
 	public void setChanged()
 	{
 		super.setChanged();
-		this.m_craftingManager.onChanges();
+		this.m_craftingManager.onChanged();
 	} // end setChanged()
 
 

@@ -14,7 +14,7 @@ import com.gsr.gsr_yatm.registry.YATMRecipeSerializers;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
-import com.gsr.gsr_yatm.utilities.generic.Tuple3;
+import com.gsr.gsr_yatm.utilities.generic.tuples.Tuple3;
 import com.gsr.gsr_yatm.utilities.recipe.IngredientUtil;
 
 import net.minecraft.core.RegistryAccess;
@@ -126,7 +126,6 @@ public class CrystallizingRecipe extends RecipeBase<Container> implements ITimed
 		
 	
 		
-	// use canBeUsedOn() instead
 	@Override
 	public boolean matches(Container container, Level level)
 	{

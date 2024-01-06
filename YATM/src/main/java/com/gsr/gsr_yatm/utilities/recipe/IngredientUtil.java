@@ -30,13 +30,14 @@ public class IngredientUtil
 	public static final String CONSUME_SEED_KEY = "consume_seed";
 	public static final String CURRENT_PER_TICK_KEY = "cost";
 	public static final String DIE_KEY = "die";
+	public static final String DISTILLATE_KEY = "distillate";
 	public static final String STACK_KEY = "stack";
 	public static final String GROUP_KEY = "group";
 	public static final String INPUT_KEY = "input";
 	public static final String INPUT_REMAINDER_STACK_KEY = "input_remainder";
 	public static final String NBT_KEY = "nbt";
 	public static final String PART_KEY = "part";
-	public static final String REMAINDER_STACK_KEY = "remainder";
+	public static final String REMAINDER_KEY = "remainder";
 	public static final String RESULT_KEY = "result";
 	public static final String SEED_KEY = "seed";
 	public static final String SUBSTRATE_KEY = "substrate";

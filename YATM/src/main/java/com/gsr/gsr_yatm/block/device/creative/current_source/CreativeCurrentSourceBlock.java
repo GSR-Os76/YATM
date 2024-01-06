@@ -7,10 +7,13 @@ import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.block.ShapeBlock;
 import com.gsr.gsr_yatm.block.device.AttachmentState;
+import com.gsr.gsr_yatm.block.device.DeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
+import com.gsr.gsr_yatm.block.device.IDeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
+import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
@@ -35,7 +38,7 @@ import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class CreativeCurrentSourceBlock extends ShapeBlock implements EntityBlock
+public class CreativeCurrentSourceBlock extends DeviceBlock
 {
 	public static final Map<Direction, EnumProperty<AttachmentState>> ATTACHMENT_STATE_BY_FACE = YATMBlockStateProperties.BRANCHES_BY_DIRECTION;
 	
@@ -43,7 +46,7 @@ public class CreativeCurrentSourceBlock extends ShapeBlock implements EntityBloc
 	
 	public CreativeCurrentSourceBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
-		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape));
+		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.CREATIVE_CURRENT_SOURCE::get);
 
 		BlockState d = this.defaultBlockState();	
 		for(EnumProperty<AttachmentState> p : CreativeCurrentSourceBlock.ATTACHMENT_STATE_BY_FACE.values()) 
@@ -74,53 +77,27 @@ public class CreativeCurrentSourceBlock extends ShapeBlock implements EntityBloc
 //			return InteractionResult.sidedSuccess(level.isClientSide);
 //		}
 
-		if(!level.isClientSide && player instanceof ServerPlayer serverPlayer) 
-		{
-			serverPlayer.openMenu(state.getMenuProvider(level, position));
-		}
-		return InteractionResult.sidedSuccess(level.isClientSide);
+		return super.use(state, level, position, player, hand, hitResult);
 	} // end use()
 	
-	
-	
 	@Override
-	public BlockEntity newBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
+	public @NotNull IDeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
 		return new CreativeCurrentSourceBlockEntity(position, state, Integer.MAX_VALUE);
-	} // end newBlockEntity()
+	} // end newDeviceBlockEntity()
 
 	@Override
-	public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level level, BlockState state, BlockEntityType<T> type)
+	public @NotNull MenuProvider getMenuProvider(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position)
 	{
-		return type == YATMBlockEntityTypes.CREATIVE_CURRENT_SOURCE.get() ? (l, bp, bs, be) -> CreativeCurrentSourceBlockEntity.tick(l, bp, bs, (CreativeCurrentSourceBlockEntity)be) : null;
-	} // end getTicker()
-	
-	@SuppressWarnings("deprecation")
-	@Override
-	public void onRemove(@NotNull BlockState fromState, @NotNull Level level, @NotNull BlockPos blockPos, @NotNull BlockState toState, boolean dunno)
-	{
-		if(!fromState.is(toState.getBlock())) 
-		{
-			BlockEntity be = level.getBlockEntity(blockPos);
-			if(be instanceof DeviceBlockEntity dbe && level instanceof ServerLevel) 
-			{
-				dbe.blockBroken();
-			}
-		}
-		super.onRemove(fromState, level, blockPos, toState, dunno);;
-	} // end onRemove()
-	
-	@Override
-	public MenuProvider getMenuProvider(@NotNull BlockState blockState, @NotNull Level level, @NotNull BlockPos blockPos)
-	{
-		CreativeCurrentSourceBlockEntity blockEntity = (CreativeCurrentSourceBlockEntity) level.getBlockEntity(blockPos);
+		CreativeCurrentSourceBlockEntity blockEntity = (CreativeCurrentSourceBlockEntity) level.getBlockEntity(position);
 		return new SimpleMenuProvider((containerId, playerInventory, player) -> new CreativeCurrentSourceMenu(
 				containerId, 
 				playerInventory, 
-				ContainerLevelAccess.create(level, blockPos), 
-				blockState.getBlock(), 
+				ContainerLevelAccess.create(level, position), 
+				state.getBlock(), 
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
 		YATMLanguageProvider.translatableFor(YATMMenuTypes.CREATIVE_CURRENT_SOURCE.get()));
 	} // end getMenuProvider()
+	
 } // end class

@@ -5,33 +5,31 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
-import oshi.util.tuples.Pair;
 
 // TODO, subclass BasicBlockEntity probably, also probably rename that class
-public abstract class DeviceBlockEntity extends BlockEntity 
+public abstract class DeviceBlockEntity extends BlockEntity implements IDeviceBlockEntity
 {	
 	public static final String SETUP_TAG_NAME = "setup";
 	public static final String INVENTORY_TAG_NAME = "inventory";
 	
-	private static final float AMBIENT_COOLING_FACTOR = .013f;	
-	private static final int MINIMUM_CHANGE_PER_AMBIENT_COOLING = 6;	
+	static final float AMBIENT_COOLING_FACTOR = .013f;	
+	static final int MINIMUM_CHANGE_PER_AMBIENT_COOLING = 6;	
 	
 	
 	
@@ -93,40 +91,11 @@ public abstract class DeviceBlockEntity extends BlockEntity
 	
 	
 	
-	public static void tick(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state, @NotNull DeviceBlockEntity blockEntity)
+	@Override
+	public @NotNull NonNullList<ItemStack> getDropInventory() 
 	{
-		if (level.isClientSide)
-		{
-			blockEntity.clientTick(level, position, state);
-		}
-		else
-		{
-			blockEntity.serverTick(level, position, state);
-		}
-	} // end tick()
-
-	public void clientTick(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state)
-	{
-		
-	} // end clientTick()
-	
-	public void serverTick(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state)
-	{
-
-	} // end serverTick()
-	
-	
-	
-	
-	protected @NotNull IItemHandler getDropInventory() 
-	{
-		return this.m_rawInventory;
+		return InventoryUtil.toNNList(this.m_rawInventory);
 	} // end getDropInventory()
-	
-	public void blockBroken() 
-	{
-		InventoryUtil.drop(this.level, this.worldPosition, this.getDropInventory());
-	} // end blockBroken()
 
 	
 	
@@ -159,12 +128,4 @@ public abstract class DeviceBlockEntity extends BlockEntity
 		}
 		
 	} // end load()
-	
-	
-	
-	
-	public static @NotNull Pair<Integer, Integer> deviceHeatEquation(@NotNegative int self, @NotNegative int other)
-	{
-		return IHeatHandler.levelTemperatures(self, self <= other ? other : Math.max(other, self - Math.max(DeviceBlockEntity.MINIMUM_CHANGE_PER_AMBIENT_COOLING, ((int)((self - other) * DeviceBlockEntity.AMBIENT_COOLING_FACTOR)))));
-	} // end deviceHeatEquation()
 } // end class

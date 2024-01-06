@@ -28,7 +28,7 @@ public class BoilingFinishedRecipe extends FinishedRecipeBase
 	{
 		super(Objects.requireNonNull(identifier), Objects.requireNonNull(advancement), Objects.requireNonNull(group));	
 		
-		this.m_result = Objects.requireNonNull(result);
+		this.m_result = result.copy();
 		this.m_input = Objects.requireNonNull(input);
 		this.m_temperature = Contract.notNegative(temperature);
 		this.m_timeInTicks = Contract.notNegative(timeInTicks);

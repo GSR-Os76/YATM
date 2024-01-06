@@ -1,5 +1,9 @@
 package com.gsr.gsr_yatm.utilities;
 
+import java.util.stream.IntStream;
+
+import org.jetbrains.annotations.NotNull;
+
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.NonNullList;
 import net.minecraft.world.Containers;
@@ -21,10 +25,8 @@ public class InventoryUtil
 	
 	public static void drop(Level level, BlockPos position, IItemHandler inventory)
 	{
-		for(int i = 0; i < inventory.getSlots(); i++) 
-		{
-			drop(level, position, inventory.extractItem(i, inventory.getSlotLimit(i), false));
-		}
+		InventoryUtil.drop(level, position, InventoryUtil.toNNList(inventory));
+		
 	} // end drop()
 
 	public static void insertItemOrDrop(Level level, BlockPos position, IItemHandler inventory, int slot, ItemStack stack)
@@ -32,8 +34,17 @@ public class InventoryUtil
 		ItemStack r = inventory.insertItem(slot, stack, false);
 		if(!r.isEmpty()) 
 		{
-			drop(level, position, r);
+			InventoryUtil.drop(level, position, r);
 		}
 	} // end insertItemOrDrop()
+
+	
+	
+	public static @NotNull NonNullList<ItemStack> toNNList(@NotNull IItemHandler inv)
+	{
+		NonNullList<ItemStack> nl = NonNullList.createWithCapacity(inv.getSlots());
+		IntStream.rangeClosed(0, inv.getSlots() - 1).boxed().map((i) -> inv.getStackInSlot(i).copy()).forEach(nl::add);
+		return nl;
+	} // end toNNList()
 	
 } // end class

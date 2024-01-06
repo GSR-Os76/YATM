@@ -1,4 +1,12 @@
+<<<<<<< HEAD
 // 1.20.2	2023-12-15T17:57:20.381983	Block States: gsr_yatm
+=======
+<<<<<<< Upstream, based on github/device_builder_system
+// 1.20.2	2023-12-15T15:46:33.0314688	Block States: gsr_yatm
+=======
+// 1.20.2	2023-12-15T17:57:20.381983	Block States: gsr_yatm
+>>>>>>> 9e81547 Added working textures, and models to Dwarf Persimmon.
+>>>>>>> refs/heads/device_builder_system
 11aad184ca6aaadbd7319a44c5a1985f7c029a1c assets/gsr_yatm/blockstates/adamum.json
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 a2a385d05e4f86cda9dd2c5a246077dac4e32579 assets/gsr_yatm/blockstates/advanced_solar_panel.json
@@ -170,6 +178,7 @@ d50441ece5bc105502bb511d1aaf02fa94334185 assets/gsr_yatm/blockstates/steel_cruci
 2d40d2dffe25be9165eb789d38fedfd02d13ea27 assets/gsr_yatm/blockstates/steel_extractor.json
 aa5f623185713251670b14479e18ad3fc2c6f1ba assets/gsr_yatm/blockstates/steel_grinder.json
 414fc1d1c85f5e77fdb42f9cd7fad17796f3f561 assets/gsr_yatm/blockstates/steel_injector.json
+643278307b2869b88e7e170ddd0477176e12c533 assets/gsr_yatm/blockstates/steel_still.json
 160db401f088b35d23867392aabdb69310f762e8 assets/gsr_yatm/blockstates/steel_tank.json
 470af715e371a15d94a81276628d2225d1523ffb assets/gsr_yatm/blockstates/stripped_rubber_log.json
 189cb568c67e71e5461920eb2692572261fb0a74 assets/gsr_yatm/blockstates/stripped_rubber_wood.json
@@ -591,6 +600,7 @@ adcfcfbd01bb8e898a03b94a9ebe2c05e50e7809 assets/gsr_yatm/models/item/steel_curre
 94fe76f66d98230ca594c59701eafa7fef545d69 assets/gsr_yatm/models/item/steel_extractor.json
 e684fd67972922bd6e92b9bf9fbb0e695f98c43e assets/gsr_yatm/models/item/steel_grinder.json
 3d7943f77daa04f6a567ff1ae38dadb5d69ebe4f assets/gsr_yatm/models/item/steel_injector.json
+fa5a3c316d3d12c93fda1b96f3631d8ed46ac9cc assets/gsr_yatm/models/item/steel_still.json
 21e891742bf4dd5e627aa56ee211ced9a8c52494 assets/gsr_yatm/models/item/steel_tank.json
 e9a14964307461480f82a1adfecf61de9df90ee0 assets/gsr_yatm/models/item/stripped_rubber_log.json
 fd5409c14df15f41ab13d727e7cf1184efc63169 assets/gsr_yatm/models/item/stripped_rubber_wood.json

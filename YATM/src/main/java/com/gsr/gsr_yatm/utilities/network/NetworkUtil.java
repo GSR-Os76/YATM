@@ -4,6 +4,8 @@ import java.util.Map.Entry;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.utilities.network.container_data.AccessSpecification;
+
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.material.Fluid;
@@ -12,6 +14,28 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class NetworkUtil
 {
+	
+	public static final @NotNull ContainerData EMPTY_CD = new ContainerData() 
+	{
+		@Override
+		public int get(int index)
+		{
+			return 0;
+		} // end get()
+
+		@Override
+		public void set(int index, int value)
+		{
+
+		} // end set()
+
+		@Override
+		public int getCount()
+		{
+			return 0;
+		} // end getCount()
+	};
+	
 	// can we confirm that client and server will list these in the exact same order?
 	public static int getFluidIndex(Fluid fluid) 
 	{

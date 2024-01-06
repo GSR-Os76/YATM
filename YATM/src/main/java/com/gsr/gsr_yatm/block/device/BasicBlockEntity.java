@@ -1,5 +1,7 @@
 package com.gsr.gsr_yatm.block.device;
 
+import java.util.Objects;
+
 import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
@@ -15,9 +17,9 @@ public abstract class BasicBlockEntity extends BlockEntity
 	
 	
 	
-	public BasicBlockEntity(BlockEntityType<?> type, BlockPos blockPos, BlockState blockState)
+	public BasicBlockEntity(@NotNull BlockEntityType<?> type, @NotNull BlockPos position, @NotNull BlockState state)
 	{
-		super(type, blockPos, blockState);
+		super(Objects.requireNonNull(type), Objects.requireNonNull(position), Objects.requireNonNull(state));
 	} // end constructor
 	
 	protected abstract @NotNull CompoundTag setupToNBT();
@@ -25,19 +27,19 @@ public abstract class BasicBlockEntity extends BlockEntity
 	
 	
 	
-	public static void tick(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState blockState, @NotNull BasicBlockEntity blockEntity)
+	public static void tick(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state, @NotNull BasicBlockEntity blockEntity)
 	{
 		if (level.isClientSide)
 		{
-			blockEntity.clientTick(level, pos, blockState);
+			blockEntity.clientTick(level, position, state);
 		}
 		else
 		{
-			blockEntity.serverTick(level, pos, blockState);
+			blockEntity.serverTick(level, position, state);
 		}
 	} // end tick()
 
-	public void clientTick(@NotNull Level level, @NotNull BlockPos pos, @NotNull BlockState blockState)
+	public void clientTick(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state)
 	{
 		
 	} // end clientTick()
