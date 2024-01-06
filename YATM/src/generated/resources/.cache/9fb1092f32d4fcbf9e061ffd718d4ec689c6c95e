@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-// 1.20.2	2023-12-14T21:28:43.015674	Recipes
-=======
-<<<<<<< Upstream, based on github/device_builder_system
-// 1.20.2	2023-12-20T10:52:55.7959042	Recipes
-=======
-// 1.20.2	2023-12-14T21:28:43.015674	Recipes
->>>>>>> 36a86c5 Added the Dwarf Persimmon plant.
->>>>>>> refs/heads/device_builder_system
+// 1.20.2	2024-01-05T21:59:13.5043936	Recipes
 e35a5bce9e689767e4d41d5688355b6297230373 data/gsr_yatm/advancements/recipes/amethyst_shards_from_silicon_oxide_crystallization.json
 9a839a826b718109202df4f4407c9e0bd008939c data/gsr_yatm/advancements/recipes/biofluid_from_poisonous_potato_bioling.json
 9da384f312f1a5490ea89c5df03846f31a106aca data/gsr_yatm/advancements/recipes/building_blocks/rubber_slab_from_shaped_crafting.json

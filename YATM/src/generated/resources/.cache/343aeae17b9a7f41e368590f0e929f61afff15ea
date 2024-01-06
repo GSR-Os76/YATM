@@ -1,12 +1,4 @@
-<<<<<<< HEAD
-// 1.20.2	2023-12-15T17:57:20.381983	Block States: gsr_yatm
-=======
-<<<<<<< Upstream, based on github/device_builder_system
-// 1.20.2	2023-12-15T15:46:33.0314688	Block States: gsr_yatm
-=======
-// 1.20.2	2023-12-15T17:57:20.381983	Block States: gsr_yatm
->>>>>>> 9e81547 Added working textures, and models to Dwarf Persimmon.
->>>>>>> refs/heads/device_builder_system
+// 1.20.2	2024-01-05T21:59:13.5177979	Block States: gsr_yatm
 11aad184ca6aaadbd7319a44c5a1985f7c029a1c assets/gsr_yatm/blockstates/adamum.json
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 a2a385d05e4f86cda9dd2c5a246077dac4e32579 assets/gsr_yatm/blockstates/advanced_solar_panel.json

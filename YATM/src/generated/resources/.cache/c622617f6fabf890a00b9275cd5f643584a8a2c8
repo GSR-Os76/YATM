@@ -1,12 +1,2 @@
-<<<<<<< HEAD
-// 1.20.2	2023-12-14T21:28:43.0228311	Languages: en_us
-3cb8a76cfbb78d9785606cbc9e22cea60369a5f1 assets/gsr_yatm/lang/en_us.json
-=======
-<<<<<<< Upstream, based on github/device_builder_system
-// 1.20.2	2024-01-05T13:17:29.8547079	Languages: en_us
+// 1.20.2	2024-01-05T21:59:13.5158027	Languages: en_us
 e613a94816d7b34ba0bc1e6359157f051d6ecd08 assets/gsr_yatm/lang/en_us.json
-=======
-// 1.20.2	2023-12-14T21:28:43.0228311	Languages: en_us
-3cb8a76cfbb78d9785606cbc9e22cea60369a5f1 assets/gsr_yatm/lang/en_us.json
->>>>>>> 36a86c5 Added the Dwarf Persimmon plant.
->>>>>>> refs/heads/device_builder_system
