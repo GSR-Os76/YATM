@@ -4,9 +4,9 @@
     "#gsr_yatm:soul_afflicted_rubber_tree_logs",
     "#gsr_yatm:soul_afflicted_rubber_planks",
     "gsr_yatm:soul_afflicted_rubber_fence",
+    "gsr_yatm:soul_afflicted_rubber_fence_gate",
     "gsr_yatm:soul_afflicted_rubber_slab",
     "gsr_yatm:soul_afflicted_rubber_stairs",
-    "gsr_yatm:soul_afflicted_rubber_door",
-    "gsr_yatm:soul_afflicted_rubber_trapdoor"
+    "#forge:soul_soil"
   ]
 }

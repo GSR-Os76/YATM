@@ -34,6 +34,15 @@ import com.gsr.gsr_yatm.block.device.solar.SolarPanelSettings;
 import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.device.still.StillBlock;
 import com.gsr.gsr_yatm.block.device.tank.TankBlock;
+import com.gsr.gsr_yatm.block.flammable.FlammableAerialRootsBlock;
+import com.gsr.gsr_yatm.block.flammable.FlammableBlock;
+import com.gsr.gsr_yatm.block.flammable.FlammableFenceBlock;
+import com.gsr.gsr_yatm.block.flammable.FlammableFenceGateBlock;
+import com.gsr.gsr_yatm.block.flammable.FlammableLeavesBlock;
+import com.gsr.gsr_yatm.block.flammable.FlammableRotatedPillarBlock;
+import com.gsr.gsr_yatm.block.flammable.FlammableSlabBlock;
+import com.gsr.gsr_yatm.block.flammable.FlammableStairBlock;
+import com.gsr.gsr_yatm.block.flammable.FlammableTappedLogBlock;
 import com.gsr.gsr_yatm.block.hanging_pot.HangingPotHookBlock;
 import com.gsr.gsr_yatm.block.plant.CustomSeedCropBlock;
 import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
@@ -131,17 +140,17 @@ public class YATMBlocks
 
 	
 	
-	public static final RegistryObject<RotatedPillarBlock> RUBBER_LOG = BLOCKS.register("rubber_log", () -> new RotatedPillarBlock(YATMBlockProperties.RUBBER_WOOD));
-	public static final RegistryObject<RotatedPillarBlock> RUBBER_WOOD = BLOCKS.register("rubber_wood", () -> new RotatedPillarBlock(YATMBlockProperties.RUBBER_WOOD));
-	public static final RegistryObject<TappedLogBlock> PARTIALLY_STRIPPED_RUBBER_LOG = BLOCKS.register("partially_stripped_rubber_log", () -> new TappedLogBlock(YATMFluids.LATEX::get, (l, bs, p) -> bs.is(YATMBlockTags.RUBBER_TREE_BLOCKS_KEY), YATMBlockProperties.PARTIALLY_STRIPPED_RUBBER_WOOD, YATMParticleTypes.DRIPPING_TAPPED_LOG_LATEX::get));
-	public static final RegistryObject<RotatedPillarBlock> STRIPPED_RUBBER_LOG = BLOCKS.register("stripped_rubber_log", () -> new RotatedPillarBlock(YATMBlockProperties.RUBBER_WOOD));
-	public static final RegistryObject<RotatedPillarBlock> STRIPPED_RUBBER_WOOD = BLOCKS.register("stripped_rubber_wood", () -> new RotatedPillarBlock(YATMBlockProperties.RUBBER_WOOD));
-	public static final RegistryObject<Block> RUBBER_PLANKS = BLOCKS.register("rubber_planks", () -> new Block(YATMBlockProperties.RUBBER_WOOD));
-	public static final RegistryObject<RotatedPillarBlock> FANCY_RUBBER_PLANKS = BLOCKS.register("fancy_rubber_planks", () -> new RotatedPillarBlock(YATMBlockProperties.RUBBER_WOOD));
-	public static final RegistryObject<StairBlock> RUBBER_STAIRS = BLOCKS.register("rubber_stairs", () -> new StairBlock(() -> RUBBER_PLANKS.get().defaultBlockState(), YATMBlockProperties.RUBBER_WOOD));
-	public static final RegistryObject<SlabBlock> RUBBER_SLAB = BLOCKS.register("rubber_slab", () -> new SlabBlock(YATMBlockProperties.RUBBER_WOOD));
-	public static final RegistryObject<FenceBlock> RUBBER_FENCE = BLOCKS.register("rubber_fence", () -> new FenceBlock(YATMBlockProperties.RUBBER_WOOD));
-	public static final RegistryObject<FenceGateBlock> RUBBER_FENCE_GATE = BLOCKS.register("rubber_fence_gate", () -> new FenceGateBlock(YATMBlockProperties.RUBBER_WOOD, SoundEvents.FENCE_GATE_OPEN, SoundEvents.FENCE_GATE_CLOSE));
+	public static final RegistryObject<FlammableRotatedPillarBlock> RUBBER_LOG = BLOCKS.register("rubber_log", () -> new FlammableRotatedPillarBlock(YATMBlockProperties.RUBBER_WOOD, 5, 5));
+	public static final RegistryObject<FlammableRotatedPillarBlock> RUBBER_WOOD = BLOCKS.register("rubber_wood", () -> new FlammableRotatedPillarBlock(YATMBlockProperties.RUBBER_WOOD, 5, 5));
+	public static final RegistryObject<FlammableTappedLogBlock> PARTIALLY_STRIPPED_RUBBER_LOG = BLOCKS.register("partially_stripped_rubber_log", () -> new FlammableTappedLogBlock(YATMBlockProperties.PARTIALLY_STRIPPED_RUBBER_WOOD, YATMFluids.LATEX::get, (l, bs, p) -> bs.is(YATMBlockTags.RUBBER_TREE_BLOCKS_KEY), YATMParticleTypes.DRIPPING_TAPPED_LOG_LATEX::get, 5, 5));
+	public static final RegistryObject<FlammableRotatedPillarBlock> STRIPPED_RUBBER_LOG = BLOCKS.register("stripped_rubber_log", () -> new FlammableRotatedPillarBlock(YATMBlockProperties.RUBBER_WOOD, 5, 5));
+	public static final RegistryObject<FlammableRotatedPillarBlock> STRIPPED_RUBBER_WOOD = BLOCKS.register("stripped_rubber_wood", () -> new FlammableRotatedPillarBlock(YATMBlockProperties.RUBBER_WOOD, 5, 5));
+	public static final RegistryObject<FlammableBlock> RUBBER_PLANKS = BLOCKS.register("rubber_planks", () -> new FlammableBlock(YATMBlockProperties.RUBBER_WOOD, 5, 5));
+	public static final RegistryObject<FlammableRotatedPillarBlock> FANCY_RUBBER_PLANKS = BLOCKS.register("fancy_rubber_planks", () -> new FlammableRotatedPillarBlock(YATMBlockProperties.RUBBER_WOOD, 5, 5));
+	public static final RegistryObject<FlammableStairBlock> RUBBER_STAIRS = BLOCKS.register("rubber_stairs", () -> new FlammableStairBlock(() -> RUBBER_PLANKS.get().defaultBlockState(), YATMBlockProperties.RUBBER_WOOD, 5, 20));
+	public static final RegistryObject<FlammableSlabBlock> RUBBER_SLAB = BLOCKS.register("rubber_slab", () -> new FlammableSlabBlock(YATMBlockProperties.RUBBER_WOOD, 5, 20));
+	public static final RegistryObject<FlammableFenceBlock> RUBBER_FENCE = BLOCKS.register("rubber_fence", () -> new FlammableFenceBlock(YATMBlockProperties.RUBBER_WOOD, 5, 20));
+	public static final RegistryObject<FlammableFenceGateBlock> RUBBER_FENCE_GATE = BLOCKS.register("rubber_fence_gate", () -> new FlammableFenceGateBlock(YATMBlockProperties.RUBBER_WOOD, SoundEvents.FENCE_GATE_OPEN, SoundEvents.FENCE_GATE_CLOSE, 5, 20));
 	public static final RegistryObject<DoorBlock> RUBBER_DOOR = BLOCKS.register("rubber_door", () -> new DoorBlock(YATMBlockProperties.RUBBER_WOOD, YATMBlocks.RUBBER_BLOCK_SET_TYPE));
 	public static final RegistryObject<TrapDoorBlock> RUBBER_TRAPDOOR = BLOCKS.register("rubber_trapdoor", () -> new TrapDoorBlock(YATMBlockProperties.RUBBER_WOOD, YATMBlocks.RUBBER_BLOCK_SET_TYPE));
 	public static final RegistryObject<PressurePlateBlock> RUBBER_PRESSURE_PLATE = BLOCKS.register("rubber_pressure_plate", () -> new PressurePlateBlock(Sensitivity.EVERYTHING, YATMBlockProperties.RUBBER_WOOD_SWITCH, YATMBlocks.RUBBER_BLOCK_SET_TYPE));
@@ -156,7 +165,7 @@ public class YATMBlocks
 	
 	public static final RegistryObject<RotatedPillarBlock> SOUL_AFFLICTED_RUBBER_LOG = BLOCKS.register("soul_afflicted_rubber_log", () -> new RotatedPillarBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD));
 	public static final RegistryObject<RotatedPillarBlock> SOUL_AFFLICTED_RUBBER_WOOD = BLOCKS.register("soul_afflicted_rubber_wood", () -> new RotatedPillarBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD));
-	public static final RegistryObject<TappedLogBlock> SOUL_AFFLICTED_PARTIALLY_STRIPPED_RUBBER_LOG = BLOCKS.register("soul_afflicted_partially_stripped_rubber_log", () -> new TappedLogBlock(YATMFluids.SOUL_SAP::get, (l, bs, p) -> bs.is(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_BLOCKS_KEY), YATMBlockProperties.PARTIALLY_STRIPPED_SOUL_AFFLICTED_RUBBER_WOOD, YATMParticleTypes.DRIPPING_TAPPED_LOG_SOUL_SAP::get));
+	public static final RegistryObject<TappedLogBlock> SOUL_AFFLICTED_PARTIALLY_STRIPPED_RUBBER_LOG = BLOCKS.register("soul_afflicted_partially_stripped_rubber_log", () -> new TappedLogBlock(YATMBlockProperties.PARTIALLY_STRIPPED_SOUL_AFFLICTED_RUBBER_WOOD, YATMFluids.SOUL_SAP::get, (l, bs, p) -> bs.is(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_BLOCKS_KEY), YATMParticleTypes.DRIPPING_TAPPED_LOG_SOUL_SAP::get));
 	public static final RegistryObject<RotatedPillarBlock> SOUL_AFFLICTED_STRIPPED_RUBBER_LOG = BLOCKS.register("soul_afflicted_stripped_rubber_log", () -> new RotatedPillarBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD));
 	public static final RegistryObject<RotatedPillarBlock> SOUL_AFFLICTED_STRIPPED_RUBBER_WOOD = BLOCKS.register("soul_afflicted_stripped_rubber_wood", () -> new RotatedPillarBlock(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD));
 	public static final RegistryObject<Block> SOUL_AFFLICTED_RUBBER_PLANKS = BLOCKS.register("soul_afflicted_rubber_planks", () -> new Block(YATMBlockProperties.SOUL_AFFLICTED_RUBBER_WOOD));
@@ -209,12 +218,12 @@ public class YATMBlocks
 	
 	
 	
-	public static final RegistryObject<AerialRootsBlock> RUBBER_ROOTS = BLOCKS.register("rubber_roots", () ->  new AerialRootsBlock(YATMBlockProperties.AERIAL_ROOTS));
+	public static final RegistryObject<FlammableAerialRootsBlock> RUBBER_ROOTS = BLOCKS.register("rubber_roots", () ->  new FlammableAerialRootsBlock(YATMBlockProperties.AERIAL_ROOTS, 5, 20));
 	public static final RegistryObject<AerialRootsBlock> SOUL_AFFLICTED_RUBBER_ROOTS = BLOCKS.register("soul_afflicted_rubber_roots", () ->  new AerialRootsBlock(YATMBlockProperties.AERIAL_ROOTS));
 	
-	public static final RegistryObject<LeavesBlock> RUBBER_LEAVES_YOUNG = BLOCKS.register("rubber_leaves_young", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
-	public static final RegistryObject<LeavesBlock> RUBBER_LEAVES_FLOWERING = BLOCKS.register("rubber_leaves_flowering", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
-	public static final RegistryObject<LeavesBlock> RUBBER_LEAVES_OLD = BLOCKS.register("rubber_leaves_old", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
+	public static final RegistryObject<FlammableLeavesBlock> RUBBER_LEAVES_YOUNG = BLOCKS.register("rubber_leaves_young", () ->  new FlammableLeavesBlock(YATMBlockProperties.LEAVES, 30, 60));
+	public static final RegistryObject<FlammableLeavesBlock> RUBBER_LEAVES_FLOWERING = BLOCKS.register("rubber_leaves_flowering", () ->  new FlammableLeavesBlock(YATMBlockProperties.LEAVES, 35, 55));
+	public static final RegistryObject<FlammableLeavesBlock> RUBBER_LEAVES_OLD = BLOCKS.register("rubber_leaves_old", () ->  new FlammableLeavesBlock(YATMBlockProperties.LEAVES, 20, 50));
 	public static final RegistryObject<LeavesBlock> SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG = BLOCKS.register("soul_afflicted_rubber_leaves_young", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
 	public static final RegistryObject<LeavesBlock> SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING = BLOCKS.register("soul_afflicted_rubber_leaves_flowering", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
 	public static final RegistryObject<LeavesBlock> SOUL_AFFLICTED_RUBBER_LEAVES_OLD = BLOCKS.register("soul_afflicted_rubber_leaves_old", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));

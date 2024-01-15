@@ -39,7 +39,7 @@ public class TappedLogBlock extends RotatedPillarBlock
 	
 	
 	
-	public TappedLogBlock(@NotNull Supplier<Fluid> fluid, @NotNull TriPredicate<Level, BlockState, BlockPos> sapProviderTest, @NotNull Properties properties, @NotNull Supplier<ParticleOptions> dripParticle)
+	public TappedLogBlock(@NotNull Properties properties, @NotNull Supplier<Fluid> fluid, @NotNull TriPredicate<Level, BlockState, BlockPos> sapProviderTest, @NotNull Supplier<ParticleOptions> dripParticle)
 	{
 		super(Objects.requireNonNull(properties));
 		this.registerDefaultState(this.defaultBlockState().setValue(FLOWING, true).setValue(FACING, Direction.NORTH));
@@ -47,7 +47,6 @@ public class TappedLogBlock extends RotatedPillarBlock
 		this.m_dripParticle = Objects.requireNonNull(dripParticle);
 		this.m_fluid = Objects.requireNonNull(fluid);
 		this.m_sapProviderTest = Objects.requireNonNull(sapProviderTest);
-		
 	} // end constructor
 
 
