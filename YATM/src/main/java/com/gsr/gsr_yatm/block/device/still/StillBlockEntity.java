@@ -153,13 +153,13 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 			} // end reviveCaps()
 			
 		};
-		new DeviceBuilder<>((Void)null, this::createInventory, definitionReceiver)
+		DeviceBuilder.of(this::createInventory, definitionReceiver)
 				.inventory()
-				.slot().insertionValidator(SlotUtil::isValidTankFillSlotInsert).end()
-				.slot().insertionValidator(SlotUtil::isValidTankDrainSlotInsert).end()
-				.slot().insertionValidator(SlotUtil::isValidTankDrainSlotInsert).end()
-				.slot().insertionValidator(SlotUtil::isValidTankDrainSlotInsert).end()
-				.slot().insertionValidator(SlotUtil::isValidHeatingSlotInsert).end()
+				.slot().insertionValidator(SlotUtil.TANK_FILL_SLOT_INSERTION_VALIDATOR).end()
+				.slot().insertionValidator(SlotUtil.TANK_DRAIN_SLOT_INSERTION_VALIDATOR).end()
+				.slot().insertionValidator(SlotUtil.TANK_DRAIN_SLOT_INSERTION_VALIDATOR).end()
+				.slot().insertionValidator(SlotUtil.TANK_DRAIN_SLOT_INSERTION_VALIDATOR).end()
+				.slot().insertionValidator(SlotUtil.HEAT_SLOT_INSERTION_VALIDATOR).end()
 				.end()
 				
 				.behavior((i) -> { inv.apply(i); return new SerializableBehavior(i, "inventory");}).allDefaults().end()
@@ -212,7 +212,6 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 				.returns(inDCM.get())
 				.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), StillBlockEntity.DRAIN_INPUT_TANK_SLOT)).end()
 				// drain remainder tank
-				// TODO, channel vines are visually detached most of the time, give or take a frame. only with down
 				.face(Direction.DOWN)
 				.returns(rDCM.get())
 				.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), StillBlockEntity.DRAIN_REMAINDER_TANK_SLOT)).end()

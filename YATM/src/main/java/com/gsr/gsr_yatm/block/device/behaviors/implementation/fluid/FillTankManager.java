@@ -104,7 +104,7 @@ public class FillTankManager implements ISerializableBehavior, ITickableBehavior
 		IFluidHandlerItem heldHandler = holding.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).orElse(null);
 		
 		
-		
+		// TODO, preemptive bucket removal voids the untransfered fraction, probably change this
 		boolean changed = false;
 		
 		if (holding.isEmpty() || heldHandler == null)// || holding.getCapability(YATMCapabilities.COMPONENT).isPresent()) 

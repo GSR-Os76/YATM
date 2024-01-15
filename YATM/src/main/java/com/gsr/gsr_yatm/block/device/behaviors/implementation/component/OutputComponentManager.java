@@ -81,6 +81,12 @@ public class OutputComponentManager implements ICapabilityProvider, IInventoryCh
 		this.m_needsUpdate = true;
 	} // end onChange()
 	
+	public boolean hasComponent() 
+	{
+		return this.m_component != null;
+	} // end hasComponent()
+	
+	
 	
 	public void updateComponent() 
 	{

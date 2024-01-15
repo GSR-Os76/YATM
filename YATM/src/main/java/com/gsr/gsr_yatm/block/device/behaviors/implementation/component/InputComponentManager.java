@@ -67,6 +67,11 @@ public class InputComponentManager<C> implements ICapabilityProvider, IInventory
 	{
 		this.updateComponent();
 	} // end onLoad()
+	
+	public boolean hasComponent() 
+	{
+		return this.m_component != null;
+	} // end hasComponent()
 
 	
 	

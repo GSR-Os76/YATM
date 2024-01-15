@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.function.Predicate;
 import java.util.function.Supplier;
 
 import org.jetbrains.annotations.NotNull;
@@ -31,8 +32,18 @@ import net.minecraftforge.items.IItemHandler;
 
 public class SlotUtil
 {
+	public static final Predicate<ItemStack> HEAT_SLOT_INSERTION_VALIDATOR = SlotUtil::isValidHeatingSlotInsert;
+	public static final Predicate<ItemStack> TANK_FILL_SLOT_INSERTION_VALIDATOR = SlotUtil::isValidTankFillSlotInsert;
+	public static final Predicate<ItemStack> TANK_DRAIN_SLOT_INSERTION_VALIDATOR = SlotUtil::isValidTankDrainSlotInsert;
+	public static final Predicate<ItemStack> POWER_SLOT_INSERTION_VALIDATOR = SlotUtil::isValidPowerSlotInsert;
+	public static final Predicate<ItemStack> UPGRADE_SLOT_INSERTION_VALIDATOR = SlotUtil::isValidUpgradeSlotInsert;
+
+	
+	
 	private static final Map<Capability<?>, Supplier<LazyOptional<?>>> STERILE_CAP_PROVIDERS = new HashMap<>();
 
+	
+	
 	/** returns a capability of the given type which does as little as's possible*/
 	public static <T> LazyOptional<T> createSterileCapability(@NotNull Capability<T> capType) 
 	{

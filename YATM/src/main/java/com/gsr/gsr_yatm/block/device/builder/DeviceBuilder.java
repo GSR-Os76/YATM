@@ -47,6 +47,11 @@ public class DeviceBuilder<T, I extends IItemHandler> implements IDeviceBuilder<
 		this.m_buildReceiver = Objects.requireNonNull(buildReceiver);
 	} // end constructor
 	
+	public static <I extends IItemHandler> DeviceBuilder<Void, I> of(@NotNull Function<InventoryDefinition, I> inventoryAssembler, @NotNull Consumer<DeviceDefinition> buildReceiver)
+	{
+		return new DeviceBuilder<Void, I>((Void)null, inventoryAssembler, buildReceiver);
+	} // end of()
+	
 	
 	
 	@Override
