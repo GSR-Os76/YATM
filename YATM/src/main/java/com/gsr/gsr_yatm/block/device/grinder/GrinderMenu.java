@@ -1,7 +1,15 @@
 package com.gsr.gsr_yatm.block.device.grinder;
 
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.current.CurrentDataReader;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -23,16 +31,17 @@ public class GrinderMenu extends AbstractContainerMenu
 	public static final int PLAYER_HOTBAR_START = PLAYER_INVENTORY_END + 1;
 	public static final int PLAYER_HOTBAR_END = PLAYER_HOTBAR_START + 8;
 	
-	private final ContainerLevelAccess m_access;
-	private final Block m_openingBlockType;
-	private final ContainerData m_data;
-
+	private final @NotNull ContainerLevelAccess m_access;
+	private final @NotNull ContainerData m_data;
+	private final @Nullable Block m_openingBlockType;
+	private final @NotNull CurrentDataReader m_currentReader;
+	
 	
 	
 	// client side constructor
 	public GrinderMenu(int inventoryId, Inventory playerInventory)
 	{
-		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(GrinderBlockEntity.INVENTORY_SLOT_COUNT), new SimpleContainerData(GrinderBlockEntity.DATA_SLOT_COUNT));
+		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(GrinderBlockEntity.INVENTORY_SLOT_COUNT), new SimpleContainerData(GrinderBlockEntity.ACCESS_SPEC.getCount()));
 	} // end client constructor
 
 	// server side constructor
@@ -40,9 +49,12 @@ public class GrinderMenu extends AbstractContainerMenu
 	{
 		super(YATMMenuTypes.GRINDER.get(), inventoryId);
 
-		this.m_access = access;
+		this.m_access = Objects.requireNonNull(access);
+		this.m_data = Objects.requireNonNull(data);
 		this.m_openingBlockType = openingBlockType;
-		this.m_data = data;
+		
+		this.m_currentReader = new CurrentDataReader(this.m_data, GrinderBlockEntity.ACCESS_SPEC.get(GrinderBlockEntity.CURRENT_DATA_SPEC_KEY));
+		
 		this.addSlot(new SlotItemHandler(objInventory, GrinderBlockEntity.INPUT_SLOT, 53, 29));
 		this.addSlot(new SlotItemHandler(objInventory, GrinderBlockEntity.RESULT_SLOT, 107, 29));
 		this.addSlot(new SlotItemHandler(objInventory, GrinderBlockEntity.POWER_SLOT, 8, 51));
@@ -140,9 +152,19 @@ public class GrinderMenu extends AbstractContainerMenu
 
 	
 	
-	public float getGrindProgress()
+	public float getCraftProgress()
 	{
-		return 1f - (((float)this.m_data.get(GrinderBlockEntity.GRIND_PROGESS_INDEX)) / ((float)this.m_data.get(GrinderBlockEntity.GRIND_TIME_INDEX)));
-	} // end getGrindProgress()
+		return NetworkUtil.getProgess(GrinderBlockEntity.ACCESS_SPEC.get(GrinderBlockEntity.CRAFT_PROGRESS_SPEC_KEY), this.m_data);
+	} // end getCraftProgess()
+
+	public @NotNegative int getCurrentCapacity()
+	{
+		return this.m_currentReader.getCapacity();
+	} // end getResultTankCapacity()
+	
+	public @NotNegative int getCurrentStored()
+	{
+		return this.m_currentReader.getStored();
+	} // end getResultTankCapacity()
 
 } // end class

@@ -126,6 +126,10 @@ public class YATMConfigs
 	
 	public static final ConfigValue<Integer> CURRENT_FURNACE_MAX_TEMPERATURE = YATMConfigs.s_builder.pop().push("Current Furnace: ").comment("The highest possible temperature for the device.").defineInRange("max_temperature", YATMConfigs.STEEL_DEVICE_MAX_TEMPERATURE, 0, Integer.MAX_VALUE);
 	
+	public static final ConfigValue<Integer> GRINDER_CURRENT_CAPACITY = YATMConfigs.s_builder.pop().push("Grinder: ").comment("The maximum number of cu the device can hold.").defineInRange("current_capacity", YATMConfigs.STEEL_DEVICE_CURRENT_CAPACITY, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> GRINDER_MAX_CURRENT_TRANSFER = YATMConfigs.s_builder.comment("The most current that can be moved per tick.").defineInRange("max_current_transfer_rate", YATMConfigs.STEEL_DEVICE_MAX_CURRENT_TRANSFER_RATE, 0, Integer.MAX_VALUE);
+
+	
 	public static final ConfigValue<Integer> STILL_DISTILLATE_TANK_CAPACITY = YATMConfigs.s_builder.pop().push("Still: ").comment("The distillate tank's fluid capacity.").defineInRange("distillate_tank_capacity", YATMConfigs.STEEL_DEVICE_TANK_CAPACITY, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> STILL_DRAIN_DISTILLATE_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick while draining out it's distillate tank.").defineInRange("drain_distillate_max_fluid_transfer_rate", YATMConfigs.STEEL_DEVICE_MAX_FLUID_TRANSFER_RATE, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> STILL_DRAIN_DISTILLATE_RECHECK_PERIOD = YATMConfigs.s_builder.comment("The period in ticks of the device trying to reattach a slotted distillate tank draining component to relavent neighbors.").defineInRange("drain_distillate_recheck_period", YATMConfigs.DRAIN_RECHECK_PERIOD, 0, Integer.MAX_VALUE);
@@ -204,5 +208,5 @@ public class YATMConfigs
 	
 	
 	public static final ForgeConfigSpec SPEC = YATMConfigs.s_builder.pop().pop().pop().build();
-
+	
 } // end class

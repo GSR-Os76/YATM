@@ -5,7 +5,7 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.block.device.DeviceBlock;
-import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
+import com.gsr.gsr_yatm.block.device.IDeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
@@ -20,24 +20,17 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class GrinderBlock extends DeviceBlock
 {
-	private final int m_currentCapacity;
-	private final int m_maxCurrent;
-	
-	
-	
-	public GrinderBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, int currentCapacity, int maxCurrent)
+	public GrinderBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
 		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.GRINDER::get);
-		this.m_currentCapacity = currentCapacity;
-		this.m_maxCurrent = maxCurrent;
 	} // end constructor
 	
 
 	
 	@Override
-	public @NotNull DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
+	public @NotNull IDeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		return new GrinderBlockEntity(position, state, this.m_currentCapacity, this.m_maxCurrent);
+		return new GrinderBlockEntity(position, state);
 	} // end newDeviceBlockEntity()
 	
 	@Override

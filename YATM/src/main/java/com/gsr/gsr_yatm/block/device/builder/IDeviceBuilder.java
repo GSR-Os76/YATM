@@ -29,6 +29,5 @@ public interface IDeviceBuilder<T, I extends IItemHandler> extends IBuilder<T>
 	@NotNull IContainerDataBuilder<? extends IDeviceBuilder<T, I>> containerData();
 
 	@NotNull ICapabilityProviderBuilder<? extends IDeviceBuilder<T, I>> capabilityProvider();
-
 	
 } // end interface

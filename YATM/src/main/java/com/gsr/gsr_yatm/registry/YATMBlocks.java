@@ -375,7 +375,7 @@ public class YATMBlocks
 	public static final RegistryObject<CurrentFurnaceBlock> STEEL_CURRENT_FURNACE = BLOCKS.register("steel_current_furnace", () -> new CurrentFurnaceBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE));
 	public static final RegistryObject<ExtractorBlock> STEEL_EXTRACTOR = BLOCKS.register("steel_extractor", () -> new ExtractorBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_CURRENT_CAPACITY, DeviceTierConstants.STEEL_MAX_CURRENT_TRANSFER, DeviceTierConstants.STEEL_TANK_CAPACITY, DeviceTierConstants.STEEL_MAXIMUM_FLUID_TRANSFER_RATE));
 //	public static final RegistryObject<ExtruderBlock> STEEL_EXTRUDER = BLOCKS.register("steel_extruder", () -> new ExtruderBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_CURRENT_CAPACITY, DeviceTierConstants.STEEL_MAX_CURRENT_TRANSFER));
-	public static final RegistryObject<GrinderBlock> STEEL_GRINDER = BLOCKS.register("steel_grinder", () -> new GrinderBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_CURRENT_CAPACITY, DeviceTierConstants.STEEL_MAX_CURRENT_TRANSFER));
+	public static final RegistryObject<GrinderBlock> STEEL_GRINDER = BLOCKS.register("steel_grinder", () -> new GrinderBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE));
 	public static final RegistryObject<InjectorBlock> STEEL_INJECTOR = BLOCKS.register("steel_injector", () -> new InjectorBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_DEVICE));
 	public static final RegistryObject<StillBlock> STEEL_STILL = BLOCKS.register("steel_still", () -> new StillBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE));
 	

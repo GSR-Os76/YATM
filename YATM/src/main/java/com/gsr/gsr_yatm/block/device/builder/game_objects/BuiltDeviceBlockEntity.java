@@ -51,7 +51,7 @@ public abstract class BuiltDeviceBlockEntity extends BlockEntity implements IDev
 		} // end self()
 	};
 
-	private @NotNull IItemHandler m_inventory;
+	protected @NotNull IItemHandler m_inventory;
 	private @NotNull ContainerData m_containerData;
 	private @NotNull IInvalidatableCapabilityProvider m_capabilityProvider;
 
