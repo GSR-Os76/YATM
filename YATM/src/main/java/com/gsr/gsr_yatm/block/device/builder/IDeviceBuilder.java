@@ -1,5 +1,6 @@
 package com.gsr.gsr_yatm.block.device.builder;
 
+import java.util.function.Consumer;
 import java.util.function.Function;
 
 import org.jetbrains.annotations.NotNull;
@@ -16,6 +17,8 @@ public interface IDeviceBuilder<T, I extends IItemHandler> extends IBuilder<T>
 {
 	@NotNull IInventoryBuilder<? extends IDeviceBuilder<T, I>> inventory();
 
+	@NotNull IDeviceBuilder<T, I> getInventory(@NotNull Consumer<I> consumer);
+	
 	default @NotNull IBehaviorBuilder<? extends IDeviceBuilder<T, I>> behavior(@NotNull IBehavior behavior)
 	{
 		return this.behavior((i) -> behavior);
@@ -26,5 +29,6 @@ public interface IDeviceBuilder<T, I extends IItemHandler> extends IBuilder<T>
 	@NotNull IContainerDataBuilder<? extends IDeviceBuilder<T, I>> containerData();
 
 	@NotNull ICapabilityProviderBuilder<? extends IDeviceBuilder<T, I>> capabilityProvider();
+
 	
 } // end interface

@@ -293,7 +293,7 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 		{
 			return this.m_cap.cast();
 		}
-		else
+		else if(this.m_cComponent != null)
 		{
 			if(!this.m_cComponentOptionals.containsKey(cap)) 
 			{

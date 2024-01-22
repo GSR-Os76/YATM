@@ -61,6 +61,13 @@ public class DeviceBuilder<T, I extends IItemHandler> implements IDeviceBuilder<
 	} // end inventory()
 	
 	@Override
+	public @NotNull IDeviceBuilder<T, I> getInventory(@NotNull Consumer<I> consumer)
+	{
+		consumer.accept(this.m_inventory);
+		return this;
+	} // end getInventory()
+	
+	@Override
 	public @NotNull IBehaviorBuilder<IDeviceBuilder<T, I>> behavior(@NotNull Function<I, IBehavior> behavior) 
 	{
 		return new BehaviorBuilder<>(this, behavior.apply(this.m_inventory), (b) -> b.forEach(this.m_behaviors::add));
@@ -86,5 +93,5 @@ public class DeviceBuilder<T, I extends IItemHandler> implements IDeviceBuilder<
 		this.m_buildReceiver.accept(new DeviceDefinition(this.m_inventory, this.m_behaviors, this.m_containerData != null ? this.m_containerData : NetworkUtil.EMPTY_CD, this.m_capabilityProvider != null ? this.m_capabilityProvider : CapabilityUtil.EMPTY_PROVIDER));
 		return this.m_parent;
 	} // end()
-	
+
 } // end class

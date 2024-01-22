@@ -39,7 +39,7 @@ public class HorizontalCurrentWidget extends FillBarWidget
 	{
 		this.m_stored = Math.min(Contract.notNegative(amount), this.m_capacity);
 		float storedPercentageOfMax = (this.m_capacity == 0) ? 0 : (((float)this.m_stored) / ((float)this.m_capacity));
-		this.m_pixelsToDrawOverCount = (int)(((float)VerticalCurrentWidget.WIDTH) * storedPercentageOfMax);
+		this.m_pixelsToDrawOverCount = (int)(((float)HorizontalCurrentWidget.WIDTH) * storedPercentageOfMax);		
 		this.setUpdatedTooltip();
 	} // end setStoredAmount()
 	

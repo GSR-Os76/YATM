@@ -162,7 +162,9 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 				.slot().insertionValidator(SlotUtil.HEAT_SLOT_INSERTION_VALIDATOR).end()
 				.end()
 				
-				.behavior((i) -> { inv.apply(i); return new SerializableBehavior(i, "inventory");}).allDefaults().end()
+				.getInventory(inv::apply)
+				
+				.behavior((i) -> new SerializableBehavior(i, "inventory")).allDefaults().end()
 				.behavior(new SerializableBehavior(() -> in.writeToNBT(new CompoundTag()), in::readFromNBT, "inputTank")).allDefaults().end()
 				.behavior(new SerializableBehavior(() -> d.writeToNBT(new CompoundTag()), d::readFromNBT, "distillateTank")).allDefaults().end()
 				.behavior(new SerializableBehavior(() -> r.writeToNBT(new CompoundTag()), r::readFromNBT, "remainderTank")).allDefaults().end()

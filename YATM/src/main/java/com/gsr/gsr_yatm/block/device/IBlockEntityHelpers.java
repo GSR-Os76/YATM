@@ -4,6 +4,8 @@ import java.util.function.BiFunction;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
+import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
 import com.gsr.gsr_yatm.utilities.capability.heat.OnChangedHeatHandler;
 import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
@@ -22,6 +24,8 @@ public interface IBlockEntityHelpers
 		return (BlockEntity) this;
 	} // end self
 
+	
+	
 	default @NotNull FluidTank newTank(@NotNegative int capacity)
 	{
 		return new FluidTank(Contract.notNegative(capacity))
@@ -60,6 +64,8 @@ public interface IBlockEntityHelpers
 		};
 	} // end newOutTank()
 
+	
+	
 	default @NotNull OnChangedHeatHandler newHeatHandler(@NotNegative int temp, @NotNegative int maxTemp)
 	{
 		return new OnChangedHeatHandler(temp, (t) -> this.self().setChanged(), IDeviceBlockEntity::deviceHeatEquation, maxTemp);
@@ -70,9 +76,52 @@ public interface IBlockEntityHelpers
 		return new OnChangedHeatHandler(temp, (t) -> this.self().setChanged(), heatEquation, maxTemp);
 	} // end newHeatHandler()
 
+	
+	
+	default @NotNull CurrentHandler newCurrentHandler(@NotNegative int capacity) 
+	{
+		return CurrentHandler.Builder.of(capacity).onCurrentExtracted((i) -> this.self().setChanged()).onCurrentRecieved((i) -> this.self().setChanged()).build();	
+	} // end newCurrentHandler()
+	
+	
+	
 	default @NotNull IItemHandler slot(@NotNull IItemHandler inv, @NotNegative int index) 
 	{
 		return InventoryWrapper.Builder.of(inv).slotTranslationTable(new int[] {Contract.notNegative(index)}).build();
 	} // end slot()
 
+
+
+	default @NotNull ICurrentHandler noDrain(ICurrentHandler c) 
+	{
+		return new ICurrentHandler() 
+		{
+
+			@Override
+			public @NotNegative int recieveCurrent(@NotNegative int amount, boolean simulate)
+			{
+				return c.recieveCurrent(amount, simulate);
+			} // end recieveCurrent()
+
+			@Override
+			public @NotNegative int extractCurrent(@NotNegative int amount, boolean simulate)
+			{
+				return 0;
+			} // end extractCurrent()
+
+			@Override
+			public @NotNegative int capacity()
+			{
+				return c.capacity();
+			} // end capacity()
+
+			@Override
+			public @NotNegative int stored()
+			{
+				return c.stored();
+			} // end stored()
+			
+		};
+	} // end noDrain()
+	
 } // end interface
