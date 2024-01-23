@@ -50,6 +50,7 @@ import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
+import net.minecraftforge.fluids.IFluidTank;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
@@ -108,7 +109,12 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 		FluidTank in = this.m_helpers.newTank(YATMConfigs.STILL_INPUT_TANK_CAPACITY.get());
 		FluidTank r = this.m_helpers.newTank(YATMConfigs.STILL_REMAINDER_TANK_CAPACITY.get());
 		FluidTank d = this.m_helpers.newTank(YATMConfigs.STILL_DISTILLATE_TANK_CAPACITY.get());
-		IFluidHandler cT = new CompoundTank(in, r, d);
+		
+		IFluidTank wIn = TankWrapper.Builder.of(in).maxFillTransfer(YATMConfigs.STILL_FILL_INPUT_MAX_FLUID_TRANSFER_RATE.get()).maxDrainTransfer(YATMConfigs.STILL_DRAIN_INPUT_MAX_FLUID_TRANSFER_RATE.get()).build();
+		IFluidTank wR = TankWrapper.Builder.of(r).maxDrainTransfer(YATMConfigs.STILL_DRAIN_REMAINDER_MAX_FLUID_TRANSFER_RATE.get()).build();
+		IFluidTank wD = TankWrapper.Builder.of(d).maxDrainTransfer(YATMConfigs.STILL_DRAIN_DISTILLATE_MAX_FLUID_TRANSFER_RATE.get()).build();
+		IFluidHandler cT = new CompoundTank(wIn, wR, wD);
+		
 		OnChangedHeatHandler h = this.m_helpers.newHeatHandler(IHeatHandler.getAmbientTemp(this.getLevel(), this.getBlockPos()), YATMConfigs.STILL_MAX_TEMPERATURE.get());
 		
 		BackedFunction<IItemHandler, FillTankManager> inFM = new BackedFunction<>((i) -> new FillTankManager(i, StillBlockEntity.FILL_INPUT_TANK_SLOT, in, YATMConfigs.STILL_FILL_INPUT_MAX_FLUID_TRANSFER_RATE.get()));
@@ -117,9 +123,10 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 		BackedFunction<IItemHandler, InputComponentManager<IHeatHandler>> hFCM = new BackedFunction<>((i) -> new InputComponentManager<>(i, StillBlockEntity.HEAT_SLOT, h, YATMCapabilities.HEAT));
 
 		BackedFunction<IItemHandler, CraftingManager<DistillingRecipe, Container, Tuple4<IFluidHandler, IFluidHandler, IFluidHandler, IHeatHandler>>> cM = new BackedFunction<>((i) -> new CraftingManager<>(YATMRecipeTypes.DISTILLING.get(), () -> Tuple.of(in, r, d, h)));
+		// TODO, should drain max rate be specified here?
 		BackedFunction<IItemHandler, DrainTankManager> inDM = new BackedFunction<>((i) -> new DrainTankManager(i, StillBlockEntity.DRAIN_INPUT_TANK_SLOT, in, YATMConfigs.STILL_DRAIN_INPUT_MAX_FLUID_TRANSFER_RATE.get()));
-		BackedFunction<IItemHandler, DrainTankManager> dDM = new BackedFunction<>((i) -> new DrainTankManager(i, StillBlockEntity.DRAIN_DISTILLATE_TANK_SLOT, d, YATMConfigs.STILL_DRAIN_DISTILLATE_MAX_FLUID_TRANSFER_RATE.get()));
 		BackedFunction<IItemHandler, DrainTankManager> rDM = new BackedFunction<>((i) -> new DrainTankManager(i, StillBlockEntity.DRAIN_REMAINDER_TANK_SLOT, r, YATMConfigs.STILL_DRAIN_REMAINDER_MAX_FLUID_TRANSFER_RATE.get()));
+		BackedFunction<IItemHandler, DrainTankManager> dDM = new BackedFunction<>((i) -> new DrainTankManager(i, StillBlockEntity.DRAIN_DISTILLATE_TANK_SLOT, d, YATMConfigs.STILL_DRAIN_DISTILLATE_MAX_FLUID_TRANSFER_RATE.get()));
 		BackedFunction<IItemHandler, OutputComponentManager> inDCM = new BackedFunction<>((i) -> new OutputComponentManager(i, StillBlockEntity.DRAIN_INPUT_TANK_SLOT, () -> List.of(), YATMConfigs.STILL_DRAIN_INPUT_RECHECK_PERIOD.get()));
 		BackedFunction<IItemHandler, OutputComponentManager> rDCM = new BackedFunction<>((i) -> new OutputComponentManager(i, StillBlockEntity.DRAIN_REMAINDER_TANK_SLOT, () -> List.of(Direction.DOWN), YATMConfigs.STILL_DRAIN_REMAINDER_RECHECK_PERIOD.get()));
 		BackedFunction<IItemHandler, OutputComponentManager> dDCM = new BackedFunction<>((i) -> new OutputComponentManager(i, StillBlockEntity.DRAIN_DISTILLATE_TANK_SLOT, () -> List.of(Direction.UP), YATMConfigs.STILL_DRAIN_DISTILLATE_RECHECK_PERIOD.get()));

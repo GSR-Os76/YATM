@@ -21,7 +21,8 @@ public class TankWrapper implements IFluidHandler, IFluidTank
 	// TODO, look over this's functionality and it's usage.
 	private final @NotNull Supplier<Boolean> m_canDrain;
 	private final @NotNull Predicate<FluidStack> m_fillValidator;
-	private final @NotNegative int m_maxTransfer;
+	private final @NotNegative int m_maxFillTransfer;
+	private final @NotNegative int m_maxDrainTransfer;
 	private final @NotNull Consumer<FluidStack> m_onContentsDrain;
 	private final @NotNull Consumer<FluidStack> m_onContentsFill;
 
@@ -39,7 +40,21 @@ public class TankWrapper implements IFluidHandler, IFluidTank
 		
 		this.m_canDrain = Objects.requireNonNull(canDrain);
 		this.m_fillValidator = Objects.requireNonNull(fillValidator);
-		this.m_maxTransfer = Contract.notNegative(maxTransfer);
+		this.m_maxFillTransfer = Contract.notNegative(maxTransfer);
+		this.m_maxDrainTransfer = Contract.notNegative(maxTransfer);
+		this.m_onContentsDrain = Objects.requireNonNull(onContentsDrain);
+		this.m_onContentsFill = Objects.requireNonNull(onContentsFill);		
+	} // end constructor
+	
+	public TankWrapper(@NotNull IFluidHandler fluidHandler, @NotNull Consumer<FluidStack> onContentsDrain, @NotNull Consumer<FluidStack> onContentsFill, @NotNull Supplier<Boolean> canDrain, @NotNull Predicate<FluidStack> fillValidator, @NotNegative int maxFillTransfer, @NotNegative int maxDrainTransfer) 
+	{
+		this.m_fluidHandler = Objects.requireNonNull(fluidHandler);
+		this.m_tank = Lazy.of(() -> (IFluidTank)this.m_fluidHandler);
+		
+		this.m_canDrain = Objects.requireNonNull(canDrain);
+		this.m_fillValidator = Objects.requireNonNull(fillValidator);
+		this.m_maxFillTransfer = Contract.notNegative(maxFillTransfer);
+		this.m_maxDrainTransfer = Contract.notNegative(maxDrainTransfer);
 		this.m_onContentsDrain = Objects.requireNonNull(onContentsDrain);
 		this.m_onContentsFill = Objects.requireNonNull(onContentsFill);		
 	} // end constructor
@@ -79,10 +94,10 @@ public class TankWrapper implements IFluidHandler, IFluidTank
 			return 0;
 		}
 		
-		if(resource.getAmount() > this.m_maxTransfer) 
+		if(resource.getAmount() > this.m_maxFillTransfer) 
 		{
 			resource = resource.copy();
-			resource.setAmount(this.m_maxTransfer);
+			resource.setAmount(this.m_maxFillTransfer);
 		}
 		int result = this.m_fluidHandler.fill(resource, action);
 		if(action.execute() && result > 0) 
@@ -102,10 +117,10 @@ public class TankWrapper implements IFluidHandler, IFluidTank
 			
 		}
 		
-		if(resource.getAmount() > this.m_maxTransfer) 
+		if(resource.getAmount() > this.m_maxDrainTransfer) 
 		{
 			resource = resource.copy();
-			resource.setAmount(this.m_maxTransfer);
+			resource.setAmount(this.m_maxDrainTransfer);
 		}
 		FluidStack result = this.m_fluidHandler.drain(resource, action);
 		if(action.execute() && !result.isEmpty()) 
@@ -118,7 +133,7 @@ public class TankWrapper implements IFluidHandler, IFluidTank
 	@Override
 	public @NotNull FluidStack drain(int maxDrain, FluidAction action)
 	{
-		FluidStack result = this.m_fluidHandler.drain(maxDrain > this.m_maxTransfer ? this.m_maxTransfer : maxDrain, action);
+		FluidStack result = this.m_fluidHandler.drain(maxDrain > this.m_maxDrainTransfer ? this.m_maxDrainTransfer : maxDrain, action);
 		if(action.execute() && !result.isEmpty()) 
 		{
 			this.m_onContentsDrain.accept(result.copy());
@@ -165,7 +180,8 @@ public class TankWrapper implements IFluidHandler, IFluidTank
 		private @NotNull IFluidHandler m_fluidHandler;
 		private @NotNull Supplier<Boolean> m_canDrain = () -> true;
 		private @NotNull Predicate<FluidStack> m_fillValidator = (f) -> true;
-		private @NotNegative int m_maxTransfer = Integer.MAX_VALUE;
+		private @NotNegative int m_maxFillTransfer = Integer.MAX_VALUE;
+		private @NotNegative int m_maxDrainTransfer = Integer.MAX_VALUE;
 		private @NotNull Consumer<FluidStack> m_onContentsDrain = (f) -> {};
 		private @NotNull Consumer<FluidStack> m_onContentsFill = (f) -> {};
 
@@ -219,19 +235,32 @@ public class TankWrapper implements IFluidHandler, IFluidTank
 			this.m_onContentsFill = Objects.requireNonNull(onContentsChange);
 			this.m_onContentsDrain = Objects.requireNonNull(onContentsChange);
 			return this;
-		} // end onContentsFill()
+		} // end onContentsChanged()
 		
 		public Builder maxTransfer(@NotNegative int maxTransfer) 
 		{
-			this.m_maxTransfer = Contract.notNegative(maxTransfer);
+			this.m_maxFillTransfer = Contract.notNegative(maxTransfer);
+			this.m_maxDrainTransfer = Contract.notNegative(maxTransfer);
 			return this;
-		} // end onContentsFill()
+		} // end maxTransfer()
+		
+		public Builder maxFillTransfer(@NotNegative int maxTransfer) 
+		{
+			this.m_maxFillTransfer = Contract.notNegative(maxTransfer);
+			return this;
+		} // end maxFillTransfer()
+		
+		public Builder maxDrainTransfer(@NotNegative int maxTransfer) 
+		{
+			this.m_maxDrainTransfer = Contract.notNegative(maxTransfer);
+			return this;
+		} // end maxDrainTransfer()
 		
 		
 		
 		public TankWrapper build() 
 		{
-			return new TankWrapper(this.m_fluidHandler, this.m_onContentsDrain, this.m_onContentsFill, this.m_canDrain, this.m_fillValidator, this.m_maxTransfer);
+			return new TankWrapper(this.m_fluidHandler, this.m_onContentsDrain, this.m_onContentsFill, this.m_canDrain, this.m_fillValidator, this.m_maxFillTransfer, this.m_maxDrainTransfer);
 		} // end builder()
 		
 	} // end inner class

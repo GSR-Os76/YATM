@@ -64,7 +64,7 @@ public class GrinderBlockEntity extends BuiltDeviceBlockEntity
 	@Override
 	protected void define(@NotNull Consumer<DeviceDefinition> definitionReceiver, @NotNull ICapabilityProvider defaultCapabilityProvider)
 	{
-		CurrentHandler c = this.m_helpers.newCurrentHandler(YATMConfigs.GRINDER_CURRENT_CAPACITY.get());
+		CurrentHandler c = this.m_helpers.newCurrentHandler(YATMConfigs.GRINDER_CURRENT_CAPACITY.get(), YATMConfigs.GRINDER_MAX_CURRENT_TRANSFER.get());
 		
 		BackedFunction<IItemHandler, CurrentFillManager> cFM = new BackedFunction<>((i) -> new CurrentFillManager(i, GrinderBlockEntity.POWER_SLOT, c, YATMConfigs.GRINDER_MAX_CURRENT_TRANSFER.get()));
 		BackedFunction<IItemHandler, InputComponentManager<ICurrentHandler>> cFCM = new BackedFunction<>((i) -> new InputComponentManager<>(i, GrinderBlockEntity.POWER_SLOT, this.m_helpers.noDrain(c), YATMCapabilities.CURRENT));
