@@ -111,8 +111,8 @@ public class StillBlockEntity extends BuiltDeviceBlockEntity
 		FluidTank d = this.m_helpers.newTank(YATMConfigs.STILL_DISTILLATE_TANK_CAPACITY.get());
 		
 		IFluidTank wIn = TankWrapper.Builder.of(in).maxFillTransfer(YATMConfigs.STILL_FILL_INPUT_MAX_FLUID_TRANSFER_RATE.get()).maxDrainTransfer(YATMConfigs.STILL_DRAIN_INPUT_MAX_FLUID_TRANSFER_RATE.get()).build();
-		IFluidTank wR = TankWrapper.Builder.of(r).maxDrainTransfer(YATMConfigs.STILL_DRAIN_REMAINDER_MAX_FLUID_TRANSFER_RATE.get()).build();
-		IFluidTank wD = TankWrapper.Builder.of(d).maxDrainTransfer(YATMConfigs.STILL_DRAIN_DISTILLATE_MAX_FLUID_TRANSFER_RATE.get()).build();
+		IFluidTank wR = TankWrapper.Builder.of(r).fillValidator((f) -> false).maxDrainTransfer(YATMConfigs.STILL_DRAIN_REMAINDER_MAX_FLUID_TRANSFER_RATE.get()).build();
+		IFluidTank wD = TankWrapper.Builder.of(d).fillValidator((f) -> false).maxDrainTransfer(YATMConfigs.STILL_DRAIN_DISTILLATE_MAX_FLUID_TRANSFER_RATE.get()).build();
 		IFluidHandler cT = new CompoundTank(wIn, wR, wD);
 		
 		OnChangedHeatHandler h = this.m_helpers.newHeatHandler(IHeatHandler.getAmbientTemp(this.getLevel(), this.getBlockPos()), YATMConfigs.STILL_MAX_TEMPERATURE.get());
