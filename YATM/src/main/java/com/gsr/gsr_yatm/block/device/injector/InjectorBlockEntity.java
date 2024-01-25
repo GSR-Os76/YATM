@@ -150,7 +150,8 @@ public class InjectorBlockEntity extends BuiltDeviceBlockEntity
 		.face(() -> SetUtil.of(Direction.Plane.HORIZONTAL.stream()))
 		.returns(cFCM.get())
 		.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), InjectorBlockEntity.POWER_SLOT)).end()
-		.end()
+	
+		.last(defaultCapabilityProvider)
 		
 		.end();
 		this.m_inventory = inv.get();
