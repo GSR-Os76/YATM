@@ -1,18 +1,15 @@
 package com.gsr.gsr_yatm.block.device.injector;
 
-import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
+import com.gsr.gsr_yatm.block.device.grinder.GrinderBlockEntity;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
-import com.gsr.gsr_yatm.utilities.network.container_data.AccessSpecification;
-import com.gsr.gsr_yatm.utilities.network.container_data.CompositeAccessSpecification;
-import com.gsr.gsr_yatm.utilities.network.container_data.ICompositeAccessSpecification;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.current.CurrentDataReader;
 import com.gsr.gsr_yatm.utilities.network.container_data.implementation.fluid.FluidTankDataReader;
 
 import net.minecraft.world.entity.player.Inventory;
@@ -36,26 +33,20 @@ public class InjectorMenu extends AbstractContainerMenu
 	public static final int PLAYER_HOTBAR_START = PLAYER_INVENTORY_END + 1;
 	public static final int PLAYER_HOTBAR_END = PLAYER_HOTBAR_START + 8;
 	
-	private static ICompositeAccessSpecification s_spec = new CompositeAccessSpecification(List.of(Map.entry(CraftingDeviceBlockEntity.CRAFT_PROGRESS_SPEC_KEY, new AccessSpecification(0,1))));
-	
 	private final @NotNull ContainerLevelAccess m_access;
 	private final @NotNull /* IEvent */ContainerData m_data;
 	private final @Nullable Block m_openingBlock;
 	private final @NotNull FluidTankDataReader m_tankReader;
+	private final @NotNull CurrentDataReader m_currentReader;
 	
 	
 	// client side constructor
 	public InjectorMenu(int inventoryId, Inventory playerInventory)
 	{
-		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(InjectorBlockEntity.INVENTORY_SLOT_COUNT), new /*SimpleEventContainerData*/SimpleContainerData(2));
+		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(InjectorBlockEntity.INVENTORY_SLOT_COUNT), new /*SimpleEventContainerData*/SimpleContainerData(InjectorBlockEntity.ACCESS_SPEC.getCount()));
 	} // end client constructor
 
-//	// server side constructor
-//	public InjectorMenu(int inventoryId, @NotNull Inventory playerInventory, @NotNull ContainerLevelAccess access, @Nullable Block openingBlock, @NotNull IItemHandler objInventory, @NotNull ContainerData data)
-//	{
-//		this(inventoryId, Objects.requireNonNull(playerInventory), Objects.requireNonNull(access), openingBlock, Objects.requireNonNull(objInventory), Objects.requireNonNull(wrapper.of(data)));
-//	}
-	
+
 	// server side constructor
 	public InjectorMenu(int inventoryId, @NotNull Inventory playerInventory, @NotNull ContainerLevelAccess access, @Nullable Block openingBlock, @NotNull IItemHandler objInventory, @NotNull /* IEvent */ContainerData data)
 	{
@@ -65,8 +56,8 @@ public class InjectorMenu extends AbstractContainerMenu
 		this.m_data = Objects.requireNonNull(data);
 		this.m_openingBlock = openingBlock;
 		
-
-		this.m_tankReader = new FluidTankDataReader(this.m_data, InjectorMenu.s_spec.get(InjectorBlockEntity.TANK_DATA_SPEC_KEY));
+		this.m_tankReader = new FluidTankDataReader(this.m_data, InjectorBlockEntity.ACCESS_SPEC.get(InjectorBlockEntity.INPUT_TANK_SPEC_KEY));
+		this.m_currentReader = new CurrentDataReader(this.m_data, GrinderBlockEntity.ACCESS_SPEC.get(GrinderBlockEntity.CURRENT_DATA_SPEC_KEY));
 		
 		this.addSlot(new SlotItemHandler(objInventory, InjectorBlockEntity.FILL_INPUT_TANK_SLOT, 116, 87));
 		this.addSlot(new SlotItemHandler(objInventory, InjectorBlockEntity.DRAIN_INPUT_TANK_SLOT, 134, 87));
@@ -180,17 +171,17 @@ public class InjectorMenu extends AbstractContainerMenu
 	
 	public float craftProgress() 
 	{
-		return NetworkUtil.getProgess(InjectorMenu.s_spec.get(InjectorBlockEntity.CRAFT_PROGRESS_SPEC_KEY), this.m_data);
+		return NetworkUtil.getProgess(InjectorBlockEntity.ACCESS_SPEC.get(InjectorBlockEntity.CRAFT_PROGRESS_SPEC_KEY), this.m_data);
 	} // end craftProgress()
 	
 	public float inputTankFillProgress()
 	{
-		return NetworkUtil.getProgess(InjectorMenu.s_spec.get(InjectorBlockEntity.FILL_PROGRESS_SPEC_KEY), this.m_data);
+		return NetworkUtil.getProgess(InjectorBlockEntity.ACCESS_SPEC.get(InjectorBlockEntity.FILL_INPUT_PROGRESS_SPEC_KEY), this.m_data);
 	} // end inputTankFillProgress()
 	
 	public float inputTankDrainProgress()
 	{
-		return NetworkUtil.getProgess(InjectorMenu.s_spec.get(InjectorBlockEntity.DRAIN_PROGRESS_SPEC_KEY), this.m_data);
+		return NetworkUtil.getProgess(InjectorBlockEntity.ACCESS_SPEC.get(InjectorBlockEntity.DRAIN_INPUT_PROGRESS_SPEC_KEY), this.m_data);
 	} // end inputTankDrainProgress()
 	
 	
@@ -212,8 +203,19 @@ public class InjectorMenu extends AbstractContainerMenu
 	
 	
 	
+	public @NotNegative int getCurrentCapacity()
+	{
+		return this.m_currentReader.getCapacity();
+	} // end getResultTankCapacity()
+	
+	public @NotNegative int getCurrentStored()
+	{
+		return this.m_currentReader.getStored();
+	} // end getResultTankCapacity()
+	
 //	create object reference to this: (i) -> Objects.requireNonNull(subscriber).accept(InjectorMenu.this.getFluid())
 //	/** Note: Event is only raised when this menu receives an updated value through it's data slot.*/
+// thought: something about slots that're added
 //	public void subscribe(@NotNull Consumer<Fluid> subscriber) 
 //	{
 //		this.m_data.subscribe(this.getFluidDataSlotIndex(), Objects.requireNonNull(subscriber));

@@ -1,40 +1,54 @@
 package com.gsr.gsr_yatm.block.device.injector;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
+import java.util.Set;
+import java.util.function.Consumer;
+
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
-import com.gsr.gsr_yatm.block.device.CraftingDeviceBlockEntity;
-import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
+import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
+import com.gsr.gsr_yatm.block.device.behaviors.implementation.SerializableBehavior;
+import com.gsr.gsr_yatm.block.device.behaviors.implementation.component.InputComponentManager;
+import com.gsr.gsr_yatm.block.device.behaviors.implementation.component.OutputComponentManager;
+import com.gsr.gsr_yatm.block.device.behaviors.implementation.crafting.CraftingManager;
+import com.gsr.gsr_yatm.block.device.behaviors.implementation.current.CurrentFillManager;
+import com.gsr.gsr_yatm.block.device.behaviors.implementation.fluid.DrainTankManager;
+import com.gsr.gsr_yatm.block.device.behaviors.implementation.fluid.FillTankManager;
+import com.gsr.gsr_yatm.block.device.builder.DeviceBuilder;
+import com.gsr.gsr_yatm.block.device.builder.DeviceDefinition;
+import com.gsr.gsr_yatm.block.device.builder.game_objects.BuiltDeviceBlockEntity;
 import com.gsr.gsr_yatm.recipe.injecting.InjectingRecipe;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMRecipeTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
+import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
 import com.gsr.gsr_yatm.utilities.capability.fluid.TankWrapper;
+import com.gsr.gsr_yatm.utilities.capability.item.InventoryWrapper;
+import com.gsr.gsr_yatm.utilities.generic.BackedFunction;
+import com.gsr.gsr_yatm.utilities.generic.SetUtil;
+import com.gsr.gsr_yatm.utilities.generic.tuples.Tuple;
 import com.gsr.gsr_yatm.utilities.generic.tuples.Tuple3;
-import com.gsr.gsr_yatm.utilities.network.container_data.AccessSpecification;
 import com.gsr.gsr_yatm.utilities.network.container_data.CompositeAccessSpecification;
-import com.gsr.gsr_yatm.utilities.network.container_data.ContainerDataBuilder;
 import com.gsr.gsr_yatm.utilities.network.container_data.ICompositeAccessSpecification;
-import com.gsr.gsr_yatm.utilities.network.container_data.IContainerDataProvider;
-import com.gsr.gsr_yatm.utilities.network.container_data.LazyCompositeAccessSpecification;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.current.CurrentHandlerContainerData;
 import com.gsr.gsr_yatm.utilities.network.container_data.implementation.fluid.FluidHandlerContainerData;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Container;
-import net.minecraft.world.inventory.ContainerData;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.common.capabilities.ForgeCapabilities;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.fluids.capability.IFluidHandler;
-import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.items.IItemHandler;
 
-public class InjectorBlockEntity extends CraftingDeviceBlockEntity<InjectingRecipe, Container, Tuple3<IFluidHandler, IItemHandler, ICurrentHandler>>
+public class InjectorBlockEntity extends BuiltDeviceBlockEntity
 {
 	public static final int INVENTORY_SLOT_COUNT = 5;
 	
@@ -43,257 +57,103 @@ public class InjectorBlockEntity extends CraftingDeviceBlockEntity<InjectingReci
 	public static final int SUBSTRATE_SLOT = 2;
 	public static final int RESULT_SLOT = 3;
 	public static final int POWER_SLOT = 4;
-
-	public static final String TANK_DATA_SPEC_KEY = "tankInfo";
-	public static final String FILL_PROGRESS_SPEC_KEY = "fillProgress";
-	public static final String DRAIN_PROGRESS_SPEC_KEY = "drainProgress";
-
-	private static final String TANK_CAPACITY_TAG_NAME = "tankCapacity";
-	private static final String MAX_FLUID_TRANSFER_RATE_TAG_NAME = "maxFluidTransferRate";
-
-	public static final String DRAIN_INPUT_COUNT_DOWN_TAG_NAME = "drainInputCount";
-	public static final String DRAIN_INPUT_TRANSFER_INITIAL_TAG_NAME = "drainInputInitial";
-	public static final String FILL_INPUT_TRANSFER_BUFFER_TAG_NAME = "fillInputBuffer";
-	public static final String FILL_INPUT_TRANSFER_INITIAL_TAG_NAME = "fillInputInitial";
-	public static final String INPUT_TANK_TAG_NAME = "inputTank";
-
-
-
-	private int m_maxFluidTransferRate;
-	private FluidTank m_rawInputTank;
-	private TankWrapper m_inputTank;
-	private FluidTank m_fillInputTankBuffer;
-	private int m_fillInputTankInitialTransferSize = 0;
-	private int m_drainInputTankCountDown = 0;
-	private int m_drainInputTankInitialTransferSize = 0;	
-
-
-
-	public InjectorBlockEntity(BlockPos blockPos, BlockState blockState)
-	{
-		this(blockPos, blockState, DeviceTierConstants.EMPTY);
-	} // end constructor
-
-	public InjectorBlockEntity(BlockPos blockPos, BlockState blockState, DeviceTierConstants constants)
-	{
-		super(YATMBlockEntityTypes.INJECTOR.get(), blockPos, blockState, InjectorBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.INJECTING.get());
-		this.setup(constants.tankCapacity(), constants.maxFluidTransferRate());
-	} // end constructor
-
-	@Override
-	public @NotNull Tuple3<IFluidHandler, IItemHandler, ICurrentHandler> getContext()
-	{
-		return new Tuple3<>(this.m_inputTank, this.m_inventory, null);
-	}
-
-	@Override
-	public @NotNull ContainerData getDataAccessor()
-	{
-		return this.m_craftProgressC;
-	} // end getDataAccessor()
 	
-	@Override
-	protected @NotNull CompoundTag setupToNBT()
+	public static final String CRAFT_PROGRESS_SPEC_KEY = "craftProgress";
+	public static final String CURRENT_DATA_SPEC_KEY = "currentData";
+	public static final String DRAIN_INPUT_PROGRESS_SPEC_KEY = "drainInputProgress";
+	public static final String FILL_INPUT_PROGRESS_SPEC_KEY = "fillInputProgress";
+	public static final String INPUT_TANK_SPEC_KEY = "inputTank";
+	
+	public static final ICompositeAccessSpecification ACCESS_SPEC = CompositeAccessSpecification.of(List.of(
+			Map.entry(CRAFT_PROGRESS_SPEC_KEY, CraftingManager.SLOT_COUNT),
+			Map.entry(CURRENT_DATA_SPEC_KEY, CurrentHandlerContainerData.SLOT_COUNT),
+			Map.entry(DRAIN_INPUT_PROGRESS_SPEC_KEY, DrainTankManager.SLOT_COUNT),
+			Map.entry(FILL_INPUT_PROGRESS_SPEC_KEY, FillTankManager.SLOT_COUNT),
+			Map.entry(INPUT_TANK_SPEC_KEY, FluidHandlerContainerData.SLOT_COUNT)
+			));
+	
+	
+	
+	public InjectorBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		CompoundTag tag = new CompoundTag();
-		tag.putInt(InjectorBlockEntity.TANK_CAPACITY_TAG_NAME, this.m_rawInputTank.getCapacity());
-		tag.putInt(InjectorBlockEntity.MAX_FLUID_TRANSFER_RATE_TAG_NAME, this.m_maxFluidTransferRate);
-		return tag;
-	} // end setupToNBT()
+		super(YATMBlockEntityTypes.INJECTOR.get(), Objects.requireNonNull(position), Objects.requireNonNull(state));
+	} // end constructor
 
 	@Override
-	protected void setupFromNBT(@NotNull CompoundTag tag)
+	protected void define(@NotNull Consumer<DeviceDefinition> definitionReceiver, @NotNull ICapabilityProvider defaultCapabilityProvider)
 	{
-		int fluidCapacity = 0;
-		int maxFluidTransferRate = 0;
-
-		if (tag.contains(InjectorBlockEntity.TANK_CAPACITY_TAG_NAME))
-		{
-			fluidCapacity = tag.getInt(InjectorBlockEntity.TANK_CAPACITY_TAG_NAME);
-		}
-		if (tag.contains(InjectorBlockEntity.MAX_FLUID_TRANSFER_RATE_TAG_NAME))
-		{
-			maxFluidTransferRate = tag.getInt(InjectorBlockEntity.MAX_FLUID_TRANSFER_RATE_TAG_NAME);
-		}
-		this.setup(fluidCapacity, maxFluidTransferRate);
-	} // end setupFromNBT()
-
-	private void setup(int tankCapacities, int maxFluidTransferRate)
-	{
-		this.m_maxFluidTransferRate = maxFluidTransferRate;
-		this.m_fillInputTankBuffer = new FluidTank(tankCapacities);
-		this.m_rawInputTank = new FluidTank(tankCapacities);
-		this.m_inputTank = new TankWrapper(this.m_rawInputTank, this::onFluidContentsChanged);
+		BackedFunction<IItemHandler, IItemHandler> inv = new BackedFunction<>((i) -> InventoryWrapper.Builder.of(i).slotValidator((s, is, sim) -> s != InjectorBlockEntity.RESULT_SLOT).build());
+		FluidTank in = this.m_helpers.newTank(YATMConfigs.INJECTOR_INPUT_TANK_CAPACITY.get());
+		TankWrapper wIn = TankWrapper.Builder.of(in).maxDrainTransfer(YATMConfigs.INJECTOR_DRAIN_INPUT_MAX_FLUID_TRANSFER_RATE.get()).build();
+		CurrentHandler c = this.m_helpers.newCurrentHandler(YATMConfigs.INJECTOR_CURRENT_CAPACITY.get(), YATMConfigs.INJECTOR_MAX_CURRENT_TRANSFER.get());
 		
-	} // end setup()
+		BackedFunction<IItemHandler, FillTankManager> inFM = new BackedFunction<>((i) -> new FillTankManager(i, InjectorBlockEntity.FILL_INPUT_TANK_SLOT, in, YATMConfigs.INJECTOR_FILL_INPUT_MAX_FLUID_TRANSFER_RATE.get()));
+		BackedFunction<IItemHandler, CurrentFillManager> cFM = new BackedFunction<>((i) -> new CurrentFillManager(i, InjectorBlockEntity.POWER_SLOT, c, YATMConfigs.INJECTOR_MAX_CURRENT_TRANSFER.get()));
+		BackedFunction<IItemHandler, InputComponentManager<IFluidHandler>> inFCM = new BackedFunction<>((i) -> new InputComponentManager<>(i, InjectorBlockEntity.FILL_INPUT_TANK_SLOT, TankWrapper.Builder.of(in).canDrain(() -> false).build(), ForgeCapabilities.FLUID_HANDLER));
+		BackedFunction<IItemHandler, InputComponentManager<ICurrentHandler>> cFCM = new BackedFunction<>((i) -> new InputComponentManager<>(i, InjectorBlockEntity.POWER_SLOT, this.m_helpers.noDrain(c), YATMCapabilities.CURRENT));
+		
+		BackedFunction<IItemHandler, CraftingManager<InjectingRecipe, Container, Tuple3<IFluidHandler, IItemHandler, ICurrentHandler>>> cM = new BackedFunction<>((i) -> new CraftingManager<>(YATMRecipeTypes.INJECTING.get(), () -> Tuple.of(in, i, c)));
+		
+		BackedFunction<IItemHandler, DrainTankManager> inDM = new BackedFunction<>((i) -> new DrainTankManager(i, InjectorBlockEntity.DRAIN_INPUT_TANK_SLOT, in, YATMConfigs.INJECTOR_DRAIN_INPUT_MAX_FLUID_TRANSFER_RATE.get()));
+		BackedFunction<IItemHandler, OutputComponentManager> inDCM = new BackedFunction<>((i) -> new OutputComponentManager(i, InjectorBlockEntity.DRAIN_INPUT_TANK_SLOT, () -> List.of(), YATMConfigs.INJECTOR_DRAIN_INPUT_RECHECK_PERIOD.get()));
 
-	protected @NotNull IContainerDataProvider<InjectorBlockEntity> createContainerDataProvider()
-	{
-		return new IContainerDataProvider<InjectorBlockEntity>() 
-		{
-			private ICompositeAccessSpecification m_lazySpec = new LazyCompositeAccessSpecification(() -> this.m_spec);
-			private ICompositeAccessSpecification m_spec;
-			
-			@Override
-			public ContainerData createFor(InjectorBlockEntity t)
-			{				
-				List<Map.Entry<String, AccessSpecification>> specs = new ArrayList<>();
-				ContainerDataBuilder builder = new ContainerDataBuilder();
-				specs.add(Map.entry(CraftingDeviceBlockEntity.CRAFT_PROGRESS_SPEC_KEY, builder.addContainerDataS(t.m_craftProgressC)));
-				specs.add(Map.entry(InjectorBlockEntity.TANK_DATA_SPEC_KEY, builder.addContainerDataS(new FluidHandlerContainerData(t.m_inputTank, 0))));
-				AccessSpecification fillPrg = builder.addPropertyS(() -> t.m_fillInputTankBuffer.getFluidAmount(), (i) -> {});
-				AccessSpecification fillInit = builder.addPropertyS(() -> t.m_fillInputTankInitialTransferSize, (i) -> {});
-				specs.add(Map.entry(InjectorBlockEntity.FILL_PROGRESS_SPEC_KEY, AccessSpecification.join(fillPrg, fillInit)));
-				AccessSpecification drainPrg = builder.addPropertyS(() -> t.m_drainInputTankCountDown, (i) -> {});
-				AccessSpecification drainInit = builder.addPropertyS(() -> t.m_drainInputTankInitialTransferSize, (i) -> {});
-				specs.add(Map.entry(InjectorBlockEntity.DRAIN_PROGRESS_SPEC_KEY, AccessSpecification.join(drainPrg, drainInit)));
-				if(this.m_spec == null) 
-				{
-					this.m_spec = new CompositeAccessSpecification(specs);
-					this.m_lazySpec = null;
-				}
-				return builder.build();
-			} // end createFor()
-
-			@Override
-			public ICompositeAccessSpecification createSpec()
-			{
-				if(this.m_spec == null) 
-				{
-					return this.m_lazySpec;
-				}
-				return this.m_spec;
-			} // end createSpec
-		};
-	} // end createContainerDataProvider()
+		DeviceBuilder.of(this::createInventory, definitionReceiver)
+		.inventory()
+		.slot().insertionValidator(SlotUtil.TANK_FILL_SLOT_INSERTION_VALIDATOR).end()
+		.slot().insertionValidator(SlotUtil.TANK_DRAIN_SLOT_INSERTION_VALIDATOR).end()
+		.slot().end()
+		.slot().end()
+		.slot().insertionValidator(SlotUtil.POWER_SLOT_INSERTION_VALIDATOR).end()
+		.end()
+		
+		.behavior((i) -> new SerializableBehavior(i, "inventory")).allDefaults().end()
+		.behavior(new SerializableBehavior(() -> in.writeToNBT(new CompoundTag()), in::readFromNBT, "inputTank")).allDefaults().end()
+		.behavior(new SerializableBehavior(c, "current")).allDefaults().end()
+		.behavior(inFM::apply).allDefaults().end()
+		.behavior(cFM::apply).allDefaults().end()
+		.behavior(inFCM::apply).allDefaults().end()
+		.behavior(cFCM::apply).allDefaults().end()
+		.behavior(cM::apply).allDefaults().end()
+		.behavior(inDM::apply).allDefaults().end()
+		.behavior(inDCM::apply).allDefaults().end()
+		
+		.containerData()
+		.addContainerData(cM.get().getData())
+		.addContainerData(new CurrentHandlerContainerData(c))
+		.addContainerData(inDM.get().getData())
+		.addContainerData(inFM.get().getData())
+		.addContainerData(new FluidHandlerContainerData(in))
+		.end()
+		
+		.getInventory(inv::apply)
+		
+		.capabilityProvider()
+		.face((Direction)null)
+		.returnsWhen(ForgeCapabilities.ITEM_HANDLER, inv.get())
+		.elifReturnsWhen(ForgeCapabilities.FLUID_HANDLER, wIn)
+		.elifReturnsWhen(YATMCapabilities.CURRENT, c).end()
+		
+		.face(Direction.UP)
+		.returns(inFCM.get())
+		.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), InjectorBlockEntity.FILL_INPUT_TANK_SLOT)).end()
+		
+		.face(Set::of)
+		.returns(inDCM.get())
+		.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), InjectorBlockEntity.DRAIN_INPUT_TANK_SLOT)).end()
+		
+		.face(Set::of)
+		.returnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), InjectorBlockEntity.SUBSTRATE_SLOT)).end()
+		
+		.face(Direction.DOWN)
+		.returnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), InjectorBlockEntity.RESULT_SLOT)).end()
+		
+		.face(() -> SetUtil.of(Direction.Plane.HORIZONTAL.stream()))
+		.returns(cFCM.get())
+		.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), InjectorBlockEntity.POWER_SLOT)).end()
+		.end()
+		
+		.end();
+		this.m_inventory = inv.get();
+	} // end define()
 	
-	
-	
-	@Override
-	protected boolean itemInsertionValidator(int slot, ItemStack stack, boolean simulate)
-	{
-		return switch (slot)
-		{
-			case InjectorBlockEntity.FILL_INPUT_TANK_SLOT -> SlotUtil.isValidTankFillSlotInsert(stack);
-			case InjectorBlockEntity.DRAIN_INPUT_TANK_SLOT -> SlotUtil.isValidTankDrainSlotInsert(stack);
-			case InjectorBlockEntity.RESULT_SLOT -> false;
-			default -> true;
-		};
-	} // end validateSlotInsertion()
-
-
-
-	@Override
-	public void serverTick(Level level, BlockPos blockPos, BlockState state)
-	{
-		super.serverTick(level, blockPos, state);
-
-		boolean changed = this.doAcceptPower();
-		changed |= this.doFillInputTank();
-		changed |= this.m_craftingManager.tick(level, blockPos);
-		changed |= this.doDrainInputTank();
-
-		if (changed)
-		{
-			this.setChanged();
-		}
-	} // end serverTick()
-
-	private boolean doAcceptPower()
-	{
-		boolean changed = false;
-
-		return changed;
-	} // end doAcceptPower()
-
-	private boolean doFillInputTank()
-	{
-		boolean changed = false;
-		if (this.m_fillInputTankBuffer.getFluidAmount() <= 0)
-		{
-			this.m_fillInputTankInitialTransferSize = SlotUtil.queueToFillFromSlot(this.level, this.worldPosition, this.m_inventory, InjectorBlockEntity.FILL_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_fillInputTankBuffer, this.m_maxFluidTransferRate);
-			if (this.m_fillInputTankInitialTransferSize > 0)
-			{
-				changed = true;
-			}
-		}
-		if (this.m_fillInputTankBuffer.getFluidAmount() > 0)
-		{
-			this.m_inputTank.fill(this.m_fillInputTankBuffer.drain(this.m_maxFluidTransferRate, FluidAction.EXECUTE), FluidAction.EXECUTE);
-			if (this.m_fillInputTankBuffer.getFluidAmount() <= 0)
-			{
-				this.m_fillInputTankInitialTransferSize = 0;
-			}
-			changed = true;
-		}
-		return changed;
-	}// end doFillInputTank()
-
-	private boolean doDrainInputTank()
-	{
-		boolean changed = false;
-		if (this.m_drainInputTankCountDown > 0)
-		{
-			this.m_drainInputTankCountDown = SlotUtil.countDownOrDrainToSlot(this.level, this.worldPosition, this.m_inventory, InjectorBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_drainInputTankInitialTransferSize, this.m_drainInputTankCountDown, this.m_maxFluidTransferRate);
-			if (this.m_drainInputTankCountDown <= 0)
-			{
-				this.m_drainInputTankInitialTransferSize = 0;
-			}
-			changed = true;
-		}
-		if (m_drainInputTankInitialTransferSize == 0)
-		{
-			this.m_drainInputTankInitialTransferSize = SlotUtil.queueToDrainToSlot(this.m_inventory, InjectorBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, 0, this.m_maxFluidTransferRate);
-			this.m_drainInputTankCountDown = this.m_drainInputTankInitialTransferSize;
-
-			changed = true;
-		}
-		return changed;
-	} // end doDrainInputTank()
-
-
-
-	@Override
-	protected void saveAdditional(CompoundTag tag)
-	{
-		super.saveAdditional(tag);
-
-		if (this.m_rawInputTank.getFluidAmount() > 0)
-		{
-			tag.put(InjectorBlockEntity.INPUT_TANK_TAG_NAME, this.m_rawInputTank.writeToNBT(new CompoundTag()));
-		}
-		if (this.m_fillInputTankBuffer.getFluidAmount() > 0 && this.m_fillInputTankInitialTransferSize > 0)
-		{
-			tag.put(InjectorBlockEntity.FILL_INPUT_TRANSFER_BUFFER_TAG_NAME, this.m_fillInputTankBuffer.writeToNBT(new CompoundTag()));
-			tag.putInt(InjectorBlockEntity.FILL_INPUT_TRANSFER_INITIAL_TAG_NAME, this.m_fillInputTankInitialTransferSize);
-		}
-		if (this.m_drainInputTankCountDown > 0 && this.m_drainInputTankInitialTransferSize > 0)
-		{
-			tag.putInt(InjectorBlockEntity.DRAIN_INPUT_COUNT_DOWN_TAG_NAME, this.m_drainInputTankCountDown);
-			tag.putInt(InjectorBlockEntity.DRAIN_INPUT_TRANSFER_INITIAL_TAG_NAME, this.m_drainInputTankInitialTransferSize);
-		}
-	} // end saveAdditional()
-
-	@Override
-	public void load(CompoundTag tag)
-	{
-		super.load(tag);
-		if (tag.contains(InjectorBlockEntity.INPUT_TANK_TAG_NAME))
-		{
-			this.m_rawInputTank.readFromNBT(tag.getCompound(InjectorBlockEntity.INPUT_TANK_TAG_NAME));
-		}
-		if (tag.contains(InjectorBlockEntity.FILL_INPUT_TRANSFER_BUFFER_TAG_NAME) && tag.contains(InjectorBlockEntity.FILL_INPUT_TRANSFER_INITIAL_TAG_NAME))
-		{
-			this.m_fillInputTankBuffer.readFromNBT(tag.getCompound(InjectorBlockEntity.FILL_INPUT_TRANSFER_BUFFER_TAG_NAME));
-			this.m_fillInputTankInitialTransferSize = tag.getInt(InjectorBlockEntity.FILL_INPUT_TRANSFER_INITIAL_TAG_NAME);
-		}
-		if (tag.contains(InjectorBlockEntity.DRAIN_INPUT_COUNT_DOWN_TAG_NAME) && tag.contains(InjectorBlockEntity.DRAIN_INPUT_TRANSFER_INITIAL_TAG_NAME))
-		{
-			this.m_drainInputTankCountDown = tag.getInt(InjectorBlockEntity.DRAIN_INPUT_COUNT_DOWN_TAG_NAME);
-			this.m_drainInputTankInitialTransferSize = tag.getInt(InjectorBlockEntity.DRAIN_INPUT_TRANSFER_INITIAL_TAG_NAME);
-		}
-	} // end load()
-
-	
-
 } // end class

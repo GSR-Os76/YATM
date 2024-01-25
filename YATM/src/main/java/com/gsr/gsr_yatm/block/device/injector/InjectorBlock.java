@@ -5,8 +5,7 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.block.device.DeviceBlock;
-import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
-import com.gsr.gsr_yatm.block.device.DeviceTierConstants;
+import com.gsr.gsr_yatm.block.device.IDeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
@@ -21,22 +20,17 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class InjectorBlock extends DeviceBlock
 {
-	private final @NotNull DeviceTierConstants m_constants;
-	
-	
-	
-	public InjectorBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, @NotNull DeviceTierConstants constants)
+	public InjectorBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
 		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.INJECTOR::get);
-		this.m_constants = Objects.requireNonNull(constants);
 	} // end constructor
 
 
 	
 	@Override
-	public @NotNull DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
+	public @NotNull IDeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		return new InjectorBlockEntity(position, state, this.m_constants);
+		return new InjectorBlockEntity(position, state);
 	} // end newDeviceBlockEntity()
 
 	@Override

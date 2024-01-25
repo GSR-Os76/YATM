@@ -1,6 +1,7 @@
 package com.gsr.gsr_yatm.block.device.injector;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.gui.VerticalCurrentWidget;
 import com.gsr.gsr_yatm.gui.VerticalStoredFluidWidget;
 
 import net.minecraft.client.gui.GuiGraphics;
@@ -12,8 +13,9 @@ import net.minecraft.world.entity.player.Inventory;
 public class InjectorScreen extends AbstractContainerScreen<InjectorMenu>
 {
 	// TODO, definitely, probably, uniquify
-	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/crystallizer.png");
+	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/injector.png");
 	
+	private VerticalCurrentWidget m_currentWidget;
 	private VerticalStoredFluidWidget m_inputTankWidget;
 	
 	
@@ -34,8 +36,8 @@ public class InjectorScreen extends AbstractContainerScreen<InjectorMenu>
 	{
 		super.init();
 		this.setInputTankWidget();
-		
-	}
+		this.setCurrentWidget();
+	} // end init()
 
 	@Override
 	public void render(GuiGraphics graphics, int mouseX, int mouseY, float partialTick)
@@ -43,6 +45,7 @@ public class InjectorScreen extends AbstractContainerScreen<InjectorMenu>
 		super.renderBackground(graphics, mouseX, mouseY, partialTick);
 		this.renderBg(graphics, partialTick, mouseX, mouseY);
 		this.updateInputTankWidget();		
+		this.updateCurrentWidget();
 		super.render(graphics, mouseX, mouseY, partialTick);
 		this.renderTooltip(graphics, mouseX, mouseY);
 	} // end render()
@@ -131,4 +134,27 @@ public class InjectorScreen extends AbstractContainerScreen<InjectorMenu>
 		this.addRenderableWidget(this.m_inputTankWidget);
 	} // end setWidget()
 
+	
+	
+	public void updateCurrentWidget() 
+	{
+		if(this.m_currentWidget == null || this.menu.getCurrentCapacity() != this.m_currentWidget.getCapacity()) 
+		{
+			this.setCurrentWidget();
+		}
+
+		this.m_currentWidget.setStored(this.menu.getCurrentStored());
+	} // end updateCurrentWidget()
+	
+	public void setCurrentWidget() 
+	{
+		if(this.m_currentWidget != null) 
+		{			
+			this.removeWidget(this.m_currentWidget);
+		}
+
+		this.m_currentWidget = new VerticalCurrentWidget(this.leftPos + 7, this.topPos + 20, this.getMenu().getCurrentCapacity());
+		this.addRenderableWidget(this.m_currentWidget);
+	} // end setCurrentWidget()
+	
 } // end class
