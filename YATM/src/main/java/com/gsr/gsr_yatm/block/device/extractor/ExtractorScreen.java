@@ -1,6 +1,7 @@
 package com.gsr.gsr_yatm.block.device.extractor;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
+import com.gsr.gsr_yatm.gui.VerticalCurrentWidget;
 import com.gsr.gsr_yatm.gui.VerticalStoredFluidWidget;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
@@ -12,6 +13,7 @@ public class ExtractorScreen extends AbstractContainerScreen<ExtractorMenu>
 {
 	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/extractor.png");
 	
+	private VerticalCurrentWidget m_currentWidget;
 	private VerticalStoredFluidWidget m_fluidTankWidget;
 	
 	
@@ -31,6 +33,7 @@ public class ExtractorScreen extends AbstractContainerScreen<ExtractorMenu>
 	protected void init()
 	{
 		super.init();
+		this.setCurrentWidget();
 		this.setResultTankWidget();
 	} // end init()
 
@@ -39,6 +42,7 @@ public class ExtractorScreen extends AbstractContainerScreen<ExtractorMenu>
 	{
 		super.renderBackground(graphics, mouseX, mouseY, partialTick);
 		this.renderBg(graphics, partialTick, mouseX, mouseY);
+		this.updateCurrentWidget();
 		this.updateResultTankWidget();
 		super.render(graphics, mouseX, mouseY, partialTick);
 		this.renderTooltip(graphics, mouseX, mouseY);
@@ -49,7 +53,7 @@ public class ExtractorScreen extends AbstractContainerScreen<ExtractorMenu>
 	{
 		graphics.blit(BACKGROUND, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 		
-		float cP = this.menu.getExtractProgress();
+		float cP = this.menu.craftProgress();
 		if(cP > 0f) 
 		{
 			// from 176 0 to 80 63 size 16 8
@@ -66,7 +70,7 @@ public class ExtractorScreen extends AbstractContainerScreen<ExtractorMenu>
 			}
 		}
 
-		float dP = this.menu.getResultTankDrainProgress();
+		float dP = this.menu.resultTankDrainProgress();
 		if(dP > 0) 
 		{
 			graphics.blit(BACKGROUND, this.leftPos + 102, this.topPos + 79, 176, 25, 8, (int)(6f * dP));
@@ -99,5 +103,28 @@ public class ExtractorScreen extends AbstractContainerScreen<ExtractorMenu>
 		this.m_fluidTankWidget = new VerticalStoredFluidWidget(this.leftPos + 97, this.topPos + 20, this.menu.getFluidCapacity(), this.menu.getFluid());
 		this.addRenderableWidget(this.m_fluidTankWidget);
 	} // end setWidget()
+	
+	
+	
+	public void updateCurrentWidget() 
+	{
+		if(this.m_currentWidget == null || this.menu.getCurrentCapacity() != this.m_currentWidget.getCapacity()) 
+		{
+			this.setCurrentWidget();
+		}
+
+		this.m_currentWidget.setStored(this.menu.getCurrentStored());
+	} // end updateCurrentWidget()
+	
+	public void setCurrentWidget() 
+	{
+		if(this.m_currentWidget != null) 
+		{			
+			this.removeWidget(this.m_currentWidget);
+		}
+
+		this.m_currentWidget = new VerticalCurrentWidget(this.leftPos + 7, this.topPos + 20, this.getMenu().getCurrentCapacity());
+		this.addRenderableWidget(this.m_currentWidget);
+	} // end setCurrentWidget()
 	
 } // end class

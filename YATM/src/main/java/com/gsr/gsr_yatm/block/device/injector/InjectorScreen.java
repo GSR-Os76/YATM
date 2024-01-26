@@ -35,8 +35,8 @@ public class InjectorScreen extends AbstractContainerScreen<InjectorMenu>
 	protected void init()
 	{
 		super.init();
-		this.setInputTankWidget();
 		this.setCurrentWidget();
+		this.setInputTankWidget();
 	} // end init()
 
 	@Override
@@ -44,8 +44,8 @@ public class InjectorScreen extends AbstractContainerScreen<InjectorMenu>
 	{
 		super.renderBackground(graphics, mouseX, mouseY, partialTick);
 		this.renderBg(graphics, partialTick, mouseX, mouseY);
-		this.updateInputTankWidget();		
 		this.updateCurrentWidget();
+		this.updateInputTankWidget();		
 		super.render(graphics, mouseX, mouseY, partialTick);
 		this.renderTooltip(graphics, mouseX, mouseY);
 	} // end render()

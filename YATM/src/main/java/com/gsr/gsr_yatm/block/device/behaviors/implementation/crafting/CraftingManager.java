@@ -77,7 +77,7 @@ public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, 
 		return this.m_data;
 	} // end getData()
 	
-	public @NotNull T getActiveRecipe() 
+	public @Nullable T getActiveRecipe() 
 	{
 		return this.m_activeRecipe;
 	} // end getActiveRecipe()

@@ -6,6 +6,7 @@ import java.util.Map;
 
 import com.google.common.collect.ImmutableMap;
 import com.gsr.gsr_yatm.utilities.network.container_data.ContainerDataBuilder;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.bool.BooleanFlagHandler;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.inventory.ContainerData;

@@ -1,10 +1,10 @@
 package com.gsr.gsr_yatm.block.device.injector;
 
 import java.util.Objects;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import com.gsr.gsr_yatm.block.device.grinder.GrinderBlockEntity;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
@@ -57,7 +57,7 @@ public class InjectorMenu extends AbstractContainerMenu
 		this.m_openingBlock = openingBlock;
 		
 		this.m_tankReader = new FluidTankDataReader(this.m_data, InjectorBlockEntity.ACCESS_SPEC.get(InjectorBlockEntity.INPUT_TANK_SPEC_KEY));
-		this.m_currentReader = new CurrentDataReader(this.m_data, GrinderBlockEntity.ACCESS_SPEC.get(GrinderBlockEntity.CURRENT_DATA_SPEC_KEY));
+		this.m_currentReader = new CurrentDataReader(this.m_data, InjectorBlockEntity.ACCESS_SPEC.get(InjectorBlockEntity.CURRENT_DATA_SPEC_KEY));
 		
 		this.addSlot(new SlotItemHandler(objInventory, InjectorBlockEntity.FILL_INPUT_TANK_SLOT, 116, 87));
 		this.addSlot(new SlotItemHandler(objInventory, InjectorBlockEntity.DRAIN_INPUT_TANK_SLOT, 134, 87));
