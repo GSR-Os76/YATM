@@ -12,7 +12,6 @@ import org.joml.Vector2i;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.FaceBlock;
 import com.gsr.gsr_yatm.block.candle_lantern.CandleLanternBlock;
-import com.gsr.gsr_yatm.block.conduit.IConduit;
 import com.gsr.gsr_yatm.block.device.AttachmentState;
 import com.gsr.gsr_yatm.block.device.bioreactor.BioreactorBlock;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceBlock;
@@ -1666,7 +1665,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		ModelFile faceModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, faceName));
 		
 		MultiPartBlockStateBuilder builder = this.getMultipartBuilder(block);
-		IConduit.DIRECTION_PROPERTIES_BY_DIRECTION.forEach(new BiConsumer<>() 
+		YATMBlockStateProperties.HAS_DIRECTION_PROPERTIES_BY_DIRECTION.forEach(new BiConsumer<>() 
 		{
 			@Override
 			public void accept(Direction dir, BooleanProperty val)
