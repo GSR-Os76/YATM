@@ -674,7 +674,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	private void addCurrentFurnaces() 
 	{
-		this.createFacingBlock(YATMBlocks.STEEL_CURRENT_FURNACE.get(), YATMItems.STEEL_CURRENT_FURNACE.get(), YATMBlockStateProvider.CURRENT_FURNACE_MODEL);
+		this.createFacingBlock(YATMBlocks.STEEL_HEAT_FURNACE.get(), YATMItems.STEEL_HEAT_FURNACE.get(), YATMBlockStateProvider.CURRENT_FURNACE_MODEL);
 		
 	} // end addCurrentFurnaces()
 	

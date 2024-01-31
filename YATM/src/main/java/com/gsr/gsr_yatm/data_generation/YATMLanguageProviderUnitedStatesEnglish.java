@@ -33,6 +33,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 //		this.add(YATMMenuTypes.EXTRUDER.get(), "Extruder");		
 		this.add(YATMMenuTypes.EXTRACTOR.get(), "Extractor");		
 		this.add(YATMMenuTypes.GRINDER.get(), "Grinder");		
+		this.add(YATMMenuTypes.HEAT_FURNACE.get(), "Heat Furnace");		
 		this.add(YATMMenuTypes.INJECTOR.get(), "Injector");		
 		this.add(YATMMenuTypes.STILL.get(), "Still");		
 		
@@ -239,7 +240,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.STEEL_BOILER.get(), "Foliar Steel Boiler");
 		this.add(YATMBlocks.STEEL_CRUCIBLE.get(), "Foliar Steel Crucible");
 		this.add(YATMBlocks.STEEL_CRYSTALLIZER.get(), "Foliar Steel Crystallizer");
-		this.add(YATMBlocks.STEEL_CURRENT_FURNACE.get(), "Steel Current Furnace");
+		this.add(YATMBlocks.STEEL_HEAT_FURNACE.get(), "Foliar Steel Heat Furnace");
 		this.add(YATMBlocks.STEEL_EXTRACTOR.get(), "Foliar Steel Extractor");
 //		this.add(YATMBlocks.STEEL_EXTRUDER.get(), "Foliar Steel Extruder");
 		this.add(YATMBlocks.STEEL_GRINDER.get(), "Foliar Steel Grinder");

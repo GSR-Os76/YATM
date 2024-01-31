@@ -33,9 +33,11 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.items.IItemHandler;
 
-public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<WrappedSmeltingRecipe, Container, Tuple2<IItemHandler, IHeatHandler>>
+public class HeatFurnaceBlockEntity extends CraftingDeviceBlockEntity<WrappedSmeltingRecipe, Container, Tuple2<IItemHandler, IHeatHandler>>
 {
 	// TODO, allow placing food items on top to cook them, rend them too. NOTE: campfires might have this functionality as well, refrenceable
+	// Note: smoker recipes likely are those that're desired
+	// Likely in a later update than 1.1.0
 	public static final int INVENTORY_SLOT_COUNT = 3;
 	
 	public static final int INPUT_SLOT = 0;
@@ -53,9 +55,9 @@ public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<Wrapped
 	private int m_burnProgress = 0;
 	private int m_burnTime = 0;
 	private int m_temperature = 0;
-	private final int m_maxTemperature = YATMConfigs.CURRENT_FURNACE_MAX_TEMPERATURE.get();
+	private final int m_maxTemperature = YATMConfigs.HEAT_FURNACE_MAX_TEMPERATURE.get();
 	
-	private static final IContainerDataProvider<CurrentFurnaceBlockEntity> CONTAINER_DATA_PROVIDER = CurrentFurnaceBlockEntity.createContainerDataProvider();
+	private static final IContainerDataProvider<HeatFurnaceBlockEntity> CONTAINER_DATA_PROVIDER = HeatFurnaceBlockEntity.createContainerDataProvider();
 	public static final ICompositeAccessSpecification ACCESS_SPEC = CONTAINER_DATA_PROVIDER.createSpec();
 	private final ContainerData m_data = CONTAINER_DATA_PROVIDER.createFor(this);
 	
@@ -66,9 +68,9 @@ public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<Wrapped
 //		this(Objects.requireNonNull(position), Objects.requireNonNull(state), DeviceTierConstants.EMPTY);
 //	} // end constructor()
 //	
-	public CurrentFurnaceBlockEntity(BlockPos position, BlockState state)//, DeviceTierConstants constants)
+	public HeatFurnaceBlockEntity(BlockPos position, BlockState state)//, DeviceTierConstants constants)
 	{
-		super(YATMBlockEntityTypes.FURNACE_PLUS.get(), Objects.requireNonNull(position), Objects.requireNonNull(state), CurrentFurnaceBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.SMELTING_PLUS.get());
+		super(YATMBlockEntityTypes.HEAT_FURNACE.get(), Objects.requireNonNull(position), Objects.requireNonNull(state), HeatFurnaceBlockEntity.INVENTORY_SLOT_COUNT, YATMRecipeTypes.SMELTING_PLUS.get());
 		// this.setup(Contract.notNegative(constants.maxTemperature()));
 	} // end constructor()
 	
@@ -104,14 +106,14 @@ public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<Wrapped
 	
 	
 
-	private static IContainerDataProvider<CurrentFurnaceBlockEntity> createContainerDataProvider()
+	private static IContainerDataProvider<HeatFurnaceBlockEntity> createContainerDataProvider()
 	{
-		return new IContainerDataProvider<CurrentFurnaceBlockEntity>() 
+		return new IContainerDataProvider<HeatFurnaceBlockEntity>() 
 		{
 			private ICompositeAccessSpecification m_spec;
 			
 			@Override
-			public ContainerData createFor(CurrentFurnaceBlockEntity t)
+			public ContainerData createFor(HeatFurnaceBlockEntity t)
 			{
 				List<Map.Entry<String, AccessSpecification>> specs = new ArrayList<>();
 				ContainerDataBuilder builder = new ContainerDataBuilder();
@@ -181,7 +183,7 @@ public class CurrentFurnaceBlockEntity extends CraftingDeviceBlockEntity<Wrapped
 		
 		if (wasLitInitially != this.isLit())
 		{
-			level.setBlockAndUpdate(position, state.setValue(CurrentFurnaceBlock.LIT, this.isLit()));
+			level.setBlockAndUpdate(position, state.setValue(HeatFurnaceBlock.LIT, this.isLit()));
 		}
 		if(changed) 
 		{

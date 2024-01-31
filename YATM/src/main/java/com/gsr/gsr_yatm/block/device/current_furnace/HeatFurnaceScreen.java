@@ -10,22 +10,18 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class CurrentFurnaceScreen extends AbstractContainerScreen<CurrentFurnaceMenu>
+public class HeatFurnaceScreen extends AbstractContainerScreen<HeatFurnaceMenu>
 {
 	// TODO, this
-	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/boiler.png");
+	private static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/heat_furnace.png");
 
 	private HorizontalTemperatureWidget m_temperatureWidget;
 
 	
 	
-	public CurrentFurnaceScreen(CurrentFurnaceMenu menu, Inventory inventory, Component titleComponentMaybe)
+	public HeatFurnaceScreen(HeatFurnaceMenu menu, Inventory inventory, Component titleComponentMaybe)
 	{
 		super(menu, inventory, titleComponentMaybe);
-
-		int newYDownShift = 36;
-		this.imageHeight = 166 + newYDownShift;
-		this.inventoryLabelY = this.inventoryLabelY + newYDownShift;
 	} // end constructor
 	
 	
@@ -93,7 +89,7 @@ public class CurrentFurnaceScreen extends AbstractContainerScreen<CurrentFurnace
 			this.removeWidget(this.m_temperatureWidget);
 		}
 		
-		this.m_temperatureWidget = new HorizontalTemperatureWidget(this.leftPos + 37, this.topPos + 43, this.menu.getMaxTemperature());
+		this.m_temperatureWidget = new HorizontalTemperatureWidget(this.leftPos + 37, this.topPos + 17, this.menu.getMaxTemperature());
 		this.addRenderableWidget(this.m_temperatureWidget);
 	} // end setWidget()
 } // end class

@@ -6,7 +6,7 @@ import com.gsr.gsr_yatm.block.device.boiler.BoilerMenu;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceMenu;
 import com.gsr.gsr_yatm.block.device.crucible.CrucibleMenu;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerMenu;
-import com.gsr.gsr_yatm.block.device.current_furnace.CurrentFurnaceMenu;
+import com.gsr.gsr_yatm.block.device.current_furnace.HeatFurnaceMenu;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorMenu;
 import com.gsr.gsr_yatm.block.device.grafting.GraftingMenu;
 import com.gsr.gsr_yatm.block.device.grinder.GrinderMenu;
@@ -36,7 +36,7 @@ public class YATMMenuTypes
 	public static final RegistryObject<MenuType<CrystallizerMenu>> CRYSTALLIZER = MENU_TYPES.register("crystallizer", () -> new MenuType<>(CrystallizerMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<ExtractorMenu>> EXTRACTOR = MENU_TYPES.register("extractor", () -> new MenuType<>(ExtractorMenu::new, FeatureFlagSet.of()));
 //	public static final RegistryObject<MenuType<ExtruderMenu>> EXTRUDER = MENU_TYPES.register("extruder_menu", () -> new MenuType<>(ExtruderMenu::new, FeatureFlagSet.of()));
-	public static final RegistryObject<MenuType<CurrentFurnaceMenu>> CURRENT_FURNACE = MENU_TYPES.register("current_furnace", () -> new MenuType<>(CurrentFurnaceMenu::new, FeatureFlagSet.of()));
+	public static final RegistryObject<MenuType<HeatFurnaceMenu>> HEAT_FURNACE = MENU_TYPES.register("heat_furnace", () -> new MenuType<>(HeatFurnaceMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<GrinderMenu>> GRINDER = MENU_TYPES.register("grinder", () -> new MenuType<>(GrinderMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<InjectorMenu>> INJECTOR = MENU_TYPES.register("injector", () -> new MenuType<>(InjectorMenu::new, FeatureFlagSet.of()));
 	public static final RegistryObject<MenuType<StillMenu>> STILL = MENU_TYPES.register("still_menu", () -> new MenuType<>(StillMenu::new, FeatureFlagSet.of()));

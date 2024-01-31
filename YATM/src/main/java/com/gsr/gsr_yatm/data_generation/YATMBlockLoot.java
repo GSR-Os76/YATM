@@ -264,7 +264,7 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropSelf(YATMBlocks.STEEL_BOILER.get());
 		this.dropSelf(YATMBlocks.STEEL_CRUCIBLE.get());
 		this.dropSelf(YATMBlocks.STEEL_CRYSTALLIZER.get());
-		this.dropSelf(YATMBlocks.STEEL_CURRENT_FURNACE.get());
+		this.dropSelf(YATMBlocks.STEEL_HEAT_FURNACE.get());
 		this.dropSelf(YATMBlocks.STEEL_EXTRACTOR.get());
 //		this.dropSelf(YATMBlocks.STEEL_EXTRUDER.get());
 		this.dropSelf(YATMBlocks.STEEL_GRINDER.get());

@@ -3,7 +3,7 @@ package com.gsr.gsr_yatm.recipe.smelting;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
-import com.gsr.gsr_yatm.block.device.current_furnace.CurrentFurnaceBlockEntity;
+import com.gsr.gsr_yatm.block.device.current_furnace.HeatFurnaceBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.utilities.generic.tuples.Tuple2;
@@ -40,8 +40,8 @@ public class WrappedSmeltingRecipe extends SmeltingRecipe implements ITimedRecip
 	@Override
 	public boolean matches(@NotNull Tuple2<IItemHandler, IHeatHandler> context)
 	{
-		return this.ingredient.test(context.a().getStackInSlot(CurrentFurnaceBlockEntity.INPUT_SLOT)) && 
-				context.a().insertItem(CurrentFurnaceBlockEntity.RESULT_SLOT, this.result, true).isEmpty();
+		return this.ingredient.test(context.a().getStackInSlot(HeatFurnaceBlockEntity.INPUT_SLOT)) && 
+				context.a().insertItem(HeatFurnaceBlockEntity.RESULT_SLOT, this.result, true).isEmpty();
 	} // end canBeUsedOn()
 	
 	@Override
@@ -60,8 +60,8 @@ public class WrappedSmeltingRecipe extends SmeltingRecipe implements ITimedRecip
 	@Override
 	public void end(@NotNull Tuple2<IItemHandler, IHeatHandler> context)
 	{
-		context.a().extractItem(CurrentFurnaceBlockEntity.INPUT_SLOT, 1, false);
-		context.a().insertItem(CurrentFurnaceBlockEntity.RESULT_SLOT, this.result.copy(), false);
+		context.a().extractItem(HeatFurnaceBlockEntity.INPUT_SLOT, 1, false);
+		context.a().insertItem(HeatFurnaceBlockEntity.RESULT_SLOT, this.result.copy(), false);
 	} // end end()
 
 	
@@ -69,7 +69,7 @@ public class WrappedSmeltingRecipe extends SmeltingRecipe implements ITimedRecip
 	@Override
 	public ItemStack getToastSymbol()
 	{
-		return new ItemStack(YATMItems.STEEL_CURRENT_FURNACE.get());
+		return new ItemStack(YATMItems.STEEL_HEAT_FURNACE.get());
 	} // end getToastSymbol()
 	
 } // end class

@@ -1,4 +1,4 @@
-// 1.20.2	2024-01-05T21:59:13.4960884	Loot Tables
+// 1.20.2	2024-01-30T22:37:30.0147936	Loot Tables
 3447f366126fe84e5d7fe101ca492c681d974485 data/gsr_yatm/loot_tables/blocks/adamum.json
 c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
@@ -159,9 +159,9 @@ ead4fd1ea13a743c2aa34703c1bca37c14e1fe61 data/gsr_yatm/loot_tables/blocks/steel_
 1574bd7d11c0e9aa48c4d0c15ef33ac0f9cb1628 data/gsr_yatm/loot_tables/blocks/steel_boiler.json
 2bbd9058ac1a65f641f63c041c4897ecfcc40445 data/gsr_yatm/loot_tables/blocks/steel_crucible.json
 d1e52343f678c8ade42d3dcab0989e696c7a279f data/gsr_yatm/loot_tables/blocks/steel_crystallizer.json
-e9f07e7cf057d5a21513aae48c9b1022cce15bde data/gsr_yatm/loot_tables/blocks/steel_current_furnace.json
 6cb9af2ac3a744467ebe37952dedea1f325feda6 data/gsr_yatm/loot_tables/blocks/steel_extractor.json
 f87ea71e51838e9d7ca7983b53bf36a89216cc05 data/gsr_yatm/loot_tables/blocks/steel_grinder.json
+5e64e2769ad24256d1f78dc11f4cfda536eba7c3 data/gsr_yatm/loot_tables/blocks/steel_heat_furnace.json
 53d077bee919d523501ab2fbbc7c0024f38b145d data/gsr_yatm/loot_tables/blocks/steel_injector.json
 a33d550b941519aa61276e2646b94bf1acf68e3a data/gsr_yatm/loot_tables/blocks/steel_still.json
 cca68941631994c991f10631bbc25c9c8a060d51 data/gsr_yatm/loot_tables/blocks/steel_tank.json

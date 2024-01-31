@@ -166,9 +166,9 @@
   "block.gsr_yatm.steel_boiler": "Foliar Steel Boiler",
   "block.gsr_yatm.steel_crucible": "Foliar Steel Crucible",
   "block.gsr_yatm.steel_crystallizer": "Foliar Steel Crystallizer",
-  "block.gsr_yatm.steel_current_furnace": "Steel Current Furnace",
   "block.gsr_yatm.steel_extractor": "Foliar Steel Extractor",
   "block.gsr_yatm.steel_grinder": "Foliar Steel Grinder",
+  "block.gsr_yatm.steel_heat_furnace": "Foliar Steel Heat Furnace",
   "block.gsr_yatm.steel_injector": "Foliar Steel Injector",
   "block.gsr_yatm.steel_still": "Foliar Steel Still",
   "block.gsr_yatm.steel_tank": "Foliar Steel Tank",
@@ -329,6 +329,7 @@
   "menu.title.gsr_yatm.extractor": "Extractor",
   "menu.title.gsr_yatm.grafting": "Grafting Table",
   "menu.title.gsr_yatm.grinder": "Grinder",
+  "menu.title.gsr_yatm.heat_furnace": "Heat Furnace",
   "menu.title.gsr_yatm.injector": "Injector",
   "menu.title.gsr_yatm.solar_panel": "Solar Panel",
   "menu.title.gsr_yatm.still_menu": "Still"

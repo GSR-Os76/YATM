@@ -17,10 +17,10 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class CurrentFurnaceMenu extends AbstractContainerMenu
+public class HeatFurnaceMenu extends AbstractContainerMenu
 {
 
-	public static final int PLAYER_INVENTORY_START = (CurrentFurnaceBlockEntity.INVENTORY_SLOT_COUNT - 1) + 1;
+	public static final int PLAYER_INVENTORY_START = (HeatFurnaceBlockEntity.INVENTORY_SLOT_COUNT - 1) + 1;
 	public static final int PLAYER_INVENTORY_END = PLAYER_INVENTORY_START + 26;
 	public static final int PLAYER_HOTBAR_START = PLAYER_INVENTORY_END + 1;
 	public static final int PLAYER_HOTBAR_END = PLAYER_HOTBAR_START + 8;
@@ -32,38 +32,37 @@ public class CurrentFurnaceMenu extends AbstractContainerMenu
 
 
 	// client side constructor
-	public CurrentFurnaceMenu(int inventoryId, Inventory playerInventory)
+	public HeatFurnaceMenu(int inventoryId, Inventory playerInventory)
 	{
-		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(CurrentFurnaceBlockEntity.INVENTORY_SLOT_COUNT), new SimpleContainerData(CurrentFurnaceBlockEntity.ACCESS_SPEC.getCount()));
+		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(HeatFurnaceBlockEntity.INVENTORY_SLOT_COUNT), new SimpleContainerData(HeatFurnaceBlockEntity.ACCESS_SPEC.getCount()));
 	} // end client constructor
 
 	// server side constructor
-	public CurrentFurnaceMenu(int inventoryId, Inventory playerInventory, ContainerLevelAccess access, Block openingBlockType, IItemHandler objInventory, ContainerData data)
+	public HeatFurnaceMenu(int inventoryId, Inventory playerInventory, ContainerLevelAccess access, Block openingBlockType, IItemHandler objInventory, ContainerData data)
 	{
-		super(YATMMenuTypes.CURRENT_FURNACE.get(), inventoryId);
+		super(YATMMenuTypes.HEAT_FURNACE.get(), inventoryId);
 
 		this.m_access = access;
 		this.m_openingBlockType = openingBlockType;
 		this.m_data = data;
 
-		int newYDownShift = 36;
-		int yPos = 51 + newYDownShift;
-		this.addSlot(new SlotItemHandler(objInventory, CurrentFurnaceBlockEntity.INPUT_SLOT, 8, yPos));
-		this.addSlot(new SlotItemHandler(objInventory, CurrentFurnaceBlockEntity.RESULT_SLOT, 8 + 18, yPos));		
-		this.addSlot(new SlotItemHandler(objInventory, CurrentFurnaceBlockEntity.HEAT_SLOT, 80, yPos));
+		int yShift = 0;
+		this.addSlot(new SlotItemHandler(objInventory, HeatFurnaceBlockEntity.INPUT_SLOT, 58, 47));
+		this.addSlot(new SlotItemHandler(objInventory, HeatFurnaceBlockEntity.RESULT_SLOT, 118, 47));		
+		this.addSlot(new SlotItemHandler(objInventory, HeatFurnaceBlockEntity.HEAT_SLOT, 38, 47));
 		
 		// add player inventory. indexing of the slots begins with hotbar, notably
 		for (int y = 0; y < 3; ++y)
 		{
 			for (int x = 0; x < 9; ++x)
 			{
-				this.addSlot(new Slot(playerInventory, (x + (y * 9)) + 9, 8 + (x * 18), (84 + newYDownShift) + (y * 18)));
+				this.addSlot(new Slot(playerInventory, (x + (y * 9)) + 9, 8 + (x * 18), (84 + yShift) + (y * 18)));
 			}
 		}
 
 		for (int x = 0; x < 9; ++x)
 		{
-			this.addSlot(new Slot(playerInventory, x, 8 + (x * 18), 142 + newYDownShift));
+			this.addSlot(new Slot(playerInventory, x, 8 + (x * 18), 142 + yShift));
 		}
 		
 		this.addDataSlots(data);
@@ -79,7 +78,7 @@ public class CurrentFurnaceMenu extends AbstractContainerMenu
 		if (quickMovedSlot != null && quickMovedSlot.hasItem())
 		{
 			ItemStack slotsStack = quickMovedSlot.getItem();
-			if (quickMovedSlotIndex == CurrentFurnaceBlockEntity.RESULT_SLOT)
+			if (quickMovedSlotIndex == HeatFurnaceBlockEntity.RESULT_SLOT)
 			{
 				
 				if (!this.moveItemStackTo(slotsStack, PLAYER_INVENTORY_START, PLAYER_HOTBAR_END + 1, true))
@@ -92,11 +91,11 @@ public class CurrentFurnaceMenu extends AbstractContainerMenu
 			else if (quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END)
 			{			
 				boolean moved = false;
-				if(this.moveItemStackTo(slotsStack, CurrentFurnaceBlockEntity.INPUT_SLOT, CurrentFurnaceBlockEntity.INPUT_SLOT + 1, false)) 
+				if(this.moveItemStackTo(slotsStack, HeatFurnaceBlockEntity.INPUT_SLOT, HeatFurnaceBlockEntity.INPUT_SLOT + 1, false)) 
 				{					
 					moved = true;				
 				}
-				else if(SlotUtil.isValidHeatingSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, CurrentFurnaceBlockEntity.HEAT_SLOT, CurrentFurnaceBlockEntity.HEAT_SLOT + 1, false)) 
+				else if(SlotUtil.isValidHeatingSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, HeatFurnaceBlockEntity.HEAT_SLOT, HeatFurnaceBlockEntity.HEAT_SLOT + 1, false)) 
 				{			
 					moved = true;
 				}
@@ -152,23 +151,23 @@ public class CurrentFurnaceMenu extends AbstractContainerMenu
 	
 	public float craftProgress() 
 	{
-		return NetworkUtil.getProgess(CurrentFurnaceBlockEntity.ACCESS_SPEC.get(CurrentFurnaceBlockEntity.CRAFT_PROGRESS_SPEC_KEY), this.m_data);
+		return NetworkUtil.getProgess(HeatFurnaceBlockEntity.ACCESS_SPEC.get(HeatFurnaceBlockEntity.CRAFT_PROGRESS_SPEC_KEY), this.m_data);
 	} // end craftProgress()
 	
 	public float burnRemaining()
 	{
-		return NetworkUtil.getRemaining(CurrentFurnaceBlockEntity.ACCESS_SPEC.get(CurrentFurnaceBlockEntity.BURN_PROGRESS_SPEC_KEY), this.m_data);
+		return NetworkUtil.getRemaining(HeatFurnaceBlockEntity.ACCESS_SPEC.get(HeatFurnaceBlockEntity.BURN_PROGRESS_SPEC_KEY), this.m_data);
 	} // end burnPercentageRemaining()
 	
 	
 	
 	public int getTemperature()
 	{
-		return this.m_data.get(CurrentFurnaceBlockEntity.ACCESS_SPEC.get(CurrentFurnaceBlockEntity.TEMPERATURE_DATA_SPEC_KEY).startIndex());
+		return this.m_data.get(HeatFurnaceBlockEntity.ACCESS_SPEC.get(HeatFurnaceBlockEntity.TEMPERATURE_DATA_SPEC_KEY).startIndex());
 	} // end getTemperature() 
 	
 	public int getMaxTemperature()
 	{
-		return this.m_data.get(CurrentFurnaceBlockEntity.ACCESS_SPEC.get(CurrentFurnaceBlockEntity.TEMPERATURE_DATA_SPEC_KEY).endIndex());
+		return this.m_data.get(HeatFurnaceBlockEntity.ACCESS_SPEC.get(HeatFurnaceBlockEntity.TEMPERATURE_DATA_SPEC_KEY).endIndex());
 	} // end getMaxTemperature()
 } // end class

@@ -9,7 +9,7 @@ import com.gsr.gsr_yatm.block.device.boiler.BoilerScreen;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceScreen;
 import com.gsr.gsr_yatm.block.device.crucible.CrucibleScreen;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerScreen;
-import com.gsr.gsr_yatm.block.device.current_furnace.CurrentFurnaceScreen;
+import com.gsr.gsr_yatm.block.device.current_furnace.HeatFurnaceScreen;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorScreen;
 import com.gsr.gsr_yatm.block.device.grafting.GraftingScreen;
 import com.gsr.gsr_yatm.block.device.grinder.GrinderScreen;
@@ -136,7 +136,7 @@ public class YATMModEvents
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.CRYSTALLIZER.get(), CrystallizerScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRACTOR.get(), ExtractorScreen::new));
 //		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRUDER.get(), ExtruderScreen::new));
-		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.CURRENT_FURNACE.get(), CurrentFurnaceScreen::new));
+		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.HEAT_FURNACE.get(), HeatFurnaceScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.GRINDER.get(), GrinderScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.INJECTOR.get(), InjectorScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.STILL.get(), StillScreen::new));
