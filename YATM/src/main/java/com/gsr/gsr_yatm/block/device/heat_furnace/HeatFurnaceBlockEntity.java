@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.device.current_furnace;
+package com.gsr.gsr_yatm.block.device.heat_furnace;
 
 import java.util.ArrayList;
 import java.util.List;

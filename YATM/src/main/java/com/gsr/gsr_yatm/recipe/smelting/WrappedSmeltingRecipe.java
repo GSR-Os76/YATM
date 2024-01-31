@@ -3,7 +3,7 @@ package com.gsr.gsr_yatm.recipe.smelting;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
-import com.gsr.gsr_yatm.block.device.current_furnace.HeatFurnaceBlockEntity;
+import com.gsr.gsr_yatm.block.device.heat_furnace.HeatFurnaceBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.utilities.generic.tuples.Tuple2;

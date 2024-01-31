@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.device.current_furnace;
+package com.gsr.gsr_yatm.block.device.heat_furnace;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.gui.HorizontalTemperatureWidget;
