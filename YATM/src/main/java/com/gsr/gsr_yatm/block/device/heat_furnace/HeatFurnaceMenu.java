@@ -1,5 +1,10 @@
 package com.gsr.gsr_yatm.block.device.heat_furnace;
 
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
@@ -25,10 +30,10 @@ public class HeatFurnaceMenu extends AbstractContainerMenu
 	public static final int PLAYER_HOTBAR_START = PLAYER_INVENTORY_END + 1;
 	public static final int PLAYER_HOTBAR_END = PLAYER_HOTBAR_START + 8;
 	
-	private final ContainerLevelAccess m_access;
-	private final Block m_openingBlockType;
-	private final ContainerData m_data;
-
+	private final @NotNull ContainerLevelAccess m_access;
+	private final @NotNull ContainerData m_data;
+	private final @Nullable Block m_openingBlockType;
+	
 
 
 	// client side constructor
@@ -38,13 +43,13 @@ public class HeatFurnaceMenu extends AbstractContainerMenu
 	} // end client constructor
 
 	// server side constructor
-	public HeatFurnaceMenu(int inventoryId, Inventory playerInventory, ContainerLevelAccess access, Block openingBlockType, IItemHandler objInventory, ContainerData data)
+	public HeatFurnaceMenu(int inventoryId, @NotNull Inventory playerInventory, @NotNull ContainerLevelAccess access, @Nullable Block openingBlockType, @NotNull IItemHandler objInventory, @NotNull ContainerData data)
 	{
 		super(YATMMenuTypes.HEAT_FURNACE.get(), inventoryId);
 
-		this.m_access = access;
+		this.m_access = Objects.requireNonNull(access);
 		this.m_openingBlockType = openingBlockType;
-		this.m_data = data;
+		this.m_data = Objects.requireNonNull(data);
 
 		int yShift = 0;
 		this.addSlot(new SlotItemHandler(objInventory, HeatFurnaceBlockEntity.INPUT_SLOT, 58, 47));
@@ -154,20 +159,21 @@ public class HeatFurnaceMenu extends AbstractContainerMenu
 		return NetworkUtil.getProgess(HeatFurnaceBlockEntity.ACCESS_SPEC.get(HeatFurnaceBlockEntity.CRAFT_PROGRESS_SPEC_KEY), this.m_data);
 	} // end craftProgress()
 	
-	public float burnRemaining()
+	public float burnProgress() 
 	{
-		return NetworkUtil.getRemaining(HeatFurnaceBlockEntity.ACCESS_SPEC.get(HeatFurnaceBlockEntity.BURN_PROGRESS_SPEC_KEY), this.m_data);
-	} // end burnPercentageRemaining()
+		return NetworkUtil.getRemainingZeroIfNotRunning(HeatFurnaceBlockEntity.ACCESS_SPEC.get(HeatFurnaceBlockEntity.BURN_PROGRESS_SPEC_KEY), this.m_data);
+	} // end heatProgress()
 	
 	
 	
-	public int getTemperature()
+	public int getTemperature() 
 	{
-		return this.m_data.get(HeatFurnaceBlockEntity.ACCESS_SPEC.get(HeatFurnaceBlockEntity.TEMPERATURE_DATA_SPEC_KEY).startIndex());
-	} // end getTemperature() 
+		return NetworkUtil.getPropertyValue(HeatFurnaceBlockEntity.ACCESS_SPEC.get(HeatFurnaceBlockEntity.TEMPERATURE_SPEC_KEY), this.m_data);	
+	} // end temperature()
 	
-	public int getMaxTemperature()
+	public int getMaxTemperature() 
 	{
-		return this.m_data.get(HeatFurnaceBlockEntity.ACCESS_SPEC.get(HeatFurnaceBlockEntity.TEMPERATURE_DATA_SPEC_KEY).endIndex());
-	} // end getMaxTemperature()
+		return NetworkUtil.getPropertyValue(HeatFurnaceBlockEntity.ACCESS_SPEC.get(HeatFurnaceBlockEntity.MAX_TEMPERATURE_SPEC_KEY), this.m_data);
+	} // end maxTemperature()
+
 } // end class

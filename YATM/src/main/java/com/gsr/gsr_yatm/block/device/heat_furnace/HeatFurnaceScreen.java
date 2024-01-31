@@ -51,20 +51,20 @@ public class HeatFurnaceScreen extends AbstractContainerScreen<HeatFurnaceMenu>
 		graphics.blit(BACKGROUND, this.leftPos, this.topPos, 0, 0, this.imageWidth, this.imageHeight);
 		
 		
-		float bP = this.menu.craftProgress();
-		if(bP > 0) 
+		float cP = this.menu.craftProgress();
+		if(cP > 0) 
 		{
-			graphics.blit(BACKGROUND, this.leftPos + 37, this.topPos + 23, 0, 202, (int)(102f * bP), 16);
+			graphics.blit(BACKGROUND, this.leftPos + 82, this.topPos + 46, 176, 14, (int)(24f * cP), 15);
 		}
 		
 		
 		// burn square is 14x14, at 177 0
 		// draw it to 80 70
-		float burnFractionRemaining = this.menu.burnRemaining();
-		if (burnFractionRemaining > 0f)
+		float bP = this.menu.burnProgress();
+		if (bP > 0f)
 		{
-			int renderDownSet = 14 - ((int) (14 * burnFractionRemaining));
-			graphics.blit(BACKGROUND, this.leftPos + 80, (this.topPos + 70) + renderDownSet, 176, 0 + renderDownSet, 14, 14 - renderDownSet);
+			int renderDownSet = 14 - ((int) (14 * bP));
+			graphics.blit(BACKGROUND, this.leftPos + 38, (this.topPos + 30) + renderDownSet, 176, 0 + renderDownSet, 14, 14 - renderDownSet);
 		}
 
 	} // end renderBg

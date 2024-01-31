@@ -4,8 +4,10 @@ import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
 import com.gsr.gsr_yatm.block.device.heat_furnace.HeatFurnaceBlockEntity;
+import com.gsr.gsr_yatm.recipe.IHeatedRecipe;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.registry.YATMItems;
+import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.generic.tuples.Tuple2;
 
 import net.minecraft.world.Container;
@@ -15,7 +17,7 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.crafting.SmeltingRecipe;
 import net.minecraftforge.items.IItemHandler;
 
-public class WrappedSmeltingRecipe extends SmeltingRecipe implements ITimedRecipe<Container, Tuple2<IItemHandler, IHeatHandler>>
+public class WrappedSmeltingRecipe extends SmeltingRecipe implements ITimedRecipe<Container, Tuple2<IItemHandler, IHeatHandler>>, IHeatedRecipe<Container>
 {
 	
 	public WrappedSmeltingRecipe(@NotNull SmeltingRecipe r)
@@ -34,7 +36,15 @@ public class WrappedSmeltingRecipe extends SmeltingRecipe implements ITimedRecip
 	public int getTimeInTicks()
 	{
 		return this.cookingTime;
-	} // end getTimeInTicks
+	} // end getTimeInTicks()
+	
+	@Override
+	public @NotNegative int getTemperature()
+	{
+		// TODO, probably vary value for the different categories of item
+		// NOTE: only meant for determining speed for now, temperature to craft is different to deviate less from vanilla furnace, this might change
+		return 1024;
+	} // end getTemperature()
 	
 	
 	@Override
@@ -47,7 +57,7 @@ public class WrappedSmeltingRecipe extends SmeltingRecipe implements ITimedRecip
 	@Override
 	public boolean canTick(@NotNull Tuple2<IItemHandler, IHeatHandler> context)
 	{
-		return /*TODO this.m_temperature TODO*/0 <= context.b().getTemperature();
+		return 448 <= context.b().getTemperature();
 	} // end canTick()
 
 	@Override

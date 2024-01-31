@@ -12,17 +12,17 @@ import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.behaviors.IBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.IInventoryChangeListenerBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ILoadListenerBehavior;
+import com.gsr.gsr_yatm.block.device.builder.capability_provider.IInvalidatableCapabilityProvider;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.items.IItemHandler;
 
-public class InputComponentManager<C> implements ICapabilityProvider, IInventoryChangeListenerBehavior, ILoadListenerBehavior
+public class InputComponentManager<C> implements IInvalidatableCapabilityProvider, IInventoryChangeListenerBehavior, ILoadListenerBehavior
 {
 	@Override
 	public @NotNull Set<Class<? extends IBehavior>> behaviorTypes()
@@ -116,5 +116,11 @@ public class InputComponentManager<C> implements ICapabilityProvider, IInventory
 			this.m_componentAttachment.invalidate();
 		}
 	} // end invalidateCaps()
+
+	@Override
+	public void reviveCaps()
+	{
+		this.updateComponent();
+	} // end reviveCaps()
 	
 } // end class
