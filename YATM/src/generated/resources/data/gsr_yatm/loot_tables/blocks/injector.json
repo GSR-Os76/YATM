@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "gsr_yatm:steel_boiler"
+          "name": "gsr_yatm:injector"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "gsr_yatm:blocks/steel_boiler"
+  "random_sequence": "gsr_yatm:blocks/injector"
 }

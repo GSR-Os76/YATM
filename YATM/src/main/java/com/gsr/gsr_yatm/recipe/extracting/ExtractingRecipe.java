@@ -154,7 +154,7 @@ public class ExtractingRecipe extends RecipeBase<Container> implements ITimedRec
 	@Override
 	public ItemStack getToastSymbol()
 	{
-		return new ItemStack(YATMItems.STEEL_EXTRACTOR.get());
+		return new ItemStack(YATMItems.EXTRACTOR.get());
 	} // end getToastSymbol()
 	
 } // end class

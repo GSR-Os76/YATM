@@ -367,16 +367,15 @@ public class YATMBlocks
 
 	// TODO, add a pump, takes fluid from underneath it, or under it's lowest pipe, checks spreading source rule things, possibly drills and lays down well pipe(by config), can always get water if it drills to 64~, block updates configurable
 	
-	public static final RegistryObject<BioreactorBlock> STEEL_BIOREACTOR = BLOCKS.register("steel_bioreactor", () -> new BioreactorBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE));
-	public static final RegistryObject<BoilerBlock> STEEL_BOILER = BLOCKS.register("steel_boiler", () -> new BoilerBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE));
-	public static final RegistryObject<CrucibleBlock> STEEL_CRUCIBLE = BLOCKS.register("steel_crucible", () -> new CrucibleBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE));
-	public static final RegistryObject<CrystallizerBlock> STEEL_CRYSTALLIZER = BLOCKS.register("steel_crystallizer", () -> new CrystallizerBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE));
-	public static final RegistryObject<HeatFurnaceBlock> STEEL_HEAT_FURNACE = BLOCKS.register("steel_heat_furnace", () -> new HeatFurnaceBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE));
-	public static final RegistryObject<ExtractorBlock> STEEL_EXTRACTOR = BLOCKS.register("steel_extractor", () -> new ExtractorBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE));
-//	public static final RegistryObject<ExtruderBlock> STEEL_EXTRUDER = BLOCKS.register("steel_extruder", () -> new ExtruderBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE, DeviceTierConstants.STEEL_CURRENT_CAPACITY, DeviceTierConstants.STEEL_MAX_CURRENT_TRANSFER));
-	public static final RegistryObject<GrinderBlock> STEEL_GRINDER = BLOCKS.register("steel_grinder", () -> new GrinderBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE));
-	public static final RegistryObject<InjectorBlock> STEEL_INJECTOR = BLOCKS.register("steel_injector", () -> new InjectorBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE));
-	public static final RegistryObject<StillBlock> STEEL_STILL = BLOCKS.register("steel_still", () -> new StillBlock(YATMBlockProperties.STEEL_MACHINE, YATMBlockShapes.CUBE));
+	public static final RegistryObject<BioreactorBlock> BIOREACTOR = BLOCKS.register("bioreactor", () -> new BioreactorBlock(YATMBlockProperties.MACHINE, YATMBlockShapes.CUBE));
+	public static final RegistryObject<BoilerBlock> BOILER = BLOCKS.register("boiler", () -> new BoilerBlock(YATMBlockProperties.MACHINE, YATMBlockShapes.CUBE));
+	public static final RegistryObject<CrucibleBlock> CRUCIBLE = BLOCKS.register("crucible", () -> new CrucibleBlock(YATMBlockProperties.MACHINE, YATMBlockShapes.CUBE));
+	public static final RegistryObject<CrystallizerBlock> CRYSTALLIZER = BLOCKS.register("crystallizer", () -> new CrystallizerBlock(YATMBlockProperties.MACHINE, YATMBlockShapes.CUBE));
+	public static final RegistryObject<HeatFurnaceBlock> HEAT_FURNACE = BLOCKS.register("heat_furnace", () -> new HeatFurnaceBlock(YATMBlockProperties.MACHINE, YATMBlockShapes.CUBE));
+	public static final RegistryObject<ExtractorBlock> EXTRACTOR = BLOCKS.register("extractor", () -> new ExtractorBlock(YATMBlockProperties.MACHINE, YATMBlockShapes.CUBE));
+	public static final RegistryObject<GrinderBlock> GRINDER = BLOCKS.register("grinder", () -> new GrinderBlock(YATMBlockProperties.MACHINE, YATMBlockShapes.CUBE));
+	public static final RegistryObject<InjectorBlock> INJECTOR = BLOCKS.register("injector", () -> new InjectorBlock(YATMBlockProperties.MACHINE, YATMBlockShapes.CUBE));
+	public static final RegistryObject<StillBlock> STILL = BLOCKS.register("still", () -> new StillBlock(YATMBlockProperties.MACHINE, YATMBlockShapes.CUBE));
 	
 	// TODO, refactor property out
 	public static final RegistryObject<CurrentUnitForgeEnergyInterchangerBlock> C_U_F_E_I = BLOCKS.register("current_unit_forge_energy_interchanger", () -> new CurrentUnitForgeEnergyInterchangerBlock(BlockBehaviour.Properties.of()));

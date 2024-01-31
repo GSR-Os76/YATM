@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "gsr_yatm:steel_grinder"
+          "name": "gsr_yatm:bioreactor"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "gsr_yatm:blocks/steel_grinder"
+  "random_sequence": "gsr_yatm:blocks/bioreactor"
 }

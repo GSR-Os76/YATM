@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "gsr_yatm:steel_injector"
+          "name": "gsr_yatm:grinder"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "gsr_yatm:blocks/steel_injector"
+  "random_sequence": "gsr_yatm:blocks/grinder"
 }

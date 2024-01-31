@@ -224,16 +224,15 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> DESTRUCTIVE_DATA_SCANNER = /* generalTabEnqueue */(ITEMS.register("destructive_data_scanner", () -> new BlockItem(YATMBlocks.DESTRUCTIVE_DATA_SCANNER.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> DATA_PROCESSOR = /* generalTabEnqueue */(ITEMS.register("data_processor", () -> new BlockItem(YATMBlocks.DATA_PROCESSOR.get(), new Item.Properties())));
 	
-	public static final RegistryObject<BlockItem> STEEL_BIOREACTOR = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_bioreactor", () -> new BlockItem(YATMBlocks.STEEL_BIOREACTOR.get(), new Item.Properties()))));
-	public static final RegistryObject<BlockItem> STEEL_BOILER = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_boiler", () -> new BlockItem(YATMBlocks.STEEL_BOILER.get(), new Item.Properties()))));
-	public static final RegistryObject<BlockItem> STEEL_CRUCIBLE = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_crucible", () -> new BlockItem(YATMBlocks.STEEL_CRUCIBLE.get(), new Item.Properties()))));
-	public static final RegistryObject<BlockItem> STEEL_CRYSTALLIZER = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_crystallizer", () -> new BlockItem(YATMBlocks.STEEL_CRYSTALLIZER.get(), new Item.Properties()))));
-	public static final RegistryObject<BlockItem> STEEL_HEAT_FURNACE = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_heat_furnace", () -> new BlockItem(YATMBlocks.STEEL_HEAT_FURNACE.get(), new Item.Properties()))));	
-	public static final RegistryObject<BlockItem> STEEL_EXTRACTOR = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_extractor", () -> new BlockItem(YATMBlocks.STEEL_EXTRACTOR.get(), new Item.Properties()))));
-//	public static final RegistryObject<BlockItem> STEEL_EXTRUDER = /* generalTabEnqueue */(ITEMS.register("steel_extruder", () -> new BlockItem(YATMBlocks.STEEL_EXTRUDER.get(), new Item.Properties())));
-	public static final RegistryObject<BlockItem> STEEL_GRINDER = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_grinder", () -> new BlockItem(YATMBlocks.STEEL_GRINDER.get(), new Item.Properties()))));
-	public static final RegistryObject<BlockItem> STEEL_INJECTOR = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_injector", () -> new BlockItem(YATMBlocks.STEEL_INJECTOR.get(), new Item.Properties()))));
-	public static final RegistryObject<BlockItem> STEEL_STILL = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_still", () -> new BlockItem(YATMBlocks.STEEL_STILL.get(), new Item.Properties()))));
+	public static final RegistryObject<BlockItem> BIOREACTOR = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("bioreactor", () -> new BlockItem(YATMBlocks.BIOREACTOR.get(), new Item.Properties()))));
+	public static final RegistryObject<BlockItem> BOILER = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("boiler", () -> new BlockItem(YATMBlocks.BOILER.get(), new Item.Properties()))));
+	public static final RegistryObject<BlockItem> CRUCIBLE = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("crucible", () -> new BlockItem(YATMBlocks.CRUCIBLE.get(), new Item.Properties()))));
+	public static final RegistryObject<BlockItem> CRYSTALLIZER = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("crystallizer", () -> new BlockItem(YATMBlocks.CRYSTALLIZER.get(), new Item.Properties()))));
+	public static final RegistryObject<BlockItem> HEAT_FURNACE = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("heat_furnace", () -> new BlockItem(YATMBlocks.HEAT_FURNACE.get(), new Item.Properties()))));	
+	public static final RegistryObject<BlockItem> EXTRACTOR = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("extractor", () -> new BlockItem(YATMBlocks.EXTRACTOR.get(), new Item.Properties()))));
+	public static final RegistryObject<BlockItem> GRINDER = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("grinder", () -> new BlockItem(YATMBlocks.GRINDER.get(), new Item.Properties()))));
+	public static final RegistryObject<BlockItem> INJECTOR = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("injector", () -> new BlockItem(YATMBlocks.INJECTOR.get(), new Item.Properties()))));
+	public static final RegistryObject<BlockItem> STILL = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("still", () -> new BlockItem(YATMBlocks.STILL.get(), new Item.Properties()))));
 
 	public static final RegistryObject<BlockItem> STEEL_TANK = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_tank", () -> new BlockItem(YATMBlocks.STEEL_TANK.get(), new Item.Properties()))));
 	

@@ -236,16 +236,15 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), "Large Copper Heat Sink");
 		
-		this.add(YATMBlocks.STEEL_BIOREACTOR.get(), "Foliar Steel Bioreactor");
-		this.add(YATMBlocks.STEEL_BOILER.get(), "Foliar Steel Boiler");
-		this.add(YATMBlocks.STEEL_CRUCIBLE.get(), "Foliar Steel Crucible");
-		this.add(YATMBlocks.STEEL_CRYSTALLIZER.get(), "Foliar Steel Crystallizer");
-		this.add(YATMBlocks.STEEL_HEAT_FURNACE.get(), "Foliar Steel Heat Furnace");
-		this.add(YATMBlocks.STEEL_EXTRACTOR.get(), "Foliar Steel Extractor");
-//		this.add(YATMBlocks.STEEL_EXTRUDER.get(), "Foliar Steel Extruder");
-		this.add(YATMBlocks.STEEL_GRINDER.get(), "Foliar Steel Grinder");
-		this.add(YATMBlocks.STEEL_INJECTOR.get(), "Foliar Steel Injector");
-		this.add(YATMBlocks.STEEL_STILL.get(), "Foliar Steel Still");
+		this.add(YATMBlocks.BIOREACTOR.get(), "Bioreactor");
+		this.add(YATMBlocks.BOILER.get(), "Boiler");
+		this.add(YATMBlocks.CRUCIBLE.get(), "Crucible");
+		this.add(YATMBlocks.CRYSTALLIZER.get(), "Crystallizer");
+		this.add(YATMBlocks.HEAT_FURNACE.get(), "Heat Furnace");
+		this.add(YATMBlocks.EXTRACTOR.get(), "Extractor");
+		this.add(YATMBlocks.GRINDER.get(), "Grinder");
+		this.add(YATMBlocks.INJECTOR.get(), "Injector");
+		this.add(YATMBlocks.STILL.get(), "Still");
 		
 		this.add(YATMBlocks.C_U_F_E_I.get(), "Energy Converter (CU to FE)");
 		

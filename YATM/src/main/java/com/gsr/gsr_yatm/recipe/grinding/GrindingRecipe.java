@@ -137,7 +137,7 @@ public class GrindingRecipe extends RecipeBase<Container> implements ITimedRecip
 	@Override
 	public ItemStack getToastSymbol()
 	{
-		return new ItemStack(YATMItems.STEEL_GRINDER.get());
+		return new ItemStack(YATMItems.GRINDER.get());
 	} // end getToastSymbol()
 	
 } // end outer class

@@ -233,7 +233,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addCrystallizers();
 		this.addCurrentFurnaces();
 		this.addExtractors();
-		this.createFacingBlock(YATMBlocks.STEEL_GRINDER.get(), YATMItems.STEEL_GRINDER.get(), YATMBlockStateProvider.GRINDER_MODEL);
+		this.createFacingBlock(YATMBlocks.GRINDER.get(), YATMItems.GRINDER.get(), YATMBlockStateProvider.GRINDER_MODEL);
 		this.addInjectors();
 		this.addStills();
 		
@@ -648,51 +648,51 @@ public class YATMBlockStateProvider extends BlockStateProvider
 //				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_top"), 
 //				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_inside"));
 //		
-		this.createFacingBlock(YATMBlocks.STEEL_BIOREACTOR.get(), YATMItems.STEEL_BIOREACTOR.get(), YATMBlockStateProvider.BIOREACTOR_MODEL);
+		this.createFacingBlock(YATMBlocks.BIOREACTOR.get(), YATMItems.BIOREACTOR.get(), YATMBlockStateProvider.BIOREACTOR_MODEL);
 		
 	} // end addBioler()
 	
 	private void addBoilers() 
 	{
-		String litName = YATMBlockStateProvider.getModelLocationNameFor(YATMBlocks.STEEL_BOILER.get()) + "_lit";
+		String litName = YATMBlockStateProvider.getModelLocationNameFor(YATMBlocks.BOILER.get()) + "_lit";
 		this.models().getBuilder(litName).parent(YATMBlockStateProvider.BOILER_MODEL).texture("front", new ResourceLocation(YetAnotherTechMod.MODID, "block/device/boiler/front_lit"));
 		ModelFile litModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, litName));
-		this.createLitFacingBlock(YATMBlocks.STEEL_BOILER.get(), YATMItems.STEEL_BOILER.get(), YATMBlockStateProvider.BOILER_MODEL, litModel);
+		this.createLitFacingBlock(YATMBlocks.BOILER.get(), YATMItems.BOILER.get(), YATMBlockStateProvider.BOILER_MODEL, litModel);
 	} // end addBoilers()
 	
 	private void addCrucibles() 
 	{
-		this.createLitFacingBlock(YATMBlocks.STEEL_CRUCIBLE.get(), YATMItems.STEEL_CRUCIBLE.get(), YATMBlockStateProvider.CRUCIBLE_MODEL, YATMBlockStateProvider.CRUCIBLE_LIT_MODEL);
+		this.createLitFacingBlock(YATMBlocks.CRUCIBLE.get(), YATMItems.CRUCIBLE.get(), YATMBlockStateProvider.CRUCIBLE_MODEL, YATMBlockStateProvider.CRUCIBLE_LIT_MODEL);
 		
 	} // end addCrucibles()
 	
 	private void addCrystallizers() 
 	{
-		this.createFacingBlock(YATMBlocks.STEEL_CRYSTALLIZER.get(), YATMItems.STEEL_CRYSTALLIZER.get(), YATMBlockStateProvider.CRYSTALLIZER_MODEL);
+		this.createFacingBlock(YATMBlocks.CRYSTALLIZER.get(), YATMItems.CRYSTALLIZER.get(), YATMBlockStateProvider.CRYSTALLIZER_MODEL);
 		
 	} // end addCrystallizers()
 	
 	private void addCurrentFurnaces() 
 	{
-		this.createFacingBlock(YATMBlocks.STEEL_HEAT_FURNACE.get(), YATMItems.STEEL_HEAT_FURNACE.get(), YATMBlockStateProvider.CURRENT_FURNACE_MODEL);
+		this.createFacingBlock(YATMBlocks.HEAT_FURNACE.get(), YATMItems.HEAT_FURNACE.get(), YATMBlockStateProvider.CURRENT_FURNACE_MODEL);
 		
 	} // end addCurrentFurnaces()
 	
 	private void addExtractors() 
 	{
-		this.createFacingBlock(YATMBlocks.STEEL_EXTRACTOR.get(), YATMItems.STEEL_EXTRACTOR.get(), YATMBlockStateProvider.EXTRACTOR_MODEL);
+		this.createFacingBlock(YATMBlocks.EXTRACTOR.get(), YATMItems.EXTRACTOR.get(), YATMBlockStateProvider.EXTRACTOR_MODEL);
 		
 	} // end addExtractors()
 	
 	private void addInjectors() 
 	{
-		this.createFacingBlock(YATMBlocks.STEEL_INJECTOR.get(), YATMItems.STEEL_INJECTOR.get(), YATMBlockStateProvider.INJECTOR_MODEL);
+		this.createFacingBlock(YATMBlocks.INJECTOR.get(), YATMItems.INJECTOR.get(), YATMBlockStateProvider.INJECTOR_MODEL);
 		
 	} // end addInjectors()
 	
 	private void addStills() 
 	{
-		this.createLitFacingBlock(YATMBlocks.STEEL_STILL.get(), YATMItems.STEEL_STILL.get(), YATMBlockStateProvider.STILL_MODEL, YATMBlockStateProvider.STILL_LIT_MODEL);
+		this.createLitFacingBlock(YATMBlocks.STILL.get(), YATMItems.STILL.get(), YATMBlockStateProvider.STILL_MODEL, YATMBlockStateProvider.STILL_LIT_MODEL);
 		
 	} // end addCrucibles()
 	

@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "gsr_yatm:steel_crucible"
+          "name": "gsr_yatm:crystallizer"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "gsr_yatm:blocks/steel_crucible"
+  "random_sequence": "gsr_yatm:blocks/crystallizer"
 }

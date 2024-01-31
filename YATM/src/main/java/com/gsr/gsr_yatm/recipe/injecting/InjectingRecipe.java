@@ -154,7 +154,7 @@ public class InjectingRecipe extends RecipeBase<Container> implements ITimedReci
 	@Override
 	public @NotNull ItemStack getToastSymbol()
 	{
-		return new ItemStack(YATMItems.STEEL_INJECTOR.get());
+		return new ItemStack(YATMItems.INJECTOR.get());
 	} // end getToastSymbol()
 
 	@Override

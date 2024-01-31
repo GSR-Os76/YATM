@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "gsr_yatm:steel_heat_furnace"
+          "name": "gsr_yatm:crucible"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "gsr_yatm:blocks/steel_heat_furnace"
+  "random_sequence": "gsr_yatm:blocks/crucible"
 }

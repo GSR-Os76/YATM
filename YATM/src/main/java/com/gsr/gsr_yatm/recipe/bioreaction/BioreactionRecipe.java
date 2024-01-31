@@ -139,7 +139,7 @@ public class BioreactionRecipe extends RecipeBase<Container> implements ITimedRe
 	@Override
 	public ItemStack getToastSymbol()
 	{
-		return new ItemStack(YATMItems.STEEL_BIOREACTOR.get());
+		return new ItemStack(YATMItems.BIOREACTOR.get());
 	} // end getToastSymbol()
 	
 } // end class

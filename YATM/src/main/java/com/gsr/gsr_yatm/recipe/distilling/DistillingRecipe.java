@@ -159,7 +159,7 @@ public class DistillingRecipe extends RecipeBase<Container> implements ITimedRec
 	@Override
 	public ItemStack getToastSymbol()
 	{
-		return new ItemStack(YATMItems.STEEL_STILL.get());
+		return new ItemStack(YATMItems.STILL.get());
 	} // end getToastSymbol()
 
 } // end class

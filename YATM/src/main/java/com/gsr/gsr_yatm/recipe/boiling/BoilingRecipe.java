@@ -149,7 +149,7 @@ public class BoilingRecipe extends RecipeBase<Container> implements ITimedRecipe
 	@Override
 	public ItemStack getToastSymbol()
 	{
-		return new ItemStack(YATMItems.STEEL_BOILER.get());
+		return new ItemStack(YATMItems.BOILER.get());
 	} // end getToastSymbol()
 	
 } // end class

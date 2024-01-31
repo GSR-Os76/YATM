@@ -260,16 +260,16 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropSelf(YATMBlocks.DESTRUCTIVE_DATA_SCANNER.get());
 		this.dropSelf(YATMBlocks.DATA_PROCESSOR.get());
 		
-		this.dropSelf(YATMBlocks.STEEL_BIOREACTOR.get());
-		this.dropSelf(YATMBlocks.STEEL_BOILER.get());
-		this.dropSelf(YATMBlocks.STEEL_CRUCIBLE.get());
-		this.dropSelf(YATMBlocks.STEEL_CRYSTALLIZER.get());
-		this.dropSelf(YATMBlocks.STEEL_HEAT_FURNACE.get());
-		this.dropSelf(YATMBlocks.STEEL_EXTRACTOR.get());
+		this.dropSelf(YATMBlocks.BIOREACTOR.get());
+		this.dropSelf(YATMBlocks.BOILER.get());
+		this.dropSelf(YATMBlocks.CRUCIBLE.get());
+		this.dropSelf(YATMBlocks.CRYSTALLIZER.get());
+		this.dropSelf(YATMBlocks.HEAT_FURNACE.get());
+		this.dropSelf(YATMBlocks.EXTRACTOR.get());
 //		this.dropSelf(YATMBlocks.STEEL_EXTRUDER.get());
-		this.dropSelf(YATMBlocks.STEEL_GRINDER.get());
-		this.dropSelf(YATMBlocks.STEEL_INJECTOR.get());
-		this.dropSelf(YATMBlocks.STEEL_STILL.get());
+		this.dropSelf(YATMBlocks.GRINDER.get());
+		this.dropSelf(YATMBlocks.INJECTOR.get());
+		this.dropSelf(YATMBlocks.STILL.get());
 			
 		this.dropSelf(YATMBlocks.C_U_F_E_I.get());
 		

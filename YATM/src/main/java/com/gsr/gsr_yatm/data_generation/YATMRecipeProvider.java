@@ -299,7 +299,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	private void addDeviceRecipes(@NotNull RecipeOutput output) 
 	{
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.STEEL_BOILER.get(), 1).pattern("fff").pattern("g g").pattern("fbf").define('g', Tags.Items.GLASS).define('b', Items.BLAST_FURNACE).define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", has(Items.BLAST_FURNACE)).save(output, YetAnotherTechMod.MODID + ":steel_boiler_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.BOILER.get(), 1).pattern("fff").pattern("g g").pattern("fbf").define('g', Tags.Items.GLASS).define('b', Items.BLAST_FURNACE).define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", has(Items.BLAST_FURNACE)).save(output, YetAnotherTechMod.MODID + ":steel_boiler_from_shaped_crafting");
 		
 	} // end addDeviceRecipes()
 	
@@ -383,7 +383,7 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	private void addDistillationRecipes(@NotNull RecipeOutput output) 
 	{
-		new DistillingRecipeBuilder().input(new FluidStackIngredient(new FluidStack(YATMFluids.CHORUS_BIO.get(), 100))).remainder(new FluidStack(YATMFluids.BIO.get(), 30)).distillate(new FluidStack(YATMFluids.CHORUS.get(), 70)).temperature(923).timeInTicks(180).unlockedBy("has_device", has(YATMItems.STEEL_STILL.get())).save(output, YetAnotherTechMod.MODID + ":chorus_from_distillation");;
+		new DistillingRecipeBuilder().input(new FluidStackIngredient(new FluidStack(YATMFluids.CHORUS_BIO.get(), 100))).remainder(new FluidStack(YATMFluids.BIO.get(), 30)).distillate(new FluidStack(YATMFluids.CHORUS.get(), 70)).temperature(923).timeInTicks(180).unlockedBy("has_device", has(YATMItems.STILL.get())).save(output, YetAnotherTechMod.MODID + ":chorus_from_distillation");;
 	} // end addDistillationRecipes()
 	
 	
@@ -838,7 +838,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.temperature(temperature)
 		.timeInTicks(timeInTicks)
 		// TODO, make use tag containing all the boilers
-		.unlockedBy("has_device", has(YATMItems.STEEL_BOILER.get()))
+		.unlockedBy("has_device", has(YATMItems.BOILER.get()))
 		.save(output, key);
 	} // end addBoilingRecipe()
 	

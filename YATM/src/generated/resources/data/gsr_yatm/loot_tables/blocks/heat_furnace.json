@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "gsr_yatm:steel_extractor"
+          "name": "gsr_yatm:heat_furnace"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "gsr_yatm:blocks/steel_extractor"
+  "random_sequence": "gsr_yatm:blocks/heat_furnace"
 }

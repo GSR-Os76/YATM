@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "gsr_yatm:steel_crystallizer"
+          "name": "gsr_yatm:boiler"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "gsr_yatm:blocks/steel_crystallizer"
+  "random_sequence": "gsr_yatm:blocks/boiler"
 }

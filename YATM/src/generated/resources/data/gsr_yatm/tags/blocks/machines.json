@@ -1,12 +1,12 @@
 {
   "values": [
-    "gsr_yatm:steel_bioreactor",
-    "gsr_yatm:steel_boiler",
-    "gsr_yatm:steel_crucible",
-    "gsr_yatm:steel_crystallizer",
-    "gsr_yatm:steel_heat_furnace",
-    "gsr_yatm:steel_extractor",
-    "gsr_yatm:steel_grinder",
-    "gsr_yatm:steel_injector"
+    "gsr_yatm:bioreactor",
+    "gsr_yatm:boiler",
+    "gsr_yatm:crucible",
+    "gsr_yatm:crystallizer",
+    "gsr_yatm:heat_furnace",
+    "gsr_yatm:extractor",
+    "gsr_yatm:grinder",
+    "gsr_yatm:injector"
   ]
 }
