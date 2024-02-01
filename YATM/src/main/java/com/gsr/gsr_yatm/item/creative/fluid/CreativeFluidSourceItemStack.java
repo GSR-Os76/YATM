@@ -1,5 +1,7 @@
 package com.gsr.gsr_yatm.item.creative.fluid;
 
+import java.util.Objects;
+
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -20,16 +22,23 @@ import net.minecraftforge.registries.ForgeRegistries;
 public class CreativeFluidSourceItemStack implements IFluidHandlerItem, ICapabilityProvider
 {
 	private static final String FLUID_TAG_KEY = "fluid";
-	private ItemStack m_container;
-	private LazyOptional<IFluidHandlerItem> m_fluidHandlerHolder = LazyOptional.of(() -> this);
+	
+	private final @NotNull ItemStack m_container;
+	private final @NotNull LazyOptional<IFluidHandlerItem> m_fluidHandlerHolder = LazyOptional.of(() -> this);
 
 
-	public CreativeFluidSourceItemStack(ItemStack container)
+	public CreativeFluidSourceItemStack(@NotNull ItemStack container)
 	{
-		this.m_container = container;
+		this.m_container = Objects.requireNonNull(container);
 	} // end constructor
 
-
+	@Override
+	public @NotNull ItemStack getContainer()
+	{
+		return this.m_container;
+	} // end getContainer
+	
+	
 
 	@NotNull
 	private Fluid getFluid()
@@ -97,12 +106,6 @@ public class CreativeFluidSourceItemStack implements IFluidHandlerItem, ICapabil
 	{
 		return new FluidStack(this.getFluid(), maxDrain);
 	} // end drain()
-
-	@Override
-	public @NotNull ItemStack getContainer()
-	{
-		return this.m_container;
-	} // end getContainer
 
 
 

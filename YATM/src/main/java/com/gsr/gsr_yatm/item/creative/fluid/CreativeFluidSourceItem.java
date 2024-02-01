@@ -43,7 +43,7 @@ public class CreativeFluidSourceItem extends Item
 	
 
 	@Override
-	public InteractionResultHolder<ItemStack> use(@NotNull Level level, @NotNull Player player, InteractionHand hand)
+	public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, @NotNull Player player, InteractionHand hand)
 	{
 		ItemStack held = player.getItemInHand(hand);
 		if(player.isCrouching()) 
@@ -62,9 +62,7 @@ public class CreativeFluidSourceItem extends Item
 		}
 		else 
 		{
-			// TODO, if possible figure out how to convert from flowing to source for all the fluids, and reenable any.
-			// or perhaps add a configuration, to allow capturing flowing fluids
-			BlockHitResult hr = getPlayerPOVHitResult(level, player, ClipContext.Fluid.ANY);
+			BlockHitResult hr = Item.getPlayerPOVHitResult(level, player, ClipContext.Fluid.ANY);
 		    if(hr.getType() == HitResult.Type.BLOCK) 
 		    {
 				BlockPos hPos = hr.getBlockPos();
