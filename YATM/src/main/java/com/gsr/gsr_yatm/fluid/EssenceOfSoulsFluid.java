@@ -38,7 +38,7 @@ public abstract class EssenceOfSoulsFluid extends FlowingFluid implements IBottl
 	@Override
 	public Fluid getFlowing()
 	{
-		return YATMFluids.ESSENCE_OF_SOULS_FLOWING.get();
+		return YATMFluids.FLOWING_ESSENCE_OF_SOULS.get();
 	} // end getFlowing()
 
 	@Override
@@ -68,7 +68,7 @@ public abstract class EssenceOfSoulsFluid extends FlowingFluid implements IBottl
 	@Override
 	public boolean isSame(Fluid fluid)
 	{
-		return fluid == YATMFluids.ESSENCE_OF_SOULS.get() || fluid == YATMFluids.ESSENCE_OF_SOULS_FLOWING.get();
+		return fluid == YATMFluids.ESSENCE_OF_SOULS.get() || fluid == YATMFluids.FLOWING_ESSENCE_OF_SOULS.get();
 	} // end isSame()
 
 	

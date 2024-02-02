@@ -38,7 +38,7 @@ public abstract class ChorusFluid extends FlowingFluid implements IBottleableFlu
 	@Override
 	public Fluid getFlowing()
 	{
-		return YATMFluids.CHORUS_FLOWING.get();
+		return YATMFluids.FLOWING_CHORUS.get();
 	} // end getFlowing()
 
 	@Override
@@ -68,7 +68,7 @@ public abstract class ChorusFluid extends FlowingFluid implements IBottleableFlu
 	@Override
 	public boolean isSame(Fluid fluid)
 	{
-		return fluid == YATMFluids.CHORUS.get() || fluid == YATMFluids.CHORUS_FLOWING.get();
+		return fluid == YATMFluids.CHORUS.get() || fluid == YATMFluids.FLOWING_CHORUS.get();
 	} // end isSame()
 
 	

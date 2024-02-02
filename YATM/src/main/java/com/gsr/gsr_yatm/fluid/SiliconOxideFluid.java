@@ -42,7 +42,7 @@ public abstract class SiliconOxideFluid extends LavaFluid
 	@Override
 	public Fluid getFlowing()
 	{
-		return YATMFluids.SILICON_OXIDE_FLOWING.get();
+		return YATMFluids.FLOWING_SILICON_OXIDE.get();
 	} // end getFlowing()
 
 	@Override
@@ -66,7 +66,7 @@ public abstract class SiliconOxideFluid extends LavaFluid
 	@Override
 	public boolean isSame(Fluid fluid)
 	{
-		return fluid == YATMFluids.SILICON_OXIDE.get() || fluid == YATMFluids.SILICON_OXIDE_FLOWING.get();
+		return fluid == YATMFluids.SILICON_OXIDE.get() || fluid == YATMFluids.FLOWING_SILICON_OXIDE.get();
 	} // end isSame()
 
 	

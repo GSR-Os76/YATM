@@ -38,7 +38,7 @@ public abstract class ChorusBioFluid extends FlowingFluid implements IBottleable
 	@Override
 	public Fluid getFlowing()
 	{
-		return YATMFluids.CHORUS_BIO_FLOWING.get();
+		return YATMFluids.FLOWING_CHORUS_BIO.get();
 	} // end getFlowing()
 
 	@Override
@@ -68,7 +68,7 @@ public abstract class ChorusBioFluid extends FlowingFluid implements IBottleable
 	@Override
 	public boolean isSame(Fluid fluid)
 	{
-		return fluid == YATMFluids.CHORUS_BIO.get() || fluid == YATMFluids.CHORUS_BIO_FLOWING.get();
+		return fluid == YATMFluids.CHORUS_BIO.get() || fluid == YATMFluids.FLOWING_CHORUS_BIO.get();
 	} // end isSame()
 
 	

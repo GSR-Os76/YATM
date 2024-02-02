@@ -32,7 +32,7 @@ public abstract class SolarLightFluid extends FlowingFluid
 	@Override
 	public Fluid getFlowing()
 	{
-		return YATMFluids.SOLAR_LIGHT_FLOWING.get();
+		return YATMFluids.FLOWING_SOLAR_LIGHT.get();
 	} // end getFlowing()
 
 	@Override
@@ -56,7 +56,7 @@ public abstract class SolarLightFluid extends FlowingFluid
 	@Override
 	public boolean isSame(Fluid fluid)
 	{
-		return fluid == YATMFluids.SOLAR_LIGHT.get() || fluid == YATMFluids.SOLAR_LIGHT_FLOWING.get();
+		return fluid == YATMFluids.SOLAR_LIGHT.get() || fluid == YATMFluids.FLOWING_SOLAR_LIGHT.get();
 	} // end isSame()
 	
 	

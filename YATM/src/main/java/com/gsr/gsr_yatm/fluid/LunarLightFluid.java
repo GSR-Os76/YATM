@@ -32,7 +32,7 @@ public abstract class LunarLightFluid extends FlowingFluid
 	@Override
 	public Fluid getFlowing()
 	{
-		return YATMFluids.LUNAR_LIGHT_FLOWING.get();
+		return YATMFluids.FLOWING_LUNAR_LIGHT.get();
 	} // end getFlowing()
 
 	@Override
@@ -56,7 +56,7 @@ public abstract class LunarLightFluid extends FlowingFluid
 		@Override
 	public boolean isSame(Fluid fluid)
 	{
-		return fluid == YATMFluids.LUNAR_LIGHT.get() || fluid == YATMFluids.LUNAR_LIGHT_FLOWING.get();
+		return fluid == YATMFluids.LUNAR_LIGHT.get() || fluid == YATMFluids.FLOWING_LUNAR_LIGHT.get();
 	} // end isSame()
 
 

@@ -38,7 +38,7 @@ public abstract class BioFluid extends FlowingFluid implements IBottleableFluid
 	@Override
 	public Fluid getFlowing()
 	{
-		return YATMFluids.BIO_FLOWING.get();
+		return YATMFluids.FLOWING_BIO.get();
 	} // end getFlowing()
 
 	@Override
@@ -68,7 +68,7 @@ public abstract class BioFluid extends FlowingFluid implements IBottleableFluid
 	@Override
 	public boolean isSame(Fluid fluid)
 	{
-		return fluid == YATMFluids.BIO.get() || fluid == YATMFluids.BIO_FLOWING.get();
+		return fluid == YATMFluids.BIO.get() || fluid == YATMFluids.FLOWING_BIO.get();
 	} // end isSame()
 
 	

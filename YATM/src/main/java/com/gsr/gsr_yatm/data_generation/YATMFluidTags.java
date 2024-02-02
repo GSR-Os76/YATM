@@ -42,8 +42,8 @@ public class YATMFluidTags extends FluidTagsProvider
 	@Override
 	protected void addTags(Provider provider)
 	{
-		this.tag(YATMFluidTags.FORGE_ENDER_KEY).add(YATMFluids.ENDER.get()).add(YATMFluids.ENDER_FLOWING.get());
-		this.tag(YATMFluidTags.FORGE_SILICON_OXIDE_KEY).add(YATMFluids.SILICON_OXIDE.get()).add(YATMFluids.SILICON_OXIDE_FLOWING.get());
+		this.tag(YATMFluidTags.FORGE_ENDER_KEY).add(YATMFluids.ENDER.get()).add(YATMFluids.FLOWING_ENDER.get());
+		this.tag(YATMFluidTags.FORGE_SILICON_OXIDE_KEY).add(YATMFluids.SILICON_OXIDE.get()).add(YATMFluids.FLOWING_SILICON_OXIDE.get());
 	} // end addTags()
 	
 } // end class

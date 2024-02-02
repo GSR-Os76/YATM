@@ -32,7 +32,7 @@ public abstract class CelestialLightFluid extends FlowingFluid
 	@Override
 	public Fluid getFlowing()
 	{
-		return YATMFluids.CELESTIAL_LIGHT_FLOWING.get();
+		return YATMFluids.FLOWING_CELESTIAL_LIGHT.get();
 	} // end getFlowing()
 
 	@Override
@@ -56,7 +56,7 @@ public abstract class CelestialLightFluid extends FlowingFluid
 	@Override
 	public boolean isSame(Fluid fluid)
 	{
-		return fluid == YATMFluids.CELESTIAL_LIGHT.get() || fluid == YATMFluids.CELESTIAL_LIGHT_FLOWING.get();
+		return fluid == YATMFluids.CELESTIAL_LIGHT.get() || fluid == YATMFluids.FLOWING_CELESTIAL_LIGHT.get();
 	} // end isSame()
 
 	

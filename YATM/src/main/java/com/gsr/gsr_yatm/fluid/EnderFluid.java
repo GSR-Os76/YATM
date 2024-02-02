@@ -38,7 +38,7 @@ public abstract class EnderFluid extends FlowingFluid implements IBottleableFlui
 	@Override
 	public Fluid getFlowing()
 	{
-		return YATMFluids.ENDER_FLOWING.get();
+		return YATMFluids.FLOWING_ENDER.get();
 	} // end getFlowing()
 
 	@Override
@@ -68,7 +68,7 @@ public abstract class EnderFluid extends FlowingFluid implements IBottleableFlui
 	@Override
 	public boolean isSame(Fluid fluid)
 	{
-		return fluid == YATMFluids.ENDER.get() || fluid == YATMFluids.ENDER_FLOWING.get();
+		return fluid == YATMFluids.ENDER.get() || fluid == YATMFluids.FLOWING_ENDER.get();
 	} // end isSame()
 
 	

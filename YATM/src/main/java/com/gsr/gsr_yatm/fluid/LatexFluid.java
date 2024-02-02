@@ -33,7 +33,7 @@ public abstract class LatexFluid extends FlowingFluid implements IBottleableFlui
 	@Override
 	public Fluid getFlowing()
 	{
-		return YATMFluids.LATEX_FLOWING.get();
+		return YATMFluids.FLOWING_LATEX.get();
 	} // end getFlowing()
 
 	@Override
@@ -73,7 +73,7 @@ public abstract class LatexFluid extends FlowingFluid implements IBottleableFlui
 	@Override
 	public boolean isSame(Fluid fluid)
 	{
-		return fluid == YATMFluids.LATEX.get() || fluid == YATMFluids.LATEX_FLOWING.get();
+		return fluid == YATMFluids.LATEX.get() || fluid == YATMFluids.FLOWING_LATEX.get();
 	} // end isSame()
 
 	
