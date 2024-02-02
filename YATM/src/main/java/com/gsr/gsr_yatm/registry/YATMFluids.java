@@ -65,6 +65,7 @@ public class YATMFluids
 	
 	
 	
+	// TODO, shouldn't really be FlowingFluid probably.
 	public static final RegistryObject<CelestialLightFluid.Source> CELESTIAL_LIGHT = FLUIDS.register("celestial_light", () -> new CelestialLightFluid.Source());
 	public static final RegistryObject<CelestialLightFluid.Flowing> CELESTIAL_LIGHT_FLOWING = FLUIDS.register("celestial_light_flowing", () -> new CelestialLightFluid.Flowing());
 

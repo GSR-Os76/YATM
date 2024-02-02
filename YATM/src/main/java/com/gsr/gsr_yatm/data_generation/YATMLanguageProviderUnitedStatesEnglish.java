@@ -438,15 +438,25 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		// FLUIDS\\
 		this.add(YATMFluids.BIO.get(), "Biofluid");
+		this.add(YATMFluids.BIO_FLOWING.get(), "Biofluid");
 		this.add(YATMFluids.CHORUS.get(), "Chorus");
+		this.add(YATMFluids.CHORUS_FLOWING.get(), "Chorus");
 		this.add(YATMFluids.CHORUS_BIO.get(), "Chorus Biofluid");
+		this.add(YATMFluids.CHORUS_BIO_FLOWING.get(), "Chorus Biofluid");
 		this.add(YATMFluids.ENDER.get(), "Ender");		
+		this.add(YATMFluids.ENDER_FLOWING.get(), "Ender");		
 		this.add(YATMFluids.ESSENCE_OF_DECAY.get(), "Essence Of Decay");
+		this.add(YATMFluids.ESSENCE_OF_DECAY_FLOWING.get(), "Essence Of Decay");
 		this.add(YATMFluids.ESSENCE_OF_SOULS.get(), "Essence Of Souls");
+		this.add(YATMFluids.ESSENCE_OF_SOULS_FLOWING.get(), "Essence Of Souls");
 		this.add(YATMFluids.LATEX.get(), "Latex");
+		this.add(YATMFluids.LATEX_FLOWING.get(), "Latex");
 		this.add(YATMFluids.SILICON_OXIDE.get(), "Silicon Oxide");
+		this.add(YATMFluids.SILICON_OXIDE_FLOWING.get(), "Silicon Oxide");
 		this.add(YATMFluids.SOUL_SAP.get(), "Soul Sap");
+		this.add(YATMFluids.SOUL_SAP_FLOWING.get(), "Soul Sap");
 		this.add(YATMFluids.SOUL_SYRUP.get(), "Soul Syrup");
+		this.add(YATMFluids.SOUL_SYRUP_FLOWING.get(), "Soul Syrup");
 		
 		this.add(YATMFluids.CELESTIAL_LIGHT.get(), "Celestial Light");
 		this.add(YATMFluids.LUNAR_LIGHT.get(), "Lunar light");
@@ -461,10 +471,10 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 	private void addMinecraftTranslations() 
 	{
 		this.add(Fluids.EMPTY, "Empty");
-		this.add(Fluids.FLOWING_LAVA, "Lava");
 		this.add(Fluids.LAVA, "Lava");
-		this.add(Fluids.FLOWING_WATER, "Water");
+		this.add(Fluids.FLOWING_LAVA, "Lava");
 		this.add(Fluids.WATER, "Water");
+		this.add(Fluids.FLOWING_WATER, "Water");
 	} // end addMinecraftTranslations()
 	
 } // end class
