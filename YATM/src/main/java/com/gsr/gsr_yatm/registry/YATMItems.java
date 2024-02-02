@@ -19,6 +19,7 @@ import com.gsr.gsr_yatm.item.armor.PoweredArmorItem;
 import com.gsr.gsr_yatm.item.component.current_heater.CurrentHeaterItem;
 import com.gsr.gsr_yatm.item.component.current_storer.CurrentStorerItem;
 import com.gsr.gsr_yatm.item.component.fluid_pass_through.FluidPassThroughBlockItem;
+import com.gsr.gsr_yatm.item.creative.current.CreativeCurrentSourceItem;
 import com.gsr.gsr_yatm.item.creative.fluid.CreativeFluidSourceItem;
 import com.gsr.gsr_yatm.item.creative.fluid.CreativeFluidStorerItem;
 import com.gsr.gsr_yatm.item.creative.fluid.CreativeFluidVoidItem;
@@ -410,7 +411,7 @@ public class YATMItems
 	public static final RegistryObject<LazyArmorItem> SOUL_ADORNED_NETHERITE_LEGGINGS = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_adorned_netherite_leggings", () -> new LazyArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant()))));
 	public static final RegistryObject<LazyArmorItem> SOUL_ADORNED_NETHERITE_BOOTS = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_adorned_netherite_boots", () -> new LazyArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()))));
 		
-	public static final RegistryObject<BlockItem> CREATIVE_CURRENT_SOURCE = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("creative_current_source", () -> new BlockItem(YATMBlocks.CREATIVE_CURRENT_SOURCE.get(), new Item.Properties()))));
+	public static final RegistryObject<CreativeCurrentSourceItem> CREATIVE_CURRENT_SOURCE = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("creative_current_source", () -> new CreativeCurrentSourceItem(YATMBlocks.CREATIVE_CURRENT_SOURCE.get(), new Item.Properties().stacksTo(1)))));
 	
 	public static final RegistryObject<CreativeFluidSourceItem> CREATIVE_FLUID_SOURCE = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("creative_fluid_source", () -> new CreativeFluidSourceItem(new Item.Properties().stacksTo(1)))));
 	public static final RegistryObject<CreativeFluidStorerItem> CREATIVE_FLUID_STORER = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("creative_fluid_storer", () -> new CreativeFluidStorerItem(new Item.Properties().stacksTo(1)))));
