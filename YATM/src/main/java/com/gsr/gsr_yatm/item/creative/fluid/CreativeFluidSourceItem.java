@@ -21,12 +21,10 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.FlowingFluid;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraft.world.level.material.FluidState;
-import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.HitResult;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
-import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.fluids.capability.IFluidHandler.FluidAction;
 import net.minecraftforge.fluids.capability.IFluidHandlerItem;
@@ -43,15 +41,14 @@ public class CreativeFluidSourceItem extends Item
 	
 
 	@Override
-	public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, @NotNull Player player, InteractionHand hand)
+	public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level level, @NotNull Player player, @NotNull InteractionHand hand)
 	{
 		ItemStack held = player.getItemInHand(hand);
 		if(player.isCrouching()) 
 		{
 			if(!level.isClientSide()) 
 			{
-				LazyOptional<IFluidHandlerItem>  lo = held.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM);
-				IFluidHandlerItem fh = lo.orElse(null);
+				IFluidHandlerItem fh = held.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).orElse(null);
 				if(fh != null) 
 				{
 					fh.fill(FluidStack.EMPTY, FluidAction.EXECUTE);
@@ -87,7 +84,7 @@ public class CreativeFluidSourceItem extends Item
 	
 	
 	@Override
-	public @Nullable ICapabilityProvider initCapabilities(ItemStack stack, @Nullable CompoundTag nbt)
+	public @Nullable ICapabilityProvider initCapabilities(@NotNull ItemStack stack, @Nullable CompoundTag nbt)
 	{
 		return new CreativeFluidSourceItemStack(stack);
 	} // end initCapabilities()
@@ -95,20 +92,16 @@ public class CreativeFluidSourceItem extends Item
 
 	
 	@Override
-	public Component getName(ItemStack itemStack)
+	public @NotNull Component getName(@NotNull ItemStack itemStack)
 	{
-		LazyOptional<IFluidHandlerItem> fh = itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM);
-		IFluidHandlerItem c = fh.orElse(null);
-		Fluid toNameTake = c == null ? Fluids.EMPTY : c.getFluidInTank(0).getFluid();
-		
+		FluidStack f = itemStack.getCapability(ForgeCapabilities.FLUID_HANDLER_ITEM).orElse(null).getFluidInTank(0);
 		MutableComponent name = Component.translatable(getDescriptionId(itemStack));
-		if(toNameTake != null && toNameTake != Fluids.EMPTY) 
+		if(f != FluidStack.EMPTY) 
 		{
 			name.append(Component.literal(" ("));
-			name.append(Component.translatable(Util.makeDescriptionId("fluid", ForgeRegistries.FLUIDS.getKey(toNameTake))));//ForgeRegistries.FLUIDS.getKey(toNameTake).toString()));
+			name.append(Component.translatable(Util.makeDescriptionId("fluid", ForgeRegistries.FLUIDS.getKey(f.getFluid()))));
 			name.append(Component.literal(")"));
 		}
-		
 		return name;
 	} // end getName()
 	
