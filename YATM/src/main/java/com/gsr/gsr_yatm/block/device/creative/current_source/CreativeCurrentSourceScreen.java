@@ -47,9 +47,9 @@ public class CreativeCurrentSourceScreen extends AbstractContainerScreen<Creativ
 	{
 		super.init();
 		// TODO, literal isn't working, and get alwats give 0
-		this.m_outputBox = new EditBox(minecraft.font, this.leftPos + 48, this.topPos + 26, 80, 12, Component.literal("" + menu.getOutput()));
-		this.m_outputBox.setResponder(this::tryUpdateOutput);
-		this.addRenderableWidget(this.m_outputBox);
+		// this.m_outputBox = new EditBox(minecraft.font, this.leftPos + 48, this.topPos + 26, 80, 12, Component.literal("" + menu.getOutput()));
+		// this.m_outputBox.setResponder(this::tryUpdateOutput);
+		// this.addRenderableWidget(this.m_outputBox);
 	} // end init()
 
 	@Override
@@ -57,7 +57,7 @@ public class CreativeCurrentSourceScreen extends AbstractContainerScreen<Creativ
 	{
 		super.renderBackground(graphics, mouseX, mouseY, partialTick);
 		this.renderBg(graphics, partialTick, mouseX, mouseY);
-		this.m_outputBox.render(graphics, mouseX, mouseY, partialTick);
+		// this.m_outputBox.render(graphics, mouseX, mouseY, partialTick);
 		super.render(graphics, mouseX, mouseY, partialTick);
 		this.renderTooltip(graphics, mouseX, mouseY);
 	} // end render()

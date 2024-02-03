@@ -145,6 +145,8 @@ public class CreativeCurrentSourceMenu extends AbstractContainerMenu
 	public void setOutput(int output) 
 	{
 		NetworkUtil.setPropertyValue(CreativeCurrentSourceBlockEntity.ACCESS_SPEC.get(CreativeCurrentSourceBlockEntity.OUTPUT_SPEC_KEY), this.m_data, output);
+		// this.sendAllDataToRemote();
+		// TODO, maybe something with the added slots instead?
 	} // end heatProgress()
 	
 } // end class
