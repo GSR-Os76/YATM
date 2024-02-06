@@ -56,6 +56,7 @@ import com.gsr.gsr_yatm.registry.custom.YATMIngredientDeserializers;
 import com.gsr.gsr_yatm.registry.custom.YATMRegistries;
 import com.gsr.gsr_yatm.utilities.YATMModelLayers;
 import com.gsr.gsr_yatm.utilities.YATMParticleProviders;
+import com.gsr.gsr_yatm.utilities.capability.HeatUtil;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtil;
@@ -70,7 +71,6 @@ import net.minecraft.client.renderer.blockentity.SignRenderer;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.data.DataProvider;
 import net.minecraft.data.PackOutput;
-import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.ItemStack;
@@ -78,7 +78,6 @@ import net.minecraft.world.level.block.state.properties.WoodType;
 import net.minecraftforge.client.ForgeHooksClient;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
-import net.minecraftforge.common.BiomeManager;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.data.event.GatherDataEvent;
@@ -86,7 +85,6 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class YATMModEvents
 {
@@ -202,11 +200,14 @@ public class YATMModEvents
 		// overworld currently, and I wish to not break compatibility
 		// NetherBiomes l
 		// event.enqueueWork(() -> ; BiomeManager.addAdditionalOverworldBiomes(null))
-		event.enqueueWork(() -> BiomeManager.addAdditionalOverworldBiomes(ResourceKey.create(ForgeRegistries.BIOMES.getRegistryKey(), new ResourceLocation(YetAnotherTechMod.MODID, "rubber_forest"))));
+		// event.enqueueWork(() -> BiomeManager.addAdditionalOverworldBiomes(ResourceKey.create(ForgeRegistries.BIOMES.getRegistryKey(), new ResourceLocation(YetAnotherTechMod.MODID, "rubber_forest"))));
 
 		event.enqueueWork(() -> WoodType.register(YATMBlocks.RUBBER_WOOD_TYPE));
 		event.enqueueWork(() -> WoodType.register(YATMBlocks.SOUL_AFFLICTED_RUBBER_WOOD_TYPE));
+		
 		event.enqueueWork(LazyArmorItem.loader());
+		
+		event.enqueueWork(HeatUtil::addDefaultsTemperatureMappings);
 	} // end commonSetup()
 
 	private static void gatherData(GatherDataEvent event)

@@ -19,9 +19,7 @@ import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
-import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.ForgeCapabilities;
 import net.minecraftforge.common.util.LazyOptional;
@@ -92,16 +90,7 @@ public class SlotUtil
 	
 	
 	
-	public static int getHeatingBurnTime(@NotNull ItemStack itemStack) 
-	{
-		return ForgeHooks.getBurnTime(itemStack, RecipeType.SMELTING);
-	} // getHeatingBurnTime()
 	
-	public static int getHeatingTemperature(@NotNull ItemStack itemStack) 
-	{
-		// TODO, implement
-		return 1024;
-	} // end getHeatingTemperature()
 	
 	
 	
@@ -109,7 +98,7 @@ public class SlotUtil
 	public static boolean isValidHeatingSlotInsert(@NotNull ItemStack itemStack) 
 	{
 		// TODO, maybe, create recipe type for heating
-		return itemStack.isEmpty() || (getHeatingBurnTime(itemStack) > 0 
+		return itemStack.isEmpty() || (HeatUtil.getHeatingBurnTime(itemStack) > 0 
 				|| itemStack.getCapability(YATMCapabilities.HEAT).isPresent() 
 				|| SlotUtil.isComponentFor(itemStack, YATMCapabilities.HEAT));
 	} // end isValidHeatingSlotInsert()

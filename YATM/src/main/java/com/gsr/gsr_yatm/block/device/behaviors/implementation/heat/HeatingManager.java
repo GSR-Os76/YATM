@@ -12,7 +12,7 @@ import com.gsr.gsr_yatm.block.device.behaviors.IBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
-import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
+import com.gsr.gsr_yatm.utilities.capability.HeatUtil;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.generic.Property;
@@ -85,7 +85,7 @@ public class HeatingManager implements ISerializableBehavior, ITickableBehavior
 	{
 		boolean changed = false;
 		
-		this.m_heatHandler.heat(IHeatHandler.getAmbientTemp());
+		this.m_heatHandler.heat(IHeatHandler.getAmbientTemp(level, position));
 		
 		if (this.m_burnProgress != 0)
 		{
@@ -101,7 +101,7 @@ public class HeatingManager implements ISerializableBehavior, ITickableBehavior
 			}
 			changed = true;
 		}
-		else if (SlotUtil.getHeatingBurnTime(this.m_inventory.getStackInSlot(this.m_slot)) > 0)
+		else if (HeatUtil.getHeatingBurnTime(this.m_inventory.getStackInSlot(this.m_slot)) > 0)
 		{
 			ItemStack i = this.m_inventory.extractItem(this.m_slot, 1, false);
 			if (i.hasCraftingRemainingItem())
@@ -109,9 +109,9 @@ public class HeatingManager implements ISerializableBehavior, ITickableBehavior
 				InventoryUtil.insertItemOrDrop(level, position, this.m_inventory, this.m_slot, i.getCraftingRemainingItem());
 			}
 
-			this.m_burnTime = SlotUtil.getHeatingBurnTime(i);
+			this.m_burnTime = HeatUtil.getHeatingBurnTime(i);
 			this.m_burnProgress = this.m_burnTime;
-			this.m_burnTemperature = SlotUtil.getHeatingTemperature(i);
+			this.m_burnTemperature = HeatUtil.getHeatingTemperature(i);
 			changed = true;
 		}
 		return changed;

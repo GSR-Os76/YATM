@@ -217,8 +217,15 @@ public class YATMConfigs
 	public static final ConfigValue<Double> COMPOSTABLE_BIOREACTING_CHANCE_TO_TICKS = YATMConfigs.s_builder.comment("The number of ticks it take to complete the recipe at default speed for an item with a 100% compost level increase chance, is scaled to other chances.").defineInRange("chance_to_ticks", 20d, Double.MIN_VALUE, Double.MAX_VALUE);
 	public static final ConfigValue<Integer> COMPOSTABLE_BIOREACTING_CURRENT_COST = YATMConfigs.s_builder.comment("The amount of current consumed each tick to preform the recipe.").defineInRange("current_cost", 12, 0, Integer.MAX_VALUE);
 	
+	public static final ConfigValue<Integer> BLAZE_ROD_BURN_TEMPERATURE = YATMConfigs.s_builder.comment("The burn temperature for the blaze rods.").defineInRange("blaze_rod", 4096, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> COAL_BURN_TEMPERATURE = YATMConfigs.s_builder.comment("The burn temperature for coals.").defineInRange("coal", 2048, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> DEFAULT_BURN_TEMPERATURE = YATMConfigs.s_builder.comment("The temperature of items burning when no other temperature is given, used for woods and similar plant things.").defineInRange("default", 1408, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> SAPLING_BURN_TEMPERATURE = YATMConfigs.s_builder.comment("The burn temperature for saplings.").defineInRange("saplings", 512, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> WOOL_BURN_TEMPERATURE = YATMConfigs.s_builder.comment("the burn temperature for wools.").defineInRange("wool", 496, 0, Integer.MAX_VALUE);
 	
 	
-	public static final ForgeConfigSpec SPEC = YATMConfigs.s_builder.pop().pop().pop().build();
+
+	
+	public static final ForgeConfigSpec SPEC = YATMConfigs.s_builder.pop().pop().build();
 	
 } // end class
