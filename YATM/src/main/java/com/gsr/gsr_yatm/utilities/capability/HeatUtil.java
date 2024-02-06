@@ -121,4 +121,23 @@ public class HeatUtil
 		return YATMConfigs.DEFAULT_BURN_TEMPERATURE.get();
 	} // end getHeatingTemperature()
 	
+	
+	
+	public static int fuelTimeByType(int baseTime, @NotNull RecipeType<?> recipeType) 
+	{
+//		if(Objects.requireNonNull(recipeType) == RecipeType.BLASTING) 
+//		{
+//			return baseTime / 2;
+//		}
+//		else if (recipeType == RecipeType.SMOKING)
+//		{
+//			return baseTime / 2;
+//		}
+//		else 
+//		{
+//			// TODO, could separate smelting out specifically, and log unknown types here, this could get polluting though
+			return baseTime;
+		//}
+	} // end fuelTime()
+	
 } // end class

@@ -6,6 +6,7 @@ import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.YATMFoods;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.armor.YATMArmorMaterials;
+import com.gsr.gsr_yatm.block.fuel.FuelBlockItem;
 import com.gsr.gsr_yatm.entity.boat.YATMBoatType;
 import com.gsr.gsr_yatm.item.BonusType;
 import com.gsr.gsr_yatm.item.DrinkableItem;
@@ -118,7 +119,7 @@ public class YATMItems
 	
 	
 	
-	public static final RegistryObject<BlockItem> RUBBER_ROOTS = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("rubber_roots", () -> new BlockItem(YATMBlocks.RUBBER_ROOTS.get(), new Item.Properties()))));
+	public static final RegistryObject<FuelBlockItem> RUBBER_ROOTS = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("rubber_roots", () -> new FuelBlockItem(YATMBlocks.RUBBER_ROOTS.get(), new Item.Properties(), 300))));
 	public static final RegistryObject<BlockItem> SOUL_AFFLICTED_RUBBER_ROOTS = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_afflicted_rubber_roots", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_ROOTS.get(), new Item.Properties()))));
 	
 	public static final RegistryObject<BlockItem> RUBBER_LEAVES_YOUNG = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("rubber_leaves_young", () -> new BlockItem(YATMBlocks.RUBBER_LEAVES_YOUNG.get(), new Item.Properties()))));
@@ -129,7 +130,7 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> SOUL_AFFLICTED_RUBBER_LEAVES_OLD = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_afflicted_rubber_leaves_old", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_OLD.get(), new Item.Properties()))));
 	
 	public static final RegistryObject<BlockItem> RUBBER_MERISTEM = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("rubber_meristem", () -> new BlockItem(YATMBlocks.RUBBER_MERISTEM.get(), new Item.Properties()))));	
-	public static final RegistryObject<BlockItem> SOUL_AFFLICTED_RUBBER_MERISTEM = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_afflicted_rubber_meristem", () -> new BlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), new Item.Properties()))));
+	public static final RegistryObject<FuelBlockItem> SOUL_AFFLICTED_RUBBER_MERISTEM = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_afflicted_rubber_meristem", () -> new FuelBlockItem(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), new Item.Properties(), 0))));
 
 	public static final RegistryObject<ItemNameBlockItem> CARCASS_ROOT_CUTTING = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("carcass_root_cutting", () -> new ItemNameBlockItem(YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), new Item.Properties()))));
 	
