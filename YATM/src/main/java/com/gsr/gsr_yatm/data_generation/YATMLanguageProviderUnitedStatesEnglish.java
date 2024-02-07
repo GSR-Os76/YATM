@@ -120,6 +120,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get(), "Carcass Root Rooted Dirt");		
 		this.add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get(), "Carcass Root Rooted Netherrack");	
 		
+		this.add(YATMBlocks.CONDUIT_VINES.get(), "Conduit Vines");
+		
 		this.add(YATMBlocks.COTTON.get(), "Cotton");
 		
 		this.add(YATMBlocks.CUPRUM.get(), "Cuprum");		
@@ -255,11 +257,11 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.ADVANCED_SOLAR_PANEL.get(), "Advanced Solar Panel");
 		this.add(YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get(), "Sun's Complement Solar Panel");
 		
-		this.add(YATMBlocks.CONDUIT_VINES.get(), "Conduit Vines");
 		
 		this.add(YATMBlocks.STEEL_TANK.get(), "Foliar Steel Tank");
 		
 		this.add(YATMBlocks.CHANNEL_VINES.get(), "Channel Vines");
+		this.add(YATMBlocks.CONDUIT_VINE_BUNDLE.get(), "Conduit Vines Bundle");
 		
 		this.add(YATMBlocks.BIO_LIQUID_BLOCK.get(), "Biofluid");
 		this.add(YATMBlocks.CHORUS_LIQUID_BLOCK.get(), "Chorus");

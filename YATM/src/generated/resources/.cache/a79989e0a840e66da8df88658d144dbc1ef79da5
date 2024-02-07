@@ -1,4 +1,4 @@
-// 1.20.2	2023-12-14T21:28:43.0208357	Item Models: gsr_yatm
+// 1.20.2	2024-02-07T17:38:10.8957442	Item Models: gsr_yatm
 c2ea606d991a81e423cce1d89391873c41111adb assets/gsr_yatm/models/item/adamum_meristem.json
 14f5226a0106e1a4c57981511721fb6c8ffd9059 assets/gsr_yatm/models/item/advanced_current_battery.json
 684ab5903fbcfdbd643eb1efa0d897a0d95283a9 assets/gsr_yatm/models/item/advanced_current_battery_1.json
@@ -30,6 +30,7 @@ f6a30b3a697de15d3500b70b6ba416fac0af2251 assets/gsr_yatm/models/item/chorus_bio_
 0d66ba15a4235713326dcbcd57771aa5626f31a0 assets/gsr_yatm/models/item/chorus_bottle.json
 93359bca785e8d185d474a22e759f219afad6d63 assets/gsr_yatm/models/item/chorus_bucket.json
 0fb1eae5080f3f9bfb20a4eddd2ddf3d6b268618 assets/gsr_yatm/models/item/conduit_vines.json
+7e0a3f589b5b89a5cc00e40e09965325a587dea1 assets/gsr_yatm/models/item/conduit_vine_bundle.json
 1bd450dd2572b9b2d59dc14a6b3093238ee8e9d1 assets/gsr_yatm/models/item/cotton_bolls.json
 10d337aee40eaacc52c6bd739483e850a80876ec assets/gsr_yatm/models/item/cotton_seeds.json
 c05f1937632979e7015f25ced9e8264e03850cfb assets/gsr_yatm/models/item/creative_current_source.json

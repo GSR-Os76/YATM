@@ -136,6 +136,8 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropSelf(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get());
 		this.dropPottedContents(YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE.get());
 		
+		this.faceDropSelf(YATMBlocks.CONDUIT_VINES.get());
+		
 		this.add(YATMBlocks.COTTON.get(), this.createCropDrops(YATMBlocks.COTTON.get(), YATMItems.COTTON_BOLLS.get(), YATMItems.COTTON_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(YATMBlocks.COTTON.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
 		
 		this.add(YATMBlocks.CUPRUM.get(), (b) -> this.createCuprumTable());
@@ -280,11 +282,10 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropSelf(YATMBlocks.ADVANCED_SOLAR_PANEL.get());
 		this.dropSelf(YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get());
 		
-		this.faceDropSelf(YATMBlocks.CONDUIT_VINES.get());
-		
 		this.dropSelf(YATMBlocks.STEEL_TANK.get());
 		
 		this.dropSelf(YATMBlocks.CHANNEL_VINES.get());
+		this.dropSelf(YATMBlocks.CONDUIT_VINE_BUNDLE.get());
 
 		this.dropNothing(YATMBlocks.CREATIVE_CURRENT_SOURCE.get());
 	} // end generate()

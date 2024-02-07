@@ -1,0 +1,18 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": {
+      "item": "gsr_yatm:conduit_vine_bundle"
+    }
+  },
+  "pattern": [
+    "   ",
+    "fff",
+    "   "
+  ],
+  "result": {
+    "item": "gsr_yatm:conduit_vines"
+  },
+  "show_notification": true
+}

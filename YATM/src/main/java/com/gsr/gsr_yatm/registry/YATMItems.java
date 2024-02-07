@@ -18,6 +18,7 @@ import com.gsr.gsr_yatm.item.YATMBoatItem;
 import com.gsr.gsr_yatm.item.armor.LazyArmorItem;
 import com.gsr.gsr_yatm.item.armor.PoweredArmorItem;
 import com.gsr.gsr_yatm.item.component.current_heater.CurrentHeaterItem;
+import com.gsr.gsr_yatm.item.component.current_pass_through.CurrentPassThroughBlockItem;
 import com.gsr.gsr_yatm.item.component.current_storer.CurrentStorerItem;
 import com.gsr.gsr_yatm.item.component.fluid_pass_through.FluidPassThroughBlockItem;
 import com.gsr.gsr_yatm.item.creative.current.CreativeCurrentSourceItem;
@@ -166,10 +167,12 @@ public class YATMItems
 
 	public static final RegistryObject<BlockItem> VARIEGATED_CACTUS = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("variegated_cactus", () -> new BlockItem(YATMBlocks.VARIEGATED_CACTUS.get(), new Item.Properties()))));
 	
-	
+	// TODO, how to acquire?
+	public static final RegistryObject<BlockItem> CONDUIT_VINES = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("conduit_vines", () -> new BlockItem(YATMBlocks.CONDUIT_VINES.get(), new Item.Properties()))));
 	
 	public static final RegistryObject<ItemNameBlockItem> PRISMARINE_CRYSTAL_MOSS_SPORES = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("prismarine_crystal_moss_spores", () -> new ItemNameBlockItem(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), new Item.Properties()))));
 	
+	// TODO, maybe move commas
 	public static final RegistryObject<ShulkwartSporesBlockItem> SHULKWART_SPORES = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("shulkwart_spores", () -> new ShulkwartSporesBlockItem(new Item.Properties()
 			, YATMBlocks.SHULKWART.get()
 			, YATMBlocks.WHITE_SHULKWART.get()
@@ -248,11 +251,9 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> SUNS_COMPLEMENT_SOLAR_PANEL = /* generalTabEnqueue */(ITEMS.register("suns_complement_solar_panel", () -> new BlockItem(YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get(), new Item.Properties())));
 
 	public static final RegistryObject<FluidPassThroughBlockItem> CHANNEL_VINES = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("channel_vines", () -> new FluidPassThroughBlockItem(YATMBlocks.CHANNEL_VINES.get(), new Item.Properties()))));
-	
-	// TODO, how to acquire?
-	public static final RegistryObject<BlockItem> CONDUIT_VINES = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("conduit_vines", () -> new BlockItem(YATMBlocks.CONDUIT_VINES.get(), new Item.Properties()))));
-	
+	public static final RegistryObject<CurrentPassThroughBlockItem> CONDUIT_VINE_BUNDLE = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("conduit_vine_bundle", () -> new CurrentPassThroughBlockItem(YATMBlocks.CONDUIT_VINE_BUNDLE.get(), new Item.Properties()))));
 
+	
 	
 	public static final RegistryObject<Item> FOLIAR_STEEL_SHRED = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("foliar_steel_shred", () -> new Item(new Item.Properties()))));
 	public static final RegistryObject<Item> FOLIAR_STEEL = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("foliar_steel", () -> new Item(new Item.Properties()))));
