@@ -10,7 +10,6 @@ import org.jetbrains.annotations.Nullable;
 import org.joml.Vector2i;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.block.FaceBlock;
 import com.gsr.gsr_yatm.block.candle_lantern.CandleLanternBlock;
 import com.gsr.gsr_yatm.block.device.AttachmentState;
 import com.gsr.gsr_yatm.block.device.bioreactor.BioreactorBlock;
@@ -23,6 +22,7 @@ import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
 import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootFoliageBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootBlock;
+import com.gsr.gsr_yatm.block.plant.conduit_vine.ConduitVineBlock;
 import com.gsr.gsr_yatm.block.plant.cuprum.CuprumBlock;
 import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
@@ -40,6 +40,7 @@ import com.gsr.gsr_yatm.block.plant.vicum.VicumBlock;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.utilities.DirectionUtil;
+import com.gsr.gsr_yatm.utilities.OptionalAxis;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 
 import net.minecraft.core.Direction;
@@ -67,7 +68,6 @@ import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
 import net.minecraftforge.client.model.generators.ModelFile;
 import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder;
-import net.minecraftforge.client.model.generators.MultiPartBlockStateBuilder.PartBuilder;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
 
@@ -1682,21 +1682,24 @@ public class YATMBlockStateProvider extends BlockStateProvider
 			} // end accept()			
 		} // end anonymous type
 		);
-		List.of(Direction.Axis.values()).forEach(new Consumer<>() 
+		
+		List.of(OptionalAxis.values()).forEach(new Consumer<>() 
 		{
 			@Override
-			public void accept(Direction.Axis axis)
+			public void accept(@NotNull OptionalAxis axis)
 			{
-				Vector2i rot = YATMBlockStateProvider.rotationForDirectionFromUp(DirectionUtil.positiveDirectionOnAxis(axis));
-				PartBuilder partBuilder = builder.part()
+				if(axis == OptionalAxis.NONE) 
+				{
+					return;
+				}
+				Vector2i rot = YATMBlockStateProvider.rotationForDirectionFromUp(DirectionUtil.positiveDirectionOnAxis(axis.getMinecraftEquivalent()));
+				builder.part()
 				.modelFile(parallelCrosslink)
 				.rotationX(rot.x)
 				.rotationY(rot.y)
 				.uvLock(false)
-				.addModel();
-				List.of(Direction.values()).forEach((d) -> partBuilder.condition(
-						FaceBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(d), 
-						d.getAxis() == axis));
+				.addModel()
+				.condition(ConduitVineBlock.AXIS, axis);
 				
 			} // end accept()	
 		} // end anonymous type

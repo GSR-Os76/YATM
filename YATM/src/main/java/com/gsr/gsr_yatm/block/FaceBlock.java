@@ -5,6 +5,7 @@ import java.util.Map.Entry;
 import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 
@@ -39,20 +40,20 @@ public class FaceBlock extends Block
 	
 	
 	@Override
-	public boolean canBeReplaced(BlockState state, BlockPlaceContext context)
+	public boolean canBeReplaced(BlockState state, @NotNull BlockPlaceContext context)
 	{
 		return context.getPlayer().getItemInHand(context.getHand()).getItem() == this.asItem();
 	} // end canBeReplaced()
 
 	@Override
-	protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
+	protected void createBlockStateDefinition(@NotNull Builder<Block, BlockState> builder)
 	{
 		FaceBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.values().forEach((p) -> builder.add(p));
 		super.createBlockStateDefinition(builder);
 	} // end createBlockStateDefinition()
 
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext context)
+	public @Nullable BlockState getStateForPlacement(@NotNull BlockPlaceContext context)
 	{
 		Level level = context.getLevel();
 		BlockPos position = context.getClickedPos();

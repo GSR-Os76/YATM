@@ -1,11 +1,12 @@
-package com.gsr.gsr_yatm.block.conduit.current;
+package com.gsr.gsr_yatm.block.plant.conduit_vine;
 
 import java.util.Map.Entry;
 import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
-
 import com.gsr.gsr_yatm.block.FaceBlock;
+import com.gsr.gsr_yatm.utilities.OptionalAxis;
+import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
@@ -17,12 +18,16 @@ import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public class ConduitVineBlock extends FaceBlock // implements EntityBlock
+// axis piece only appears on grow across, no on place, for right now at least
+public class ConduitVineBlock extends FaceBlock
 {
+	public static final EnumProperty<OptionalAxis> AXIS = YATMBlockStateProperties.AXIS_OPTIONAL;
 	private final @NotNull ICollisionVoxelShapeProvider m_shape;
 	
 	
@@ -31,7 +36,16 @@ public class ConduitVineBlock extends FaceBlock // implements EntityBlock
 	{
 		super(Objects.requireNonNull(properties));
 		this.m_shape = Objects.requireNonNull(shape);
+		this.registerDefaultState(this.defaultBlockState().setValue(ConduitVineBlock.AXIS, OptionalAxis.NONE));
 	} // end constructor
+
+	
+	
+	@Override
+	protected void createBlockStateDefinition(@NotNull Builder<Block, BlockState> builder)
+	{
+		super.createBlockStateDefinition(builder.add(ConduitVineBlock.AXIS));
+	} // end createBlockStateDefinition
 
 
 
@@ -90,14 +104,16 @@ public class ConduitVineBlock extends FaceBlock // implements EntityBlock
 				}
 			}
 		}
+		updateTo = this.withValidatedAxis(updateTo);
 		
 		if(changed) 
 		{
 			BlockState f = updateTo;
+			boolean alive = Direction.stream().anyMatch((d) -> f.getValue(FaceBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(d)));
 			level.setBlock(
 					pos, 
-					Direction.stream().anyMatch((d) -> f.getValue(FaceBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(d))) ? updateTo : Blocks.AIR.defaultBlockState(), 
-					Block.UPDATE_ALL);
+					alive ? updateTo : Blocks.AIR.defaultBlockState(),
+					alive ? Block.UPDATE_CLIENTS : Block.UPDATE_ALL);
 			Block.dropResources(drop, level, pos);
 		}
 	} // end updateState()
@@ -117,7 +133,19 @@ public class ConduitVineBlock extends FaceBlock // implements EntityBlock
 	@Override
 	public boolean isLadder(BlockState state, LevelReader level, BlockPos pos, LivingEntity entity)
 	{
-		return super.isLadder(state, level, pos, entity) && Direction.stream().anyMatch((d) -> (d != Direction.DOWN) && state.getValue(FaceBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(d)));
+		// axis conditions are already implied
+		return super.isLadder(state, level, pos, entity) 
+				&& Direction.stream().anyMatch((d) -> (d != Direction.DOWN) && state.getValue(FaceBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(d)));
 	} // end isLadder()
+	
+	protected @NotNull BlockState withValidatedAxis(@NotNull BlockState state) 
+	{
+		OptionalAxis axis = state.getValue(ConduitVineBlock.AXIS);
+		if(!axis.getDirections().stream().allMatch((d) -> state.getValue(ConduitVineBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(d)))) 
+		{
+			return state.setValue(ConduitVineBlock.AXIS, OptionalAxis.NONE);
+		}
+		return state;
+	} // end withValidatedAxis()
 	
 } // end block

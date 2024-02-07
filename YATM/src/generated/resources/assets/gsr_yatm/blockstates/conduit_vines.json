@@ -60,12 +60,7 @@
         "y": 270
       },
       "when": {
-        "down": "false",
-        "east": "true",
-        "north": "false",
-        "south": "false",
-        "up": "false",
-        "west": "true"
+        "axis": "x"
       }
     },
     {
@@ -73,12 +68,7 @@
         "model": "gsr_yatm:block/conduit_vines_parallel_crosslink"
       },
       "when": {
-        "down": "true",
-        "east": "false",
-        "north": "false",
-        "south": "false",
-        "up": "true",
-        "west": "false"
+        "axis": "y"
       }
     },
     {
@@ -87,12 +77,7 @@
         "x": 90
       },
       "when": {
-        "down": "false",
-        "east": "false",
-        "north": "true",
-        "south": "true",
-        "up": "false",
-        "west": "false"
+        "axis": "z"
       }
     }
   ]

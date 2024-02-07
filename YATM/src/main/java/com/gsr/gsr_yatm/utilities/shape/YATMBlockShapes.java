@@ -25,6 +25,7 @@ import com.gsr.gsr_yatm.block.plant.phantasmal_shelf_fungi.PhantasmalShelfFungiB
 import com.gsr.gsr_yatm.block.plant.ruberum.RuberumBlock;
 import com.gsr.gsr_yatm.block.plant.samaragdum.SamaragdumBlock;
 import com.gsr.gsr_yatm.block.plant.vicum.VicumBlock;
+import com.gsr.gsr_yatm.utilities.OptionalAxis;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 
 import net.minecraft.core.BlockPos;
@@ -708,6 +709,11 @@ public class YATMBlockShapes
 		private static final VoxelShape HAS_EAST = Block.box(15d, 0d, 0d, 16d, 16d, 16d);
 		private static final VoxelShape HAS_WEST = Block.box(0d, 0d, 0d, 1d, 16d, 16d);
 
+		private static final VoxelShape HAS_X = Block.box(0d, 2d, 2d, 16d, 14d, 14d);
+		private static final VoxelShape HAS_Y = Block.box(2d, 0d, 2d, 14d, 16d, 14d);
+		private static final VoxelShape HAS_Z = Block.box(2d, 2d, 0d, 14d, 14d, 16d);
+
+		
 		@Override
 		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{
@@ -738,7 +744,18 @@ public class YATMBlockShapes
 				result = Shapes.or(result, HAS_WEST);
 			}
 			
-			// TODO, add parallel crosslink shapes in once designed
+			if (blockState.getValue(YATMBlockStateProperties.AXIS_OPTIONAL) == OptionalAxis.X)
+			{
+				result = Shapes.or(result, HAS_X);
+			}
+			if (blockState.getValue(YATMBlockStateProperties.AXIS_OPTIONAL) == OptionalAxis.Y)
+			{
+				result = Shapes.or(result, HAS_Y);
+			}
+			if (blockState.getValue(YATMBlockStateProperties.AXIS_OPTIONAL) == OptionalAxis.Z)
+			{
+				result = Shapes.or(result, HAS_Z);
+			}
 			
 			return result;
 		} // end getShape()
