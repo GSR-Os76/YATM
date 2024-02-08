@@ -1,5 +1,6 @@
 package com.gsr.gsr_yatm.block;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
@@ -83,9 +84,16 @@ public class FaceBlock extends Block
 		return Block.isFaceFull(onState.getBlockSupportShape(getter, onPosition), cansFace);
 	} // end canPlaceOn()
 	
-	protected boolean hasFace(BlockState state, Direction face) 
+	protected boolean hasFace(@NotNull BlockState state, @NotNull Direction face) 
 	{
 		return state.getValue(FaceBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(face));
 	} // end hasFace()
+
+
+
+	public static @NotNull List<Direction> containedFaces(@NotNull BlockState state)
+	{
+		return FaceBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.entrySet().stream().filter((e) -> state.getValue(e.getValue())).map((e) -> e.getKey()).toList();
+	} // end hasFaces()
 	
 } // end class

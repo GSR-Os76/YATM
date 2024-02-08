@@ -394,7 +394,7 @@ public class YATMBlocks
 	
 	// TODO, maybe make model more base on crosses
 	public static final RegistryObject<ChannelVineBlock> CHANNEL_VINES = BLOCKS.register("channel_vines", () -> new ChannelVineBlock(YATMBlockProperties.CHANNEL_VINES, YATMBlockShapes.CHANNEL_VINES));
-	public static final RegistryObject<Block> CONDUIT_VINE_BUNDLE = BLOCKS.register("conduit_vine_bundle", () -> new Block(YATMBlockProperties.CHANNEL_VINES));
+	public static final RegistryObject<Block> CONDUIT_VINE_BUNDLE = BLOCKS.register("conduit_vine_bundle", () -> new Block(YATMBlockProperties.CONDUIT_VINE_BUNDLE));
 
 	// TODO, maybe add a redstone emitter, that's output strength can be dynamically configured
 	// TODO, maybe add a redstone clock, that's period can be configured.

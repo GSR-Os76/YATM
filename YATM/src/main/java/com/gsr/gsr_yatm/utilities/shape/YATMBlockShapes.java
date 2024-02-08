@@ -978,5 +978,6 @@ public class YATMBlockShapes
 	
 	
 	public static final BlockShapesProvider SAP_COLLECTOR_SHAPES = BlockShapesProvider.Builder.of(YATMBlockShapes.SAP_COLLECTOR).build();
+	public static final VoxelShape UNSTABLE = Block.box(1d, 1d, 1d, 15d, 15d, 15d);
 
 } // end class
