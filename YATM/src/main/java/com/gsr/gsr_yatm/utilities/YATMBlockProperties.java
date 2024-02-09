@@ -95,7 +95,7 @@ public class YATMBlockProperties
 	public static final Properties STEEL_TANK = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2F, 6.0F);
 	public static final Properties STEEL_PIPE = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2F, 6.0F);
 	
-	public static final Properties CONDUIT_VINE_BUNDLE = Properties.of().mapColor(MapColor.COLOR_BLUE)/*.requiresCorrectToolForDrops()*/.noCollission().noOcclusion().sound(SoundType.VINE).strength(2.0f, 3.0f);
+	public static final Properties CONDUIT_VINE_BUNDLE = Properties.of().mapColor(MapColor.COLOR_BLUE).sound(SoundType.BAMBOO_SAPLING).strength(2.0f, 3.0f);
 	public static final Properties CHANNEL_VINES = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2F, 6.0F);
 
 	public static final Properties CREATIVE = Properties.of().instrument(NoteBlockInstrument.BASEDRUM).mapColor(MapColor.COLOR_PURPLE).noOcclusion().pushReaction(PushReaction.BLOCK).strength(Float.MAX_VALUE);

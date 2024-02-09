@@ -165,6 +165,7 @@ public class YATMConfigs
 	public static final ConfigValue<Integer> TANK_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("max_fluid_transfer_rate", 1000, 0, Integer.MAX_VALUE);
 	
 	public static final ConfigValue<Integer> CRAFTING_RECHECK_PERIOD = YATMConfigs.s_builder.pop().push("Misc: ").comment("The period in ticks while idle before a crafting device'll try to match it's contents to a new recipe. Note: recheck's occur automatically when device inventories change.").defineInRange("crafting_recheck_period", 20, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> CONDUIT_LIKE_RECHECK_ATTACHMENTS_PERIOD = YATMConfigs.s_builder.pop().push("Misc: ").comment("The period in ticks after which the conduit rechecks it's self.").defineInRange("conduit_like_attachment_recheck_period", 80, 0, Integer.MAX_VALUE);
 	
 	
 	

@@ -1,4 +1,4 @@
-// 1.20.2	2024-02-08T09:19:32.1585562	Tags for minecraft:block mod id gsr_yatm
+// 1.20.2	2024-02-09T13:41:51.2213175	Tags for minecraft:block mod id gsr_yatm
 c66ff3626edc7c0f108f497fa9aec78cbf9db39f data/forge/tags/blocks/basalt.json
 ea459db540b319f4bdead7b7f1142fc238c09a8e data/forge/tags/blocks/cactuses.json
 ebcf7881dcf42cb3d8c8b5c2e92ebf16fd9d7284 data/forge/tags/blocks/calcite.json
@@ -24,7 +24,8 @@ bad73721637de97a32c61f4a2b344b34cf83351f data/forge/tags/blocks/slabs/quartz.jso
 5cde157d29986a1af6fac3eed0972c55ed684ae6 data/forge/tags/blocks/storage_blocks/rubber.json
 9c955a069c7d44f19a7775e96a97e0c2bf632acd data/forge/tags/blocks/walls/sandstone.json
 3fea917b2e82ec709480b63b1edbf0c0d0a849b2 data/gsr_yatm/tags/blocks/candle_lanterns.json
-6126de40a64453ca531e66bfeb15ff34da6d5d8f data/gsr_yatm/tags/blocks/change_neutral_only_attachment.json
+6126de40a64453ca531e66bfeb15ff34da6d5d8f data/gsr_yatm/tags/blocks/channel_neutral_only_attachment.json
+1995438e73f368a21a5cc590d0078e784ec159cc data/gsr_yatm/tags/blocks/conduit_neutral_only_attachment.json
 4025cca10e3b03e5cf1f371e88a6afed701e7681 data/gsr_yatm/tags/blocks/foliar_steel_ores.json
 6f0da433ae2e95c61d4c05568e3e8c4efebdb9e9 data/gsr_yatm/tags/blocks/form/adamum_bottom.json
 edfd85648a3d49cb82d1a39c98233b54a31af47b data/gsr_yatm/tags/blocks/form/adamum_middle.json

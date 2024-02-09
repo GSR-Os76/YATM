@@ -8,6 +8,7 @@ import com.gsr.gsr_yatm.block.NoCullBlock;
 import com.gsr.gsr_yatm.block.WaterloggableBlock;
 import com.gsr.gsr_yatm.block.candle_lantern.CandleLanternBlock;
 import com.gsr.gsr_yatm.block.conduit.channel_vine.ChannelVineBlock;
+import com.gsr.gsr_yatm.block.conduit.conduit_vine_bundle.ConduitVineBundleBlock;
 import com.gsr.gsr_yatm.block.device.bioreactor.BioreactorBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.compute.DataProcessorBlock;
@@ -393,8 +394,8 @@ public class YATMBlocks
 	public static final RegistryObject<TankBlock> STEEL_TANK = BLOCKS.register("steel_tank", () -> new TankBlock(YATMBlockProperties.STEEL_TANK, YATMBlockShapes.STEEL_TANK));
 	
 	// TODO, maybe make model more base on crosses
-	public static final RegistryObject<ChannelVineBlock> CHANNEL_VINES = BLOCKS.register("channel_vines", () -> new ChannelVineBlock(YATMBlockProperties.CHANNEL_VINES, YATMBlockShapes.CHANNEL_VINES));
-	public static final RegistryObject<Block> CONDUIT_VINE_BUNDLE = BLOCKS.register("conduit_vine_bundle", () -> new Block(YATMBlockProperties.CONDUIT_VINE_BUNDLE));
+	public static final RegistryObject<ChannelVineBlock> CHANNEL_VINES = BLOCKS.register("channel_vines", () -> new ChannelVineBlock(YATMBlockProperties.CHANNEL_VINES, YATMBlockShapes.CONDUIT_VINE_BUNDLE_LIKE));
+	public static final RegistryObject<ConduitVineBundleBlock> CONDUIT_VINE_BUNDLE = BLOCKS.register("conduit_vine_bundle", () -> new ConduitVineBundleBlock(YATMBlockProperties.CONDUIT_VINE_BUNDLE, YATMBlockShapes.CONDUIT_VINE_BUNDLE_LIKE));
 
 	// TODO, maybe add a redstone emitter, that's output strength can be dynamically configured
 	// TODO, maybe add a redstone clock, that's period can be configured.

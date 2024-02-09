@@ -1,0 +1,168 @@
+{
+  "multipart": [
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_center"
+      }
+    },
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_branch"
+      },
+      "when": {
+        "north": "neutral"
+      }
+    },
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_branch_push"
+      },
+      "when": {
+        "north": "pushing"
+      }
+    },
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_branch_pull"
+      },
+      "when": {
+        "north": "pulling"
+      }
+    },
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_branch",
+        "y": 180
+      },
+      "when": {
+        "south": "neutral"
+      }
+    },
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_branch_push",
+        "y": 180
+      },
+      "when": {
+        "south": "pushing"
+      }
+    },
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_branch_pull",
+        "y": 180
+      },
+      "when": {
+        "south": "pulling"
+      }
+    },
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_branch",
+        "y": 90
+      },
+      "when": {
+        "east": "neutral"
+      }
+    },
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_branch_push",
+        "y": 90
+      },
+      "when": {
+        "east": "pushing"
+      }
+    },
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_branch_pull",
+        "y": 90
+      },
+      "when": {
+        "east": "pulling"
+      }
+    },
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_branch",
+        "y": 270
+      },
+      "when": {
+        "west": "neutral"
+      }
+    },
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_branch_push",
+        "y": 270
+      },
+      "when": {
+        "west": "pushing"
+      }
+    },
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_branch_pull",
+        "y": 270
+      },
+      "when": {
+        "west": "pulling"
+      }
+    },
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_branch",
+        "x": 270
+      },
+      "when": {
+        "up": "neutral"
+      }
+    },
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_branch_push",
+        "x": 270
+      },
+      "when": {
+        "up": "pushing"
+      }
+    },
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_branch_pull",
+        "x": 270
+      },
+      "when": {
+        "up": "pulling"
+      }
+    },
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_branch",
+        "x": 90
+      },
+      "when": {
+        "down": "neutral"
+      }
+    },
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_branch_push",
+        "x": 90
+      },
+      "when": {
+        "down": "pushing"
+      }
+    },
+    {
+      "apply": {
+        "model": "gsr_yatm:block/conduit_vine_bundle_branch_pull",
+        "x": 90
+      },
+      "when": {
+        "down": "pulling"
+      }
+    }
+  ]
+}

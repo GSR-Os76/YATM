@@ -772,7 +772,7 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 	
-	public static final ICollisionVoxelShapeProvider CHANNEL_VINES = new ICollisionVoxelShapeProvider()
+	public static final ICollisionVoxelShapeProvider CONDUIT_VINE_BUNDLE_LIKE = new ICollisionVoxelShapeProvider()
 	{		
 		private static final VoxelShape CENTER_SHAPE = Block.box(6d, 6d, 6d, 10d, 10d, 10d);
 		

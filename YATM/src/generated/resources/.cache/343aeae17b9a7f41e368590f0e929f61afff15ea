@@ -1,4 +1,4 @@
-// 1.20.2	2024-02-07T15:49:01.0465375	Block States: gsr_yatm
+// 1.20.2	2024-02-09T13:41:51.2357501	Block States: gsr_yatm
 11aad184ca6aaadbd7319a44c5a1985f7c029a1c assets/gsr_yatm/blockstates/adamum.json
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 a2a385d05e4f86cda9dd2c5a246077dac4e32579 assets/gsr_yatm/blockstates/advanced_solar_panel.json
@@ -27,6 +27,7 @@ ad16a039cbdba2953767cea67ea6b4086d64cd82 assets/gsr_yatm/blockstates/carcass_roo
 23e40a8e165391f5189a5383cdc0185c2b6152f4 assets/gsr_yatm/blockstates/chorus.json
 407e1963d7191d2d5ce205975259cf35ff07fd24 assets/gsr_yatm/blockstates/chorus_bio.json
 f2c64fc6dec1e43c5292fc6f598591a8a59c6fb9 assets/gsr_yatm/blockstates/conduit_vines.json
+ba3cccba11c9ad9155969d4e63b10ec1a526d073 assets/gsr_yatm/blockstates/conduit_vine_bundle.json
 512f5a51808b33a82c1bdebd911170ebbd958e7d assets/gsr_yatm/blockstates/cotton.json
 a6dab4571e7683eae754e20baa475597c7669408 assets/gsr_yatm/blockstates/creative_current_source.json
 d50441ece5bc105502bb511d1aaf02fa94334185 assets/gsr_yatm/blockstates/crucible.json

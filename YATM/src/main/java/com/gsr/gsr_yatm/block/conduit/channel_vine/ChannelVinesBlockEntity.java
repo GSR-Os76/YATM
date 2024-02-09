@@ -7,10 +7,12 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import com.gsr.gsr_yatm.YATMConfigs;
+import com.gsr.gsr_yatm.block.conduit.IConduitBlockEntity;
 import com.gsr.gsr_yatm.block.device.AttachmentState;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
-import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
+import com.gsr.gsr_yatm.utilities.PeriodTracker;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -25,53 +27,27 @@ import net.minecraftforge.common.util.LazyOptional;
 import net.minecraftforge.fluids.capability.IFluidHandler;
 import net.minecraftforge.fluids.capability.templates.FluidTank;
 
-public class ChannelVinesBlockEntity extends BlockEntity
+public class ChannelVinesBlockEntity extends BlockEntity implements IConduitBlockEntity
 {
-	private static final int RECHECK_ATTACHMENTS_PERIOD = 80;	
-	private @NotNegative int m_recheckAttachmentsCounter = ChannelVinesBlockEntity.RECHECK_ATTACHMENTS_PERIOD;
+	private final @NotNull PeriodTracker m_recheckAttachmentsCounter = new PeriodTracker(YATMConfigs.CONDUIT_LIKE_RECHECK_ATTACHMENTS_PERIOD.get());
 	
 	private final Map<Direction, LazyOptional<IFluidHandler>> m_neighborCaps = new EnumMap<>(Direction.class);
-	
 	private LazyOptional<IFluidHandler> m_temp = LazyOptional.of(() -> new FluidTank(0));
-	/*
+
+
+	
 	public ChannelVinesBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		this(Objects.requireNonNull(position), Objects.requireNonNull(state), DeviceTierConstants.EMPTY);
-	} // end constuctor
-	*/
-	public ChannelVinesBlockEntity(@NotNull BlockPos blockPos, @NotNull BlockState blockState)//, @NotNull DeviceTierConstants constants)
-	{
-		super(YATMBlockEntityTypes.CHANNEL_VINES.get(), Objects.requireNonNull(blockPos), Objects.requireNonNull(blockState));
+		super(YATMBlockEntityTypes.CHANNEL_VINES.get(), Objects.requireNonNull(position), Objects.requireNonNull(state));
 	} // end constructor
 	
 	
 
-	public static void tick(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state, @NotNull ChannelVinesBlockEntity blockEntity)
-	{
-		if(!blockEntity.isRemoved() && level.isLoaded(position)) 
-		{
-			if (level.isClientSide)
-			{
-				blockEntity.clientTick(level, position, state);
-			}
-			else
-			{
-				blockEntity.serverTick(level, position, state);
-			}
-		}
-	} // end tick()
-
-	public void clientTick(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state)
-	{
-		
-	} // end clientTick()
-	
 	public void serverTick(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state)
 	{
-		if(++this.m_recheckAttachmentsCounter >= ChannelVinesBlockEntity.RECHECK_ATTACHMENTS_PERIOD) 
+		if(this.m_recheckAttachmentsCounter.tick()) 
 		{
 			this.recheckNeighborAttachments(level, position, state);
-			this.m_recheckAttachmentsCounter = 0;
 		}
 			
 	} // end serverTick()
