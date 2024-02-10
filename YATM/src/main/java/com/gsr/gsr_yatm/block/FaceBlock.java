@@ -1,10 +1,12 @@
 package com.gsr.gsr_yatm.block;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 
@@ -39,20 +41,20 @@ public class FaceBlock extends Block
 	
 	
 	@Override
-	public boolean canBeReplaced(BlockState state, BlockPlaceContext context)
+	public boolean canBeReplaced(BlockState state, @NotNull BlockPlaceContext context)
 	{
 		return context.getPlayer().getItemInHand(context.getHand()).getItem() == this.asItem();
 	} // end canBeReplaced()
 
 	@Override
-	protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
+	protected void createBlockStateDefinition(@NotNull Builder<Block, BlockState> builder)
 	{
 		FaceBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.values().forEach((p) -> builder.add(p));
 		super.createBlockStateDefinition(builder);
 	} // end createBlockStateDefinition()
 
 	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext context)
+	public @Nullable BlockState getStateForPlacement(@NotNull BlockPlaceContext context)
 	{
 		Level level = context.getLevel();
 		BlockPos position = context.getClickedPos();
@@ -82,9 +84,16 @@ public class FaceBlock extends Block
 		return Block.isFaceFull(onState.getBlockSupportShape(getter, onPosition), cansFace);
 	} // end canPlaceOn()
 	
-	protected boolean hasFace(BlockState state, Direction face) 
+	protected boolean hasFace(@NotNull BlockState state, @NotNull Direction face) 
 	{
 		return state.getValue(FaceBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.get(face));
 	} // end hasFace()
+
+
+
+	public static @NotNull List<Direction> containedFaces(@NotNull BlockState state)
+	{
+		return FaceBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.entrySet().stream().filter((e) -> state.getValue(e.getValue())).map((e) -> e.getKey()).toList();
+	} // end hasFaces()
 	
 } // end class

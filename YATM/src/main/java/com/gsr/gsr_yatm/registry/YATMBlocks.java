@@ -8,7 +8,7 @@ import com.gsr.gsr_yatm.block.NoCullBlock;
 import com.gsr.gsr_yatm.block.WaterloggableBlock;
 import com.gsr.gsr_yatm.block.candle_lantern.CandleLanternBlock;
 import com.gsr.gsr_yatm.block.conduit.channel_vine.ChannelVineBlock;
-import com.gsr.gsr_yatm.block.conduit.current.ConduitVineBlock;
+import com.gsr.gsr_yatm.block.conduit.conduit_vine_bundle.ConduitVineBundleBlock;
 import com.gsr.gsr_yatm.block.device.bioreactor.BioreactorBlock;
 import com.gsr.gsr_yatm.block.device.boiler.BoilerBlock;
 import com.gsr.gsr_yatm.block.device.compute.DataProcessorBlock;
@@ -53,6 +53,7 @@ import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootFoliageBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootSupplier;
+import com.gsr.gsr_yatm.block.plant.conduit_vine.ConduitVineBlock;
 import com.gsr.gsr_yatm.block.plant.cuprum.CuprumBlock;
 import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
 import com.gsr.gsr_yatm.block.plant.fire_eater_lily.FireEaterLilyBlock;
@@ -334,6 +335,7 @@ public class YATMBlocks
 	public static final RegistryObject<VariegatedCactusBlock> VARIEGATED_CACTUS = BLOCKS.register("variegated_cactus", () -> new VariegatedCactusBlock(YATMBlockProperties.CACTUS, () -> Blocks.CACTUS.defaultBlockState()));
 	public static final RegistryObject<FlowerPotBlock> POTTED_VARIEGATED_CACTUS = BLOCKS.register("potted_variegated_cactus", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.VARIEGATED_CACTUS.get(), YATMBlockProperties.FLOWER_POT));
 
+	public static final RegistryObject<ConduitVineBlock> CONDUIT_VINES = BLOCKS.register("conduit_vines", () -> new ConduitVineBlock(YATMBlockProperties.CONDUIT_VINES, YATMBlockShapes.CONDUIT_VINES));
 	
 	
 	private static final OnceFruitVineBodyBlock getSpiderVine()
@@ -389,13 +391,11 @@ public class YATMBlocks
 	
 	// TODO, lightning strike current generation thingy
 	
-	// TODO, maybe make this a plant which grow, but can be processed into a bundle self supporting more like channel vines
-	public static final RegistryObject<ConduitVineBlock> CONDUIT_VINES = BLOCKS.register("conduit_vines", () -> new ConduitVineBlock(YATMBlockProperties.CONDUIT_VINES, YATMBlockShapes.CONDUIT_VINES));
-	
 	public static final RegistryObject<TankBlock> STEEL_TANK = BLOCKS.register("steel_tank", () -> new TankBlock(YATMBlockProperties.STEEL_TANK, YATMBlockShapes.STEEL_TANK));
 	
 	// TODO, maybe make model more base on crosses
-	public static final RegistryObject<ChannelVineBlock> CHANNEL_VINES = BLOCKS.register("channel_vines", () -> new ChannelVineBlock(YATMBlockProperties.CHANNEL_VINES, YATMBlockShapes.CHANNEL_VINES));
+	public static final RegistryObject<ChannelVineBlock> CHANNEL_VINES = BLOCKS.register("channel_vines", () -> new ChannelVineBlock(YATMBlockProperties.CHANNEL_VINES, YATMBlockShapes.CONDUIT_VINE_BUNDLE_LIKE));
+	public static final RegistryObject<ConduitVineBundleBlock> CONDUIT_VINE_BUNDLE = BLOCKS.register("conduit_vine_bundle", () -> new ConduitVineBundleBlock(YATMBlockProperties.CONDUIT_VINE_BUNDLE, YATMBlockShapes.CONDUIT_VINE_BUNDLE_LIKE));
 
 	// TODO, maybe add a redstone emitter, that's output strength can be dynamically configured
 	// TODO, maybe add a redstone clock, that's period can be configured.

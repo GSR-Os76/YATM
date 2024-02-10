@@ -85,7 +85,6 @@ public class YATMRecipeProvider extends RecipeProvider
 		// TODO, wood pulp to paper route
 		// TODO, phantasmal shelf fungus -> phantom membrane somehwo
 		// TODO, add rubbber decomposition into slime. possibly biol into slime(fluid) -> bucket and place in world, turns instantly into a ball of slime, or maybe block. related. maybe make slime blocks animatable into slimes
-		// TODO, add tank and channel vine craftin recipes.
 		// TODO, add dirt from biofluid infection to sand or gravel or silt
 		// TODO, finish the soul essence chain of processing
 		// TODO, finish adding the chorus to ender sequence.
@@ -141,6 +140,9 @@ public class YATMRecipeProvider extends RecipeProvider
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CHANNEL_VINES.get(), 9).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL.get())).save(output, YetAnotherTechMod.MODID + ":channel_vines_from_foliar_steel_shaped_crafting");
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CHANNEL_VINES.get(), 1).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.FOLIAR_STEEL_SHRED.get()).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL_SHRED.get())).save(output, YetAnotherTechMod.MODID + ":channel_vines_from_foliar_steel_shred_shaped_crafting");
 		this.addOneToX(output, YATMItems.CHANNEL_VINES.get(), YATMItems.FOLIAR_STEEL_SHRED.get(), 3, YetAnotherTechMod.MODID + ":foliar_steel_shreds_from_channel_vine_shapeless_crafting");
+		
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CONDUIT_VINE_BUNDLE.get(), 9).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.CONDUIT_VINES.get())).save(output, YetAnotherTechMod.MODID + ":conduit_vine_bundle_from_conduit_vine_shaped_crafting");
+		/*TODO, maybe make shapless*/ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CONDUIT_VINES.get(), 1).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.CONDUIT_VINE_BUNDLE.get()).unlockedBy("has_item", has(YATMItems.CONDUIT_VINE_BUNDLE.get())).save(output, YetAnotherTechMod.MODID + ":conduit_vines_from_conduit_vine_bundle_shaped_crafting");
 
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.KINETIC_DRIVER.get(), 1).pattern(" r ").pattern("fpf").pattern(" v ").define('r', Tags.Items.DUSTS_REDSTONE).define('p', YATMItemTags.FORGE_PISTONS_KEY).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItemTags.FORGE_PISTONS_KEY)).save(output, YetAnotherTechMod.MODID + ":kinetic_driver_from_shaped_crafting");
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.KINETIC_DRIVER.get(), 1).pattern(" v ").pattern("fpf").pattern(" r ").define('r', Tags.Items.DUSTS_REDSTONE).define('p', YATMItemTags.FORGE_PISTONS_KEY).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItemTags.FORGE_PISTONS_KEY)).save(output, YetAnotherTechMod.MODID + ":fkinetic_driver_from_shaped_crafting");

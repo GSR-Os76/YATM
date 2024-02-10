@@ -1,4 +1,4 @@
-// 1.20.2	2024-01-30T23:36:09.0044321	Loot Tables
+// 1.20.2	2024-02-07T17:38:10.8805053	Loot Tables
 3447f366126fe84e5d7fe101ca492c681d974485 data/gsr_yatm/loot_tables/blocks/adamum.json
 c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
@@ -24,6 +24,7 @@ f2d8023c175dde7d904bdc776884815838ffe265 data/gsr_yatm/loot_tables/blocks/carcas
 ef49b5b4540027511d185481c837b4e7a8e4b85e data/gsr_yatm/loot_tables/blocks/carcass_root_rooted_netherrack.json
 12246b48cb772bdb04e627f2dd8878b690085fac data/gsr_yatm/loot_tables/blocks/channel_vines.json
 1b6194397c6ff3617261322bb2115cc87fb99adc data/gsr_yatm/loot_tables/blocks/conduit_vines.json
+da04d24d02ec9304fec6d1580bed19ac19e52f1a data/gsr_yatm/loot_tables/blocks/conduit_vine_bundle.json
 72e5ecaa82a07ad4853f3c63ad4aab0564aa5327 data/gsr_yatm/loot_tables/blocks/cotton.json
 dc316981c06f00bd5e9cf9467ec77f86f9ab9333 data/gsr_yatm/loot_tables/blocks/creative_current_source.json
 49f68bcd00bc812d9d8596edd192d75f486ad7d0 data/gsr_yatm/loot_tables/blocks/crucible.json

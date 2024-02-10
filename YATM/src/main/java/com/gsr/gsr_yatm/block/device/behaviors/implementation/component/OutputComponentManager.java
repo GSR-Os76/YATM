@@ -18,6 +18,7 @@ import com.gsr.gsr_yatm.block.device.behaviors.IInventoryChangeListenerBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ILoadListenerBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
 import com.gsr.gsr_yatm.block.device.builder.capability_provider.IInvalidatableCapabilityProvider;
+import com.gsr.gsr_yatm.utilities.PeriodTracker;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
@@ -42,9 +43,7 @@ public class OutputComponentManager implements IInvalidatableCapabilityProvider,
 	private final @NotNull IItemHandler m_inventory;
 	private final @NotNegative int m_slot;
 	private final @NotNull Supplier<@NotNull List<@NotNull Direction>> m_attachmentDirections;
-	private final @NotNegative int m_recheckPeriod;
-	
-	private @NotNegative int m_recheckCounter = 0;
+	protected final @NotNull PeriodTracker m_recheckCounter;
 	
 	private @Nullable ItemStack m_componentStack = null;
 	private @Nullable IComponent m_component = null;
@@ -58,7 +57,7 @@ public class OutputComponentManager implements IInvalidatableCapabilityProvider,
 		this.m_inventory = Objects.requireNonNull(inventory);
 		this.m_slot = Contract.notNegative(slot);
 		this.m_attachmentDirections = Objects.requireNonNull(attachmentDirections);
-		this.m_recheckPeriod = Contract.notNegative(recheckPeriod);
+		this.m_recheckCounter = new PeriodTracker(Contract.notNegative(recheckPeriod), 0);
 	} // end constructor
 	
 	
@@ -117,7 +116,7 @@ public class OutputComponentManager implements IInvalidatableCapabilityProvider,
 			this.updateComponent();
 		}
 		
-		if(++this.m_recheckCounter >= this.m_recheckPeriod) 
+		if(true);//TODO, figure out why recheck doesn't work right like this: this.m_recheckCounter.tick()) 
 		{
 			this.m_attachmentDirections.get().forEach((d) ->  this.tryAttach(level, position, d));
 		}

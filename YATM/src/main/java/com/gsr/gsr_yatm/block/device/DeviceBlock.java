@@ -73,7 +73,7 @@ public abstract class DeviceBlock extends ShapeBlock implements EntityBlock
 	@Override
 	public @Nullable <T extends BlockEntity> BlockEntityTicker<T> getTicker(@NotNull Level level, @NotNull BlockState blockState, @NotNull BlockEntityType<T> blockEntityType)
 	{
-		return blockEntityType == this.m_type.get() ? (l, bp, bs, be) -> IDeviceBlockEntity.tick(l, bp, bs, (IDeviceBlockEntity)be) : null;
+		return blockEntityType == this.m_type.get() ? (l, bp, bs, be) -> ITickingBlockEntity.tick(l, bp, bs, (ITickingBlockEntity)be) : null;
 	} // end getTicker()
 
 	

@@ -70,6 +70,8 @@ public class YATMItemModelProvider extends ItemModelProvider
 		
 		this.basicItem(YATMItems.CARCASS_ROOT_CUTTING.get());
 		
+		this.basicItem(YATMItems.CONDUIT_VINES.get());
+		
 		this.basicItem(YATMItems.COTTON_BOLLS.get());
 		this.basicItem(YATMItems.RAW_COTTON_FIBER.get());
 		this.basicItem(YATMItems.COTTON_SEEDS.get());
@@ -130,8 +132,8 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.BLACK_CANDLE_LANTERN.get());
 		
 	
-		this.basicItem(YATMItems.CONDUIT_VINES.get());
 		this.basicItem(YATMItems.CHANNEL_VINES.get());
+		this.basicItem(YATMItems.CONDUIT_VINE_BUNDLE.get());
 		
 		
 		

@@ -23,6 +23,7 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class CandlelilyBlock extends ShapeBlock implements IYATMPlantableBlock, BonemealableBlock
 {
+	// TODO, configs
 	private static final int BONEMEAL_SUCCESS_RARITY = 3;
 	private static final int SPREAD_ATTEMPTS = 12;
 	private static final int HORIZONTAL_RADIUS = 2;

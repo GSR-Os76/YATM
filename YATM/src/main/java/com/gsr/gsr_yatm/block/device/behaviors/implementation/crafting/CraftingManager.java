@@ -15,6 +15,7 @@ import com.gsr.gsr_yatm.block.device.behaviors.IChangedListenerBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ISerializableBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
+import com.gsr.gsr_yatm.utilities.PeriodTracker;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 import com.gsr.gsr_yatm.utilities.generic.Property;
 import com.gsr.gsr_yatm.utilities.network.container_data.implementation.PropertyContainerData;
@@ -28,7 +29,6 @@ import net.minecraft.world.item.crafting.RecipeHolder;
 import net.minecraft.world.item.crafting.RecipeType;
 import net.minecraft.world.level.Level;
 
-// I HATE MUTABILITY
 public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, A> implements IChangedListenerBehavior, ISerializableBehavior, ITickableBehavior
 {
 	@Override
@@ -45,11 +45,8 @@ public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, 
 	public static final String CRAFT_TIME_TAG_NAME = "craftTime";
 	
 	
-	
-	public static final int RECHECK_PERIOD = YATMConfigs.CRAFTING_RECHECK_PERIOD.get();
-	
-	
-	
+
+	protected final @NotNull PeriodTracker m_recheckCounter = new PeriodTracker(YATMConfigs.CRAFTING_RECHECK_PERIOD.get(), 0);
 	protected final @NotNull Supplier<@NotNull A> m_context;
 	protected final @NotNull RecipeType<T> m_recipeType;
 	
@@ -57,7 +54,6 @@ public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, 
 	protected @Nullable String m_activeRecipeIdentifier = null;
 	protected @NotNegative int m_craftCountDown = 0;
 	protected @NotNegative int m_craftTime = 0;
-	protected @NotNegative int m_timeSinceRecheck = 0;
 	protected boolean m_waitingForLoad = false;
 	
 	protected @NotNull Level m_level;
@@ -86,7 +82,7 @@ public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, 
 
 	public void onChanged()
 	{
-		this.m_timeSinceRecheck = CraftingManager.RECHECK_PERIOD;
+		this.m_recheckCounter.complete();
 	} // end setChanged()
 
 
@@ -123,9 +119,8 @@ public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, 
 			}
 			changed = true;
 		}
-		else if (++this.m_timeSinceRecheck > CraftingManager.RECHECK_PERIOD)
+		else if (this.m_recheckCounter.tick())
 		{
-			this.m_timeSinceRecheck = 0;
 			this.tryStartNewRecipe(level);
 			changed = true;
 		}		

@@ -52,6 +52,8 @@ public class YATMBlockProperties
 	public static final Properties CARCASS_ROOT_FOLIAGE = Properties.of().mapColor(MapColor.PLANT).replaceable().noCollission().instabreak().sound(SoundType.GRASS).ignitedByLava().pushReaction(PushReaction.DESTROY);
 	public static final Properties CARCASS_ROOT_ROOTED_DIRT = Properties.of().mapColor(MapColor.DIRT).strength(1f).sound(SoundType.GRAVEL).randomTicks();
 	public static final Properties CARCASS_ROOT_ROOTED_NETHERRACK = Properties.of().mapColor(MapColor.NETHER).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.9f).sound(SoundType.NETHERRACK);
+	public static final Properties CONDUIT_VINES = Properties.of().instabreak().mapColor(MapColor.COLOR_BLUE).noCollission().noOcclusion().pushReaction(PushReaction.DESTROY).randomTicks().sound(SoundType.VINE);
+
 	public static final Properties CROP = Properties.of().instabreak().mapColor(MapColor.PLANT).noCollission().pushReaction(PushReaction.DESTROY).randomTicks().sound(SoundType.CROP);
 	public static final Properties CUPRUM = Properties.of().mapColor(MapColor.WARPED_NYLIUM).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.COPPER);
 	public static final Properties DWARF_PERSIMMON = Properties.of().instabreak().mapColor(MapColor.PLANT).noCollission().pushReaction(PushReaction.DESTROY).randomTicks().sound(SoundType.CROP);
@@ -84,7 +86,7 @@ public class YATMBlockProperties
 	// TODO, this
 	public static final Properties SAP_COLLECTOR = Properties.of().ignitedByLava().mapColor(MapColor.WOOD).sound(SoundType.WOOD).strength(0.6f);
 
-	// TODO, actually design these
+	// TODO, actually design these, later
 	public static final Properties DATA_DEVICE = Properties.of().mapColor(MapColor.METAL).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2.0f, 3.0f).sound(SoundType.FROGLIGHT);
 	
 	public static final Properties MACHINE = Properties.of().instrument(NoteBlockInstrument.IRON_XYLOPHONE).mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(5.5F, 6.0F);
@@ -93,7 +95,7 @@ public class YATMBlockProperties
 	public static final Properties STEEL_TANK = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2F, 6.0F);
 	public static final Properties STEEL_PIPE = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2F, 6.0F);
 	
-	public static final Properties CONDUIT_VINES = Properties.of().mapColor(MapColor.METAL)/*.requiresCorrectToolForDrops()*/.strength(2.0f, 3.0f).sound(SoundType.VINE).noCollission().noOcclusion();
+	public static final Properties CONDUIT_VINE_BUNDLE = Properties.of().mapColor(MapColor.COLOR_BLUE).sound(SoundType.BAMBOO_SAPLING).strength(2.0f, 3.0f);
 	public static final Properties CHANNEL_VINES = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2F, 6.0F);
 
 	public static final Properties CREATIVE = Properties.of().instrument(NoteBlockInstrument.BASEDRUM).mapColor(MapColor.COLOR_PURPLE).noOcclusion().pushReaction(PushReaction.BLOCK).strength(Float.MAX_VALUE);

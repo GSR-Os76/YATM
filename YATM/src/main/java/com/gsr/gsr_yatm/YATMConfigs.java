@@ -19,7 +19,10 @@ public class YATMConfigs
 	
 	// TODO, don't defineInRange when the valid range is all values.
 	
-	public static final ConfigValue<Integer> DWARF_PERSIMMON_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.push("Plants: ").push("Dwarf Persimmon: ").comment("The average number of boneamealings in which one's successful.").defineInRange("bonemeal_success_rarity", 3, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> CONDUIT_VINE_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.push("Plants: ").push("Conduit Vine:").comment("The average number of boneamealings in which one's successful.").defineInRange("bonemeal_success_rarity", 3, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> CONDUIT_VINE_GROWTH_RARITY  = YATMConfigs.s_builder.comment("The average number of random ticks for which the plant increases in age one time.").defineInRange("growth_rarity", 16, 0, Integer.MAX_VALUE);
+	
+	public static final ConfigValue<Integer> DWARF_PERSIMMON_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.pop().push("Dwarf Persimmon: ").comment("The average number of boneamealings in which one's successful.").defineInRange("bonemeal_success_rarity", 3, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_GROWTH_RARITY  = YATMConfigs.s_builder.comment("The average number of random ticks for which the plant increases in age one time.").defineInRange("growth_rarity", 16, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_MINIMUM_LIGHT_LEVEL  = YATMConfigs.s_builder.comment("The minimum light level at which the plant'll grow.").defineInRange("minimum_light_level", 9, 0, 15);
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_MAX_AGE_INCREASE = YATMConfigs.s_builder.comment("The maximum amount the age block state property will increase on bonemeal success. Note: technically interchangeable with the min.").defineInRange("max_boneameal_age_increase", 3, 0, Integer.MAX_VALUE);
@@ -162,6 +165,7 @@ public class YATMConfigs
 	public static final ConfigValue<Integer> TANK_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("max_fluid_transfer_rate", 1000, 0, Integer.MAX_VALUE);
 	
 	public static final ConfigValue<Integer> CRAFTING_RECHECK_PERIOD = YATMConfigs.s_builder.pop().push("Misc: ").comment("The period in ticks while idle before a crafting device'll try to match it's contents to a new recipe. Note: recheck's occur automatically when device inventories change.").defineInRange("crafting_recheck_period", 20, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> CONDUIT_LIKE_RECHECK_ATTACHMENTS_PERIOD = YATMConfigs.s_builder.pop().push("Misc: ").comment("The period in ticks after which the conduit rechecks it's self.").defineInRange("conduit_like_attachment_recheck_period", 80, 0, Integer.MAX_VALUE);
 	
 	
 	
