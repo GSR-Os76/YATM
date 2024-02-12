@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
 import com.gsr.gsr_yatm.block.ShapeBlock;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
@@ -23,14 +24,6 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class CandlelilyBlock extends ShapeBlock implements IYATMPlantableBlock, BonemealableBlock
 {
-	// TODO, configs
-	private static final int BONEMEAL_SUCCESS_RARITY = 3;
-	private static final int SPREAD_ATTEMPTS = 12;
-	private static final int HORIZONTAL_RADIUS = 2;
-	private static final int VERICAL_RADIUS = 1;
-	private static final int MAX_PLACEMENTS = 5;
-	
-	
 	public CandlelilyBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
 		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape));
@@ -81,23 +74,23 @@ public class CandlelilyBlock extends ShapeBlock implements IYATMPlantableBlock, 
 	@Override
 	public boolean isBonemealSuccess(@NotNull Level level, @NotNull RandomSource random, @NotNull BlockPos position, @NotNull BlockState state)
 	{
-		return random.nextInt(CandlelilyBlock.BONEMEAL_SUCCESS_RARITY) == 0;
+		return random.nextInt(YATMConfigs.CANDLELILY_BONEMEAL_SUCCESS_RARITY.get()) == 0;
 	} // end isBonemealSuccess()
 	
 	@Override
 	public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos position, @NotNull BlockState state)
 	{
 		int placed = 0;
-		for(int i = 0; i < CandlelilyBlock.SPREAD_ATTEMPTS; i++) 
+		for(int i = 0; i < YATMConfigs.CANDLELILY_SPREAD_ATTEMPTS.get(); i++) 
 		{
-			BlockPos toCheck = position.offset(random.nextIntBetweenInclusive(-CandlelilyBlock.HORIZONTAL_RADIUS, CandlelilyBlock.HORIZONTAL_RADIUS), random.nextIntBetweenInclusive(-CandlelilyBlock.VERICAL_RADIUS, CandlelilyBlock.VERICAL_RADIUS), random.nextIntBetweenInclusive(-CandlelilyBlock.HORIZONTAL_RADIUS, CandlelilyBlock.HORIZONTAL_RADIUS));
+			BlockPos toCheck = position.offset(random.nextIntBetweenInclusive(-YATMConfigs.CANDLELILY_MAX_HORIZONTAL_SPREAD_ATTEMPTS.get(), YATMConfigs.CANDLELILY_MAX_HORIZONTAL_SPREAD_ATTEMPTS.get()), random.nextIntBetweenInclusive(-YATMConfigs.CANDLELILY_MAX_VERTICAL_SPREAD_EXTENT.get(), YATMConfigs.CANDLELILY_MAX_VERTICAL_SPREAD_EXTENT.get()), random.nextIntBetweenInclusive(-YATMConfigs.CANDLELILY_MAX_HORIZONTAL_SPREAD_ATTEMPTS.get(), YATMConfigs.CANDLELILY_MAX_HORIZONTAL_SPREAD_ATTEMPTS.get()));
 			BlockPos belowToCheck = toCheck.below();
 			if(level.isLoaded(toCheck) && this.canPlantOn(level, level.getBlockState(belowToCheck), belowToCheck, Direction.UP))
 			{
 				level.setBlock(toCheck, this.defaultBlockState(), Block.UPDATE_ALL);
 				placed++;
 			}
-			if(placed >= CandlelilyBlock.MAX_PLACEMENTS) 
+			if(placed >= YATMConfigs.CANDLELILY_MAX_PLACEMENTS.get()) 
 			{
 				break;
 			}

@@ -21,7 +21,14 @@ public class YATMConfigs
 	
 	
 	
-	public static final ConfigValue<Integer> CONDUIT_VINE_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.push("Plants: ").push("Conduit Vine:").bonemealSuccessRarity();
+	
+	public static final ConfigValue<Integer> CANDLELILY_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.push("Plants: ").push("Candlelily:").bonemealSuccessRarity();
+	public static final ConfigValue<Integer> CANDLELILY_MAX_HORIZONTAL_SPREAD_ATTEMPTS = YATMConfigs.s_builder.comment("The maximum horizontal extent any direction that new plants can be spread to.").defineInRange("horizontal_spread_extent", 2, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> CANDLELILY_MAX_PLACEMENTS = YATMConfigs.s_builder.comment("The maximum number of new plants placed while spreading.").defineInRange("max_placements", 5, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> CANDLELILY_SPREAD_ATTEMPTS = YATMConfigs.s_builder.comment("The maximum number of attempts to place down a new plant.").defineInRange("max_spread_attempts", 12, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> CANDLELILY_MAX_VERTICAL_SPREAD_EXTENT = YATMConfigs.s_builder.comment("The maximum vertical extent any direction that new plants can be spread to.").defineInRange("vertical_spread_extent", 1, 0, Integer.MAX_VALUE);
+	
+	public static final ConfigValue<Integer> CONDUIT_VINE_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.pop().push("Conduit Vine:").bonemealSuccessRarity();
 	public static final ConfigValue<Integer> CONDUIT_VINE_GROWTH_RARITY  = YATMConfigs.s_builder.growthRarity(16);
 	
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.pop().push("Dwarf Persimmon: ").bonemealSuccessRarity();
