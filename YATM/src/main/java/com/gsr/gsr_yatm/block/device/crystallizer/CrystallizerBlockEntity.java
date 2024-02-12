@@ -88,10 +88,10 @@ public class CrystallizerBlockEntity extends CraftingDeviceBlockEntity<Crystalli
 	
 	private final @NotNull InputComponentManager<ICurrentHandler> m_currentComponentManager = new InputComponentManager<>(this.m_inventory, CrystallizerBlockEntity.POWER_SLOT, this.m_currentStorer, YATMCapabilities.CURRENT);
 	private final @NotNull CurrentFillManager m_currentFillManager = new CurrentFillManager(this.m_inventory, CrystallizerBlockEntity.POWER_SLOT, this.m_currentStorer, YATMConfigs.CRYSTALLIZER_MAX_CURRENT_TRANSFER.get());
-	private final @NotNull OutputComponentManager m_drainInputComponentManager = new OutputComponentManager(this.m_inventory, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT, () -> List.of(), YATMConfigs.CRYSTALLIZER_DRAIN_RECHECK_PERIOD.get());
-	private final @NotNull DrainTankManager m_drainInputTankManager = new DrainTankManager(this.m_inventory, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, YATMConfigs.CRYSTALLIZER_DRAIN_MAX_FLUID_TRANSFER_RATE.get());
+	private final @NotNull OutputComponentManager m_drainInputComponentManager = new OutputComponentManager(this.m_inventory, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT, () -> List.of(), YATMConfigs.CRYSTALLIZER_DRAIN_INPUT_RECHECK_PERIOD.get());
+	private final @NotNull DrainTankManager m_drainInputTankManager = new DrainTankManager(this.m_inventory, CrystallizerBlockEntity.DRAIN_INPUT_TANK_SLOT, this.m_inputTank, YATMConfigs.CRYSTALLIZER_DRAIN_INPUT_MAX_FLUID_TRANSFER_RATE.get());
 	private final @NotNull InputComponentManager<IFluidHandler> m_fillInputComponentManager = new InputComponentManager<>(this.m_inventory, CrystallizerBlockEntity.FILL_INPUT_TANK_SLOT, TankWrapper.Builder.of(this.m_inputTank).canDrain(() -> false).build(), ForgeCapabilities.FLUID_HANDLER);
-	private final @NotNull FillTankManager m_fillInputTankManager = new FillTankManager(this.m_inventory, CrystallizerBlockEntity.FILL_INPUT_TANK_SLOT, TankWrapper.Builder.of(this.m_inputTank).canDrain(() -> false).build() /* this.m_inputTank */, YATMConfigs.CRYSTALLIZER_FILL_MAX_FLUID_TRANSFER_RATE.get());
+	private final @NotNull FillTankManager m_fillInputTankManager = new FillTankManager(this.m_inventory, CrystallizerBlockEntity.FILL_INPUT_TANK_SLOT, TankWrapper.Builder.of(this.m_inputTank).canDrain(() -> false).build() /* this.m_inputTank */, YATMConfigs.CRYSTALLIZER_FILL_INPUT_MAX_FLUID_TRANSFER_RATE.get());
 	
 	public static final ICompositeAccessSpecification ACCESS_SPEC = CompositeAccessSpecification.of(List.of(
 			Map.entry(CraftingDeviceBlockEntity.CRAFT_PROGRESS_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY * 2),

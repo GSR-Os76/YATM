@@ -89,8 +89,8 @@ public class CrucibleBlockEntity extends CraftingDeviceBlockEntity<MeltingRecipe
 	private @NotNull LazyOptional<IFluidHandler> m_resultTankLazyOptional = LazyOptional.of(() -> CrucibleBlockEntity.this.m_resultTank);
 	private @NotNull LazyOptional<IHeatHandler> m_heatLazyOptional = LazyOptional.of(() -> CrucibleBlockEntity.this.m_heatHandler);
 
-	private final @NotNull OutputComponentManager m_drainResultComponentManager = new OutputComponentManager(this.m_inventory, CrucibleBlockEntity.DRAIN_RESULT_TANK_SLOT, () -> List.of(Direction.DOWN), YATMConfigs.CRUCIBLE_DRAIN_RECHECK_PERIOD.get());
-	private final @NotNull DrainTankManager m_drainResultTankManager = new DrainTankManager(this.m_inventory, CrucibleBlockEntity.DRAIN_RESULT_TANK_SLOT, this.m_resultTank, YATMConfigs.CRUCIBLE_MAX_FLUID_TRANSFER_RATE.get());
+	private final @NotNull OutputComponentManager m_drainResultComponentManager = new OutputComponentManager(this.m_inventory, CrucibleBlockEntity.DRAIN_RESULT_TANK_SLOT, () -> List.of(Direction.DOWN), YATMConfigs.CRUCIBLE_DRAIN_RESULT_RECHECK_PERIOD.get());
+	private final @NotNull DrainTankManager m_drainResultTankManager = new DrainTankManager(this.m_inventory, CrucibleBlockEntity.DRAIN_RESULT_TANK_SLOT, this.m_resultTank, YATMConfigs.CRUCIBLE_DRAIN_RESULT_MAX_FLUID_TRANSFER_RATE.get());
 	private final @NotNull HeatAcceleratedCraftingManager m_heatAcceleratedCraftingManager = new HeatAcceleratedCraftingManager(CrucibleBlockEntity.this.m_craftingManager::tick, this.m_heatHandler,  CrucibleBlockEntity.this.m_craftingManager::getActiveRecipe);
 	private final @NotNull InputComponentManager<IHeatHandler> m_heatComponentManager = new InputComponentManager<>(this.m_inventory, CrucibleBlockEntity.HEAT_SLOT, this.m_heatHandler, YATMCapabilities.HEAT);
 	private final @NotNull HeatingManager m_heatingManager = new HeatingManager(this.m_inventory, CrucibleBlockEntity.HEAT_SLOT, this.m_heatHandler);

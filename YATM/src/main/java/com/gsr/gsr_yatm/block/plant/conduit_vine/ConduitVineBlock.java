@@ -81,6 +81,7 @@ public class ConduitVineBlock extends FaceBlock implements BonemealableBlock, IA
 	@Override
 	public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos position, @NotNull RandomSource random)
 	{
+		// TODO, add light requirement?
 		List<Tuple2<Direction, BlockPos>> places = this.getSpreadCanidates(level, position, state);
 		if(places.size() == 0) 
 		{

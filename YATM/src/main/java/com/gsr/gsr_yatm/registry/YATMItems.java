@@ -343,9 +343,9 @@ public class YATMItems
 	// TODO, components should be a capability for compatibility and versatility
 	// TODO, some sort of hydraulic accumulator
 	// TODO, blocks matching against most components
-	public static final RegistryObject<CurrentHeaterItem> EMBER_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("ember_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), YATMConfigs.EMBER_GLAND_HEAT, PrimitiveUtil.toFloatSupplier(YATMConfigs.EMBER_GLAND_KELVIN_PER_CURRENT)))));
-	public static final RegistryObject<CurrentHeaterItem> FLAME_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("flame_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), YATMConfigs.FLAME_GLAND_HEAT, PrimitiveUtil.toFloatSupplier(YATMConfigs.FLAME_GLAND_KELVIN_PER_CURRENT)))));
-	public static final RegistryObject<CurrentHeaterItem> TORCH_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("torch_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), YATMConfigs.TORCH_GLAND_HEAT, PrimitiveUtil.toFloatSupplier(YATMConfigs.TORCH_GLAND_KELVIN_PER_CURRENT)))));
+	public static final RegistryObject<CurrentHeaterItem> EMBER_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("ember_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), YATMConfigs.EMBER_GLAND_MAX_TEMPERATURE, PrimitiveUtil.toFloatSupplier(YATMConfigs.EMBER_GLAND_KELVIN_PER_CURRENT)))));
+	public static final RegistryObject<CurrentHeaterItem> FLAME_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("flame_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), YATMConfigs.FLAME_GLAND_MAX_TEMPERATURE, PrimitiveUtil.toFloatSupplier(YATMConfigs.FLAME_GLAND_KELVIN_PER_CURRENT)))));
+	public static final RegistryObject<CurrentHeaterItem> TORCH_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("torch_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), YATMConfigs.TORCH_GLAND_MAX_TEMPERATURE, PrimitiveUtil.toFloatSupplier(YATMConfigs.TORCH_GLAND_KELVIN_PER_CURRENT)))));
 	
 	// TODO, draw
 	public static final RegistryObject<CurrentStorerItem> CURRENT_TUBER = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_tuber", () -> new CurrentStorerItem(new Item.Properties().durability(1).setNoRepair(), YATMConfigs.CURRENT_TUBER))));

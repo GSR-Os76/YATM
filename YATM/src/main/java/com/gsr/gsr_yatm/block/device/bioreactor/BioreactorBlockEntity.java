@@ -82,8 +82,8 @@ public class BioreactorBlockEntity extends CraftingDeviceBlockEntity<Bioreaction
 
 	private final @NotNull InputComponentManager<ICurrentHandler> m_currentComponentManager = new InputComponentManager<>(this.m_inventory, BioreactorBlockEntity.POWER_SLOT, this.m_currentStorer, YATMCapabilities.CURRENT);
 	private final @NotNull CurrentFillManager m_currentFillManager = new CurrentFillManager(this.m_inventory, BioreactorBlockEntity.POWER_SLOT, this.m_currentStorer, YATMConfigs.BIOREACTOR_MAX_CURRENT_TRANSFER.get());
-	private final @NotNull OutputComponentManager m_drainResultComponentManager = new OutputComponentManager(this.m_inventory, BioreactorBlockEntity.DRAIN_RESULT_TANK_SLOT, () -> List.of(Direction.DOWN), YATMConfigs.BIOREACTOR_DRAIN_RECHECK_PERIOD.get());
-	private final @NotNull DrainTankManager m_drainResultTankManager = new DrainTankManager(this.m_inventory, BioreactorBlockEntity.DRAIN_RESULT_TANK_SLOT, this.m_resultTank, YATMConfigs.BIOREACTOR_MAX_FLUID_TRANSFER_RATE.get());	
+	private final @NotNull OutputComponentManager m_drainResultComponentManager = new OutputComponentManager(this.m_inventory, BioreactorBlockEntity.DRAIN_RESULT_TANK_SLOT, () -> List.of(Direction.DOWN), YATMConfigs.BIOREACTOR_DRAIN_RESULT_RECHECK_PERIOD.get());
+	private final @NotNull DrainTankManager m_drainResultTankManager = new DrainTankManager(this.m_inventory, BioreactorBlockEntity.DRAIN_RESULT_TANK_SLOT, this.m_resultTank, YATMConfigs.BIOREACTOR_DRAIN_RESULT_MAX_FLUID_TRANSFER_RATE.get());	
 	
 	public static final ICompositeAccessSpecification ACCESS_SPEC = CompositeAccessSpecification.of(List.of(
 			Map.entry(CraftingDeviceBlockEntity.CRAFT_PROGRESS_SPEC_KEY, PropertyContainerData.LENGTH_PER_PROPERTY * 2),
