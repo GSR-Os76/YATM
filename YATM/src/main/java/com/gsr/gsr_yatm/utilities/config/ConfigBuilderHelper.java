@@ -79,13 +79,18 @@ public class ConfigBuilderHelper extends ForgeConfigSpec.Builder
 	
 	
 	
+	public @NotNull ConfigValue<Integer> minimumLightLevel()
+	{
+		return this.comment("The minimum light level at which the plant'll grow.").defineInRange("minimum_light_level", 9, 0, 15);
+	} // end minimumLightLevel()
+	
+	
+	
 	public @NotNull ConfigValue<Double> damageFactor(@NotNegative double factor)
 	{
 		// TODO, maybe should allow negative values.
 		return this.comment("The factor by which the damage done by walking through the block's scaled.").defineInRange("damage_factor", factor, 0d, Double.MAX_VALUE);
 	} // end damageFactor()
-	
-	
 	
 	public @NotNull ConfigValue<Double> damageTriggerTolerance()
 	{

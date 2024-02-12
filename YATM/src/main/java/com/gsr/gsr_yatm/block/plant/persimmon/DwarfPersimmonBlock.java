@@ -14,6 +14,7 @@ import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
 import com.gsr.gsr_yatm.block.ShapeBlock;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.data_generation.YATMHarvestLoot;
+import com.gsr.gsr_yatm.utilities.BlockUtil;
 import com.gsr.gsr_yatm.utilities.BlockUtilities;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
@@ -112,12 +113,10 @@ public class DwarfPersimmonBlock extends ShapeBlock implements BonemealableBlock
 		return this.getAge(state) != this.getMaxAge();
 	} // end state()
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos position, @NotNull RandomSource random)
 	{
-		// TODO, alternative? neccessity?
-		if (!level.isAreaLoaded(position, 1) && level.getRawBrightness(position, 0) < YATMConfigs.DWARF_PERSIMMON_MINIMUM_LIGHT_LEVEL.get()) 
+		if (BlockUtil.isLightLevelBelow(level, position, YATMConfigs.DWARF_PERSIMMON_MINIMUM_LIGHT_LEVEL.get())) 
 		{
 			return;
 		}

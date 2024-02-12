@@ -11,6 +11,7 @@ import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.FaceBlock;
 import com.gsr.gsr_yatm.block.IAgingBlock;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
+import com.gsr.gsr_yatm.utilities.BlockUtil;
 import com.gsr.gsr_yatm.utilities.DirectionUtil;
 import com.gsr.gsr_yatm.utilities.OptionalAxis;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
@@ -81,7 +82,11 @@ public class ConduitVineBlock extends FaceBlock implements BonemealableBlock, IA
 	@Override
 	public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos position, @NotNull RandomSource random)
 	{
-		// TODO, add light requirement?
+		// TODO, could make it such that vines in the dark can grow if they're connected to one's in the light, representing the vines that are lit feeding the ones that aren't
+		if (BlockUtil.isLightLevelBelow(level, position, YATMConfigs.CONDUIT_VINE_MINIMUM_LIGHT_LEVEL.get())) 
+		{
+			return;
+		}
 		List<Tuple2<Direction, BlockPos>> places = this.getSpreadCanidates(level, position, state);
 		if(places.size() == 0) 
 		{

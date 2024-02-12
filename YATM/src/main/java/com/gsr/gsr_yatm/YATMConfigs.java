@@ -30,10 +30,11 @@ public class YATMConfigs
 	
 	public static final ConfigValue<Integer> CONDUIT_VINE_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.pop().push("Conduit Vine:").bonemealSuccessRarity();
 	public static final ConfigValue<Integer> CONDUIT_VINE_GROWTH_RARITY  = YATMConfigs.s_builder.growthRarity(16);
+	public static final ConfigValue<Integer> CONDUIT_VINE_MINIMUM_LIGHT_LEVEL = YATMConfigs.s_builder.minimumLightLevel();
 	
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.pop().push("Dwarf Persimmon: ").bonemealSuccessRarity();
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_GROWTH_RARITY = YATMConfigs.s_builder.growthRarity(16);
-	public static final ConfigValue<Integer> DWARF_PERSIMMON_MINIMUM_LIGHT_LEVEL = YATMConfigs.s_builder.comment("The minimum light level at which the plant'll grow.").defineInRange("minimum_light_level", 9, 0, 15);
+	public static final ConfigValue<Integer> DWARF_PERSIMMON_MINIMUM_LIGHT_LEVEL = YATMConfigs.s_builder.minimumLightLevel();
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_MAX_AGE_INCREASE = YATMConfigs.s_builder.comment("The maximum amount the age block state property will increase on bonemeal success. Note: technically interchangeable with the min.").defineInRange("max_boneameal_age_increase", 3, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_MIN_AGE_INCREASE = YATMConfigs.s_builder.comment("The minimum amount the age block state property will increase on bonemeal success. Note: technically interchangeable with the max.").defineInRange("min_boneameal_age_increase", 1, 0, Integer.MAX_VALUE);
 	
