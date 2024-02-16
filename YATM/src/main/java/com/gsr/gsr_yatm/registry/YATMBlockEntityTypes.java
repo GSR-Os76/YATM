@@ -10,6 +10,7 @@ import com.gsr.gsr_yatm.block.device.compute.storage.DataStorageBlockEntity;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceBlockEntity;
 import com.gsr.gsr_yatm.block.device.crucible.CrucibleBlockEntity;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlockEntity;
+import com.gsr.gsr_yatm.block.device.current_storer.CurrentStorerBlockEntity;
 import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInterchangerBlockEntity;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlockEntity;
 import com.gsr.gsr_yatm.block.device.grinder.GrinderBlockEntity;
@@ -64,10 +65,11 @@ public class YATMBlockEntityTypes
 	public static final RegistryObject<BlockEntityType<SolarPanelBlockEntity>> SOLAR_PANEL = BLOCK_ENTITY_TYPES.register("solar_panel", () -> BlockEntityType.Builder.of(SolarPanelBlockEntity::new, YATMBlocks.CRUDE_SOLAR_PANEL.get(), YATMBlocks.ADVANCED_SOLAR_PANEL.get(), YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get()).build(null));
 	
 	public static final RegistryObject<BlockEntityType<TankBlockEntity>> TANK = BLOCK_ENTITY_TYPES.register("tank", () -> BlockEntityType.Builder.of(TankBlockEntity::new, YATMBlocks.STEEL_TANK.get()).build(null));
+	public static final RegistryObject<BlockEntityType<CurrentStorerBlockEntity>> CURRENT_STORER = BLOCK_ENTITY_TYPES.register("current_storer", () -> BlockEntityType.Builder.of(CurrentStorerBlockEntity::new, YATMBlocks.CURRENT_TUBER_BLOCK.get(), YATMBlocks.CURRENT_BATTERY_BLOCK.get(), YATMBlocks.ADVANCED_CURRENT_BATTERY_BLOCK.get()).build(null));
 	
 	public static final RegistryObject<BlockEntityType<ChannelVinesBlockEntity>> CHANNEL_VINES = BLOCK_ENTITY_TYPES.register("channel_vines", () -> BlockEntityType.Builder.of(ChannelVinesBlockEntity::new, YATMBlocks.CHANNEL_VINES.get()).build(null));
 	public static final RegistryObject<BlockEntityType<ConduitVineBundleBlockEntity>> CONDUIT_VINE_BUNDLE = BLOCK_ENTITY_TYPES.register("conduit_vine_bundle", () -> BlockEntityType.Builder.of(ConduitVineBundleBlockEntity::new, YATMBlocks.CONDUIT_VINE_BUNDLE.get()).build(null));
 	
 	public static final RegistryObject<BlockEntityType<CreativeCurrentSourceBlockEntity>> CREATIVE_CURRENT_SOURCE = BLOCK_ENTITY_TYPES.register("current_source", () -> BlockEntityType.Builder.of(CreativeCurrentSourceBlockEntity::new, YATMBlocks.CREATIVE_CURRENT_SOURCE.get()).build(null));
-	
+
 } // end class

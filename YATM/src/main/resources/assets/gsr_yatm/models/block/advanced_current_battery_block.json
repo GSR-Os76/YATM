@@ -1,0 +1,24 @@
+{
+	"credit": "Made with Blockbench",
+	"parent": "minecraft:block/block",
+	"textures": {
+		"sides": "gsr_yatm:block/device/advanced_current_battery_block/sides",
+		"front": "gsr_yatm:block/device/advanced_current_battery_block/front",
+		"back": "gsr_yatm:block/device/advanced_current_battery_block/back",
+		"particle": "#sides"
+	},
+	"elements": [
+		{
+			"from": [0, 0, 0],
+			"to": [16, 16, 16],
+			"faces": {
+				"north": {"uv": [0, 0, 16, 16], "texture": "#front"},
+				"east": {"uv": [0, 0, 16, 16], "texture": "#sides"},
+				"south": {"uv": [0, 0, 16, 16], "texture": "#back"},
+				"west": {"uv": [0, 0, 16, 16], "texture": "#sides"},
+				"up": {"uv": [0, 0, 16, 16], "rotation": 90, "texture": "#sides"},
+				"down": {"uv": [0, 0, 16, 16], "rotation": 90, "texture": "#sides"}
+			}
+		}
+	]
+}

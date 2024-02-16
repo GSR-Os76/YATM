@@ -8,33 +8,25 @@ import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.block.ShapeBlock;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
-import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.entity.BlockEntityTicker;
 import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.StateDefinition.Builder;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
 public abstract class DeviceBlock extends ShapeBlock implements EntityBlock
 {
-	public static final DirectionProperty FACING = YATMBlockStateProperties.FACING_HORIZONTAL;
-	
 	protected final Supplier<BlockEntityType<? extends IDeviceBlockEntity>> m_type;
 	
 	
@@ -42,24 +34,9 @@ public abstract class DeviceBlock extends ShapeBlock implements EntityBlock
 	public DeviceBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, @NotNull Supplier<BlockEntityType<? extends IDeviceBlockEntity>> type)
 	{
 		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape));
-		this.registerDefaultState(this.defaultBlockState().setValue(DeviceBlock.FACING, Direction.NORTH));
 		this.m_type = Objects.requireNonNull(type);
 	} // end constructor
 
-	
-	
-	@Override
-	protected void createBlockStateDefinition(@NotNull Builder<Block, BlockState> builder)
-	{
-		super.createBlockStateDefinition(builder.add(DeviceBlock.FACING));
-	} // createBlockStateDefinition()
-
-	@Override
-	public BlockState getStateForPlacement(@NotNull BlockPlaceContext context)
-	{
-		return this.defaultBlockState().setValue(DeviceBlock.FACING, context.getHorizontalDirection().getOpposite());
-	} // end getStateForPlacement()
-	
 	
 	
 	public abstract @NotNull IDeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state);

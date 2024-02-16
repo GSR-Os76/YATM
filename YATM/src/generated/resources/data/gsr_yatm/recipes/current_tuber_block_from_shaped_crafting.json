@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "item": "gsr_yatm:current_tuber"
+    },
+    "v": {
+      "item": "gsr_yatm:conduit_vines"
+    }
+  },
+  "pattern": [
+    " v ",
+    "bbb",
+    "   "
+  ],
+  "result": {
+    "item": "gsr_yatm:current_tuber_block"
+  },
+  "show_notification": true
+}

@@ -8,6 +8,8 @@
     "gsr_yatm:steel_tank",
     "gsr_yatm:channel_vines",
     "gsr_yatm:ruberum",
-    "gsr_yatm:samaragdum"
+    "gsr_yatm:samaragdum",
+    "gsr_yatm:current_battery_block",
+    "gsr_yatm:advanced_current_battery_block"
   ]
 }

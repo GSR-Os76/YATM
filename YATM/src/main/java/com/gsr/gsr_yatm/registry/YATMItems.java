@@ -32,7 +32,6 @@ import com.gsr.gsr_yatm.item.tool.DrillItem;
 import com.gsr.gsr_yatm.item.tool.PoweredToolItemStack;
 import com.gsr.gsr_yatm.item.tool.SawItem;
 import com.gsr.gsr_yatm.utilities.PrimitiveUtil;
-
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.BucketItem;
@@ -167,7 +166,6 @@ public class YATMItems
 
 	public static final RegistryObject<BlockItem> VARIEGATED_CACTUS = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("variegated_cactus", () -> new BlockItem(YATMBlocks.VARIEGATED_CACTUS.get(), new Item.Properties()))));
 	
-	// TODO, how to acquire?
 	public static final RegistryObject<BlockItem> CONDUIT_VINES = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("conduit_vines", () -> new BlockItem(YATMBlocks.CONDUIT_VINES.get(), new Item.Properties()))));
 	
 	public static final RegistryObject<ItemNameBlockItem> PRISMARINE_CRYSTAL_MOSS_SPORES = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("prismarine_crystal_moss_spores", () -> new ItemNameBlockItem(YATMBlocks.PRISMARINE_CRYSTAL_MOSS.get(), new Item.Properties()))));
@@ -238,11 +236,16 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> GRINDER = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("grinder", () -> new BlockItem(YATMBlocks.GRINDER.get(), new Item.Properties()))));
 	public static final RegistryObject<BlockItem> INJECTOR = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("injector", () -> new BlockItem(YATMBlocks.INJECTOR.get(), new Item.Properties()))));
 	public static final RegistryObject<BlockItem> STILL = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("still", () -> new BlockItem(YATMBlocks.STILL.get(), new Item.Properties()))));
-
-	public static final RegistryObject<BlockItem> STEEL_TANK = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_tank", () -> new BlockItem(YATMBlocks.STEEL_TANK.get(), new Item.Properties()))));
 	
 	public static final RegistryObject<BlockItem> C_U_F_E_I = /* generalTabEnqueue */(ITEMS.register("current_unit_forge_energy_interchanger", () -> new BlockItem(YATMBlocks.C_U_F_E_I.get(), new Item.Properties())));
 
+	public static final RegistryObject<BlockItem> CURRENT_TUBER_BLOCK = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_tuber_block", () -> new BlockItem(YATMBlocks.CURRENT_TUBER_BLOCK.get(), new Item.Properties()))));
+	public static final RegistryObject<BlockItem> CURRENT_BATTERY_BLOCK = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_battery_block", () -> new BlockItem(YATMBlocks.CURRENT_BATTERY_BLOCK.get(), new Item.Properties()))));
+	public static final RegistryObject<BlockItem> ADVANCED_CURRENT_BATTERY_BLOCK = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("advanced_current_battery_block", () -> new BlockItem(YATMBlocks.ADVANCED_CURRENT_BATTERY_BLOCK.get(), new Item.Properties()))));
+	
+	public static final RegistryObject<BlockItem> STEEL_TANK = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_tank", () -> new BlockItem(YATMBlocks.STEEL_TANK.get(), new Item.Properties()))));
+	
+	
 	public static final RegistryObject<BlockItem> CRUDE_BATTERY_SOLAR_PANEL = /* generalTabEnqueue */(ITEMS.register("crude_battery_solar_panel", () -> new BlockItem(YATMBlocks.CRUDE_BATTERY_SOLAR_PANEL.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> ADVANCED_BATTERY_SOLAR_PANEL = /* generalTabEnqueue */(ITEMS.register("advanced_battery_crude_solar_panel", () -> new BlockItem(YATMBlocks.ADVANCED_BATTERY_SOLAR_PANEL.get(), new Item.Properties())));
 	public static final RegistryObject<BlockItem> SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL = /* generalTabEnqueue */(ITEMS.register("suns_complement_battery_solar_panel", () -> new BlockItem(YATMBlocks.SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL.get(), new Item.Properties())));

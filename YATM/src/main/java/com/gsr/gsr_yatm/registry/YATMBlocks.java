@@ -18,6 +18,7 @@ import com.gsr.gsr_yatm.block.device.compute.storage.DataStorageBlock;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceBlock;
 import com.gsr.gsr_yatm.block.device.crucible.CrucibleBlock;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlock;
+import com.gsr.gsr_yatm.block.device.current_storer.CurrentStorerBlock;
 import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInterchangerBlock;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlock;
 import com.gsr.gsr_yatm.block.device.grafting.GraftingTableBlock;
@@ -382,17 +383,21 @@ public class YATMBlocks
 	// TODO, refactor property out
 	public static final RegistryObject<CurrentUnitForgeEnergyInterchangerBlock> C_U_F_E_I = BLOCKS.register("current_unit_forge_energy_interchanger", () -> new CurrentUnitForgeEnergyInterchangerBlock(BlockBehaviour.Properties.of()));
 	
+		
+	public static final RegistryObject<CurrentStorerBlock> CURRENT_TUBER_BLOCK = BLOCKS.register("current_tuber_block", () -> new CurrentStorerBlock(YATMBlockProperties.CURRENT_TUBER_BLOCK, YATMBlockShapes.CUBE));
+	public static final RegistryObject<CurrentStorerBlock> CURRENT_BATTERY_BLOCK = BLOCKS.register("current_battery_block", () -> new CurrentStorerBlock(YATMBlockProperties.CURRENT_BATTERY_BLOCK, YATMBlockShapes.CUBE));
+	public static final RegistryObject<CurrentStorerBlock> ADVANCED_CURRENT_BATTERY_BLOCK = BLOCKS.register("advanced_current_battery_block", () -> new CurrentStorerBlock(YATMBlockProperties.ADVANCED_CURRENT_BATTERY_BLOCK, YATMBlockShapes.CUBE));
+	
+	public static final RegistryObject<TankBlock> STEEL_TANK = BLOCKS.register("steel_tank", () -> new TankBlock(YATMBlockProperties.STEEL_TANK, YATMBlockShapes.STEEL_TANK));
+	
 	public static final RegistryObject<BatterySolarPanelBlock> CRUDE_BATTERY_SOLAR_PANEL = BLOCKS.register("crude_battery_solar_panel", () -> new BatterySolarPanelBlock(YATMBlockProperties.SOLAR_PANEL, YATMBlockShapes.CUBE, 1024, 8, 64, SolarPanelSettings.CRUDE));
 	public static final RegistryObject<BatterySolarPanelBlock> ADVANCED_BATTERY_SOLAR_PANEL = BLOCKS.register("advanced_battery_solar_panel", () -> new BatterySolarPanelBlock(YATMBlockProperties.SOLAR_PANEL, YATMBlockShapes.CUBE, 65536, 64, 512, SolarPanelSettings.ADVANCED));
 	public static final RegistryObject<BatterySolarPanelBlock> SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL = BLOCKS.register("suns_complement_battery_solar_panel", () -> new BatterySolarPanelBlock(YATMBlockProperties.SOLAR_PANEL, YATMBlockShapes.CUBE, 524288, 512, 4096, SolarPanelSettings.SUNS_COMPLEMENT));
 	public static final RegistryObject<SolarPanelBlock> CRUDE_SOLAR_PANEL = BLOCKS.register("crude_solar_panel", () -> new SolarPanelBlock(YATMBlockProperties.SOLAR_PANEL, YATMBlockShapes.SOLAR_PANEL, 8, 8, 64, SolarPanelSettings.CRUDE));
 	public static final RegistryObject<SolarPanelBlock> ADVANCED_SOLAR_PANEL = BLOCKS.register("advanced_solar_panel", () -> new SolarPanelBlock(YATMBlockProperties.SOLAR_PANEL, YATMBlockShapes.SOLAR_PANEL, 64, 64, 512, SolarPanelSettings.ADVANCED));
 	public static final RegistryObject<SolarPanelBlock> SUNS_COMPLEMENT_SOLAR_PANEL = BLOCKS.register("suns_complement_solar_panel", () -> new SolarPanelBlock(YATMBlockProperties.SOLAR_PANEL, YATMBlockShapes.SOLAR_PANEL, 512, 512, 4096, SolarPanelSettings.SUNS_COMPLEMENT));
-	
 	// TODO, lightning strike current generation thingy
-	
-	public static final RegistryObject<TankBlock> STEEL_TANK = BLOCKS.register("steel_tank", () -> new TankBlock(YATMBlockProperties.STEEL_TANK, YATMBlockShapes.STEEL_TANK));
-	
+
 	// TODO, maybe make model more base on crosses
 	public static final RegistryObject<ChannelVineBlock> CHANNEL_VINES = BLOCKS.register("channel_vines", () -> new ChannelVineBlock(YATMBlockProperties.CHANNEL_VINES, YATMBlockShapes.CONDUIT_VINE_BUNDLE_LIKE));
 	public static final RegistryObject<ConduitVineBundleBlock> CONDUIT_VINE_BUNDLE = BLOCKS.register("conduit_vine_bundle", () -> new ConduitVineBundleBlock(YATMBlockProperties.CONDUIT_VINE_BUNDLE, YATMBlockShapes.CONDUIT_VINE_BUNDLE_LIKE));

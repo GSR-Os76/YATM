@@ -26,6 +26,7 @@ import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
 
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraftforge.items.IItemHandler;
+import net.minecraftforge.items.ItemStackHandler;
 
 public class DeviceBuilder<T, I extends IItemHandler> implements IDeviceBuilder<T, I>
 {
@@ -90,7 +91,11 @@ public class DeviceBuilder<T, I extends IItemHandler> implements IDeviceBuilder<
 	@Override
 	public @Nullable T end() 
 	{
-		this.m_buildReceiver.accept(new DeviceDefinition(this.m_inventory, this.m_behaviors, this.m_containerData != null ? this.m_containerData : NetworkUtil.EMPTY_CD, this.m_capabilityProvider != null ? this.m_capabilityProvider : CapabilityUtil.EMPTY_PROVIDER));
+		this.m_buildReceiver.accept(new DeviceDefinition(
+				this.m_inventory != null ? this.m_inventory : new ItemStackHandler(0), 
+				this.m_behaviors, 
+				this.m_containerData != null ? this.m_containerData : NetworkUtil.EMPTY_CD, 
+				this.m_capabilityProvider != null ? this.m_capabilityProvider : CapabilityUtil.EMPTY_PROVIDER));
 		return this.m_parent;
 	} // end()
 
