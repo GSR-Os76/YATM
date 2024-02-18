@@ -351,9 +351,9 @@ public class YATMItems
 	public static final RegistryObject<CurrentHeaterItem> TORCH_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("torch_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), YATMConfigs.TORCH_GLAND_MAX_TEMPERATURE, PrimitiveUtil.toFloatSupplier(YATMConfigs.TORCH_GLAND_KELVIN_PER_CURRENT)))));
 	
 	// TODO, draw
-	public static final RegistryObject<CurrentStorerItem> CURRENT_TUBER = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_tuber", () -> new CurrentStorerItem(new Item.Properties().durability(1).setNoRepair(), YATMConfigs.CURRENT_TUBER))));
-	public static final RegistryObject<CurrentStorerItem> CURRENT_BATTERY = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_battery", () -> new CurrentStorerItem(new Item.Properties().durability(1).setNoRepair(), YATMConfigs.CURRENT_BATTERY))));
-	public static final RegistryObject<CurrentStorerItem> ADVANCED_CURRENT_BATTERY = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("advanced_current_battery", () -> new CurrentStorerItem(new Item.Properties().durability(1).setNoRepair(), YATMConfigs.ADVANCED_CURRENT_BATTERY))));
+	public static final RegistryObject<CurrentStorerItem> CURRENT_TUBER = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_tuber", () -> new CurrentStorerItem(new Item.Properties().durability(1).setNoRepair(), YATMConfigs.CURRENT_TUBER_CURRENT_CAPACITY))));
+	public static final RegistryObject<CurrentStorerItem> CURRENT_BATTERY = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_battery", () -> new CurrentStorerItem(new Item.Properties().durability(1).setNoRepair(), YATMConfigs.CURRENT_BATTERY_CURRENT_CAPACITY))));
+	public static final RegistryObject<CurrentStorerItem> ADVANCED_CURRENT_BATTERY = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("advanced_current_battery", () -> new CurrentStorerItem(new Item.Properties().durability(1).setNoRepair(), YATMConfigs.ADVANCED_CURRENT_BATTERY_CURRENT_CAPACITY))));
 	
 	public static final RegistryObject<SpeedUpgradeItem> SPEED_UPGRADE = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("speed_upgrade", () -> new SpeedUpgradeItem(new Item.Properties().stacksTo(4), 1f, BonusType.ADDITIVE))));
 	public static final RegistryObject<EfficiencyUpgradeItem> EFFICIENCY_UPGRADE = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("efficiency_upgrade", () -> new EfficiencyUpgradeItem(new Item.Properties().stacksTo(4), 1f, BonusType.ADDITIVE))));

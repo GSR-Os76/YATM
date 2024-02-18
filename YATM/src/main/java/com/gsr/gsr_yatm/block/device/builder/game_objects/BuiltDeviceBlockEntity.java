@@ -1,6 +1,7 @@
 package com.gsr.gsr_yatm.block.device.builder.game_objects;
 
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.function.Consumer;
 
@@ -66,7 +67,7 @@ public abstract class BuiltDeviceBlockEntity extends BlockEntity implements IDev
 	
 	public BuiltDeviceBlockEntity(@NotNull BlockEntityType<?> type, @NotNull BlockPos position, @NotNull BlockState state)
 	{
-		super(type, position, state);
+		super(Objects.requireNonNull(type), Objects.requireNonNull(position), Objects.requireNonNull(state));
 		this.define(this::ctor, CapabilityUtil.of(super::getCapability));
 	} // end constructor
 
