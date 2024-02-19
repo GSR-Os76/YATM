@@ -18,7 +18,7 @@ import com.gsr.gsr_yatm.block.device.compute.storage.DataStorageBlock;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceBlock;
 import com.gsr.gsr_yatm.block.device.crucible.CrucibleBlock;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlock;
-import com.gsr.gsr_yatm.block.device.current_storer.CurrentStorerBlock;
+import com.gsr.gsr_yatm.block.device.current_storer.base.CurrentStorerBlock;
 import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInterchangerBlock;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlock;
 import com.gsr.gsr_yatm.block.device.grafting.GraftingTableBlock;

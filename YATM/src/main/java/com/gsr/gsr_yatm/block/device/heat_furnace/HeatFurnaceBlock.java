@@ -61,7 +61,7 @@ public class HeatFurnaceBlock extends HorizontalDeviceBlock
 				state.getBlock(),
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()),
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.HEAT_FURNACE.get()));
+		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.HEAT_FURNACE.get()));
 	} // end getMenuProvider()
 
 } // end class

@@ -44,7 +44,7 @@ public class InjectorBlock extends HorizontalDeviceBlock
 				state.getBlock(), 
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.INJECTOR.get()));
+		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.INJECTOR.get()));
 	} // end getMenuProvider()
 	
 } // end class

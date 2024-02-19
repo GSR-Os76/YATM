@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.device.current_storer;
+package com.gsr.gsr_yatm.block.device.current_storer.base;
 
 import java.util.List;
 import java.util.Map;

@@ -45,7 +45,7 @@ public class BioreactorBlock extends HorizontalDeviceBlock
 				state.getBlock(),
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.BIOREACTOR.get()));
+		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.BIOREACTOR.get()));
 	} // end getMenuProvider()
 
 } // end class

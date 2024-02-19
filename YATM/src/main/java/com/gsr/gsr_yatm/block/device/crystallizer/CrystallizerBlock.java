@@ -44,7 +44,7 @@ public class CrystallizerBlock extends HorizontalDeviceBlock
 				state.getBlock(), 
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.CRYSTALLIZER.get()));
+		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.CRYSTALLIZER.get()));
 	} // end getMenuProvider()
 	
 } // end class

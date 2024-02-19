@@ -97,7 +97,7 @@ public class CreativeCurrentSourceBlock extends HorizontalDeviceBlock
 				state.getBlock(), 
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.CREATIVE_CURRENT_SOURCE.get()));
+		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.CREATIVE_CURRENT_SOURCE.get()));
 	} // end getMenuProvider()
 	
 } // end class

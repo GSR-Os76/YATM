@@ -58,8 +58,8 @@ public class BoilerMenu extends AbstractContainerMenu
 		this.m_inputTankReader = new FluidTankDataReader(this.m_data, BoilerBlockEntity.ACCESS_SPEC.get(BoilerBlockEntity.INPUT_TANK_DATA_SPEC_KEY));
 		this.m_resultTankReader = new FluidTankDataReader(this.m_data, BoilerBlockEntity.ACCESS_SPEC.get(BoilerBlockEntity.RESULT_TANK_DATA_SPEC_KEY));
 		
-		int newYDownShift = 36;
-		int yPos = 51 + newYDownShift;
+		int yShift = 36;
+		int yPos = 51 + yShift;
 		this.addSlot(new SlotItemHandler(objInventory, BoilerBlockEntity.FILL_INPUT_TANK_SLOT, 8, yPos));
 		this.addSlot(new SlotItemHandler(objInventory, BoilerBlockEntity.DRAIN_INPUT_TANK_SLOT, 8 + 18, yPos));
 		this.addSlot(new SlotItemHandler(objInventory, BoilerBlockEntity.DRAIN_RESULT_TANK_SLOT, 152, yPos));
@@ -71,13 +71,13 @@ public class BoilerMenu extends AbstractContainerMenu
 		{
 			for (int x = 0; x < 9; ++x)
 			{
-				this.addSlot(new Slot(playerInventory, (x + (y * 9)) + 9, 8 + (x * 18), (84 + newYDownShift) + (y * 18)));
+				this.addSlot(new Slot(playerInventory, (x + (y * 9)) + 9, 8 + (x * 18), (84 + yShift) + (y * 18)));
 			}
 		}
 
 		for (int x = 0; x < 9; ++x)
 		{
-			this.addSlot(new Slot(playerInventory, x, 8 + (x * 18), 142 + newYDownShift));
+			this.addSlot(new Slot(playerInventory, x, 8 + (x * 18), 142 + yShift));
 		}
 		
 		this.addDataSlots(data);

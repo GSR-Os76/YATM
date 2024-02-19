@@ -104,7 +104,7 @@ public class BoilerBlock extends HorizontalDeviceBlock
 				state.getBlock(),
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.BOILER.get()));
+		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.BOILER.get()));
 	} // end getMenuProvider()
 
 } // end class

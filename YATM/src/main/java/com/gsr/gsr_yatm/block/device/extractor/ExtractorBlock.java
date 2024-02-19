@@ -44,7 +44,7 @@ public class ExtractorBlock extends HorizontalDeviceBlock
 				state.getBlock(), 
 				ebe.getInventory(), 
 				ebe.getDataAccessor()),
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.EXTRACTOR.get()));
+		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.EXTRACTOR.get()));
 	} // end getMenuProvider()
 	
 } // end class

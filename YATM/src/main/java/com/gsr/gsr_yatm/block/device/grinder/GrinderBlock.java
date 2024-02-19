@@ -44,7 +44,7 @@ public class GrinderBlock extends HorizontalDeviceBlock
 				state.getBlock(), 
 				ebe.getInventory(), 
 				ebe.getDataAccessor()),
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.GRINDER.get()));
+		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.GRINDER.get()));
 	} // end getMenuProvider()
 	
 } // end class

@@ -19,6 +19,8 @@ public class YATMConfigs
 	private static final int DEFAULT_CURRENT_BATTERY_CURRENT_CAPACITY = YATMConfigs.DEFAULT_CURRENT_TUBER_CURRENT_CAPACITY * 3;
 	private static final int DEFAULT_ADVANCED_CURRENT_BATTERY_CURRENT_CAPACITY = YATMConfigs.DEFAULT_CURRENT_BATTERY_CURRENT_CAPACITY * 4;
 	
+	private static final int CURRENT_STORER_BLOCK_CURRENT_CAPACITY_TO_TRANSFER_SIZE_FACTOR = 64;
+	
 	
 	
 	private static ConfigBuilderHelper s_builder = new ConfigBuilderHelper();
@@ -174,15 +176,15 @@ public class YATMConfigs
 	
 	
 	public static final ConfigValue<Integer> CURRENT_TUBER_BLOCK_CURRENT_CAPACITY = YATMConfigs.s_builder.pop().pop().push("Current Storer: ").push("Current Tuber Block: ").currentCapacity(YATMConfigs.DEFAULT_CURRENT_TUBER_CURRENT_CAPACITY * 3);
-	public static final ConfigValue<Integer> CURRENT_TUBER_BLOCK_MAX_CURRENT_TRANSFER = YATMConfigs.s_builder.maxCurrentTransferRate(YATMConfigs.DEFAULT_CURRENT_TUBER_CURRENT_CAPACITY / 64);
+	public static final ConfigValue<Integer> CURRENT_TUBER_BLOCK_MAX_CURRENT_TRANSFER = YATMConfigs.s_builder.maxCurrentTransferRate(YATMConfigs.DEFAULT_CURRENT_TUBER_CURRENT_CAPACITY / YATMConfigs.CURRENT_STORER_BLOCK_CURRENT_CAPACITY_TO_TRANSFER_SIZE_FACTOR);
 	public static final ConfigValue<Integer> CURRENT_TUBER_BLOCK_DRAIN_CURRENT_RECHECK_PERIOD = YATMConfigs.s_builder.outputComponentRecheckPeriod("drain current", YATMConfigs.DRAIN_RECHECK_PERIOD);
 	
 	public static final ConfigValue<Integer> CURRENT_BATTERY_BLOCK_CURRENT_CAPACITY = YATMConfigs.s_builder.pop().push("Current Battery Block: ").currentCapacity(YATMConfigs.DEFAULT_CURRENT_BATTERY_CURRENT_CAPACITY * 3);
-	public static final ConfigValue<Integer> CURRENT_BATTERY_BLOCK_MAX_CURRENT_TRANSFER = YATMConfigs.s_builder.maxCurrentTransferRate(YATMConfigs.DEFAULT_CURRENT_BATTERY_CURRENT_CAPACITY / 3);
+	public static final ConfigValue<Integer> CURRENT_BATTERY_BLOCK_MAX_CURRENT_TRANSFER = YATMConfigs.s_builder.maxCurrentTransferRate(YATMConfigs.DEFAULT_CURRENT_BATTERY_CURRENT_CAPACITY / YATMConfigs.CURRENT_STORER_BLOCK_CURRENT_CAPACITY_TO_TRANSFER_SIZE_FACTOR);
 	public static final ConfigValue<Integer> CURRENT_BATTERY_BLOCK_DRAIN_CURRENT_RECHECK_PERIOD = YATMConfigs.s_builder.outputComponentRecheckPeriod("drain current", YATMConfigs.DRAIN_RECHECK_PERIOD);
 	
 	public static final ConfigValue<Integer> ADVANCED_CURRENT_BATTERY_BLOCK_CURRENT_CAPACITY = YATMConfigs.s_builder.pop().push("Advanced Current Battery Block: ").currentCapacity(YATMConfigs.DEFAULT_ADVANCED_CURRENT_BATTERY_CURRENT_CAPACITY * 3);
-	public static final ConfigValue<Integer> ADVANCED_CURRENT_BATTERY_BLOCK_MAX_CURRENT_TRANSFER = YATMConfigs.s_builder.maxCurrentTransferRate(YATMConfigs.DEFAULT_ADVANCED_CURRENT_BATTERY_CURRENT_CAPACITY / 3);
+	public static final ConfigValue<Integer> ADVANCED_CURRENT_BATTERY_BLOCK_MAX_CURRENT_TRANSFER = YATMConfigs.s_builder.maxCurrentTransferRate(YATMConfigs.DEFAULT_ADVANCED_CURRENT_BATTERY_CURRENT_CAPACITY / YATMConfigs.CURRENT_STORER_BLOCK_CURRENT_CAPACITY_TO_TRANSFER_SIZE_FACTOR);
 	public static final ConfigValue<Integer> ADVANCED_CURRENT_BATTERY_BLOCK_DRAIN_CURRENT_RECHECK_PERIOD = YATMConfigs.s_builder.outputComponentRecheckPeriod("drain current", YATMConfigs.DRAIN_RECHECK_PERIOD);
 	
 	public static final ConfigValue<Integer> TANK_CAPACITY = YATMConfigs.s_builder.pop().push("Tank: ").comment("The tank's capacity in milibuckets.").defineInRange("capacity", 16000, 0, Integer.MAX_VALUE);

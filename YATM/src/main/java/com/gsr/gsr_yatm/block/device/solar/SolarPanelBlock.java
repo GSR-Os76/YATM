@@ -54,7 +54,7 @@ public class SolarPanelBlock extends HorizontalDeviceBlock
 				state.getBlock(),
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.SOLAR_PANEL.get()));
+		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.SOLAR_PANEL.get()));
 	} // end getMenuProvider()
 	
 } // end class

@@ -5,6 +5,7 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.YATMConfigs;
+import com.gsr.gsr_yatm.block.device.current_storer.base.CurrentStorerBlockEntity;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 

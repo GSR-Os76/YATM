@@ -135,7 +135,7 @@ public class CrucibleBlock extends HorizontalDeviceBlock
 				state.getBlock(), 
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.CRUCIBLE.get()));
+		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.CRUCIBLE.get()));
 	} // end getMenuProvider()
 	
 } // end class

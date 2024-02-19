@@ -54,7 +54,7 @@ public class BatterySolarPanelBlock extends HorizontalDeviceBlock
 				state.getBlock(),
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.BATTERY_SOLAR_PANEL.get()));
+		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.BATTERY_SOLAR_PANEL.get()));
 	} // end getMenuProvider()
 	
 } // end class

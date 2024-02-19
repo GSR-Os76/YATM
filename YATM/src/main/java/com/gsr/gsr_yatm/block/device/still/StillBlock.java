@@ -116,6 +116,6 @@ public class StillBlock extends HorizontalDeviceBlock
 				state.getBlock(), 
 				ebe.getInventory(), 
 				ebe.getDataAccessor()),
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.STILL.get()));
+		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.STILL.get()));
 	} // end getMenuProvider()
 } // end class
