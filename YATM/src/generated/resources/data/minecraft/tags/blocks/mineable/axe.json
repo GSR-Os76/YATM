@@ -2,6 +2,7 @@
   "values": [
     "gsr_yatm:grafting_table",
     "#gsr_yatm:sap_collectors",
-    "gsr_yatm:spinning_wheel"
+    "gsr_yatm:spinning_wheel",
+    "gsr_yatm:current_tuber_block"
   ]
 }

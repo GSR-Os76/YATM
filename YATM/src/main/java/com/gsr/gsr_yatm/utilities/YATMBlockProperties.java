@@ -3,7 +3,6 @@ package com.gsr.gsr_yatm.utilities;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.block.candle_lantern.CandleLanternBlock;
-
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.DyeColor;
@@ -89,14 +88,21 @@ public class YATMBlockProperties
 	// TODO, actually design these, later
 	public static final Properties DATA_DEVICE = Properties.of().mapColor(MapColor.METAL).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2.0f, 3.0f).sound(SoundType.FROGLIGHT);
 	
-	public static final Properties MACHINE = Properties.of().instrument(NoteBlockInstrument.IRON_XYLOPHONE).mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(5.5F, 6.0F);
+	public static final Properties MACHINE = Properties.of().instrument(NoteBlockInstrument.IRON_XYLOPHONE).mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(5.5f, 6.0f);
 	public static final Properties SOLAR_PANEL = Properties.of().instrument(NoteBlockInstrument.PLING).mapColor(MapColor.METAL).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(3.0f);
 	public static final Properties WIRE = Properties.of().mapColor(MapColor.METAL).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2.0f);
-	public static final Properties STEEL_TANK = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2F, 6.0F);
-	public static final Properties STEEL_PIPE = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2F, 6.0F);
+	
+	
+	
+	
+	public static final Properties CURRENT_TUBER_BLOCK = Properties.of().mapColor(MapColor.COLOR_BLUE).sound(SoundType.BAMBOO_SAPLING).strength(1f, 4.0f);
+	public static final Properties CURRENT_BATTERY_BLOCK = Properties.of().mapColor(MapColor.COLOR_CYAN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2f, 5.0f);
+	public static final Properties ADVANCED_CURRENT_BATTERY_BLOCK = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2.5f, 6.0f);
+	public static final Properties STEEL_TANK = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2f, 6.0f);
+
 	
 	public static final Properties CONDUIT_VINE_BUNDLE = Properties.of().mapColor(MapColor.COLOR_BLUE).sound(SoundType.BAMBOO_SAPLING).strength(2.0f, 3.0f);
-	public static final Properties CHANNEL_VINES = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2F, 6.0F);
+	public static final Properties CHANNEL_VINES = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2f, 6.0f);
 
 	public static final Properties CREATIVE = Properties.of().instrument(NoteBlockInstrument.BASEDRUM).mapColor(MapColor.COLOR_PURPLE).noOcclusion().pushReaction(PushReaction.BLOCK).strength(Float.MAX_VALUE);
 	

@@ -275,14 +275,18 @@ public class YATMBlockLoot extends VanillaBlockLoot
 			
 		this.dropSelf(YATMBlocks.C_U_F_E_I.get());
 		
+		this.dropSelf(YATMBlocks.CURRENT_TUBER_BLOCK.get());
+		this.dropSelf(YATMBlocks.CURRENT_BATTERY_BLOCK.get());
+		this.dropSelf(YATMBlocks.ADVANCED_CURRENT_BATTERY_BLOCK.get());
+		
+		this.dropSelf(YATMBlocks.STEEL_TANK.get());
+		
 		this.dropSelf(YATMBlocks.CRUDE_BATTERY_SOLAR_PANEL.get());
 		this.dropSelf(YATMBlocks.ADVANCED_BATTERY_SOLAR_PANEL.get());
 		this.dropSelf(YATMBlocks.SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL.get());
 		this.dropSelf(YATMBlocks.CRUDE_SOLAR_PANEL.get());
 		this.dropSelf(YATMBlocks.ADVANCED_SOLAR_PANEL.get());
 		this.dropSelf(YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get());
-		
-		this.dropSelf(YATMBlocks.STEEL_TANK.get());
 		
 		this.dropSelf(YATMBlocks.CHANNEL_VINES.get());
 		this.dropSelf(YATMBlocks.CONDUIT_VINE_BUNDLE.get());

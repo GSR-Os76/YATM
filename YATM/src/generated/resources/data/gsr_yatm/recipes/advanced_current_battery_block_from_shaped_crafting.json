@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "b": {
+      "item": "gsr_yatm:advanced_current_battery"
+    },
+    "f": {
+      "item": "gsr_yatm:foliar_steel"
+    },
+    "v": {
+      "item": "gsr_yatm:conduit_vines"
+    }
+  },
+  "pattern": [
+    "fvf",
+    "bbb",
+    "fff"
+  ],
+  "result": {
+    "item": "gsr_yatm:advanced_current_battery_block"
+  },
+  "show_notification": true
+}

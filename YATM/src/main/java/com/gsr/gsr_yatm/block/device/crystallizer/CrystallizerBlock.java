@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.block.device.DeviceBlock;
+import com.gsr.gsr_yatm.block.device.HorizontalDeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
@@ -18,7 +18,7 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class CrystallizerBlock extends DeviceBlock
+public class CrystallizerBlock extends HorizontalDeviceBlock
 {
 	public CrystallizerBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
@@ -44,7 +44,7 @@ public class CrystallizerBlock extends DeviceBlock
 				state.getBlock(), 
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.CRYSTALLIZER.get()));
+		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.CRYSTALLIZER.get()));
 	} // end getMenuProvider()
 	
 } // end class

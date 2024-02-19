@@ -134,16 +134,10 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addOneToX(output, YATMItems.BRANCH_OF_GLARING_FRUIT.get(), Items.SPIDER_EYE, 3, YetAnotherTechMod.MODID + ":spider_eyes_from_spider_vine_fruits_shapeless_crafting");
 
 		// TODO, add all devices
-		this.addDeviceRecipes(output);
+		this.addCraftingDeviceRecipes(output);
+		this.addStorers(output);
+		this.addConduitLikes(output);
 		
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.STEEL_TANK.get(), 1).pattern("fff").pattern("fgf").pattern("fff").define('f', YATMItems.FOLIAR_STEEL.get()).define('g', Tags.Items.GLASS).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL.get())).save(output, YetAnotherTechMod.MODID + ":steel_tank_from_shaped_crafting");
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CHANNEL_VINES.get(), 9).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL.get())).save(output, YetAnotherTechMod.MODID + ":channel_vines_from_foliar_steel_shaped_crafting");
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CHANNEL_VINES.get(), 1).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.FOLIAR_STEEL_SHRED.get()).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL_SHRED.get())).save(output, YetAnotherTechMod.MODID + ":channel_vines_from_foliar_steel_shred_shaped_crafting");
-		this.addOneToX(output, YATMItems.CHANNEL_VINES.get(), YATMItems.FOLIAR_STEEL_SHRED.get(), 3, YetAnotherTechMod.MODID + ":foliar_steel_shreds_from_channel_vine_shapeless_crafting");
-		
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CONDUIT_VINE_BUNDLE.get(), 9).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.CONDUIT_VINES.get())).save(output, YetAnotherTechMod.MODID + ":conduit_vine_bundle_from_conduit_vine_shaped_crafting");
-		/*TODO, maybe make shapless*/ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CONDUIT_VINES.get(), 1).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.CONDUIT_VINE_BUNDLE.get()).unlockedBy("has_item", has(YATMItems.CONDUIT_VINE_BUNDLE.get())).save(output, YetAnotherTechMod.MODID + ":conduit_vines_from_conduit_vine_bundle_shaped_crafting");
-
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.KINETIC_DRIVER.get(), 1).pattern(" r ").pattern("fpf").pattern(" v ").define('r', Tags.Items.DUSTS_REDSTONE).define('p', YATMItemTags.FORGE_PISTONS_KEY).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItemTags.FORGE_PISTONS_KEY)).save(output, YetAnotherTechMod.MODID + ":kinetic_driver_from_shaped_crafting");
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.KINETIC_DRIVER.get(), 1).pattern(" v ").pattern("fpf").pattern(" r ").define('r', Tags.Items.DUSTS_REDSTONE).define('p', YATMItemTags.FORGE_PISTONS_KEY).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItemTags.FORGE_PISTONS_KEY)).save(output, YetAnotherTechMod.MODID + ":fkinetic_driver_from_shaped_crafting");
 		
@@ -152,6 +146,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.FLAME_GLAND.get(), 1).pattern("gg").pattern("vv").define('g', YATMItems.EMBER_GLAND.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.EMBER_GLAND.get())).save(output, YetAnotherTechMod.MODID + ":flame_gland_from_shaped_crafting");
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.TORCH_GLAND.get(), 1).pattern("ggg").pattern("vvv").pattern("   ").define('g', YATMItems.FLAME_GLAND.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.FLAME_GLAND.get())).save(output, YetAnotherTechMod.MODID + ":torch_gland_from_shaped_crafting");
 		
+		ShapelessRecipeBuilder.shapeless(RecipeCategory.MISC, YATMItems.CURRENT_TUBER.get(), 1).requires(YATMItems.CONDUIT_VINES.get()).requires(Items.POTATO).unlockedBy("has_item", has(YATMItems.CONDUIT_VINES.get())).save(output, "current_tuber_from_shapeless_crafting");
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CURRENT_BATTERY.get(), 1).pattern(" v ").pattern("fbf").pattern("fbf").define('b', YATMItems.CURRENT_TUBER.get()).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.CURRENT_TUBER.get())).save(output, YetAnotherTechMod.MODID + ":current_battery_from_shaped_crafting");
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.ADVANCED_CURRENT_BATTERY.get(), 1).pattern("vbv").pattern("fbf").pattern("fbf").define('b', YATMItems.CURRENT_BATTERY.get()).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.CURRENT_BATTERY.get())).save(output, YetAnotherTechMod.MODID + ":advanced_current_battery_from_shaped_crafting");
 
@@ -299,11 +294,40 @@ public class YATMRecipeProvider extends RecipeProvider
 		addTool.accept(YATMItems.STEEL_SAW_NETHERITE.get(), YATMItems.NETHERITE_SAW_BLADE.get());
 	} // end addPoweredToolRecipes()
 	
-	private void addDeviceRecipes(@NotNull RecipeOutput output) 
+	private void addCraftingDeviceRecipes(@NotNull RecipeOutput output) 
 	{
+		// TODO, Bioreactor
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.BOILER.get(), 1).pattern("fff").pattern("g g").pattern("fbf").define('g', Tags.Items.GLASS).define('b', Items.BLAST_FURNACE).define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", has(Items.BLAST_FURNACE)).save(output, YetAnotherTechMod.MODID + ":steel_boiler_from_shaped_crafting");
-		
+		// TODO, Crucible
+		// TODO, Crystallizer
+		// TODO, Heat Furnace
+		// TODO, Extractor
+		// TODO, Grinder
+		// TODO, Injector
+		// TODO, Still
 	} // end addDeviceRecipes()
+	
+	private void addStorers(@NotNull RecipeOutput output) 
+	{
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CURRENT_TUBER_BLOCK.get(), 1).pattern(" v ").pattern("bbb").pattern("   ").define('b', YATMItems.CURRENT_TUBER.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.CURRENT_TUBER.get())).save(output, YetAnotherTechMod.MODID + ":current_tuber_block_from_shaped_crafting");
+		this.addOneToX(output, YATMItems.CURRENT_TUBER_BLOCK.get(), YATMItems.CURRENT_TUBER.get(), 3, YetAnotherTechMod.MODID + ":current_tubers_from_current_tuber_block_shapeless_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CURRENT_BATTERY_BLOCK.get(), 1).pattern("fvf").pattern("bbb").pattern("fff").define('b', YATMItems.CURRENT_BATTERY.get()).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.CURRENT_BATTERY.get())).save(output, YetAnotherTechMod.MODID + ":current_battery_block_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.ADVANCED_CURRENT_BATTERY_BLOCK.get(), 1).pattern("fvf").pattern("bbb").pattern("fff").define('b', YATMItems.ADVANCED_CURRENT_BATTERY.get()).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.ADVANCED_CURRENT_BATTERY.get())).save(output, YetAnotherTechMod.MODID + ":advanced_current_battery_block_from_shaped_crafting");
+
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.STEEL_TANK.get(), 1).pattern("fff").pattern("fgf").pattern("fff").define('f', YATMItems.FOLIAR_STEEL.get()).define('g', Tags.Items.GLASS).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL.get())).save(output, YetAnotherTechMod.MODID + ":steel_tank_from_shaped_crafting");
+		
+	} // end addStorers()
+	
+	private void addConduitLikes(@NotNull RecipeOutput output) 
+	{
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CHANNEL_VINES.get(), 9).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL.get())).save(output, YetAnotherTechMod.MODID + ":channel_vines_from_foliar_steel_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CHANNEL_VINES.get(), 1).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.FOLIAR_STEEL_SHRED.get()).unlockedBy("has_item", has(YATMItems.FOLIAR_STEEL_SHRED.get())).save(output, YetAnotherTechMod.MODID + ":channel_vines_from_foliar_steel_shred_shaped_crafting");
+		this.addOneToX(output, YATMItems.CHANNEL_VINES.get(), YATMItems.FOLIAR_STEEL_SHRED.get(), 3, YetAnotherTechMod.MODID + ":foliar_steel_shreds_from_channel_vine_shapeless_crafting");
+		
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CONDUIT_VINE_BUNDLE.get(), 9).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.CONDUIT_VINES.get())).save(output, YetAnotherTechMod.MODID + ":conduit_vine_bundle_from_conduit_vine_shaped_crafting");
+		/*TODO, maybe make shapless*/ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CONDUIT_VINES.get(), 1).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.CONDUIT_VINE_BUNDLE.get()).unlockedBy("has_item", has(YATMItems.CONDUIT_VINE_BUNDLE.get())).save(output, YetAnotherTechMod.MODID + ":conduit_vines_from_conduit_vine_bundle_shaped_crafting");
+
+	} // end addConduitLikes()
 	
 	
 	

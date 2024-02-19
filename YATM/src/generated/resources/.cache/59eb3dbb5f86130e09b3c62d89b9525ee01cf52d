@@ -1,6 +1,7 @@
-// 1.20.2	2024-02-07T17:38:10.8805053	Loot Tables
+// 1.20.2	2024-02-16T13:54:31.4415045	Loot Tables
 3447f366126fe84e5d7fe101ca492c681d974485 data/gsr_yatm/loot_tables/blocks/adamum.json
 c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
+bb48ae5488dbb788d7154346dcd565e1b37bdf87 data/gsr_yatm/loot_tables/blocks/advanced_current_battery_block.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
 09cb1db001ad8fd3d7da0bded71f7622abdc8770 data/gsr_yatm/loot_tables/blocks/aurum_deminutus.json
 a6bb73f21f11ab4b7f4b7a7d4ed1e47157222e3b data/gsr_yatm/loot_tables/blocks/basin_of_tears_floral.json
@@ -32,6 +33,8 @@ dc316981c06f00bd5e9cf9467ec77f86f9ab9333 data/gsr_yatm/loot_tables/blocks/creati
 93d6b5c4f4cf084d4909b3fc7745118e5536fbfc data/gsr_yatm/loot_tables/blocks/crude_solar_panel.json
 d44326a713011631862e9dcfc23d275c34595343 data/gsr_yatm/loot_tables/blocks/crystallizer.json
 ea397d9b2a1a236de4944ed16fb78623084d1265 data/gsr_yatm/loot_tables/blocks/cuprum.json
+15d4be082d001ca1ec568415525c77c7253229a8 data/gsr_yatm/loot_tables/blocks/current_battery_block.json
+a8600359c467036fd43a803ca986f8865e498328 data/gsr_yatm/loot_tables/blocks/current_tuber_block.json
 bf2097dc70064e8f3dc8fde9ed16d7bd87383b3e data/gsr_yatm/loot_tables/blocks/current_unit_forge_energy_interchanger.json
 1b9af8a793804335879abb1ccf604bfb4addeb4b data/gsr_yatm/loot_tables/blocks/cyan_candle_lantern.json
 c233c266c12b081d0aad6d10f896033167b8d111 data/gsr_yatm/loot_tables/blocks/cyan_shulkwart.json

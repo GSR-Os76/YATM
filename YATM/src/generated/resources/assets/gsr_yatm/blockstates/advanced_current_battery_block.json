@@ -1,0 +1,27 @@
+{
+  "variants": {
+    "facing=down": {
+      "model": "gsr_yatm:block/advanced_current_battery_block",
+      "x": 90
+    },
+    "facing=east": {
+      "model": "gsr_yatm:block/advanced_current_battery_block",
+      "y": 90
+    },
+    "facing=north": {
+      "model": "gsr_yatm:block/advanced_current_battery_block"
+    },
+    "facing=south": {
+      "model": "gsr_yatm:block/advanced_current_battery_block",
+      "y": 180
+    },
+    "facing=up": {
+      "model": "gsr_yatm:block/advanced_current_battery_block",
+      "x": 270
+    },
+    "facing=west": {
+      "model": "gsr_yatm:block/advanced_current_battery_block",
+      "y": 270
+    }
+  }
+}

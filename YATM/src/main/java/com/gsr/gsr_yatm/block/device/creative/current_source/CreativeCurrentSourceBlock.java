@@ -7,7 +7,7 @@ import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.block.ShapeBlock;
 import com.gsr.gsr_yatm.block.device.AttachmentState;
-import com.gsr.gsr_yatm.block.device.DeviceBlock;
+import com.gsr.gsr_yatm.block.device.HorizontalDeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.block.device.IDeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
@@ -38,7 +38,7 @@ import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class CreativeCurrentSourceBlock extends DeviceBlock
+public class CreativeCurrentSourceBlock extends HorizontalDeviceBlock
 {
 	public static final Map<Direction, EnumProperty<AttachmentState>> ATTACHMENT_STATE_BY_FACE = YATMBlockStateProperties.BRANCHES_BY_DIRECTION;
 	
@@ -97,7 +97,7 @@ public class CreativeCurrentSourceBlock extends DeviceBlock
 				state.getBlock(), 
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.CREATIVE_CURRENT_SOURCE.get()));
+		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.CREATIVE_CURRENT_SOURCE.get()));
 	} // end getMenuProvider()
 	
 } // end class

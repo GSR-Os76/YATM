@@ -37,6 +37,11 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMMenuTypes.INJECTOR.get(), "Injector");		
 		this.add(YATMMenuTypes.STILL.get(), "Still");		
 		
+		this.addMenu(YATMBlocks.CURRENT_TUBER_BLOCK.get(), "Current Tuber Block");		
+		this.addMenu(YATMBlocks.CURRENT_BATTERY_BLOCK.get(), "Current Battery Block");		
+		this.addMenu(YATMBlocks.ADVANCED_CURRENT_BATTERY_BLOCK.get(), "Advanced Current Battery Block");		
+		
+		
 		this.add(YATMMenuTypes.BATTERY_SOLAR_PANEL.get(), "Solar Panel");		
 		this.add(YATMMenuTypes.SOLAR_PANEL.get(), "Solar Panel");		
 		
@@ -250,15 +255,20 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMBlocks.C_U_F_E_I.get(), "Energy Converter (CU to FE)");
 		
+		
+		
+		this.add(YATMBlocks.CURRENT_TUBER_BLOCK.get(), "Current Tuber Block");
+		this.add(YATMBlocks.CURRENT_BATTERY_BLOCK.get(), "Current Battery Block");
+		this.add(YATMBlocks.ADVANCED_CURRENT_BATTERY_BLOCK.get(), "Advance Current Battery Block");
+		
+		this.add(YATMBlocks.STEEL_TANK.get(), "Foliar Steel Tank");
+		
 		this.add(YATMBlocks.CRUDE_BATTERY_SOLAR_PANEL.get(), "Crude Battery Solar Panel");
 		this.add(YATMBlocks.ADVANCED_BATTERY_SOLAR_PANEL.get(), "Advanced Battery Solar Panel");
 		this.add(YATMBlocks.SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL.get(), "Sun's Complement Battery Solar Panel");
 		this.add(YATMBlocks.CRUDE_SOLAR_PANEL.get(), "Crude Solar Panel");
 		this.add(YATMBlocks.ADVANCED_SOLAR_PANEL.get(), "Advanced Solar Panel");
 		this.add(YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get(), "Sun's Complement Solar Panel");
-		
-		
-		this.add(YATMBlocks.STEEL_TANK.get(), "Foliar Steel Tank");
 		
 		this.add(YATMBlocks.CHANNEL_VINES.get(), "Channel Vines");
 		this.add(YATMBlocks.CONDUIT_VINE_BUNDLE.get(), "Conduit Vines Bundle");

@@ -1,0 +1,50 @@
+{
+  "parent": "minecraft:item/generated",
+  "overrides": [
+    {
+      "model": "gsr_yatm:item/current_tuber_1",
+      "predicate": {
+        "gsr_yatm:power": 0.125
+      }
+    },
+    {
+      "model": "gsr_yatm:item/current_tuber_2",
+      "predicate": {
+        "gsr_yatm:power": 0.25
+      }
+    },
+    {
+      "model": "gsr_yatm:item/current_tuber_3",
+      "predicate": {
+        "gsr_yatm:power": 0.375
+      }
+    },
+    {
+      "model": "gsr_yatm:item/current_tuber_4",
+      "predicate": {
+        "gsr_yatm:power": 0.5
+      }
+    },
+    {
+      "model": "gsr_yatm:item/current_tuber_5",
+      "predicate": {
+        "gsr_yatm:power": 0.625
+      }
+    },
+    {
+      "model": "gsr_yatm:item/current_tuber_6",
+      "predicate": {
+        "gsr_yatm:power": 0.75
+      }
+    },
+    {
+      "model": "gsr_yatm:item/current_tuber_7",
+      "predicate": {
+        "gsr_yatm:power": 0.875
+      }
+    }
+  ],
+  "textures": {
+    "layer0": "gsr_yatm:item/current_tuber_0"
+  }
+}

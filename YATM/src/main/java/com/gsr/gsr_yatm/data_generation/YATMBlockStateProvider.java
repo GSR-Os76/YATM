@@ -139,6 +139,13 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile STILL_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/still"));
 	public static final ModelFile STILL_LIT_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/still_lit"));
 	
+	public static final ModelFile CURRENT_TUBER_BLOCK = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/current_tuber_block"));
+	public static final ModelFile CURRENT_BATTERY_BLOCK = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/current_battery_block"));
+	public static final ModelFile ADVANCED_CURRENT_BATTERY_BLOCK = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/advanced_current_battery_block"));
+	
+	public static final ModelFile STEEL_TANK = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/tank"));
+	public static final ModelFile STEEL_TANK_DRAINING = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/tank_draining"));
+	
 	public static final ModelFile SOLAR_PANEL_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/solar_panel"));
 	
 	public static final ModelFile CONDUIT_VINES_PARALLEL_CROSSLINK_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/conduit_vines_parallel_crosslink"));
@@ -163,9 +170,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile INSULATED_WIRE_BRANCH_LOW_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/insulated_wire_branch_low"));
 	public static final ModelFile INSULATED_WIRE_CENTER_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/insulated_wire_center"));
 	public static final ModelFile INSULATED_WIRE_STRAIGHT_VERTICAL_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/insulated_wire_straight_vertical"));
-	
-	public static final ModelFile STEEL_TANK = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/tank"));
-	public static final ModelFile STEEL_TANK_DRAINING = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/tank_draining"));
 	
 	public static final ModelFile CREATIVE_CURRENT_SOURCE = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/creative_current_source"));
 	public static final ModelFile CREATIVE_INPUT_PLATE = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/creative_input_plate"));
@@ -228,7 +232,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createAllBlock(YATMBlocks.RUBBER_BLOCK.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rubber_block"));
 		this.createAllBlock(YATMBlocks.ROOTED_SOUL_SOIL.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/rooted_soul_soil"));
 		
-		this.createFacingBlock(YATMBlocks.GRAFTING_TABLE.get(), YATMItems.GRAFTING_TABLE.get(), YATMBlockStateProvider.GRAFTING_TABLE_MODEL);
+		this.createHorizontalFacingBlock(YATMBlocks.GRAFTING_TABLE.get(), YATMItems.GRAFTING_TABLE.get(), YATMBlockStateProvider.GRAFTING_TABLE_MODEL);
 		this.addSapCollectors();
 		this.createSpinningWheel(YATMBlocks.SPINNING_WHEEL.get(), YATMItems.SPINNING_WHEEL.get());
 		this.addHeatSinks();
@@ -240,14 +244,17 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addCrystallizers();
 		this.addCurrentFurnaces();
 		this.addExtractors();
-		this.createFacingBlock(YATMBlocks.GRINDER.get(), YATMItems.GRINDER.get(), YATMBlockStateProvider.GRINDER_MODEL);
+		this.createHorizontalFacingBlock(YATMBlocks.GRINDER.get(), YATMItems.GRINDER.get(), YATMBlockStateProvider.GRINDER_MODEL);
 		this.addInjectors();
 		this.addStills();
 		
 		this.createAllBlock(YATMBlocks.C_U_F_E_I.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/energy_converter/energy_converter"));
-		this.addSolarPanels();		
 		
+		this.addCurrentStorers();
 		this.addTanks();
+		
+		this.addSolarPanels();	
+		
 		this.addConduitLikes();
 		
 		this.addFluidBlocks();
@@ -653,7 +660,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 //				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_top"), 
 //				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/bioler/bioler_inside"));
 //		
-		this.createFacingBlock(YATMBlocks.BIOREACTOR.get(), YATMItems.BIOREACTOR.get(), YATMBlockStateProvider.BIOREACTOR_MODEL);
+		this.createHorizontalFacingBlock(YATMBlocks.BIOREACTOR.get(), YATMItems.BIOREACTOR.get(), YATMBlockStateProvider.BIOREACTOR_MODEL);
 		
 	} // end addBioler()
 	
@@ -673,25 +680,25 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	private void addCrystallizers() 
 	{
-		this.createFacingBlock(YATMBlocks.CRYSTALLIZER.get(), YATMItems.CRYSTALLIZER.get(), YATMBlockStateProvider.CRYSTALLIZER_MODEL);
+		this.createHorizontalFacingBlock(YATMBlocks.CRYSTALLIZER.get(), YATMItems.CRYSTALLIZER.get(), YATMBlockStateProvider.CRYSTALLIZER_MODEL);
 		
 	} // end addCrystallizers()
 	
 	private void addCurrentFurnaces() 
 	{
-		this.createFacingBlock(YATMBlocks.HEAT_FURNACE.get(), YATMItems.HEAT_FURNACE.get(), YATMBlockStateProvider.CURRENT_FURNACE_MODEL);
+		this.createHorizontalFacingBlock(YATMBlocks.HEAT_FURNACE.get(), YATMItems.HEAT_FURNACE.get(), YATMBlockStateProvider.CURRENT_FURNACE_MODEL);
 		
 	} // end addCurrentFurnaces()
 	
 	private void addExtractors() 
 	{
-		this.createFacingBlock(YATMBlocks.EXTRACTOR.get(), YATMItems.EXTRACTOR.get(), YATMBlockStateProvider.EXTRACTOR_MODEL);
+		this.createHorizontalFacingBlock(YATMBlocks.EXTRACTOR.get(), YATMItems.EXTRACTOR.get(), YATMBlockStateProvider.EXTRACTOR_MODEL);
 		
 	} // end addExtractors()
 	
 	private void addInjectors() 
 	{
-		this.createFacingBlock(YATMBlocks.INJECTOR.get(), YATMItems.INJECTOR.get(), YATMBlockStateProvider.INJECTOR_MODEL);
+		this.createHorizontalFacingBlock(YATMBlocks.INJECTOR.get(), YATMItems.INJECTOR.get(), YATMBlockStateProvider.INJECTOR_MODEL);
 		
 	} // end addInjectors()
 	
@@ -701,6 +708,18 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 	} // end addCrucibles()
 	
+	private void addCurrentStorers() 
+	{
+		this.createFacingBlock(YATMBlocks.CURRENT_TUBER_BLOCK.get(), YATMItems.CURRENT_TUBER_BLOCK.get(), YATMBlockStateProvider.CURRENT_TUBER_BLOCK);
+		this.createFacingBlock(YATMBlocks.CURRENT_BATTERY_BLOCK.get(), YATMItems.CURRENT_BATTERY_BLOCK.get(), YATMBlockStateProvider.CURRENT_BATTERY_BLOCK);
+		this.createFacingBlock(YATMBlocks.ADVANCED_CURRENT_BATTERY_BLOCK.get(), YATMItems.ADVANCED_CURRENT_BATTERY_BLOCK.get(), YATMBlockStateProvider.ADVANCED_CURRENT_BATTERY_BLOCK);
+	} // end addCurrentStorers()
+	
+	private void addTanks() 
+	{
+		this.createTank(YATMBlocks.STEEL_TANK.get(), YATMBlockStateProvider.STEEL_TANK, YATMBlockStateProvider.STEEL_TANK_DRAINING);
+	
+	} // end addTanks()
 	
 	private void addSolarPanels() 
 	{
@@ -733,11 +752,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createConduitLike(YATMBlocks.CONDUIT_VINE_BUNDLE.get(), YATMBlockStateProvider.CONDUIT_VINE_BUNDLE_CENTER_MODEL, YATMBlockStateProvider.CONDUIT_VINE_BUNDLE_BRANCH_MODEL, YATMBlockStateProvider.CONDUIT_VINE_BUNDLE_BRANCH_PULL_MODEL, YATMBlockStateProvider.CONDUIT_VINE_BUNDLE_BRANCH_PUSH_MODEL);
 	} // end addConduits()
 	
-	private void addTanks() 
-	{
-		this.createTank(YATMBlocks.STEEL_TANK.get(), YATMBlockStateProvider.STEEL_TANK, YATMBlockStateProvider.STEEL_TANK_DRAINING);
 	
-	} // end addTanks()
 	
 	private void addFluidBlocks() 
 	{
@@ -1592,6 +1607,12 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	} // end createHeatSink()
 	
 	private void createFacingBlock(@NotNull Block block, @NotNull Item item, @NotNull ModelFile model) 
+	{
+		this.getVariantBuilder(block).forAllStates((bs) ->  new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(YATMBlockStateProperties.FACING)).x, rotationForDirectionFromNorth(bs.getValue(YATMBlockStateProperties.FACING)).y, false) });
+		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
+	} // end createFacingBlock()
+	
+	private void createHorizontalFacingBlock(@NotNull Block block, @NotNull Item item, @NotNull ModelFile model) 
 	{
 		this.getVariantBuilder(block).forAllStates((bs) ->  new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(YATMBlockStateProperties.FACING_HORIZONTAL)).x, rotationForDirectionFromNorth(bs.getValue(YATMBlockStateProperties.FACING_HORIZONTAL)).y, false) });
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);

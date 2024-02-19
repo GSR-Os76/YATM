@@ -1,4 +1,4 @@
-// 1.20.2	2024-02-07T17:38:10.8957442	Item Models: gsr_yatm
+// 1.20.2	2024-02-19T13:15:21.205071	Item Models: gsr_yatm
 c2ea606d991a81e423cce1d89391873c41111adb assets/gsr_yatm/models/item/adamum_meristem.json
 14f5226a0106e1a4c57981511721fb6c8ffd9059 assets/gsr_yatm/models/item/advanced_current_battery.json
 684ab5903fbcfdbd643eb1efa0d897a0d95283a9 assets/gsr_yatm/models/item/advanced_current_battery_1.json
@@ -46,6 +46,14 @@ ace04d1a0eb2cbc183fbd662664afa4a65b1594e assets/gsr_yatm/models/item/current_bat
 d7be4b9637377d2010161bc9b2d452fe22add250 assets/gsr_yatm/models/item/current_battery_5.json
 463f2e86470953a8e6e95710f37fb93007dbad58 assets/gsr_yatm/models/item/current_battery_6.json
 1d3c878383fc824106ddfb98dec740d30b197272 assets/gsr_yatm/models/item/current_battery_7.json
+18c10979e6b4868779a234fbc67ef26d34f19048 assets/gsr_yatm/models/item/current_tuber.json
+5a9304588ec28eca57e06839128d9c2cfa96f318 assets/gsr_yatm/models/item/current_tuber_1.json
+97fef9f413e82b42a60dba2411df23b800c18663 assets/gsr_yatm/models/item/current_tuber_2.json
+60b46739020dc9ef6dc5df8e8aa6763c0c1f2dbe assets/gsr_yatm/models/item/current_tuber_3.json
+503c1fe105ffefef74c45cc90260f9e9c70315db assets/gsr_yatm/models/item/current_tuber_4.json
+0160923e52d6e6e5ee84c08ff35b26df729d1fd1 assets/gsr_yatm/models/item/current_tuber_5.json
+5944c1c022b291a2cfd0347794125046a95af6cb assets/gsr_yatm/models/item/current_tuber_6.json
+17373f29435227349f83e7d6764789be937b60f6 assets/gsr_yatm/models/item/current_tuber_7.json
 f00926c141b4a5aa6509f4d9b2a36f6ebbb0d5f4 assets/gsr_yatm/models/item/cyan_candle_lantern.json
 48e59539a8908f1b75e5cf041d5088f8c4c64005 assets/gsr_yatm/models/item/decay_netherite_boots.json
 cffb8a20cd9153d42554dd2b093881cb2dd2ee74 assets/gsr_yatm/models/item/decay_netherite_chestplate.json

@@ -75,7 +75,7 @@ public class GraftingTableBlock extends ShapeBlock
 				playerInv, 
 				ContainerLevelAccess.create(level, position), 
 				state.getBlock()),
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.GRAFTING_TABLE.get())
+		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.GRAFTING_TABLE.get())
 				);
 	} // end getMenuProvider
 	

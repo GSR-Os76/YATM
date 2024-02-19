@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.block.device.DeviceBlock;
+import com.gsr.gsr_yatm.block.device.HorizontalDeviceBlock;
 import com.gsr.gsr_yatm.block.device.IDeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
@@ -22,7 +22,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 
-public class HeatFurnaceBlock extends DeviceBlock
+public class HeatFurnaceBlock extends HorizontalDeviceBlock
 {
 	public static final BooleanProperty LIT = YATMBlockStateProperties.LIT;
 
@@ -61,7 +61,7 @@ public class HeatFurnaceBlock extends DeviceBlock
 				state.getBlock(),
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()),
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.HEAT_FURNACE.get()));
+		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.HEAT_FURNACE.get()));
 	} // end getMenuProvider()
 
 } // end class

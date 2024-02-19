@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.block.device.DeviceBlock;
+import com.gsr.gsr_yatm.block.device.HorizontalDeviceBlock;
 import com.gsr.gsr_yatm.block.device.IDeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
@@ -29,7 +29,7 @@ import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
-public class StillBlock extends DeviceBlock
+public class StillBlock extends HorizontalDeviceBlock
 {
 	public static final DirectionProperty FACING = YATMBlockStateProperties.FACING_HORIZONTAL;
 	public static final BooleanProperty LIT = YATMBlockStateProperties.LIT;
@@ -116,6 +116,6 @@ public class StillBlock extends DeviceBlock
 				state.getBlock(), 
 				ebe.getInventory(), 
 				ebe.getDataAccessor()),
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.STILL.get()));
+		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.STILL.get()));
 	} // end getMenuProvider()
 } // end class

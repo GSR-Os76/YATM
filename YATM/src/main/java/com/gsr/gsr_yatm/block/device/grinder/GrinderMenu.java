@@ -160,11 +160,11 @@ public class GrinderMenu extends AbstractContainerMenu
 	public @NotNegative int getCurrentCapacity()
 	{
 		return this.m_currentReader.getCapacity();
-	} // end getResultTankCapacity()
+	} // end getCurrentCapacity()
 	
 	public @NotNegative int getCurrentStored()
 	{
 		return this.m_currentReader.getStored();
-	} // end getResultTankCapacity()
+	} // end getCurrentStored()
 
 } // end class

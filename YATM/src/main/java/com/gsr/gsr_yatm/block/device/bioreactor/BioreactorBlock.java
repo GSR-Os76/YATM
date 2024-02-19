@@ -4,7 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.block.device.DeviceBlock;
+import com.gsr.gsr_yatm.block.device.HorizontalDeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
@@ -18,7 +18,7 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class BioreactorBlock extends DeviceBlock
+public class BioreactorBlock extends HorizontalDeviceBlock
 {
 	
 	public BioreactorBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
@@ -45,7 +45,7 @@ public class BioreactorBlock extends DeviceBlock
 				state.getBlock(),
 				blockEntity.getInventory(), 
 				blockEntity.getDataAccessor()), 
-		YATMLanguageProvider.translatableFor(YATMMenuTypes.BIOREACTOR.get()));
+		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.BIOREACTOR.get()));
 	} // end getMenuProvider()
 
 } // end class

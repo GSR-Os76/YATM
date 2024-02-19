@@ -10,6 +10,9 @@ import com.gsr.gsr_yatm.block.device.compute.storage.DataStorageBlockEntity;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceBlockEntity;
 import com.gsr.gsr_yatm.block.device.crucible.CrucibleBlockEntity;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlockEntity;
+import com.gsr.gsr_yatm.block.device.current_storer.AdvancedCurrentBatteryBlockBlockEntity;
+import com.gsr.gsr_yatm.block.device.current_storer.CurrentBatteryBlockBlockEntity;
+import com.gsr.gsr_yatm.block.device.current_storer.CurrentTuberBlockBlockEntity;
 import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInterchangerBlockEntity;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlockEntity;
 import com.gsr.gsr_yatm.block.device.grinder.GrinderBlockEntity;
@@ -41,6 +44,11 @@ public class YATMBlockEntityTypes
 	
 	public static final RegistryObject<BlockEntityType<SapCollectorBlockEntity>> SAP_COLLECTOR = BLOCK_ENTITY_TYPES.register("sap_collector", () -> BlockEntityType.Builder.of(SapCollectorBlockEntity::new, YATMBlocks.SAP_COLLECTOR.get()).build(null));	
 	
+	public static final RegistryObject<BlockEntityType<DataScanCollectorBlockEntity>> DATA_SCAN_COLLECTOR = BLOCK_ENTITY_TYPES.register("data_scan_collector", () -> BlockEntityType.Builder.of(DataScanCollectorBlockEntity::new, YATMBlocks.DATA_SCAN_COLLECTOR.get()).build(null));
+	// public static final RegistryObject<BlockEntityType<DestructiveScannerBlockEntity>> DESTRUCTIVE_SCANNER = BLOCK_ENTITY_TYPES.register("destructive_scanner", () -> BlockEntityType.Builder.of(DestructiveScannerBlockEntity::new, YATMBlocks..get()).build(null));
+	public static final RegistryObject<BlockEntityType<DataStorageBlockEntity>> DATA_STORAGE = BLOCK_ENTITY_TYPES.register("data_storage", () -> BlockEntityType.Builder.of(DataStorageBlockEntity::new, YATMBlocks.DATA_STORAGE_BLOCK.get()).build(null));
+	// public static final RegistryObject<BlockEntityType<DataProcessorBlockEntity>> DATA_PROCESSOR = BLOCK_ENTITY_TYPES.register("data_processor", () -> BlockEntityType.Builder.of(DataProcessorBlockEntity::new, YATMBlocks..get()).build(null));
+	
 	public static final RegistryObject<BlockEntityType<BioreactorBlockEntity>> BIOLER = BLOCK_ENTITY_TYPES.register("bioreactor", () -> BlockEntityType.Builder.of(BioreactorBlockEntity::new, YATMBlocks.BIOREACTOR.get()).build(null));
 	public static final RegistryObject<BlockEntityType<BoilerBlockEntity>> BOILER = BLOCK_ENTITY_TYPES.register("boiler", () -> BlockEntityType.Builder.of(BoilerBlockEntity::new, YATMBlocks.BOILER.get()).build(null));
 	public static final RegistryObject<BlockEntityType<CrucibleBlockEntity>> CRUCIBLE = BLOCK_ENTITY_TYPES.register("crucible", () -> BlockEntityType.Builder.of(CrucibleBlockEntity::new, YATMBlocks.CRUCIBLE.get()).build(null));
@@ -52,22 +60,25 @@ public class YATMBlockEntityTypes
 	public static final RegistryObject<BlockEntityType<InjectorBlockEntity>> INJECTOR = BLOCK_ENTITY_TYPES.register("injector", () -> BlockEntityType.Builder.of(InjectorBlockEntity::new, YATMBlocks.INJECTOR.get()).build(null));
 	public static final RegistryObject<BlockEntityType<StillBlockEntity>> STILL = BLOCK_ENTITY_TYPES.register("still", () -> BlockEntityType.Builder.of(StillBlockEntity::new, YATMBlocks.STILL.get()).build(null));
 	
-	public static final RegistryObject<BlockEntityType<DataScanCollectorBlockEntity>> DATA_SCAN_COLLECTOR = BLOCK_ENTITY_TYPES.register("data_scan_collector", () -> BlockEntityType.Builder.of(DataScanCollectorBlockEntity::new, YATMBlocks.DATA_SCAN_COLLECTOR.get()).build(null));
-	// public static final RegistryObject<BlockEntityType<DestructiveScannerBlockEntity>> DESTRUCTIVE_SCANNER = BLOCK_ENTITY_TYPES.register("destructive_scanner", () -> BlockEntityType.Builder.of(DestructiveScannerBlockEntity::new, YATMBlocks..get()).build(null));
-	public static final RegistryObject<BlockEntityType<DataStorageBlockEntity>> DATA_STORAGE = BLOCK_ENTITY_TYPES.register("data_storage", () -> BlockEntityType.Builder.of(DataStorageBlockEntity::new, YATMBlocks.DATA_STORAGE_BLOCK.get()).build(null));
-	// public static final RegistryObject<BlockEntityType<DataProcessorBlockEntity>> DATA_PROCESSOR = BLOCK_ENTITY_TYPES.register("data_processor", () -> BlockEntityType.Builder.of(DataProcessorBlockEntity::new, YATMBlocks..get()).build(null));
 	
 	
+	
+	public static final RegistryObject<BlockEntityType<CurrentTuberBlockBlockEntity>> CURRENT_TUBER_BLOCK = BLOCK_ENTITY_TYPES.register("current_tuber_block", () -> BlockEntityType.Builder.of(CurrentTuberBlockBlockEntity::new, YATMBlocks.CURRENT_TUBER_BLOCK.get()).build(null));
+	public static final RegistryObject<BlockEntityType<CurrentBatteryBlockBlockEntity>> CURRENT_BATTERY_BLOCK = BLOCK_ENTITY_TYPES.register("current_battery_block", () -> BlockEntityType.Builder.of(CurrentBatteryBlockBlockEntity::new, YATMBlocks.CURRENT_BATTERY_BLOCK.get()).build(null));
+	public static final RegistryObject<BlockEntityType<AdvancedCurrentBatteryBlockBlockEntity>> ADVANCED_CURRENT_BATTERY_BLOCK = BLOCK_ENTITY_TYPES.register("advanced_current_battery_block", () -> BlockEntityType.Builder.of(AdvancedCurrentBatteryBlockBlockEntity::new, YATMBlocks.ADVANCED_CURRENT_BATTERY_BLOCK.get()).build(null));
+	
+	public static final RegistryObject<BlockEntityType<TankBlockEntity>> TANK = BLOCK_ENTITY_TYPES.register("tank", () -> BlockEntityType.Builder.of(TankBlockEntity::new, YATMBlocks.STEEL_TANK.get()).build(null));
 	
 	public static final RegistryObject<BlockEntityType<BatterySolarPanelBlockEntity>> BATTERY_SOLAR_PANEL = BLOCK_ENTITY_TYPES.register("battery_solar_panel", () -> BlockEntityType.Builder.of(BatterySolarPanelBlockEntity::new, YATMBlocks.CRUDE_BATTERY_SOLAR_PANEL.get(), YATMBlocks.ADVANCED_BATTERY_SOLAR_PANEL.get(), YATMBlocks.SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL.get()).build(null));
 	public static final RegistryObject<BlockEntityType<CurrentUnitForgeEnergyInterchangerBlockEntity>> C_U_F_E_I = BLOCK_ENTITY_TYPES.register("current_unit_forge_energy_interchanger_block_entity", () -> BlockEntityType.Builder.of(CurrentUnitForgeEnergyInterchangerBlockEntity::new, YATMBlocks.C_U_F_E_I.get()).build(null));
 	public static final RegistryObject<BlockEntityType<SolarPanelBlockEntity>> SOLAR_PANEL = BLOCK_ENTITY_TYPES.register("solar_panel", () -> BlockEntityType.Builder.of(SolarPanelBlockEntity::new, YATMBlocks.CRUDE_SOLAR_PANEL.get(), YATMBlocks.ADVANCED_SOLAR_PANEL.get(), YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get()).build(null));
 	
-	public static final RegistryObject<BlockEntityType<TankBlockEntity>> TANK = BLOCK_ENTITY_TYPES.register("tank", () -> BlockEntityType.Builder.of(TankBlockEntity::new, YATMBlocks.STEEL_TANK.get()).build(null));
-	
 	public static final RegistryObject<BlockEntityType<ChannelVinesBlockEntity>> CHANNEL_VINES = BLOCK_ENTITY_TYPES.register("channel_vines", () -> BlockEntityType.Builder.of(ChannelVinesBlockEntity::new, YATMBlocks.CHANNEL_VINES.get()).build(null));
 	public static final RegistryObject<BlockEntityType<ConduitVineBundleBlockEntity>> CONDUIT_VINE_BUNDLE = BLOCK_ENTITY_TYPES.register("conduit_vine_bundle", () -> BlockEntityType.Builder.of(ConduitVineBundleBlockEntity::new, YATMBlocks.CONDUIT_VINE_BUNDLE.get()).build(null));
 	
 	public static final RegistryObject<BlockEntityType<CreativeCurrentSourceBlockEntity>> CREATIVE_CURRENT_SOURCE = BLOCK_ENTITY_TYPES.register("current_source", () -> BlockEntityType.Builder.of(CreativeCurrentSourceBlockEntity::new, YATMBlocks.CREATIVE_CURRENT_SOURCE.get()).build(null));
+
+
+
 	
 } // end class
