@@ -1,4 +1,4 @@
-// 1.20.2	2024-02-16T15:07:45.2050501	Block States: gsr_yatm
+// 1.20.2	2024-02-19T11:34:54.9507986	Block States: gsr_yatm
 11aad184ca6aaadbd7319a44c5a1985f7c029a1c assets/gsr_yatm/blockstates/adamum.json
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 954ad7e227cb7fea31486bca39340fd9ecdbc175 assets/gsr_yatm/blockstates/advanced_current_battery_block.json
@@ -37,6 +37,7 @@ d50441ece5bc105502bb511d1aaf02fa94334185 assets/gsr_yatm/blockstates/crucible.js
 7ee7182a0dc1ec41062df71d04cc031d644c6e90 assets/gsr_yatm/blockstates/crystallizer.json
 98d28ec6cead3c4d921ff2fcdc46bef176ac29da assets/gsr_yatm/blockstates/cuprum.json
 fa84cf65c17a766cd4167b26c47786540d9865ba assets/gsr_yatm/blockstates/current_battery_block.json
+b5a4c9c611b11914fdf4fb4bdec71a3beac14957 assets/gsr_yatm/blockstates/current_tuber_block.json
 68f27f177812049ce49bc4928e39112ddcf168e2 assets/gsr_yatm/blockstates/current_unit_forge_energy_interchanger.json
 1bc690d75bfd38b360a7ffbfc3e7b341ea135b51 assets/gsr_yatm/blockstates/cyan_candle_lantern.json
 fe570632433438cfc9eb73f919d7bc5e0350592c assets/gsr_yatm/blockstates/cyan_shulkwart.json
@@ -527,6 +528,7 @@ eda8903c007f0c273e6906695acaedfc28d8ef6c assets/gsr_yatm/models/item/carcass_roo
 7c5e0ddda714929d0291a2fff868a36740a979b6 assets/gsr_yatm/models/item/crude_solar_panel.json
 cae289c192ba12d79a64335460fd440fdc956b1c assets/gsr_yatm/models/item/crystallizer.json
 bf2f529631dc012a45dec5a37202865c223bda76 assets/gsr_yatm/models/item/current_battery_block.json
+0f592d008213ccd3d54a569a24818e02caf72e18 assets/gsr_yatm/models/item/current_tuber_block.json
 ebbc5c97eeda8d41873303b639ac633b84a07355 assets/gsr_yatm/models/item/current_unit_forge_energy_interchanger.json
 10032098bb57898bfeb8c1b92b557a784f19b960 assets/gsr_yatm/models/item/cyan_shulkwart_horn.json
 ce8a8d835d5ef2385138513b853f3c858109b957 assets/gsr_yatm/models/item/data_scan_collector.json

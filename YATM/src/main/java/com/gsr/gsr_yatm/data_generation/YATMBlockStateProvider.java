@@ -139,6 +139,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ModelFile STILL_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/still"));
 	public static final ModelFile STILL_LIT_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/still_lit"));
 	
+	public static final ModelFile CURRENT_TUBER_BLOCK = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/current_tuber_block"));
 	public static final ModelFile CURRENT_BATTERY_BLOCK = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/current_battery_block"));
 	public static final ModelFile ADVANCED_CURRENT_BATTERY_BLOCK = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/advanced_current_battery_block"));
 	
@@ -709,7 +710,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	private void addCurrentStorers() 
 	{
-		
+		this.createFacingBlock(YATMBlocks.CURRENT_TUBER_BLOCK.get(), YATMItems.CURRENT_TUBER_BLOCK.get(), YATMBlockStateProvider.CURRENT_TUBER_BLOCK);
 		this.createFacingBlock(YATMBlocks.CURRENT_BATTERY_BLOCK.get(), YATMItems.CURRENT_BATTERY_BLOCK.get(), YATMBlockStateProvider.CURRENT_BATTERY_BLOCK);
 		this.createFacingBlock(YATMBlocks.ADVANCED_CURRENT_BATTERY_BLOCK.get(), YATMItems.ADVANCED_CURRENT_BATTERY_BLOCK.get(), YATMBlockStateProvider.ADVANCED_CURRENT_BATTERY_BLOCK);
 	} // end addCurrentStorers()
