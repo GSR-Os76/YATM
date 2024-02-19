@@ -30,7 +30,7 @@ public class YATMItemModelProvider extends ItemModelProvider
 		// TODO, alphabetize the rest
 		this.addCurrentStorer(YATMItems.ADVANCED_CURRENT_BATTERY.get());
 		this.addCurrentStorer(YATMItems.CURRENT_BATTERY.get());
-		// this.addCurrentStorer(YATMItems.CURRENT_TUBER.get());
+		this.addCurrentStorer(YATMItems.CURRENT_TUBER.get());
 		this.basicItem(YATMItems.EMBER_GLAND.get());
 		this.basicItem(YATMItems.FLAME_GLAND.get());
 		this.basicItem(YATMItems.FOLIAR_STEEL.get());
