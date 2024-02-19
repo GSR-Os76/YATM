@@ -1,4 +1,4 @@
-// 1.20.2	2024-02-16T16:55:05.8736506	Recipes
+// 1.20.2	2024-02-19T14:30:08.819247	Recipes
 e35a5bce9e689767e4d41d5688355b6297230373 data/gsr_yatm/advancements/recipes/amethyst_shards_from_silicon_oxide_crystallization.json
 9a839a826b718109202df4f4407c9e0bd008939c data/gsr_yatm/advancements/recipes/biofluid_from_poisonous_potato_bioling.json
 9da384f312f1a5490ea89c5df03846f31a106aca data/gsr_yatm/advancements/recipes/building_blocks/rubber_slab_from_shaped_crafting.json
@@ -451,3 +451,5 @@ b824baf82e723440cb41e2be3c417fa8bffaace4 data/gsr_yatm/recipes/water_from_ice_me
 9857dd9ec1e8a09d5629efd14d6bae01a6ea7b1b data/gsr_yatm/recipes/white_candle_lantern_from_shaped_crafting.json
 44689706c2259feafa007bb8227d45662f74d2fa data/gsr_yatm/recipes/wrench_from_shaped_crafting.json
 65b08f56c6d29b4aaf46056e9b0ca68087ccba3d data/gsr_yatm/recipes/yellow_candle_lantern_from_shaped_crafting.json
+bd7d10dd0966f0408c2b09b8084388ecfcc31595 data/minecraft/advancements/recipes/misc/current_tuber_from_shapeless_crafting.json
+cf45a75c10ecf30b5d0e034bd98af99140d7de5d data/minecraft/recipes/current_tuber_from_shapeless_crafting.json
