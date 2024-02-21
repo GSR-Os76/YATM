@@ -1,4 +1,4 @@
-// 1.20.2	2024-02-20T20:58:34.1937142	Item Models: gsr_yatm
+// 1.20.2	2024-02-21T13:33:11.3013094	Item Models: gsr_yatm
 c2ea606d991a81e423cce1d89391873c41111adb assets/gsr_yatm/models/item/adamum_meristem.json
 14f5226a0106e1a4c57981511721fb6c8ffd9059 assets/gsr_yatm/models/item/advanced_current_battery.json
 684ab5903fbcfdbd643eb1efa0d897a0d95283a9 assets/gsr_yatm/models/item/advanced_current_battery_1.json
@@ -72,6 +72,7 @@ d7d95a23a1602ab2f8388942b90f9a14082f2469 assets/gsr_yatm/models/item/essence_of_
 1e2a477c18321e5c5b1af6c24a2aab526c4cfbf3 assets/gsr_yatm/models/item/essence_of_souls_bottle.json
 11e0337c2eeb9e872b4531c85ba86f7035baaf9c assets/gsr_yatm/models/item/essence_of_souls_bucket.json
 08413310764e600fdf91015471b36dc054dd4f5e assets/gsr_yatm/models/item/ferrum_rootstock.json
+56c58c76b60600dd08faa8922e3212f55cbddbe9 assets/gsr_yatm/models/item/fe_to_cu_converter.json
 2bcd9d1bc656eb8a43d251c6eccf352eb395017b assets/gsr_yatm/models/item/fire_eater_lily_bulb.json
 39ab2124ee0cc2193643bb344a77ca589e9eeaf2 assets/gsr_yatm/models/item/fire_eater_lily_decorative.json
 dbd0a5777277fc587b4d8ec2d1feb1ec2766af1f assets/gsr_yatm/models/item/fire_eater_lily_unlit_decorative.json

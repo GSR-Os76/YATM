@@ -346,6 +346,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.TORCH_GLAND.get(), "Torch Gland");
 		
 		this.add(YATMItems.CU_TO_FE_CONVERTER.get(), "Converter (Cu to Fe)");
+		this.add(YATMItems.FE_TO_CU_CONVERTER.get(), "Converter (Fe to Cu)");
 		
 		
 		this.add(YATMItems.BIO_BUCKET.get(), "Biofluid Bucket");

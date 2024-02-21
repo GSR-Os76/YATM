@@ -17,10 +17,11 @@ import com.gsr.gsr_yatm.item.SpeedUpgradeItem;
 import com.gsr.gsr_yatm.item.YATMBoatItem;
 import com.gsr.gsr_yatm.item.armor.LazyArmorItem;
 import com.gsr.gsr_yatm.item.armor.PoweredArmorItem;
-import com.gsr.gsr_yatm.item.component.cu_fe_interconverter.CuToFeConverterItem;
+import com.gsr.gsr_yatm.item.component.cu_to_fe_converter.CuToFeConverterItem;
 import com.gsr.gsr_yatm.item.component.current_heater.CurrentHeaterItem;
 import com.gsr.gsr_yatm.item.component.current_pass_through.CurrentPassThroughBlockItem;
 import com.gsr.gsr_yatm.item.component.current_storer.CurrentStorerItem;
+import com.gsr.gsr_yatm.item.component.fe_to_cu_converter.FeToCuConverterItem;
 import com.gsr.gsr_yatm.item.component.fluid_pass_through.FluidPassThroughBlockItem;
 import com.gsr.gsr_yatm.item.creative.current.CreativeCurrentSourceItem;
 import com.gsr.gsr_yatm.item.creative.fluid.CreativeFluidSourceItem;
@@ -345,8 +346,9 @@ public class YATMItems
 	public static final RegistryObject<YATMBoatItem> SOUL_AFFLICTED_RUBBER_CHEST_BOAT = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_afflicted_rubber_chest_boat", () -> new YATMBoatItem(true, YATMBoatType.SOUL_AFFLICTED_RUBBER, new Item.Properties().stacksTo(1)))));
 
 	// TODO, some sort of hydraulic accumulator
-	// TODO, blocks matching against most components
+	// TODO, maybe: blocks matching against most components
 	public static final RegistryObject<CuToFeConverterItem> CU_TO_FE_CONVERTER = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("cu_to_fe_converter", () -> new CuToFeConverterItem(new Item.Properties().stacksTo(1), PrimitiveUtil.toFloatSupplier(YATMConfigs.CU_TO_FE_RATIO)))));
+	public static final RegistryObject<FeToCuConverterItem> FE_TO_CU_CONVERTER = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("fe_to_cu_converter", () -> new FeToCuConverterItem(new Item.Properties().stacksTo(1), PrimitiveUtil.toFloatSupplier(YATMConfigs.CU_TO_FE_RATIO)))));
 	
 	public static final RegistryObject<CurrentHeaterItem> EMBER_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("ember_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), YATMConfigs.EMBER_GLAND_MAX_TEMPERATURE, PrimitiveUtil.toFloatSupplier(YATMConfigs.EMBER_GLAND_KELVIN_PER_CURRENT)))));
 	public static final RegistryObject<CurrentHeaterItem> FLAME_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("flame_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), YATMConfigs.FLAME_GLAND_MAX_TEMPERATURE, PrimitiveUtil.toFloatSupplier(YATMConfigs.FLAME_GLAND_KELVIN_PER_CURRENT)))));

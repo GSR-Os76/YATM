@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.item.component.cu_fe_interconverter;
+package com.gsr.gsr_yatm.item.component.cu_to_fe_converter;
 
 import java.util.List;
 
@@ -8,7 +8,6 @@ import org.jetbrains.annotations.Nullable;
 import com.gsr.gsr_yatm.api.capability.IComponent;
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
-import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
@@ -29,7 +28,7 @@ public class CuToFeConverterItemStack implements ICapabilityProvider, IComponent
 
 
 
-	public CuToFeConverterItemStack(@NotNull ItemStack self, @NotNegative float cuToFeRatio)
+	public CuToFeConverterItemStack(@NotNull ItemStack self, float cuToFeRatio)
 	{
 		this.m_cuToFeRatio = cuToFeRatio;
 		this.m_feToCuRatio = cuToFeRatio == 0 ? 0 : 1f / cuToFeRatio;
@@ -39,25 +38,33 @@ public class CuToFeConverterItemStack implements ICapabilityProvider, IComponent
 	@Override
 	public int receiveCurrent(int amount, boolean simulate)
 	{
-		return this.m_attachment == null ? 0 :this.m_attachment.receiveEnergy((int)(((float)amount) * this.m_cuToFeRatio), simulate);
+		return this.m_attachment == null 
+				? 0 
+				: this.toCu(this.m_attachment.receiveEnergy(this.toFe(amount), simulate));
 	} // end receiveCurrent()
 
 	@Override
 	public int extractCurrent(int amount, boolean simulate)
 	{
-		return this.m_attachment == null ? 0 : this.m_attachment.extractEnergy((int)(((float)amount) * this.m_cuToFeRatio), simulate);
+		return this.m_attachment == null 
+				? 0 
+				: this.toCu(this.m_attachment.extractEnergy(this.toFe(amount), simulate));
 	} // end extractCurrent()
 
 	@Override
 	public int capacity()
 	{
-		return this.m_attachment == null ? 0 : (int)(((float)this.m_attachment.getMaxEnergyStored()) * this.m_feToCuRatio);
+		return this.m_attachment == null 
+				? 0 
+				: this.toCu(this.m_attachment.getMaxEnergyStored());
 	} // end capacity()
 
 	@Override
 	public int stored()
 	{
-		return this.m_attachment == null ? 0 : (int)(((float)this.m_attachment.getEnergyStored()) * this.m_feToCuRatio);
+		return this.m_attachment == null 
+				? 0 
+				: this.toCu(this.m_attachment.getEnergyStored());
 	} // end stored()
 
 
@@ -100,11 +107,23 @@ public class CuToFeConverterItemStack implements ICapabilityProvider, IComponent
 	@Override
 	public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side)
 	{
-		if (cap == YATMCapabilities.COMPONENT || cap == YATMCapabilities.CURRENT || cap == ForgeCapabilities.ENERGY)
+		if (cap == YATMCapabilities.COMPONENT || cap == YATMCapabilities.CURRENT)
 		{
 			return this.m_thisCap.cast();
 		}
 		return LazyOptional.empty();
 	} // end getCapabilitiy()
 
+	
+	
+	private int toFe(int cu) 
+	{
+		return (int)(((float)cu) * this.m_cuToFeRatio);
+	} // end toFe()
+	
+	private int toCu(int fe) 
+	{
+		return (int)(((float)fe) * this.m_feToCuRatio);
+	} // end toCu()
+	
 } // end class

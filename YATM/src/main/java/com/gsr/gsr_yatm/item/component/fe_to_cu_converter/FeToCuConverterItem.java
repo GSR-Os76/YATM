@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.item.component.cu_fe_interconverter;
+package com.gsr.gsr_yatm.item.component.fe_to_cu_converter;
 
 import java.util.Objects;
 import java.util.function.Supplier;
@@ -11,13 +11,13 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
-public class CuToFeConverterItem extends Item
+public class FeToCuConverterItem extends Item
 {
 	private final @NotNull Supplier<Float> m_cuToFeRatio;
 	
 	
 	
-	public CuToFeConverterItem(@NotNull Properties properties, @NotNull Supplier<Float> cuToFeRatio)
+	public FeToCuConverterItem(@NotNull Properties properties, @NotNull Supplier<Float> cuToFeRatio)
 	{
 		super(Objects.requireNonNull(properties));
 		this.m_cuToFeRatio = Objects.requireNonNull(cuToFeRatio);
@@ -28,6 +28,7 @@ public class CuToFeConverterItem extends Item
 	@Override
 	public @Nullable ICapabilityProvider initCapabilities(@NotNull ItemStack stack, @Nullable CompoundTag nbt)
 	{
-		return new CuToFeConverterItemStack(stack, this.m_cuToFeRatio.get());
+		return new FeToCuConverterItemStack(stack, this.m_cuToFeRatio.get());
 	} // end initCapabilities()
+	
 } // end class
