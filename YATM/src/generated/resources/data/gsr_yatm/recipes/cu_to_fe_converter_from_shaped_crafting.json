@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "g": {
+      "item": "minecraft:gold_ingot"
+    },
+    "r": {
+      "item": "minecraft:redstone"
+    },
+    "v": {
+      "item": "gsr_yatm:conduit_vines"
+    }
+  },
+  "pattern": [
+    "rgv",
+    "ggg",
+    "vgr"
+  ],
+  "result": {
+    "item": "gsr_yatm:cu_to_fe_converter"
+  },
+  "show_notification": true
+}

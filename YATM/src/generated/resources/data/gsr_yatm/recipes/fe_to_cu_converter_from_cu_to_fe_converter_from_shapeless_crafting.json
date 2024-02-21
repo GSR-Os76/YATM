@@ -1,0 +1,12 @@
+{
+  "type": "minecraft:crafting_shapeless",
+  "category": "misc",
+  "ingredients": [
+    {
+      "item": "gsr_yatm:cu_to_fe_converter"
+    }
+  ],
+  "result": {
+    "item": "gsr_yatm:fe_to_cu_converter"
+  }
+}
