@@ -28,7 +28,7 @@ public class CurrentUnitForgeEnergyInterchanger implements ICurrentHandler, IEne
 	
 	
 	@Override
-	public int recieveCurrent(int amount, boolean simulate)
+	public int receiveCurrent(int amount, boolean simulate)
 	{
 		int recieveAmount = Math.min(amount, this.m_storageCapacityInCUs - this.m_storedEnergyInCUs);
 		if(!simulate) 

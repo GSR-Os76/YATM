@@ -28,7 +28,7 @@ public class CurrentSource implements ICurrentHandler
 	
 	
 	@Override
-	public int recieveCurrent(int amount, boolean simulate)
+	public int receiveCurrent(int amount, boolean simulate)
 	{
 		return 0;
 	} // end recieveCurrent()

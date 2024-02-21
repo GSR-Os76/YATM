@@ -131,7 +131,7 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 		if(this.m_cComponent != null) 
 		{
 			this.m_cComponentStack = null;
-			this.m_cComponent.removeRecievingCapability(this.m_batteryCap);
+			this.m_cComponent.removeReceivingCapability(this.m_batteryCap);
 			this.m_cComponent = null;
 			this.m_cComponentCHandler = null;
 			this.m_cComponentOptionals = new HashMap<>();
@@ -143,7 +143,7 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 			{
 				this.m_cComponentStack = stack;
 				this.m_cComponent = sC;
-				this.m_cComponent.attachRecievingCapability(YATMCapabilities.CURRENT, this.m_batteryCap);
+				this.m_cComponent.attachReceivingCapability(YATMCapabilities.CURRENT, this.m_batteryCap);
 				this.m_cComponentCHandler = stack.getCapability(YATMCapabilities.CURRENT).orElse(null);
 			}
 		}
@@ -238,12 +238,12 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 	
 	
 	@Override
-	public int recieveCurrent(int amount, boolean simulate)
+	public int receiveCurrent(int amount, boolean simulate)
 	{
-		int r = this.m_builtInBattery.recieveCurrent(amount, simulate);
+		int r = this.m_builtInBattery.receiveCurrent(amount, simulate);
 		if (this.m_cComponentCHandler != null)
 		{
-			r += this.m_cComponentCHandler.recieveCurrent(amount - r, simulate);
+			r += this.m_cComponentCHandler.receiveCurrent(amount - r, simulate);
 		}
 		return r;
 	} // end recieveCurrent()
@@ -280,7 +280,7 @@ public class PoweredToolItemStack implements ICurrentHandler, ICapabilityProvide
 		}
 		else if (d < 0)
 		{
-			this.recieveCurrent(Math.abs(d), false);
+			this.receiveCurrent(Math.abs(d), false);
 		}
 	} // end setStoredCurrent()
 

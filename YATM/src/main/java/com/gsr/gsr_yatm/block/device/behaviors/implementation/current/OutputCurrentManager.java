@@ -49,7 +49,7 @@ public class OutputCurrentManager implements ITickableBehavior
 		if(this.m_attacher.getAttachments().size() > 0) 
 		{
 			int distibution = this.m_from.stored() / this.m_attacher.getAttachments().size();
-			this.m_attacher.getAttachments().stream().map((c) -> (ICurrentHandler)c).forEach((c) -> c.recieveCurrent(this.m_from.extractCurrent(c.recieveCurrent(this.m_from.extractCurrent(Math.min(distibution, this.m_maxCurrentTransfer), true), true), false), false));
+			this.m_attacher.getAttachments().stream().map((c) -> (ICurrentHandler)c).forEach((c) -> c.receiveCurrent(this.m_from.extractCurrent(c.receiveCurrent(this.m_from.extractCurrent(Math.min(distibution, this.m_maxCurrentTransfer), true), true), false), false));
 		}
 		return false;
 	} // end tick()

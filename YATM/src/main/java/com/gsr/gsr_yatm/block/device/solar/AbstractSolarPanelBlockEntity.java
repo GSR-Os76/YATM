@@ -204,7 +204,7 @@ public abstract class AbstractSolarPanelBlockEntity extends DeviceBlockEntity
 		int scaledGenerated = (int)generated;
 		if(scaledGenerated > 0) 
 		{
-			return this.m_internalCurrentStorer.recieveCurrent(scaledGenerated, false) > 0;
+			return this.m_internalCurrentStorer.receiveCurrent(scaledGenerated, false) > 0;
 		}
 		return changed;
 	} // end doGenerateTick()
@@ -213,7 +213,7 @@ public abstract class AbstractSolarPanelBlockEntity extends DeviceBlockEntity
 	{
 		if(this.m_slotHandler != null) 
 		{
-			return this.m_slotHandler.recieveCurrent(this.m_internalCurrentStorer.extractCurrent(this.m_slotHandler.recieveCurrent(this.m_internalCurrentStorer.extractCurrent(this.m_maxCurrentTransfer, true), true), false), false) > 0;
+			return this.m_slotHandler.receiveCurrent(this.m_internalCurrentStorer.extractCurrent(this.m_slotHandler.receiveCurrent(this.m_internalCurrentStorer.extractCurrent(this.m_maxCurrentTransfer, true), true), false), false) > 0;
 			// return SlotUtilities.tryPowerSlot(this.m_uncheckedInventory, POWER_SLOT, this.m_internalCurrentStorer, this.m_maxCurrentTransfer) > 0;
 		}
 		return false;
@@ -262,7 +262,7 @@ public abstract class AbstractSolarPanelBlockEntity extends DeviceBlockEntity
 			ICurrentHandler c = this.m_attachedSides.get(dir);
 			if(c != null) 
 			{
-				changed |= c.recieveCurrent(this.m_slotHandler.extractCurrent(sideAllotment, false), false) > 0;
+				changed |= c.receiveCurrent(this.m_slotHandler.extractCurrent(sideAllotment, false), false) > 0;
 			}
 		}
 		

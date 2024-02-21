@@ -37,7 +37,7 @@ public class CurrentHeaterItemStack implements ICapabilityProvider, IComponent, 
 	
 	
 	@Override
-	public int recieveCurrent(int amount, boolean simulate)
+	public int receiveCurrent(int amount, boolean simulate)
 	{
 		if(this.m_attachment == null) 
 		{
@@ -88,7 +88,7 @@ public class CurrentHeaterItemStack implements ICapabilityProvider, IComponent, 
 	
 	
 	@Override
-	public <T> void attachRecievingCapability(@NotNull Capability<T> capType, @NotNull LazyOptional<T> cap)
+	public <T> void attachReceivingCapability(@NotNull Capability<T> capType, @NotNull LazyOptional<T> cap)
 	{
 		if(!this.getValidCapabilities().contains(capType)) 
 		{
@@ -100,12 +100,12 @@ public class CurrentHeaterItemStack implements ICapabilityProvider, IComponent, 
 		{
 			this.m_attachedCap = c;
 			this.m_attachment = c.orElse(null);
-			c.addListener(this::removeRecievingCapability);
+			c.addListener(this::removeReceivingCapability);
 		}
 	} // end attachRecievingCapability()
 
 	@Override
-	public void removeRecievingCapability(@NotNull LazyOptional<?> cap)
+	public void removeReceivingCapability(@NotNull LazyOptional<?> cap)
 	{
 		if(cap == this.m_attachedCap) 
 		{

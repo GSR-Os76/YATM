@@ -236,9 +236,9 @@ public interface IBlockEntityHelpers
 		{
 
 			@Override
-			public @NotNegative int recieveCurrent(@NotNegative int amount, boolean simulate)
+			public @NotNegative int receiveCurrent(@NotNegative int amount, boolean simulate)
 			{
-				return c.recieveCurrent(amount, simulate);
+				return c.receiveCurrent(amount, simulate);
 			} // end recieveCurrent()
 
 			@Override

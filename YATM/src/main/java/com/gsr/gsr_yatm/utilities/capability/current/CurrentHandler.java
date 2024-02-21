@@ -36,7 +36,7 @@ public class CurrentHandler implements ICurrentHandler, INBTSerializable<Compoun
 	
 	
 	@Override
-	public @NotNegative int recieveCurrent(@NotNegative int amount, boolean simulate)
+	public @NotNegative int receiveCurrent(@NotNegative int amount, boolean simulate)
 	{
 		if(!this.m_canRecieve) 
 		{

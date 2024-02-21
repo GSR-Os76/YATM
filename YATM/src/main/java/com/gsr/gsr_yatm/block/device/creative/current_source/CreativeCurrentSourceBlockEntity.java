@@ -119,14 +119,14 @@ public class CreativeCurrentSourceBlockEntity extends BlockEntity implements IDe
 		ICurrentHandler ch = s.getCapability(YATMCapabilities.CURRENT).orElse((ICurrentHandler)null);
 		if(ch != null) 
 		{
-			ch.recieveCurrent(this.m_source.extractCurrent(Integer.MAX_VALUE, false), false);
+			ch.receiveCurrent(this.m_source.extractCurrent(Integer.MAX_VALUE, false), false);
 		}
 		for(Direction d : Direction.values()) 
 		{
 			if(this.m_source != null && this.m_neighborCaps.containsKey(d) && state.getValue(CreativeCurrentSourceBlock.ATTACHMENT_STATE_BY_FACE.get(d)) == AttachmentState.PUSH) 
 			{
 				ICurrentHandler n = this.m_neighborCaps.get(d).orElse((ICurrentHandler)null);
-				n.recieveCurrent(this.m_source.extractCurrent(Integer.MAX_VALUE, false), false);
+				n.receiveCurrent(this.m_source.extractCurrent(Integer.MAX_VALUE, false), false);
 			}
 		}			
 	} // end serverTick()

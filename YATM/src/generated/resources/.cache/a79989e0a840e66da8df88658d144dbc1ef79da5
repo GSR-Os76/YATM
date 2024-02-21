@@ -1,4 +1,4 @@
-// 1.20.2	2024-02-19T13:15:21.205071	Item Models: gsr_yatm
+// 1.20.2	2024-02-20T20:58:34.1937142	Item Models: gsr_yatm
 c2ea606d991a81e423cce1d89391873c41111adb assets/gsr_yatm/models/item/adamum_meristem.json
 14f5226a0106e1a4c57981511721fb6c8ffd9059 assets/gsr_yatm/models/item/advanced_current_battery.json
 684ab5903fbcfdbd643eb1efa0d897a0d95283a9 assets/gsr_yatm/models/item/advanced_current_battery_1.json
@@ -54,6 +54,7 @@ d7be4b9637377d2010161bc9b2d452fe22add250 assets/gsr_yatm/models/item/current_bat
 0160923e52d6e6e5ee84c08ff35b26df729d1fd1 assets/gsr_yatm/models/item/current_tuber_5.json
 5944c1c022b291a2cfd0347794125046a95af6cb assets/gsr_yatm/models/item/current_tuber_6.json
 17373f29435227349f83e7d6764789be937b60f6 assets/gsr_yatm/models/item/current_tuber_7.json
+79430afb1a5867c68e9a347ff6e36137a9233ff6 assets/gsr_yatm/models/item/cu_to_fe_converter.json
 f00926c141b4a5aa6509f4d9b2a36f6ebbb0d5f4 assets/gsr_yatm/models/item/cyan_candle_lantern.json
 48e59539a8908f1b75e5cf041d5088f8c4c64005 assets/gsr_yatm/models/item/decay_netherite_boots.json
 cffb8a20cd9153d42554dd2b093881cb2dd2ee74 assets/gsr_yatm/models/item/decay_netherite_chestplate.json

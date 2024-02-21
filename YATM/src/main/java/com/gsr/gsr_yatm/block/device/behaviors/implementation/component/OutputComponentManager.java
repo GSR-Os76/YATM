@@ -144,7 +144,7 @@ public class OutputComponentManager implements IInvalidatableCapabilityProvider,
 		LazyOptional<T> l = be.getCapability(cap, face);
 		if(l.isPresent() && !this.m_attachments.contains(l)) 
 		{
-			this.m_component.attachRecievingCapability(cap, l);
+			this.m_component.attachReceivingCapability(cap, l);
 			this.m_attachments.add(l);
 			l.addListener(this::removeInvalidatedAttachment);
 		}
@@ -156,7 +156,7 @@ public class OutputComponentManager implements IInvalidatableCapabilityProvider,
 	{
 		for(LazyOptional<?> l : this.m_attachments) 
 		{
-			this.m_component.removeRecievingCapability(l);
+			this.m_component.removeReceivingCapability(l);
 		}
 		this.m_attachments = new ArrayList<>();
 	} // end removeDrainResultAttachments()
@@ -166,7 +166,7 @@ public class OutputComponentManager implements IInvalidatableCapabilityProvider,
 		if(this.m_attachments.contains(lazyOptional)) 
 		{
 			this.m_attachments.remove(lazyOptional);
-			this.m_component.removeRecievingCapability(lazyOptional);
+			this.m_component.removeReceivingCapability(lazyOptional);
 		}
 	} // removeInvalidatedAttachment()
 	

@@ -47,7 +47,7 @@ public class CurrentDrainManager implements ITickableBehavior
 		ICurrentHandler slot = this.m_inventory.getStackInSlot(this.m_slot).getCapability(YATMCapabilities.CURRENT).orElse((ICurrentHandler)null);
 		if(slot != null) 
 		{
-			return slot.recieveCurrent(this.m_currentHandler.extractCurrent(slot.recieveCurrent(this.m_currentHandler.extractCurrent(this.m_maxTransfer, true), true), false), false) > 0;
+			return slot.receiveCurrent(this.m_currentHandler.extractCurrent(slot.receiveCurrent(this.m_currentHandler.extractCurrent(this.m_maxTransfer, true), true), false), false) > 0;
 		}
 		return false;
 	} // end tick()

@@ -7,9 +7,9 @@ import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 @AutoRegisterCapability
 public interface ICurrentHandler
 {
-	// recieve in current, actually, or see what would happen.
-	// returns amount recieved
-	public @NotNegative int recieveCurrent(@NotNegative int amount, boolean simulate);
+	// receive in current, actually, or see what would happen.
+	// returns amount received
+	public @NotNegative int receiveCurrent(@NotNegative int amount, boolean simulate);
 	
 	// from implementers perspective
 	// returns amount extracted
