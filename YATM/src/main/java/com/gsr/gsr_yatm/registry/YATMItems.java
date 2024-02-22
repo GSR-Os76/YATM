@@ -239,8 +239,6 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> INJECTOR = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("injector", () -> new BlockItem(YATMBlocks.INJECTOR.get(), new Item.Properties()))));
 	public static final RegistryObject<BlockItem> STILL = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("still", () -> new BlockItem(YATMBlocks.STILL.get(), new Item.Properties()))));
 	
-	public static final RegistryObject<BlockItem> C_U_F_E_I = /* generalTabEnqueue */(ITEMS.register("current_unit_forge_energy_interchanger", () -> new BlockItem(YATMBlocks.C_U_F_E_I.get(), new Item.Properties())));
-
 	public static final RegistryObject<BlockItem> CURRENT_TUBER_BLOCK = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_tuber_block", () -> new BlockItem(YATMBlocks.CURRENT_TUBER_BLOCK.get(), new Item.Properties()))));
 	public static final RegistryObject<BlockItem> CURRENT_BATTERY_BLOCK = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_battery_block", () -> new BlockItem(YATMBlocks.CURRENT_BATTERY_BLOCK.get(), new Item.Properties()))));
 	public static final RegistryObject<BlockItem> ADVANCED_CURRENT_BATTERY_BLOCK = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("advanced_current_battery_block", () -> new BlockItem(YATMBlocks.ADVANCED_CURRENT_BATTERY_BLOCK.get(), new Item.Properties()))));

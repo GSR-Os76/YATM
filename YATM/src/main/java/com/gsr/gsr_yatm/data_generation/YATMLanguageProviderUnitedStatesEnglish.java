@@ -253,8 +253,6 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.INJECTOR.get(), "Injector");
 		this.add(YATMBlocks.STILL.get(), "Still");
 		
-		this.add(YATMBlocks.C_U_F_E_I.get(), "Energy Converter (CU to FE)");
-		
 		
 		
 		this.add(YATMBlocks.CURRENT_TUBER_BLOCK.get(), "Current Tuber Block");

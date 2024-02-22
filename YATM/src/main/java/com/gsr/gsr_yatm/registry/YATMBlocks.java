@@ -19,7 +19,6 @@ import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSour
 import com.gsr.gsr_yatm.block.device.crucible.CrucibleBlock;
 import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlock;
 import com.gsr.gsr_yatm.block.device.current_storer.base.CurrentStorerBlock;
-import com.gsr.gsr_yatm.block.device.energy_converter.CurrentUnitForgeEnergyInterchangerBlock;
 import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlock;
 import com.gsr.gsr_yatm.block.device.grafting.GraftingTableBlock;
 import com.gsr.gsr_yatm.block.device.grinder.GrinderBlock;
@@ -380,8 +379,7 @@ public class YATMBlocks
 	public static final RegistryObject<InjectorBlock> INJECTOR = BLOCKS.register("injector", () -> new InjectorBlock(YATMBlockProperties.MACHINE, YATMBlockShapes.CUBE));
 	public static final RegistryObject<StillBlock> STILL = BLOCKS.register("still", () -> new StillBlock(YATMBlockProperties.MACHINE, YATMBlockShapes.CUBE));
 	
-	// TODO, refactor property out
-	public static final RegistryObject<CurrentUnitForgeEnergyInterchangerBlock> C_U_F_E_I = BLOCKS.register("current_unit_forge_energy_interchanger", () -> new CurrentUnitForgeEnergyInterchangerBlock(BlockBehaviour.Properties.of()));
+	// public static final RegistryObject<CurrentUnitForgeEnergyInterchangerBlock> C_U_F_E_I = BLOCKS.register("current_unit_forge_energy_interchanger", () -> new CurrentUnitForgeEnergyInterchangerBlock(BlockBehaviour.Properties.of()));
 	
 		
 	public static final RegistryObject<CurrentStorerBlock> CURRENT_TUBER_BLOCK = BLOCKS.register("current_tuber_block", () -> new CurrentStorerBlock(YATMBlockProperties.CURRENT_TUBER_BLOCK, YATMBlockShapes.CUBE, YATMBlockEntityTypes.CURRENT_TUBER_BLOCK::get));
