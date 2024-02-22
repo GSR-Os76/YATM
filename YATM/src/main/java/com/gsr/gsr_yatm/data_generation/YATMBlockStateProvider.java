@@ -248,8 +248,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addInjectors();
 		this.addStills();
 		
-		this.createAllBlock(YATMBlocks.C_U_F_E_I.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/energy_converter/energy_converter"));
-		
 		this.addCurrentStorers();
 		this.addTanks();
 		

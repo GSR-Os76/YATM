@@ -253,8 +253,6 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.INJECTOR.get(), "Injector");
 		this.add(YATMBlocks.STILL.get(), "Still");
 		
-		this.add(YATMBlocks.C_U_F_E_I.get(), "Energy Converter (CU to FE)");
-		
 		
 		
 		this.add(YATMBlocks.CURRENT_TUBER_BLOCK.get(), "Current Tuber Block");
@@ -340,9 +338,13 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.ADVANCED_CURRENT_BATTERY.get(), "Advanced Current Battery");
 		this.add(YATMItems.CURRENT_BATTERY.get(), "Current Battery");
 		this.add(YATMItems.CURRENT_TUBER.get(), "Current Tuber");
+		
 		this.add(YATMItems.EMBER_GLAND.get(), "Ember Gland");
 		this.add(YATMItems.FLAME_GLAND.get(), "Flame Gland");
 		this.add(YATMItems.TORCH_GLAND.get(), "Torch Gland");
+		
+		this.add(YATMItems.CU_TO_FE_CONVERTER.get(), "Converter (Cu to Fe)");
+		this.add(YATMItems.FE_TO_CU_CONVERTER.get(), "Converter (Fe to Cu)");
 		
 		
 		this.add(YATMItems.BIO_BUCKET.get(), "Biofluid Bucket");

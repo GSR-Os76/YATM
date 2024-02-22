@@ -25,14 +25,14 @@ public class CurrentHandlerWrapper implements ICurrentHandler
 	
 	
 	@Override
-	public int recieveCurrent(int amount, boolean simulate)
+	public int receiveCurrent(int amount, boolean simulate)
 	{
 		if(!this.m_canRecieve) 
 		{
 			
 			return 0;
 		}
-		int r = this.m_wrapped.recieveCurrent(amount, simulate);
+		int r = this.m_wrapped.receiveCurrent(amount, simulate);
 		if(!simulate && this.m_onCurrentRecieved != null) 
 		{
 				this.m_onCurrentRecieved.accept(r);

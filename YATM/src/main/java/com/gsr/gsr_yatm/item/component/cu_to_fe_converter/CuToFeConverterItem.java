@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.item.component.current_storer;
+package com.gsr.gsr_yatm.item.component.cu_to_fe_converter;
 
 import java.util.Objects;
 import java.util.function.Supplier;
@@ -11,32 +11,24 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.ICapabilityProvider;
 
-public class CurrentStorerItem extends Item
+public class CuToFeConverterItem extends Item
 {
-	private final @NotNull Supplier<Integer> m_capacity;
+	private final @NotNull Supplier<Float> m_cuToFeRatio;
 	
 	
 	
-	public CurrentStorerItem(@NotNull Properties properties, @NotNull Supplier<Integer> capacity)
+	public CuToFeConverterItem(@NotNull Properties properties, @NotNull Supplier<Float> cuToFeRatio)
 	{
 		super(Objects.requireNonNull(properties));
-		this.m_capacity = Objects.requireNonNull(capacity);
+		this.m_cuToFeRatio = Objects.requireNonNull(cuToFeRatio);
 	} // end constructor
 	
 	
 	
 	@Override
-	public int getMaxDamage(@NotNull ItemStack stack)
-	{
-		return this.m_capacity.get();
-	} // end getMaxDamage()
-
-
-	
-	@Override
 	public @Nullable ICapabilityProvider initCapabilities(@NotNull ItemStack stack, @Nullable CompoundTag nbt)
 	{
-		return new CurrentStorerItemStack(stack, this.m_capacity.get());
+		return new CuToFeConverterItemStack(stack, this.m_cuToFeRatio.get());
 	} // end initCapabilities()
-
+	
 } // end class

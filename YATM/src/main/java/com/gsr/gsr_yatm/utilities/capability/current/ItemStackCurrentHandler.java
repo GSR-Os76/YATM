@@ -31,7 +31,7 @@ public class ItemStackCurrentHandler implements ICurrentHandler
 	
 	
 	@Override
-	public int recieveCurrent(@NotNegative int amount, boolean simulate)
+	public int receiveCurrent(@NotNegative int amount, boolean simulate)
 	{
 		Contract.notNegative(amount);
 		

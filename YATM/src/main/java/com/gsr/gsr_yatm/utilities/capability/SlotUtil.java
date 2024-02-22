@@ -327,7 +327,7 @@ public class SlotUtil
 		ICurrentHandler c = stackInSlot.getCapability(YATMCapabilities.CURRENT).orElse(null);
 		if(c != null) 
 		{
-			return c.recieveCurrent(from.extractCurrent(c.recieveCurrent(from.extractCurrent(maxTransfer, true), true), false), false);
+			return c.receiveCurrent(from.extractCurrent(c.receiveCurrent(from.extractCurrent(maxTransfer, true), true), false), false);
 		}
 		
 		return 0;

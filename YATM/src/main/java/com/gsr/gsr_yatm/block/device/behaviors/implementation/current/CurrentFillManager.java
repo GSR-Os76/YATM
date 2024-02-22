@@ -47,7 +47,7 @@ public class CurrentFillManager implements ITickableBehavior
 		ICurrentHandler slot = this.m_inventory.getStackInSlot(this.m_slot).getCapability(YATMCapabilities.CURRENT).orElse((ICurrentHandler)null);
 		if(slot != null) 
 		{
-			return this.m_currentHandler.recieveCurrent(slot.extractCurrent(this.m_currentHandler.recieveCurrent(slot.extractCurrent(this.m_maxTransfer, true), true), false), false) > 0;
+			return this.m_currentHandler.receiveCurrent(slot.extractCurrent(this.m_currentHandler.receiveCurrent(slot.extractCurrent(this.m_maxTransfer, true), true), false), false) > 0;
 		}
 		return false;
 	} // end tick()

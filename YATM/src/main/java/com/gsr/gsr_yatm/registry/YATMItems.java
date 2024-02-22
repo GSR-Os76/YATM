@@ -17,9 +17,11 @@ import com.gsr.gsr_yatm.item.SpeedUpgradeItem;
 import com.gsr.gsr_yatm.item.YATMBoatItem;
 import com.gsr.gsr_yatm.item.armor.LazyArmorItem;
 import com.gsr.gsr_yatm.item.armor.PoweredArmorItem;
+import com.gsr.gsr_yatm.item.component.cu_to_fe_converter.CuToFeConverterItem;
 import com.gsr.gsr_yatm.item.component.current_heater.CurrentHeaterItem;
 import com.gsr.gsr_yatm.item.component.current_pass_through.CurrentPassThroughBlockItem;
 import com.gsr.gsr_yatm.item.component.current_storer.CurrentStorerItem;
+import com.gsr.gsr_yatm.item.component.fe_to_cu_converter.FeToCuConverterItem;
 import com.gsr.gsr_yatm.item.component.fluid_pass_through.FluidPassThroughBlockItem;
 import com.gsr.gsr_yatm.item.creative.current.CreativeCurrentSourceItem;
 import com.gsr.gsr_yatm.item.creative.fluid.CreativeFluidSourceItem;
@@ -237,8 +239,6 @@ public class YATMItems
 	public static final RegistryObject<BlockItem> INJECTOR = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("injector", () -> new BlockItem(YATMBlocks.INJECTOR.get(), new Item.Properties()))));
 	public static final RegistryObject<BlockItem> STILL = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("still", () -> new BlockItem(YATMBlocks.STILL.get(), new Item.Properties()))));
 	
-	public static final RegistryObject<BlockItem> C_U_F_E_I = /* generalTabEnqueue */(ITEMS.register("current_unit_forge_energy_interchanger", () -> new BlockItem(YATMBlocks.C_U_F_E_I.get(), new Item.Properties())));
-
 	public static final RegistryObject<BlockItem> CURRENT_TUBER_BLOCK = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_tuber_block", () -> new BlockItem(YATMBlocks.CURRENT_TUBER_BLOCK.get(), new Item.Properties()))));
 	public static final RegistryObject<BlockItem> CURRENT_BATTERY_BLOCK = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_battery_block", () -> new BlockItem(YATMBlocks.CURRENT_BATTERY_BLOCK.get(), new Item.Properties()))));
 	public static final RegistryObject<BlockItem> ADVANCED_CURRENT_BATTERY_BLOCK = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("advanced_current_battery_block", () -> new BlockItem(YATMBlocks.ADVANCED_CURRENT_BATTERY_BLOCK.get(), new Item.Properties()))));
@@ -343,14 +343,15 @@ public class YATMItems
 	public static final RegistryObject<YATMBoatItem> SOUL_AFFLICTED_RUBBER_BOAT = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_afflicted_rubber_boat", () -> new YATMBoatItem(false, YATMBoatType.SOUL_AFFLICTED_RUBBER, new Item.Properties().stacksTo(1)))));
 	public static final RegistryObject<YATMBoatItem> SOUL_AFFLICTED_RUBBER_CHEST_BOAT = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_afflicted_rubber_chest_boat", () -> new YATMBoatItem(true, YATMBoatType.SOUL_AFFLICTED_RUBBER, new Item.Properties().stacksTo(1)))));
 
-	// TODO, components should be a capability for compatibility and versatility
 	// TODO, some sort of hydraulic accumulator
-	// TODO, blocks matching against most components
+	// TODO, maybe: blocks matching against most components
+	public static final RegistryObject<CuToFeConverterItem> CU_TO_FE_CONVERTER = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("cu_to_fe_converter", () -> new CuToFeConverterItem(new Item.Properties().stacksTo(1), PrimitiveUtil.toFloatSupplier(YATMConfigs.CU_TO_FE_RATIO)))));
+	public static final RegistryObject<FeToCuConverterItem> FE_TO_CU_CONVERTER = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("fe_to_cu_converter", () -> new FeToCuConverterItem(new Item.Properties().stacksTo(1), PrimitiveUtil.toFloatSupplier(YATMConfigs.CU_TO_FE_RATIO)))));
+	
 	public static final RegistryObject<CurrentHeaterItem> EMBER_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("ember_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), YATMConfigs.EMBER_GLAND_MAX_TEMPERATURE, PrimitiveUtil.toFloatSupplier(YATMConfigs.EMBER_GLAND_KELVIN_PER_CURRENT)))));
 	public static final RegistryObject<CurrentHeaterItem> FLAME_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("flame_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), YATMConfigs.FLAME_GLAND_MAX_TEMPERATURE, PrimitiveUtil.toFloatSupplier(YATMConfigs.FLAME_GLAND_KELVIN_PER_CURRENT)))));
 	public static final RegistryObject<CurrentHeaterItem> TORCH_GLAND = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("torch_gland", () -> new CurrentHeaterItem(new Item.Properties().stacksTo(1), YATMConfigs.TORCH_GLAND_MAX_TEMPERATURE, PrimitiveUtil.toFloatSupplier(YATMConfigs.TORCH_GLAND_KELVIN_PER_CURRENT)))));
 	
-	// TODO, draw
 	public static final RegistryObject<CurrentStorerItem> CURRENT_TUBER = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_tuber", () -> new CurrentStorerItem(new Item.Properties().durability(1).setNoRepair(), YATMConfigs.CURRENT_TUBER_CURRENT_CAPACITY))));
 	public static final RegistryObject<CurrentStorerItem> CURRENT_BATTERY = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("current_battery", () -> new CurrentStorerItem(new Item.Properties().durability(1).setNoRepair(), YATMConfigs.CURRENT_BATTERY_CURRENT_CAPACITY))));
 	public static final RegistryObject<CurrentStorerItem> ADVANCED_CURRENT_BATTERY = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("advanced_current_battery", () -> new CurrentStorerItem(new Item.Properties().durability(1).setNoRepair(), YATMConfigs.ADVANCED_CURRENT_BATTERY_CURRENT_CAPACITY))));

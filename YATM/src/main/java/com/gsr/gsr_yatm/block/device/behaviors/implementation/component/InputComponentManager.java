@@ -89,7 +89,7 @@ public class InputComponentManager<C> implements IInvalidatableCapabilityProvide
 		{
 			this.m_component = hc;
 			this.m_componentAttachment = LazyOptional.of(() -> this.m_inwardAttachment);
-			this.m_component.attachRecievingCapability(this.m_capability, this.m_componentAttachment);
+			this.m_component.attachReceivingCapability(this.m_capability, this.m_componentAttachment);
 		}
 	} // end updateComponent()
 

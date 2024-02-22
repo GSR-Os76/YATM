@@ -31,7 +31,9 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.addCurrentStorer(YATMItems.ADVANCED_CURRENT_BATTERY.get());
 		this.addCurrentStorer(YATMItems.CURRENT_BATTERY.get());
 		this.addCurrentStorer(YATMItems.CURRENT_TUBER.get());
+		this.basicItem(YATMItems.CU_TO_FE_CONVERTER.get());
 		this.basicItem(YATMItems.EMBER_GLAND.get());
+		this.basicItem(YATMItems.FE_TO_CU_CONVERTER.get());
 		this.basicItem(YATMItems.FLAME_GLAND.get());
 		this.basicItem(YATMItems.FOLIAR_STEEL.get());
 		this.basicItem(YATMItems.FOLIAR_STEEL_SHRED.get());

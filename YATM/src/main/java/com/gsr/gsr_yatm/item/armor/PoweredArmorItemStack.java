@@ -33,7 +33,7 @@ public class PoweredArmorItemStack implements ICapabilityProvider, ICurrentHandl
 	
 	
 	@Override
-	public @NotNegative int recieveCurrent(@NotNegative int amount, boolean simulate)
+	public @NotNegative int receiveCurrent(@NotNegative int amount, boolean simulate)
 	{
 		int rV = Math.min(this.m_self.getDamageValue(), amount / this.m_cuPerDurability);
 		int cV = amount * this.m_cuPerDurability;

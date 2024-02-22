@@ -55,16 +55,16 @@ public class CurrentStorerItemStack implements ICapabilityProvider, IComponent, 
 	
 	
 	@Override
-	public int recieveCurrent(int amount, boolean simulate)
+	public int receiveCurrent(int amount, boolean simulate)
 	{
 		int toInner = amount;
 		int fromC = 0;
 		if(this.m_attachment != null) 
 		{
-			fromC = this.m_attachment.recieveCurrent(amount, simulate);
+			fromC = this.m_attachment.receiveCurrent(amount, simulate);
 			toInner = amount - fromC;
 		}
-		return this.m_inner.recieveCurrent(toInner, simulate) + fromC;
+		return this.m_inner.receiveCurrent(toInner, simulate) + fromC;
 	} // end recieveCurrent()
 
 	@Override
@@ -92,7 +92,7 @@ public class CurrentStorerItemStack implements ICapabilityProvider, IComponent, 
 	
 	
 	@Override
-	public <T> void attachRecievingCapability(@NotNull Capability<T> capType, @NotNull LazyOptional<T> cap)
+	public <T> void attachReceivingCapability(@NotNull Capability<T> capType, @NotNull LazyOptional<T> cap)
 	{
 		if(!this.getValidCapabilities().contains(capType)) 
 		{
@@ -104,12 +104,12 @@ public class CurrentStorerItemStack implements ICapabilityProvider, IComponent, 
 		{
 			this.m_attachedCap = c;
 			this.m_attachment = c.orElse(null);
-			c.addListener(this::removeRecievingCapability);
+			c.addListener(this::removeReceivingCapability);
 		}
 	} // end attachRecievingCapability()
 
 	@Override
-	public void removeRecievingCapability(@NotNull LazyOptional<?> cap)
+	public void removeReceivingCapability(@NotNull LazyOptional<?> cap)
 	{
 		if(cap == this.m_attachedCap) 
 		{

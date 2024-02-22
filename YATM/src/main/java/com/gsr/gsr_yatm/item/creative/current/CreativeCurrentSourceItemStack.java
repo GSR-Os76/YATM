@@ -20,7 +20,7 @@ public class CreativeCurrentSourceItemStack implements ICapabilityProvider, ICur
 	
 	
 	@Override
-	public @NotNegative int recieveCurrent(@NotNegative int amount, boolean simulate)
+	public @NotNegative int receiveCurrent(@NotNegative int amount, boolean simulate)
 	{
 		return 0;
 	} // end recieveCurrent()

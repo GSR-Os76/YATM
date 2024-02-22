@@ -11,11 +11,11 @@ import net.minecraftforge.common.util.LazyOptional;
 @AutoRegisterCapability
 public interface IComponent
 {
-	// the capability that recieves forwarded whatever from the component, example: the device that's getting power from a slotted fuse
+	// the capability that receives forwarded whatever from the component, example: the device that's getting power from a slotted fuse
 	// should throw error if invalid's attempt to be attached
-	public <T> void attachRecievingCapability(@NotNull Capability<T> capType, @NotNull LazyOptional<T> cap);
+	public <T> void attachReceivingCapability(@NotNull Capability<T> capType, @NotNull LazyOptional<T> cap);
 
-	public void removeRecievingCapability(@NotNull LazyOptional<?> cap);
+	public void removeReceivingCapability(@NotNull LazyOptional<?> cap);
 
 	
 	
