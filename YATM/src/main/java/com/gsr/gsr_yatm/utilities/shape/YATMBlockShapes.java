@@ -5,10 +5,10 @@ import java.util.Map;
 import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.ImmutableMap;
-import com.gsr.gsr_yatm.block.conduit.channel_vine.ChannelVineBlock;
 import com.gsr.gsr_yatm.block.device.AttachmentState;
-import com.gsr.gsr_yatm.block.device.grafting.GraftingTableBlock;
-import com.gsr.gsr_yatm.block.device.spinning_wheel.SpinningWheelBlock;
+import com.gsr.gsr_yatm.block.device.conduit.channel_vine.ChannelVineBlock;
+import com.gsr.gsr_yatm.block.device.crafting.grafting_table.GraftingTableBlock;
+import com.gsr.gsr_yatm.block.device.crafting.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsVegetationBlock;

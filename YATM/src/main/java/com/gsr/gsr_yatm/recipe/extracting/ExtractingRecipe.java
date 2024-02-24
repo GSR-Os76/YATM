@@ -5,8 +5,8 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
-import com.gsr.gsr_yatm.block.device.bioreactor.BioreactorBlockEntity;
-import com.gsr.gsr_yatm.block.device.extractor.ExtractorBlockEntity;
+import com.gsr.gsr_yatm.block.device.crafting.bioreactor.BioreactorBlockEntity;
+import com.gsr.gsr_yatm.block.device.crafting.extractor.ExtractorBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.recipe.RecipeBase;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;

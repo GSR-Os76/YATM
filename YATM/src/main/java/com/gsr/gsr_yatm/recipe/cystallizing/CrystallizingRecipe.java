@@ -5,7 +5,7 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
-import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerBlockEntity;
+import com.gsr.gsr_yatm.block.device.crafting.crystallizer.CrystallizerBlockEntity;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.recipe.RecipeBase;
 import com.gsr.gsr_yatm.recipe.ingredient.IIngredient;

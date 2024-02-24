@@ -5,7 +5,7 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.api.capability.IHeatHandler;
-import com.gsr.gsr_yatm.block.device.crucible.CrucibleBlockEntity;
+import com.gsr.gsr_yatm.block.device.crafting.crucible.CrucibleBlockEntity;
 import com.gsr.gsr_yatm.recipe.IHeatedRecipe;
 import com.gsr.gsr_yatm.recipe.ITimedRecipe;
 import com.gsr.gsr_yatm.recipe.RecipeBase;

@@ -1,20 +1,20 @@
 package com.gsr.gsr_yatm.registry;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.block.device.bioreactor.BioreactorMenu;
-import com.gsr.gsr_yatm.block.device.boiler.BoilerMenu;
+import com.gsr.gsr_yatm.block.device.crafting.bioreactor.BioreactorMenu;
+import com.gsr.gsr_yatm.block.device.crafting.boiler.BoilerMenu;
+import com.gsr.gsr_yatm.block.device.crafting.crucible.CrucibleMenu;
+import com.gsr.gsr_yatm.block.device.crafting.crystallizer.CrystallizerMenu;
+import com.gsr.gsr_yatm.block.device.crafting.extractor.ExtractorMenu;
+import com.gsr.gsr_yatm.block.device.crafting.grafting_table.GraftingMenu;
+import com.gsr.gsr_yatm.block.device.crafting.grinder.GrinderMenu;
+import com.gsr.gsr_yatm.block.device.crafting.heat_furnace.HeatFurnaceMenu;
+import com.gsr.gsr_yatm.block.device.crafting.injector.InjectorMenu;
+import com.gsr.gsr_yatm.block.device.crafting.still.StillMenu;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceMenu;
-import com.gsr.gsr_yatm.block.device.crucible.CrucibleMenu;
-import com.gsr.gsr_yatm.block.device.crystallizer.CrystallizerMenu;
 import com.gsr.gsr_yatm.block.device.current_storer.base.CurrentStorerMenu;
-import com.gsr.gsr_yatm.block.device.extractor.ExtractorMenu;
-import com.gsr.gsr_yatm.block.device.grafting.GraftingMenu;
-import com.gsr.gsr_yatm.block.device.grinder.GrinderMenu;
-import com.gsr.gsr_yatm.block.device.heat_furnace.HeatFurnaceMenu;
-import com.gsr.gsr_yatm.block.device.injector.InjectorMenu;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelMenu;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelMenu;
-import com.gsr.gsr_yatm.block.device.still.StillMenu;
 import com.gsr.gsr_yatm.item.tool.PoweredToolMenu;
 
 import net.minecraft.world.flag.FeatureFlagSet;
