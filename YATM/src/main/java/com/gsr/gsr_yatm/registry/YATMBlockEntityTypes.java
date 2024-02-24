@@ -1,8 +1,6 @@
 package com.gsr.gsr_yatm.registry;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.block.device.compute.scan_collector.DataScanCollectorBlockEntity;
-import com.gsr.gsr_yatm.block.device.compute.storage.DataStorageBlockEntity;
 import com.gsr.gsr_yatm.block.device.conduit.channel_vine.ChannelVinesBlockEntity;
 import com.gsr.gsr_yatm.block.device.conduit.conduit_vine_bundle.ConduitVineBundleBlockEntity;
 import com.gsr.gsr_yatm.block.device.crafting.bioreactor.BioreactorBlockEntity;
@@ -42,11 +40,6 @@ public class YATMBlockEntityTypes
 	public static final RegistryObject<BlockEntityType<YATMHangingSignBlockEntity>> YATM_HANGING_SIGN = BLOCK_ENTITY_TYPES.register("yatm_hanging_sign", () -> BlockEntityType.Builder.of(YATMHangingSignBlockEntity::new, YATMBlocks.RUBBER_HANGING_SIGN.get(), YATMBlocks.RUBBER_WALL_HANGING_SIGN.get(), YATMBlocks.SOUL_AFFLICTED_RUBBER_HANGING_SIGN.get(), YATMBlocks.SOUL_AFFLICTED_RUBBER_WALL_HANGING_SIGN.get()).build(null));
 	
 	public static final RegistryObject<BlockEntityType<SapCollectorBlockEntity>> SAP_COLLECTOR = BLOCK_ENTITY_TYPES.register("sap_collector", () -> BlockEntityType.Builder.of(SapCollectorBlockEntity::new, YATMBlocks.SAP_COLLECTOR.get()).build(null));	
-	
-	public static final RegistryObject<BlockEntityType<DataScanCollectorBlockEntity>> DATA_SCAN_COLLECTOR = BLOCK_ENTITY_TYPES.register("data_scan_collector", () -> BlockEntityType.Builder.of(DataScanCollectorBlockEntity::new, YATMBlocks.DATA_SCAN_COLLECTOR.get()).build(null));
-	// public static final RegistryObject<BlockEntityType<DestructiveScannerBlockEntity>> DESTRUCTIVE_SCANNER = BLOCK_ENTITY_TYPES.register("destructive_scanner", () -> BlockEntityType.Builder.of(DestructiveScannerBlockEntity::new, YATMBlocks..get()).build(null));
-	public static final RegistryObject<BlockEntityType<DataStorageBlockEntity>> DATA_STORAGE = BLOCK_ENTITY_TYPES.register("data_storage", () -> BlockEntityType.Builder.of(DataStorageBlockEntity::new, YATMBlocks.DATA_STORAGE_BLOCK.get()).build(null));
-	// public static final RegistryObject<BlockEntityType<DataProcessorBlockEntity>> DATA_PROCESSOR = BLOCK_ENTITY_TYPES.register("data_processor", () -> BlockEntityType.Builder.of(DataProcessorBlockEntity::new, YATMBlocks..get()).build(null));
 	
 	public static final RegistryObject<BlockEntityType<BioreactorBlockEntity>> BIOLER = BLOCK_ENTITY_TYPES.register("bioreactor", () -> BlockEntityType.Builder.of(BioreactorBlockEntity::new, YATMBlocks.BIOREACTOR.get()).build(null));
 	public static final RegistryObject<BlockEntityType<BoilerBlockEntity>> BOILER = BLOCK_ENTITY_TYPES.register("boiler", () -> BlockEntityType.Builder.of(BoilerBlockEntity::new, YATMBlocks.BOILER.get()).build(null));

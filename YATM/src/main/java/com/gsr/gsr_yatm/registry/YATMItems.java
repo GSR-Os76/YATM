@@ -224,11 +224,6 @@ public class YATMItems
 	
 	public static final RegistryObject<BlockItem> LARGE_COPPER_HEAT_SINK = /* generalTabEnqueue */(ITEMS.register("large_copper_heat_sink", () -> new BlockItem(YATMBlocks.LARGE_COPPER_HEAT_SINK.get(), new Item.Properties())));
 
-	public static final RegistryObject<BlockItem> DATA_STORAGE_BLOCK = /* generalTabEnqueue */(ITEMS.register("data_storage_block", () -> new BlockItem(YATMBlocks.DATA_STORAGE_BLOCK.get(), new Item.Properties())));
-	public static final RegistryObject<BlockItem> DATA_SCAN_COLLECTOR = /* generalTabEnqueue */(ITEMS.register("data_scan_collector", () -> new BlockItem(YATMBlocks.DATA_SCAN_COLLECTOR.get(), new Item.Properties())));
-	public static final RegistryObject<BlockItem> DESTRUCTIVE_DATA_SCANNER = /* generalTabEnqueue */(ITEMS.register("destructive_data_scanner", () -> new BlockItem(YATMBlocks.DESTRUCTIVE_DATA_SCANNER.get(), new Item.Properties())));
-	public static final RegistryObject<BlockItem> DATA_PROCESSOR = /* generalTabEnqueue */(ITEMS.register("data_processor", () -> new BlockItem(YATMBlocks.DATA_PROCESSOR.get(), new Item.Properties())));
-	
 	public static final RegistryObject<BlockItem> BIOREACTOR = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("bioreactor", () -> new BlockItem(YATMBlocks.BIOREACTOR.get(), new Item.Properties()))));
 	public static final RegistryObject<BlockItem> BOILER = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("boiler", () -> new BlockItem(YATMBlocks.BOILER.get(), new Item.Properties()))));
 	public static final RegistryObject<BlockItem> CRUCIBLE = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("crucible", () -> new BlockItem(YATMBlocks.CRUCIBLE.get(), new Item.Properties()))));

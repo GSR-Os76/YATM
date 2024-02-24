@@ -236,7 +236,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addSapCollectors();
 		this.createSpinningWheel(YATMBlocks.SPINNING_WHEEL.get(), YATMItems.SPINNING_WHEEL.get());
 		this.addHeatSinks();
-		this.addComputeBlocks();
 		// TODO, probably pack all these crafting ones into one method, and remove the individual ones.
 		this.addBioreactors();
 		this.addBoilers();
@@ -641,13 +640,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createFilledSapCollector(YATMBlocks.SAP_COLLECTOR_LATEX.get(), new ResourceLocation("gsr_yatm:block/latex_still"));
 		this.createFilledSapCollector(YATMBlocks.SAP_COLLECTOR_SOUL_SAP.get(), new ResourceLocation("gsr_yatm:block/soul_sap_still"));
 	} // end addSapCollectors()
-	
-	private void addComputeBlocks() 
-	{
-		this.createFaceFacingBlock(YATMBlocks.DATA_SCAN_COLLECTOR.get(), YATMItems.DATA_SCAN_COLLECTOR.get(), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/compute/data_scan_collector/data_scan_collector_face"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/compute/data_scan_collector/data_scan_collector_side"));
-	} // end addComputeBlocks()
 	
 	private void addBioreactors() 
 	{
@@ -1626,6 +1618,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(unlitModel);
 	} // end createFacingBlock()	
 	
+	@SuppressWarnings("unused")
 	private void createFaceFacingBlock(@NotNull Block block, @NotNull Item item, @NotNull ResourceLocation faceTexture, @NotNull ResourceLocation sideTexture)
 	{
 		String name = YATMBlockStateProvider.getModelLocationNameFor(block);

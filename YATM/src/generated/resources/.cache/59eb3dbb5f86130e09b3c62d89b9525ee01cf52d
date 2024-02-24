@@ -1,4 +1,4 @@
-// 1.20.2	2024-02-16T13:54:31.4415045	Loot Tables
+// 1.20.2	2024-02-23T20:34:19.5778073	Loot Tables
 3447f366126fe84e5d7fe101ca492c681d974485 data/gsr_yatm/loot_tables/blocks/adamum.json
 c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
 bb48ae5488dbb788d7154346dcd565e1b37bdf87 data/gsr_yatm/loot_tables/blocks/advanced_current_battery_block.json
@@ -35,14 +35,9 @@ d44326a713011631862e9dcfc23d275c34595343 data/gsr_yatm/loot_tables/blocks/crysta
 ea397d9b2a1a236de4944ed16fb78623084d1265 data/gsr_yatm/loot_tables/blocks/cuprum.json
 15d4be082d001ca1ec568415525c77c7253229a8 data/gsr_yatm/loot_tables/blocks/current_battery_block.json
 a8600359c467036fd43a803ca986f8865e498328 data/gsr_yatm/loot_tables/blocks/current_tuber_block.json
-bf2097dc70064e8f3dc8fde9ed16d7bd87383b3e data/gsr_yatm/loot_tables/blocks/current_unit_forge_energy_interchanger.json
 1b9af8a793804335879abb1ccf604bfb4addeb4b data/gsr_yatm/loot_tables/blocks/cyan_candle_lantern.json
 c233c266c12b081d0aad6d10f896033167b8d111 data/gsr_yatm/loot_tables/blocks/cyan_shulkwart.json
-fcc87fb58dd3949cdf00dff82b36d92dad88b421 data/gsr_yatm/loot_tables/blocks/data_processor.json
-e032d71f0fd762c60f7a54a45f395d84644db316 data/gsr_yatm/loot_tables/blocks/data_scan_collector.json
-4e0214168b30064d15fc3ccb509fdd99f3d2a661 data/gsr_yatm/loot_tables/blocks/data_storage_block.json
 c645ea266cc5f1e59cec421cf1ecf4cb2cee22f0 data/gsr_yatm/loot_tables/blocks/deepslate_foliar_steel_ore.json
-5843ea129dd62d47a69d0ca1d756cbac7d4b56cd data/gsr_yatm/loot_tables/blocks/destructive_data_scanner.json
 b1151997c5dc0ffffca9d55de9d14ed678040b79 data/gsr_yatm/loot_tables/blocks/dwarf_persimmon.json
 f4980a2209405a64dd7d890e3bd8d9af2e3b5958 data/gsr_yatm/loot_tables/blocks/extractor.json
 fec70c94dede2f9f6fd5673bf0f1974bb150fdaf data/gsr_yatm/loot_tables/blocks/fallen_shulkwart_spores.json

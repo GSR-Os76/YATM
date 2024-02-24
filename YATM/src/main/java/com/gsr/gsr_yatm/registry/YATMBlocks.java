@@ -7,10 +7,6 @@ import com.gsr.gsr_yatm.block.DecayingBlock;
 import com.gsr.gsr_yatm.block.NoCullBlock;
 import com.gsr.gsr_yatm.block.WaterloggableBlock;
 import com.gsr.gsr_yatm.block.candle_lantern.CandleLanternBlock;
-import com.gsr.gsr_yatm.block.device.compute.DataProcessorBlock;
-import com.gsr.gsr_yatm.block.device.compute.DestructiveDataScannerBlock;
-import com.gsr.gsr_yatm.block.device.compute.scan_collector.DataCollectorBlock;
-import com.gsr.gsr_yatm.block.device.compute.storage.DataStorageBlock;
 import com.gsr.gsr_yatm.block.device.conduit.channel_vine.ChannelVineBlock;
 import com.gsr.gsr_yatm.block.device.conduit.conduit_vine_bundle.ConduitVineBundleBlock;
 import com.gsr.gsr_yatm.block.device.crafting.bioreactor.BioreactorBlock;
@@ -360,13 +356,6 @@ public class YATMBlocks
 	
 	public static final RegistryObject<HeatSinkBlock> LARGE_COPPER_HEAT_SINK = BLOCKS.register("large_copper_heat_sink", () -> new HeatSinkBlock(BlockBehaviour.Properties.of()));
 	
-	
-	
-	public static final RegistryObject<DataStorageBlock> DATA_STORAGE_BLOCK = BLOCKS.register("data_storage_block", () -> new DataStorageBlock(YATMBlockProperties.DATA_DEVICE));
-	public static final RegistryObject<DataCollectorBlock> DATA_SCAN_COLLECTOR = BLOCKS.register("data_scan_collector", () -> new DataCollectorBlock(YATMBlockProperties.DATA_DEVICE));
-	public static final RegistryObject<DestructiveDataScannerBlock> DESTRUCTIVE_DATA_SCANNER = BLOCKS.register("destructive_data_scanner", () -> new DestructiveDataScannerBlock(YATMBlockProperties.DATA_DEVICE));
-	public static final RegistryObject<DataProcessorBlock> DATA_PROCESSOR = BLOCKS.register("data_processor", () -> new DataProcessorBlock(YATMBlockProperties.DATA_DEVICE));
-
 	// TODO, add a pump, takes fluid from underneath it, or under it's lowest pipe, checks spreading source rule things, possibly drills and lays down well pipe(by config), can always get water if it drills to 64~, block updates configurable
 	
 	public static final RegistryObject<BioreactorBlock> BIOREACTOR = BLOCKS.register("bioreactor", () -> new BioreactorBlock(YATMBlockProperties.MACHINE, YATMBlockShapes.CUBE));

@@ -257,11 +257,6 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropSelf(YATMBlocks.LARGE_COPPER_HEAT_SINK.get());
 		
 		
-		this.dropSelf(YATMBlocks.DATA_STORAGE_BLOCK.get());
-		this.dropSelf(YATMBlocks.DATA_SCAN_COLLECTOR.get());
-		this.dropSelf(YATMBlocks.DESTRUCTIVE_DATA_SCANNER.get());
-		this.dropSelf(YATMBlocks.DATA_PROCESSOR.get());
-		
 		this.dropSelf(YATMBlocks.BIOREACTOR.get());
 		this.dropSelf(YATMBlocks.BOILER.get());
 		this.dropSelf(YATMBlocks.CRUCIBLE.get());

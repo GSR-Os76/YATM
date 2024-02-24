@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:block/cube_all",
-  "textures": {
-    "all": "gsr_yatm:block/device/energy_converter/energy_converter"
-  }
-}
