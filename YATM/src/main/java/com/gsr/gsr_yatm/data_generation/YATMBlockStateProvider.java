@@ -198,7 +198,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addCarbum();
 		this.addCarcassRoot();
 		this.addCuprum();
-		this.createConduitVine(YATMBlocks.CONDUIT_VINES.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/device/conduit/current/conduit_vines"), YATMBlockStateProvider.CONDUIT_VINES_PARALLEL_CROSSLINK_MODEL);
+		this.createConduitVine(YATMBlocks.CONDUIT_VINES.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/conduit_vine/conduit_vines"), YATMBlockStateProvider.CONDUIT_VINES_PARALLEL_CROSSLINK_MODEL);
 		this.createFourStageCrop(YATMBlocks.COTTON.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_germinating"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_flowering"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_maturing"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_mature"));
 		this.addFerrum();
 		this.addFireEaterLily();

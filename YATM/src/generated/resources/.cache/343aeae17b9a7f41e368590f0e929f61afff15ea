@@ -1,4 +1,4 @@
-// 1.20.2	2024-02-23T20:34:19.5864845	Block States: gsr_yatm
+// 1.20.2	2024-02-23T20:54:33.613227	Block States: gsr_yatm
 11aad184ca6aaadbd7319a44c5a1985f7c029a1c assets/gsr_yatm/blockstates/adamum.json
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 954ad7e227cb7fea31486bca39340fd9ecdbc175 assets/gsr_yatm/blockstates/advanced_current_battery_block.json
@@ -241,7 +241,7 @@ f914c54c76ca7ca9d2d2feb0c3109143b163f4b0 assets/gsr_yatm/models/block/carcass_ro
 a70803cb9769915244f048ea5a3fe185a6e3f052 assets/gsr_yatm/models/block/carcass_root_rooted_netherrack_young.json
 0d68392adf411e965161f894b73af9de631c69a9 assets/gsr_yatm/models/block/chorus.json
 800c8e70f26f5de774d3c8fc81b01f0550a0e72d assets/gsr_yatm/models/block/chorus_bio.json
-7ec2ccd1bcb0d85778d0e92a5cc7052d0ec0eef1 assets/gsr_yatm/models/block/conduit_vines_face.json
+940d49739e03fb602c5cafcad1b3470fc486068f assets/gsr_yatm/models/block/conduit_vines_face.json
 632b46ac607cae4785a89a823c5061bb23edbbe8 assets/gsr_yatm/models/block/cotton_four.json
 18d55174d6ed8a433cb11007e46070fedbdd9226 assets/gsr_yatm/models/block/cotton_one.json
 75b2d8cabd1cae51ba6252ccf0457ee1a3901501 assets/gsr_yatm/models/block/cotton_three.json

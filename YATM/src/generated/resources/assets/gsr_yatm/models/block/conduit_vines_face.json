@@ -2,6 +2,6 @@
   "parent": "minecraft:block/glow_lichen",
   "render_type": "minecraft:cutout",
   "textures": {
-    "glow_lichen": "gsr_yatm:block/device/conduit/current/conduit_vines"
+    "glow_lichen": "gsr_yatm:block/plant/conduit_vine/conduit_vines"
   }
 }

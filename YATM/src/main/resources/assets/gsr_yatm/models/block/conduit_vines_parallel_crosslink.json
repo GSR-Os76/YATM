@@ -3,9 +3,9 @@
 	"parent": "minecraft:block/block",
 	"render_type": "minecraft:cutout",
 	"textures": {
-		"0": "gsr_yatm:block/device/conduit/current/conduit_vines_crosslink_one",
-		"1": "gsr_yatm:block/device/conduit/current/conduit_vines_crosslink_two",
-		"particle": "#2"
+		"0": "gsr_yatm:block/plant/conduit_vine/conduit_vines_crosslink_one",
+		"1": "gsr_yatm:block/plant/conduit_vine/conduit_vines_crosslink_two",
+		"particle": "#1"
 	},
 	"elements": [
 		{
