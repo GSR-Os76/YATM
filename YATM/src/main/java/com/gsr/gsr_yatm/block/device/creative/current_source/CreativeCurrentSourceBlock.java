@@ -5,22 +5,17 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.block.ShapeBlock;
 import com.gsr.gsr_yatm.block.device.AttachmentState;
-import com.gsr.gsr_yatm.block.device.HorizontalDeviceBlock;
-import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
+import com.gsr.gsr_yatm.block.device.DeviceBlock;
 import com.gsr.gsr_yatm.block.device.IDeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
-import com.gsr.gsr_yatm.utilities.InventoryUtil;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.MenuProvider;
@@ -29,18 +24,14 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.EntityBlock;
-import net.minecraft.world.level.block.entity.BlockEntity;
-import net.minecraft.world.level.block.entity.BlockEntityTicker;
-import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class CreativeCurrentSourceBlock extends HorizontalDeviceBlock
+public class CreativeCurrentSourceBlock extends DeviceBlock
 {
-	public static final Map<Direction, EnumProperty<AttachmentState>> ATTACHMENT_STATE_BY_FACE = YATMBlockStateProperties.BRANCHES_BY_DIRECTION;
+	public static final Map<Direction, EnumProperty<AttachmentState>> ATTACHMENT_STATE_BY_FACE = YATMBlockStateProperties.BRANCHES_BY_DIRECTION_NO_NE_PS;
 	
 	
 	
@@ -83,7 +74,7 @@ public class CreativeCurrentSourceBlock extends HorizontalDeviceBlock
 	@Override
 	public @NotNull IDeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		return new CreativeCurrentSourceBlockEntity(position, state, Integer.MAX_VALUE);
+		return new CreativeCurrentSourceBlockEntity(position, state);
 	} // end newDeviceBlockEntity()
 
 	@Override
@@ -95,8 +86,7 @@ public class CreativeCurrentSourceBlock extends HorizontalDeviceBlock
 				playerInventory, 
 				ContainerLevelAccess.create(level, position), 
 				state.getBlock(), 
-				blockEntity.getInventory(), 
-				blockEntity.getDataAccessor()), 
+				blockEntity.getInventory()), 
 		YATMLanguageProvider.translatableForMenu(YATMMenuTypes.CREATIVE_CURRENT_SOURCE.get()));
 	} // end getMenuProvider()
 	

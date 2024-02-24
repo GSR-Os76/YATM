@@ -25,23 +25,6 @@ public class CreativeCurrentSourceScreen extends AbstractContainerScreen<Creativ
 
 	
 	
-	private void tryUpdateOutput(String text) 
-	{
-		if(text != null) 
-		{
-			try 
-			{
-				// TODO, not being communicated
-				this.getMenu().setOutput(Integer.parseInt(text));
-			}
-			catch (NumberFormatException e) 
-			{
-			}
-		}
-	} // end tryUpdateOutput()
-	
-	
-	
 	@Override
 	protected void init()
 	{

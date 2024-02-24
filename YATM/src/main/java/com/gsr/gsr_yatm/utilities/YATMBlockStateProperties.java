@@ -1,5 +1,6 @@
 package com.gsr.gsr_yatm.utilities;
 
+import java.util.List;
 import java.util.Map;
 
 import com.google.common.collect.BiMap;
@@ -35,6 +36,15 @@ public class YATMBlockStateProperties
 			Direction.WEST, EnumProperty.create("west", AttachmentState.class), 
 			Direction.UP, EnumProperty.create("up", AttachmentState.class), 
 			Direction.DOWN, EnumProperty.create("down", AttachmentState.class));
+	
+	public static final List<AttachmentState> NO_NE_PS =  List.of(AttachmentState.NONE, AttachmentState.NEUTRAL, AttachmentState.PUSH);
+	public static final Map<Direction, EnumProperty<AttachmentState>> BRANCHES_BY_DIRECTION_NO_NE_PS = ImmutableMap.of(
+			Direction.NORTH, EnumProperty.create("north", AttachmentState.class, YATMBlockStateProperties.NO_NE_PS), 
+			Direction.SOUTH, EnumProperty.create("south", AttachmentState.class, YATMBlockStateProperties.NO_NE_PS), 
+			Direction.EAST, EnumProperty.create("east", AttachmentState.class, YATMBlockStateProperties.NO_NE_PS), 
+			Direction.WEST, EnumProperty.create("west", AttachmentState.class, YATMBlockStateProperties.NO_NE_PS), 
+			Direction.UP, EnumProperty.create("up", AttachmentState.class, YATMBlockStateProperties.NO_NE_PS), 
+			Direction.DOWN, EnumProperty.create("down", AttachmentState.class, YATMBlockStateProperties.NO_NE_PS));
 	
 	// TODO, make sure nothing is using this when they mean can spread, semantics are important.
 	public static final BooleanProperty CAN_GROW = BooleanProperty.create("can_grow");	
