@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.plant.tree;
+package com.gsr.gsr_yatm.worldgen.tree_decorator;
 
 import com.gsr.gsr_yatm.registry.YATMTreeDecoratorTypes;
 import com.mojang.datafixers.Products.P5;
