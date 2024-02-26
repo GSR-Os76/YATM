@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.IAgingBlock;
 import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
 import com.gsr.gsr_yatm.block.ShapeBlock;
@@ -42,10 +43,7 @@ public class BasinOfTearsFloralBlock extends ShapeBlock implements IAgingBlock, 
 	public static final IntegerProperty FLOWER_COUNT = YATMBlockStateProperties.FLOWER_COUNT_FOUR;
 	public static final BooleanProperty NECTAR_FULL = YATMBlockStateProperties.NECTAR_FULL;
 	
-	private static final int GROWTH_RARITY = 36;
-	private static final int RESEED_RARITY = 36;
-	
-	
+	//bud - young - open/nectar - seedpod - reseeded - repeat
 	
 	public BasinOfTearsFloralBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
@@ -96,10 +94,8 @@ public class BasinOfTearsFloralBlock extends ShapeBlock implements IAgingBlock, 
 				held.shrink(1);
 			}
 			
-			if(
-					!(instabuild 
-					&& player.getInventory().hasAnyMatching((is) -> is.is(YATMItems.DILUTED_TEAR_BOTTLE.get()))
-					)) 
+			if(!(instabuild 
+				&& player.getInventory().hasAnyMatching((is) -> is.is(YATMItems.DILUTED_TEAR_BOTTLE.get())))) 
 			{
 				ItemStack toDrop = new ItemStack(YATMItems.DILUTED_TEAR_BOTTLE.get());
 				if (!player.addItem(toDrop))
@@ -161,9 +157,6 @@ public class BasinOfTearsFloralBlock extends ShapeBlock implements IAgingBlock, 
 	} // end canPlantOn()
 
 
-
-	
-	
 	
 	@Override
 	public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos position, @NotNull RandomSource random)
@@ -172,7 +165,7 @@ public class BasinOfTearsFloralBlock extends ShapeBlock implements IAgingBlock, 
 		int maxAge = this.getMaxAge();
 		if(age == maxAge) 
 		{
-			if(ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(BasinOfTearsFloralBlock.RESEED_RARITY) == 0)) 
+			if(ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(YATMConfigs.CRYING_FLOWER_RESEED_RARITY.get()) == 0)) 
 			{
 				level.setBlock(position, YATMBlocks.BASIN_OF_TEARS_VEGETATION.get().defaultBlockState(), Block.UPDATE_ALL);
 				ForgeHooks.onCropsGrowPost(level, position, state);
@@ -180,21 +173,17 @@ public class BasinOfTearsFloralBlock extends ShapeBlock implements IAgingBlock, 
 		}
 		else 
 		{
-			boolean shouldGrow = random.nextInt(BasinOfTearsFloralBlock.GROWTH_RARITY) == 0;
-			if(shouldGrow) 
+			if(ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(YATMConfigs.CRYING_FLOWER_GROWTH_RARITY.get()) == 0))
 			{
-				if(ForgeHooks.onCropsGrowPre(level, position, state, shouldGrow))
-				{
-					level.setBlock(position, this.getStateForAge(state, age + 1), Block.UPDATE_CLIENTS);
-					ForgeHooks.onCropsGrowPost(level, position, state);
-				}
+				level.setBlock(position, this.getStateForAge(state, age + 1), Block.UPDATE_CLIENTS);
+				ForgeHooks.onCropsGrowPost(level, position, state);
 			}
-			else if((age + 1) == maxAge 
+			else if((random.nextInt(YATMConfigs.CRYING_FLOWER_NECTAR_REPLENISH_RARITY.get()) == 0)
+					&& (age + 1) == maxAge 
 					&& state.getValue(BasinOfTearsFloralBlock.FLOWER_COUNT) == 1
 					&& !state.getValue(BasinOfTearsFloralBlock.NECTAR_FULL))
 			{
 				level.setBlock(position, state.setValue(BasinOfTearsFloralBlock.NECTAR_FULL, true), Block.UPDATE_CLIENTS);
-				
 			}
 		}
 	} // end randomTick()

@@ -37,6 +37,10 @@ public class YATMConfigs
 	public static final ConfigValue<Integer> CONDUIT_VINE_GROWTH_RARITY  = YATMConfigs.s_builder.growthRarity(16);
 	public static final ConfigValue<Integer> CONDUIT_VINE_MINIMUM_LIGHT_LEVEL = YATMConfigs.s_builder.minimumLightLevel();
 	
+	public static final ConfigValue<Integer> CRYING_FLOWER_GROWTH_RARITY  = YATMConfigs.s_builder.pop().push("Crying Flower").growthRarity(36);
+	public static final ConfigValue<Integer> CRYING_FLOWER_NECTAR_REPLENISH_RARITY  = YATMConfigs.s_builder.comment("The average number of random ticks it takes for the plant to refill with it's nectar.").defineInRange("nectar_replenish_rarity", 12, 0, Integer.MAX_VALUE);;
+	public static final ConfigValue<Integer> CRYING_FLOWER_RESEED_RARITY  = YATMConfigs.s_builder.comment("The average number of random ticks it takes for the plant to reseed.").defineInRange("reseed_rarity", 36, 0, Integer.MAX_VALUE);;
+	
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.pop().push("Dwarf Persimmon: ").bonemealSuccessRarity();
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_GROWTH_RARITY = YATMConfigs.s_builder.growthRarity(16);
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_MINIMUM_LIGHT_LEVEL = YATMConfigs.s_builder.minimumLightLevel();
