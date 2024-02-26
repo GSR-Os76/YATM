@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.registry;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.block.plant.tree.AgedFoliagePlacer;
+import com.gsr.gsr_yatm.worldgen.foliage_placer.AgedFoliagePlacer;
 
 import net.minecraft.world.level.levelgen.feature.foliageplacers.FoliagePlacerType;
 import net.minecraftforge.registries.DeferredRegister;

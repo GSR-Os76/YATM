@@ -1,8 +1,8 @@
 package com.gsr.gsr_yatm.registry;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.block.plant.tree.LeafLitterTreeDecorator;
-import com.gsr.gsr_yatm.block.plant.tree.TrunkSideTreeDecorator;
+import com.gsr.gsr_yatm.worldgen.tree_decorator.LeafLitterTreeDecorator;
+import com.gsr.gsr_yatm.worldgen.tree_decorator.TrunkSideTreeDecorator;
 
 import net.minecraft.world.level.levelgen.feature.treedecorators.TreeDecoratorType;
 import net.minecraftforge.registries.DeferredRegister;

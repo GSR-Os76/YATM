@@ -1,10 +1,6 @@
 {
-	"feature": "gsr_yatm:soul_afflicted_rubber_bush_apical",
+	"feature": "gsr_yatm:rubber_tree",
 	"placement": [
-		{
-			"type": "minecraft:rarity_filter",
-			"chance": 64
-		},
 		{
 			"type": "minecraft:count_on_every_layer",
 			"count": 8
@@ -18,7 +14,7 @@
 					-1,
 					0
 				],
-				"tag": "gsr_yatm:mediums/soul_afflicted_rubber_trees_naturally_grow_on"
+				"tag": "gsr_yatm:mediums/rubber_trees_naturally_grow_on"
 			}
 		}
 	]
