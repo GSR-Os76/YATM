@@ -1,4 +1,4 @@
-// 1.20.2	2024-02-25T19:46:10.3063956	Block States: gsr_yatm
+// 1.20.2	2024-02-26T15:29:07.4539638	Block States: gsr_yatm
 11aad184ca6aaadbd7319a44c5a1985f7c029a1c assets/gsr_yatm/blockstates/adamum.json
 d201ed80773eb26832e857918351f5a278b37152 assets/gsr_yatm/blockstates/advanced_battery_solar_panel.json
 954ad7e227cb7fea31486bca39340fd9ecdbc175 assets/gsr_yatm/blockstates/advanced_current_battery_block.json
@@ -154,7 +154,7 @@ a8fbc87b8c37a1553721ad525e0843560a392b68 assets/gsr_yatm/blockstates/soul_afflic
 05d084c02054b70d44d93d826c60e4e94c1d9311 assets/gsr_yatm/blockstates/soul_afflicted_rubber_leaves_old.json
 f0669fad40eb6a9fa2c4a2781ddc4fbf9a1a3740 assets/gsr_yatm/blockstates/soul_afflicted_rubber_leaves_young.json
 4823bfe5e470cbccf277ef78af2344e382767824 assets/gsr_yatm/blockstates/soul_afflicted_rubber_log.json
-88b7946ab46421c2c769f5cf4eccf144ed64a7a1 assets/gsr_yatm/blockstates/soul_afflicted_rubber_meristem.json
+84fb466d3bd5a4d8eeb58687d0474a27b47a576f assets/gsr_yatm/blockstates/soul_afflicted_rubber_meristem.json
 30e74226b45e46afc60f3ea98445caa8cb7a186a assets/gsr_yatm/blockstates/soul_afflicted_rubber_planks.json
 aada558b7c165d807df043b086bc64455a67dffd assets/gsr_yatm/blockstates/soul_afflicted_rubber_pressure_plate.json
 ba7e5d2ea01102579d572356cc7b55ae03d5c9e0 assets/gsr_yatm/blockstates/soul_afflicted_rubber_roots.json

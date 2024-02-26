@@ -1,9 +1,15 @@
 {
   "variants": {
-    "stage=0": {
+    "recently_afflicted=false,stage=0": {
       "model": "gsr_yatm:block/soul_afflicted_rubber_meristem"
     },
-    "stage=1": {
+    "recently_afflicted=false,stage=1": {
+      "model": "gsr_yatm:block/soul_afflicted_rubber_meristem"
+    },
+    "recently_afflicted=true,stage=0": {
+      "model": "gsr_yatm:block/soul_afflicted_rubber_meristem"
+    },
+    "recently_afflicted=true,stage=1": {
       "model": "gsr_yatm:block/soul_afflicted_rubber_meristem"
     }
   }
