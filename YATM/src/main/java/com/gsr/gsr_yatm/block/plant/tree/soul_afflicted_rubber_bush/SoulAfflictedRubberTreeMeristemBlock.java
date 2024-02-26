@@ -5,6 +5,7 @@ import java.util.Objects;
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
+import com.gsr.gsr_yatm.utilities.RandomUtil;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 
 import net.minecraft.core.BlockPos;
@@ -42,7 +43,7 @@ public class SoulAfflictedRubberTreeMeristemBlock extends SaplingBlock
 			{
 				level.addParticle(ParticleTypes.SOUL, 
 					(double)position.getX() + 0.5D, (double)position.getY() + 0.5D, (double)position.getZ() + 0.5D, 
-					(double)((random.nextFloat() / 12F) * (random.nextIntBetweenInclusive(0, 1) == 0 ? -1 : 1)), (double)(random.nextFloat() / 12F) * (random.nextIntBetweenInclusive(0, 1) == 0 ? -1 : 1), (double)(random.nextFloat() / 12F)* (random.nextIntBetweenInclusive(0, 1) == 0 ? -1 : 1));	
+					(double)((random.nextFloat() / 12F) * RandomUtil.nextSign(random)), (double)((random.nextFloat() / 12F) * RandomUtil.nextSign(random)), (double)((random.nextFloat() / 12F)* RandomUtil.nextSign(random)));	
 			}	
 			level.playLocalSound(position, SoundEvents.SOUL_ESCAPE, SoundSource.BLOCKS, 12f * random.nextFloat(), 1f, true);		
 			// might be recurring if this isn't synchronized to server. but the particle and sound code's working nowhere else.
