@@ -252,11 +252,12 @@ public class ShulkwartBlock extends Block implements IAgingBlock, IHarvestableBl
 	public boolean canPlantOn(@NotNull LevelReader level, @NotNull BlockState state, @NotNull BlockPos position, @NotNull Direction face)
 	{
 		return this.canPlantOrSurviveOn(state, face);
-	} // end canPkantOn()
+	} // end canPlantOn()
 	
-	private boolean canPlantOrSurviveOn(BlockState state, Direction face) 
+	private boolean canPlantOrSurviveOn(@NotNull BlockState state, @NotNull Direction face) 
 	{
-		return YATMBlockTags.SHULKWART_GROWS_ON.contains(state.getBlock()) && face == Direction.DOWN;
+		// TODO, what is the down check
+		return state.is(YATMBlockTags.SHULKWART_GROWS_ON_KEY) && face == Direction.DOWN;
 	} // end canPlantOrSurviveOn()
 	
 } // end class

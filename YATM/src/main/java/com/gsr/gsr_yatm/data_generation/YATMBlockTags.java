@@ -18,7 +18,6 @@ import net.minecraftforge.common.Tags;
 import net.minecraftforge.common.data.BlockTagsProvider;
 import net.minecraftforge.common.data.ExistingFileHelper;
 import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.tags.ITag;
 import net.minecraftforge.registries.tags.ITagManager;
 
 public class YATMBlockTags extends BlockTagsProvider
@@ -66,7 +65,6 @@ public class YATMBlockTags extends BlockTagsProvider
 	public static final TagKey<Block> CARCASS_ROOT_ROOTED_NETHERRACK_ROOTS_FROM_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/carcass_root_rooted_netherack_roots_from"));
 	public static final TagKey<Block> CHANNEL_NEUTRAL_ONLY_ATTACHMENT_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "channel_neutral_only_attachment"));
 	public static final TagKey<Block> CONDUIT_NEUTRAL_ONLY_ATTACHMENT_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "conduit_neutral_only_attachment"));
-	
 	public static final TagKey<Block> CONDUIT_VINES_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/conduit_vines_can_grow_in"));
 	public static final TagKey<Block> CUPRUM_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/cuprum_can_grow_in"));
 	public static final TagKey<Block> CUPRUM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/cuprum_can_grow_on"));
@@ -137,12 +135,6 @@ public class YATMBlockTags extends BlockTagsProvider
 	public static final TagKey<Block> VERIEGATED_CACTUS_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/veriegated_cactus_can_grow_on"));
 	public static final TagKey<Block> VICUM_CAN_GROW_IN_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/vicum_can_grow_in"));
 	public static final TagKey<Block> VICUM_CAN_GROW_ON_KEY = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "mediums/vicum_can_grow_on"));
-	
-	
-	
-	public static final ITag<Block> RUBBER_MERISTEM_CAN_GROW_ON = TM.getTag(YATMBlockTags.RUBBER_MERISTEM_CAN_GROW_ON_KEY);
-	public static final ITag<Block> SHULKWART_GROWS_ON = TM.getTag(YATMBlockTags.SHULKWART_GROWS_ON_KEY);
-	public static final ITag<Block> SOUL_AFFLICTING_BLOCKS = TM.getTag(YATMBlockTags.SOUL_AFFLICTING_BLOCKS_KEY);	
 	
 	
 	
@@ -293,8 +285,7 @@ public class YATMBlockTags extends BlockTagsProvider
 		this.tag(YATMBlockTags.MACHINES_KEY).add(YATMBlocks.BIOREACTOR.get()).add(YATMBlocks.BOILER.get()).add(YATMBlocks.CRUCIBLE.get()).add(YATMBlocks.CRYSTALLIZER.get()).add(YATMBlocks.HEAT_FURNACE.get()).add(YATMBlocks.EXTRACTOR.get()).add(YATMBlocks.GRINDER.get()).add(YATMBlocks.INJECTOR.get());
 		this.tag(YATMBlockTags.PHANTASMAL_SHELF_FUNGI_SPREAD_TO_KEY).addTag(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_LOGS_KEY);
 		this.tag(YATMBlockTags.PITCHER_CLUSTERS_CAN_GROW_ON_KEY).addTag(BlockTags.DIRT);
-		// TODO, fully stripped probably shouldn't be growable on, logically
-		this.tag(YATMBlockTags.RUBBER_MERISTEM_CAN_GROW_ON_KEY).addTag(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREE_BLOCKS_KEY).addTag(YATMBlockTags.RUBBER_TREE_BLOCKS_KEY).addTag(YATMBlockTags.RUBBER_TREES_NATURALLY_GROW_ON_KEY).addTag(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREES_NATURALLY_GROW_ON_KEY);
+		this.tag(YATMBlockTags.RUBBER_MERISTEM_CAN_GROW_ON_KEY).addTag(YATMBlockTags.SOUL_AFFLICTED_RUBBER_TREES_NATURALLY_GROW_ON_KEY);
 		this.tag(YATMBlockTags.RUBBER_ROOTS_CAN_GROW_IN_KEY).addTag(BlockTags.DIRT).addTag(BlockTags.SAND).add(Blocks.CLAY).add(Blocks.SOUL_SAND).add(Blocks.SOUL_SOIL);
 		this.tag(YATMBlockTags.RUBBER_TREE_BLOCKS_KEY).addTag(YATMBlockTags.RUBBER_TREE_LOGS_KEY).add(YATMBlocks.RUBBER_LEAVES_OLD.get()).add(YATMBlocks.RUBBER_LEAVES_FLOWERING.get()).add(YATMBlocks.RUBBER_LEAVES_YOUNG.get());
 		this.tag(YATMBlockTags.RUBBER_TREE_LOGS_KEY).add(YATMBlocks.RUBBER_LOG.get()).add(YATMBlocks.RUBBER_WOOD.get()).add(YATMBlocks.PARTIALLY_STRIPPED_RUBBER_LOG.get()).add(YATMBlocks.STRIPPED_RUBBER_LOG.get()).add(YATMBlocks.STRIPPED_RUBBER_WOOD.get());

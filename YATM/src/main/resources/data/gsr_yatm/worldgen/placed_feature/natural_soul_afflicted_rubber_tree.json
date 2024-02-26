@@ -1,5 +1,5 @@
 {
-	"feature": "gsr_yatm:rubber_bush_apical",
+	"feature": "gsr_yatm:soul_afflicted_rubber_tree",
 	"placement": [
 		{
 			"type": "minecraft:count_on_every_layer",
@@ -14,7 +14,7 @@
 					-1,
 					0
 				],
-				"tag": "gsr_yatm:mediums/rubber_trees_naturally_grow_on"
+				"tag": "gsr_yatm:mediums/soul_afflicted_rubber_trees_naturally_grow_on"
 			}
 		}
 	]

@@ -42,12 +42,15 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.PERSIMMON.get());
 		this.basicItem(YATMItems.RAW_EXOTHEMIC_GLAND.get());
 		this.basicItem(YATMItems.RUBBER_BAR.get());
+		this.basicItem(YATMItems.RUBBER_MERISTEM.get());
+		this.basicItem(YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM.get());
 		this.basicItem(YATMItems.STAR_ADOLESCENT.get());
 		this.basicItem(YATMItems.STAR_GERMLING.get());
 		this.basicItem(YATMItems.STAR_SEED.get());
 		this.basicItem(YATMItems.STAR_SPROUT.get());
 		this.basicItem(YATMItems.TORCH_GLAND.get());
 		this.basicItem(YATMItems.WOOD_PULP.get());
+		
 		
 		this.basicItem(YATMItems.RUBBER_SIGN.get());
 		this.basicItem(YATMItems.RUBBER_HANGING_SIGN.get());
