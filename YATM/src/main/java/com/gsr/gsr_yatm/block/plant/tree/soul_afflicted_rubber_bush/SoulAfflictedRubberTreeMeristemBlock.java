@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.utilities.RandomUtil;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
@@ -39,7 +40,7 @@ public class SoulAfflictedRubberTreeMeristemBlock extends SaplingBlock
 	public void animateTick(BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull RandomSource random)
 	{
 		if(state.getValue(SoulAfflictedRubberTreeMeristemBlock.RECENTLY_AFFLICTED)){
-			for(int i = 0; i < random.nextInt(12, 26); i++) 
+			for(int i = 0; i < random.nextInt(YATMConfigs.SOUL_AFFLICTED_RUBBER_TREE_ON_CONVERT_MIN_PARTICLES.get(), YATMConfigs.SOUL_AFFLICTED_RUBBER_TREE_ON_CONVERT_MAX_PARTICLES.get()); i++) 
 			{
 				level.addParticle(ParticleTypes.SOUL, 
 					(double)position.getX() + 0.5D, (double)position.getY() + 0.5D, (double)position.getZ() + 0.5D, 
@@ -60,9 +61,9 @@ public class SoulAfflictedRubberTreeMeristemBlock extends SaplingBlock
 	} // end CreateBlockStateDefinition()
 
 	@Override
-	public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos position, BlockState state)
+	public boolean isBonemealSuccess(Level level, @NotNull RandomSource random, BlockPos position, BlockState state)
 	{
-		return true;
+		return random.nextInt(YATMConfigs.SOUL_AFFLICTED_RUBBER_TREE_BONEMEAL_SUCCESS_RARITY.get()) == 0;
 	} // end isBonemealSuccess()
 	
 	@Override

@@ -51,6 +51,11 @@ public class YATMConfigs
 	public static final ConfigValue<Integer> FIRE_EATER_LILY_MAX_VERTICAL_SPREAD = YATMConfigs.s_builder.comment("The maximum number of blocks vertically that a canidate position will be picked out from.").defineInRange("max_vertical_spread", 1, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> FIRE_EATER_LILY_UNLIT_DECORATIVE_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.bonemealSuccessRarity("bonemeal_success_rarity_unlit_decorative");
 	
+	public static final ConfigValue<Integer> RUBBER_TREE_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.pop().push("Rubber Tree: ").bonemealSuccessRarity();
+	
+	public static final ConfigValue<Integer> SOUL_AFFLICTED_RUBBER_TREE_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.pop().push("Soul Afflicted Rubber Tree: ").bonemealSuccessRarity();
+	public static final ConfigValue<Integer> SOUL_AFFLICTED_RUBBER_TREE_ON_CONVERT_MAX_PARTICLES = YATMConfigs.s_builder.maxParticles(26);
+	public static final ConfigValue<Integer> SOUL_AFFLICTED_RUBBER_TREE_ON_CONVERT_MIN_PARTICLES = YATMConfigs.s_builder.minParticles(12);
 	
 	
 	public static final ConfigValue<Double> ADAMUM_DAMAGE_FACTOR = YATMConfigs.s_builder.pop().push("Ore Themed Plants: ").push("Adamum: ").damageFactor(0d);
@@ -96,8 +101,8 @@ public class YATMConfigs
 	public static final ConfigValue<Double> RUBERUM_DAMAGE_FACTOR = YATMConfigs.s_builder.pop().push("Ruberum: ").damageFactor(0d);
 	public static final ConfigValue<Double> RUBERUM_DAMAGE_TRIGGER_TOLERANCE = YATMConfigs.s_builder.damageTriggerTolerance(Double.MAX_VALUE);
 	public static final ConfigValue<Integer> RUBERUM_GROWTH_RARITY = YATMConfigs.s_builder.growthRarity(36);
-	public static final ConfigValue<Integer> RUBERUM_MAX_PARTICLES = YATMConfigs.s_builder.comment("The maximum number of particles that might be choosen to be spawned when the plant is lit.").defineInRange("max_particles", 3, 0, Integer.MAX_VALUE);
-	public static final ConfigValue<Integer> RUBERUM_MIN_PARTICLES = YATMConfigs.s_builder.comment("The minimum number of particles that might be choosen to be spawned when the plant is lit.").defineInRange("min_particles", 0, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> RUBERUM_MAX_PARTICLES = YATMConfigs.s_builder.maxParticles(3);
+	public static final ConfigValue<Integer> RUBERUM_MIN_PARTICLES = YATMConfigs.s_builder.minParticles(0);
 	public static final ConfigValue<Integer> RUBERUM_PARTICLE_RARITY = YATMConfigs.s_builder.comment("The average number of animation ticks for which particles're spawned once.").defineInRange("particle_rarity", 6, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> RUBERUM_SIGNAL_FACTOR = YATMConfigs.s_builder.comment("The factor by which the redstone signal emitted's strength from walking through the block's scaled.").defineInRange("signal_factor", 2, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Double> RUBERUM_SIGNAL_TRIGGER_TOLERANCE = YATMConfigs.s_builder.comment("The maximum speed an entity can be moving while inside the block without causing a redstone signal.").defineInRange("signal_trigger_tolerance", .1d, 0d, Double.MAX_VALUE);

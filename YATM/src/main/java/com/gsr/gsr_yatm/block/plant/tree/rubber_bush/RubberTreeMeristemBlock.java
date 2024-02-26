@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.plant.tree.soul_afflicted_rubber_bush.SoulAfflictedRubberTreeMeristemBlock;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
@@ -39,9 +40,9 @@ public class RubberTreeMeristemBlock extends SaplingBlock
 	} // end advanceTree()
 	
 	@Override
-	public boolean isBonemealSuccess(Level level, RandomSource random, BlockPos position, BlockState state)
+	public boolean isBonemealSuccess(Level level, @NotNull RandomSource random, BlockPos position, BlockState state)
 	{
-		return true;
+		return random.nextInt(YATMConfigs.RUBBER_TREE_BONEMEAL_SUCCESS_RARITY.get()) == 0;
 	} // end isBonemealSuccess()
 	
 	@Override
