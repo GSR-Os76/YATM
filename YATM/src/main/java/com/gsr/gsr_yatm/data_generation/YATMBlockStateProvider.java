@@ -193,7 +193,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 		this.addAdamum();
 		this.addAurum();
-		this.addBasinOfTears();
+		this.addCryingPlant();
 		this.addCandlelily();
 		this.addCarbum();
 		this.addCarcassRoot();
@@ -380,13 +380,13 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createStoneSoilPottedCross(YATMBlocks.POTTED_AURUM.get(), adolescentTexture);
 	} // end addAurum()
 	
-	private void addBasinOfTears()
+	private void addCryingPlant()
 	{
 		this.createFourAgeCross(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/basin_of_tears/foliage_sprouts"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/basin_of_tears/foliage_young"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/basin_of_tears/foliage_adolescent"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/basin_of_tears/foliage_old"));
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_plant/sprouts"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_plant/young"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_plant/adolescent"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_plant/old"));
 	} // end addBasinOfTears()
 	
 	private void addCandlelily() 
