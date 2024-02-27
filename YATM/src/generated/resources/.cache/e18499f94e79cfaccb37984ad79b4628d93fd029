@@ -1,4 +1,4 @@
-// 1.20.2	2024-02-16T13:54:31.429493	Tags for minecraft:block mod id gsr_yatm
+// 1.20.2	2024-02-26T21:47:37.4092445	Tags for minecraft:block mod id gsr_yatm
 c66ff3626edc7c0f108f497fa9aec78cbf9db39f data/forge/tags/blocks/basalt.json
 ea459db540b319f4bdead7b7f1142fc238c09a8e data/forge/tags/blocks/cactuses.json
 ebcf7881dcf42cb3d8c8b5c2e92ebf16fd9d7284 data/forge/tags/blocks/calcite.json
@@ -59,10 +59,6 @@ cc28464211f67282ed9a63fad73bb46fe16162ec data/gsr_yatm/tags/blocks/machines.json
 eaf726d0ca999b963fa5b018a13e9c7f4b2e50cf data/gsr_yatm/tags/blocks/mediums/aerial_rubber_roots_can_grow_through.json
 8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/aurum_can_grow_in.json
 61064ec33852a4a02609c7e6edc2de09c480a0f8 data/gsr_yatm/tags/blocks/mediums/aurum_can_grow_on.json
-8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/basin_of_tears_flowers_can_grow_in.json
-c7cf498dd11b4becfc703ca6d155b77406279d34 data/gsr_yatm/tags/blocks/mediums/basin_of_tears_flowers_can_grow_on.json
-8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/basin_of_tears_vegetation_can_grow_in.json
-c7cf498dd11b4becfc703ca6d155b77406279d34 data/gsr_yatm/tags/blocks/mediums/basin_of_tears_vegetation_can_grow_on.json
 8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/candlelily_can_grow_in.json
 03df3b0b6d8e637f2243a9fae303db9978522cf8 data/gsr_yatm/tags/blocks/mediums/candlelily_can_grow_on.json
 61064ec33852a4a02609c7e6edc2de09c480a0f8 data/gsr_yatm/tags/blocks/mediums/carbum_can_grow_on.json
@@ -70,6 +66,11 @@ c7cf498dd11b4becfc703ca6d155b77406279d34 data/gsr_yatm/tags/blocks/mediums/basin
 69c396cb051bbe9a130e6979b67065e5041b179d data/gsr_yatm/tags/blocks/mediums/carcass_root_rooted_dirt_roots_from.json
 68125b8f5883297e885700288831442419c548f8 data/gsr_yatm/tags/blocks/mediums/carcass_root_rooted_netherack_roots_from.json
 8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/conduit_vines_can_grow_in.json
+8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/crying_flower_can_grow_in.json
+c7cf498dd11b4becfc703ca6d155b77406279d34 data/gsr_yatm/tags/blocks/mediums/crying_flower_can_grow_on.json
+8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/crying_plant_can_grow_in.json
+c7cf498dd11b4becfc703ca6d155b77406279d34 data/gsr_yatm/tags/blocks/mediums/crying_plant_can_grow_on.json
+99fe40c29470ba596b9b74f98d540c71d07f982b data/gsr_yatm/tags/blocks/mediums/crying_plant_vegetation.json
 8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/cuprum_can_grow_in.json
 61064ec33852a4a02609c7e6edc2de09c480a0f8 data/gsr_yatm/tags/blocks/mediums/cuprum_can_grow_on.json
 8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/dwarf_persimmon_can_grow_in.json

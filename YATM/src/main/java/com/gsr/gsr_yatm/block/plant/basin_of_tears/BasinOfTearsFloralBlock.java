@@ -36,7 +36,6 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraftforge.common.ForgeHooks;
 import net.minecraftforge.common.ToolActions;
 
-// TODO, test all this, every little bit, every single drop
 public class BasinOfTearsFloralBlock extends ShapeBlock implements IAgingBlock, IYATMPlantableBlock
 {
 	public static final IntegerProperty AGE = YATMBlockStateProperties.AGE_FOUR;
@@ -82,12 +81,7 @@ public class BasinOfTearsFloralBlock extends ShapeBlock implements IAgingBlock, 
 		{
 			// cauldron in creative drains state, doesn't consume bottle, and only yield bottle water if none's already held.
 			
-			// TODO, should this be server only?
-			if(!level.isClientSide) 
-			{
-				level.setBlock(position, state.setValue(BasinOfTearsFloralBlock.NECTAR_FULL, false), Block.UPDATE_CLIENTS);
-			}
-			
+			level.setBlock(position, state.setValue(BasinOfTearsFloralBlock.NECTAR_FULL, false), Block.UPDATE_CLIENTS);
 			boolean instabuild = player.getAbilities().instabuild;
 			if(!instabuild) 
 			{
@@ -133,7 +127,7 @@ public class BasinOfTearsFloralBlock extends ShapeBlock implements IAgingBlock, 
 	@Override
 	public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos position)
 	{
-		return level.getBlockState(position.below()).is(YATMBlockTags.BASIN_OF_TEARS_FLOWERS_CAN_GROW_ON_KEY);
+		return level.getBlockState(position.below()).is(YATMBlockTags.CRYING_FLOWER_CAN_GROW_ON_KEY);
 	} // end canSurvive()
 
 	@SuppressWarnings("deprecation")
@@ -153,7 +147,7 @@ public class BasinOfTearsFloralBlock extends ShapeBlock implements IAgingBlock, 
 		BlockPos above = position.above();
 		return face == Direction.UP 
 				&& this.canSurvive(level.getBlockState(above), level, above) 
-				&& level.getBlockState(position.above()).is(YATMBlockTags.BASIN_OF_TEARS_FLOWERS_CAN_GROW_IN_KEY);
+				&& level.getBlockState(position.above()).is(YATMBlockTags.CRYING_FLOWER_CAN_GROW_IN_KEY);
 	} // end canPlantOn()
 
 

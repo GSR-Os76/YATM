@@ -5,6 +5,7 @@ import java.util.function.Supplier;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.IAgingBlock;
 import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
 import com.gsr.gsr_yatm.block.ShapeBlock;
@@ -30,9 +31,6 @@ import net.minecraftforge.common.ForgeHooks;
 public class BasinOfTearsVegetationBlock extends ShapeBlock implements IAgingBlock, IYATMPlantableBlock, BonemealableBlock
 {
 	public static final IntegerProperty AGE = YATMBlockStateProperties.AGE_FOUR;
-	
-	private static final int GROWTH_RARITY = 24;
-	private static final int MAX_HEIGHT = 4;
 	
 	private final @NotNull Supplier<BlockState> m_flower;
 	
@@ -69,7 +67,7 @@ public class BasinOfTearsVegetationBlock extends ShapeBlock implements IAgingBlo
 	public boolean canSurvive(@NotNull BlockState state, @NotNull LevelReader level, @NotNull BlockPos position)
 	{
 		BlockState below = level.getBlockState(position.below());
-		return below.is(YATMBlockTags.BASIN_OF_TEARS_VEGETATION_CAN_GROW_ON_KEY) 
+		return below.is(YATMBlockTags.CRYING_PLANT_CAN_GROW_ON_KEY) 
 				|| below == this.getStateForAge(this.defaultBlockState(), this.getMaxAge());
 	} // end canSurvive()
 
@@ -92,13 +90,13 @@ public class BasinOfTearsVegetationBlock extends ShapeBlock implements IAgingBlo
 		BlockPos above = position.above();
 		BlockState aboveState = level.getBlockState(above);
 		return face == Direction.UP 
-				&& this.canGrowInto(level, aboveState, above)
+				&& this.canGrowInto(aboveState)
 				&& this.canSurvive(aboveState, level, above);
 	} // end canPlantOn()
 	
-	protected boolean canGrowInto(@NotNull LevelReader level, @NotNull BlockState state, @NotNull BlockPos position) 
+	protected boolean canGrowInto(@NotNull BlockState state) 
 	{
-		return state.is(YATMBlockTags.BASIN_OF_TEARS_VEGETATION_CAN_GROW_IN_KEY);
+		return state.is(YATMBlockTags.CRYING_PLANT_CAN_GROW_IN_KEY);
 	} // end canGrowInto()
 
 	
@@ -106,7 +104,7 @@ public class BasinOfTearsVegetationBlock extends ShapeBlock implements IAgingBlo
 	@Override
 	public boolean isRandomlyTicking(@NotNull BlockState state)
 	{
-		return super.isRandomlyTicking(state) && this.getAge(state) < this.getMaxAge();
+		return this.getAge(state) < this.getMaxAge();
 	} // end isRandomlyTicking()
 
 	@Override
@@ -114,54 +112,52 @@ public class BasinOfTearsVegetationBlock extends ShapeBlock implements IAgingBlo
 	{
 		int age = this.getAge(state);
 		int maxAge = this.getMaxAge();
-		if ((age < maxAge))
+
+		if ((age + 1) == maxAge)
 		{
-			if((age + 1) == maxAge) 
+			BlockPos above = position.above();
+			// if full height die back plant and grow flower(s)
+			if (this.stackCount(level, position) >= YATMConfigs.CRYING_PLANT_MAX_HEIGHT.get())
 			{
-				if(this.stackCount(level, position) >= BasinOfTearsVegetationBlock.MAX_HEIGHT)
+				if(random.nextInt(YATMConfigs.CRYING_PLANT_FLOWER_RARITY.get()) == 0) 
 				{
-					this.plantFlower(level, position);
-					ForgeHooks.onCropsGrowPost(level, position, state);
-				}
-				// if full height die back plant and grow flower(s)
-				else if(ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(GROWTH_RARITY) == 0))
-				{
-					BlockPos above = position.above();
-					if(this.canGrowInto(level, level.getBlockState(above), above)
-							&& ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(GROWTH_RARITY) == 0)) 
-					{
-						level.setBlock(position, this.getStateForAge(state, age + 1), Block.UPDATE_CLIENTS);
-						level.setBlock(above, this.getStateForAge(state, 0), Block.UPDATE_ALL);
-						ForgeHooks.onCropsGrowPost(level, position, state);
-					}				
+				this.plantFlower(level, position);
+				ForgeHooks.onCropsGrowPost(level, position, state);
 				}
 			}
-			else if(ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(GROWTH_RARITY) == 0)) 
+			// otherwise grow up a block
+			else if (this.canGrowInto(level.getBlockState(above)) 
+					&& ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(YATMConfigs.CRYING_PLANT_GROWTH_RARITY.get()) == 0))
 			{
 				level.setBlock(position, this.getStateForAge(state, age + 1), Block.UPDATE_CLIENTS);
+				level.setBlock(above, this.getStateForAge(state, 0), Block.UPDATE_ALL);
 				ForgeHooks.onCropsGrowPost(level, position, state);
 			}
+		}
+		// standard intermediary growth
+		else if (ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(YATMConfigs.CRYING_PLANT_GROWTH_RARITY.get()) == 0))
+		{
+			level.setBlock(position, this.getStateForAge(state, age + 1), Block.UPDATE_CLIENTS);
+			ForgeHooks.onCropsGrowPost(level, position, state);
 		}
 	} // end randomTick()
 	
 	private @NotNegative int stackCount(@NotNull Level level, @NotNull BlockPos position) 
 	{
-		// TODO, .is(tag) not .is(this), for greater extensibility.
 		int count = 0;
 		BlockPos.MutableBlockPos mpos = new BlockPos.MutableBlockPos().set(position);
-		while(level.getBlockState(mpos).is(this)) 
+		while(level.getBlockState(mpos).is(YATMBlockTags.CRYING_PLANT_VEGETATION_KEY)) 
 		{
 			++count;
 			mpos.setWithOffset(mpos, Direction.DOWN);
 		}
 		return count;
-	} // end thisBelowThis()
+	} // end stackBelowCount()
 
 	private void plantFlower(@NotNull Level level, @NotNull BlockPos position) 
 	{
 		BlockPos.MutableBlockPos mpos = new BlockPos.MutableBlockPos().set(position);
-
-		while(level.getBlockState(mpos).is(this)) 
+		while(level.getBlockState(mpos).is(YATMBlockTags.CRYING_PLANT_VEGETATION_KEY)) 
 		{
 			mpos.setWithOffset(mpos, Direction.DOWN);
 		}
@@ -180,24 +176,24 @@ public class BasinOfTearsVegetationBlock extends ShapeBlock implements IAgingBlo
 	@Override
 	public boolean isBonemealSuccess(@NotNull Level level, @NotNull RandomSource random, @NotNull BlockPos position, @NotNull BlockState state)
 	{
-		return true;
+		return random.nextInt(YATMConfigs.CRYING_PLANT_BONEMEAL_SUCCESS_RARITY.get()) == 0;
 	} // end isBonemealSuccess()
 	
 	@Override
 	public void performBonemeal(@NotNull ServerLevel level, @NotNull RandomSource random, @NotNull BlockPos position, @NotNull BlockState state)
 	{
-		// NOTE: this must coordinate with RandomTick()
+		// NOTE: this must coordinate with randomTick()
 		int destinedAge = this.getAge(state) + 1;
 		if (destinedAge == this.getMaxAge())
 		{
-			if (this.stackCount(level, position) >= BasinOfTearsVegetationBlock.MAX_HEIGHT)
+			if (this.stackCount(level, position) >= YATMConfigs.CRYING_PLANT_MAX_HEIGHT.get())
 			{
 				this.plantFlower(level, position);
 			}
 			else
 			{
 				BlockPos above = position.above();
-				if (this.canGrowInto(level, level.getBlockState(above), above))
+				if (this.canGrowInto(level.getBlockState(above)))
 				{
 					level.setBlock(position, this.getStateForAge(state, destinedAge), Block.UPDATE_CLIENTS);
 					level.setBlock(above, this.getStateForAge(state, 0), Block.UPDATE_ALL);
