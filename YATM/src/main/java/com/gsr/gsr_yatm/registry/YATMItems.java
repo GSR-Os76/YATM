@@ -194,7 +194,7 @@ public class YATMItems
 	
 	public static final RegistryObject<ItemNameBlockItem> ICE_CORAL_POLYP = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("ice_coral_polyp", () -> new ItemNameBlockItem(YATMBlocks.ICE_CORAL.get(), new Item.Properties()))));
 	
-	public static final RegistryObject<ItemNameBlockItem> BASIN_OF_TEARS_SEED = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("basin_of_tears_seed", () -> new ItemNameBlockItem(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), new Item.Properties()))));
+	public static final RegistryObject<ItemNameBlockItem> CRYING_PLANT_SEEDS = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("crying_plant_seeds", () -> new ItemNameBlockItem(YATMBlocks.CRYING_PLANT.get(), new Item.Properties()))));
 	
 	public static final RegistryObject<ItemNameBlockItem> COTTON_SEEDS = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("cotton_seeds", () -> new ItemNameBlockItem(YATMBlocks.COTTON.get(), new Item.Properties()))));
 

@@ -12,7 +12,7 @@ import com.gsr.gsr_yatm.block.IAgingBlock;
 import com.gsr.gsr_yatm.block.plant.OnceFruitingPlantStages;
 import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
-import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsFloralBlock;
+import com.gsr.gsr_yatm.block.plant.basin_of_tears.CryingFlowerBlock;
 import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
 import com.gsr.gsr_yatm.block.plant.cuprum.CuprumBlock;
 import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
@@ -123,7 +123,7 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropPottedContents(YATMBlocks.POTTED_AURUM.get());
 				
 		//this.add(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), this.createUniformTable(YATMItems.TEAR_LEAF.get(), 0f, 3f, LootItemBlockStatePropertyCondition.hasBlockStateProperties(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(BasinOfTearsVegetationBlock.AGE, YATMBlocks.BASIN_OF_TEARS_VEGETATION.get().getMaxAge()))));
-		this.add(YATMBlocks.BASIN_OF_TEARS_FLORAL.get(), this.createBasinOfTearsFloralTable());
+		this.add(YATMBlocks.CRYING_FLOWER.get(), this.createBasinOfTearsFloralTable());
 		
 		this.dropSelf(YATMBlocks.CANDLELILY.get());		
 		this.dropPottedContents(YATMBlocks.POTTED_CANDLELILY.get());
@@ -473,12 +473,12 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		Function<Integer, LootPool.Builder> forFlowerCount = (count) -> 
 		LootPool.lootPool()
 				.when(LootItemBlockStatePropertyCondition
-						.hasBlockStateProperties(YATMBlocks.BASIN_OF_TEARS_FLORAL.get())
+						.hasBlockStateProperties(YATMBlocks.CRYING_FLOWER.get())
 						.setProperties(StatePropertiesPredicate.Builder.properties()
-								.hasProperty(BasinOfTearsFloralBlock.AGE, YATMBlocks.BASIN_OF_TEARS_FLORAL.get().getMaxAge())
-								.hasProperty(BasinOfTearsFloralBlock.FLOWER_COUNT, count))
+								.hasProperty(CryingFlowerBlock.AGE, YATMBlocks.CRYING_FLOWER.get().getMaxAge())
+								.hasProperty(CryingFlowerBlock.FLOWER_COUNT, count))
 						)
-				.add(LootItem.lootTableItem(YATMItems.BASIN_OF_TEARS_SEED.get())
+				.add(LootItem.lootTableItem(YATMItems.CRYING_PLANT_SEEDS.get())
 						.apply(SetItemCountFunction.setCount(UniformGenerator.between(0f, 1f * count)))
 						);
 		

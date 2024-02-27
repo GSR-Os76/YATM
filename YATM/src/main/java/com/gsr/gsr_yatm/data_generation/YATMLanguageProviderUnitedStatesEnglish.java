@@ -111,8 +111,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.AURUM.get(), "Aurum");		
 		this.add(YATMBlocks.POTTED_AURUM.get(), "Potted Aurum");
 		
-		this.add(YATMBlocks.BASIN_OF_TEARS_FLORAL.get(), "Crying Flower");	
-		this.add(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), "Crying Plant Vegetation");
+		this.add(YATMBlocks.CRYING_FLOWER.get(), "Crying Flower");	
+		this.add(YATMBlocks.CRYING_PLANT.get(), "Crying Plant Vegetation");
 		
 		this.add(YATMBlocks.CANDLELILY.get(), "Candlelily");		
 		this.add(YATMBlocks.POTTED_CANDLELILY.get(), "Potted Candlelily");
@@ -295,7 +295,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_BOAT.get(), "Soul Afflicted Rubber Boat");
 		this.add(YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT.get(), "Soul Afflicted Rubber Chest Boat");
 					
-		this.add(YATMItems.BASIN_OF_TEARS_SEED.get(), "Crying Plant Seeds");
+		this.add(YATMItems.CRYING_PLANT_SEEDS.get(), "Crying Plant Seeds");
 		this.add(YATMItems.DILUTED_TEAR_BOTTLE.get(), "Diluted Tear Bottle");		
 
 		this.add(YATMItems.CARCASS_ROOT_CUTTING.get(), "Carcass Root Cutting");

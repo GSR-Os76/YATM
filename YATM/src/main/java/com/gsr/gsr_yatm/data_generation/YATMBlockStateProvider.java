@@ -382,7 +382,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	private void addCryingPlant()
 	{
-		this.createFourAgeCross(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), 
+		this.createFourAgeCross(YATMBlocks.CRYING_PLANT.get(), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_plant/sprouts"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_plant/young"), 
 				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_plant/adolescent"), 

@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "gsr_yatm:block/crying_plant_zero"
+    },
+    "age=1": {
+      "model": "gsr_yatm:block/crying_plant_one"
+    },
+    "age=2": {
+      "model": "gsr_yatm:block/crying_plant_two"
+    },
+    "age=3": {
+      "model": "gsr_yatm:block/crying_plant_three"
+    }
+  }
+}

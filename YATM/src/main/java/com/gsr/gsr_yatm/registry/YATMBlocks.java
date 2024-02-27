@@ -42,8 +42,8 @@ import com.gsr.gsr_yatm.block.hanging_pot.HangingPotHookBlock;
 import com.gsr.gsr_yatm.block.plant.CustomSeedCropBlock;
 import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
-import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsFloralBlock;
-import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsVegetationBlock;
+import com.gsr.gsr_yatm.block.plant.basin_of_tears.CryingFlowerBlock;
+import com.gsr.gsr_yatm.block.plant.basin_of_tears.CryingPlantBlock;
 import com.gsr.gsr_yatm.block.plant.candlelily.CandlelilyBlock;
 import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootFoliageBlock;
@@ -267,8 +267,8 @@ public class YATMBlocks
 	
 	// TODO, some dripping tree, a small tree with notable extrafloral nectaries, bees will interact with them, they will drip
 	
-	public static final RegistryObject<BasinOfTearsFloralBlock> BASIN_OF_TEARS_FLORAL = BLOCKS.register("basin_of_tears_floral", () -> new BasinOfTearsFloralBlock(YATMBlockProperties.BASIN_OF_TEARS, YATMBlockShapes.CUBE/*BASIN_OF_TEARS_FLORAL*/));
-	public static final RegistryObject<BasinOfTearsVegetationBlock> BASIN_OF_TEARS_VEGETATION = BLOCKS.register("basin_of_tears_vegetation", () -> new BasinOfTearsVegetationBlock(YATMBlockProperties.BASIN_OF_TEARS_VEGETATIVE, YATMBlockShapes.BASIN_OF_TEARS_VEGETATION, () -> YATMBlocks.BASIN_OF_TEARS_FLORAL.get().defaultBlockState().setValue(BasinOfTearsFloralBlock.FLOWER_COUNT, RandomSource.create().nextIntBetweenInclusive(1, 4))));
+	public static final RegistryObject<CryingFlowerBlock> CRYING_FLOWER = BLOCKS.register("crying_flower", () -> new CryingFlowerBlock(YATMBlockProperties.CRYING_FLOWER, YATMBlockShapes.CUBE/*CRYING_FLOWER*/));
+	public static final RegistryObject<CryingPlantBlock> CRYING_PLANT = BLOCKS.register("crying_plant", () -> new CryingPlantBlock(YATMBlockProperties.CRYING_PLANT, YATMBlockShapes.CRYING_PLANT, () -> YATMBlocks.CRYING_FLOWER.get().defaultBlockState().setValue(CryingFlowerBlock.FLOWER_COUNT, RandomSource.create().nextIntBetweenInclusive(1, 4))));
 	
 	// maybe do crop and final
 	public static final RegistryObject<CandlelilyBlock> CANDLELILY = BLOCKS.register("candlelily", () -> new CandlelilyBlock(YATMBlockProperties.CANDLELILY, YATMBlockShapes.CANDLELILY));	

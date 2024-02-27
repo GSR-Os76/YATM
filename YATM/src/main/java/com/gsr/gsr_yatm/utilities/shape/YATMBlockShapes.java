@@ -11,7 +11,7 @@ import com.gsr.gsr_yatm.block.device.crafting.grafting_table.GraftingTableBlock;
 import com.gsr.gsr_yatm.block.device.crafting.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
-import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsVegetationBlock;
+import com.gsr.gsr_yatm.block.plant.basin_of_tears.CryingPlantBlock;
 import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
 import com.gsr.gsr_yatm.block.plant.cuprum.CuprumBlock;
 import com.gsr.gsr_yatm.block.plant.ferrum.FerrumBlock;
@@ -120,7 +120,7 @@ public class YATMBlockShapes
 		} // end getShape()
 	};	
 	
-	public static final ICollisionVoxelShapeProvider BASIN_OF_TEARS_VEGETATION = new ICollisionVoxelShapeProvider() 
+	public static final ICollisionVoxelShapeProvider CRYING_PLANT = new ICollisionVoxelShapeProvider() 
 	{
 		private static final VoxelShape SPROUT = Block.box(1d, 0d, 1d, 15d, 6d, 15d);
 		private static final VoxelShape YOUNG = Block.box(0d, 0d, 0d, 16d, 9d, 16d);
@@ -130,13 +130,13 @@ public class YATMBlockShapes
 		@Override
 		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
 		{
-			return switch(state.getValue(BasinOfTearsVegetationBlock.AGE)) 
+			return switch(state.getValue(CryingPlantBlock.AGE)) 
 			{
 				case 0 -> SPROUT;
 				case 1 -> YOUNG;
 				case 2 -> ADOLESCENT;
 				case 3 -> OLD;
-				default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(BasinOfTearsVegetationBlock.AGE));
+				default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(CryingPlantBlock.AGE));
 			};
 		} // end getShape()
 	};	

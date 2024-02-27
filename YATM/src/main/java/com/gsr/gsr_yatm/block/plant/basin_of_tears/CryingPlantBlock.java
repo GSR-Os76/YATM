@@ -28,7 +28,7 @@ import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.common.ForgeHooks;
 
-public class BasinOfTearsVegetationBlock extends ShapeBlock implements IAgingBlock, IYATMPlantableBlock, BonemealableBlock
+public class CryingPlantBlock extends ShapeBlock implements IAgingBlock, IYATMPlantableBlock, BonemealableBlock
 {
 	public static final IntegerProperty AGE = YATMBlockStateProperties.AGE_FOUR;
 	
@@ -36,11 +36,11 @@ public class BasinOfTearsVegetationBlock extends ShapeBlock implements IAgingBlo
 	
 	
 	
-	public BasinOfTearsVegetationBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, @NotNull Supplier<BlockState> flower)
+	public CryingPlantBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, @NotNull Supplier<BlockState> flower)
 	{
 		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape));
 		
-		this.registerDefaultState(this.defaultBlockState().setValue(BasinOfTearsVegetationBlock.AGE, 0));
+		this.registerDefaultState(this.defaultBlockState().setValue(CryingPlantBlock.AGE, 0));
 		
 		this.m_flower = Objects.requireNonNull(flower);
 	} // end constructor
@@ -51,7 +51,7 @@ public class BasinOfTearsVegetationBlock extends ShapeBlock implements IAgingBlo
 	@Override
 	public @NotNull IntegerProperty getAgeProperty()
 	{
-		return BasinOfTearsVegetationBlock.AGE;
+		return CryingPlantBlock.AGE;
 	} // end getAgeProperty()
 
 	
@@ -59,7 +59,7 @@ public class BasinOfTearsVegetationBlock extends ShapeBlock implements IAgingBlo
 	@Override
 	protected void createBlockStateDefinition(@NotNull Builder<Block, BlockState> builder)
 	{
-		super.createBlockStateDefinition(builder.add(BasinOfTearsVegetationBlock.AGE));
+		super.createBlockStateDefinition(builder.add(CryingPlantBlock.AGE));
 	} // end createBlockStateDefinition()
 
 

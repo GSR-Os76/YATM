@@ -237,7 +237,7 @@ public class YATMBlockTags extends BlockTagsProvider
 		this.tag(YATMBlockTags.AURUM_CAN_GROW_ON_KEY).addTag(BlockTags.BASE_STONE_OVERWORLD).addTag(BlockTags.BASE_STONE_NETHER);
 		this.tag(YATMBlockTags.CRYING_FLOWER_CAN_GROW_IN_KEY).add(Blocks.AIR);
 		this.tag(YATMBlockTags.CRYING_FLOWER_CAN_GROW_ON_KEY).addTag(Tags.Blocks.NETHERRACK).addTag(Tags.Blocks.GRAVEL);
-		this.tag(YATMBlockTags.CRYING_PLANT_VEGETATION_KEY).add(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get());
+		this.tag(YATMBlockTags.CRYING_PLANT_VEGETATION_KEY).add(YATMBlocks.CRYING_PLANT.get());
 		this.tag(YATMBlockTags.CRYING_PLANT_CAN_GROW_IN_KEY).add(Blocks.AIR);
 		this.tag(YATMBlockTags.CRYING_PLANT_CAN_GROW_ON_KEY).addTag(Tags.Blocks.NETHERRACK).addTag(Tags.Blocks.GRAVEL);
 		this.tag(YATMBlockTags.CANDLE_LANTERNS_KEY).add(YATMBlocks.CANDLE_LANTERN.get()).add(YATMBlocks.WHITE_CANDLE_LANTERN.get()).add(YATMBlocks.ORANGE_CANDLE_LANTERN.get()).add(YATMBlocks.MAGENTA_CANDLE_LANTERN.get()).add(YATMBlocks.LIGHT_BLUE_CANDLE_LANTERN.get()).add(YATMBlocks.YELLOW_CANDLE_LANTERN.get()).add(YATMBlocks.LIME_CANDLE_LANTERN.get()).add(YATMBlocks.PINK_CANDLE_LANTERN.get()).add(YATMBlocks.GRAY_CANDLE_LANTERN.get()).add(YATMBlocks.LIGHT_GRAY_CANDLE_LANTERN.get()).add(YATMBlocks.CYAN_CANDLE_LANTERN.get()).add(YATMBlocks.PURPLE_CANDLE_LANTERN.get()).add(YATMBlocks.BLUE_CANDLE_LANTERN.get()).add(YATMBlocks.BROWN_CANDLE_LANTERN.get()).add(YATMBlocks.GREEN_CANDLE_LANTERN.get()).add(YATMBlocks.RED_CANDLE_LANTERN.get()).add(YATMBlocks.BLACK_CANDLE_LANTERN.get());
