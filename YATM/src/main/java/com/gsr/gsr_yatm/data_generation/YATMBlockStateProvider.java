@@ -1497,23 +1497,23 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 		this.models().getBuilder(sBName).parent(YATMBlockStateProvider.CROSS).texture("cross", largeBulb).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
 		this.models().getBuilder(sOingName).parent(YATMBlockStateProvider.CROSS).texture("cross", largeOpening).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
-		this.models().getBuilder(sOName).parent(YATMBlockStateProvider.CRYING_FLOWER_SINGLE_OPEN_MODEL).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
-		this.models().getBuilder(sONName).parent(YATMBlockStateProvider.CRYING_FLOWER_SINGLE_OPEN_NECTAR_MODEL).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		//this.models().getBuilder(sOName).parent(YATMBlockStateProvider.CRYING_FLOWER_SINGLE_OPEN_MODEL).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		//this.models().getBuilder(sONName).parent(YATMBlockStateProvider.CRYING_FLOWER_SINGLE_OPEN_NECTAR_MODEL).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
 		this.models().getBuilder(sSName).parent(YATMBlockStateProvider.CROSS).texture("cross", largeSeedpod).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
 		
 		this.models().getBuilder(dBName).parent(YATMBlockStateProvider.CRYING_FLOWER_DOUBLE_CROSS_MODEL).texture("cross", smallBulb).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
 		this.models().getBuilder(dOingName).parent(YATMBlockStateProvider.CRYING_FLOWER_DOUBLE_CROSS_MODEL).texture("cross", largeBulb).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
-		this.models().getBuilder(dOName).parent(YATMBlockStateProvider.CRYING_FLOWER_DOUBLE_OPEN_MODEL).texture("petal", largeBulb).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		//this.models().getBuilder(dOName).parent(YATMBlockStateProvider.CRYING_FLOWER_DOUBLE_OPEN_MODEL).texture("petal", largeBulb).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
 		this.models().getBuilder(dSName).parent(YATMBlockStateProvider.CRYING_FLOWER_DOUBLE_CROSS_MODEL).texture("cross", largeBulb).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
 		
 		this.models().getBuilder(tBName).parent(YATMBlockStateProvider.CRYING_FLOWER_TRIPLE_CROSS_MODEL).texture("cross", smallBulb).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
 		this.models().getBuilder(tOingName).parent(YATMBlockStateProvider.CRYING_FLOWER_TRIPLE_CROSS_MODEL).texture("cross", smallOpening).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
-		this.models().getBuilder(tOName).parent(YATMBlockStateProvider.CRYING_FLOWER_TRIPLE_OPEN_MODEL).texture("petal", smallOpen).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		//this.models().getBuilder(tOName).parent(YATMBlockStateProvider.CRYING_FLOWER_TRIPLE_OPEN_MODEL).texture("petal", smallOpen).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
 		this.models().getBuilder(tSName).parent(YATMBlockStateProvider.CRYING_FLOWER_TRIPLE_CROSS_MODEL).texture("cross", smallSeedpod).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
 		
 		this.models().getBuilder(qBName).parent(YATMBlockStateProvider.CRYING_FLOWER_QUADRUPLE_CROSS_MODEL).texture("cross", smallBulb).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
 		this.models().getBuilder(qOingName).parent(YATMBlockStateProvider.CRYING_FLOWER_QUADRUPLE_CROSS_MODEL).texture("cross", smallOpening).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
-		this.models().getBuilder(qOName).parent(YATMBlockStateProvider.CRYING_FLOWER_QUADRUPLE_OPEN_MODEL).texture("petal", smallOpen).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		//this.models().getBuilder(qOName).parent(YATMBlockStateProvider.CRYING_FLOWER_QUADRUPLE_OPEN_MODEL).texture("petal", smallOpen).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
 		this.models().getBuilder(qSName).parent(YATMBlockStateProvider.CRYING_FLOWER_QUADRUPLE_CROSS_MODEL).texture("cross", smallSeedpod).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
 		ModelFile sBModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, sBName));
 		ModelFile sOingModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, sOingName));
@@ -1546,7 +1546,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 				{
 					case 0 -> sBModel;
 					case 1 -> sOingModel;
-					case 2 -> bs.getValue(CryingFlowerBlock.NECTAR_FULL) ? sOModel : sONModel;
+					case 2 -> bs.getValue(CryingFlowerBlock.NECTAR_FULL) ? sONModel : sOModel;
 					case 3 -> sSModel;
 					default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(CryingFlowerBlock.AGE));
 				};

@@ -1,0 +1,7 @@
+{
+  "parent": "gsr_yatm:block/crying_flower_triple_cross",
+  "render_type": "minecraft:cutout",
+  "textures": {
+    "cross": "gsr_yatm:block/plant/crying_flower/small_opening"
+  }
+}

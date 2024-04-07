@@ -1,0 +1,61 @@
+{
+	"credit": "Made with Blockbench",
+	"render_type": "minecraft:cutout",
+	"textures": {
+		"petal": "gsr_yatm:block/plant/crying_flower/large_open",
+		"nectar": "gsr_yatm:block/plant/crying_flower/nectar",
+		"particle": "#petal"
+	},
+	"elements": [
+		{
+			"from": [3, -1, -2],
+			"to": [13, -1, 8],
+			"rotation": {"angle": 45, "axis": "x", "origin": [8, -1, 8]},
+			"faces": {
+				"up": {"uv": [3, 6, 13, 16], "texture": "#petal"},
+				"down": {"uv": [3, 6, 13, 16], "rotation": 180, "texture": "#petal"}
+			}
+		},
+		{
+			"from": [3, -1, 8],
+			"to": [13, 9, 8],
+			"rotation": {"angle": 45, "axis": "x", "origin": [8, -1, 8]},
+			"faces": {
+				"north": {"uv": [3, 6, 13, 16], "texture": "#petal"},
+				"south": {"uv": [3, 6, 13, 16], "texture": "#petal"}
+			}
+		},
+		{
+			"from": [8, -1, 3],
+			"to": [8, 9, 13],
+			"rotation": {"angle": -45, "axis": "z", "origin": [8, -1, 7]},
+			"faces": {
+				"east": {"uv": [3, 6, 13, 16], "texture": "#petal"},
+				"west": {"uv": [3, 6, 13, 16], "texture": "#petal"}
+			}
+		},
+		{
+			"from": [8, -1, 3],
+			"to": [8, 9, 13],
+			"rotation": {"angle": 45, "axis": "z", "origin": [8, -1, 7]},
+			"faces": {
+				"east": {"uv": [3, 6, 13, 16], "texture": "#petal"},
+				"west": {"uv": [3, 6, 13, 16], "texture": "#petal"}
+			}
+		},
+		{
+			"from": [7, 0, 7],
+			"to": [9, 0.01, 9],
+			"faces": {
+				"up": {"uv": [7, 14, 9, 16], "texture": "#petal"}
+			}
+		},
+		{
+			"from": [5, 2, 5],
+			"to": [11, 2, 11],
+			"faces": {
+				"up": {"uv": [5, 5, 11, 11], "texture": "#nectar"}
+			}
+		}
+	]
+}
