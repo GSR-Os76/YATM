@@ -68,8 +68,8 @@ import com.gsr.gsr_yatm.block.plant.ruberum.RuberumBlock;
 import com.gsr.gsr_yatm.block.plant.samaragdum.SamaragdumBlock;
 import com.gsr.gsr_yatm.block.plant.tree.AerialRootsBlock;
 import com.gsr.gsr_yatm.block.plant.tree.TappedLogBlock;
-import com.gsr.gsr_yatm.block.plant.tree.rubber_bush.RubberBushSaplingBlock;
-import com.gsr.gsr_yatm.block.plant.tree.soul_afflicted_rubber_bush.SoulAfflictedRubberBushSaplingBlock;
+import com.gsr.gsr_yatm.block.plant.tree.rubber_bush.RubberTreeMeristemBlock;
+import com.gsr.gsr_yatm.block.plant.tree.soul_afflicted_rubber_bush.SoulAfflictedRubberTreeMeristemBlock;
 import com.gsr.gsr_yatm.block.plant.variegated_cactus.VariegatedCactusBlock;
 import com.gsr.gsr_yatm.block.plant.vicum.VicumBlock;
 import com.gsr.gsr_yatm.block.plant.vine.OnceFruitVineBodyBlock;
@@ -224,9 +224,9 @@ public class YATMBlocks
 	public static final RegistryObject<LeavesBlock> SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING = BLOCKS.register("soul_afflicted_rubber_leaves_flowering", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
 	public static final RegistryObject<LeavesBlock> SOUL_AFFLICTED_RUBBER_LEAVES_OLD = BLOCKS.register("soul_afflicted_rubber_leaves_old", () ->  new LeavesBlock(YATMBlockProperties.LEAVES));
 	
-	public static final RegistryObject<RubberBushSaplingBlock> RUBBER_MERISTEM = BLOCKS.register("rubber_meristem", () -> new RubberBushSaplingBlock(YATMBlockProperties.SAPLING));	
+	public static final RegistryObject<RubberTreeMeristemBlock> RUBBER_MERISTEM = BLOCKS.register("rubber_meristem", () -> new RubberTreeMeristemBlock(YATMBlockProperties.SAPLING));	
 	public static final RegistryObject<FlowerPotBlock> POTTED_RUBBER_MERISTEM = BLOCKS.register("potted_rubber_meristem", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.RUBBER_MERISTEM.get(), YATMBlockProperties.FLOWER_POT));
-	public static final RegistryObject<SoulAfflictedRubberBushSaplingBlock> SOUL_AFFLICTED_RUBBER_MERISTEM = BLOCKS.register("soul_afflicted_rubber_meristem", () -> new SoulAfflictedRubberBushSaplingBlock(YATMBlockProperties.SAPLING));
+	public static final RegistryObject<SoulAfflictedRubberTreeMeristemBlock> SOUL_AFFLICTED_RUBBER_MERISTEM = BLOCKS.register("soul_afflicted_rubber_meristem", () -> new SoulAfflictedRubberTreeMeristemBlock(YATMBlockProperties.SAPLING));
 	public static final RegistryObject<FlowerPotBlock> POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM = BLOCKS.register("potted_soul_afflicted_rubber_meristem", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), YATMBlockProperties.FLOWER_POT));
 	
 	

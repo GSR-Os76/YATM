@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.registry;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.block.plant.tree.LayeredRandomSpreadRootPlacer;
+import com.gsr.gsr_yatm.worldgen.root_placer.LayeredRandomSpreadRootPlacer;
 
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.level.levelgen.feature.rootplacers.RootPlacerType;

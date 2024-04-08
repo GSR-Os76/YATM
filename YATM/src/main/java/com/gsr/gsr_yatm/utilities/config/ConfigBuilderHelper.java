@@ -198,4 +198,16 @@ public class ConfigBuilderHelper extends ForgeConfigSpec.Builder
 		return this.comment("The period in ticks of the device trying to reattach a slotted " + name + " draining component to relavent neighbors.").defineInRange("drain_" + key + "_recheck_period", period, 0, Integer.MAX_VALUE);
 	} // end outputComponentRecheckPeriod()
 	
+	
+	
+	public @NotNull ConfigValue<Integer> maxParticles(@NotNegative int particles)
+	{
+		return this.comment("The maximum number of particles that might be spawned.").defineInRange("max_particles", particles, 0, Integer.MAX_VALUE);
+	} // end maxParticles()
+	
+	public @NotNull ConfigValue<Integer> minParticles(@NotNegative int particles)
+	{
+		return this.comment("The minimum number of particles that might be spawned.").defineInRange("min_particles", particles, 0, Integer.MAX_VALUE);
+	} // end minParticles()
+	
 } // end class

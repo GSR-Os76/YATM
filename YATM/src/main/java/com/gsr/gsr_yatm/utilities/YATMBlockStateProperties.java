@@ -86,4 +86,5 @@ public class YATMBlockStateProperties
 	
 	public static final EnumProperty<OnceFruitingPlantStages> ONCE_FRUITING_STAGE =  EnumProperty.create("stage", OnceFruitingPlantStages.class);
 	
+	public static final BooleanProperty RECENTLY_AFFLICTED = BooleanProperty.create("recently_afflicted");
 } // end class

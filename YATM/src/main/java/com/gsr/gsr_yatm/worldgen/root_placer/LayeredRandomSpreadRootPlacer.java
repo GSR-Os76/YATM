@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.plant.tree;
+package com.gsr.gsr_yatm.worldgen.root_placer;
 
 import java.util.Optional;
 import java.util.function.BiConsumer;

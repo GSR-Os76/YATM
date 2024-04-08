@@ -275,7 +275,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	private void addRubberSet() 
 	{
 		ResourceLocation meristemTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_meristem");
-		this.createSelfLayeringSapling(YATMBlocks.RUBBER_MERISTEM.get(), YATMItems.RUBBER_MERISTEM.get(), "block/rubber_meristem", meristemTexture);
+		this.createCross(YATMBlocks.RUBBER_MERISTEM.get(), meristemTexture);
 		this.createPottedCross(YATMBlocks.POTTED_RUBBER_MERISTEM.get(), meristemTexture);
 		this.createAllBlock(YATMBlocks.RUBBER_LEAVES_YOUNG.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_leaves_young"));
 		this.createAllBlock(YATMBlocks.RUBBER_LEAVES_FLOWERING.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/rubber_leaves_flowering"));
@@ -324,7 +324,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	private void addSoulAfflictedRubberSet() 
 	{
 		ResourceLocation meristemTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_meristem");
-		this.createSelfLayeringSapling(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), "block/soul_afflicted_rubber_meristem", meristemTexture);
+		this.createCross(YATMBlocks.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), meristemTexture);
 		this.createPottedCross(YATMBlocks.POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM.get(), meristemTexture);
 		this.createAllBlock(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_leaves_young"));
 		this.createAllBlock(YATMBlocks.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/rubber/soul_afflicted_rubber_leaves_flowering"));
@@ -1371,6 +1371,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		{ new ConfiguredModel(model) });
 	} // end createAllBlock()
 
+	@SuppressWarnings("unused")
 	private void createSelfLayeringSapling(SelfLayeringSaplingBlock block, Item item, String nameForModel, ResourceLocation texture) 
 	{
 		this.models().cross(nameForModel, texture).renderType(CUTOUT_RENDER_TYPE);

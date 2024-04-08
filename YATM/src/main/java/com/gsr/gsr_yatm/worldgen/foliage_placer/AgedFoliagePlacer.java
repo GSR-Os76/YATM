@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.plant.tree;
+package com.gsr.gsr_yatm.worldgen.foliage_placer;
 
 import com.gsr.gsr_yatm.registry.YATMFoliagePlacerTypes;
 import com.mojang.datafixers.Products.P6;

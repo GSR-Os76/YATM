@@ -28,7 +28,7 @@ public class YATMBiomeTags extends BiomeTagsProvider
 	
 	
 	
-	public static final TagKey<Biome> HAS_FEATURE_SOUL_AFFLICTED_RUBBER_BUSH = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "has_feature/soul_afflicted_rubber_bush"));
+	public static final TagKey<Biome> HAS_FEATURE_SOUL_AFFLICTED_RUBBER_TREE = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "has_feature/soul_afflicted_rubber_tree"));
 	
 
 	
@@ -42,7 +42,7 @@ public class YATMBiomeTags extends BiomeTagsProvider
 	@Override
 	protected void addTags(Provider provider)
 	{
-		this.tag(HAS_FEATURE_SOUL_AFFLICTED_RUBBER_BUSH).add(Biomes.SOUL_SAND_VALLEY);
+		this.tag(YATMBiomeTags.HAS_FEATURE_SOUL_AFFLICTED_RUBBER_TREE).add(Biomes.SOUL_SAND_VALLEY);
 	} // end addTags()
 	
 } // end class

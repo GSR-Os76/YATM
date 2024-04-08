@@ -1,6 +1,10 @@
 {
-	"feature": "gsr_yatm:soul_afflicted_rubber_bush_apical",
+	"feature": "gsr_yatm:soul_afflicted_rubber_tree",
 	"placement": [
+		{
+			"type": "minecraft:rarity_filter",
+			"chance": 64
+		},
 		{
 			"type": "minecraft:count_on_every_layer",
 			"count": 8
