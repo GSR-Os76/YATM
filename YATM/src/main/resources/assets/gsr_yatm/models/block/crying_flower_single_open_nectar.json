@@ -1,6 +1,7 @@
 {
 	"credit": "Made with Blockbench",
 	"render_type": "minecraft:cutout",
+	"ambientocclusion": false,
 	"textures": {
 		"petal": "gsr_yatm:block/plant/crying_flower/large_open",
 		"nectar": "gsr_yatm:block/plant/crying_flower/nectar",

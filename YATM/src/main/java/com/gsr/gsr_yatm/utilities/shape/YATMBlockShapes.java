@@ -11,6 +11,7 @@ import com.gsr.gsr_yatm.block.device.crafting.grafting_table.GraftingTableBlock;
 import com.gsr.gsr_yatm.block.device.crafting.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
+import com.gsr.gsr_yatm.block.plant.basin_of_tears.CryingFlowerBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.CryingPlantBlock;
 import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
 import com.gsr.gsr_yatm.block.plant.cuprum.CuprumBlock;
@@ -117,6 +118,30 @@ public class YATMBlockShapes
 				case 4 -> isLower ? OLD_LOWER : OLD_HIGHER;
 				default -> throw new IllegalArgumentException("Unexpected value of: " + state.getValue(AurumBlock.AGE));
 			};
+		} // end getShape()
+	};	
+	
+	public static final ICollisionVoxelShapeProvider CRYING_FLOWER = new ICollisionVoxelShapeProvider() 
+	{
+		private static final VoxelShape SINGLE_CROSSES = Block.box(2d, 0d, 2d, 14d, 12d, 14d);
+		private static final VoxelShape MULTIPLE_CROSSES = Block.box(1d, 0d, 1d, 15d, 8d, 15d);
+		private static final VoxelShape OPEN = Block.box(1d, 0d, 1d, 15d, 6d, 15d);
+
+		@Override
+		public @NotNull VoxelShape getShape(@NotNull BlockState state, @NotNull BlockGetter blockGetter, @NotNull BlockPos position, @NotNull CollisionContext context)
+		{
+			if(state.getValue(CryingFlowerBlock.AGE) == 2) 
+			{
+				return OPEN;
+			}
+			else if(state.getValue(CryingFlowerBlock.FLOWER_COUNT) == 1) 
+			{
+				return SINGLE_CROSSES;
+			}
+			else 
+			{
+				return MULTIPLE_CROSSES;
+			}
 		} // end getShape()
 	};	
 	

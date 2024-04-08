@@ -267,7 +267,7 @@ public class YATMBlocks
 	
 	// TODO, some dripping tree, a small tree with notable extrafloral nectaries, bees will interact with them, they will drip
 	
-	public static final RegistryObject<CryingFlowerBlock> CRYING_FLOWER = BLOCKS.register("crying_flower", () -> new CryingFlowerBlock(YATMBlockProperties.CRYING_FLOWER, YATMBlockShapes.CUBE/*CRYING_FLOWER*/));
+	public static final RegistryObject<CryingFlowerBlock> CRYING_FLOWER = BLOCKS.register("crying_flower", () -> new CryingFlowerBlock(YATMBlockProperties.CRYING_FLOWER, YATMBlockShapes.CRYING_FLOWER));
 	public static final RegistryObject<CryingPlantBlock> CRYING_PLANT = BLOCKS.register("crying_plant", () -> new CryingPlantBlock(YATMBlockProperties.CRYING_PLANT, YATMBlockShapes.CRYING_PLANT, () -> YATMBlocks.CRYING_FLOWER.get().defaultBlockState().setValue(CryingFlowerBlock.FLOWER_COUNT, RandomSource.create().nextIntBetweenInclusive(1, 4))));
 	
 	// maybe do crop and final
