@@ -5,7 +5,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "gsr_yatm:basin_of_tears_floral",
+          "block": "gsr_yatm:crying_flower",
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "3",
@@ -27,7 +27,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "gsr_yatm:basin_of_tears_seed"
+          "name": "gsr_yatm:crying_plant_seeds"
         }
       ],
       "rolls": 1.0
@@ -36,7 +36,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "gsr_yatm:basin_of_tears_floral",
+          "block": "gsr_yatm:crying_flower",
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "3",
@@ -58,7 +58,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "gsr_yatm:basin_of_tears_seed"
+          "name": "gsr_yatm:crying_plant_seeds"
         }
       ],
       "rolls": 1.0
@@ -67,7 +67,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "gsr_yatm:basin_of_tears_floral",
+          "block": "gsr_yatm:crying_flower",
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "3",
@@ -89,7 +89,7 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "gsr_yatm:basin_of_tears_seed"
+          "name": "gsr_yatm:crying_plant_seeds"
         }
       ],
       "rolls": 1.0
@@ -98,7 +98,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "gsr_yatm:basin_of_tears_floral",
+          "block": "gsr_yatm:crying_flower",
           "condition": "minecraft:block_state_property",
           "properties": {
             "age": "3",
@@ -120,11 +120,11 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "gsr_yatm:basin_of_tears_seed"
+          "name": "gsr_yatm:crying_plant_seeds"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "gsr_yatm:blocks/basin_of_tears_floral"
+  "random_sequence": "gsr_yatm:blocks/crying_flower"
 }

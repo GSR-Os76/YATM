@@ -66,7 +66,7 @@ public class YATMItemModelProvider extends ItemModelProvider
 		
 		this.basicItem(YATMItems.AURUM_DEMINUTUS_FIDDLE_HEAD.get());
 		
-		this.basicItem(YATMItems.BASIN_OF_TEARS_SEED.get());
+		this.basicItem(YATMItems.CRYING_PLANT_SEEDS.get());
 		this.basicItem(YATMItems.DILUTED_TEAR_BOTTLE.get());
 		
 		this.basicItem(YATMItems.CANDLELILY.get());

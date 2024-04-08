@@ -1,0 +1,100 @@
+{
+  "variants": {
+    "age=0,flower_count=1,nectar_full=false": {
+      "model": "gsr_yatm:block/crying_flower_single_bulb"
+    },
+    "age=0,flower_count=1,nectar_full=true": {
+      "model": "gsr_yatm:block/crying_flower_single_bulb"
+    },
+    "age=0,flower_count=2,nectar_full=false": {
+      "model": "gsr_yatm:block/crying_flower_double_bulb"
+    },
+    "age=0,flower_count=2,nectar_full=true": {
+      "model": "gsr_yatm:block/crying_flower_double_bulb"
+    },
+    "age=0,flower_count=3,nectar_full=false": {
+      "model": "gsr_yatm:block/crying_flower_triple_bulb"
+    },
+    "age=0,flower_count=3,nectar_full=true": {
+      "model": "gsr_yatm:block/crying_flower_triple_bulb"
+    },
+    "age=0,flower_count=4,nectar_full=false": {
+      "model": "gsr_yatm:block/crying_flower_quadruple_bulb"
+    },
+    "age=0,flower_count=4,nectar_full=true": {
+      "model": "gsr_yatm:block/crying_flower_quadruple_bulb"
+    },
+    "age=1,flower_count=1,nectar_full=false": {
+      "model": "gsr_yatm:block/crying_flower_single_opening"
+    },
+    "age=1,flower_count=1,nectar_full=true": {
+      "model": "gsr_yatm:block/crying_flower_single_opening"
+    },
+    "age=1,flower_count=2,nectar_full=false": {
+      "model": "gsr_yatm:block/crying_flower_double_opening"
+    },
+    "age=1,flower_count=2,nectar_full=true": {
+      "model": "gsr_yatm:block/crying_flower_double_opening"
+    },
+    "age=1,flower_count=3,nectar_full=false": {
+      "model": "gsr_yatm:block/crying_flower_triple_opening"
+    },
+    "age=1,flower_count=3,nectar_full=true": {
+      "model": "gsr_yatm:block/crying_flower_triple_opening"
+    },
+    "age=1,flower_count=4,nectar_full=false": {
+      "model": "gsr_yatm:block/crying_flower_quadruple_opening"
+    },
+    "age=1,flower_count=4,nectar_full=true": {
+      "model": "gsr_yatm:block/crying_flower_quadruple_opening"
+    },
+    "age=2,flower_count=1,nectar_full=false": {
+      "model": "gsr_yatm:block/crying_flower_single_open"
+    },
+    "age=2,flower_count=1,nectar_full=true": {
+      "model": "gsr_yatm:block/crying_flower_single_open_nectar"
+    },
+    "age=2,flower_count=2,nectar_full=false": {
+      "model": "gsr_yatm:block/crying_flower_double_open"
+    },
+    "age=2,flower_count=2,nectar_full=true": {
+      "model": "gsr_yatm:block/crying_flower_double_open"
+    },
+    "age=2,flower_count=3,nectar_full=false": {
+      "model": "gsr_yatm:block/crying_flower_triple_open"
+    },
+    "age=2,flower_count=3,nectar_full=true": {
+      "model": "gsr_yatm:block/crying_flower_triple_open"
+    },
+    "age=2,flower_count=4,nectar_full=false": {
+      "model": "gsr_yatm:block/crying_flower_quadruple_open"
+    },
+    "age=2,flower_count=4,nectar_full=true": {
+      "model": "gsr_yatm:block/crying_flower_quadruple_open"
+    },
+    "age=3,flower_count=1,nectar_full=false": {
+      "model": "gsr_yatm:block/crying_flower_single_seedpod"
+    },
+    "age=3,flower_count=1,nectar_full=true": {
+      "model": "gsr_yatm:block/crying_flower_single_seedpod"
+    },
+    "age=3,flower_count=2,nectar_full=false": {
+      "model": "gsr_yatm:block/crying_flower_double_seedpod"
+    },
+    "age=3,flower_count=2,nectar_full=true": {
+      "model": "gsr_yatm:block/crying_flower_double_seedpod"
+    },
+    "age=3,flower_count=3,nectar_full=false": {
+      "model": "gsr_yatm:block/crying_flower_triple_seedpod"
+    },
+    "age=3,flower_count=3,nectar_full=true": {
+      "model": "gsr_yatm:block/crying_flower_triple_seedpod"
+    },
+    "age=3,flower_count=4,nectar_full=false": {
+      "model": "gsr_yatm:block/crying_flower_quadruple_seedpod"
+    },
+    "age=3,flower_count=4,nectar_full=true": {
+      "model": "gsr_yatm:block/crying_flower_quadruple_seedpod"
+    }
+  }
+}

@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "gsr_yatm:block/plant/basin_of_tears/foliage_old"
+    "cross": "gsr_yatm:block/plant/crying_flower/large_bulb"
   }
 }

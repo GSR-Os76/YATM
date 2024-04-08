@@ -42,8 +42,8 @@ import com.gsr.gsr_yatm.block.hanging_pot.HangingPotHookBlock;
 import com.gsr.gsr_yatm.block.plant.CustomSeedCropBlock;
 import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
-import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsFloralBlock;
-import com.gsr.gsr_yatm.block.plant.basin_of_tears.BasinOfTearsVegetationBlock;
+import com.gsr.gsr_yatm.block.plant.basin_of_tears.CryingFlowerBlock;
+import com.gsr.gsr_yatm.block.plant.basin_of_tears.CryingPlantBlock;
 import com.gsr.gsr_yatm.block.plant.candlelily.CandlelilyBlock;
 import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootFoliageBlock;
@@ -267,8 +267,8 @@ public class YATMBlocks
 	
 	// TODO, some dripping tree, a small tree with notable extrafloral nectaries, bees will interact with them, they will drip
 	
-	public static final RegistryObject<BasinOfTearsFloralBlock> BASIN_OF_TEARS_FLORAL = BLOCKS.register("basin_of_tears_floral", () -> new BasinOfTearsFloralBlock(YATMBlockProperties.BASIN_OF_TEARS, YATMBlockShapes.CUBE/*BASIN_OF_TEARS_FLORAL*/));
-	public static final RegistryObject<BasinOfTearsVegetationBlock> BASIN_OF_TEARS_VEGETATION = BLOCKS.register("basin_of_tears_vegetation", () -> new BasinOfTearsVegetationBlock(YATMBlockProperties.BASIN_OF_TEARS_VEGETATIVE, YATMBlockShapes.BASIN_OF_TEARS_VEGETATION, () -> YATMBlocks.BASIN_OF_TEARS_FLORAL.get().defaultBlockState().setValue(BasinOfTearsFloralBlock.FLOWER_COUNT, RandomSource.create().nextIntBetweenInclusive(1, 4))));
+	public static final RegistryObject<CryingFlowerBlock> CRYING_FLOWER = BLOCKS.register("crying_flower", () -> new CryingFlowerBlock(YATMBlockProperties.CRYING_FLOWER, YATMBlockShapes.CRYING_FLOWER));
+	public static final RegistryObject<CryingPlantBlock> CRYING_PLANT = BLOCKS.register("crying_plant", () -> new CryingPlantBlock(YATMBlockProperties.CRYING_PLANT, YATMBlockShapes.CRYING_PLANT, () -> YATMBlocks.CRYING_FLOWER.get().defaultBlockState().setValue(CryingFlowerBlock.FLOWER_COUNT, RandomSource.create().nextIntBetweenInclusive(1, 4))));
 	
 	// maybe do crop and final
 	public static final RegistryObject<CandlelilyBlock> CANDLELILY = BLOCKS.register("candlelily", () -> new CandlelilyBlock(YATMBlockProperties.CANDLELILY, YATMBlockShapes.CANDLELILY));	
@@ -377,6 +377,7 @@ public class YATMBlocks
 	
 	public static final RegistryObject<TankBlock> STEEL_TANK = BLOCKS.register("steel_tank", () -> new TankBlock(YATMBlockProperties.STEEL_TANK, YATMBlockShapes.STEEL_TANK));
 	
+	// maybe make solar vines look loosely like a vertical wooden terrace growing vines, add as later alternative to block forms, block forms first for simplicity
 	public static final RegistryObject<BatterySolarPanelBlock> CRUDE_BATTERY_SOLAR_PANEL = BLOCKS.register("crude_battery_solar_panel", () -> new BatterySolarPanelBlock(YATMBlockProperties.SOLAR_PANEL, YATMBlockShapes.CUBE, 1024, 8, 64, SolarPanelSettings.CRUDE));
 	public static final RegistryObject<BatterySolarPanelBlock> ADVANCED_BATTERY_SOLAR_PANEL = BLOCKS.register("advanced_battery_solar_panel", () -> new BatterySolarPanelBlock(YATMBlockProperties.SOLAR_PANEL, YATMBlockShapes.CUBE, 65536, 64, 512, SolarPanelSettings.ADVANCED));
 	public static final RegistryObject<BatterySolarPanelBlock> SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL = BLOCKS.register("suns_complement_battery_solar_panel", () -> new BatterySolarPanelBlock(YATMBlockProperties.SOLAR_PANEL, YATMBlockShapes.CUBE, 524288, 512, 4096, SolarPanelSettings.SUNS_COMPLEMENT));

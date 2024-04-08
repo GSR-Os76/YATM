@@ -19,6 +19,7 @@ import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
 import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlock;
 import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
+import com.gsr.gsr_yatm.block.plant.basin_of_tears.CryingFlowerBlock;
 import com.gsr.gsr_yatm.block.plant.carbum.CarbumBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootFoliageBlock;
 import com.gsr.gsr_yatm.block.plant.carcass_root.CarcassRootRootBlock;
@@ -93,6 +94,15 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	public static final ResourceLocation STONE_TEXTURE = new ResourceLocation("minecraft", "block/stone");
 	
 	
+	
+	public static final ModelFile CRYING_FLOWER_SINGLE_OPEN_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/crying_flower_single_open"));
+	public static final ModelFile CRYING_FLOWER_SINGLE_OPEN_NECTAR_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/crying_flower_single_open_nectar"));
+	public static final ModelFile CRYING_FLOWER_DOUBLE_OPEN_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/crying_flower_double_open"));
+	public static final ModelFile CRYING_FLOWER_TRIPLE_OPEN_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/crying_flower_triple_open"));
+	public static final ModelFile CRYING_FLOWER_QUADRUPLE_OPEN_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/crying_flower_quadruple_open"));
+	public static final ModelFile CRYING_FLOWER_DOUBLE_CROSS_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/crying_flower_double_cross"));
+	public static final ModelFile CRYING_FLOWER_TRIPLE_CROSS_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/crying_flower_triple_cross"));
+	public static final ModelFile CRYING_FLOWER_QUADRUPLE_CROSS_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/crying_flower_quadruple_cross"));
 	
 	public static final ModelFile PATCH_CROSS_MODEL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/patch_cross"));
 	public static final ModelFile PHANTASMAL_SHELF_FUNGUS_SMALL = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, "block/phantasmal_shelf_fungi_small"));
@@ -193,7 +203,8 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 		this.addAdamum();
 		this.addAurum();
-		this.addBasinOfTears();
+		this.addCryingFlower();
+		this.addCryingPlant();
 		this.addCandlelily();
 		this.addCarbum();
 		this.addCarcassRoot();
@@ -380,14 +391,27 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createStoneSoilPottedCross(YATMBlocks.POTTED_AURUM.get(), adolescentTexture);
 	} // end addAurum()
 	
-	private void addBasinOfTears()
+	private void addCryingFlower()
 	{
-		this.createFourAgeCross(YATMBlocks.BASIN_OF_TEARS_VEGETATION.get(), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/basin_of_tears/foliage_sprouts"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/basin_of_tears/foliage_young"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/basin_of_tears/foliage_adolescent"), 
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/basin_of_tears/foliage_old"));
-	} // end addBasinOfTears()
+		this.createCryingFlower(YATMBlocks.CRYING_FLOWER.get(), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_flower/small_bulb"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_flower/small_opening"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_flower/small_open"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_flower/small_seedpod"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_flower/large_bulb"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_flower/large_opening"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_flower/large_open"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_flower/large_seedpod"));
+	} // end addCryingFlower()
+	
+	private void addCryingPlant()
+	{
+		this.createFourAgeCross(YATMBlocks.CRYING_PLANT.get(), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_plant/sprouts"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_plant/young"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_plant/adolescent"), 
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/crying_plant/old"));
+	} // end addCryingPlant()
 	
 	private void addCandlelily() 
 	{
@@ -1358,7 +1382,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
         .texture("layer0", texture);
 	} // end createSelfLayerinSapling
 	
-	private void createPottedCross(Block block, ResourceLocation texture) 
+	private void createPottedCross(@NotNull Block block, @NotNull ResourceLocation texture) 
 	{
 		String name = getModelLocationNameFor(block);			
 		this.models().getBuilder(name).parent(YATMBlockStateProvider.FLOWER_POT_CROSS).texture("plant", texture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
@@ -1367,18 +1391,18 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		{ new ConfiguredModel(model) });
 	} // end addPottedPlant()
 	
-	private void createStoneSoilPottedCross(Block block, ResourceLocation texture)
+	private void createStoneSoilPottedCross(@NotNull Block block, @NotNull ResourceLocation texture)
 	{
-		String name = getModelLocationNameFor(block);			
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);			
 		this.models().getBuilder(name).parent(YATMBlockStateProvider.FLOWER_POT_CROSS).texture("dirt", STONE_TEXTURE).texture("plant", texture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
 		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
 		this.getVariantBuilder(block).forAllStates((blockState) -> new ConfiguredModel[]
 		{ new ConfiguredModel(model) });
 	} // end createStoneSoilPottedCross()
 	
-	private void createPottedCactus(Block block, ResourceLocation topTexture, ResourceLocation sideTexture) 
+	private void createPottedCactus(@NotNull Block block, @NotNull ResourceLocation topTexture, @NotNull ResourceLocation sideTexture) 
 	{
-		String name = getModelLocationNameFor(block);			
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);			
 		this.models().getBuilder(name).parent(YATMBlockStateProvider.POTTED_CACTUS).texture("cactus_top", topTexture).texture("cactus", sideTexture); // .renderType(CUTOUT_RENDER_TYPE);		
 		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
 		this.getVariantBuilder(block).forAllStates((blockState) -> new ConfiguredModel[]
@@ -1386,14 +1410,14 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	} // end addPottedPlant()
 	
 	// createAdamum
-	public void createAdamum(AdamumBlock block, 
+	public void createAdamum(@NotNull AdamumBlock block, 
 			ResourceLocation meristemTexture, 
 			ResourceLocation youngTexture, 
 			ResourceLocation adolescentTexture, 
 			ResourceLocation oldTexture, 
 			ResourceLocation oldTuberTexture)
 	{
-		String name = getModelLocationNameFor(block);			
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);			
 		String nameM = name + "_meristem";
 		String nameY = name + "_young";
 		String nameA = name + "_adolescent";
@@ -1412,9 +1436,9 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.getVariantBuilder(block).forAllStates((bs) -> forAdamum(bs, modelM, modelY, modelA, modelO, modelOT));
 	} // end createAdamum()
 	
-	public void createAurumDeminutus(AurumBlock block, ResourceLocation fiddleHeadTexture, ResourceLocation youngTexture, ResourceLocation adolescentTexture, ResourceLocation adolescentDoubleLowerTexture, ResourceLocation adolescentDoubleHigherTexture, ResourceLocation matureDoubleLowerTexture, ResourceLocation matureDoubleHigherTexture)
+	public void createAurumDeminutus(@NotNull AurumBlock block, @NotNull ResourceLocation fiddleHeadTexture, @NotNull ResourceLocation youngTexture, @NotNull ResourceLocation adolescentTexture, @NotNull ResourceLocation adolescentDoubleLowerTexture, @NotNull ResourceLocation adolescentDoubleHigherTexture, @NotNull ResourceLocation matureDoubleLowerTexture, @NotNull ResourceLocation matureDoubleHigherTexture)
 	{
-		String name = getModelLocationNameFor(block);			
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);			
 		String fName = name + "_fiddle_head";
 		String yName = name + "_young";
 		String aName = name + "_adolescent";
@@ -1439,7 +1463,125 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.getVariantBuilder(block).forAllStates((bs) -> forAurumLike(bs, fModel, yModel, aModel, aDLModel, aDHModel, mDLModel, mDHModel));
 	} // end createAurumDeminutus()
 	
-	private void createPhantasmalShelfFungus(PhantasmalShelfFungiBlock block, Item item) 
+	private void createCryingFlower(@NotNull CryingFlowerBlock block, @NotNull ResourceLocation smallBulb, @NotNull ResourceLocation smallOpening, @NotNull ResourceLocation smallOpen, @NotNull ResourceLocation smallSeedpod, @NotNull ResourceLocation largeBulb, @NotNull ResourceLocation largeOpening, @NotNull ResourceLocation largeOpen, @NotNull ResourceLocation largeSeedpod) 
+	{
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);			
+//		CRYING_FLOWER_SINGLE_OPEN_MODEL
+//		CRYING_FLOWER_SINGLE_OPEN_NECTAR_MODEL
+//		CRYING_FLOWER_DOUBLE_OPEN_MODEL
+//		CRYING_FLOWER_TRIPLE_OPEN_MODEL
+//		CRYING_FLOWER_QUADRUPLE_OPEN_MODEL
+//		CRYING_FLOWER_DOUBLE_CROSS_MODEL
+//		CRYING_FLOWER_TRIPLE_CROSS_MODEL
+//		CRYING_FLOWER_QUADRUPLE_CROSS_MODEL
+		
+		String sBName = name + "_single_bulb";
+		String sOingName = name + "_single_opening";
+		String sOName = name + "_single_open";
+		String sONName = name + "_single_open_nectar";
+		String sSName = name + "_single_seedpod";
+		
+		String dBName = name + "_double_bulb";
+		String dOingName = name + "_double_opening";
+		String dOName = name + "_double_open";
+		String dSName = name + "_double_seedpod";
+		
+		String tBName = name + "_triple_bulb";
+		String tOingName = name + "_triple_opening";
+		String tOName = name + "_triple_open";
+		String tSName = name + "_triple_seedpod";
+		
+		String qBName = name + "_quadruple_bulb";
+		String qOingName = name + "_quadruple_opening";
+		String qOName = name + "_quadruple_open";
+		String qSName = name + "_quadruple_seedpod";
+		
+		this.models().getBuilder(sBName).parent(YATMBlockStateProvider.CROSS).texture("cross", largeBulb).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(sOingName).parent(YATMBlockStateProvider.CROSS).texture("cross", largeOpening).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		//this.models().getBuilder(sOName).parent(YATMBlockStateProvider.CRYING_FLOWER_SINGLE_OPEN_MODEL).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		//this.models().getBuilder(sONName).parent(YATMBlockStateProvider.CRYING_FLOWER_SINGLE_OPEN_NECTAR_MODEL).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(sSName).parent(YATMBlockStateProvider.CROSS).texture("cross", largeSeedpod).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		
+		this.models().getBuilder(dBName).parent(YATMBlockStateProvider.CRYING_FLOWER_DOUBLE_CROSS_MODEL).texture("cross", smallBulb).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(dOingName).parent(YATMBlockStateProvider.CRYING_FLOWER_DOUBLE_CROSS_MODEL).texture("cross", largeBulb).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		//this.models().getBuilder(dOName).parent(YATMBlockStateProvider.CRYING_FLOWER_DOUBLE_OPEN_MODEL).texture("petal", largeBulb).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(dSName).parent(YATMBlockStateProvider.CRYING_FLOWER_DOUBLE_CROSS_MODEL).texture("cross", largeBulb).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		
+		this.models().getBuilder(tBName).parent(YATMBlockStateProvider.CRYING_FLOWER_TRIPLE_CROSS_MODEL).texture("cross", smallBulb).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(tOingName).parent(YATMBlockStateProvider.CRYING_FLOWER_TRIPLE_CROSS_MODEL).texture("cross", smallOpening).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		//this.models().getBuilder(tOName).parent(YATMBlockStateProvider.CRYING_FLOWER_TRIPLE_OPEN_MODEL).texture("petal", smallOpen).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(tSName).parent(YATMBlockStateProvider.CRYING_FLOWER_TRIPLE_CROSS_MODEL).texture("cross", smallSeedpod).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		
+		this.models().getBuilder(qBName).parent(YATMBlockStateProvider.CRYING_FLOWER_QUADRUPLE_CROSS_MODEL).texture("cross", smallBulb).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(qOingName).parent(YATMBlockStateProvider.CRYING_FLOWER_QUADRUPLE_CROSS_MODEL).texture("cross", smallOpening).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		//this.models().getBuilder(qOName).parent(YATMBlockStateProvider.CRYING_FLOWER_QUADRUPLE_OPEN_MODEL).texture("petal", smallOpen).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		this.models().getBuilder(qSName).parent(YATMBlockStateProvider.CRYING_FLOWER_QUADRUPLE_CROSS_MODEL).texture("cross", smallSeedpod).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);		
+		ModelFile sBModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, sBName));
+		ModelFile sOingModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, sOingName));
+		ModelFile sOModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, sOName));
+		ModelFile sONModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, sONName));
+		ModelFile sSModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, sSName));
+		
+		ModelFile dBModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, dBName));
+		ModelFile dOingModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, dOingName));
+		ModelFile dOModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, dOName));
+		ModelFile dSModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, dSName));
+		
+		ModelFile tBModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, tBName));
+		ModelFile tOingModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, tOingName));
+		ModelFile tOModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, tOName));
+		ModelFile tSModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, tSName));
+		
+		ModelFile qBModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, qBName));
+		ModelFile qOingModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, qOingName));
+		ModelFile qOModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, qOName));
+		ModelFile qSModel = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, qSName));
+
+		
+		this.getVariantBuilder(block).forAllStates((bs) -> 
+		{
+			ModelFile model;
+			model = switch(bs.getValue(CryingFlowerBlock.FLOWER_COUNT)) 
+			{
+				case 1 -> switch(bs.getValue(CryingFlowerBlock.AGE)) 
+				{
+					case 0 -> sBModel;
+					case 1 -> sOingModel;
+					case 2 -> bs.getValue(CryingFlowerBlock.NECTAR_FULL) ? sONModel : sOModel;
+					case 3 -> sSModel;
+					default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(CryingFlowerBlock.AGE));
+				};
+				case 2 -> switch(bs.getValue(CryingFlowerBlock.AGE)) 
+				{
+					case 0 -> dBModel;
+					case 1 -> dOingModel;
+					case 2 -> dOModel;
+					case 3 -> dSModel;
+					default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(CryingFlowerBlock.AGE));
+				};
+				case 3 -> switch(bs.getValue(CryingFlowerBlock.AGE)) 
+				{
+					case 0 -> tBModel;
+					case 1 -> tOingModel;
+					case 2 -> tOModel;
+					case 3 -> tSModel;
+					default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(CryingFlowerBlock.AGE));
+				};
+				case 4 -> switch(bs.getValue(CryingFlowerBlock.AGE)) 
+				{
+					case 0 -> qBModel;
+					case 1 -> qOingModel;
+					case 2 -> qOModel;
+					case 3 -> qSModel;
+					default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(CryingFlowerBlock.AGE));
+				};
+				default -> throw new IllegalArgumentException("Unexpected value of: " + bs.getValue(CryingFlowerBlock.FLOWER_COUNT));
+			};
+			return new ConfiguredModel[] {new ConfiguredModel(model)};
+		});
+	} // end createCryingFlower()
+	
+	private void createPhantasmalShelfFungus(@NotNull PhantasmalShelfFungiBlock block, @NotNull Item item) 
 	{
 		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forShelfFungi(bs, YATMBlockStateProvider.PHANTASMAL_SHELF_FUNGUS_SMALL, YATMBlockStateProvider.PHANTASMAL_MEDIUM_SHELF_FUNGUS, YATMBlockStateProvider.PHANTASMAL_LARGE_SHELF_FUNGUS));
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(YATMBlockStateProvider.PHANTASMAL_SHELF_FUNGUS_SMALL);
@@ -1457,7 +1599,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		}
 	} // end createCactus()
 	
-	private void createStair(StairBlock block, String name, ResourceLocation texture) 
+	private void createStair(@NotNull StairBlock block, @NotNull String name, @NotNull ResourceLocation texture) 
 	{ 
 		this.stairsBlock(block, name, texture, texture, texture);
 		this.simpleBlockItem(block, new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name + "_stairs")));
@@ -1465,7 +1607,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		//west, bottom, straight, false
 	} // end createStair()
 	
-	private void createSlab(Block block, String name, ResourceLocation texture, ModelFile doubleSlab) 
+	private void createSlab(@NotNull Block block, @NotNull String name, @NotNull ResourceLocation texture, @NotNull ModelFile doubleSlab) 
 	{
 		String bottomName = name + "_bottom";
 		String topName = name + "_top";
@@ -1478,43 +1620,43 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		//this.getVariantBuilder(block).forAllStates((bs) -> forSlab(bs, bottomSlab, topSlab, doubleSlab));
 	} // end createSlab()
 	
-	private void createFence(Block block, String name, String itemName, ResourceLocation texture) 
+	private void createFence(@NotNull FenceBlock block, @NotNull String name, @NotNull String itemName, @NotNull ResourceLocation texture) 
 	{
-		this.fenceBlock((FenceBlock)block, name, texture);
+		this.fenceBlock(block, name, texture);
 		this.itemModels().fenceInventory(itemName, texture);
 	} // end createFence()
 	
-	private void createFenceGate(Block block, String itemName, ResourceLocation texture) 
+	private void createFenceGate(@NotNull FenceGateBlock block, @NotNull String itemName, @NotNull ResourceLocation texture) 
 	{
-		this.fenceGateBlock((FenceGateBlock)block, texture);
+		this.fenceGateBlock(block, texture);
 		this.itemModels().fenceGate(itemName, texture);
 	} // end createFenceGate()
 	
-	private void createDoor(Block block, Item item, ResourceLocation bottomTexture, ResourceLocation topTexture) 
+	private void createDoor(@NotNull DoorBlock block, @NotNull Item item, @NotNull ResourceLocation bottomTexture, @NotNull ResourceLocation topTexture) 
 	{
-		this.doorBlock((DoorBlock)block, bottomTexture, topTexture);
+		this.doorBlock(block, bottomTexture, topTexture);
 		this.itemModels().basicItem(item);
 	} // end createDoor()
 	
-	private void createTrapDoor(Block block, String itemName, ResourceLocation texture) 
+	private void createTrapDoor(@NotNull TrapDoorBlock block, @NotNull String itemName, @NotNull ResourceLocation texture) 
 	{
-		this.trapdoorBlock((TrapDoorBlock)block, texture, true);
+		this.trapdoorBlock(block, texture, true);
 		this.itemModels().trapdoorBottom(itemName, texture);
 	} // end createTrapDoor()
 	
-	private void createPressurePlate(Block block, String itemName, ResourceLocation texture) 
+	private void createPressurePlate(@NotNull PressurePlateBlock block, @NotNull String itemName, @NotNull ResourceLocation texture) 
 	{
-		this.pressurePlateBlock((PressurePlateBlock)block, texture);
+		this.pressurePlateBlock(block, texture);
 		this.itemModels().pressurePlate(itemName, texture);
 	} // end createPressurePlate()
 	
- 	private void createButton(Block block, String itemName, ResourceLocation texture) 
+ 	private void createButton(@NotNull ButtonBlock block, @NotNull String itemName, @NotNull ResourceLocation texture) 
 	{
-		this.buttonBlock((ButtonBlock)block, texture);
+		this.buttonBlock(block, texture);
 		this.itemModels().buttonInventory(itemName, texture);
 	} // end createButton()
 	
- 	private void createSign(Block block, ResourceLocation particleTexture) 
+ 	private void createSign(@NotNull Block block, @NotNull ResourceLocation particleTexture) 
  	{
  		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
  		this.models().sign(name, particleTexture);

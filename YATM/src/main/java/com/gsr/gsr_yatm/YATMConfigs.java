@@ -34,8 +34,19 @@ public class YATMConfigs
 	public static final ConfigValue<Integer> CANDLELILY_MAX_VERTICAL_SPREAD_EXTENT = YATMConfigs.s_builder.comment("The maximum vertical extent any direction that new plants can be spread to.").defineInRange("vertical_spread_extent", 1, 0, Integer.MAX_VALUE);
 	
 	public static final ConfigValue<Integer> CONDUIT_VINE_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.pop().push("Conduit Vine:").bonemealSuccessRarity();
-	public static final ConfigValue<Integer> CONDUIT_VINE_GROWTH_RARITY  = YATMConfigs.s_builder.growthRarity(16);
+	public static final ConfigValue<Integer> CONDUIT_VINE_GROWTH_RARITY = YATMConfigs.s_builder.growthRarity(16);
 	public static final ConfigValue<Integer> CONDUIT_VINE_MINIMUM_LIGHT_LEVEL = YATMConfigs.s_builder.minimumLightLevel();
+	
+	public static final ConfigValue<Integer> CRYING_FLOWER_GROWTH_RARITY = YATMConfigs.s_builder.pop().push("Crying Flower").growthRarity(36);
+	public static final ConfigValue<Integer> CRYING_FLOWER_NECTAR_REPLENISH_RARITY = YATMConfigs.s_builder.comment("The average number of random ticks it takes for the plant to refill with it's nectar.").defineInRange("nectar_replenish_rarity", 12, 0, Integer.MAX_VALUE);;
+	public static final ConfigValue<Integer> CRYING_FLOWER_RESEED_RARITY = YATMConfigs.s_builder.comment("The average number of random ticks it takes for the plant to reseed.").defineInRange("reseed_rarity", 36, 0, Integer.MAX_VALUE);;
+	
+	public static final ConfigValue<Integer> CRYING_PLANT_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.pop().push("Crying Plant").bonemealSuccessRarity();
+	public static final ConfigValue<Integer> CRYING_PLANT_FLOWER_RARITY = YATMConfigs.s_builder.comment("The average number of random ticks it takes for the plant to flower.").defineInRange("flower_rarity", 36, 0, Integer.MAX_VALUE);;
+	public static final ConfigValue<Integer> CRYING_PLANT_GROWTH_RARITY = YATMConfigs.s_builder.growthRarity(24);
+	public static final ConfigValue<Integer> CRYING_PLANT_MAX_HEIGHT = YATMConfigs.s_builder.comment("The maximum number of blocks which the plant can(and must) grow to before flowering.").defineInRange("max_height", 3, 0, Integer.MAX_VALUE);;
+	
+	
 	
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.pop().push("Dwarf Persimmon: ").bonemealSuccessRarity();
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_GROWTH_RARITY = YATMConfigs.s_builder.growthRarity(16);
