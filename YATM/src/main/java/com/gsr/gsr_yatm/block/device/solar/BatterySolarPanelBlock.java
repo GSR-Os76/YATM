@@ -4,10 +4,9 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.block.device.HorizontalDeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
+import com.gsr.gsr_yatm.block.device.HorizontalDeviceBlock;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
-import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
@@ -28,7 +27,7 @@ public class BatterySolarPanelBlock extends HorizontalDeviceBlock
 	
 	public BatterySolarPanelBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, int currentCapacity, int maxSafeCurrent, int maxCurrent, SolarPanelSettings settings)
 	{
-		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.BATTERY_SOLAR_PANEL::get);
+		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), null); // YATMBlockEntityTypes.BATTERY_SOLAR_PANEL::get);
 		this.m_currentCapacity = currentCapacity;
 		this.m_maxSafeCurrent = maxSafeCurrent;
 		this.m_maxCurrent = maxCurrent;

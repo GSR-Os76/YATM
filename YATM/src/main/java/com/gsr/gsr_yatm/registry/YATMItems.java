@@ -240,13 +240,9 @@ public class YATMItems
 	
 	public static final RegistryObject<BlockItem> STEEL_TANK = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("steel_tank", () -> new BlockItem(YATMBlocks.STEEL_TANK.get(), new Item.Properties()))));
 	
-	
-	public static final RegistryObject<BlockItem> CRUDE_BATTERY_SOLAR_PANEL = /* generalTabEnqueue */(ITEMS.register("crude_battery_solar_panel", () -> new BlockItem(YATMBlocks.CRUDE_BATTERY_SOLAR_PANEL.get(), new Item.Properties())));
-	public static final RegistryObject<BlockItem> ADVANCED_BATTERY_SOLAR_PANEL = /* generalTabEnqueue */(ITEMS.register("advanced_battery_crude_solar_panel", () -> new BlockItem(YATMBlocks.ADVANCED_BATTERY_SOLAR_PANEL.get(), new Item.Properties())));
-	public static final RegistryObject<BlockItem> SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL = /* generalTabEnqueue */(ITEMS.register("suns_complement_battery_solar_panel", () -> new BlockItem(YATMBlocks.SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL.get(), new Item.Properties())));
-	public static final RegistryObject<BlockItem> CRUDE_SOLAR_PANEL = /* generalTabEnqueue */(ITEMS.register("crude_solar_panel", () -> new BlockItem(YATMBlocks.CRUDE_SOLAR_PANEL.get(), new Item.Properties())));
-	public static final RegistryObject<BlockItem> ADVANCED_SOLAR_PANEL = /* generalTabEnqueue */(ITEMS.register("advanced_crude_solar_panel", () -> new BlockItem(YATMBlocks.ADVANCED_SOLAR_PANEL.get(), new Item.Properties())));
-	public static final RegistryObject<BlockItem> SUNS_COMPLEMENT_SOLAR_PANEL = /* generalTabEnqueue */(ITEMS.register("suns_complement_solar_panel", () -> new BlockItem(YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get(), new Item.Properties())));
+	public static final RegistryObject<BlockItem> CRUDE_SOLAR_PANEL = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("crude_solar_panel", () -> new BlockItem(YATMBlocks.CRUDE_SOLAR_PANEL.get(), new Item.Properties()))));
+	public static final RegistryObject<BlockItem> ADVANCED_SOLAR_PANEL = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("advanced_crude_solar_panel", () -> new BlockItem(YATMBlocks.ADVANCED_SOLAR_PANEL.get(), new Item.Properties()))));
+	public static final RegistryObject<BlockItem> SUNS_COMPLEMENT_SOLAR_PANEL = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("suns_complement_solar_panel", () -> new BlockItem(YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get(), new Item.Properties()))));
 
 	public static final RegistryObject<FluidPassThroughBlockItem> CHANNEL_VINES = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("channel_vines", () -> new FluidPassThroughBlockItem(YATMBlocks.CHANNEL_VINES.get(), new Item.Properties()))));
 	public static final RegistryObject<CurrentPassThroughBlockItem> CONDUIT_VINE_BUNDLE = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("conduit_vine_bundle", () -> new CurrentPassThroughBlockItem(YATMBlocks.CONDUIT_VINE_BUNDLE.get(), new Item.Properties()))));
