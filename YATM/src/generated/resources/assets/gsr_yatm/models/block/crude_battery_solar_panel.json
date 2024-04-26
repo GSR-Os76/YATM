@@ -1,8 +1,0 @@
-{
-  "parent": "minecraft:block/cube_bottom_top",
-  "textures": {
-    "bottom": "gsr_yatm:block/device/solar_panel/eight_cu_solar_panel_side",
-    "side": "gsr_yatm:block/device/solar_panel/eight_cu_solar_panel_side",
-    "top": "gsr_yatm:block/device/solar_panel/crude_solar_panel_top"
-  }
-}
