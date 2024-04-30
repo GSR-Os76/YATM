@@ -1,4 +1,4 @@
-// 1.20.2	2024-04-26T16:31:48.7866163	Block States: gsr_yatm
+// 1.20.2	2024-04-29T21:32:13.6940397	Block States: gsr_yatm
 11aad184ca6aaadbd7319a44c5a1985f7c029a1c assets/gsr_yatm/blockstates/adamum.json
 954ad7e227cb7fea31486bca39340fd9ecdbc175 assets/gsr_yatm/blockstates/advanced_current_battery_block.json
 a2a385d05e4f86cda9dd2c5a246077dac4e32579 assets/gsr_yatm/blockstates/advanced_solar_panel.json
@@ -187,7 +187,7 @@ d514bec0fe9ba3dcfedfd4315fbd70e78776cb22 assets/gsr_yatm/models/block/adamum_ado
 657e8c1816166a52cad32648c06f72f2d7e90e8a assets/gsr_yatm/models/block/adamum_old.json
 7869fac20aa0d13b32580516ce22f8c1b738c1f9 assets/gsr_yatm/models/block/adamum_old_tuber.json
 0b372f758576d8e2e1c9f424eb88b5465e6718f1 assets/gsr_yatm/models/block/adamum_young.json
-38002aea89d05239365eb67261bb70887798b1e2 assets/gsr_yatm/models/block/advanced_solar_panel.json
+d9107ab9ce77895f3c4bf35aaf1a3ae62e866a69 assets/gsr_yatm/models/block/advanced_solar_panel.json
 feef92fa5ae7549df951b45e0b3b2db90e0b6e99 assets/gsr_yatm/models/block/aurum_deminutus_adolescent.json
 7f683d1a5b60debb8780955868dbdfc6b2b9b42d assets/gsr_yatm/models/block/aurum_deminutus_adolescent_double_higher.json
 7570dc46cbcd0827921d35b359e1a9abecd5fd5c assets/gsr_yatm/models/block/aurum_deminutus_adolescent_double_lower.json
@@ -239,7 +239,7 @@ a70803cb9769915244f048ea5a3fe185a6e3f052 assets/gsr_yatm/models/block/carcass_ro
 18d55174d6ed8a433cb11007e46070fedbdd9226 assets/gsr_yatm/models/block/cotton_one.json
 75b2d8cabd1cae51ba6252ccf0457ee1a3901501 assets/gsr_yatm/models/block/cotton_three.json
 df6e163100ac7479677e7d0a6e6c0b224f52d193 assets/gsr_yatm/models/block/cotton_two.json
-5609f27a36fb7190cabcd14fc0f8245e88dc01fc assets/gsr_yatm/models/block/crude_solar_panel.json
+8c26fbd4459b8baeefc3fce60cbe1d3bd460f57e assets/gsr_yatm/models/block/crude_solar_panel.json
 262920d1bf73541a46fa463ffb015d2b806a289c assets/gsr_yatm/models/block/crying_flower_double_bulb.json
 46c5ebd9a331098bd34492921e458bdf096eebb8 assets/gsr_yatm/models/block/crying_flower_double_opening.json
 46c5ebd9a331098bd34492921e458bdf096eebb8 assets/gsr_yatm/models/block/crying_flower_double_seedpod.json
@@ -500,7 +500,7 @@ ed97bc829d7d24e74ddf57470bed81aedf0ad704 assets/gsr_yatm/models/block/spider_vin
 3a9ee2e697a4f5c5c2d29dc655d93ba72f97e462 assets/gsr_yatm/models/block/spider_vine_meristem.json
 e31e7a745af51b5381eef8a098162e2bb9165b2d assets/gsr_yatm/models/block/stripped_rubber_log.json
 184f039d3749ccc0eb3399d425ae3b83fd5862c0 assets/gsr_yatm/models/block/stripped_rubber_wood.json
-19280d7edd30b4185ea0ac04d0cda8ccf46e2929 assets/gsr_yatm/models/block/suns_complement_solar_panel.json
+88c981ef990e25fd2970af88e6e74f93e2cc4436 assets/gsr_yatm/models/block/suns_complement_solar_panel.json
 2e6e110f69cbb4e6074b73faea377c0a6178cc4f assets/gsr_yatm/models/block/variegated_cactus.json
 2a8763a92d0d9b597f901c21359bc3f34a0a4991 assets/gsr_yatm/models/block/vicum_adolescent.json
 e4e0900afd0b88cab88febd4c302f9b25325a8ea assets/gsr_yatm/models/block/vicum_meristem.json

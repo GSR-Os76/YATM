@@ -738,14 +738,14 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	private void addSolarPanels() 
 	{
 		this.createSolarPanel(YATMBlocks.CRUDE_SOLAR_PANEL.get(), YATMItems.CRUDE_SOLAR_PANEL.get(),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/one_cu_solar_panel_side"),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/crude_solar_panel_top"));
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/1_sides"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/1_top"));
 		this.createSolarPanel(YATMBlocks.ADVANCED_SOLAR_PANEL.get(), YATMItems.ADVANCED_SOLAR_PANEL.get(),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/eight_cu_solar_panel_side"),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/advanced_solar_panel_top"));
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/1_sides"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/2_top"));
 		this.createSolarPanel(YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get(), YATMItems.SUNS_COMPLEMENT_SOLAR_PANEL.get(),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/sixtyfour_cu_solar_panel_side"),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/suns_complement_solar_panel_top"));
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/1_sides"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/3_top"));
 		
 	} // end addSolarPanels()
 	
@@ -832,7 +832,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	private void createSolarPanel(Block block, Item item, ResourceLocation sideTexture, ResourceLocation topTexture) 
 	{
 		String name = getModelLocationNameFor(block);
-		this.models().getBuilder(name).parent(YATMBlockStateProvider.SOLAR_PANEL_MODEL).texture("top", topTexture).texture("side", sideTexture);
+		this.models().cubeTop(name, sideTexture, topTexture);
 		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
 		this.getVariantBuilder(block).forAllStates((bs) -> 
@@ -876,7 +876,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		ModelFile modelTwo = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameTwo));
 		ModelFile modelThree = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameThree));
 		ModelFile modelFour = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameFour));
-		
+
 		this.getVariantBuilder(block).forAllStates((bs) -> forCrop(bs, modelOne, modelOne, modelTwo, modelTwo, modelThree, modelThree, modelFour, modelFour));
 	} // end createCrop()
 	
