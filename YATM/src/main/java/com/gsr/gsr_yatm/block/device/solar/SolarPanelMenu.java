@@ -25,7 +25,6 @@ public class SolarPanelMenu extends AbstractContainerMenu
 	
 	private final ContainerLevelAccess m_access;
 	private final Block m_openingBlockType;
-	@SuppressWarnings("unused")
 	private final ContainerData m_data;
 	
 	
@@ -44,7 +43,7 @@ public class SolarPanelMenu extends AbstractContainerMenu
 		this.m_access = access;
 		this.m_openingBlockType = openingBlockType;
 		this.m_data = data;
-		this.addSlot(new SlotItemHandler(objInventory, SolarPanelBlockEntity.POWER_SLOT, 79, 42));
+		this.addSlot(new SlotItemHandler(objInventory, SolarPanelBlockEntity.POWER_SLOT, 79, 51));
 
 		for (int y = 0; y < 3; ++y)
 		{
@@ -124,5 +123,17 @@ public class SolarPanelMenu extends AbstractContainerMenu
 	{
 		return AbstractContainerMenu.stillValid(this.m_access, player, this.m_openingBlockType);
 	} // end stillValid
+
+	
+	
+	public int currentStored() 
+	{
+		return this.m_data.get(SolarPanelBlockEntity.getCurrentData().startIndex());
+	} // end currentStored()
+	
+	public int currentCapacity() 
+	{
+		return this.m_data.get(SolarPanelBlockEntity.getCurrentData().endIndex());
+	} // end currentCapacity()
 	
 } // end class

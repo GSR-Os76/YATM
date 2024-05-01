@@ -376,6 +376,7 @@ public class YATMBlocks
 	public static final RegistryObject<TankBlock> STEEL_TANK = BLOCKS.register("steel_tank", () -> new TankBlock(YATMBlockProperties.STEEL_TANK, YATMBlockShapes.STEEL_TANK));
 	
 	// TODO, maybe make solar vines look loosely like a vertical wooden terrace growing vines, add as later alternative to block forms, block forms first for simplicity
+	// TODO, make these beautifuler
 	public static final RegistryObject<SolarPanelBlock> CRUDE_SOLAR_PANEL = BLOCKS.register("crude_solar_panel", () -> new SolarPanelBlock(YATMBlockProperties.SOLAR_PANEL, YATMBlockShapes.CUBE, 8, 8, 64, SolarPanelSettings.CRUDE));
 	public static final RegistryObject<SolarPanelBlock> ADVANCED_SOLAR_PANEL = BLOCKS.register("advanced_solar_panel", () -> new SolarPanelBlock(YATMBlockProperties.SOLAR_PANEL, YATMBlockShapes.CUBE, 64, 64, 512, SolarPanelSettings.ADVANCED));
 	public static final RegistryObject<SolarPanelBlock> SUNS_COMPLEMENT_SOLAR_PANEL = BLOCKS.register("suns_complement_solar_panel", () -> new SolarPanelBlock(YATMBlockProperties.SOLAR_PANEL, YATMBlockShapes.CUBE, 512, 512, 4096, SolarPanelSettings.SUNS_COMPLEMENT));

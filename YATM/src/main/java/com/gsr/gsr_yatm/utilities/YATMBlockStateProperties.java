@@ -26,6 +26,9 @@ public class YATMBlockStateProperties
 	
 	public static final IntegerProperty AGE_EIGHT_MAJOR = IntegerProperty.create("major_age", 0, 7);
 	
+	public static final EnumProperty<Direction.Axis> AXIS_HORIZONTAL = EnumProperty.create("axis", Direction.Axis.class, (x) -> x != Direction.Axis.Y);
+
+	
 	public static final EnumProperty<Direction.Axis> AXIS = EnumProperty.create("axis", Direction.Axis.class);
 	public static final EnumProperty<OptionalAxis> AXIS_OPTIONAL = EnumProperty.create("axis", OptionalAxis.class);
 	

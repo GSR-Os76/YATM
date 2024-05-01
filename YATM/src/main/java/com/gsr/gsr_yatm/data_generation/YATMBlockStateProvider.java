@@ -16,7 +16,7 @@ import com.gsr.gsr_yatm.block.device.crafting.bioreactor.BioreactorBlock;
 import com.gsr.gsr_yatm.block.device.crafting.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
-import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlock;
+import com.gsr.gsr_yatm.block.device.solar.SolarPanelBlock;
 import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.CryingFlowerBlock;
@@ -825,7 +825,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
 		this.getVariantBuilder(block).forAllStates((bs) -> 
 		{
-			return new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(BatterySolarPanelBlock.FACING)).x, rotationForDirectionFromNorth(bs.getValue(BatterySolarPanelBlock.FACING)).y, false) };
+			return new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(YATMBlockStateProperties.FACING)).x, rotationForDirectionFromNorth(bs.getValue(YATMBlockStateProperties.FACING)).y, false) };
 		});
 	} // end createHorizontalFacingTopBlock()
 	
@@ -837,7 +837,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
 		this.getVariantBuilder(block).forAllStates((bs) -> 
 		{
-			return new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(BatterySolarPanelBlock.FACING)).x, rotationForDirectionFromNorth(bs.getValue(BatterySolarPanelBlock.FACING)).y, false) };
+			return new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(SolarPanelBlock.AXIS) == Direction.Axis.Z ? Direction.NORTH : Direction.WEST).x, rotationForDirectionFromNorth(bs.getValue(SolarPanelBlock.AXIS) == Direction.Axis.Z ? Direction.NORTH : Direction.WEST).y, false) };
 		});
 	} // end createSolarPanel()
 	

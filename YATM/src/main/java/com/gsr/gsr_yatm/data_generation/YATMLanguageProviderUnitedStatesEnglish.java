@@ -41,8 +41,6 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.addMenu(YATMBlocks.CURRENT_BATTERY_BLOCK.get(), "Current Battery Block");		
 		this.addMenu(YATMBlocks.ADVANCED_CURRENT_BATTERY_BLOCK.get(), "Advanced Current Battery Block");		
 		
-		
-		this.add(YATMMenuTypes.BATTERY_SOLAR_PANEL.get(), "Solar Panel");		
 		this.add(YATMMenuTypes.SOLAR_PANEL.get(), "Solar Panel");		
 		
 		this.add(YATMMenuTypes.CREATIVE_CURRENT_SOURCE.get(), "Creative Current Source");

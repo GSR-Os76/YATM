@@ -16,7 +16,6 @@ import com.gsr.gsr_yatm.block.device.crafting.injector.InjectorScreen;
 import com.gsr.gsr_yatm.block.device.crafting.still.StillScreen;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceScreen;
 import com.gsr.gsr_yatm.block.device.current_storer.base.CurrentStorerScreen;
-import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelScreen;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelScreen;
 import com.gsr.gsr_yatm.block.device.tank.TankRenderer;
 import com.gsr.gsr_yatm.block.hanging_pot.HangingPotHookRenderer;
@@ -134,7 +133,6 @@ public class YATMModEvents
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.CRUCIBLE.get(), CrucibleScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.CRYSTALLIZER.get(), CrystallizerScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRACTOR.get(), ExtractorScreen::new));
-//		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.EXTRUDER.get(), ExtruderScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.HEAT_FURNACE.get(), HeatFurnaceScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.GRINDER.get(), GrinderScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.INJECTOR.get(), InjectorScreen::new));
@@ -142,7 +140,6 @@ public class YATMModEvents
 		
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.CURRENT_STORER.get(), CurrentStorerScreen::new));
 		
-		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.BATTERY_SOLAR_PANEL.get(), BatterySolarPanelScreen::new));
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.SOLAR_PANEL.get(), SolarPanelScreen::new));
 		
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.CREATIVE_CURRENT_SOURCE.get(), CreativeCurrentSourceScreen::new));

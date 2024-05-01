@@ -4,8 +4,8 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.block.device.HorizontalDeviceBlock;
 import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
+import com.gsr.gsr_yatm.block.device.HorizontalAxisDeviceBlock;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
@@ -18,7 +18,7 @@ import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class SolarPanelBlock extends HorizontalDeviceBlock
+public class SolarPanelBlock extends HorizontalAxisDeviceBlock
 {
 	private final int m_currentCapacity;
 	private final int m_maxSafeCurrent;
@@ -26,7 +26,7 @@ public class SolarPanelBlock extends HorizontalDeviceBlock
 	private final SolarPanelSettings m_settings;
 	
 	
-	public SolarPanelBlock(@NotNull Properties properties, ICollisionVoxelShapeProvider shape, int currentCapacity, int maxSafeCurrent, int maxCurrent, SolarPanelSettings settings)
+	public SolarPanelBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, int currentCapacity, int maxSafeCurrent, int maxCurrent, SolarPanelSettings settings)
 	{
 		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.SOLAR_PANEL::get);
 		this.m_currentCapacity = currentCapacity;
