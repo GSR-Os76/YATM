@@ -332,6 +332,10 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMItems.RAW_EXOTHEMIC_GLAND.get(), "Raw Exothermal Gland");
 		
+		this.add(YATMItems.CRUDE_SOLAR_LEAF.get(), "Crude Solar Leaf");
+		this.add(YATMItems.ADVANCED_SOLAR_LEAF.get(), "Advanced Solar Leaf");
+		this.add(YATMItems.SUNS_COMPLEMENT_SOLAR_LEAF.get(), "Sun's Complement Solar Leaf");
+
 		this.add(YATMItems.ADVANCED_CURRENT_BATTERY.get(), "Advanced Current Battery");
 		this.add(YATMItems.CURRENT_BATTERY.get(), "Current Battery");
 		this.add(YATMItems.CURRENT_TUBER.get(), "Current Tuber");

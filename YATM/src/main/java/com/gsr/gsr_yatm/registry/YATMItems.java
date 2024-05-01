@@ -257,6 +257,11 @@ public class YATMItems
 	public static final RegistryObject<Item> RAW_EXOTHEMIC_GLAND = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("raw_exothermic_gland", () -> new Item(new Item.Properties()))));
 	public static final RegistryObject<Item> KINETIC_DRIVER = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("kinetic_driver", () -> new Item(new Item.Properties()))));
 	
+	public static final RegistryObject<Item> CRUDE_SOLAR_LEAF = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("crude_solar_leaf", () -> new Item(new Item.Properties()))));
+	public static final RegistryObject<Item> ADVANCED_SOLAR_LEAF = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("advanced_solar_leaf", () -> new Item(new Item.Properties()))));
+	public static final RegistryObject<Item> SUNS_COMPLEMENT_SOLAR_LEAF = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("suns_complement_solar_leaf", () -> new Item(new Item.Properties()))));
+	
+	
 	public static final RegistryObject<Item> COTTON_BOLLS = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("cotton_bolls", () -> new Item(new Item.Properties().craftRemainder(YATMItems.COTTON_SEEDS.get())))));
 	public static final RegistryObject<Item> RAW_COTTON_FIBER = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("raw_cotton_fiber", () -> new Item(new Item.Properties()))));
 	

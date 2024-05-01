@@ -29,6 +29,8 @@ public class YATMItemModelProvider extends ItemModelProvider
 	{
 		// TODO, alphabetize the rest
 		this.addCurrentStorer(YATMItems.ADVANCED_CURRENT_BATTERY.get());
+		this.basicItem(YATMItems.ADVANCED_SOLAR_LEAF.get());
+		this.basicItem(YATMItems.CRUDE_SOLAR_LEAF.get());
 		this.addCurrentStorer(YATMItems.CURRENT_BATTERY.get());
 		this.addCurrentStorer(YATMItems.CURRENT_TUBER.get());
 		this.basicItem(YATMItems.CU_TO_FE_CONVERTER.get());
@@ -48,6 +50,7 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.STAR_GERMLING.get());
 		this.basicItem(YATMItems.STAR_SEED.get());
 		this.basicItem(YATMItems.STAR_SPROUT.get());
+		this.basicItem(YATMItems.SUNS_COMPLEMENT_SOLAR_LEAF.get());
 		this.basicItem(YATMItems.TORCH_GLAND.get());
 		this.basicItem(YATMItems.WOOD_PULP.get());
 		

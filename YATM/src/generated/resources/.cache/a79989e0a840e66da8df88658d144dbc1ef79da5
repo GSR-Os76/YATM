@@ -1,4 +1,4 @@
-// 1.20.2	2024-02-27T13:57:34.0094671	Item Models: gsr_yatm
+// 1.20.2	2024-05-01T12:13:28.1312551	Item Models: gsr_yatm
 c2ea606d991a81e423cce1d89391873c41111adb assets/gsr_yatm/models/item/adamum_meristem.json
 14f5226a0106e1a4c57981511721fb6c8ffd9059 assets/gsr_yatm/models/item/advanced_current_battery.json
 684ab5903fbcfdbd643eb1efa0d897a0d95283a9 assets/gsr_yatm/models/item/advanced_current_battery_1.json
@@ -8,6 +8,7 @@ dd42a0a18c50f8f54c7aedbaf0f4ce0b1d7891f3 assets/gsr_yatm/models/item/advanced_cu
 be448fc73d0dc154c058ec0d7e613baa46b60303 assets/gsr_yatm/models/item/advanced_current_battery_5.json
 a18e613cb636dfc12e7612b56a069ab7d1320df5 assets/gsr_yatm/models/item/advanced_current_battery_6.json
 162a83be15e5ada577459193b8db632634f981f8 assets/gsr_yatm/models/item/advanced_current_battery_7.json
+5f5a1f2bfe7ed3b65a3e5f36a6225414a62019ec assets/gsr_yatm/models/item/advanced_solar_leaf.json
 39dc65663f22bc3413323e63119c165dc4f51c76 assets/gsr_yatm/models/item/aurum_deminutus_fiddle_head.json
 e7540048ebe593ee6ab6323cc2f5a0bd0d8ae1cb assets/gsr_yatm/models/item/bio_bottle.json
 7c74b3cad82baaaba12c4ebb84f0b7ef417239e6 assets/gsr_yatm/models/item/bio_bucket.json
@@ -36,6 +37,7 @@ c05f1937632979e7015f25ced9e8264e03850cfb assets/gsr_yatm/models/item/creative_cu
 91eead2815d19e357eab933d2fa5e7723b918850 assets/gsr_yatm/models/item/creative_fluid_source.json
 921585145831110f3e82cabd5136c114439da91f assets/gsr_yatm/models/item/creative_fluid_storer.json
 7a0fe11fc88a632fc358b9370641588c1416d4dc assets/gsr_yatm/models/item/creative_fluid_void.json
+930b9c8be7014b127d299c1453f4556132dbb306 assets/gsr_yatm/models/item/crude_solar_leaf.json
 ae9eab0766c183e47b928e9366c4ce2c167041ef assets/gsr_yatm/models/item/crying_plant_seeds.json
 e800b2a819414acbd4151cd6d7618904ae5ede64 assets/gsr_yatm/models/item/cuprum_bulb.json
 001bc9f85f8998db56f98d357e14d5b88e254258 assets/gsr_yatm/models/item/current_battery.json
@@ -159,6 +161,7 @@ ba656172bb5b82032d8ec392088e2503e3133383 assets/gsr_yatm/models/item/steel_saw_w
 1a25d45b5917760e51393b876593bfa8b4494b2f assets/gsr_yatm/models/item/steel_wrench.json
 21d7dc9cbb407f9bb54343d6e12708e652b0bd1f assets/gsr_yatm/models/item/stone_drill_bit.json
 72e5a2887bad68920128e6d99100618005ee52c9 assets/gsr_yatm/models/item/stone_saw_blade.json
+ccfd1af32ea3722d5f107e6f5483ce40214d0b07 assets/gsr_yatm/models/item/suns_complement_solar_leaf.json
 37c5fd2cca45e5a93b21cf2bbacca665ad6ac58f assets/gsr_yatm/models/item/torch_gland.json
 07372a855224c45e2e863306276760ddb9e55e82 assets/gsr_yatm/models/item/vicum_meristem.json
 a708c88f785767def9128dff9a5894e69e4aeabb assets/gsr_yatm/models/item/white_candle_lantern.json

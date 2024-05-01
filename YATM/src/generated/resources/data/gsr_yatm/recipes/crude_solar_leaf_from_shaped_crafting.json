@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": {
+      "item": "gsr_yatm:foliar_steel"
+    },
+    "g": {
+      "tag": "forge:glass_panes"
+    },
+    "s": {
+      "tag": "forge:gems/quartz"
+    }
+  },
+  "pattern": [
+    "ggg",
+    "sfs",
+    "   "
+  ],
+  "result": {
+    "item": "gsr_yatm:crude_solar_leaf"
+  },
+  "show_notification": true
+}
