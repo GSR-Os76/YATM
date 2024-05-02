@@ -100,7 +100,7 @@ public abstract class CurrentStorerBlockEntity extends BuiltDeviceBlockEntity
 		.face((Direction)null)
 		.returnsWhen(ForgeCapabilities.ITEM_HANDLER, inv.get())
 		.elifReturnsWhen(YATMCapabilities.CURRENT, c).end()
-		
+		// TODO, assure hoppers can fill and place items in slots?
 		.face(() -> Stream.of(Direction.values()).filter((d) -> d != this.getBlockState().getValue(CurrentStorerBlock.FACING)).collect(Collectors.toSet()))
 		.returns(CapabilityUtil.providerOrCapabiltyOrDefault(cFCM.get()::hasComponent, cFCM.get(), YATMCapabilities.CURRENT, c, defaultCapabilityProvider))
 		.end()

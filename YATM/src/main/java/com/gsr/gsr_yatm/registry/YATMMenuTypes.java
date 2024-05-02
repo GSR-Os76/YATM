@@ -13,7 +13,7 @@ import com.gsr.gsr_yatm.block.device.crafting.injector.InjectorMenu;
 import com.gsr.gsr_yatm.block.device.crafting.still.StillMenu;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceMenu;
 import com.gsr.gsr_yatm.block.device.current_storer.base.CurrentStorerMenu;
-import com.gsr.gsr_yatm.block.device.solar.SolarPanelMenu;
+import com.gsr.gsr_yatm.block.device.solar.panel.base.SolarPanelMenu;
 import com.gsr.gsr_yatm.item.tool.PoweredToolMenu;
 
 import net.minecraft.world.flag.FeatureFlagSet;

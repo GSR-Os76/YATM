@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.device.solar;
+package com.gsr.gsr_yatm.block.device.solar.panel.base;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.gui.HorizontalCurrentWidget;

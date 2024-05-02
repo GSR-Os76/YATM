@@ -1,5 +1,8 @@
 package com.gsr.gsr_yatm;
 
+import java.util.function.Supplier;
+
+import com.gsr.gsr_yatm.block.device.solar.SolarPanelSettings;
 import com.gsr.gsr_yatm.utilities.config.ConfigBuilderHelper;
 
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -191,7 +194,7 @@ public class YATMConfigs
 	
 	
 	
-	public static final ConfigValue<Integer> CURRENT_TUBER_BLOCK_CURRENT_CAPACITY = YATMConfigs.s_builder.pop().pop().push("Current Storer: ").push("Current Tuber Block: ").currentCapacity(YATMConfigs.DEFAULT_CURRENT_TUBER_CURRENT_CAPACITY * 3);
+	public static final ConfigValue<Integer> CURRENT_TUBER_BLOCK_CURRENT_CAPACITY = YATMConfigs.s_builder.pop().push("Current Storer: ").push("Current Tuber Block: ").currentCapacity(YATMConfigs.DEFAULT_CURRENT_TUBER_CURRENT_CAPACITY * 3);
 	public static final ConfigValue<Integer> CURRENT_TUBER_BLOCK_MAX_CURRENT_TRANSFER = YATMConfigs.s_builder.maxCurrentTransferRate(YATMConfigs.DEFAULT_CURRENT_TUBER_CURRENT_CAPACITY / YATMConfigs.CURRENT_STORER_BLOCK_CURRENT_CAPACITY_TO_TRANSFER_SIZE_FACTOR);
 	public static final ConfigValue<Integer> CURRENT_TUBER_BLOCK_DRAIN_CURRENT_RECHECK_PERIOD = YATMConfigs.s_builder.outputComponentRecheckPeriod("drain current", YATMConfigs.DRAIN_RECHECK_PERIOD);
 	
@@ -203,11 +206,19 @@ public class YATMConfigs
 	public static final ConfigValue<Integer> ADVANCED_CURRENT_BATTERY_BLOCK_MAX_CURRENT_TRANSFER = YATMConfigs.s_builder.maxCurrentTransferRate(YATMConfigs.DEFAULT_ADVANCED_CURRENT_BATTERY_CURRENT_CAPACITY / YATMConfigs.CURRENT_STORER_BLOCK_CURRENT_CAPACITY_TO_TRANSFER_SIZE_FACTOR);
 	public static final ConfigValue<Integer> ADVANCED_CURRENT_BATTERY_BLOCK_DRAIN_CURRENT_RECHECK_PERIOD = YATMConfigs.s_builder.outputComponentRecheckPeriod("drain current", YATMConfigs.DRAIN_RECHECK_PERIOD);
 	
-	public static final ConfigValue<Integer> TANK_CAPACITY = YATMConfigs.s_builder.pop().push("Tank: ").comment("The tank's capacity in milibuckets.").defineInRange("capacity", 16000, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> TANK_CAPACITY = YATMConfigs.s_builder.pop().pop().push("Tank: ").comment("The tank's capacity in milibuckets.").defineInRange("capacity", 16000, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> TANK_DRAIN_RECHECK_PERIOD = YATMConfigs.s_builder.comment("The period in ticks of the device trying to attach to a below neighbor's fluid handling capability.").defineInRange("drain_recheck_period", YATMConfigs.DRAIN_RECHECK_PERIOD, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> TANK_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("max_fluid_transfer_rate", 1000, 0, Integer.MAX_VALUE);
 	
-	public static final ConfigValue<Integer> CREATIVE_CURRENT_SOURCE_OUTPUT_RECHECK_PERIOD = YATMConfigs.s_builder.pop().push("Creative: ").push("Current Source: ").outputComponentRecheckPeriod("drain current", YATMConfigs.DRAIN_RECHECK_PERIOD);
+	
+	
+	public static final Supplier<SolarPanelSettings> CRUDE_SOLAR_PANEL_SETTINGS = YATMConfigs.s_builder.pop().push("Solar: ").push("Panel: ").push("Crude: ").solarPanelSettings(YATMConfigs.DRAIN_RECHECK_PERIOD, YATMConfigs.DEFAULT_CURRENT_TUBER_CURRENT_CAPACITY / YATMConfigs.CURRENT_STORER_BLOCK_CURRENT_CAPACITY_TO_TRANSFER_SIZE_FACTOR, YATMConfigs.DEFAULT_CURRENT_TUBER_CURRENT_CAPACITY * 3, 4, 0.0f, 1.0f, 0.0f, 0.0f);
+	public static final Supplier<SolarPanelSettings> ADVANCED_SOLAR_PANEL_SETTINGS = YATMConfigs.s_builder.pop().push("Advanced: ").solarPanelSettings(YATMConfigs.DRAIN_RECHECK_PERIOD, YATMConfigs.DEFAULT_CURRENT_BATTERY_CURRENT_CAPACITY / YATMConfigs.CURRENT_STORER_BLOCK_CURRENT_CAPACITY_TO_TRANSFER_SIZE_FACTOR, YATMConfigs.DEFAULT_CURRENT_BATTERY_CURRENT_CAPACITY * 3, 12, 0.0f, 1.0f, 0.0f, 0.5f);
+	public static final Supplier<SolarPanelSettings> SUNS_COMPLEMENT_SOLAR_PANEL_SETTINGS = YATMConfigs.s_builder.pop().push("Suns Complement: ").solarPanelSettings(YATMConfigs.DRAIN_RECHECK_PERIOD, YATMConfigs.DEFAULT_ADVANCED_CURRENT_BATTERY_CURRENT_CAPACITY / YATMConfigs.CURRENT_STORER_BLOCK_CURRENT_CAPACITY_TO_TRANSFER_SIZE_FACTOR, YATMConfigs.DEFAULT_ADVANCED_CURRENT_BATTERY_CURRENT_CAPACITY * 3, 32, 0.0f, 1.0f, 0.125f, 0.875f);
+
+	
+	
+	public static final ConfigValue<Integer> CREATIVE_CURRENT_SOURCE_OUTPUT_RECHECK_PERIOD = YATMConfigs.s_builder.pop().pop().pop().push("Creative: ").push("Current Source: ").outputComponentRecheckPeriod("drain current", YATMConfigs.DRAIN_RECHECK_PERIOD);
 	
 	
 	

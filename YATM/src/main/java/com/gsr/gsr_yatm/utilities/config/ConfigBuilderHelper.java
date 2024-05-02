@@ -1,10 +1,13 @@
 package com.gsr.gsr_yatm.utilities.config;
 
 import java.util.List;
+import java.util.function.Supplier;
 
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Range;
 
+import com.gsr.gsr_yatm.block.device.solar.SolarPanelSettings;
+import com.gsr.gsr_yatm.utilities.PrimitiveUtil;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -153,6 +156,35 @@ public class ConfigBuilderHelper extends ForgeConfigSpec.Builder
 	
 	
 	
+	public Supplier<SolarPanelSettings> solarPanelSettings(@NotNegative int outputRecheckPeriod, @NotNegative int maxCurrentTransfer, @NotNegative int currentCapacity, int currentPerTick, float percentWithoutSky, float percentDuringDay, float percentDuringNight, float percentDuringPrecipitation)
+	{
+		ConfigValue<Integer> orp = this.outputComponentRecheckPeriod("drain current", outputRecheckPeriod);
+		ConfigValue<Integer> mct = this.maxCurrentTransferRate(maxCurrentTransfer);
+		ConfigValue<Integer> cp = this.currentCapacity(currentCapacity);
+		
+		ConfigValue<Integer> cpt = this.comment("The base current generation rate.").defineInRange("current_per_tick", currentPerTick, 0, Integer.MAX_VALUE);
+		// TODO, make float after next update, same often elsewhere.
+		ConfigValue<Double> pws = this.comment("The percentage of the base current generation when the sky's obscured above the panel, stacks with all other conditions.").defineInRange("percentage_without_sky", percentWithoutSky, 0d, Double.MAX_VALUE);
+		ConfigValue<Double> pwd = this.comment("The percentage of the base current generation daytime, stacks with all other conditions.").defineInRange("percentage_during_day", percentDuringDay, 0d, Double.MAX_VALUE);
+		ConfigValue<Double> pwn = this.comment("The percentage of the base current generation during nightime, stacks with all other conditions.").defineInRange("percentage_during_night", percentDuringNight, 0d, Double.MAX_VALUE);
+		ConfigValue<Double> pwp = this.comment("The percentage of the base current generation during precipitating, stacks with all other conditions.").defineInRange("percentage_during_precipitation", percentDuringPrecipitation, 0d, Double.MAX_VALUE);
+		
+		return () -> 
+		new SolarPanelSettings
+		(
+			orp.get(),
+			mct.get(),
+			cp.get(),
+			cpt.get(),
+			PrimitiveUtil.toFloatSupplier(pws).get(),
+			PrimitiveUtil.toFloatSupplier(pwd).get(),
+			PrimitiveUtil.toFloatSupplier(pwn).get(),
+			PrimitiveUtil.toFloatSupplier(pwp).get()
+		);
+	} // end solarPanelSettings
+	
+	
+	
 	public @NotNull ConfigValue<Double> kelvinPerCu(double kPCu)
 	{
 		return this.comment("The number kelvin produceable max from a single cu.").define("kelvin_per_cu", kPCu);
@@ -209,5 +241,9 @@ public class ConfigBuilderHelper extends ForgeConfigSpec.Builder
 	{
 		return this.comment("The minimum number of particles that might be spawned.").defineInRange("min_particles", particles, 0, Integer.MAX_VALUE);
 	} // end minParticles()
+
+	
+	
+	
 	
 } // end class

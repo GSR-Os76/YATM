@@ -17,7 +17,9 @@ import com.gsr.gsr_yatm.block.device.current_storer.AdvancedCurrentBatteryBlockB
 import com.gsr.gsr_yatm.block.device.current_storer.CurrentBatteryBlockBlockEntity;
 import com.gsr.gsr_yatm.block.device.current_storer.CurrentTuberBlockBlockEntity;
 import com.gsr.gsr_yatm.block.device.sap_collector.SapCollectorBlockEntity;
-import com.gsr.gsr_yatm.block.device.solar.SolarPanelBlockEntity;
+import com.gsr.gsr_yatm.block.device.solar.panel.AdvancedSolarPanelBlockEntity;
+import com.gsr.gsr_yatm.block.device.solar.panel.CrudeSolarPanelBlockEntity;
+import com.gsr.gsr_yatm.block.device.solar.panel.SunsComplementSolarPanelBlockEntity;
 import com.gsr.gsr_yatm.block.device.tank.TankBlockEntity;
 import com.gsr.gsr_yatm.block.hanging_pot.HangingPotHookBlockEntity;
 import com.gsr.gsr_yatm.block.sign.YATMHangingSignBlockEntity;
@@ -60,8 +62,11 @@ public class YATMBlockEntityTypes
 	
 	public static final RegistryObject<BlockEntityType<TankBlockEntity>> TANK = BLOCK_ENTITY_TYPES.register("tank", () -> BlockEntityType.Builder.of(TankBlockEntity::new, YATMBlocks.STEEL_TANK.get()).build(null));
 	
-	public static final RegistryObject<BlockEntityType<SolarPanelBlockEntity>> SOLAR_PANEL = BLOCK_ENTITY_TYPES.register("solar_panel", () -> BlockEntityType.Builder.of(SolarPanelBlockEntity::new, YATMBlocks.CRUDE_SOLAR_PANEL.get(), YATMBlocks.ADVANCED_SOLAR_PANEL.get(), YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get()).build(null));
+	public static final RegistryObject<BlockEntityType<CrudeSolarPanelBlockEntity>> CRUDE_SOLAR_PANEL = BLOCK_ENTITY_TYPES.register("crude_solar_panel", () -> BlockEntityType.Builder.of(CrudeSolarPanelBlockEntity::new, YATMBlocks.CRUDE_SOLAR_PANEL.get()).build(null));
+	public static final RegistryObject<BlockEntityType<AdvancedSolarPanelBlockEntity>> ADVANCED_SOLAR_PANEL = BLOCK_ENTITY_TYPES.register("advanced_solar_panel", () -> BlockEntityType.Builder.of(AdvancedSolarPanelBlockEntity::new, YATMBlocks.ADVANCED_SOLAR_PANEL.get()).build(null));
+	public static final RegistryObject<BlockEntityType<SunsComplementSolarPanelBlockEntity>> SUNS_COMPLEMENT_SOLAR_PANEL = BLOCK_ENTITY_TYPES.register("suns_complement_solar_panel", () -> BlockEntityType.Builder.of(SunsComplementSolarPanelBlockEntity::new, YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get()).build(null));
 	
+
 	public static final RegistryObject<BlockEntityType<ChannelVinesBlockEntity>> CHANNEL_VINES = BLOCK_ENTITY_TYPES.register("channel_vines", () -> BlockEntityType.Builder.of(ChannelVinesBlockEntity::new, YATMBlocks.CHANNEL_VINES.get()).build(null));
 	public static final RegistryObject<BlockEntityType<ConduitVineBundleBlockEntity>> CONDUIT_VINE_BUNDLE = BLOCK_ENTITY_TYPES.register("conduit_vine_bundle", () -> BlockEntityType.Builder.of(ConduitVineBundleBlockEntity::new, YATMBlocks.CONDUIT_VINE_BUNDLE.get()).build(null));
 	

@@ -16,7 +16,7 @@ import com.gsr.gsr_yatm.block.device.crafting.injector.InjectorScreen;
 import com.gsr.gsr_yatm.block.device.crafting.still.StillScreen;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceScreen;
 import com.gsr.gsr_yatm.block.device.current_storer.base.CurrentStorerScreen;
-import com.gsr.gsr_yatm.block.device.solar.SolarPanelScreen;
+import com.gsr.gsr_yatm.block.device.solar.panel.base.SolarPanelScreen;
 import com.gsr.gsr_yatm.block.device.tank.TankRenderer;
 import com.gsr.gsr_yatm.block.hanging_pot.HangingPotHookRenderer;
 import com.gsr.gsr_yatm.data_generation.YATMBiomeTags;

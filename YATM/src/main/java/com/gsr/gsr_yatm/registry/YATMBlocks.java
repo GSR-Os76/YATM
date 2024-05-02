@@ -25,8 +25,7 @@ import com.gsr.gsr_yatm.block.device.current_storer.base.CurrentStorerBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
 import com.gsr.gsr_yatm.block.device.sap_collector.FilledSapCollectorBlock;
 import com.gsr.gsr_yatm.block.device.sap_collector.SapCollectorBlock;
-import com.gsr.gsr_yatm.block.device.solar.SolarPanelBlock;
-import com.gsr.gsr_yatm.block.device.solar.SolarPanelSettings;
+import com.gsr.gsr_yatm.block.device.solar.panel.base.SolarPanelBlock;
 import com.gsr.gsr_yatm.block.device.tank.TankBlock;
 import com.gsr.gsr_yatm.block.flammable.FlammableAerialRootsBlock;
 import com.gsr.gsr_yatm.block.flammable.FlammableBlock;
@@ -377,9 +376,9 @@ public class YATMBlocks
 	
 	// TODO, maybe make solar vines look loosely like a vertical wooden terrace growing vines, add as later alternative to block forms, block forms first for simplicity
 	// TODO, make these beautifuler
-	public static final RegistryObject<SolarPanelBlock> CRUDE_SOLAR_PANEL = BLOCKS.register("crude_solar_panel", () -> new SolarPanelBlock(YATMBlockProperties.SOLAR_PANEL, YATMBlockShapes.CUBE, 8, 8, 64, SolarPanelSettings.CRUDE));
-	public static final RegistryObject<SolarPanelBlock> ADVANCED_SOLAR_PANEL = BLOCKS.register("advanced_solar_panel", () -> new SolarPanelBlock(YATMBlockProperties.SOLAR_PANEL, YATMBlockShapes.CUBE, 64, 64, 512, SolarPanelSettings.ADVANCED));
-	public static final RegistryObject<SolarPanelBlock> SUNS_COMPLEMENT_SOLAR_PANEL = BLOCKS.register("suns_complement_solar_panel", () -> new SolarPanelBlock(YATMBlockProperties.SOLAR_PANEL, YATMBlockShapes.CUBE, 512, 512, 4096, SolarPanelSettings.SUNS_COMPLEMENT));
+	public static final RegistryObject<SolarPanelBlock> CRUDE_SOLAR_PANEL = BLOCKS.register("crude_solar_panel", () -> new SolarPanelBlock(YATMBlockProperties.SOLAR_PANEL, YATMBlockShapes.CUBE, YATMBlockEntityTypes.CRUDE_SOLAR_PANEL::get));
+	public static final RegistryObject<SolarPanelBlock> ADVANCED_SOLAR_PANEL = BLOCKS.register("advanced_solar_panel", () -> new SolarPanelBlock(YATMBlockProperties.SOLAR_PANEL, YATMBlockShapes.CUBE, YATMBlockEntityTypes.ADVANCED_SOLAR_PANEL::get));
+	public static final RegistryObject<SolarPanelBlock> SUNS_COMPLEMENT_SOLAR_PANEL = BLOCKS.register("suns_complement_solar_panel", () -> new SolarPanelBlock(YATMBlockProperties.SOLAR_PANEL, YATMBlockShapes.CUBE, YATMBlockEntityTypes.SUNS_COMPLEMENT_SOLAR_PANEL::get));
 	// TODO, lightning strike current generation thingy
 
 	// TODO, maybe make model more base on crosses

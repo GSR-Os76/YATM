@@ -16,7 +16,7 @@ import com.gsr.gsr_yatm.block.device.crafting.bioreactor.BioreactorBlock;
 import com.gsr.gsr_yatm.block.device.crafting.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
-import com.gsr.gsr_yatm.block.device.solar.SolarPanelBlock;
+import com.gsr.gsr_yatm.block.device.solar.panel.base.SolarPanelBlock;
 import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.CryingFlowerBlock;
