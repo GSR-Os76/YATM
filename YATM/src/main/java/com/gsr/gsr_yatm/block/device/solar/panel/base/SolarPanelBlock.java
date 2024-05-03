@@ -1,13 +1,13 @@
-package com.gsr.gsr_yatm.block.device.solar;
+package com.gsr.gsr_yatm.block.device.solar.panel.base;
 
 import java.util.Objects;
+import java.util.function.Supplier;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.block.device.HorizontalDeviceBlock;
-import com.gsr.gsr_yatm.block.device.DeviceBlockEntity;
+import com.gsr.gsr_yatm.block.device.HorizontalAxisDeviceBlock;
+import com.gsr.gsr_yatm.block.device.IDeviceBlockEntity;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
-import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
@@ -16,31 +16,22 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.inventory.ContainerLevelAccess;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 
-public class SolarPanelBlock extends HorizontalDeviceBlock
+public class SolarPanelBlock extends HorizontalAxisDeviceBlock
 {
-	private final int m_currentCapacity;
-	private final int m_maxSafeCurrent;
-	private final int m_maxCurrent;
-	private final SolarPanelSettings m_settings;
-	
-	
-	public SolarPanelBlock(@NotNull Properties properties, ICollisionVoxelShapeProvider shape, int currentCapacity, int maxSafeCurrent, int maxCurrent, SolarPanelSettings settings)
+	public SolarPanelBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape, @NotNull Supplier<BlockEntityType<? extends IDeviceBlockEntity>> type)
 	{
-		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), YATMBlockEntityTypes.SOLAR_PANEL::get);
-		this.m_currentCapacity = currentCapacity;
-		this.m_maxSafeCurrent = maxSafeCurrent;
-		this.m_maxCurrent = maxCurrent;
-		this.m_settings = settings;
+		super(Objects.requireNonNull(properties), Objects.requireNonNull(shape), Objects.requireNonNull(type));
 	} // end constructor
 
 	
 	
 	@Override
-	public @NotNull DeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
+	public @NotNull IDeviceBlockEntity newDeviceBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
-		return new SolarPanelBlockEntity(position, state, this.m_currentCapacity, this.m_maxSafeCurrent, this.m_maxCurrent, this.m_settings);
+		return this.m_type.get().create(position, state);
 	} // end newDeviceBlockEntity()
 
 	@Override

@@ -137,6 +137,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addCraftingDeviceRecipes(output);
 		this.addStorers(output);
 		this.addConduitLikes(output);
+		this.addSolarThings(output);
 		
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.KINETIC_DRIVER.get(), 1).pattern(" r ").pattern("fpf").pattern(" v ").define('r', Tags.Items.DUSTS_REDSTONE).define('p', YATMItemTags.FORGE_PISTONS_KEY).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItemTags.FORGE_PISTONS_KEY)).save(output, YetAnotherTechMod.MODID + ":kinetic_driver_from_shaped_crafting");
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.KINETIC_DRIVER.get(), 1).pattern(" v ").pattern("fpf").pattern(" r ").define('r', Tags.Items.DUSTS_REDSTONE).define('p', YATMItemTags.FORGE_PISTONS_KEY).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItemTags.FORGE_PISTONS_KEY)).save(output, YetAnotherTechMod.MODID + ":fkinetic_driver_from_shaped_crafting");
@@ -334,6 +335,19 @@ public class YATMRecipeProvider extends RecipeProvider
 		/*TODO, maybe make shapless*/ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CONDUIT_VINES.get(), 1).pattern("   ").pattern("fff").pattern("   ").define('f', YATMItems.CONDUIT_VINE_BUNDLE.get()).unlockedBy("has_item", has(YATMItems.CONDUIT_VINE_BUNDLE.get())).save(output, YetAnotherTechMod.MODID + ":conduit_vines_from_conduit_vine_bundle_shaped_crafting");
 
 	} // end addConduitLikes()
+	
+	private void addSolarThings(@NotNull RecipeOutput output) 
+	{
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CRUDE_SOLAR_LEAF.get(), 1).pattern("ggg").pattern("sfs").pattern("   ").define('g', Tags.Items.GLASS_PANES).define('s', Tags.Items.GEMS_QUARTZ).define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", has(Tags.Items.GEMS_QUARTZ)).save(output, YetAnotherTechMod.MODID + ":crude_solar_leaf_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.ADVANCED_SOLAR_LEAF.get(), 1).pattern("ggg").pattern("sfs").pattern("rrr").define('g', Tags.Items.GLASS_PANES).define('s', YATMItems.CRUDE_SOLAR_LEAF.get()).define('f', YATMItems.FOLIAR_STEEL.get()).define('r', Tags.Items.DUSTS_REDSTONE).unlockedBy("has_item", has(YATMItems.CRUDE_SOLAR_LEAF.get())).save(output, YetAnotherTechMod.MODID + ":advanced_solar_leaf_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.SUNS_COMPLEMENT_SOLAR_LEAF.get(), 1).pattern("ggg").pattern("sfs").pattern("ccc").define('g', Tags.Items.GLASS_PANES).define('s', YATMItems.ADVANCED_SOLAR_LEAF.get()).define('f', YATMItems.FOLIAR_STEEL.get()).define('c', Items.CHARCOAL).unlockedBy("has_item", has(YATMItems.ADVANCED_SOLAR_LEAF.get())).save(output, YetAnotherTechMod.MODID + ":suns_complement_solar_leaf_from_shaped_crafting");
+		
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.CRUDE_SOLAR_PANEL.get(), 1).pattern("lll").pattern("fbf").pattern("fvf").define('l', YATMItems.CRUDE_SOLAR_LEAF.get()).define('b', YATMItems.CURRENT_TUBER_BLOCK.get()).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.CRUDE_SOLAR_LEAF.get())).save(output, YetAnotherTechMod.MODID + ":crude_solar_panel_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.ADVANCED_SOLAR_PANEL.get(), 1).pattern("lll").pattern("fbf").pattern("fvf").define('l', YATMItems.ADVANCED_SOLAR_LEAF.get()).define('b', YATMItems.CURRENT_BATTERY_BLOCK.get()).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.ADVANCED_SOLAR_LEAF.get())).save(output, YetAnotherTechMod.MODID + ":advanced_solar_panel_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.SUNS_COMPLEMENT_SOLAR_PANEL.get(), 1).pattern("lll").pattern("fbf").pattern("fvf").define('l', YATMItems.SUNS_COMPLEMENT_SOLAR_LEAF.get()).define('b', YATMItems.ADVANCED_CURRENT_BATTERY_BLOCK.get()).define('f', YATMItems.FOLIAR_STEEL.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.SUNS_COMPLEMENT_SOLAR_LEAF.get())).save(output, YetAnotherTechMod.MODID + ":suns_complement_solar_panel_from_shaped_crafting");
+		
+		// TODO, add solar vines
+	} // end addSolarThings()
 	
 	
 	

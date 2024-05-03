@@ -1,6 +1,5 @@
-// 1.20.2	2024-02-27T13:57:34.0060778	Loot Tables
+// 1.20.2	2024-04-26T16:31:48.7692039	Loot Tables
 3447f366126fe84e5d7fe101ca492c681d974485 data/gsr_yatm/loot_tables/blocks/adamum.json
-c03566abbff22ea0c6192f5261166041a2915427 data/gsr_yatm/loot_tables/blocks/advanced_battery_solar_panel.json
 bb48ae5488dbb788d7154346dcd565e1b37bdf87 data/gsr_yatm/loot_tables/blocks/advanced_current_battery_block.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
 09cb1db001ad8fd3d7da0bded71f7622abdc8770 data/gsr_yatm/loot_tables/blocks/aurum_deminutus.json
@@ -28,7 +27,6 @@ da04d24d02ec9304fec6d1580bed19ac19e52f1a data/gsr_yatm/loot_tables/blocks/condui
 72e5ecaa82a07ad4853f3c63ad4aab0564aa5327 data/gsr_yatm/loot_tables/blocks/cotton.json
 dc316981c06f00bd5e9cf9467ec77f86f9ab9333 data/gsr_yatm/loot_tables/blocks/creative_current_source.json
 49f68bcd00bc812d9d8596edd192d75f486ad7d0 data/gsr_yatm/loot_tables/blocks/crucible.json
-5294109aa1241c3bb507be4f25ab94d76d8ca6e5 data/gsr_yatm/loot_tables/blocks/crude_battery_solar_panel.json
 93d6b5c4f4cf084d4909b3fc7745118e5536fbfc data/gsr_yatm/loot_tables/blocks/crude_solar_panel.json
 253d3b9f9bd834d219b1d37fd9cf5da021956401 data/gsr_yatm/loot_tables/blocks/crying_flower.json
 d44326a713011631862e9dcfc23d275c34595343 data/gsr_yatm/loot_tables/blocks/crystallizer.json
@@ -166,7 +164,6 @@ cca68941631994c991f10631bbc25c9c8a060d51 data/gsr_yatm/loot_tables/blocks/steel_
 6e158b81d663f475d23de0e8f4e5fbd0457bb09e data/gsr_yatm/loot_tables/blocks/still.json
 53287117f29c9292f1578d8eea6b817e7e7be9f1 data/gsr_yatm/loot_tables/blocks/stripped_rubber_log.json
 9c24993739cc444163ea48351e3b1a745d9b2cfe data/gsr_yatm/loot_tables/blocks/stripped_rubber_wood.json
-10ba5c51e8e2e053360346f0e40e1e5614088907 data/gsr_yatm/loot_tables/blocks/suns_complement_battery_solar_panel.json
 f65f5e32ef63ad3fcfe2e4ff59c4ed88d4c94ac2 data/gsr_yatm/loot_tables/blocks/suns_complement_solar_panel.json
 7f43019907fd0bd0fed5b540663e4c473a7012d2 data/gsr_yatm/loot_tables/blocks/variegated_cactus.json
 4daed06d35896f23ada75644e5ccc152b0e1107f data/gsr_yatm/loot_tables/blocks/vicum.json

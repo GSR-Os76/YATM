@@ -41,8 +41,6 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.addMenu(YATMBlocks.CURRENT_BATTERY_BLOCK.get(), "Current Battery Block");		
 		this.addMenu(YATMBlocks.ADVANCED_CURRENT_BATTERY_BLOCK.get(), "Advanced Current Battery Block");		
 		
-		
-		this.add(YATMMenuTypes.BATTERY_SOLAR_PANEL.get(), "Solar Panel");		
 		this.add(YATMMenuTypes.SOLAR_PANEL.get(), "Solar Panel");		
 		
 		this.add(YATMMenuTypes.CREATIVE_CURRENT_SOURCE.get(), "Creative Current Source");
@@ -261,9 +259,6 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMBlocks.STEEL_TANK.get(), "Foliar Steel Tank");
 		
-		this.add(YATMBlocks.CRUDE_BATTERY_SOLAR_PANEL.get(), "Crude Battery Solar Panel");
-		this.add(YATMBlocks.ADVANCED_BATTERY_SOLAR_PANEL.get(), "Advanced Battery Solar Panel");
-		this.add(YATMBlocks.SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL.get(), "Sun's Complement Battery Solar Panel");
 		this.add(YATMBlocks.CRUDE_SOLAR_PANEL.get(), "Crude Solar Panel");
 		this.add(YATMBlocks.ADVANCED_SOLAR_PANEL.get(), "Advanced Solar Panel");
 		this.add(YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get(), "Sun's Complement Solar Panel");
@@ -335,6 +330,10 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMItems.RAW_EXOTHEMIC_GLAND.get(), "Raw Exothermal Gland");
 		
+		this.add(YATMItems.CRUDE_SOLAR_LEAF.get(), "Crude Solar Leaf");
+		this.add(YATMItems.ADVANCED_SOLAR_LEAF.get(), "Advanced Solar Leaf");
+		this.add(YATMItems.SUNS_COMPLEMENT_SOLAR_LEAF.get(), "Sun's Complement Solar Leaf");
+
 		this.add(YATMItems.ADVANCED_CURRENT_BATTERY.get(), "Advanced Current Battery");
 		this.add(YATMItems.CURRENT_BATTERY.get(), "Current Battery");
 		this.add(YATMItems.CURRENT_TUBER.get(), "Current Tuber");

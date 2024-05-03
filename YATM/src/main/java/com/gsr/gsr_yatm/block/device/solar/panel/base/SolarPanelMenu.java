@@ -1,7 +1,13 @@
-package com.gsr.gsr_yatm.block.device.solar;
+package com.gsr.gsr_yatm.block.device.solar.panel.base;
 
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
+
+import com.gsr.gsr_yatm.block.device.current_storer.base.CurrentStorerBlockEntity;
 import com.gsr.gsr_yatm.registry.YATMMenuTypes;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
+import com.gsr.gsr_yatm.utilities.network.container_data.implementation.current.CurrentDataReader;
 
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -16,34 +22,38 @@ import net.minecraftforge.items.IItemHandler;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 
-public class BatterySolarPanelMenu extends AbstractContainerMenu
+public class SolarPanelMenu extends AbstractContainerMenu
 {
-	public static final int PLAYER_INVENTORY_START = (BatterySolarPanelBlockEntity.INVENTORY_SLOT_COUNT - 1) + 1;
+	public static final int PLAYER_INVENTORY_START = (SolarPanelBlockEntity.INVENTORY_SLOT_COUNT - 1) + 1;
 	public static final int PLAYER_INVENTORY_END = PLAYER_INVENTORY_START + 26;
 	public static final int PLAYER_HOTBAR_START = PLAYER_INVENTORY_END + 1;
 	public static final int PLAYER_HOTBAR_END = PLAYER_HOTBAR_START + 8;
 	
-	private final ContainerLevelAccess m_access;
+	private final @NotNull ContainerLevelAccess m_access;
 	private final Block m_openingBlockType;
-	private final ContainerData m_data;
+	private final @NotNull ContainerData m_data;
+	private final @NotNull CurrentDataReader m_currentReader;
 	
 	
 	
 	// client side constructor
-	public BatterySolarPanelMenu(int inventoryId, Inventory playerInventory)
+	public SolarPanelMenu(int inventoryId, Inventory playerInventory)
 	{
-		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(BatterySolarPanelBlockEntity.INVENTORY_SLOT_COUNT), new SimpleContainerData(BatterySolarPanelBlockEntity.getDataSlotCount()));
+		this(inventoryId, playerInventory, ContainerLevelAccess.NULL, null, new ItemStackHandler(SolarPanelBlockEntity.INVENTORY_SLOT_COUNT), new SimpleContainerData(SolarPanelBlockEntity.ACCESS_SPEC.getCount()));
 	} // end client constructor
 
 	// server side constructor
-	public BatterySolarPanelMenu(int inventoryId, Inventory playerInventory, ContainerLevelAccess access, Block openingBlockType, IItemHandler objInventory, ContainerData data)
+	public SolarPanelMenu(int inventoryId, Inventory playerInventory, ContainerLevelAccess access, Block openingBlockType, IItemHandler objInventory, ContainerData data)
 	{
-		super(YATMMenuTypes.BATTERY_SOLAR_PANEL.get(), inventoryId);
+		super(YATMMenuTypes.SOLAR_PANEL.get(), inventoryId);
 
-		this.m_access = access;
+		this.m_access = Objects.requireNonNull(access);
+		this.m_data = Objects.requireNonNull(data);
 		this.m_openingBlockType = openingBlockType;
-		this.m_data = data;
-		this.addSlot(new SlotItemHandler(objInventory, BatterySolarPanelBlockEntity.POWER_SLOT, 79, 51));
+		
+		this.m_currentReader = new CurrentDataReader(this.m_data, CurrentStorerBlockEntity.ACCESS_SPEC.get(CurrentStorerBlockEntity.CURRENT_DATA_SPEC_KEY));
+		
+		this.addSlot(new SlotItemHandler(objInventory, SolarPanelBlockEntity.DRAIN_POWER_SLOT, 79, 51));
 
 		for (int y = 0; y < 3; ++y)
 		{
@@ -74,7 +84,7 @@ public class BatterySolarPanelMenu extends AbstractContainerMenu
 			if (quickMovedSlotIndex >= PLAYER_INVENTORY_START && quickMovedSlotIndex <= PLAYER_HOTBAR_END)
 			{	
 				boolean moved = false;
-				if(SlotUtil.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, BatterySolarPanelBlockEntity.POWER_SLOT, BatterySolarPanelBlockEntity.POWER_SLOT + 1, false)) 
+				if(SlotUtil.isValidPowerSlotInsert(slotsStack) && this.moveItemStackTo(slotsStack, SolarPanelBlockEntity.DRAIN_POWER_SLOT, SolarPanelBlockEntity.DRAIN_POWER_SLOT + 1, false)) 
 				{					
 					moved = true;
 				}
@@ -128,12 +138,12 @@ public class BatterySolarPanelMenu extends AbstractContainerMenu
 	
 	public int currentStored() 
 	{
-		return this.m_data.get(BatterySolarPanelBlockEntity.getCurrentData().startIndex());
+		return this.m_currentReader.getStored();
 	} // end currentStored()
 	
 	public int currentCapacity() 
 	{
-		return this.m_data.get(BatterySolarPanelBlockEntity.getCurrentData().endIndex());
+		return this.m_currentReader.getCapacity();
 	} // end currentCapacity()
 	
 } // end class

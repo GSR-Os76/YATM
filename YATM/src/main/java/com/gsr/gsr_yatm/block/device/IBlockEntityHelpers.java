@@ -130,6 +130,38 @@ public interface IBlockEntityHelpers
 
 	
 	
+	default @NotNull ICurrentHandler noFill(ICurrentHandler c) 
+	{
+		return new ICurrentHandler() 
+		{
+
+			@Override
+			public @NotNegative int receiveCurrent(@NotNegative int amount, boolean simulate)
+			{
+				return 0;
+			} // end recieveCurrent()
+
+			@Override
+			public @NotNegative int extractCurrent(@NotNegative int amount, boolean simulate)
+			{
+				return c.extractCurrent(amount, simulate);
+			} // end extractCurrent()
+
+			@Override
+			public @NotNegative int capacity()
+			{
+				return c.capacity();
+			} // end capacity()
+
+			@Override
+			public @NotNegative int stored()
+			{
+				return c.stored();
+			} // end stored()
+			
+		};
+	} // end noDrain()
+	
 	default @NotNull IFluidHandler noFill(IFluidHandler f)
 	{
 		return new IFluidHandler() 

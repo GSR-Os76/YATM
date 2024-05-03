@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.device.solar;
+package com.gsr.gsr_yatm.block.device.solar.panel.base;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.gui.HorizontalCurrentWidget;
@@ -10,15 +10,15 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.player.Inventory;
 
-public class BatterySolarPanelScreen extends AbstractContainerScreen<BatterySolarPanelMenu>
+public class SolarPanelScreen extends AbstractContainerScreen<SolarPanelMenu>
 {
-	public static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/battery_solar_panel.png");
+	public static final ResourceLocation BACKGROUND = new ResourceLocation(YetAnotherTechMod.MODID, "textures/gui/container/solar_panel.png");
 	
 	private HorizontalCurrentWidget m_currentWidget;
 	
 	
 	
-	public BatterySolarPanelScreen(BatterySolarPanelMenu menu, Inventory inventory, Component title)
+	public SolarPanelScreen(SolarPanelMenu menu, Inventory inventory, Component title)
 	{
 		super(menu, inventory, title);
 	} // end constructor

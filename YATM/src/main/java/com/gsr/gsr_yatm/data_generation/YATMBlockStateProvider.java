@@ -16,7 +16,7 @@ import com.gsr.gsr_yatm.block.device.crafting.bioreactor.BioreactorBlock;
 import com.gsr.gsr_yatm.block.device.crafting.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
-import com.gsr.gsr_yatm.block.device.solar.BatterySolarPanelBlock;
+import com.gsr.gsr_yatm.block.device.solar.panel.base.SolarPanelBlock;
 import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.CryingFlowerBlock;
@@ -737,26 +737,15 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	private void addSolarPanels() 
 	{
-		// TODO, update face textures
-		this.createHorizontalFacingTopBlock(YATMBlocks.CRUDE_BATTERY_SOLAR_PANEL.get(), YATMItems.CRUDE_BATTERY_SOLAR_PANEL.get(),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/eight_cu_solar_panel_side"),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/crude_solar_panel_top"));
-		this.createHorizontalFacingTopBlock(YATMBlocks.ADVANCED_BATTERY_SOLAR_PANEL.get(), YATMItems.ADVANCED_BATTERY_SOLAR_PANEL.get(),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/sixtyfour_cu_solar_panel_side"),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/advanced_solar_panel_top"));
-		this.createHorizontalFacingTopBlock(YATMBlocks.SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL.get(), YATMItems.SUNS_COMPLEMENT_BATTERY_SOLAR_PANEL.get(),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/fivehundredtwelve_cu_solar_panel_side"),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/suns_complement_solar_panel_top"));
-	
 		this.createSolarPanel(YATMBlocks.CRUDE_SOLAR_PANEL.get(), YATMItems.CRUDE_SOLAR_PANEL.get(),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/one_cu_solar_panel_side"),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/crude_solar_panel_top"));
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/1_sides"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/1_top"));
 		this.createSolarPanel(YATMBlocks.ADVANCED_SOLAR_PANEL.get(), YATMItems.ADVANCED_SOLAR_PANEL.get(),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/eight_cu_solar_panel_side"),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/advanced_solar_panel_top"));
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/1_sides"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/2_top"));
 		this.createSolarPanel(YATMBlocks.SUNS_COMPLEMENT_SOLAR_PANEL.get(), YATMItems.SUNS_COMPLEMENT_SOLAR_PANEL.get(),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/sixtyfour_cu_solar_panel_side"),
-				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/suns_complement_solar_panel_top"));
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/1_sides"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/device/solar_panel/3_top"));
 		
 	} // end addSolarPanels()
 	
@@ -827,6 +816,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.getVariantBuilder(block).forAllStates((blockState) -> new ConfiguredModel[] { new ConfiguredModel(model) });
 	} // end createAllBlock()
 	
+	@SuppressWarnings("unused")
 	private void createHorizontalFacingTopBlock(Block block, Item item, ResourceLocation sideTexture, ResourceLocation topTexture) 
 	{
 		String name = getModelLocationNameFor(block);
@@ -835,19 +825,19 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
 		this.getVariantBuilder(block).forAllStates((bs) -> 
 		{
-			return new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(BatterySolarPanelBlock.FACING)).x, rotationForDirectionFromNorth(bs.getValue(BatterySolarPanelBlock.FACING)).y, false) };
+			return new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(YATMBlockStateProperties.FACING)).x, rotationForDirectionFromNorth(bs.getValue(YATMBlockStateProperties.FACING)).y, false) };
 		});
 	} // end createHorizontalFacingTopBlock()
 	
 	private void createSolarPanel(Block block, Item item, ResourceLocation sideTexture, ResourceLocation topTexture) 
 	{
 		String name = getModelLocationNameFor(block);
-		this.models().getBuilder(name).parent(YATMBlockStateProvider.SOLAR_PANEL_MODEL).texture("top", topTexture).texture("side", sideTexture);
+		this.models().cubeTop(name, sideTexture, topTexture);
 		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, name));
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString()).parent(model);
 		this.getVariantBuilder(block).forAllStates((bs) -> 
 		{
-			return new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(BatterySolarPanelBlock.FACING)).x, rotationForDirectionFromNorth(bs.getValue(BatterySolarPanelBlock.FACING)).y, false) };
+			return new ConfiguredModel[] { new ConfiguredModel(model, rotationForDirectionFromNorth(bs.getValue(SolarPanelBlock.AXIS) == Direction.Axis.Z ? Direction.NORTH : Direction.WEST).x, rotationForDirectionFromNorth(bs.getValue(SolarPanelBlock.AXIS) == Direction.Axis.Z ? Direction.NORTH : Direction.WEST).y, false) };
 		});
 	} // end createSolarPanel()
 	
@@ -886,7 +876,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		ModelFile modelTwo = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameTwo));
 		ModelFile modelThree = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameThree));
 		ModelFile modelFour = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameFour));
-		
+
 		this.getVariantBuilder(block).forAllStates((bs) -> forCrop(bs, modelOne, modelOne, modelTwo, modelTwo, modelThree, modelThree, modelFour, modelFour));
 	} // end createCrop()
 	

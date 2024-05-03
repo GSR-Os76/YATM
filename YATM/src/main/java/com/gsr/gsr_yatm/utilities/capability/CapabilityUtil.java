@@ -149,6 +149,68 @@ public class CapabilityUtil
 			} // end reviveCaps()
 			
 		};
-	} // end providerOrCapability()
-		
+	} // end providerOrCapabiltyOrDefault()
+
+
+	
+	public static @NotNull IInvalidatableCapabilityProvider conditionProvider(@NotNull Supplier<Boolean> condition, @NotNull IInvalidatableCapabilityProvider provider)
+	{
+		return new IInvalidatableCapabilityProvider() 
+		{
+			@Override
+			public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side)
+			{
+				if(condition.get()) 
+				{
+					return provider.getCapability(cap, side);
+				}
+				return LazyOptional.empty();
+			} // end getCapability()
+
+			@Override
+			public void invalidateCaps()
+			{
+				provider.invalidateCaps();
+			} // end invalidateCaps()()
+
+			@Override
+			public void reviveCaps()
+			{
+				provider.reviveCaps();
+			} // end reviveCaps()
+		};
+	} // end conditionProvider
+	
+	public static @NotNull IInvalidatableCapabilityProvider conditionProvider(@NotNull Supplier<Boolean> condition, @NotNull IInvalidatableCapabilityProvider provider, @NotNull IInvalidatableCapabilityProvider altProvider)
+	{
+		return new IInvalidatableCapabilityProvider() 
+		{
+			@Override
+			public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side)
+			{
+				if(condition.get()) 
+				{
+					return provider.getCapability(cap, side);
+				}
+				else 
+				{
+					return altProvider.getCapability(cap, side);
+				}
+			} // end getCapability()
+
+			@Override
+			public void invalidateCaps()
+			{
+				provider.invalidateCaps();
+				altProvider.invalidateCaps();
+			} // end invalidateCaps()()
+
+			@Override
+			public void reviveCaps()
+			{
+				provider.reviveCaps();
+				altProvider.reviveCaps();
+			} // end reviveCaps()
+		};
+	} // end conditionProvider
 } // end class
