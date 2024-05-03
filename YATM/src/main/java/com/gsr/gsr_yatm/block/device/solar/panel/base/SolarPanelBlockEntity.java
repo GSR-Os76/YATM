@@ -15,6 +15,7 @@ import com.gsr.gsr_yatm.block.device.behaviors.implementation.SerializableBehavi
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.component.OutputComponentManager;
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.current.CurrentDrainManager;
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.current.OutputCurrentManager;
+import com.gsr.gsr_yatm.block.device.behaviors.implementation.current.SolarGeneratorManager;
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.utility.TickableBehaviorConditioner;
 import com.gsr.gsr_yatm.block.device.builder.DeviceBuilder;
 import com.gsr.gsr_yatm.block.device.builder.DeviceDefinition;
@@ -78,7 +79,7 @@ public abstract class SolarPanelBlockEntity extends BuiltDeviceBlockEntity
 		
 		.behavior((i) -> new SerializableBehavior(i, "inventory")).allDefaults().end()
 		.behavior(new SerializableBehavior(c, "current")).allDefaults().end()
-		// generate
+		.behavior(new SolarGeneratorManager(c, this.getSettings())).allDefaults().end()
 		.behavior(cDM::apply).allDefaults().end()
 		.behavior(cDCM::apply).allDefaults().end()
 		.behavior(new TickableBehaviorConditioner(() -> !cDCM.get().hasComponent(), new OutputCurrentManager(() -> List.copyOf(SolarPanelBlockEntity.POWERABLE_FACES), this.getSettings().outputRecheckPeriod(), c, this.getSettings().maxCurrentTransfer()))).allDefaults().end()
