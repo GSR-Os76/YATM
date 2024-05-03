@@ -67,10 +67,15 @@ public class CapabilityProviderBuilder<T> implements ICapabilityProviderBuilder<
 		return this.end();
 	} // end last()
 	
+	protected @NotNull IInvalidatableCapabilityProvider build() 
+	{
+		return new BuiltCapabilityProvider(this.m_options, this.m_invalidationListeners, this.m_reviveListeners, this.m_last);
+	} // end build()
+	
 	@Override
 	public @Nullable T end()
 	{
-		this.m_buildReceiver.accept(new BuiltCapabilityProvider(this.m_options, this.m_invalidationListeners, this.m_reviveListeners, this.m_last));
+		this.m_buildReceiver.accept(this.build());
 		return this.m_parent;
 	} // end end()
 	

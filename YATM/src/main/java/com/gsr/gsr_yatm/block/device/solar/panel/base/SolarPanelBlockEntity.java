@@ -19,8 +19,10 @@ import com.gsr.gsr_yatm.block.device.behaviors.implementation.current.SolarGener
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.utility.TickableBehaviorConditioner;
 import com.gsr.gsr_yatm.block.device.builder.DeviceBuilder;
 import com.gsr.gsr_yatm.block.device.builder.DeviceDefinition;
+import com.gsr.gsr_yatm.block.device.builder.capability_provider.CapabilityProviderBuilderL;
 import com.gsr.gsr_yatm.block.device.builder.game_objects.BuiltDeviceBlockEntity;
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelSettings;
+import com.gsr.gsr_yatm.utilities.DirectionUtil;
 import com.gsr.gsr_yatm.utilities.capability.CapabilityUtil;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
@@ -96,9 +98,14 @@ public abstract class SolarPanelBlockEntity extends BuiltDeviceBlockEntity
 		.returnsWhen(ForgeCapabilities.ITEM_HANDLER, inv.get())
 		.elifReturnsWhen(YATMCapabilities.CURRENT, c).end()
 		
-		.face(() -> POWERABLE_FACES)
-		.returns(CapabilityUtil.providerOrCapabiltyOrDefault(cDCM.get()::hasComponent, cDCM.get(), YATMCapabilities.CURRENT, drainC, defaultCapabilityProvider)).end()
-//.elifEmptyReturnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), SolarPanelBlockEntity.DRAIN_POWER_SLOT)).end()
+		.face(() -> SolarPanelBlockEntity.POWERABLE_FACES)
+		.returns(CapabilityUtil.conditionProvider(cDCM.get()::hasComponent, cDCM.get(), 
+				new CapabilityProviderBuilderL()
+				.face(() -> DirectionUtil.ALL_AND_NULL)
+				.returnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), SolarPanelBlockEntity.DRAIN_POWER_SLOT))
+				.elifReturnsWhen(YATMCapabilities.CURRENT, drainC).end().last(defaultCapabilityProvider)
+				))
+		.end()
 		.last(defaultCapabilityProvider)
 			
 		.end();

@@ -21,7 +21,9 @@ import com.gsr.gsr_yatm.block.device.behaviors.implementation.current.OutputCurr
 import com.gsr.gsr_yatm.block.device.behaviors.implementation.utility.TickableBehaviorConditioner;
 import com.gsr.gsr_yatm.block.device.builder.DeviceBuilder;
 import com.gsr.gsr_yatm.block.device.builder.DeviceDefinition;
+import com.gsr.gsr_yatm.block.device.builder.capability_provider.CapabilityProviderBuilderL;
 import com.gsr.gsr_yatm.block.device.builder.game_objects.BuiltDeviceBlockEntity;
+import com.gsr.gsr_yatm.utilities.DirectionUtil;
 import com.gsr.gsr_yatm.utilities.capability.CapabilityUtil;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
@@ -70,6 +72,8 @@ public abstract class CurrentStorerBlockEntity extends BuiltDeviceBlockEntity
 		//capability provider exposing internal battery, or slotted component, conditioned by face on component absence/presence
 		BackedFunction<IItemHandler, IItemHandler> inv = new BackedFunction<>((i) -> i);
 		CurrentHandler c = this.m_helpers.newCurrentHandler(this.getCurrentCapacity(), this.getMaxCurrentTransfer());
+		ICurrentHandler drainC = this.m_helpers.noFill(c);
+		ICurrentHandler fillC = this.m_helpers.noDrain(c);
 		
 		BackedFunction<IItemHandler, CurrentFillManager> cFM = new BackedFunction<>((i) -> new CurrentFillManager(i, CurrentStorerBlockEntity.FILL_POWER_SLOT, c, this.getMaxCurrentTransfer()));
 		BackedFunction<IItemHandler, CurrentDrainManager> cDM = new BackedFunction<>((i) -> new CurrentDrainManager(i, CurrentStorerBlockEntity.DRAIN_POWER_SLOT, c, this.getMaxCurrentTransfer()));
@@ -102,11 +106,21 @@ public abstract class CurrentStorerBlockEntity extends BuiltDeviceBlockEntity
 		.elifReturnsWhen(YATMCapabilities.CURRENT, c).end()
 		// TODO, assure hoppers can fill and place items in slots?
 		.face(() -> Stream.of(Direction.values()).filter((d) -> d != this.getBlockState().getValue(CurrentStorerBlock.FACING)).collect(Collectors.toSet()))
-		.returns(CapabilityUtil.providerOrCapabiltyOrDefault(cFCM.get()::hasComponent, cFCM.get(), YATMCapabilities.CURRENT, c, defaultCapabilityProvider))
+		.returns(CapabilityUtil.conditionProvider(cFCM.get()::hasComponent, cFCM.get(), 
+				new CapabilityProviderBuilderL()
+				.face(() -> DirectionUtil.ALL_AND_NULL)
+				.returnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), CurrentStorerBlockEntity.FILL_POWER_SLOT))
+				.elifReturnsWhen(YATMCapabilities.CURRENT, fillC).end().last(defaultCapabilityProvider)
+				))
 		.end()
 		
 		.face(() -> Set.of(this.getBlockState().getValue(CurrentStorerBlock.FACING)))
-		.returns(CapabilityUtil.providerOrCapabiltyOrDefault(cDCM.get()::hasComponent, cDCM.get(), YATMCapabilities.CURRENT, c, defaultCapabilityProvider))
+		.returns(CapabilityUtil.conditionProvider(cDCM.get()::hasComponent, cDCM.get(), 
+				new CapabilityProviderBuilderL()
+				.face(() -> DirectionUtil.ALL_AND_NULL)
+				.returnsWhen(ForgeCapabilities.ITEM_HANDLER, this.m_helpers.slot(inv.get(), CurrentStorerBlockEntity.DRAIN_POWER_SLOT))
+				.elifReturnsWhen(YATMCapabilities.CURRENT, drainC).end().last(defaultCapabilityProvider)
+				))
 		.end()
 		
 		.last(defaultCapabilityProvider)

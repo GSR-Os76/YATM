@@ -5,7 +5,6 @@ import java.util.Set;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.block.device.behaviors.IBehavior;
 import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
