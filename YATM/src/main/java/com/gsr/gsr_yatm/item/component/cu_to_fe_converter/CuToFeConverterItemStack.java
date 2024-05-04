@@ -8,7 +8,6 @@ import org.jetbrains.annotations.Nullable;
 import com.gsr.gsr_yatm.api.capability.IComponent;
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
-
 import net.minecraft.core.Direction;
 import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.Capability;
@@ -25,30 +24,63 @@ public class CuToFeConverterItemStack implements ICapabilityProvider, IComponent
 	
 	private @Nullable LazyOptional<IEnergyStorage> m_attachedCap;
 	private @Nullable IEnergyStorage m_attachment;
+	private float m_rCuPart = 0f;
+	private float m_eCuPart = 0f;
 
 
-
+	
 	public CuToFeConverterItemStack(@NotNull ItemStack self, float cuToFeRatio)
 	{
 		this.m_cuToFeRatio = cuToFeRatio;
-		this.m_feToCuRatio = cuToFeRatio == 0 ? 0 : 1f / cuToFeRatio;
+		this.m_feToCuRatio = cuToFeRatio == 0f ? 0f : 1f / cuToFeRatio;
 	} // end constructor
 
+	
 
 	@Override
 	public int receiveCurrent(int amount, boolean simulate)
 	{
-		return this.m_attachment == null 
-				? 0 
-				: this.toCu(this.m_attachment.receiveEnergy(this.toFe(amount), simulate));
+		if(this.m_attachment == null) 
+		{
+			return 0;
+		}
+		else 
+		{
+			int consumedFe = this.m_attachment.receiveEnergy(this.toFe(amount), simulate);
+			
+			float consumedCuRough = ((consumedFe) * this.m_feToCuRatio) + this.m_rCuPart;
+			this.m_rCuPart = consumedCuRough % 1f;
+			int consumedCu = (int)consumedCuRough;
+			if(consumedCu > amount) 
+			{
+				this.m_rCuPart += consumedCu - amount;
+				return amount;
+			}
+			return consumedCu;
+		}
 	} // end receiveCurrent()
 
 	@Override
 	public int extractCurrent(int amount, boolean simulate)
 	{
-		return this.m_attachment == null 
-				? 0 
-				: this.toCu(this.m_attachment.extractEnergy(this.toFe(amount), simulate));
+		if(this.m_attachment == null) 
+		{
+			return 0;
+		}
+		else 
+		{
+			int gainedFe = this.m_attachment.extractEnergy(this.toFe(amount), simulate);
+			
+			float gainedCuRough = ((gainedFe) * this.m_feToCuRatio) + this.m_eCuPart;
+			this.m_eCuPart = gainedCuRough % 1f;
+			int gainedCu = (int)gainedCuRough;
+			if(gainedCu > amount) 
+			{
+				this.m_eCuPart += gainedCu - amount;
+				return amount;
+			}
+			return gainedCu;
+		}
 	} // end extractCurrent()
 
 	@Override

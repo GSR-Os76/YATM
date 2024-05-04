@@ -24,8 +24,10 @@ public class FeToCuConverterItemStack implements ICapabilityProvider, IComponent
 	
 	private @Nullable LazyOptional<ICurrentHandler> m_attachedCap;
 	private @Nullable ICurrentHandler m_attachment;
+	private float m_rFePart = 0f;
+	private float m_eFePart = 0f;
 
-
+	
 
 	public FeToCuConverterItemStack(@NotNull ItemStack self, float cuToFeRatio)
 	{
@@ -38,17 +40,47 @@ public class FeToCuConverterItemStack implements ICapabilityProvider, IComponent
 	@Override
 	public int receiveEnergy(int maxReceive, boolean simulate)
 	{
-		return this.m_attachment == null 
-				? 0 
-				: this.toFe(this.m_attachment.receiveCurrent(this.toCu(maxReceive), simulate));
+		if(this.m_attachment == null) 
+		{
+			return 0;
+		}
+		else 
+		{
+			int consumedCu = this.m_attachment.receiveCurrent(this.toCu(maxReceive), simulate);
+			
+			float consumedFeRough = ((consumedCu) * this.m_cuToFeRatio) + this.m_rFePart;
+			this.m_rFePart = consumedFeRough % 1f;
+			int consumedFe = (int)consumedFeRough;
+			if(consumedFe > maxReceive) 
+			{
+				this.m_rFePart += consumedFe - maxReceive;
+				return maxReceive;
+			}
+			return consumedFe;
+		}
 	} // end receiveEnergy()
 
 	@Override
 	public int extractEnergy(int maxExtract, boolean simulate)
 	{
-		return this.m_attachment == null 
-				? 0 
-				: this.m_attachment.extractCurrent((int)(((float)maxExtract) * this.m_feToCuRatio), simulate);
+		if(this.m_attachment == null) 
+		{
+			return 0;
+		}
+		else 
+		{
+			int gainedCu = this.m_attachment.extractCurrent((int)(((float)maxExtract) * this.m_feToCuRatio), simulate);
+			
+			float gainedFeRough = ((gainedCu) * this.m_cuToFeRatio) + this.m_eFePart;
+			this.m_eFePart = gainedFeRough % 1f;
+			int gainedFe = (int)gainedFeRough;
+			if(gainedFe > maxExtract) 
+			{
+				this.m_eFePart += gainedFe - maxExtract;
+				return maxExtract;
+			}
+			return gainedFe;
+		}
 	} // end extractEnergy()
 
 	@Override
