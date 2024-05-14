@@ -19,17 +19,17 @@ import net.minecraftforge.registries.tags.ITagManager;
 
 public class YATMBiomeTags extends BiomeTagsProvider
 {
+	private static final String FORGE_ID = "forge";
 	@SuppressWarnings("unused")
 	private static final String MINECRAFT_ID = "minecraft";
-	@SuppressWarnings("unused")
-	private static final String FORGE_ID = "forge";
 	
 	private static final ITagManager<Biome> TM = ForgeRegistries.BIOMES.tags();
 	
 	
 	
 	public static final TagKey<Biome> HAS_FEATURE_SOUL_AFFLICTED_RUBBER_TREE = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "has_feature/soul_afflicted_rubber_tree"));
-	
+	public static final TagKey<Biome> IS_FROZEN_OCEAN = TM.createTagKey(new ResourceLocation(YATMBiomeTags.FORGE_ID, "is_frozen_ocean"));
+
 
 	
 	public YATMBiomeTags(PackOutput packOutput, CompletableFuture<Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper)
@@ -43,6 +43,7 @@ public class YATMBiomeTags extends BiomeTagsProvider
 	protected void addTags(Provider provider)
 	{
 		this.tag(YATMBiomeTags.HAS_FEATURE_SOUL_AFFLICTED_RUBBER_TREE).add(Biomes.SOUL_SAND_VALLEY);
+		this.tag(YATMBiomeTags.IS_FROZEN_OCEAN).add(Biomes.FROZEN_OCEAN).add(Biomes.DEEP_FROZEN_OCEAN);
 	} // end addTags()
 	
 } // end class

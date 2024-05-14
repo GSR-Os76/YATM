@@ -1,2 +1,3 @@
-// 1.20.2	2024-02-25T20:29:46.1666718	Tags for minecraft:worldgen/biome mod id gsr_yatm
+// 1.20.2	2024-05-14T12:02:27.7517808	Tags for minecraft:worldgen/biome mod id gsr_yatm
+7ab168754d6e78ecef39a6d1baa046622304b683 data/forge/tags/worldgen/biome/is_frozen_ocean.json
 15343ca7e7931ca3b093f52c77b5d7fae920fed9 data/gsr_yatm/tags/worldgen/biome/has_feature/soul_afflicted_rubber_tree.json

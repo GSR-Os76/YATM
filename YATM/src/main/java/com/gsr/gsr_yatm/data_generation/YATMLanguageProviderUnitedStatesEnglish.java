@@ -24,7 +24,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 	{
 		this.add(YATMCreativeModeTabs.YATM_GENERAL, "Yet Another Tech Mod General");
 		
-		this.add(YATMMenuTypes.GRAFTING_TABLE.get(), "Grafting Table");		
+		this.add(YATMMenuTypes.GRAFTING_TABLE.get(), "Grafting Table(WIP)");		
 		
 		this.add(YATMMenuTypes.BIOREACTOR.get(), "Bioreactor");		
 		this.add(YATMMenuTypes.BOILER.get(), "Boiler");		
@@ -231,7 +231,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		
 		
-		this.add(YATMBlocks.GRAFTING_TABLE.get(), "Grafting Table");
+		this.add(YATMBlocks.GRAFTING_TABLE.get(), "Grafting Table(WIP)");
 		
 		this.add(YATMBlocks.SAP_COLLECTOR.get(), "Sap Collector");
 		this.add(YATMBlocks.SAP_COLLECTOR_LATEX.get(), "Sap Collector (Latex)");
