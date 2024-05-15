@@ -226,7 +226,7 @@ public class YATMBlockShapes
 	{
 		private static final VoxelShape SPROUT = Block.box(4d, 0d, 4d, 12d, 7d, 12d);
 		private static final VoxelShape YOUNG = Block.box(2d, 0d, 2d, 14d, 14d, 14d);
-		private static final VoxelShape OLD = Block.box(0d, 0d, 0d, 16d, 6d, 16d);
+		private static final VoxelShape OLD = Block.box(0d, 0d, 0d, 16d, 16d, 16d);
 		private static final VoxelShape OLD_FRUITING = OLD;
 		
 		@Override

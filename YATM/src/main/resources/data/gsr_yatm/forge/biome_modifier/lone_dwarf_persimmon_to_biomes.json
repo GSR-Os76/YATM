@@ -1,0 +1,6 @@
+{
+	"type": "forge:add_features",
+	"biomes": "#gsr_yatm:has_feature/dwarf_persimmon",
+	"features": "gsr_yatm:lone_dwarf_persimmon",
+	"step": "vegetal_decoration"
+}
