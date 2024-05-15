@@ -10,6 +10,7 @@ import net.minecraft.core.HolderLookup.Provider;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.BiomeTagsProvider;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.tags.BiomeTags;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.level.biome.Biome;
 import net.minecraft.world.level.biome.Biomes;
@@ -28,10 +29,12 @@ public class YATMBiomeTags extends BiomeTagsProvider
 	public static final TagKey<Biome> IS_FROZEN_OCEAN = TM.createTagKey(new ResourceLocation(YATMBiomeTags.FORGE_ID, "is_frozen_ocean"));
 	
 	
-	public static final TagKey<Biome> HAS_FEATURE_DWARF_PERSIMMON_GROWS_IN = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "has_feature/dwarf_persimmon"));
+	public static final TagKey<Biome> HAS_FEATURE_DWARF_PERSIMMON = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "has_feature/dwarf_persimmon"));
+	public static final TagKey<Biome> HAS_FEATURE_ICE_CORAL = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "has_feature/ice_coral"));
 	public static final TagKey<Biome> HAS_FEATURE_SOUL_AFFLICTED_RUBBER_TREE = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "has_feature/soul_afflicted_rubber_tree"));
-	
+	public static final TagKey<Biome> HAS_FEATURE_SPIDER_VINES = TM.createTagKey(new ResourceLocation(YetAnotherTechMod.MODID, "has_feature/spider_vines"));
 
+	
 	
 	public YATMBiomeTags(PackOutput packOutput, CompletableFuture<Provider> completableFuture, @Nullable ExistingFileHelper existingFileHelper)
 	{
@@ -45,8 +48,10 @@ public class YATMBiomeTags extends BiomeTagsProvider
 	{
 		this.tag(YATMBiomeTags.IS_FROZEN_OCEAN).add(Biomes.FROZEN_OCEAN).add(Biomes.DEEP_FROZEN_OCEAN);
 
-		this.tag(YATMBiomeTags.HAS_FEATURE_DWARF_PERSIMMON_GROWS_IN).add(Biomes.FLOWER_FOREST).add(Biomes.BIRCH_FOREST).add(Biomes.OLD_GROWTH_BIRCH_FOREST).add(Biomes.DARK_FOREST);
+		this.tag(YATMBiomeTags.HAS_FEATURE_DWARF_PERSIMMON).add(Biomes.FLOWER_FOREST).add(Biomes.BIRCH_FOREST).add(Biomes.OLD_GROWTH_BIRCH_FOREST).add(Biomes.DARK_FOREST);
+		this.tag(YATMBiomeTags.HAS_FEATURE_ICE_CORAL).addTag(YATMBiomeTags.IS_FROZEN_OCEAN);
 		this.tag(YATMBiomeTags.HAS_FEATURE_SOUL_AFFLICTED_RUBBER_TREE).add(Biomes.SOUL_SAND_VALLEY);
+		this.tag(YATMBiomeTags.HAS_FEATURE_SPIDER_VINES).addTag(BiomeTags.IS_OVERWORLD);
 	} // end addTags()
 	
 } // end class

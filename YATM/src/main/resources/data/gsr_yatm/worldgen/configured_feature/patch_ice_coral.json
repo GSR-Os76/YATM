@@ -25,11 +25,11 @@
 						"predicates": [
 							{
 								"type": "minecraft:matching_blocks",
-								"blocks": "minecraft:water"
+								"blocks": "#gsr_yatm:mediums/ice_coral_can_grow_in"
 							},
 							{
 								"type": "minecraft:matching_blocks",
-								"blocks": "minecraft:gravel",
+								"blocks": "#gsr_yatm:mediums/ice_coral_can_grow_on",
 								"offset": [
 									0,
 									-1,

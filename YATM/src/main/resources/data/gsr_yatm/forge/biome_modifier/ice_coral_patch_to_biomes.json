@@ -1,6 +1,6 @@
 {
 	"type": "forge:add_features",
-	"biomes": "#forge:is_frozen_ocean",
+	"biomes": "#gsr_yatm:has_feature/ice_coral",
 	"features": "gsr_yatm:patch_ice_coral",
 	"step": "vegetal_decoration"
 }
