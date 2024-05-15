@@ -48,7 +48,7 @@
           "entries": [
             {
               "data": {
-                "Name": "gsr_yatm:spider_vine",
+                "Name": "gsr_yatm:centipede_vine",
                 "Properties": {
                   "stage": "immmature"
                 }
@@ -57,7 +57,7 @@
             },
             {
               "data": {
-                "Name": "gsr_yatm:spider_vine",
+                "Name": "gsr_yatm:centipede_vine",
                 "Properties": {
                   "stage": "fruiting"
                 }
@@ -77,7 +77,7 @@
             "entries": [
               {
                 "data": {
-                  "Name": "gsr_yatm:spider_vine_meristem",
+                  "Name": "gsr_yatm:centipede_vine_meristem",
                   "Properties": {
                     "age": "0"
                   }
@@ -86,7 +86,7 @@
               },
               {
                 "data": {
-                  "Name": "gsr_yatm:spider_vine_meristem",
+                  "Name": "gsr_yatm:centipede_vine_meristem",
                   "Properties": {
                     "age": "0"
                   }

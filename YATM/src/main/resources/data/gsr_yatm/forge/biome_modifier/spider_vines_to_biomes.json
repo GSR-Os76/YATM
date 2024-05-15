@@ -1,6 +1,0 @@
-{
-	"type": "forge:add_features",
-	"biomes": "#gsr_yatm:has_feature/spider_vines",
-	"features": "gsr_yatm:overworld_spider_vines_sparse",
-	"step": "vegetal_decoration"
-}

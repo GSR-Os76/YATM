@@ -1,0 +1,6 @@
+{
+	"type": "forge:add_features",
+	"biomes": "#gsr_yatm:has_feature/centipede_vines",
+	"features": "gsr_yatm:sparse_centipede_vines",
+	"step": "vegetal_decoration"
+}

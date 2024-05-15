@@ -204,8 +204,8 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.add(YATMBlocks.SAMARAGDUM.get(), (b) -> this.createSamaragdumTable());
 		this.dropPottedContents(YATMBlocks.POTTED_SAMARAGDUM.get());
 		
-		this.add(YATMBlocks.SPIDER_VINE.get(), (b) -> LootTable.lootTable().withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(b).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(OnceFruitVineBodyBlock.FRUITING_STAGE, OnceFruitingPlantStages.FRUITING))).add(LootItem.lootTableItem(YATMItems.BRANCH_OF_GLARING_FRUIT.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0f))))));
-		this.add(YATMBlocks.SPIDER_VINE_MERISTEM.get(), BlockLootSubProvider.noDrop());
+		this.add(YATMBlocks.CENTIPEDE_VINE.get(), (b) -> LootTable.lootTable().withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(b).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(OnceFruitVineBodyBlock.FRUITING_STAGE, OnceFruitingPlantStages.FRUITING))).add(LootItem.lootTableItem(YATMItems.BRANCH_OF_GLARING_FRUIT.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0f))))));
+		this.add(YATMBlocks.CENTIPEDE_VINE_MERISTEM.get(), BlockLootSubProvider.noDrop());
 
 		this.dropSelf(YATMBlocks.VARIEGATED_CACTUS.get());
 		this.dropPottedContents(YATMBlocks.POTTED_VARIEGATED_CACTUS.get());

@@ -1,4 +1,4 @@
-// 1.20.2	2024-04-26T16:31:48.7692039	Loot Tables
+// 1.20.2	2024-05-15T00:04:15.7309056	Loot Tables
 3447f366126fe84e5d7fe101ca492c681d974485 data/gsr_yatm/loot_tables/blocks/adamum.json
 bb48ae5488dbb788d7154346dcd565e1b37bdf87 data/gsr_yatm/loot_tables/blocks/advanced_current_battery_block.json
 6c2e7fdd87ec96ec78076e4a32acbc10b0021d1c data/gsr_yatm/loot_tables/blocks/advanced_solar_panel.json
@@ -21,6 +21,8 @@ c4b24e2a0b33242c7b6b3d0362ccd147702e7267 data/gsr_yatm/loot_tables/blocks/brown_
 f2d8023c175dde7d904bdc776884815838ffe265 data/gsr_yatm/loot_tables/blocks/carcass_root_foliage.json
 6ed3ffb529fc006173eb763634dff9ef80fb5594 data/gsr_yatm/loot_tables/blocks/carcass_root_rooted_dirt.json
 ef49b5b4540027511d185481c837b4e7a8e4b85e data/gsr_yatm/loot_tables/blocks/carcass_root_rooted_netherrack.json
+82e9aa86b5e9a2db1be2ce39bb93b78acf3a295a data/gsr_yatm/loot_tables/blocks/centipede_vine.json
+5b8a839fd53bfbfb365a8b41eeb1d7456ce2d6a2 data/gsr_yatm/loot_tables/blocks/centipede_vine_meristem.json
 12246b48cb772bdb04e627f2dd8878b690085fac data/gsr_yatm/loot_tables/blocks/channel_vines.json
 1b6194397c6ff3617261322bb2115cc87fb99adc data/gsr_yatm/loot_tables/blocks/conduit_vines.json
 da04d24d02ec9304fec6d1580bed19ac19e52f1a data/gsr_yatm/loot_tables/blocks/conduit_vine_bundle.json
@@ -157,8 +159,6 @@ a30cb4374a045f6fd9e9fffebcf264e82fc571c2 data/gsr_yatm/loot_tables/blocks/soul_a
 84d532ceb44995a29ee18e8c9ab103f429ef9f46 data/gsr_yatm/loot_tables/blocks/soul_afflicted_rubber_wood.json
 def549e41f2ace4f1718c5cc79a5d7cc4f935e10 data/gsr_yatm/loot_tables/blocks/soul_afflicted_stripped_rubber_log.json
 6e72084cc0ca6549b954d109b1587c59b4a5ceab data/gsr_yatm/loot_tables/blocks/soul_afflicted_stripped_rubber_wood.json
-641e536023b941322f32390088a8c85dbb59b955 data/gsr_yatm/loot_tables/blocks/spider_vine.json
-e705dde9d0a8f15a97545882edea815de0363ce4 data/gsr_yatm/loot_tables/blocks/spider_vine_meristem.json
 f2d3330c8d7df718c92e02665f23902a7c36c7da data/gsr_yatm/loot_tables/blocks/spinning_wheel.json
 cca68941631994c991f10631bbc25c9c8a060d51 data/gsr_yatm/loot_tables/blocks/steel_tank.json
 6e158b81d663f475d23de0e8f4e5fbd0457bb09e data/gsr_yatm/loot_tables/blocks/still.json

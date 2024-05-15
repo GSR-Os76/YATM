@@ -323,8 +323,8 @@ public class YATMBlocks
 	public static final RegistryObject<ShulkwartBlock> RED_SHULKWART = YATMBlocks.shulkwart("red_shulkwart", DyeColor.RED, () -> YATMItems.RED_SHULKWART_HORN.get());
 	public static final RegistryObject<ShulkwartBlock> BLACK_SHULKWART = YATMBlocks.shulkwart("black_shulkwart", DyeColor.BLACK, () -> YATMItems.BLACK_SHULKWART_HORN.get());
 	
-	public static final RegistryObject<OnceFruitVineBodyBlock> SPIDER_VINE = BLOCKS.register("spider_vine", () -> new OnceFruitVineBodyBlock(YATMBlockProperties.SPIDER_VINE, YATMBlocks::getSpiderVineMeristem, () -> new ItemStack(YATMItems.BRANCH_OF_GLARING_FRUIT.get(), RANDOM.nextIntBetweenInclusive(1, 3))));
-	public static final RegistryObject<VineMeristemBlock> SPIDER_VINE_MERISTEM = BLOCKS.register("spider_vine_meristem", () -> new VineMeristemBlock(YATMBlockProperties.SPIDER_VINE, YATMBlocks::getSpiderVine));
+	public static final RegistryObject<OnceFruitVineBodyBlock> CENTIPEDE_VINE = BLOCKS.register("centipede_vine", () -> new OnceFruitVineBodyBlock(YATMBlockProperties.SPIDER_VINE, YATMBlocks::getCentipedeVineMeristem, () -> new ItemStack(YATMItems.BRANCH_OF_GLARING_FRUIT.get(), RANDOM.nextIntBetweenInclusive(1, 3))));
+	public static final RegistryObject<VineMeristemBlock> CENTIPEDE_VINE_MERISTEM = BLOCKS.register("centipede_vine_meristem", () -> new VineMeristemBlock(YATMBlockProperties.SPIDER_VINE, YATMBlocks::getCentipedeVine));
 	
 	public static final RegistryObject<VariegatedCactusBlock> VARIEGATED_CACTUS = BLOCKS.register("variegated_cactus", () -> new VariegatedCactusBlock(YATMBlockProperties.CACTUS, () -> Blocks.CACTUS.defaultBlockState()));
 	public static final RegistryObject<FlowerPotBlock> POTTED_VARIEGATED_CACTUS = BLOCKS.register("potted_variegated_cactus", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.VARIEGATED_CACTUS.get(), YATMBlockProperties.FLOWER_POT));
@@ -332,14 +332,14 @@ public class YATMBlocks
 	public static final RegistryObject<ConduitVineBlock> CONDUIT_VINES = BLOCKS.register("conduit_vines", () -> new ConduitVineBlock(YATMBlockProperties.CONDUIT_VINES, YATMBlockShapes.CONDUIT_VINES));
 	
 	
-	private static final OnceFruitVineBodyBlock getSpiderVine()
+	private static final OnceFruitVineBodyBlock getCentipedeVine()
 	{
-		return YATMBlocks.SPIDER_VINE.get();
+		return YATMBlocks.CENTIPEDE_VINE.get();
 	} // end getSpiderVine()
 	
-	private static final VineMeristemBlock getSpiderVineMeristem()
+	private static final VineMeristemBlock getCentipedeVineMeristem()
 	{
-		return YATMBlocks.SPIDER_VINE_MERISTEM.get();
+		return YATMBlocks.CENTIPEDE_VINE_MERISTEM.get();
 	} // end getSpiderVine()	
 	
 	

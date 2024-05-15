@@ -150,7 +150,7 @@ public class YATMBlockTags extends BlockTagsProvider
 	protected void addTags(Provider provider)
 	{
 		this.tag(BlockTags.CANDLES).addTag(YATMBlockTags.CANDLE_LANTERNS_KEY);
-		this.tag(BlockTags.CLIMBABLE).add(YATMBlocks.CONDUIT_VINES.get()).add(YATMBlocks.SPIDER_VINE.get());
+		this.tag(BlockTags.CLIMBABLE).add(YATMBlocks.CONDUIT_VINES.get()).add(YATMBlocks.CENTIPEDE_VINE.get());
 		this.tag(BlockTags.DIRT).add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get());
 		this.tag(BlockTags.FLOWERS).add(YATMBlocks.RUBBER_LEAVES_FLOWERING.get()).add(YATMBlocks.FIRE_EATER_LILY_DECORATIVE.get()); // maybe eventually add soul rubber flowers too, but seems like they should be special, and I dunno how to modify minecraft entity beehaviours
 		this.tag(BlockTags.FLOWER_POTS).add(YATMBlocks.POTTED_RUBBER_MERISTEM.get()).add(YATMBlocks.POTTED_SOUL_AFFLICTED_RUBBER_MERISTEM.get())

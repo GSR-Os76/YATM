@@ -228,7 +228,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addRuberum();
 		this.addSamaragdum();
 		this.addShulkwarts();
-		this.addSpiderVine();
+		this.addCentipedeVine();
 		this.addVariegatedCactus();
 		this.addVicum();
 		
@@ -596,10 +596,10 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createLichenLike(YATMBlocks.FALLEN_SHULKWART_SPORES.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/fallen_shulkwart_spores"));
 	} // end addShulkWarts()
 	
-	private void addSpiderVine() 
+	private void addCentipedeVine() 
 	{
-		this.createOnceFruitingCross(YATMBlocks.SPIDER_VINE.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_vine/spider_vine"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_vine/spider_vine_fruiting"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_vine/spider_vine_harvested"));
-		this.createCross(YATMBlocks.SPIDER_VINE_MERISTEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_vine/spider_vine_meristem"));
+		this.createOnceFruitingCross(YATMBlocks.CENTIPEDE_VINE.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/centipede_vine/centipede_vine"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/centipede_vine/centipede_vine_fruiting"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/centipede_vine/centipede_vine_harvested"));
+		this.createCross(YATMBlocks.CENTIPEDE_VINE_MERISTEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/centipede_vine/centipede_vine_meristem"));
 	} // end addSpiderVine()
 	
 	private void addVariegatedCactus()

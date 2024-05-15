@@ -2,6 +2,6 @@
   "parent": "minecraft:block/cross",
   "render_type": "minecraft:cutout",
   "textures": {
-    "cross": "gsr_yatm:block/plant/spider_vine/spider_vine_meristem"
+    "cross": "gsr_yatm:block/plant/centipede_vine/centipede_vine_fruiting"
   }
 }

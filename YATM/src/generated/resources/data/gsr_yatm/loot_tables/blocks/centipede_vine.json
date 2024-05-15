@@ -5,7 +5,7 @@
       "bonus_rolls": 0.0,
       "conditions": [
         {
-          "block": "gsr_yatm:spider_vine",
+          "block": "gsr_yatm:centipede_vine",
           "condition": "minecraft:block_state_property",
           "properties": {
             "stage": "fruiting"
@@ -28,5 +28,5 @@
       "rolls": 1.0
     }
   ],
-  "random_sequence": "gsr_yatm:blocks/spider_vine"
+  "random_sequence": "gsr_yatm:blocks/centipede_vine"
 }
