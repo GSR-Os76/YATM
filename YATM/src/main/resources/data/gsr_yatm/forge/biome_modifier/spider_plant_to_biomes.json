@@ -1,0 +1,6 @@
+{
+	"type": "forge:add_features",
+	"biomes": "#gsr_yatm:has_feature/spider_plant",
+	"features": "gsr_yatm:patch_spider_plant",
+	"step": "vegetal_decoration"
+}

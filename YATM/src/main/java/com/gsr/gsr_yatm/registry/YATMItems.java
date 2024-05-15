@@ -204,6 +204,8 @@ public class YATMItems
 	
 	public static final RegistryObject<ItemNameBlockItem> BRANCH_OF_GLARING_FRUIT = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("branch_of_glaring_fruit", () -> new ItemNameBlockItem(YATMBlocks.CENTIPEDE_VINE_MERISTEM.get(), new Item.Properties()))));
 	
+	public static final RegistryObject<ItemNameBlockItem> GLARING_PLANTLET = naturalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("glaring_plantlet", () -> new ItemNameBlockItem(YATMBlocks.SPIDER_PLANT.get(), new Item.Properties()))));
+	
 	
 	
 	public static final RegistryObject<BlockItem> HANGING_POT_HOOK = functionalTabEnqueue(yatmGeTabEnqueue(ITEMS.register("hanging_pot_hook", () -> new BlockItem(YATMBlocks.HANGING_POT_HOOK.get(), new Item.Properties()))));

@@ -64,6 +64,7 @@ import com.gsr.gsr_yatm.block.plant.pitcher_cluster.PitcherClusterBlock;
 import com.gsr.gsr_yatm.block.plant.prismarine_crystal_moss.PrismarineCrystalMossBlock;
 import com.gsr.gsr_yatm.block.plant.ruberum.RuberumBlock;
 import com.gsr.gsr_yatm.block.plant.samaragdum.SamaragdumBlock;
+import com.gsr.gsr_yatm.block.plant.spider_plant.SpiderPlantBlock;
 import com.gsr.gsr_yatm.block.plant.tree.AerialRootsBlock;
 import com.gsr.gsr_yatm.block.plant.tree.TappedLogBlock;
 import com.gsr.gsr_yatm.block.plant.tree.rubber_bush.RubberTreeMeristemBlock;
@@ -275,6 +276,9 @@ public class YATMBlocks
 	public static final RegistryObject<CarcassRootFoliageBlock> CARCASS_ROOT_FOLIAGE = BLOCKS.register("carcass_root_foliage", () -> new CarcassRootFoliageBlock(YATMBlockProperties.CARCASS_ROOT_FOLIAGE, YATMBlockShapes.CUBE, YATMItems.CARCASS_ROOT_CUTTING::get, () -> new ItemStack(YATMItems.CARCASS_ROOT_CUTTING.get()), new CarcassRootRootSupplier()));
 	public static final RegistryObject<FlowerPotBlock> POTTED_CARCASS_ROOT_FOLIAGE = BLOCKS.register("potted_carcass_root_foliage", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.CARCASS_ROOT_FOLIAGE.get(), YATMBlockProperties.FLOWER_POT));
 	
+	public static final RegistryObject<OnceFruitVineBodyBlock> CENTIPEDE_VINE = BLOCKS.register("centipede_vine", () -> new OnceFruitVineBodyBlock(YATMBlockProperties.CENTIPEDE_VINE, YATMBlocks::getCentipedeVineMeristem, () -> new ItemStack(YATMItems.BRANCH_OF_GLARING_FRUIT.get(), RANDOM.nextIntBetweenInclusive(1, 3))));
+	public static final RegistryObject<VineMeristemBlock> CENTIPEDE_VINE_MERISTEM = BLOCKS.register("centipede_vine_meristem", () -> new VineMeristemBlock(YATMBlockProperties.CENTIPEDE_VINE, YATMBlocks::getCentipedeVine));
+	
 	// TODO, perhaps adjust hitbox to match stages closer
 	public static final RegistryObject<CustomSeedCropBlock> COTTON = BLOCKS.register("cotton", () -> new CustomSeedCropBlock(YATMBlockProperties.CROP, YATMItems.COTTON_SEEDS::get));
 	
@@ -323,8 +327,7 @@ public class YATMBlocks
 	public static final RegistryObject<ShulkwartBlock> RED_SHULKWART = YATMBlocks.shulkwart("red_shulkwart", DyeColor.RED, () -> YATMItems.RED_SHULKWART_HORN.get());
 	public static final RegistryObject<ShulkwartBlock> BLACK_SHULKWART = YATMBlocks.shulkwart("black_shulkwart", DyeColor.BLACK, () -> YATMItems.BLACK_SHULKWART_HORN.get());
 	
-	public static final RegistryObject<OnceFruitVineBodyBlock> CENTIPEDE_VINE = BLOCKS.register("centipede_vine", () -> new OnceFruitVineBodyBlock(YATMBlockProperties.SPIDER_VINE, YATMBlocks::getCentipedeVineMeristem, () -> new ItemStack(YATMItems.BRANCH_OF_GLARING_FRUIT.get(), RANDOM.nextIntBetweenInclusive(1, 3))));
-	public static final RegistryObject<VineMeristemBlock> CENTIPEDE_VINE_MERISTEM = BLOCKS.register("centipede_vine_meristem", () -> new VineMeristemBlock(YATMBlockProperties.SPIDER_VINE, YATMBlocks::getCentipedeVine));
+	public static final RegistryObject<SpiderPlantBlock> SPIDER_PLANT = BLOCKS.register("spider_plant", () -> new SpiderPlantBlock(YATMBlockProperties.SPIDER_PLANT, YATMBlockShapes.SPIDER_PLANT));
 	
 	public static final RegistryObject<VariegatedCactusBlock> VARIEGATED_CACTUS = BLOCKS.register("variegated_cactus", () -> new VariegatedCactusBlock(YATMBlockProperties.CACTUS, () -> Blocks.CACTUS.defaultBlockState()));
 	public static final RegistryObject<FlowerPotBlock> POTTED_VARIEGATED_CACTUS = BLOCKS.register("potted_variegated_cactus", () -> new FlowerPotBlock(() -> (FlowerPotBlock)Blocks.FLOWER_POT, () -> YATMBlocks.VARIEGATED_CACTUS.get(), YATMBlockProperties.FLOWER_POT));

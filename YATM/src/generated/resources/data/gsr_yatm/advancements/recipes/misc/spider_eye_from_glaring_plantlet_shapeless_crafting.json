@@ -6,7 +6,7 @@
         "items": [
           {
             "items": [
-              "gsr_yatm:branch_of_glaring_fruit"
+              "gsr_yatm:glaring_plantlet"
             ]
           }
         ]
@@ -15,7 +15,7 @@
     },
     "has_the_recipe": {
       "conditions": {
-        "recipe": "gsr_yatm:spider_eyes_from_spider_vine_fruits_shapeless_crafting"
+        "recipe": "gsr_yatm:spider_eye_from_glaring_plantlet_shapeless_crafting"
       },
       "trigger": "minecraft:recipe_unlocked"
     }
@@ -28,7 +28,7 @@
   ],
   "rewards": {
     "recipes": [
-      "gsr_yatm:spider_eyes_from_spider_vine_fruits_shapeless_crafting"
+      "gsr_yatm:spider_eye_from_glaring_plantlet_shapeless_crafting"
     ]
   },
   "sends_telemetry_event": false

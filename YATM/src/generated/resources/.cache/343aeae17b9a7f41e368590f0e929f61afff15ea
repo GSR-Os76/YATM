@@ -1,4 +1,4 @@
-// 1.20.2	2024-05-15T00:04:15.7404165	Block States: gsr_yatm
+// 1.20.2	2024-05-15T14:34:07.528552	Block States: gsr_yatm
 11aad184ca6aaadbd7319a44c5a1985f7c029a1c assets/gsr_yatm/blockstates/adamum.json
 954ad7e227cb7fea31486bca39340fd9ecdbc175 assets/gsr_yatm/blockstates/advanced_current_battery_block.json
 2923ce1cd7eee4237150449bf366149a0c18f35b assets/gsr_yatm/blockstates/advanced_solar_panel.json
@@ -170,6 +170,7 @@ ab920124cd3b2c4b5d80bde5a3062cdd383957c8 assets/gsr_yatm/blockstates/soul_afflic
 ef24fbcb17ce825f127a82e91ceadd3651ef8072 assets/gsr_yatm/blockstates/soul_afflicted_stripped_rubber_wood.json
 235ce87f1d1d11b0667493e56091f5a034efef82 assets/gsr_yatm/blockstates/soul_sap.json
 06f3a57dd0c3bbdbe4d73ec70fa5faa4b357cf58 assets/gsr_yatm/blockstates/soul_syrup.json
+6f256bf803c60776d3d933e88a6e60819ee06f40 assets/gsr_yatm/blockstates/spider_plant.json
 695a7f85ef0a5f3310935dcf6e726fcd9c644b42 assets/gsr_yatm/blockstates/spinning_wheel.json
 160db401f088b35d23867392aabdb69310f762e8 assets/gsr_yatm/blockstates/steel_tank.json
 643278307b2869b88e7e170ddd0477176e12c533 assets/gsr_yatm/blockstates/still.json
@@ -498,6 +499,11 @@ fbd85c15f50a9c5b9942e026e776f5610375bec6 assets/gsr_yatm/models/block/soul_affli
 2cb89c36304b8f2fe20f0c5d40f16292e149707f assets/gsr_yatm/models/block/soul_afflicted_stripped_rubber_wood.json
 6eb624b0e390f533d9bdb4771552caddec2e044e assets/gsr_yatm/models/block/soul_sap.json
 496b24d7418cd4e4f98e6eb569046677221e03ea assets/gsr_yatm/models/block/soul_syrup.json
+0861dad50908533193c454945458e011323b2235 assets/gsr_yatm/models/block/spider_plant_adolescent.json
+0f7c8754d7e22991918451150e112fad2762ff6e assets/gsr_yatm/models/block/spider_plant_mature.json
+440733493ab4bf7605ee513f25b730bd1693fa71 assets/gsr_yatm/models/block/spider_plant_plantlet.json
+aa8dfdbff9454e14da6990d477f20078ff9aaa90 assets/gsr_yatm/models/block/spider_plant_propagative.json
+bad2edda484da2f7b7ab3f3d106498625c2d5d74 assets/gsr_yatm/models/block/spider_plant_young.json
 e31e7a745af51b5381eef8a098162e2bb9165b2d assets/gsr_yatm/models/block/stripped_rubber_log.json
 184f039d3749ccc0eb3399d425ae3b83fd5862c0 assets/gsr_yatm/models/block/stripped_rubber_wood.json
 88c981ef990e25fd2970af88e6e74f93e2cc4436 assets/gsr_yatm/models/block/suns_complement_solar_panel.json

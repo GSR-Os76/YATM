@@ -39,6 +39,7 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.FLAME_GLAND.get());
 		this.basicItem(YATMItems.FOLIAR_STEEL.get());
 		this.basicItem(YATMItems.FOLIAR_STEEL_SHRED.get());
+		this.basicItem(YATMItems.GLARING_PLANTLET.get());
 		this.basicItem(YATMItems.KINETIC_DRIVER.get());		
 		this.basicItem(YATMItems.NETHERITE_NUGGET.get());
 		this.basicItem(YATMItems.PERSIMMON.get());

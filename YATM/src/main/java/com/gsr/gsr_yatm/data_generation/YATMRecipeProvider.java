@@ -131,7 +131,8 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addNineToOne(output, YATMItems.FOLIAR_STEEL_SHRED.get(), YATMItems.FOLIAR_STEEL.get(), YetAnotherTechMod.MODID + ":foliar_steel_from_shred_shapeless_crafting");
 
 		// TODO, make spider vines sometimes drop eyes directly. make fruit extract to vitreus humor and leave some kind of ocular tissue, which can be grafted back together to make eyes of spiders
-		this.addOneToX(output, YATMItems.BRANCH_OF_GLARING_FRUIT.get(), Items.SPIDER_EYE, 3, YetAnotherTechMod.MODID + ":spider_eyes_from_spider_vine_fruits_shapeless_crafting");
+		this.addOneToX(output, YATMItems.BRANCH_OF_GLARING_FRUIT.get(), Items.SPIDER_EYE, 3, YetAnotherTechMod.MODID + ":spider_eyes_from_branch_of__glaring_fruit_shapeless_crafting");
+		this.addOneToX(output, YATMItems.GLARING_PLANTLET.get(), Items.SPIDER_EYE, 1, YetAnotherTechMod.MODID + ":spider_eye_from_glaring_plantlet_shapeless_crafting");
 
 		// TODO, add all devices
 		this.addCraftingDeviceRecipes(output);

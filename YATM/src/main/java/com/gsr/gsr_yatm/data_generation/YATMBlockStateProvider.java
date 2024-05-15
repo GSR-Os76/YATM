@@ -35,6 +35,7 @@ import com.gsr.gsr_yatm.block.plant.phantasmal_shelf_fungi.PhantasmalShelfFungiB
 import com.gsr.gsr_yatm.block.plant.prismarine_crystal_moss.PrismarineCrystalMossBlock;
 import com.gsr.gsr_yatm.block.plant.ruberum.RuberumBlock;
 import com.gsr.gsr_yatm.block.plant.samaragdum.SamaragdumBlock;
+import com.gsr.gsr_yatm.block.plant.spider_plant.SpiderPlantBlock;
 import com.gsr.gsr_yatm.block.plant.tree.SelfLayeringSaplingBlock;
 import com.gsr.gsr_yatm.block.plant.tree.TappedLogBlock;
 import com.gsr.gsr_yatm.block.plant.vicum.VicumBlock;
@@ -208,6 +209,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addCandlelily();
 		this.addCarbum();
 		this.addCarcassRoot();
+		this.addCentipedeVine();
 		this.addCuprum();
 		this.createConduitVine(YATMBlocks.CONDUIT_VINES.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/conduit_vine/conduit_vines"), YATMBlockStateProvider.CONDUIT_VINES_PARALLEL_CROSSLINK_MODEL);
 		this.createFourStageCrop(YATMBlocks.COTTON.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_germinating"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_flowering"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_maturing"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cotton/cotton_mature"));
@@ -228,7 +230,7 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.addRuberum();
 		this.addSamaragdum();
 		this.addShulkwarts();
-		this.addCentipedeVine();
+		this.addSpiderPlant();
 		this.addVariegatedCactus();
 		this.addVicum();
 		
@@ -441,6 +443,12 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		
 	} // end addCarcassRoot()
 	
+	private void addCentipedeVine() 
+	{
+		this.createOnceFruitingCross(YATMBlocks.CENTIPEDE_VINE.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/centipede_vine/centipede_vine"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/centipede_vine/centipede_vine_fruiting"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/centipede_vine/centipede_vine_harvested"));
+		this.createCross(YATMBlocks.CENTIPEDE_VINE_MERISTEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/centipede_vine/centipede_vine_meristem"));
+	} // end addCentipedeVine()
+	
 	private void addCuprum() 
 	{
 		ResourceLocation adolescentTexture = new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/cuprum/adolescent");
@@ -596,11 +604,16 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.createLichenLike(YATMBlocks.FALLEN_SHULKWART_SPORES.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/shulkwart/fallen_shulkwart_spores"));
 	} // end addShulkWarts()
 	
-	private void addCentipedeVine() 
+	private void addSpiderPlant()
 	{
-		this.createOnceFruitingCross(YATMBlocks.CENTIPEDE_VINE.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/centipede_vine/centipede_vine"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/centipede_vine/centipede_vine_fruiting"), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/centipede_vine/centipede_vine_harvested"));
-		this.createCross(YATMBlocks.CENTIPEDE_VINE_MERISTEM.get(), new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/centipede_vine/centipede_vine_meristem"));
-	} // end addSpiderVine()
+		this.createSpiderPlant(YATMBlocks.SPIDER_PLANT.get(),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_plant/plantlet"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_plant/young"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_plant/adolescent"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_plant/mature"),
+				new ResourceLocation(YetAnotherTechMod.MODID, "block/plant/spider_plant/propagative")
+				);
+	} // end addSpiderPlant()
 	
 	private void addVariegatedCactus()
 	{
@@ -1249,6 +1262,32 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(horn).toString()).parent(SHULKWART_HORN).texture("0", finalTexture);
 
 	} // end createShulkwart()
+	
+	private void createSpiderPlant(@NotNull SpiderPlantBlock block, 
+			@NotNull ResourceLocation plantletTexture,
+			@NotNull ResourceLocation youngTexture, 
+			@NotNull ResourceLocation adolescentTexture,
+			@NotNull ResourceLocation matureTexture,
+			@NotNull ResourceLocation propagativeTexture)
+	{
+		String name = YATMBlockStateProvider.getModelLocationNameFor(block);
+		String namePl = name + "_plantlet";
+		String nameY = name + "_young";
+		String nameA = name + "_adolescent";
+		String nameM = name + "_mature";
+		String namePr = name + "_propagative";
+		this.models().cross(namePl, plantletTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameY, youngTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameA, adolescentTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(nameM, matureTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		this.models().cross(namePr, propagativeTexture).renderType(YATMBlockStateProvider.CUTOUT_RENDER_TYPE);
+		ModelFile modelPl = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, namePl));
+		ModelFile modelY = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameY));
+		ModelFile modelA = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameA));
+		ModelFile modelM = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameM));
+		ModelFile modelPr = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, namePr));
+		this.getVariantBuilder(block).forAllStates((bs) -> YATMBlockStateProvider.forEightAge(bs, modelPl, modelPl, modelY, modelY, modelA, modelA, modelM, modelPr));		
+	} // end createSpiderPlant
 	
 	private void createVicum(@NotNull VicumBlock block, 
 			@NotNull ResourceLocation meristemTexture,

@@ -51,8 +51,8 @@ public class YATMBlockProperties
 	public static final Properties CARCASS_ROOT_FOLIAGE = Properties.of().mapColor(MapColor.PLANT).replaceable().noCollission().instabreak().sound(SoundType.GRASS).ignitedByLava().pushReaction(PushReaction.DESTROY);
 	public static final Properties CARCASS_ROOT_ROOTED_DIRT = Properties.of().mapColor(MapColor.DIRT).strength(1f).sound(SoundType.GRAVEL).randomTicks();
 	public static final Properties CARCASS_ROOT_ROOTED_NETHERRACK = Properties.of().mapColor(MapColor.NETHER).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.9f).sound(SoundType.NETHERRACK);
+	public static final Properties CENTIPEDE_VINE = Properties.of().mapColor(MapColor.PLANT).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();;
 	public static final Properties CONDUIT_VINES = Properties.of().instabreak().mapColor(MapColor.COLOR_BLUE).noCollission().noOcclusion().pushReaction(PushReaction.DESTROY).randomTicks().sound(SoundType.VINE);
-
 	public static final Properties CROP = Properties.of().instabreak().mapColor(MapColor.PLANT).noCollission().pushReaction(PushReaction.DESTROY).randomTicks().sound(SoundType.CROP);
 	public static final Properties CUPRUM = Properties.of().mapColor(MapColor.WARPED_NYLIUM).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().strength(1.5f, 6.0f).sound(SoundType.COPPER);
 	public static final Properties DWARF_PERSIMMON = Properties.of().instabreak().mapColor(MapColor.PLANT).noCollission().pushReaction(PushReaction.DESTROY).randomTicks().sound(SoundType.CROP);
@@ -60,7 +60,6 @@ public class YATMBlockProperties
 	public static final Properties FERRUM = Properties.of().mapColor(MapColor.RAW_IRON).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2.5F, 6.0F);
 	public static final Properties FIRE_EATER_LILY = YATMBlockProperties.fireEaterLily();
 	public static final Properties FIRE_EATER_LILY_UNLIT = YATMBlockProperties.fireEaterLily().mapColor(MapColor.COLOR_PURPLE);
-	
 	public static final Properties FOLIUM = Properties.of().mapColor(MapColor.COLOR_GREEN).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2.75F, 6.0F);
 	public static final Properties ICE_CORAL = YATMBlockProperties.iceCoral();
 	public static final Properties INFERNALUM = Properties.of().mapColor(MapColor.COLOR_BLACK).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().strength(6.0F, 1200.0F).sound(SoundType.ANCIENT_DEBRIS);	
@@ -69,7 +68,7 @@ public class YATMBlockProperties
 	public static final Properties PRISMARINE_CRYSTAL_MOSS = Properties.of().mapColor(MapColor.COLOR_CYAN).noCollission().pushReaction(PushReaction.DESTROY).randomTicks().replaceable().requiresCorrectToolForDrops().sound(SoundType.MOSS).strength(1.5f, 6.0f);
 	public static final Properties RUBERUM = Properties.of().mapColor(MapColor.FIRE).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().strength(2.0f, 4.0f).sound(SoundType.METAL);	
 	public static final Properties SAMARAGDUM = Properties.of().mapColor(MapColor.EMERALD).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().strength(2.0f, 6.0f).sound(SoundType.METAL);
-	public static final Properties SPIDER_VINE = Properties.of().mapColor(MapColor.PLANT).sound(SoundType.CROP).pushReaction(PushReaction.DESTROY).instabreak().noCollission().randomTicks();;
+	public static final Properties SPIDER_PLANT = Properties.of().mapColor(DyeColor.LIME).noCollission().pushReaction(PushReaction.DESTROY).randomTicks().sound(SoundType.CROP);
 	public static final Properties VICUM = Properties.of().mapColor(MapColor.COLOR_BLACK).noCollission().pushReaction(PushReaction.BLOCK).randomTicks().requiresCorrectToolForDrops().sound(SoundType.BASALT).strength(.75F, 4.0F);
 	
 	public static final Properties FOLIAR_STEEL_BLOCK = Properties.of().instrument(NoteBlockInstrument.XYLOPHONE).mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().strength(5.5F, 6.0F).sound(SoundType.METAL);
@@ -105,6 +104,7 @@ public class YATMBlockProperties
 	public static final Properties CHANNEL_VINES = Properties.of().mapColor(MapColor.COLOR_GREEN).requiresCorrectToolForDrops().sound(SoundType.METAL).strength(2f, 6.0f);
 
 	public static final Properties CREATIVE = Properties.of().instrument(NoteBlockInstrument.BASEDRUM).mapColor(MapColor.COLOR_PURPLE).noOcclusion().pushReaction(PushReaction.BLOCK).strength(Float.MAX_VALUE);
+
 	
 	
 	

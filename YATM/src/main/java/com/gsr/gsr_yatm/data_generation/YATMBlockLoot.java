@@ -136,6 +136,9 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropSelf(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get());
 		this.dropPottedContents(YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE.get());
 		
+		this.add(YATMBlocks.CENTIPEDE_VINE.get(), (b) -> LootTable.lootTable().withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(b).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(OnceFruitVineBodyBlock.FRUITING_STAGE, OnceFruitingPlantStages.FRUITING))).add(LootItem.lootTableItem(YATMItems.BRANCH_OF_GLARING_FRUIT.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0f))))));
+		this.add(YATMBlocks.CENTIPEDE_VINE_MERISTEM.get(), BlockLootSubProvider.noDrop());
+
 		this.faceDropSelf(YATMBlocks.CONDUIT_VINES.get());
 		
 		this.add(YATMBlocks.COTTON.get(), this.createCropDrops(YATMBlocks.COTTON.get(), YATMItems.COTTON_BOLLS.get(), YATMItems.COTTON_SEEDS.get(), LootItemBlockStatePropertyCondition.hasBlockStateProperties(YATMBlocks.COTTON.get()).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(CropBlock.AGE, 7))));
@@ -204,9 +207,8 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.add(YATMBlocks.SAMARAGDUM.get(), (b) -> this.createSamaragdumTable());
 		this.dropPottedContents(YATMBlocks.POTTED_SAMARAGDUM.get());
 		
-		this.add(YATMBlocks.CENTIPEDE_VINE.get(), (b) -> LootTable.lootTable().withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(b).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(OnceFruitVineBodyBlock.FRUITING_STAGE, OnceFruitingPlantStages.FRUITING))).add(LootItem.lootTableItem(YATMItems.BRANCH_OF_GLARING_FRUIT.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0f))))));
-		this.add(YATMBlocks.CENTIPEDE_VINE_MERISTEM.get(), BlockLootSubProvider.noDrop());
-
+		this.add(YATMBlocks.SPIDER_PLANT.get(), this.createSpiderPlantTable());
+		
 		this.dropSelf(YATMBlocks.VARIEGATED_CACTUS.get());
 		this.dropPottedContents(YATMBlocks.POTTED_VARIEGATED_CACTUS.get());
 		
@@ -945,6 +947,24 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		LootItemCondition.Builder dropConditions = LootItemBlockStatePropertyCondition.hasBlockStateProperties(shulkwart).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ShulkwartBlock.AGE, 7));
 		return this.applyExplosionDecay(shulkwart, LootTable.lootTable().withPool(LootPool.lootPool().when(dropConditions).add(LootItem.lootTableItem(horn).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0f, 4.0f))).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 2)))));
 	} // end CreateShulkwartTable()
+	
+	protected @NotNull LootTable.Builder createSpiderPlantTable()
+	{
+		return LootTable.lootTable()
+				.withPool(
+						LootPool.lootPool()
+						.add(LootItem.lootTableItem(YATMItems.GLARING_PLANTLET.get())
+							.apply(SetItemCountFunction.setCount(
+									UniformGenerator.between(1f, 1f)
+								  )
+							)
+						.when(LootItemBlockStatePropertyCondition
+								.hasBlockStateProperties(YATMBlocks.SPIDER_PLANT.get())
+								.setProperties(StatePropertiesPredicate.Builder.properties()
+										.hasProperty(YATMBlocks.SPIDER_PLANT.get().getAgeProperty(), YATMBlocks.SPIDER_PLANT.get().getMaxAge())))
+						)
+				);
+	} // end createSpiderPlantTable()
 	
 	protected @NotNull LootTable.Builder createVicumTable() 
 	{

@@ -71,6 +71,13 @@ public class YATMConfigs
 	public static final ConfigValue<Integer> SOUL_AFFLICTED_RUBBER_TREE_ON_CONVERT_MAX_PARTICLES = YATMConfigs.s_builder.maxParticles(26);
 	public static final ConfigValue<Integer> SOUL_AFFLICTED_RUBBER_TREE_ON_CONVERT_MIN_PARTICLES = YATMConfigs.s_builder.minParticles(12);
 	
+	public static final ConfigValue<Integer> SPIDER_PLANT_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.pop().push("Spider Plant: ").bonemealSuccessRarity();
+	public static final ConfigValue<Integer> SPIDER_PLANT_GROWTH_RARITY = YATMConfigs.s_builder.growthRarity(16);
+	public static final ConfigValue<Integer> SPIDER_PLANT_MINIMUM_LIGHT_LEVEL = YATMConfigs.s_builder.minimumLightLevel();
+	public static final ConfigValue<Integer> SPIDER_PLANT_MAX_AGE_INCREASE = YATMConfigs.s_builder.comment("The maximum amount the age block state property will increase on bonemeal success. Note: technically interchangeable with the min.").defineInRange("max_boneameal_age_increase", 3, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> SPIDER_PLANT_MIN_AGE_INCREASE = YATMConfigs.s_builder.comment("The minimum amount the age block state property will increase on bonemeal success. Note: technically interchangeable with the max.").defineInRange("min_boneameal_age_increase", 1, 0, Integer.MAX_VALUE);
+	
+	
 	
 	public static final ConfigValue<Double> ADAMUM_DAMAGE_FACTOR = YATMConfigs.s_builder.pop().push("Ore Themed Plants: ").push("Adamum: ").damageFactor(0d);
 	public static final ConfigValue<Double> ADAMUM_DAMAGE_TRIGGER_TOLERANCE = YATMConfigs.s_builder.damageTriggerTolerance(Double.MAX_VALUE);

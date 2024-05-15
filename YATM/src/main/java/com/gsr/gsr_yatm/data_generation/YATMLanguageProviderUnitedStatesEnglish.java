@@ -123,6 +123,9 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.CARCASS_ROOT_ROOTED_DIRT.get(), "Carcass Root Rooted Dirt");		
 		this.add(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get(), "Carcass Root Rooted Netherrack");	
 		
+		this.add(YATMBlocks.CENTIPEDE_VINE.get(), "Centipede Vine");		
+		this.add(YATMBlocks.CENTIPEDE_VINE_MERISTEM.get(), "Centipede Vine Meristem");	
+		
 		this.add(YATMBlocks.CONDUIT_VINES.get(), "Conduit Vines");
 		
 		this.add(YATMBlocks.COTTON.get(), "Cotton");
@@ -191,8 +194,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMBlocks.RED_SHULKWART.get(), "Red Shulkwart");		
 		this.add(YATMBlocks.BLACK_SHULKWART.get(), "Black Shulkwart");	
 		
-		this.add(YATMBlocks.CENTIPEDE_VINE.get(), "Centipede Vine");		
-		this.add(YATMBlocks.CENTIPEDE_VINE_MERISTEM.get(), "Centipede Vine Meristem");	
+		this.add(YATMBlocks.SPIDER_PLANT.get(), "Spider Plant");
 		
 		this.add(YATMBlocks.VARIEGATED_CACTUS.get(), "Variegated Cactus");
 		this.add(YATMBlocks.POTTED_VARIEGATED_CACTUS.get(), "Potted Variegated Cactus");
@@ -327,6 +329,8 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		this.add(YATMItems.BLACK_SHULKWART_HORN.get(), "Black Shulkwart Horn");
 		
 		this.add(YATMItems.BRANCH_OF_GLARING_FRUIT.get(), "Branch Of Glaring Fruit");
+		
+		this.add(YATMItems.GLARING_PLANTLET.get(), "Glaring Plantlet");
 		
 		this.add(YATMItems.RAW_EXOTHEMIC_GLAND.get(), "Raw Exothermal Gland");
 		

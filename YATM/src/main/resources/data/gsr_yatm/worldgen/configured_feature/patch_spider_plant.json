@@ -1,0 +1,47 @@
+{
+	"type": "minecraft:random_patch",
+	"config": {
+		"feature": {
+			"feature": {
+				"type": "minecraft:simple_block",
+				"config": {
+					"to_place": {
+						"type": "minecraft:simple_state_provider",
+						"state": {
+							"Name": "gsr_yatm:spider_plant",
+							"Properties": {
+								"age": 7
+							}
+						}
+					}
+				}
+			},
+			"placement": [
+				{
+					"type": "minecraft:block_predicate_filter",
+					"predicate": {
+						"type": "minecraft:all_of",
+						"predicates": [
+							{
+								"type": "minecraft:matching_blocks",
+								"blocks": "#gsr_yatm:mediums/spider_plant_can_grow_in"
+							},
+							{
+								"type": "minecraft:matching_blocks",
+								"blocks": "#gsr_yatm:mediums/spider_plant_can_grow_on",
+								"offset": [
+									0,
+									1,
+									0
+								]
+							}
+						]
+					}
+				}
+			]
+		},
+		"tries": 200,
+		"xz_spread": 11,
+		"y_spread": 5
+	}
+}

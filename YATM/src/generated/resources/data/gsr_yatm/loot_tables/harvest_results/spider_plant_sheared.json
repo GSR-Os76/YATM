@@ -17,11 +17,11 @@
               "function": "minecraft:set_count"
             }
           ],
-          "name": "gsr_yatm:persimmon"
+          "name": "gsr_yatm:glaring_plantlet"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "gsr_yatm:harvest_results/dwarf_persimmon"
+  "random_sequence": "gsr_yatm:harvest_results/spider_plant_sheared"
 }

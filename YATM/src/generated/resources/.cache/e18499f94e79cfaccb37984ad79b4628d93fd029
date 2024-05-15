@@ -1,4 +1,4 @@
-// 1.20.2	2024-05-15T00:04:15.7144435	Tags for minecraft:block mod id gsr_yatm
+// 1.20.2	2024-05-15T13:20:14.1939851	Tags for minecraft:block mod id gsr_yatm
 c66ff3626edc7c0f108f497fa9aec78cbf9db39f data/forge/tags/blocks/basalt.json
 ea459db540b319f4bdead7b7f1142fc238c09a8e data/forge/tags/blocks/cactuses.json
 ebcf7881dcf42cb3d8c8b5c2e92ebf16fd9d7284 data/forge/tags/blocks/calcite.json
@@ -95,6 +95,8 @@ a211ef41389ec483dc846f2c181f509c5bd2aff3 data/gsr_yatm/tags/blocks/mediums/rubbe
 52798cc4a1f5aa2b146f297b335ce7f7dca3ed89 data/gsr_yatm/tags/blocks/mediums/shulkwart_grow_on.json
 511d1f627f3a185dd2f417b231ab14a74d06dc1f data/gsr_yatm/tags/blocks/mediums/soul_afflicted_rubber_trees_naturally_grow_on.json
 df3bc0eb184ddd65ad444f6cec2583eaf31793a4 data/gsr_yatm/tags/blocks/mediums/soul_afflicting_blocks.json
+8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/spider_plant_can_grow_in.json
+181cafe3ac2a2a3803ccbe1301690e1d44db6bf8 data/gsr_yatm/tags/blocks/mediums/spider_plant_can_grow_on.json
 08add7135753eceb099ab3017af40369af7d5991 data/gsr_yatm/tags/blocks/mediums/veriegated_cactus_can_grow_on.json
 8a3b6c43de5696d22edea798ffefe18769ecd1fb data/gsr_yatm/tags/blocks/mediums/vicum_can_grow_in.json
 61064ec33852a4a02609c7e6edc2de09c480a0f8 data/gsr_yatm/tags/blocks/mediums/vicum_can_grow_on.json
