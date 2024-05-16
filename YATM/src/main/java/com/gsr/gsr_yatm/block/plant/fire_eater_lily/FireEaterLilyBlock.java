@@ -6,7 +6,6 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.YATMConfigs;
-import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.IAgingBlock;
 import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
 import com.gsr.gsr_yatm.block.ShapeBlock;
@@ -115,7 +114,7 @@ public class FireEaterLilyBlock extends ShapeBlock implements IAgingBlock, Bonem
 		int age = this.getAge(state);
 		if(age == this.getMaxAge()) 
 		{
-			level.setBlock(position, state.getValue(FireEaterLilyBlock.LIT) ? YATMBlocks.FIRE_EATER_LILY_DECORATIVE.get().defaultBlockState() : YATMBlocks.FIRE_EATER_LILY_UNLIT_DECORATIVE.get().defaultBlockState(), Block.UPDATE_ALL);
+			this.toFinalState(level, position, state);
 		}
 		
 		if ((isLit && shouldHeat)
@@ -177,7 +176,6 @@ public class FireEaterLilyBlock extends ShapeBlock implements IAgingBlock, Bonem
 
 	public static boolean shouldBeLit(@NotNull LevelReader level, @NotNull BlockPos position)
 	{
-		YetAnotherTechMod.LOGGER.info("hl: " + FireEaterLilyBlock.getHeatLevel(level, position) + ", hl_cutoff: " + YATMConfigs.FIRE_EATER_LILY_LIT_HEAT_LEVEL_CUTOFF.get());
 		return FireEaterLilyBlock.getHeatLevel(level, position) >= YATMConfigs.FIRE_EATER_LILY_LIT_HEAT_LEVEL_CUTOFF.get();
 	} // end shouldBeLit()
 
@@ -187,9 +185,9 @@ public class FireEaterLilyBlock extends ShapeBlock implements IAgingBlock, Bonem
 	public boolean isValidBonemealTarget(@NotNull LevelReader level, @NotNull BlockPos position, @NotNull BlockState state)
 	{
 		return (FireEaterLilyBlock.shouldBeLit(level, position) != state.getValue(FireEaterLilyBlock.LIT)) 
-				|| (state.getValue(FireEaterLilyBlock.LIT) && (this.getAge(state) < this.getMaxAge()));
+				|| (state.getValue(FireEaterLilyBlock.LIT));
 	} // end isValidBonemealTarget()
-
+	
 	@Override
 	public boolean isBonemealSuccess(@NotNull Level level, @NotNull RandomSource random, @NotNull BlockPos position, @NotNull BlockState state)
 	{
@@ -204,8 +202,22 @@ public class FireEaterLilyBlock extends ShapeBlock implements IAgingBlock, Bonem
 			level.setBlock(position, state.setValue(FireEaterLilyBlock.LIT, FireEaterLilyBlock.shouldBeLit(level, position)), Block.UPDATE_CLIENTS);
 			return;
 		}
-		
-		level.setBlock(position, this.getStateForAge(state, Math.min(this.getMaxAge(), this.getAge(state) + random.nextIntBetweenInclusive(Math.min(YATMConfigs.FIRE_EATER_LILY_MIN_AGE_INCREASE.get(), YATMConfigs.FIRE_EATER_LILY_MAX_AGE_INCREASE.get()), Math.max(YATMConfigs.FIRE_EATER_LILY_MIN_AGE_INCREASE.get(), YATMConfigs.FIRE_EATER_LILY_MAX_AGE_INCREASE.get())))), Block.UPDATE_CLIENTS);
+		else if(this.getAge(state) == this.getMaxAge()) 
+		{
+			this.toFinalState(level, position, state);
+			return;
+		}
+		else 
+		{
+			level.setBlock(position, this.getStateForAge(state, Math.min(this.getMaxAge(), this.getAge(state) + random.nextIntBetweenInclusive(Math.min(YATMConfigs.FIRE_EATER_LILY_MIN_AGE_INCREASE.get(), YATMConfigs.FIRE_EATER_LILY_MAX_AGE_INCREASE.get()), Math.max(YATMConfigs.FIRE_EATER_LILY_MIN_AGE_INCREASE.get(), YATMConfigs.FIRE_EATER_LILY_MAX_AGE_INCREASE.get())))), Block.UPDATE_CLIENTS);
+		}
 	} // end performBonemeal()
+
+
+
+	private void toFinalState(@NotNull Level level, @NotNull BlockPos position, @NotNull BlockState state)
+	{
+		level.setBlock(position, state.getValue(FireEaterLilyBlock.LIT) ? YATMBlocks.FIRE_EATER_LILY_DECORATIVE.get().defaultBlockState() : YATMBlocks.FIRE_EATER_LILY_UNLIT_DECORATIVE.get().defaultBlockState(), Block.UPDATE_ALL);
+	} // end toFinalState()
 
 } // end class
