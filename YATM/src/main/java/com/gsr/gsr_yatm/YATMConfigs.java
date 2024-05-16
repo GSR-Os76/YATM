@@ -3,6 +3,7 @@ package com.gsr.gsr_yatm;
 import java.util.function.Supplier;
 
 import com.gsr.gsr_yatm.block.device.solar.SolarPanelSettings;
+import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.utilities.config.ConfigBuilderHelper;
 
 import net.minecraftforge.common.ForgeConfigSpec;
@@ -49,20 +50,26 @@ public class YATMConfigs
 	public static final ConfigValue<Integer> CRYING_PLANT_GROWTH_RARITY = YATMConfigs.s_builder.growthRarity(24);
 	public static final ConfigValue<Integer> CRYING_PLANT_MAX_HEIGHT = YATMConfigs.s_builder.comment("The maximum number of blocks which the plant can(and must) grow to before flowering.").defineInRange("max_height", 3, 0, Integer.MAX_VALUE);;
 	
-	
-	
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.pop().push("Dwarf Persimmon: ").bonemealSuccessRarity();
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_GROWTH_RARITY = YATMConfigs.s_builder.growthRarity(16);
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_MINIMUM_LIGHT_LEVEL = YATMConfigs.s_builder.minimumLightLevel();
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_MAX_AGE_INCREASE = YATMConfigs.s_builder.comment("The maximum amount the age block state property will increase on bonemeal success. Note: technically interchangeable with the min.").defineInRange("max_boneameal_age_increase", 3, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> DWARF_PERSIMMON_MIN_AGE_INCREASE = YATMConfigs.s_builder.comment("The minimum amount the age block state property will increase on bonemeal success. Note: technically interchangeable with the max.").defineInRange("min_boneameal_age_increase", 1, 0, Integer.MAX_VALUE);
 	
-	public static final ConfigValue<Integer> FIRE_EATER_LILY_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.pop().push("Fire Eater Lily: ").bonemealSuccessRarity();
+	public static final ConfigValue<Integer> FIRE_EATER_LILY_BASE_HEAT_LEVEL = YATMConfigs.s_builder.pop().push("Fire Eater Lily: ").comment("The heat level before any other conditions are applied.").defineInRange("base_heat_level", 0, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> FIRE_EATER_LILY_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.bonemealSuccessRarity();
+	public static final ConfigValue<Integer> FIRE_EATER_LILY_GROWTH_RARITY = YATMConfigs.s_builder.comment("This value divided by the heat level is the average number of random ticks for which the plant increases in age one time.").defineInRange("growth_rarity", 52, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> FIRE_EATER_LILY_HEAT_BLOCK_ADJACENT_HEAT_LEVEL_BONUS = YATMConfigs.s_builder.comment("The amount added to the heat level when a block in the \"" + YATMBlockTags.HEAT_BLOCKS_KEY.toString() + "\" tag's directly adjacent to the plant.").defineInRange("heat_block_adjacent_heat_level_bonus", 2, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> FIRE_EATER_LILY_HEAT_BLOCK_NEAR_HEAT_LEVEL_BONUS = YATMConfigs.s_builder.comment("The amount added to the heat level when a block in the \"" + YATMBlockTags.HEAT_BLOCKS_KEY.toString() + "\" tag's within a three by three area bounding the plant, but not directly adjacent to the plant.").defineInRange("heat_block_near_heat_level_bonus", 1, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> FIRE_EATER_LILY_LIT_DECORATIVE_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.bonemealSuccessRarity("bonemeal_success_rarity_lit_decorative");
+	public static final ConfigValue<Integer> FIRE_EATER_LILY_LIT_HEAT_LEVEL_CUTOFF = YATMConfigs.s_builder.comment("That minimum heat level for which all higher values and itself produce a lit state.").define("lit_heat_level_cutoff", 1);
 	public static final ConfigValue<Integer> FIRE_EATER_LILY_MAX_HORIZONTAL_SPREAD = YATMConfigs.s_builder.comment("The maximum number of blocks horizontally that a canidate position will be picked out from.").defineInRange("max_horizontal_spread", 2, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> FIRE_EATER_LILY_MAX_SPREAD_ATTEMPTS = YATMConfigs.s_builder.comment("The maximum number of canidate positions to consider while attempting spreading.").defineInRange("max_spread_attempts", 12, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> FIRE_EATER_LILY_MAX_SPREADS = YATMConfigs.s_builder.comment("The maximum number of successful spread attempts that're allowed.").defineInRange("max_spreads", 5, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> FIRE_EATER_LILY_MAX_VERTICAL_SPREAD = YATMConfigs.s_builder.comment("The maximum number of blocks vertically that a canidate position will be picked out from.").defineInRange("max_vertical_spread", 1, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> FIRE_EATER_LILY_MAX_AGE_INCREASE = YATMConfigs.s_builder.comment("The maximum amount the age block state property will increase on bonemeal success. Note: technically interchangeable with the min.").defineInRange("max_boneameal_age_increase", 3, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> FIRE_EATER_LILY_MIN_AGE_INCREASE = YATMConfigs.s_builder.comment("The minimum amount the age block state property will increase on bonemeal success. Note: technically interchangeable with the max.").defineInRange("min_boneameal_age_increase", 1, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> FIRE_EATER_LILY_ULTRA_WARM_HEAT_LEVEL_BONUS = YATMConfigs.s_builder.comment("The amount added to the heat level when the plant's in an ultra warm dimension.").defineInRange("ultra_warm_heat_level_bonus", 4, 0, Integer.MAX_VALUE);
 	public static final ConfigValue<Integer> FIRE_EATER_LILY_UNLIT_DECORATIVE_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.bonemealSuccessRarity("bonemeal_success_rarity_unlit_decorative");
 	
 	public static final ConfigValue<Integer> RUBBER_TREE_BONEMEAL_SUCCESS_RARITY = YATMConfigs.s_builder.pop().push("Rubber Tree: ").bonemealSuccessRarity();

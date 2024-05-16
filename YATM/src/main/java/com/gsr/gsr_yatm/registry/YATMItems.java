@@ -428,22 +428,21 @@ public class YATMItems
 	public static void addCompostables() 
 	{	
 		// TODO, review and add in missings
-		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_MERISTEM.get(), 0.3F);
-		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_LEAVES_YOUNG.get(), 0.3F);
-		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_LEAVES_FLOWERING.get(), 0.3F);
-		ComposterBlock.COMPOSTABLES.put(YATMItems.LEAF_MULCH.get(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.BRANCH_OF_GLARING_FRUIT.get(), 0.3F);		
 		ComposterBlock.COMPOSTABLES.put(YATMItems.COTTON_SEEDS.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(YATMItems.COTTON_BOLLS.get(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.FIRE_EATER_LILY_BULB.get(), 0.3F);	
+		ComposterBlock.COMPOSTABLES.put(YATMItems.GLARING_PLANTLET.get(), 0.3F);		
+		ComposterBlock.COMPOSTABLES.put(YATMItems.LEAF_MULCH.get(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.PHANTASMAL_SHELF_FUNGUS.get(), 0.85F);
 		ComposterBlock.COMPOSTABLES.put(YATMItems.RAW_COTTON_FIBER.get(), 0.65F);
-		ComposterBlock.COMPOSTABLES.put(YATMItems.FIRE_EATER_LILY_BULB.get(), 0.3F);		
-		
-		/*
-		 * ComposterBlock.COMPOSTABLES.put(YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), 0.3F); 
-		 * ComposterBlock.COMPOSTABLES.put(YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG.get(), 0.3F);
-		 * ComposterBlock.COMPOSTABLES.put(YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get(), 0.3F);
-		 * 
-		 * ComposterBlock.COMPOSTABLES.put(YATMItems.PHANTASMAL_SHELF_FUNGUS.get(), 0.85F);
-		 */
+		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_LEAVES_FLOWERING.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_LEAVES_YOUNG.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_MERISTEM.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.SOUL_AFFLICTED_LEAF_MULCH.get(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), 0.3F); 
 	} // end addCompostables
 	
 	

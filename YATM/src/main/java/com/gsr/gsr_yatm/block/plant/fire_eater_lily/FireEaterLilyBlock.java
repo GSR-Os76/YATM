@@ -6,6 +6,7 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.gsr.gsr_yatm.YATMConfigs;
+import com.gsr.gsr_yatm.YetAnotherTechMod;
 import com.gsr.gsr_yatm.block.IAgingBlock;
 import com.gsr.gsr_yatm.block.IYATMPlantableBlock;
 import com.gsr.gsr_yatm.block.ShapeBlock;
@@ -30,13 +31,10 @@ import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.level.block.state.properties.IntegerProperty;
 import net.minecraftforge.common.ForgeHooks;
 
-// TODO, extract more constants, implement heat equations
 public class FireEaterLilyBlock extends ShapeBlock implements IAgingBlock, BonemealableBlock, IYATMPlantableBlock
 {
 	public static final IntegerProperty AGE = YATMBlockStateProperties.AGE_EIGHT;
 	public static final BooleanProperty LIT = YATMBlockStateProperties.LIT;
-	
-	private static final int LIT_TEMPERATURE_LEVEL_CUTOFF = 2;
 	
 	
 	
@@ -109,17 +107,8 @@ public class FireEaterLilyBlock extends ShapeBlock implements IAgingBlock, Bonem
 	@Override
 	public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos position, @NotNull RandomSource random)
 	{
-		// theoretically is obselete
-//		if(!this.canSurvive(state, level, position)) 
-//		{
-//			level.setBlock(position, Blocks.AIR.defaultBlockState(), Block.UPDATE_ALL);
-//			Block.dropResources(state, level, position);
-//			// TODO, particles
-//			return;
-//		}
-		
 		int heat = FireEaterLilyBlock.getHeatLevel(level, position);
-		boolean isHeat = state.getValue(FireEaterLilyBlock.LIT);
+		boolean isLit = state.getValue(FireEaterLilyBlock.LIT);
 		boolean shouldHeat = FireEaterLilyBlock.shouldBeLit(level, position);
 		BlockState toState = state.setValue(FireEaterLilyBlock.LIT, shouldHeat);
 		
@@ -129,14 +118,14 @@ public class FireEaterLilyBlock extends ShapeBlock implements IAgingBlock, Bonem
 			level.setBlock(position, state.getValue(FireEaterLilyBlock.LIT) ? YATMBlocks.FIRE_EATER_LILY_DECORATIVE.get().defaultBlockState() : YATMBlocks.FIRE_EATER_LILY_UNLIT_DECORATIVE.get().defaultBlockState(), Block.UPDATE_ALL);
 		}
 		
-		if ((isHeat && shouldHeat)
+		if ((isLit && shouldHeat)
 				&& (age < this.getMaxAge()) 
-				&& ForgeHooks.onCropsGrowPre(level, position, state, heat == 0 ? false : random.nextInt(Math.min(1, Math.abs((int) (52.0F / ((float)heat))))) == 0))
+				&& ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(Math.min(1, Math.abs((int) (((float)YATMConfigs.FIRE_EATER_LILY_GROWTH_RARITY.get()) / ((float)heat))))) == 0))
 		{
 			level.setBlock(position, this.getStateForAge(toState, age + 1), Block.UPDATE_CLIENTS);
 			ForgeHooks.onCropsGrowPost(level, position, state);
 		}
-		else if (shouldHeat != isHeat) 
+		else if (shouldHeat != isLit) 
 		{
 			level.setBlock(position, toState, Block.UPDATE_CLIENTS);
 		}		
@@ -146,33 +135,50 @@ public class FireEaterLilyBlock extends ShapeBlock implements IAgingBlock, Bonem
 	
 	public static int getHeatLevel(@NotNull LevelReader level, @NotNull BlockPos position) 
 	{
-		int heatLevel = 0;
-		
+		int heatLevel = YATMConfigs.FIRE_EATER_LILY_BASE_HEAT_LEVEL.get();
 		if(level.dimensionType().ultraWarm()) 
 		{
-			heatLevel += 4;
+			heatLevel += YATMConfigs.FIRE_EATER_LILY_ULTRA_WARM_HEAT_LEVEL_BONUS.get();
 		}
-
-		if(level.getBlockState(position.below()).is(YATMBlockTags.HEAT_BLOCKS_KEY)) 
+		BlockPos.MutableBlockPos pos = new BlockPos.MutableBlockPos();
+		for(Direction d : Direction.values()) 
 		{
-			heatLevel += 2;
+			if(level.getBlockState(pos.setWithOffset(position, d)).is(YATMBlockTags.HEAT_BLOCKS_KEY)) 
+			{
+				heatLevel += YATMConfigs.FIRE_EATER_LILY_HEAT_BLOCK_ADJACENT_HEAT_LEVEL_BONUS.get();
+				break;
+			}
 		}
-		
-		// TODO, probably, check surrounding blocks against tag, be sure not to load chunks in
-		// TODO, possibly, check biome heat, but probably not this one.
+		for(int x = -1; x <= 1; x++) 
+		{
+			for(int y = -1; y <= 1; y++) 
+			{
+				for(int z = -1; z <= 1; z++) 
+				{
+					// skip self and directly adjacents
+					if((x == 0 && y == 0) || (y == 0 && z == 0) || (z == 0 && x == 0)) 
+					{
+						continue;
+					}
+					else if(level.getBlockState(pos.setWithOffset(position, x, y, z)).is(YATMBlockTags.HEAT_BLOCKS_KEY)) 
+					{
+						heatLevel += YATMConfigs.FIRE_EATER_LILY_HEAT_BLOCK_NEAR_HEAT_LEVEL_BONUS.get();
+						break;
+					}
+				}
+			}
+		}
+		// tODO, possibly, check biome or block heat, but probably not.
 		
 		return heatLevel;
 	} // end getHeatLevel()
 	
-	/** That minimum heat level for which all higher values and itself produce a lit state.*/
-	public static int getLitHeatLevelCutoff() 
-	{
-		return FireEaterLilyBlock.LIT_TEMPERATURE_LEVEL_CUTOFF;
-	} // end getLitHeatLevelCutoff()
+	
 
 	public static boolean shouldBeLit(@NotNull LevelReader level, @NotNull BlockPos position)
 	{
-		return FireEaterLilyBlock.getHeatLevel(level, position) >= FireEaterLilyBlock.getLitHeatLevelCutoff();
+		YetAnotherTechMod.LOGGER.info("hl: " + FireEaterLilyBlock.getHeatLevel(level, position) + ", hl_cutoff: " + YATMConfigs.FIRE_EATER_LILY_LIT_HEAT_LEVEL_CUTOFF.get());
+		return FireEaterLilyBlock.getHeatLevel(level, position) >= YATMConfigs.FIRE_EATER_LILY_LIT_HEAT_LEVEL_CUTOFF.get();
 	} // end shouldBeLit()
 
 
@@ -199,7 +205,7 @@ public class FireEaterLilyBlock extends ShapeBlock implements IAgingBlock, Bonem
 			return;
 		}
 		
-		level.setBlock(position, this.getStateForAge(state, Math.min(this.getMaxAge(), this.getAge(state) + random.nextIntBetweenInclusive(1, 3))), Block.UPDATE_CLIENTS);
+		level.setBlock(position, this.getStateForAge(state, Math.min(this.getMaxAge(), this.getAge(state) + random.nextIntBetweenInclusive(Math.min(YATMConfigs.FIRE_EATER_LILY_MIN_AGE_INCREASE.get(), YATMConfigs.FIRE_EATER_LILY_MAX_AGE_INCREASE.get()), Math.max(YATMConfigs.FIRE_EATER_LILY_MIN_AGE_INCREASE.get(), YATMConfigs.FIRE_EATER_LILY_MAX_AGE_INCREASE.get())))), Block.UPDATE_CLIENTS);
 	} // end performBonemeal()
 
 } // end class
