@@ -43,7 +43,7 @@ public class YATMItemModelProvider extends ItemModelProvider
 		this.basicItem(YATMItems.KINETIC_DRIVER.get());		
 		this.basicItem(YATMItems.NETHERITE_NUGGET.get());
 		this.basicItem(YATMItems.PERSIMMON.get());
-		this.basicItem(YATMItems.RAW_EXOTHEMIC_GLAND.get());
+		this.basicItem(YATMItems.RAW_EXOTHERMIC_GLAND.get());
 		this.basicItem(YATMItems.RUBBER_BAR.get());
 		this.basicItem(YATMItems.RUBBER_MERISTEM.get());
 		this.basicItem(YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM.get());

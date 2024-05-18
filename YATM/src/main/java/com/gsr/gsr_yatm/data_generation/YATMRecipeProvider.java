@@ -150,7 +150,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		this.addOneToX(output, YATMItems.FE_TO_CU_CONVERTER.get(), YATMItems.CU_TO_FE_CONVERTER.get(), 1, YetAnotherTechMod.MODID + ":cu_to_fe_converter_from_fe_to_cu_converter_from_shapeless_crafting");
 		
 		// TODO, torchflower or candlelily -> raw exothermal gland
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.EMBER_GLAND.get(), 1).pattern("g ").pattern("v ").define('g', YATMItems.RAW_EXOTHEMIC_GLAND.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.RAW_EXOTHEMIC_GLAND.get())).save(output, YetAnotherTechMod.MODID + ":ember_gland_from_shaped_crafting");
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.EMBER_GLAND.get(), 1).pattern("g ").pattern("v ").define('g', YATMItems.RAW_EXOTHERMIC_GLAND.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.RAW_EXOTHERMIC_GLAND.get())).save(output, YetAnotherTechMod.MODID + ":ember_gland_from_shaped_crafting");
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.FLAME_GLAND.get(), 1).pattern("gg").pattern("vv").define('g', YATMItems.EMBER_GLAND.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.EMBER_GLAND.get())).save(output, YetAnotherTechMod.MODID + ":flame_gland_from_shaped_crafting");
 		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.TORCH_GLAND.get(), 1).pattern("ggg").pattern("vvv").pattern("   ").define('g', YATMItems.FLAME_GLAND.get()).define('v', YATMItems.CONDUIT_VINES.get()).unlockedBy("has_item", has(YATMItems.FLAME_GLAND.get())).save(output, YetAnotherTechMod.MODID + ":torch_gland_from_shaped_crafting");
 		

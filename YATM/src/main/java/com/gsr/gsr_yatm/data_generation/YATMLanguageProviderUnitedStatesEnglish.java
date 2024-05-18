@@ -332,7 +332,7 @@ public class YATMLanguageProviderUnitedStatesEnglish extends YATMLanguageProvide
 		
 		this.add(YATMItems.GLARING_PLANTLET.get(), "Glaring Plantlet");
 		
-		this.add(YATMItems.RAW_EXOTHEMIC_GLAND.get(), "Raw Exothermal Gland");
+		this.add(YATMItems.RAW_EXOTHERMIC_GLAND.get(), "Raw Exothermal Gland");
 		
 		this.add(YATMItems.CRUDE_SOLAR_LEAF.get(), "Crude Solar Leaf");
 		this.add(YATMItems.ADVANCED_SOLAR_LEAF.get(), "Advanced Solar Leaf");

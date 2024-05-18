@@ -256,7 +256,7 @@ public class YATMItems
 	public static final RegistryObject<Item> RUBBER_BAR = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("rubber_bar", () -> new Item(new Item.Properties()))));
 	
 	public static final RegistryObject<Item> ENDOTHERMIC_TISSUE = /* generalTabEnqueue */(ITEMS.register("endothermic_tissue", () -> new Item(new Item.Properties())));
-	public static final RegistryObject<Item> RAW_EXOTHEMIC_GLAND = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("raw_exothermic_gland", () -> new Item(new Item.Properties()))));
+	public static final RegistryObject<Item> RAW_EXOTHERMIC_GLAND = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("raw_exothermic_gland", () -> new Item(new Item.Properties()))));
 	public static final RegistryObject<Item> KINETIC_DRIVER = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("kinetic_driver", () -> new Item(new Item.Properties()))));
 	
 	public static final RegistryObject<Item> CRUDE_SOLAR_LEAF = ingredientTabEnqueue(yatmGeTabEnqueue(ITEMS.register("crude_solar_leaf", () -> new Item(new Item.Properties()))));
@@ -426,23 +426,55 @@ public class YATMItems
 
 	
 	public static void addCompostables() 
-	{	
-		// TODO, review and add in missings
+	{			
+		ComposterBlock.COMPOSTABLES.put(YATMItems.SHULKWART_HORN.get(), 0.3F);	
+		ComposterBlock.COMPOSTABLES.put(YATMItems.WHITE_SHULKWART_HORN.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.ORANGE_SHULKWART_HORN.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.MAGENTA_SHULKWART_HORN.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.LIGHT_BLUE_SHULKWART_HORN.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.YELLOW_SHULKWART_HORN.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.LIME_SHULKWART_HORN.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.PINK_SHULKWART_HORN.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.GRAY_SHULKWART_HORN.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.LIGHT_GRAY_SHULKWART_HORN.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.CYAN_SHULKWART_HORN.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.PURPLE_SHULKWART_HORN.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.BLUE_SHULKWART_HORN.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.BROWN_SHULKWART_HORN.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.GREEN_SHULKWART_HORN.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.RED_SHULKWART_HORN.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.BLACK_SHULKWART_HORN.get(), 0.3F);
+		
 		ComposterBlock.COMPOSTABLES.put(YATMItems.BRANCH_OF_GLARING_FRUIT.get(), 0.3F);		
+		ComposterBlock.COMPOSTABLES.put(YATMItems.CARCASS_ROOT_CUTTING.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.CONDUIT_VINES.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(YATMItems.COTTON_SEEDS.get(), 0.3F);
-		ComposterBlock.COMPOSTABLES.put(YATMItems.COTTON_BOLLS.get(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.CRYING_PLANT_SEEDS.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(YATMItems.FIRE_EATER_LILY_BULB.get(), 0.3F);	
 		ComposterBlock.COMPOSTABLES.put(YATMItems.GLARING_PLANTLET.get(), 0.3F);		
-		ComposterBlock.COMPOSTABLES.put(YATMItems.LEAF_MULCH.get(), 0.65F);
-		ComposterBlock.COMPOSTABLES.put(YATMItems.PHANTASMAL_SHELF_FUNGUS.get(), 0.85F);
-		ComposterBlock.COMPOSTABLES.put(YATMItems.RAW_COTTON_FIBER.get(), 0.65F);
-		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_LEAVES_FLOWERING.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.RAW_EXOTHERMIC_GLAND.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_LEAVES_FLOWERING.get(), 0.5F);
 		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_LEAVES_YOUNG.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(YATMItems.RUBBER_MERISTEM.get(), 0.3F);
-		ComposterBlock.COMPOSTABLES.put(YATMItems.SOUL_AFFLICTED_LEAF_MULCH.get(), 0.65F);
-		ComposterBlock.COMPOSTABLES.put(YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get(), 0.3F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.SHULKWART_SPORES.get(), 0.3F);		
+		ComposterBlock.COMPOSTABLES.put(YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_FLOWERING.get(), 0.5F);
 		ComposterBlock.COMPOSTABLES.put(YATMItems.SOUL_AFFLICTED_RUBBER_LEAVES_YOUNG.get(), 0.3F);
 		ComposterBlock.COMPOSTABLES.put(YATMItems.SOUL_AFFLICTED_RUBBER_MERISTEM.get(), 0.3F); 
+		ComposterBlock.COMPOSTABLES.put(YATMItems.WOOD_PULP.get(), 0.3F);	
+		
+		ComposterBlock.COMPOSTABLES.put(YATMItems.VARIEGATED_CACTUS.get(), 0.5F);
+		
+		ComposterBlock.COMPOSTABLES.put(YATMItems.CANDLELILY.get(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.COTTON_BOLLS.get(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.FIRE_EATER_LILY_DECORATIVE.get(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.FIRE_EATER_LILY_UNLIT_DECORATIVE.get(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.LEAF_MULCH.get(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.PERSIMMON.get(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.PITCHER_CLUSTER.get(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.RAW_COTTON_FIBER.get(), 0.65F);
+		ComposterBlock.COMPOSTABLES.put(YATMItems.SOUL_AFFLICTED_LEAF_MULCH.get(), 0.65F);
+
+		ComposterBlock.COMPOSTABLES.put(YATMItems.PHANTASMAL_SHELF_FUNGUS.get(), 0.85F);
 	} // end addCompostables
 	
 	
