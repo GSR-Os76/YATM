@@ -212,28 +212,11 @@ public class YATMModEvents
 
 	private static void gatherData(GatherDataEvent event)
 	{
-		DataProvider.Factory<YATMBlockStateProvider> blockStateProviderFactory = (o) -> new YATMBlockStateProvider(o, YetAnotherTechMod.MODID, event.getExistingFileHelper());
-		event.getGenerator().addProvider(event.includeClient(), blockStateProviderFactory);
-		
-		DataProvider.Factory<YATMItemModelProvider> itemModelProviderFactory = (o) -> new YATMItemModelProvider(o, event.getExistingFileHelper());
-		event.getGenerator().addProvider(event.includeClient(), itemModelProviderFactory);
+		event.getGenerator().addProvider(event.includeClient(), (DataProvider.Factory<YATMBlockStateProvider>)(o) -> new YATMBlockStateProvider(o, YetAnotherTechMod.MODID, event.getExistingFileHelper()));	
+		event.getGenerator().addProvider(event.includeClient(), (DataProvider.Factory<YATMItemModelProvider>)(o) -> new YATMItemModelProvider(o, event.getExistingFileHelper()));
+		event.getGenerator().addProvider(event.includeClient(), (DataProvider.Factory<YATMLanguageProviderUnitedStatesEnglish>)(o) -> new YATMLanguageProviderUnitedStatesEnglish(o));
 
-		DataProvider.Factory<YATMLootTableProvider> lootTableProviderFactory = (o) -> YATMLootTableProvider.create(o);
-		event.getGenerator().addProvider(event.includeServer(), lootTableProviderFactory);
-
-		DataProvider.Factory<YATMRecipeProvider> recipeProviderFactory = (o) -> new YATMRecipeProvider(o);
-		event.getGenerator().addProvider(event.includeServer(), recipeProviderFactory);
-
-		
-		
-		DataProvider.Factory<YATMLanguageProviderUnitedStatesEnglish> unitedStatesEnglishLanguageProviderFactory = (o) -> new YATMLanguageProviderUnitedStatesEnglish(o);
-		event.getGenerator().addProvider(event.includeClient(), unitedStatesEnglishLanguageProviderFactory);
-
-
-		
-		DataProvider.Factory<YATMBiomeTags> biomeTagProviderFactory = (pOP) -> new YATMBiomeTags(pOP, event.getLookupProvider(), event.getExistingFileHelper());
-		event.getGenerator().addProvider(event.includeServer(), biomeTagProviderFactory);
-
+		event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<YATMBiomeTags>)(pOP) -> new YATMBiomeTags(pOP, event.getLookupProvider(), event.getExistingFileHelper()));
 		DataProvider.Factory<YATMBlockTags> blockTagProviderFactory = new DataProvider.Factory<YATMBlockTags>()
 		{
 			YATMBlockTags backing = null;
@@ -250,16 +233,11 @@ public class YATMModEvents
 
 		};
 		event.getGenerator().addProvider(event.includeServer(), blockTagProviderFactory);
-
-		DataProvider.Factory<YATMEntityTypeTags> entityTypeTagProviderFactory = (pOP) -> new YATMEntityTypeTags(pOP, event.getLookupProvider(), event.getExistingFileHelper());
-		event.getGenerator().addProvider(event.includeServer(), entityTypeTagProviderFactory);
-		
-		DataProvider.Factory<YATMFluidTags> fluidTagProviderFactory = (pOP) -> new YATMFluidTags(pOP, event.getLookupProvider(), event.getExistingFileHelper());
-		event.getGenerator().addProvider(event.includeServer(), fluidTagProviderFactory);
-		
-		DataProvider.Factory<YATMItemTags> itemTagProviderFactory = (pOP) -> new YATMItemTags(pOP, event.getLookupProvider(), blockTagProviderFactory.create(pOP).contentsGetter(), event.getExistingFileHelper());
-		event.getGenerator().addProvider(event.includeServer(), itemTagProviderFactory);
-
+		event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<YATMEntityTypeTags>)(pOP) -> new YATMEntityTypeTags(pOP, event.getLookupProvider(), event.getExistingFileHelper()));
+		event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<YATMFluidTags>)(pOP) -> new YATMFluidTags(pOP, event.getLookupProvider(), event.getExistingFileHelper()));
+		event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<YATMItemTags>)(pOP) -> new YATMItemTags(pOP, event.getLookupProvider(), blockTagProviderFactory.create(pOP).contentsGetter(), event.getExistingFileHelper()));
+		event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<YATMLootTableProvider>)(o) -> YATMLootTableProvider.create(o));
+		event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<YATMRecipeProvider>)(o) -> new YATMRecipeProvider(o));
 	} // end gatherData()
 
 	private static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
