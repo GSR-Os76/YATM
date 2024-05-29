@@ -32,6 +32,7 @@ public class YATMItemTags extends ItemTagsProvider
 	
 	// it should be better insured copies have the same resource locations where appropriate.
 	
+	public static final TagKey<Item> FORGE_BRICKS_NETHER = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "bricks/nether"));
 //	public static final TagKey<Item> FORGE_COPPER_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "nuggets/copper"));
 	public static final TagKey<Item> FORGE_CLAY_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "clay"));
 	public static final TagKey<Item> FORGE_NETHERITE_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "nuggets/netherite"));
@@ -108,6 +109,7 @@ public class YATMItemTags extends ItemTagsProvider
 		
 		
 		
+		this.tag(YATMItemTags.FORGE_BRICKS_NETHER).add(Items.NETHER_BRICKS).add(Items.RED_NETHER_BRICKS).add(Items.CHISELED_NETHER_BRICKS).add(Items.CRACKED_NETHER_BRICKS);
 		this.copy(YATMBlockTags.FORGE_CLAY_KEY, YATMItemTags.FORGE_CLAY_KEY);
 		this.tag(YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY).add(YATMItems.NETHERITE_NUGGET.get());
 		this.tag(YATMItemTags.FORGE_PISTONS_KEY).add(Items.PISTON).add(Items.STICKY_PISTON);

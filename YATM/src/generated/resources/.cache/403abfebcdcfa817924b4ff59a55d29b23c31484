@@ -1,8 +1,9 @@
-// 1.20.2	2023-12-11T21:47:10.9351109	Tags for minecraft:item mod id gsr_yatm
+// 1.20.2	2024-05-29T16:04:48.3981281	Tags for minecraft:item mod id gsr_yatm
 018848d9a27330dcbc1fe359c480fe037436cb0b data/forge/tags/items/armors/boots.json
 e945a43824d81dcf0c8e03ebffc91b199d68526e data/forge/tags/items/armors/chestplates.json
 7b568e60717571a678a00a1763657a456f8b17bb data/forge/tags/items/armors/helmets.json
 1880eca10f8aeb8267c87176320a0ec935d75010 data/forge/tags/items/armors/leggings.json
+fd0967f6cd5c9a52da6b860985c4f449d649d5d8 data/forge/tags/items/bricks/nether.json
 da1d12f678963493519caaff63a76241b220579f data/forge/tags/items/clay.json
 bade3c9b0ab674f2efd3dc51c76e3652a9021029 data/forge/tags/items/ingots/rubber.json
 18795a8c0bcbdd7d7450b4a7ba2b97df86e0d87a data/forge/tags/items/nuggets/netherite.json
