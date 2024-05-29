@@ -84,7 +84,7 @@ public abstract class BiomeModifierProvider implements DataProvider
 	// necessary to capture generic type info usefully
 	private <T extends BiomeModifier, U extends IStrongBiomeModifier<T>> JsonElement jsonify(U bm) 
 	{
-		return bm.codec().encodeStart(JsonOps.INSTANCE, bm.getInnerBiomeModifier()).getOrThrow(false, LOGGER::error);
+		return bm.codec().encodeStart(JsonOps.INSTANCE, bm.getInnerBiomeModifier()).getOrThrow(false, DataProvider.LOGGER::error);
 	} // end jsonify()
 	
 	

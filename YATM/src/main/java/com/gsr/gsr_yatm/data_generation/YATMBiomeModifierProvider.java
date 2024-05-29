@@ -1,5 +1,7 @@
 package com.gsr.gsr_yatm.data_generation;
 
+import java.util.Objects;
+
 import org.jetbrains.annotations.NotNull;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
@@ -13,7 +15,7 @@ public class YATMBiomeModifierProvider extends BiomeModifierProvider
 
 	public YATMBiomeModifierProvider(@NotNull PackOutput packOutput, @NotNull ExistingFileHelper existingFileHelper)
 	{
-		super(YetAnotherTechMod.MODID, packOutput, existingFileHelper);
+		super(YetAnotherTechMod.MODID, Objects.requireNonNull(packOutput), Objects.requireNonNull(existingFileHelper));
 	} // end constructor
 
 	

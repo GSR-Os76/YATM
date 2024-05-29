@@ -304,8 +304,10 @@ public class YATMRecipeProvider extends RecipeProvider
 	
 	private void addCraftingDeviceRecipes(@NotNull RecipeOutput output) 
 	{
-		// TODO, Bioreactor
-		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.BOILER.get(), 1).pattern("fff").pattern("g g").pattern("fbf").define('g', Tags.Items.GLASS).define('b', Items.BLAST_FURNACE).define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", has(Items.BLAST_FURNACE)).save(output, YetAnotherTechMod.MODID + ":steel_boiler_from_shaped_crafting");
+		// TODO, Maybe replace composter in Bioreactor recipe with kinetic driver.
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.BIOREACTOR.get(), 1).pattern("fgf").pattern("mkm").pattern("ftf").define('f', YATMItems.FOLIAR_STEEL.get()).define('g', Tags.Items.GLASS).define('k', YATMItems.KINETIC_DRIVER.get()).define('m', Tags.Items.MUSHROOMS).define('t', YATMItems.CURRENT_TUBER.get()).unlockedBy("has_item", has(Items.COMPOSTER)).save(output, YetAnotherTechMod.MODID + ":bioreactor_from_shaped_crafting");
+		
+		ShapedRecipeBuilder.shaped(RecipeCategory.MISC, YATMItems.BOILER.get(), 1).pattern("fff").pattern("g g").pattern("fbf").define('g', Tags.Items.GLASS).define('b', Items.BLAST_FURNACE).define('f', YATMItems.FOLIAR_STEEL.get()).unlockedBy("has_item", has(Items.BLAST_FURNACE)).save(output, YetAnotherTechMod.MODID + ":boiler_from_shaped_crafting");
 		// TODO, Crucible
 		// TODO, Crystallizer
 		// TODO, Heat Furnace

@@ -1,0 +1,30 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "key": {
+    "f": {
+      "item": "gsr_yatm:foliar_steel"
+    },
+    "g": {
+      "tag": "forge:glass"
+    },
+    "k": {
+      "item": "gsr_yatm:kinetic_driver"
+    },
+    "m": {
+      "tag": "forge:mushrooms"
+    },
+    "t": {
+      "item": "gsr_yatm:current_tuber"
+    }
+  },
+  "pattern": [
+    "fgf",
+    "mkm",
+    "ftf"
+  ],
+  "result": {
+    "item": "gsr_yatm:bioreactor"
+  },
+  "show_notification": true
+}
