@@ -53,7 +53,7 @@ public class SolarPanelMenu extends AbstractContainerMenu
 		
 		this.m_currentReader = new CurrentDataReader(this.m_data, CurrentStorerBlockEntity.ACCESS_SPEC.get(CurrentStorerBlockEntity.CURRENT_DATA_SPEC_KEY));
 		
-		this.addSlot(new SlotItemHandler(objInventory, SolarPanelBlockEntity.DRAIN_POWER_SLOT, 79, 51));
+		this.addSlot(new SlotItemHandler(objInventory, SolarPanelBlockEntity.DRAIN_POWER_SLOT, 80, 51));
 
 		for (int y = 0; y < 3; ++y)
 		{
