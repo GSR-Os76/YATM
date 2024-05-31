@@ -2,26 +2,26 @@
   "type": "minecraft:crafting_shaped",
   "category": "misc",
   "key": {
+    "b": {
+      "item": "gsr_yatm:boiler"
+    },
     "f": {
       "item": "gsr_yatm:foliar_steel"
     },
-    "k": {
-      "item": "gsr_yatm:kinetic_driver"
+    "i": {
+      "tag": "forge:ice"
     },
-    "m": {
-      "tag": "forge:mushrooms"
-    },
-    "t": {
-      "item": "gsr_yatm:current_tuber"
+    "p": {
+      "item": "gsr_yatm:channel_vines"
     }
   },
   "pattern": [
     "fff",
-    "mkm",
-    "ftf"
+    "pip",
+    "fbf"
   ],
   "result": {
-    "item": "gsr_yatm:bioreactor"
+    "item": "gsr_yatm:still"
   },
   "show_notification": true
 }

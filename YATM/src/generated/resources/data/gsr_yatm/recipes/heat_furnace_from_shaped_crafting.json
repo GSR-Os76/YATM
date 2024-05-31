@@ -5,23 +5,17 @@
     "f": {
       "item": "gsr_yatm:foliar_steel"
     },
-    "k": {
-      "item": "gsr_yatm:kinetic_driver"
-    },
-    "m": {
-      "tag": "forge:mushrooms"
-    },
-    "t": {
-      "item": "gsr_yatm:current_tuber"
+    "g": {
+      "item": "gsr_yatm:raw_exothermic_gland"
     }
   },
   "pattern": [
     "fff",
-    "mkm",
-    "ftf"
+    "f f",
+    "fgf"
   ],
   "result": {
-    "item": "gsr_yatm:bioreactor"
+    "item": "gsr_yatm:heat_furnace"
   },
   "show_notification": true
 }

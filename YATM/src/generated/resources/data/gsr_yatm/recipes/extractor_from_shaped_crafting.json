@@ -5,11 +5,8 @@
     "f": {
       "item": "gsr_yatm:foliar_steel"
     },
-    "k": {
-      "item": "gsr_yatm:kinetic_driver"
-    },
-    "m": {
-      "tag": "forge:mushrooms"
+    "p": {
+      "tag": "forge:pistons"
     },
     "t": {
       "item": "gsr_yatm:current_tuber"
@@ -17,11 +14,11 @@
   },
   "pattern": [
     "fff",
-    "mkm",
+    "p p",
     "ftf"
   ],
   "result": {
-    "item": "gsr_yatm:bioreactor"
+    "item": "gsr_yatm:extractor"
   },
   "show_notification": true
 }

@@ -5,7 +5,9 @@
       "conditions": {
         "items": [
           {
-            "tag": "forge:mushrooms"
+            "items": [
+              "gsr_yatm:foliar_steel"
+            ]
           }
         ]
       },

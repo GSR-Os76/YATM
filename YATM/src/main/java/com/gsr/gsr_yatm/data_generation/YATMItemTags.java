@@ -35,6 +35,7 @@ public class YATMItemTags extends ItemTagsProvider
 	public static final TagKey<Item> FORGE_BRICKS_NETHER = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "bricks/nether"));
 //	public static final TagKey<Item> FORGE_COPPER_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(FORGE_ID, "nuggets/copper"));
 	public static final TagKey<Item> FORGE_CLAY_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "clay"));
+	public static final TagKey<Item> FORGE_ICE = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "ice"));
 	public static final TagKey<Item> FORGE_NETHERITE_NUGGETS_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "nuggets/netherite"));
 	public static final TagKey<Item> FORGE_PISTONS_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "pistons"));
 	public static final TagKey<Item> FORGE_ROOTED_DIRT_KEY = TM.createTagKey(new ResourceLocation(YATMItemTags.FORGE_ID, "rooted_dirt"));
@@ -111,6 +112,7 @@ public class YATMItemTags extends ItemTagsProvider
 		
 		this.tag(YATMItemTags.FORGE_BRICKS_NETHER).add(Items.NETHER_BRICKS).add(Items.RED_NETHER_BRICKS).add(Items.CHISELED_NETHER_BRICKS).add(Items.CRACKED_NETHER_BRICKS);
 		this.copy(YATMBlockTags.FORGE_CLAY_KEY, YATMItemTags.FORGE_CLAY_KEY);
+		this.tag(YATMItemTags.FORGE_ICE).add(Items.ICE).add(Items.BLUE_ICE).add(Items.PACKED_ICE);
 		this.tag(YATMItemTags.FORGE_NETHERITE_NUGGETS_KEY).add(YATMItems.NETHERITE_NUGGET.get());
 		this.tag(YATMItemTags.FORGE_PISTONS_KEY).add(Items.PISTON).add(Items.STICKY_PISTON);
 		this.copy(YATMBlockTags.FORGE_ROOTED_DIRT_KEY, YATMItemTags.FORGE_ROOTED_DIRT_KEY);
