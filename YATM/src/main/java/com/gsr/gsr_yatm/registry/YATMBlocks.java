@@ -375,7 +375,7 @@ public class YATMBlocks
 	public static final RegistryObject<CurrentStorerBlock> CURRENT_BATTERY_BLOCK = BLOCKS.register("current_battery_block", () -> new CurrentStorerBlock(YATMBlockProperties.CURRENT_BATTERY_BLOCK, YATMBlockShapes.CUBE, YATMBlockEntityTypes.CURRENT_BATTERY_BLOCK::get));
 	public static final RegistryObject<CurrentStorerBlock> ADVANCED_CURRENT_BATTERY_BLOCK = BLOCKS.register("advanced_current_battery_block", () -> new CurrentStorerBlock(YATMBlockProperties.ADVANCED_CURRENT_BATTERY_BLOCK, YATMBlockShapes.CUBE, YATMBlockEntityTypes.ADVANCED_CURRENT_BATTERY_BLOCK::get));
 	
-	public static final RegistryObject<TankBlock> STEEL_TANK = BLOCKS.register("steel_tank", () -> new TankBlock(YATMBlockProperties.STEEL_TANK, YATMBlockShapes.STEEL_TANK));
+	public static final RegistryObject<TankBlock> STEEL_TANK = BLOCKS.register("steel_tank", () -> new TankBlock(YATMBlockProperties.STEEL_TANK, YATMBlockShapes.TANK));
 	
 	// TODO, maybe make solar vines look loosely like a vertical wooden terrace growing vines, add as later alternative to block forms, block forms first for simplicity
 	// TODO, make these beautifuler

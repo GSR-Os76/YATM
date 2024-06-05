@@ -1,10 +1,56 @@
 {
   "variants": {
-    "draining=false": {
+    "draining=false,facing=down": {
       "model": "gsr_yatm:block/tank"
     },
-    "draining=true": {
+    "draining=false,facing=east": {
+      "model": "gsr_yatm:block/tank",
+      "x": 270,
+      "y": 90
+    },
+    "draining=false,facing=north": {
+      "model": "gsr_yatm:block/tank",
+      "x": 270
+    },
+    "draining=false,facing=south": {
+      "model": "gsr_yatm:block/tank",
+      "x": 270,
+      "y": 180
+    },
+    "draining=false,facing=up": {
+      "model": "gsr_yatm:block/tank",
+      "x": 180
+    },
+    "draining=false,facing=west": {
+      "model": "gsr_yatm:block/tank",
+      "x": 270,
+      "y": 270
+    },
+    "draining=true,facing=down": {
       "model": "gsr_yatm:block/tank_draining"
+    },
+    "draining=true,facing=east": {
+      "model": "gsr_yatm:block/tank_draining",
+      "x": 270,
+      "y": 90
+    },
+    "draining=true,facing=north": {
+      "model": "gsr_yatm:block/tank_draining",
+      "x": 270
+    },
+    "draining=true,facing=south": {
+      "model": "gsr_yatm:block/tank_draining",
+      "x": 270,
+      "y": 180
+    },
+    "draining=true,facing=up": {
+      "model": "gsr_yatm:block/tank_draining",
+      "x": 180
+    },
+    "draining=true,facing=west": {
+      "model": "gsr_yatm:block/tank_draining",
+      "x": 270,
+      "y": 270
     }
   }
 }

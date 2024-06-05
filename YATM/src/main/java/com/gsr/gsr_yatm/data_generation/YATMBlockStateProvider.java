@@ -17,6 +17,7 @@ import com.gsr.gsr_yatm.block.device.crafting.spinning_wheel.SpinningWheelBlock;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceBlock;
 import com.gsr.gsr_yatm.block.device.heat_sink.HeatSinkBlock;
 import com.gsr.gsr_yatm.block.device.solar.panel.base.SolarPanelBlock;
+import com.gsr.gsr_yatm.block.device.tank.TankBlock;
 import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.CryingFlowerBlock;
@@ -1873,7 +1874,12 @@ public class YATMBlockStateProvider extends BlockStateProvider
 	
 	private void createTank(@NotNull Block block, @NotNull ModelFile tankModel, @NotNull ModelFile tankDrainingModel) 
 	{
-		this.getVariantBuilder(block).forAllStates((bs) -> new ConfiguredModel[] {new ConfiguredModel(bs.getValue(YATMBlockStateProperties.DRAINING) ? tankDrainingModel : tankModel)});
+		this.getVariantBuilder(block).forAllStates((bs) -> new ConfiguredModel[] {new ConfiguredModel(
+				bs.getValue(TankBlock.DRAINING) ? tankDrainingModel : tankModel,
+				YATMBlockStateProvider.rotationForDirectionFromDown(bs.getValue(TankBlock.FACING)).x, 
+				YATMBlockStateProvider.rotationForDirectionFromDown(bs.getValue(TankBlock.FACING)).y, 
+				false)
+				});
 		this.simpleBlockItem(block, tankModel);
 	} // end createTank()
 	

@@ -9,6 +9,7 @@ import com.gsr.gsr_yatm.block.device.AttachmentState;
 import com.gsr.gsr_yatm.block.device.conduit.channel_vine.ChannelVineBlock;
 import com.gsr.gsr_yatm.block.device.crafting.grafting_table.GraftingTableBlock;
 import com.gsr.gsr_yatm.block.device.crafting.spinning_wheel.SpinningWheelBlock;
+import com.gsr.gsr_yatm.block.device.tank.TankBlock;
 import com.gsr.gsr_yatm.block.plant.adamum.AdamumBlock;
 import com.gsr.gsr_yatm.block.plant.aurum.AurumBlock;
 import com.gsr.gsr_yatm.block.plant.basin_of_tears.CryingFlowerBlock;
@@ -27,7 +28,6 @@ import com.gsr.gsr_yatm.block.plant.ruberum.RuberumBlock;
 import com.gsr.gsr_yatm.block.plant.samaragdum.SamaragdumBlock;
 import com.gsr.gsr_yatm.block.plant.spider_plant.SpiderPlantBlock;
 import com.gsr.gsr_yatm.block.plant.vicum.VicumBlock;
-import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.utilities.OptionalAxis;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
 
@@ -810,14 +810,22 @@ public class YATMBlockShapes
 		} // end getShape()
 	};
 			
-	public static final ICollisionVoxelShapeProvider STEEL_TANK = new ICollisionVoxelShapeProvider() 
+	public static final ICollisionVoxelShapeProvider TANK = new ICollisionVoxelShapeProvider() 
 	{
-		private static final VoxelShape SHAPE = Block.box(2d, 0d, 2d, 14d, 16d, 14d);
+		private static final VoxelShape X_SHAPE = Block.box(0d, 2d, 2d, 16d, 14d, 14d);
+		private static final VoxelShape Y_SHAPE = Block.box(2d, 0d, 2d, 14d, 16d, 14d);
+		private static final VoxelShape Z_SHAPE = Block.box(2d, 2d, 0d, 14d, 14d, 16d);
 
 		@Override
-		public @NotNull VoxelShape getShape(BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
+		public @NotNull VoxelShape getShape(@NotNull BlockState blockState, BlockGetter blockGetter, BlockPos blockPos, CollisionContext context)
 		{
-			return SHAPE;
+			return switch(blockState.getValue(TankBlock.FACING).getAxis()) 
+					{
+				case X -> X_SHAPE;
+				case Y -> Y_SHAPE;
+				case Z -> Z_SHAPE;
+				default -> throw new IllegalArgumentException("Unexpected value of: " + blockState.getValue(TankBlock.FACING));
+					};
 		} // end getShape()
 	};
 	

@@ -4,8 +4,8 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gsr.gsr_yatm.block.device.DeviceBlock;
 import com.gsr.gsr_yatm.block.device.IDeviceBlockEntity;
+import com.gsr.gsr_yatm.block.device.OmniDirectionalDeviceBlock;
 import com.gsr.gsr_yatm.data_generation.YATMItemTags;
 import com.gsr.gsr_yatm.data_generation.YATMLanguageProvider;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
@@ -21,6 +21,7 @@ import net.minecraft.world.MenuProvider;
 import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.ContainerLevelAccess;
+import net.minecraft.world.item.context.BlockPlaceContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
@@ -28,7 +29,7 @@ import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.BooleanProperty;
 import net.minecraft.world.phys.BlockHitResult;
 
-public class TankBlock extends DeviceBlock
+public class TankBlock extends OmniDirectionalDeviceBlock
 {
 	public static final BooleanProperty DRAINING = YATMBlockStateProperties.DRAINING;
 
@@ -48,6 +49,12 @@ public class TankBlock extends DeviceBlock
 	{
 		super.createBlockStateDefinition(builder.add(TankBlock.DRAINING));
 	} // end createBlockStateDefinition()
+	
+	@Override
+	public BlockState getStateForPlacement(@NotNull BlockPlaceContext context)
+	{
+		return this.defaultBlockState().setValue(OmniDirectionalDeviceBlock.FACING, context.getClickedFace().getOpposite());
+	} // end getStateForPlacement()
 	 	
 	@Override
 	public InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult)

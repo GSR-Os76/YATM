@@ -3,6 +3,7 @@ package com.gsr.gsr_yatm.block.device.tank;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
+import java.util.Set;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 
@@ -65,7 +66,7 @@ public class TankBlockEntity extends BuiltDeviceBlockEntity
 	@Override
 	protected void define(@NotNull Consumer<DeviceDefinition> definitionReceiver, @NotNull ICapabilityProvider defaultCapabilityProvider)
 	{
-		Supplier<List<Direction>> activeDrainTo = () -> this.getBlockState().getValue(TankBlock.DRAINING) ? List.of(Direction.DOWN): List.of();
+		Supplier<List<Direction>> activeDrainTo = () -> this.getBlockState().getValue(TankBlock.DRAINING) ? List.of(this.getBlockState().getValue(TankBlock.FACING)): List.of();
 		
 		
 		
@@ -99,13 +100,12 @@ public class TankBlockEntity extends BuiltDeviceBlockEntity
 		
 		.getInventory(inv::apply)
 		
-		// TODO, make the tank able to face in any direction.
 		.capabilityProvider()
 			.face((Direction)null)
 			.returnsWhen(ForgeCapabilities.ITEM_HANDLER, inv.get())
 			.elifReturnsWhen(ForgeCapabilities.FLUID_HANDLER, t)
 			.end()
-			.face(Direction.UP)
+			.face(() -> Set.of(this.getBlockState().getValue(TankBlock.FACING).getOpposite()))
 			.returns(CapabilityUtil.conditionProvider(tFCM.get()::hasComponent, tFCM.get(), 
 					new CapabilityProviderBuilderL()
 					.face(() -> DirectionUtil.ALL_AND_NULL)
@@ -113,7 +113,7 @@ public class TankBlockEntity extends BuiltDeviceBlockEntity
 					.elifReturnsWhen(ForgeCapabilities.FLUID_HANDLER, fillT).end().last(defaultCapabilityProvider)
 					))
 			.end()
-			.face(Direction.DOWN)
+			.face(() -> Set.of(this.getBlockState().getValue(TankBlock.FACING)))
 			.returns(CapabilityUtil.conditionProvider(tDCM.get()::hasComponent, tDCM.get(), 
 					new CapabilityProviderBuilderL()
 					.face(() -> DirectionUtil.ALL_AND_NULL)

@@ -1,4 +1,4 @@
-// 1.20.2	2024-05-15T14:34:07.528552	Block States: gsr_yatm
+// 1.20.2	2024-06-05T18:13:35.1598449	Block States: gsr_yatm
 11aad184ca6aaadbd7319a44c5a1985f7c029a1c assets/gsr_yatm/blockstates/adamum.json
 954ad7e227cb7fea31486bca39340fd9ecdbc175 assets/gsr_yatm/blockstates/advanced_current_battery_block.json
 2923ce1cd7eee4237150449bf366149a0c18f35b assets/gsr_yatm/blockstates/advanced_solar_panel.json
@@ -172,7 +172,7 @@ ef24fbcb17ce825f127a82e91ceadd3651ef8072 assets/gsr_yatm/blockstates/soul_afflic
 06f3a57dd0c3bbdbe4d73ec70fa5faa4b357cf58 assets/gsr_yatm/blockstates/soul_syrup.json
 6f256bf803c60776d3d933e88a6e60819ee06f40 assets/gsr_yatm/blockstates/spider_plant.json
 695a7f85ef0a5f3310935dcf6e726fcd9c644b42 assets/gsr_yatm/blockstates/spinning_wheel.json
-160db401f088b35d23867392aabdb69310f762e8 assets/gsr_yatm/blockstates/steel_tank.json
+d02424f2bbbb3a780fd19ed92006f5f8ff2a52f1 assets/gsr_yatm/blockstates/steel_tank.json
 643278307b2869b88e7e170ddd0477176e12c533 assets/gsr_yatm/blockstates/still.json
 470af715e371a15d94a81276628d2225d1523ffb assets/gsr_yatm/blockstates/stripped_rubber_log.json
 189cb568c67e71e5461920eb2692572261fb0a74 assets/gsr_yatm/blockstates/stripped_rubber_wood.json
