@@ -351,5 +351,6 @@
   "menu.title.gsr_yatm.heat_furnace": "Heat Furnace",
   "menu.title.gsr_yatm.injector": "Injector",
   "menu.title.gsr_yatm.solar_panel": "Solar Panel",
-  "menu.title.gsr_yatm.still_menu": "Still"
+  "menu.title.gsr_yatm.still_menu": "Still",
+  "menu.title.gsr_yatm.tank": "Tank"
 }

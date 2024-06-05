@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.block.device.crafting.grinder;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.gui.HorizontalCurrentWidget;
+import com.gsr.gsr_yatm.gui.widget.HorizontalCurrentWidget;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.gui.GuiGraphics;

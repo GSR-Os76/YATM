@@ -294,4 +294,55 @@ public interface IBlockEntityHelpers
 		};
 	} // end noDrain()
 	
+	default @NotNull IFluidHandler noDrain(IFluidHandler f)
+	{
+		return new IFluidHandler() 
+		{
+
+			@Override
+			public int getTanks()
+			{
+				return f.getTanks();
+			} // end getTanks()
+
+			@Override
+			public @NotNull FluidStack getFluidInTank(int tank)
+			{
+				return f.getFluidInTank(tank);
+			} // end getFluidInTank()
+
+			@Override
+			public int getTankCapacity(int tank)
+			{
+				return f.getTankCapacity(tank);
+			} // end getTankCapacity()
+
+			@Override
+			public boolean isFluidValid(int tank, @NotNull FluidStack stack)
+			{
+				return f.isFluidValid(tank, stack);
+			} // end isFluidValid()
+
+			@Override
+			public int fill(FluidStack resource, FluidAction action)
+			{
+				return f.fill(resource, action);
+			} // end fill()
+
+			@Override
+			public @NotNull FluidStack drain(FluidStack resource, FluidAction action)
+			{
+				return FluidStack.EMPTY;
+			} // end drain()
+
+			@Override
+			public @NotNull FluidStack drain(int maxDrain, FluidAction action)
+			{
+				return FluidStack.EMPTY;
+			} // end drain()
+			
+		};
+	} // end noFill()
+
+	
 } // end interface

@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.item.tool;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.gui.HorizontalCurrentWidget;
+import com.gsr.gsr_yatm.gui.widget.HorizontalCurrentWidget;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;

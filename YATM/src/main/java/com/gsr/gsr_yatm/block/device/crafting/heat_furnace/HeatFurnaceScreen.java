@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.block.device.crafting.heat_furnace;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.gui.HorizontalTemperatureWidget;
+import com.gsr.gsr_yatm.gui.widget.HorizontalTemperatureWidget;
 import com.mojang.blaze3d.systems.RenderSystem;
 
 import net.minecraft.client.gui.GuiGraphics;

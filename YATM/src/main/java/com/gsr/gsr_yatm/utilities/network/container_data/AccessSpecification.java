@@ -10,6 +10,7 @@ public record AccessSpecification(@NotNegative int startIndex, @NotNegative int 
 
 	public AccessSpecification(@NotNegative int startIndex, @NotNegative int endIndex) 
 	{
+		// TODO, make less tolerant
 		this.endIndex = Math.max(Contract.notNegative(startIndex), Contract.notNegative(endIndex));
 		this.startIndex = Math.min(startIndex, endIndex);		
 	} // end constructor
@@ -18,6 +19,7 @@ public record AccessSpecification(@NotNegative int startIndex, @NotNegative int 
 	
 	public static @NotNull AccessSpecification join(@NotNull AccessSpecification lowp, @NotNull AccessSpecification highp)
 	{
+		// TODO, make order inspecific
 		return new AccessSpecification(lowp.startIndex, highp.endIndex);
 	} // end join()
 

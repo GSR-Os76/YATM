@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.gui;
+package com.gsr.gsr_yatm.gui.widget;
 
 public interface ITemperatureWidget
 {

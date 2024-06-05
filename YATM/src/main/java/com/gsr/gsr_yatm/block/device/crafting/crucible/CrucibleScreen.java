@@ -1,8 +1,8 @@
 package com.gsr.gsr_yatm.block.device.crafting.crucible;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.gui.VerticalStoredFluidWidget;
-import com.gsr.gsr_yatm.gui.VerticalTemperatureWidget;
+import com.gsr.gsr_yatm.gui.widget.VerticalStoredFluidWidget;
+import com.gsr.gsr_yatm.gui.widget.VerticalTemperatureWidget;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;

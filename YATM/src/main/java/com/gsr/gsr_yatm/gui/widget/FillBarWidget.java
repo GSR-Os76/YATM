@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.gui;
+package com.gsr.gsr_yatm.gui.widget;
 
 import net.minecraft.client.gui.components.AbstractWidget;
 import net.minecraft.client.gui.narration.NarrationElementOutput;

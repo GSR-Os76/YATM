@@ -1,8 +1,8 @@
 package com.gsr.gsr_yatm.block.device.crafting.injector;
 
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.gui.VerticalCurrentWidget;
-import com.gsr.gsr_yatm.gui.VerticalStoredFluidWidget;
+import com.gsr.gsr_yatm.gui.widget.VerticalCurrentWidget;
+import com.gsr.gsr_yatm.gui.widget.VerticalStoredFluidWidget;
 
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;

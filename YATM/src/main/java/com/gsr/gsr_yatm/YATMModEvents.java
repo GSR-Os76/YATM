@@ -2,6 +2,8 @@ package com.gsr.gsr_yatm;
 
 import java.util.function.Function;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.api.capability.ICurrentHandler;
 import com.gsr.gsr_yatm.api.capability.YATMCapabilities;
 import com.gsr.gsr_yatm.block.device.crafting.bioreactor.BioreactorScreen;
@@ -17,7 +19,7 @@ import com.gsr.gsr_yatm.block.device.crafting.still.StillScreen;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceScreen;
 import com.gsr.gsr_yatm.block.device.current_storer.base.CurrentStorerScreen;
 import com.gsr.gsr_yatm.block.device.solar.panel.base.SolarPanelScreen;
-import com.gsr.gsr_yatm.block.device.tank.TankRenderer;
+import com.gsr.gsr_yatm.block.device.tank.TankScreen;
 import com.gsr.gsr_yatm.block.hanging_pot.HangingPotHookRenderer;
 import com.gsr.gsr_yatm.data_generation.YATMBiomeModifierProvider;
 import com.gsr.gsr_yatm.data_generation.YATMBiomeTags;
@@ -140,6 +142,7 @@ public class YATMModEvents
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.STILL.get(), StillScreen::new));
 		
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.CURRENT_STORER.get(), CurrentStorerScreen::new));
+		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.TANK.get(), TankScreen::new));
 		
 		event.enqueueWork(() -> MenuScreens.register(YATMMenuTypes.SOLAR_PANEL.get(), SolarPanelScreen::new));
 		
@@ -211,7 +214,7 @@ public class YATMModEvents
 		event.enqueueWork(HeatUtil::addDefaultsTemperatureMappings);
 	} // end commonSetup()
 
-	private static void gatherData(GatherDataEvent event)
+	private static void gatherData(@NotNull GatherDataEvent event)
 	{
 		event.getGenerator().addProvider(event.includeClient(), (DataProvider.Factory<?>)(o) -> new YATMBlockStateProvider(o, YetAnotherTechMod.MODID, event.getExistingFileHelper()));	
 		event.getGenerator().addProvider(event.includeClient(), (DataProvider.Factory<?>)(o) -> new YATMItemModelProvider(o, event.getExistingFileHelper()));
@@ -245,7 +248,7 @@ public class YATMModEvents
 	private static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event)
 	{
 		event.registerBlockEntityRenderer(YATMBlockEntityTypes.HANGING_POT_HOOK.get(), HangingPotHookRenderer::new);
-		event.registerBlockEntityRenderer(YATMBlockEntityTypes.TANK.get(), TankRenderer::new);
+//		event.registerBlockEntityRenderer(YATMBlockEntityTypes.TANK.get(), TankRenderer::new);
 		event.registerBlockEntityRenderer(YATMBlockEntityTypes.YATM_HANGING_SIGN.get(), HangingSignRenderer::new);
 		event.registerBlockEntityRenderer(YATMBlockEntityTypes.YATM_SIGN.get(), SignRenderer::new);
 		

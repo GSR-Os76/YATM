@@ -221,9 +221,10 @@ public class YATMConfigs
 	public static final ConfigValue<Integer> ADVANCED_CURRENT_BATTERY_BLOCK_DRAIN_CURRENT_RECHECK_PERIOD = YATMConfigs.s_builder.outputComponentRecheckPeriod("drain current", YATMConfigs.DRAIN_RECHECK_PERIOD);
 	
 	public static final ConfigValue<Integer> TANK_CAPACITY = YATMConfigs.s_builder.pop().pop().push("Tank: ").comment("The tank's capacity in milibuckets.").defineInRange("capacity", 16000, 0, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> TANK_DRAIN_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.maxDrainTankRate("tank", 200);
 	public static final ConfigValue<Integer> TANK_DRAIN_RECHECK_PERIOD = YATMConfigs.s_builder.comment("The period in ticks of the device trying to attach to a below neighbor's fluid handling capability.").defineInRange("drain_recheck_period", YATMConfigs.DRAIN_RECHECK_PERIOD, 0, Integer.MAX_VALUE);
-	public static final ConfigValue<Integer> TANK_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.comment("The most fluid that can be moved per tick.").defineInRange("max_fluid_transfer_rate", 1000, 0, Integer.MAX_VALUE);
-	
+	public static final ConfigValue<Integer> TANK_FILL_MAX_FLUID_TRANSFER_RATE = YATMConfigs.s_builder.maxFillTankRate("tank", 200);
+
 	
 	
 	public static final Supplier<SolarPanelSettings> CRUDE_SOLAR_PANEL_SETTINGS = YATMConfigs.s_builder.pop().push("Solar: ").push("Panel: ").push("Crude: ").solarPanelSettings(YATMConfigs.DRAIN_RECHECK_PERIOD, YATMConfigs.DEFAULT_CURRENT_TUBER_CURRENT_CAPACITY / YATMConfigs.CURRENT_STORER_BLOCK_CURRENT_CAPACITY_TO_TRANSFER_SIZE_FACTOR, YATMConfigs.DEFAULT_CURRENT_TUBER_CURRENT_CAPACITY * 3, 8, 0.0f, 1.0f, 0.0f, 0.0f);

@@ -14,6 +14,7 @@ import com.gsr.gsr_yatm.block.device.crafting.still.StillMenu;
 import com.gsr.gsr_yatm.block.device.creative.current_source.CreativeCurrentSourceMenu;
 import com.gsr.gsr_yatm.block.device.current_storer.base.CurrentStorerMenu;
 import com.gsr.gsr_yatm.block.device.solar.panel.base.SolarPanelMenu;
+import com.gsr.gsr_yatm.block.device.tank.TankMenu;
 import com.gsr.gsr_yatm.item.tool.PoweredToolMenu;
 
 import net.minecraft.world.flag.FeatureFlagSet;
@@ -41,14 +42,12 @@ public class YATMMenuTypes
 	public static final RegistryObject<MenuType<StillMenu>> STILL = MENU_TYPES.register("still_menu", () -> new MenuType<>(StillMenu::new, FeatureFlagSet.of()));
       
 	public static final RegistryObject<MenuType<CurrentStorerMenu>> CURRENT_STORER = MENU_TYPES.register("current_storer", () -> new MenuType<>(CurrentStorerMenu::new, FeatureFlagSet.of())); 
-	
+	public static final RegistryObject<MenuType<TankMenu>> TANK = MENU_TYPES.register("tank", () -> new MenuType<>(TankMenu::new, FeatureFlagSet.of())); 
+
 	public static final RegistryObject<MenuType<SolarPanelMenu>> SOLAR_PANEL = MENU_TYPES.register("solar_panel", () -> new MenuType<>(SolarPanelMenu::new, FeatureFlagSet.of()));
 
 	public static final RegistryObject<MenuType<CreativeCurrentSourceMenu>> CREATIVE_CURRENT_SOURCE = MENU_TYPES.register("creative_current_source", () -> new MenuType<>(CreativeCurrentSourceMenu::new, FeatureFlagSet.of()));
 
 	public static final RegistryObject<MenuType<PoweredToolMenu>> POWERED_TOOL = MENU_TYPES.register("powered_tool", () -> new MenuType<>(PoweredToolMenu::new, FeatureFlagSet.of()));
 
-
-
-	
 } // end class

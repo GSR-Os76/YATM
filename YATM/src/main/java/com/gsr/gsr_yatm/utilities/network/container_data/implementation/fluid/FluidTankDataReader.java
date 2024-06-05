@@ -4,6 +4,7 @@ import java.util.Objects;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.gsr.gsr_yatm.gui.behavior.fluid.IFluidStackInfoProvider;
 import com.gsr.gsr_yatm.utilities.network.NetworkUtil;
 import com.gsr.gsr_yatm.utilities.network.container_data.AccessSpecification;
 
@@ -11,7 +12,7 @@ import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.level.material.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
-public class FluidTankDataReader
+public class FluidTankDataReader implements IFluidStackInfoProvider
 {
 	private final @NotNull ContainerData m_data;
 	private final @NotNull AccessSpecification m_accessSpec;

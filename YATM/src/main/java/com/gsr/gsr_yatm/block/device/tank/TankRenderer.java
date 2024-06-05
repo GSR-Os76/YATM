@@ -48,7 +48,7 @@ public class TankRenderer implements BlockEntityRenderer<TankBlockEntity>
 	public void render(@NotNull TankBlockEntity tank, float unknown, @NotNull PoseStack poseStack, @NotNull MultiBufferSource bufferSource, int p_112311_, int something)
 	{
 		// TODO, this, still todo this. what am i missing here
-		Fluid contained = tank.getFluid();
+		Fluid contained = null;//tank.getFluid();
 		if(contained != null) 
 		{
 //			YetAnotherTechMod.LOGGER.info("about to try to render");
