@@ -40,7 +40,7 @@ public abstract class BiomeModifierProvider implements DataProvider
 		@Override
 		public String getPrefix()
 		{
-			return "forge/biome_modifier";
+			return "forge/biome_modifier/s";
 		} // end getPrefix()
 	};
 	
@@ -91,7 +91,7 @@ public abstract class BiomeModifierProvider implements DataProvider
 	
 	public abstract void addBiomeModifiers();
 	
-	protected BiomeModifierBuilder modify(TagKey<Biome> biome, ResourceLocation location) 
+	protected BiomeModifierBuilder modify(@NotNull TagKey<Biome> biome, @NotNull ResourceLocation location) 
 	{
 		// possibly move this into run, so modifiers can potentially reference other modifiers provided later by the same provider
 		if(this.m_existingFileHelper.isEnabled() && this.m_existingFileHelper.exists(location, BiomeModifierProvider.RESOURCE_TYPE)) 

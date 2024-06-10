@@ -25,6 +25,7 @@ import com.gsr.gsr_yatm.data_generation.YATMBiomeModifierProvider;
 import com.gsr.gsr_yatm.data_generation.YATMBiomeTags;
 import com.gsr.gsr_yatm.data_generation.YATMBlockStateProvider;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
+import com.gsr.gsr_yatm.data_generation.YATMConfiguredFeatureProvider;
 import com.gsr.gsr_yatm.data_generation.YATMEntityTypeTags;
 import com.gsr.gsr_yatm.data_generation.YATMFluidTags;
 import com.gsr.gsr_yatm.data_generation.YATMItemModelProvider;
@@ -62,6 +63,7 @@ import com.gsr.gsr_yatm.utilities.YATMParticleProviders;
 import com.gsr.gsr_yatm.utilities.capability.HeatUtil;
 import com.gsr.gsr_yatm.utilities.capability.SlotUtil;
 import com.gsr.gsr_yatm.utilities.capability.current.CurrentHandler;
+import com.gsr.gsr_yatm.utilities.generic.BackedFunction;
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtil;
 
 import net.minecraft.client.gui.screens.MenuScreens;
@@ -222,22 +224,9 @@ public class YATMModEvents
 
 		event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<?>)(o) -> new YATMBiomeModifierProvider(o, event.getExistingFileHelper()));
 		event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<?>)(o) -> new YATMBiomeTags(o, event.getLookupProvider(), event.getExistingFileHelper()));
-		DataProvider.Factory<YATMBlockTags> blockTagProviderFactory = new DataProvider.Factory<YATMBlockTags>()
-		{
-			YATMBlockTags backing = null;
-
-			@Override
-			public YATMBlockTags create(PackOutput output)
-			{
-				if (backing == null)
-				{
-					backing = new YATMBlockTags(output, event.getLookupProvider(), event.getExistingFileHelper());
-				}
-				return backing;
-			} // end create()
-
-		};
+		DataProvider.Factory<YATMBlockTags> blockTagProviderFactory = new BackedFunction<PackOutput, YATMBlockTags>((o) -> new YATMBlockTags(o, event.getLookupProvider(), event.getExistingFileHelper()))::apply;
 		event.getGenerator().addProvider(event.includeServer(), blockTagProviderFactory);
+		event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<?>)(o) -> new YATMConfiguredFeatureProvider(o, event.getExistingFileHelper()));
 		event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<?>)(o) -> new YATMEntityTypeTags(o, event.getLookupProvider(), event.getExistingFileHelper()));
 		event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<?>)(o) -> new YATMFluidTags(o, event.getLookupProvider(), event.getExistingFileHelper()));
 		event.getGenerator().addProvider(event.includeServer(), (DataProvider.Factory<?>)(o) -> new YATMItemTags(o, event.getLookupProvider(), blockTagProviderFactory.create(o).contentsGetter(), event.getExistingFileHelper()));
