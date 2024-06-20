@@ -8,5 +8,5 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public interface IOccasionallySpreadableBlock
 {
-	public boolean canSpread(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos pos);
+	public boolean canSpread(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position);
 } // end interface

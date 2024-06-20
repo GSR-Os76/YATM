@@ -37,7 +37,6 @@ import com.gsr.gsr_yatm.block.plant.prismarine_crystal_moss.PrismarineCrystalMos
 import com.gsr.gsr_yatm.block.plant.ruberum.RuberumBlock;
 import com.gsr.gsr_yatm.block.plant.samaragdum.SamaragdumBlock;
 import com.gsr.gsr_yatm.block.plant.spider_plant.SpiderPlantBlock;
-import com.gsr.gsr_yatm.block.plant.tree.SelfLayeringSaplingBlock;
 import com.gsr.gsr_yatm.block.plant.tree.TappedLogBlock;
 import com.gsr.gsr_yatm.block.plant.vicum.VicumBlock;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
@@ -1400,17 +1399,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		this.getVariantBuilder(block).forAllStates((blockState) -> new ConfiguredModel[]
 		{ new ConfiguredModel(model) });
 	} // end createAllBlock()
-
-	@SuppressWarnings("unused")
-	private void createSelfLayeringSapling(SelfLayeringSaplingBlock block, Item item, String nameForModel, ResourceLocation texture) 
-	{
-		this.models().cross(nameForModel, texture).renderType(CUTOUT_RENDER_TYPE);
-		ModelFile model = new ModelFile.UncheckedModelFile(new ResourceLocation(YetAnotherTechMod.MODID, nameForModel));
-		this.getVariantBuilder(block).forAllStates((bs) -> forSelfLayeringSapling(bs, model));
-		this.itemModels().getBuilder(ForgeRegistries.ITEMS.getKey(item).toString())
-        .parent(DEFAULT_ITEM_MODEL_PARENT)
-        .texture("layer0", texture);
-	} // end createSelfLayerinSapling
 	
 	private void createPottedCross(@NotNull Block block, @NotNull ResourceLocation texture) 
 	{
@@ -2221,13 +2209,6 @@ public class YATMBlockStateProvider extends BlockStateProvider
 		Vector2i rot = rotationForDirectionFromNorth(bs.getValue(PhantasmalShelfFungiBlock.FACING));
 		return new ConfiguredModel[] {new ConfiguredModel(model, rot.x, rot.y, false)};
 	} // end forShelfFungi()
-	
-	private static ConfiguredModel[] forSelfLayeringSapling(BlockState bs, ModelFile model) 
-	{
-		Direction dir = bs.getValue(SelfLayeringSaplingBlock.FACING);
-		Vector2i rot = rotationForDirectionFromUp(dir);
-		return new ConfiguredModel[] {new ConfiguredModel(model, rot.x, rot.y, false)};
-	} // end forSelfLayeringSapling()
 	
 	public static ConfiguredModel[] forPillarAxis(BlockState bs, ModelFile model)
 	{

@@ -26,6 +26,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -71,10 +72,17 @@ public class DwarfPersimmonBlock extends ShapeBlock implements BonemealableBlock
 
 	
 	@Override
-	public InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Player player, @NotNull InteractionHand hand, BlockHitResult hitResult)
+	public @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack held, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
-		return IHarvestableBlock.use(this, level, state, position, player, hand);
-	} // end use()
+		return IHarvestableBlock.useItemOn(this, held, level, state, position);
+	} // end useItemOn()
+	
+	@Override
+	protected @NotNull InteractionResult useWithoutItem(BlockState state, Level level, BlockPos position, Player player, BlockHitResult hitResult)
+	{
+		return IHarvestableBlock.useItemOn(this, ItemStack.EMPTY, level, state, position).result();
+	} // end useWithoutItem()
+	
 	
 	
 
@@ -84,7 +92,6 @@ public class DwarfPersimmonBlock extends ShapeBlock implements BonemealableBlock
 		return level.getBlockState(position.below()).is(YATMBlockTags.DWARF_PERSIMMON_CAN_GROW_ON_KEY);
 	} // end canSurvive()
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Block formerNeighbor, @NotNull BlockPos neighborPos, boolean p_60514_)
 	{
@@ -163,15 +170,15 @@ public class DwarfPersimmonBlock extends ShapeBlock implements BonemealableBlock
 	} // end validActions()
 	
 	@Override
-	public @Nullable BlockState getResultingState(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
+	public @NotNull BlockState getResultingState(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
 	{
 		return state.setValue(this.getAgeProperty(), this.getMaxAge() - 1);
 	} // end getResultingState()
 
 	@Override
-	public @Nullable NonNullList<ItemStack> getResults(@NotNull ServerLevel level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
+	public @NotNull NonNullList<ItemStack> getResults(@NotNull ServerLevel level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
 	{
-		return NonNullList.of((ItemStack)null, level.getServer().getLootData().getLootTable(YATMHarvestLoot.DWARF_PERSIMMON).getRandomItems(new LootParams.Builder(level).create(LootContextParamSets.EMPTY)).stream().filter((i) -> i != null).toList().toArray(new ItemStack[0]));
+		return NonNullList.of((ItemStack)null, level.getServer().reloadableRegistries().getLootTable(YATMHarvestLoot.DWARF_PERSIMMON).getRandomItems(new LootParams.Builder(level).create(LootContextParamSets.EMPTY)).stream().filter((i) -> i != null).toList().toArray(new ItemStack[0]));
 	} // end getResults()
 
 } // end class

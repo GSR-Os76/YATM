@@ -14,6 +14,7 @@ import com.google.common.collect.ImmutableMap;
 import com.google.common.collect.Maps;
 import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.plant.CustomSeedCropBlock;
+import com.gsr.gsr_yatm.utilities.BlockUtil;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.Util;
@@ -133,7 +134,6 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 		return true;
 	} // end canSurvive()
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public void neighborChanged(BlockState state, Level level, BlockPos position, Block changedFrom, BlockPos changedPosition, boolean dunno)
 	{
@@ -181,7 +181,7 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 
 
 	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder)
+	protected void createBlockStateDefinition(@NotNull StateDefinition.Builder<Block, BlockState> builder)
 	{
 		PrismarineCrystalMossBlock.HAS_FACE_PROPERTIES_BY_DIRECTION.values().forEach((p) -> builder.add(p));
 		PrismarineCrystalMossBlock.AGE_PROPERTIES_BY_DIRECTION.values().forEach((p) -> builder.add(p));
@@ -189,8 +189,8 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 		builder.add(PrismarineCrystalMossBlock.WATERLOGGED);
 	} // end createBlockStateDefinition()
 	
-	@Override @Nullable
-	public BlockState getStateForPlacement(BlockPlaceContext context)
+	@Override 
+	public @Nullable BlockState getStateForPlacement(@NotNull BlockPlaceContext context)
 	{
 		Level level = context.getLevel();
 		BlockPos pos = context.getClickedPos();
@@ -236,7 +236,7 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 		return super.updateShape(blockState, direction, blockStateSecond, levelAccessor, blockPos, blockPosSecond);
 	} // end updateShape()
 
-	@SuppressWarnings("deprecation")
+	@Override
 	public FluidState getFluidState(BlockState updateShape)
 	{
 		return updateShape.getValue(PrismarineCrystalMossBlock.WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(updateShape);
@@ -258,32 +258,29 @@ public class PrismarineCrystalMossBlock extends CustomSeedCropBlock implements S
 		return this.getGrowingFacesFor(state).size() != 0;
 	} // end isRandomlyTicking()
 
-	@SuppressWarnings("deprecation")
 	@Override
-	public void randomTick(BlockState startState, ServerLevel level, BlockPos pos, RandomSource random)
+	public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos position, @NotNull RandomSource random)
 	{
-		if (!level.isAreaLoaded(pos, 1)) 
+		if (BlockUtil.isLightLevelAbove(level, position, 7) || !state.getValue(PrismarineCrystalMossBlock.WATERLOGGED)) // TODO, create a light level config, possibly for more plants make it a range speficiation, min and max tolerable brightness
 		{
 			return;
 		}
-		if (level.getRawBrightness(pos, 0) <= 7 && startState.getValue(PrismarineCrystalMossBlock.WATERLOGGED))
+		
+		for(Direction face : this.getGrowingFacesFor(state)) 
 		{
-			for(Direction face : this.getGrowingFacesFor(startState)) 
+			IntegerProperty ageProp = PrismarineCrystalMossBlock.AGE_PROPERTIES_BY_DIRECTION.get(face);
+			int startVal = state.getValue(ageProp);
+			if(startVal < this.getMaxAge()) 
 			{
-				IntegerProperty ageProp = PrismarineCrystalMossBlock.AGE_PROPERTIES_BY_DIRECTION.get(face);
-				int startVal = startState.getValue(ageProp);
-				if(startVal < this.getMaxAge()) 
+				if(ForgeHooks.onCropsGrowPre(level, position, state, random.nextInt(12) == 0))
 				{
-					if(ForgeHooks.onCropsGrowPre(level, pos, startState, random.nextInt(12) == 0))
-					{
-						level.setBlock(pos, startState.setValue(ageProp, startVal + 1), 2);
-						ForgeHooks.onCropsGrowPost(level, pos, startState);
-					}
+					level.setBlock(position, state.setValue(ageProp, startVal + 1), 2);
+					ForgeHooks.onCropsGrowPost(level, position, state);
 				}
-				else if(random.nextInt(12) == 0)
-				{
-					this.tryPropagate(level, startState, pos, random);
-				}
+			}
+			else if(random.nextInt(12) == 0)
+			{
+				this.tryPropagate(level, state, position, random);
 			}
 		}
 	} // end randomTick()

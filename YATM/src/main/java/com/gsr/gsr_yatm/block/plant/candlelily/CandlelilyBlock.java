@@ -37,7 +37,6 @@ public class CandlelilyBlock extends ShapeBlock implements IYATMPlantableBlock, 
 		return level.getBlockState(position.below()).is(YATMBlockTags.CANDLELILY_CAN_GROW_ON_KEY);
 	} // end canSurvive()
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Block formerNeighbor, @NotNull BlockPos neighborPos, boolean p_60514_)
 	{

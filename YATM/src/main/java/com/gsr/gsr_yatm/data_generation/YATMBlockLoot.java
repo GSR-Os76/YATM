@@ -20,12 +20,12 @@ import com.gsr.gsr_yatm.block.plant.folium.FoliumBlock;
 import com.gsr.gsr_yatm.block.plant.ice_coral.IceCoralBlock;
 import com.gsr.gsr_yatm.block.plant.infernalum.InfernalumBlock;
 import com.gsr.gsr_yatm.block.plant.lapum.LapumBlock;
-import com.gsr.gsr_yatm.block.plant.parasite.ShulkwartBlock;
 import com.gsr.gsr_yatm.block.plant.prismarine_crystal_moss.PrismarineCrystalMossBlock;
 import com.gsr.gsr_yatm.block.plant.ruberum.RuberumBlock;
 import com.gsr.gsr_yatm.block.plant.samaragdum.SamaragdumBlock;
+import com.gsr.gsr_yatm.block.plant.shulkwart.ShulkwartBlock;
 import com.gsr.gsr_yatm.block.plant.vicum.VicumBlock;
-import com.gsr.gsr_yatm.block.plant.vine.OnceFruitVineBodyBlock;
+import com.gsr.gsr_yatm.block.plant.vine.OnceFruitingVineBodyBlock;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
 
@@ -136,7 +136,7 @@ public class YATMBlockLoot extends VanillaBlockLoot
 		this.dropSelf(YATMBlocks.CARCASS_ROOT_ROOTED_NETHERRACK.get());
 		this.dropPottedContents(YATMBlocks.POTTED_CARCASS_ROOT_FOLIAGE.get());
 		
-		this.add(YATMBlocks.CENTIPEDE_VINE.get(), (b) -> LootTable.lootTable().withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(b).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(OnceFruitVineBodyBlock.FRUITING_STAGE, OnceFruitingPlantStages.FRUITING))).add(LootItem.lootTableItem(YATMItems.BRANCH_OF_GLARING_FRUIT.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0f))))));
+		this.add(YATMBlocks.CENTIPEDE_VINE.get(), (b) -> LootTable.lootTable().withPool(LootPool.lootPool().when(LootItemBlockStatePropertyCondition.hasBlockStateProperties(b).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(OnceFruitingVineBodyBlock.FRUITING_STAGE, OnceFruitingPlantStages.FRUITING))).add(LootItem.lootTableItem(YATMItems.BRANCH_OF_GLARING_FRUIT.get()).apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0f))))));
 		this.add(YATMBlocks.CENTIPEDE_VINE_MERISTEM.get(), BlockLootSubProvider.noDrop());
 
 		this.faceDropSelf(YATMBlocks.CONDUIT_VINES.get());
@@ -945,7 +945,7 @@ public class YATMBlockLoot extends VanillaBlockLoot
 	protected @NotNull LootTable.Builder createShulkwartTable(@NotNull Block shulkwart, @NotNull Item horn)
 	{
 		LootItemCondition.Builder dropConditions = LootItemBlockStatePropertyCondition.hasBlockStateProperties(shulkwart).setProperties(StatePropertiesPredicate.Builder.properties().hasProperty(ShulkwartBlock.AGE, 7));
-		return this.applyExplosionDecay(shulkwart, LootTable.lootTable().withPool(LootPool.lootPool().when(dropConditions).add(LootItem.lootTableItem(horn).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0f, 4.0f))).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.BLOCK_FORTUNE, 0.5714286F, 2)))));
+		return this.applyExplosionDecay(shulkwart, LootTable.lootTable().withPool(LootPool.lootPool().when(dropConditions).add(LootItem.lootTableItem(horn).apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0f, 4.0f))).apply(ApplyBonusCount.addBonusBinomialDistributionCount(Enchantments.FORTUNE, 0.5714286F, 2)))));
 	} // end CreateShulkwartTable()
 	
 	protected @NotNull LootTable.Builder createSpiderPlantTable()

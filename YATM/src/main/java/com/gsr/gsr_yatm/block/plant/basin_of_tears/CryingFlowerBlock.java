@@ -21,7 +21,7 @@ import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -72,11 +72,11 @@ public class CryingFlowerBlock extends ShapeBlock implements IAgingBlock, IYATMP
 
 	
 	
-	@SuppressWarnings("deprecation")
+	
+	
 	@Override
-	public InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult)
+	public @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack held, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
-		ItemStack held = player.getItemInHand(hand);
 		if(held.is(Items.GLASS_BOTTLE) && state.getValue(CryingFlowerBlock.NECTAR_FULL)) 
 		{
 			// cauldron in creative drains state, doesn't consume bottle, and only yield bottle water if none's already held.
@@ -97,7 +97,7 @@ public class CryingFlowerBlock extends ShapeBlock implements IAgingBlock, IYATMP
 					InventoryUtil.drop(level, position, toDrop);
 				}
 			}
-			return InteractionResult.sidedSuccess(level.isClientSide);
+			return ItemInteractionResult.sidedSuccess(level.isClientSide);
 		}
 		else if(held.canPerformAction(ToolActions.SHEARS_CARVE) // TODO, maybe another ToolAction, it just needs too semantically fit thinning
 				&& state.getValue(CryingFlowerBlock.FLOWER_COUNT) > 1 
@@ -107,7 +107,7 @@ public class CryingFlowerBlock extends ShapeBlock implements IAgingBlock, IYATMP
 			{
 				level.setBlock(position, state.setValue(CryingFlowerBlock.FLOWER_COUNT, state.getValue(CryingFlowerBlock.FLOWER_COUNT) - 1), Block.UPDATE_CLIENTS);
 			}
-			return InteractionResult.sidedSuccess(level.isClientSide);
+			return ItemInteractionResult.sidedSuccess(level.isClientSide);
 		}
 		else if(held.is(YATMItems.CRYING_PLANT_SEEDS.get())
 				&& state.getValue(CryingFlowerBlock.FLOWER_COUNT) < 4 
@@ -117,10 +117,10 @@ public class CryingFlowerBlock extends ShapeBlock implements IAgingBlock, IYATMP
 			{
 				level.setBlock(position, state.setValue(CryingFlowerBlock.FLOWER_COUNT, state.getValue(CryingFlowerBlock.FLOWER_COUNT) + 1), Block.UPDATE_CLIENTS);
 			}
-			return InteractionResult.sidedSuccess(level.isClientSide);
+			return ItemInteractionResult.sidedSuccess(level.isClientSide);
 		}
-		return super.use(state, level, position, player, hand, hitResult);
-	} // end use()
+		return super.useItemOn(held, state, level, position, player, hand, hitResult);
+	} // end useItemOn()
 	
 
 
@@ -130,7 +130,6 @@ public class CryingFlowerBlock extends ShapeBlock implements IAgingBlock, IYATMP
 		return level.getBlockState(position.below()).is(YATMBlockTags.CRYING_FLOWER_CAN_GROW_ON_KEY);
 	} // end canSurvive()
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Block formerNeighbor, @NotNull BlockPos neighborPos, boolean p_60514_)
 	{

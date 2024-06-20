@@ -22,6 +22,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.BlockGetter;
@@ -76,7 +77,7 @@ public class CarcassRootFoliageBlock extends CropBlock implements IHarvestableBl
 
 	
 	@Override
-	protected IntegerProperty getAgeProperty()
+	protected @NotNull IntegerProperty getAgeProperty()
 	{
 		return CarcassRootFoliageBlock.AGE;
 	} // end getAgeProperty()
@@ -88,12 +89,12 @@ public class CarcassRootFoliageBlock extends CropBlock implements IHarvestableBl
 	} // end getMaxAge()
 
 	@Override
-	protected void createBlockStateDefinition(Builder<Block, BlockState> builder)
+	protected void createBlockStateDefinition(@NotNull Builder<Block, BlockState> builder)
 	{
 		builder.add(CarcassRootFoliageBlock.AGE, CarcassRootFoliageBlock.CAN_SPREAD, CarcassRootFoliageBlock.HALF);
 	} // end createBlockStateDefinition()
 
-	protected BlockState getStateForAge(BlockState state, int age) 
+	protected @NotNull BlockState getStateForAge(@NotNull BlockState state, int age) 
 	{
 		return state.setValue(CarcassRootFoliageBlock.AGE, age);
 	} // end getStateForAge()
@@ -101,21 +102,29 @@ public class CarcassRootFoliageBlock extends CropBlock implements IHarvestableBl
 	
 	
 	@Override
-	protected ItemLike getBaseSeedId()
+	protected @NotNull ItemLike getBaseSeedId()
 	{
 		return this.m_seeds.get();
 	} // end getBaseSeedId()
 	
+	
+	
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
+	public @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack held, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
-		return IHarvestableBlock.use(this, level, state, position, player, hand);
-	} // end use()
+		return IHarvestableBlock.useItemOn(this, held, level, state, position);
+	} // end useItemOn()
 	
-	
+	@Override
+	protected @NotNull InteractionResult useWithoutItem(BlockState state, Level level, BlockPos position, Player player, BlockHitResult hitResult)
+	{
+		return IHarvestableBlock.useItemOn(this, ItemStack.EMPTY, level, state, position).result();
+	} // end useWithoutItem()
+
+
 
 	@Override
-	public void randomTick(BlockState state, ServerLevel level, BlockPos position, RandomSource random)
+	public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos position, @NotNull RandomSource random)
 	{
 		int goingToAge = this.getAge(state) + 1;				
 		if (goingToAge <= this.getMaxAge() && !this.isGrowthBlocked(level, state, position))
@@ -268,41 +277,28 @@ public class CarcassRootFoliageBlock extends CropBlock implements IHarvestableBl
 	} // end validActions()
 	
 	@Override
-	public boolean isHarvestable(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
+	public @NotNull BlockState getResultingState(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
 	{
-		return this.getAge(state) > 0 && this.validActions(level, state, position).contains(action);
-	} // end isHarvestable()
-
-	@Override
-	public @Nullable BlockState getResultingState(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
-	{
-		if(this.isHarvestable(level, state, position, action))
-		{
-			return state.getValue(CarcassRootFoliageBlock.HALF) == DoubleBlockHalf.LOWER ? state.setValue(this.getAgeProperty(), 0) : Blocks.AIR.defaultBlockState();
-		}
-		return null;
+		return state.getValue(CarcassRootFoliageBlock.HALF) == DoubleBlockHalf.LOWER ? state.setValue(this.getAgeProperty(), 0) : Blocks.AIR.defaultBlockState();
 	} // end getResultingState()
 
 	@Override
-	public @Nullable NonNullList<ItemStack> getResults(@NotNull ServerLevel level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
+	public @NotNull NonNullList<ItemStack> getResults(@NotNull ServerLevel level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
 	{
-		if(this.isHarvestable(level, state, position, action))
-		{
-			return NonNullList.of(ItemStack.EMPTY, this.m_harvestResults.get());
-		}
-		return null;
+		// TODO, loottable
+		return NonNullList.of(ItemStack.EMPTY, this.m_harvestResults.get());
 	} // end getResult()
 
 
 
 	@Override
-	public boolean canSpread(Level level, BlockState state, BlockPos pos)
+	public boolean canSpread(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position)
 	{
 		return state.getValue(CarcassRootFoliageBlock.CAN_SPREAD);
 	} // end canSpread
 
 	@Override
-	public @NotNull BlockState setSpreadability(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos pos, boolean isSpreadable)
+	public @NotNull BlockState setSpreadability(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, boolean isSpreadable)
 	{
 		return state.setValue(CarcassRootFoliageBlock.CAN_SPREAD, isSpreadable);
 	} // end setSpreadability()

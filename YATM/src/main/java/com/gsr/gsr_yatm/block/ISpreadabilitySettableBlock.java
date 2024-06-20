@@ -8,6 +8,6 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public interface ISpreadabilitySettableBlock
 {
-	public @NotNull BlockState setSpreadability(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos pos, boolean isSettable);
+	public @NotNull BlockState setSpreadability(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, boolean isSettable);
 	
 } // end class

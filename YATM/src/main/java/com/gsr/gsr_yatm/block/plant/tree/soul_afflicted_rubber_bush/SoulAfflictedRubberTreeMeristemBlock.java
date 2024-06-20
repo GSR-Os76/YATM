@@ -8,6 +8,7 @@ import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.utilities.RandomUtil;
 import com.gsr.gsr_yatm.utilities.YATMBlockStateProperties;
+import com.gsr.gsr_yatm.utilities.YATMTreeGrowers;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -30,7 +31,7 @@ public class SoulAfflictedRubberTreeMeristemBlock extends SaplingBlock
 	
 	public SoulAfflictedRubberTreeMeristemBlock(@NotNull Properties properties)
 	{
-		super(new SoulAfflictedRubberTreeGrower(), Objects.requireNonNull(properties));
+		super(YATMTreeGrowers.SOUL_AFFLICTED_RUBBER, Objects.requireNonNull(properties));
 		this.registerDefaultState(this.defaultBlockState().setValue(SoulAfflictedRubberTreeMeristemBlock.RECENTLY_AFFLICTED, false));
 	} // end constructor
 

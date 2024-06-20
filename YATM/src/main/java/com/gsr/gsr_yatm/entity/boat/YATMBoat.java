@@ -1,9 +1,14 @@
 package com.gsr.gsr_yatm.entity.boat;
 
+import java.util.Objects;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gsr.gsr_yatm.registry.YATMEntityTypes;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.vehicle.Boat;
 import net.minecraft.world.item.Item;
@@ -30,10 +35,10 @@ public class YATMBoat extends Boat implements IYATMBoat
 	
 	
 	@Override
-	protected void defineSynchedData()
+	protected void defineSynchedData(@NotNull SynchedEntityData.Builder builder)
 	{
-		super.defineSynchedData();
-		this.getEntityData().define(DATA_ID_TYPE, YATMBoatType.RUBBER.ordinal());
+		super.defineSynchedData(Objects.requireNonNull(builder));
+		builder.define(IYATMBoat.DATA_ID_TYPE, YATMBoatType.RUBBER.ordinal());
 	} // end defineSynchedData()
 
 

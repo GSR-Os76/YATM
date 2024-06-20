@@ -60,7 +60,6 @@ public abstract class ConfiguredFeatureProvider implements DataProvider
 	@Override
 	public CompletableFuture<?> run(@NotNull CachedOutput cachedOutput)
 	{
-		
 		this.addConfiguredFeatures();
 		return CompletableFuture.allOf(
 				this.m_configuredFeatures
@@ -68,7 +67,7 @@ public abstract class ConfiguredFeatureProvider implements DataProvider
 				.stream()
 				.map((e) -> DataProvider.saveStable(
 						cachedOutput, 
-						ConfiguredFeature.DIRECT_CODEC.encodeStart(JsonOps.INSTANCE, e.getValue()).getOrThrow(false, DataProvider.LOGGER::error),
+						ConfiguredFeature.DIRECT_CODEC.encodeStart(JsonOps.INSTANCE, e.getValue()).getOrThrow(),
 						this.m_packOutput.getOutputFolder()
 						.resolve(ConfiguredFeatureProvider.RESOURCE_TYPE.getPackType().getDirectory()) 
 						.resolve(e.getKey().getNamespace())

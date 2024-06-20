@@ -44,7 +44,6 @@ public class AerialRootsBlock extends Block implements SimpleWaterloggedBlock
 		return super.getStateForPlacement(context).setValue(AerialRootsBlock.WATERLOGGED, fluidstate.getType() == Fluids.WATER);
 	} // end getStateForPlacement()
 
-	@SuppressWarnings("deprecation")
 	public @NotNull BlockState updateShape(@NotNull BlockState state, Direction direction, BlockState stateSecond, @NotNull LevelAccessor level, @NotNull BlockPos position, BlockPos positionSecond)
 	{
 		if (state.getValue(AerialRootsBlock.WATERLOGGED))
@@ -55,7 +54,6 @@ public class AerialRootsBlock extends Block implements SimpleWaterloggedBlock
 		return super.updateShape(state, direction, stateSecond, level, position, positionSecond);
 	} // end updateShape()
 
-	@SuppressWarnings("deprecation")
 	public @NotNull FluidState getFluidState(@NotNull BlockState state)
 	{
 		return state.getValue(AerialRootsBlock.WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);

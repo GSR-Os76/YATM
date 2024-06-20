@@ -414,7 +414,9 @@ public class YATMItems
 	public static final RegistryObject<LazyArmorItem> SOUL_ADORNED_NETHERITE_CHESTPLATE = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_adorned_netherite_chestplate", () -> new LazyArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.CHESTPLATE, new Item.Properties().fireResistant()))));
 	public static final RegistryObject<LazyArmorItem> SOUL_ADORNED_NETHERITE_LEGGINGS = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_adorned_netherite_leggings", () -> new LazyArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.LEGGINGS, new Item.Properties().fireResistant()))));
 	public static final RegistryObject<LazyArmorItem> SOUL_ADORNED_NETHERITE_BOOTS = combatTabEnqueue(yatmGeTabEnqueue(ITEMS.register("soul_adorned_netherite_boots", () -> new LazyArmorItem(YATMArmorMaterials.SOUL_ADORNED_NETHERITE, ArmorItem.Type.BOOTS, new Item.Properties().fireResistant()))));
-		
+	
+	// TODO, add creative tool performs all actions, breaks everything well as possble.
+	
 	public static final RegistryObject<CreativeCurrentSourceItem> CREATIVE_CURRENT_SOURCE = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("creative_current_source", () -> new CreativeCurrentSourceItem(YATMBlocks.CREATIVE_CURRENT_SOURCE.get(), new Item.Properties().stacksTo(1)))));
 	
 	public static final RegistryObject<CreativeFluidSourceItem> CREATIVE_FLUID_SOURCE = toolTabEnqueue(yatmGeTabEnqueue(ITEMS.register("creative_fluid_source", () -> new CreativeFluidSourceItem(new Item.Properties().stacksTo(1)))));

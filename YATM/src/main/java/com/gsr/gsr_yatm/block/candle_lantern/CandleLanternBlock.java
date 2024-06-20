@@ -81,7 +81,7 @@ public class CandleLanternBlock extends AbstractCandleBlock implements SimpleWat
 			AbstractCandleBlock.extinguish(player, state, level, position);
 			return InteractionResult.sidedSuccess(level.isClientSide);
 		}
-		return super.use(state, level, position, player, hand, hitResult);		
+		return super.useItemOn(state, level, position, player, hand, hitResult);		
 	} // end user()
 	
 	

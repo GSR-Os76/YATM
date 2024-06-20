@@ -1,4 +1,4 @@
-package com.gsr.gsr_yatm.block.plant.parasite;
+package com.gsr.gsr_yatm.block.plant.shulkwart;
 
 import java.util.List;
 import java.util.Objects;
@@ -21,6 +21,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -47,7 +48,6 @@ public class ShulkwartBlock extends Block implements IAgingBlock, IHarvestableBl
 	private static final int SPORE_DISPERSION_DISTANCE = 8;
 	
 	private final Supplier<Block> m_fallenSpores;
-	/*TODO, probably unhardcode this, make into a data driven loottable if is possible*/
 	private final Supplier<ItemStack> m_harvestResults;
 	private final Supplier<Item> m_seed;
 	private final ICollisionVoxelShapeProvider m_shape;
@@ -96,10 +96,16 @@ public class ShulkwartBlock extends Block implements IAgingBlock, IHarvestableBl
 
 
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
+	public @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack held, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
-		return IHarvestableBlock.use(this, level, state, position, player, hand);
-	} // end use()
+		return IHarvestableBlock.useItemOn(this, held, level, state, position);
+	} // end useItemOn()
+	
+	@Override
+	protected @NotNull InteractionResult useWithoutItem(BlockState state, Level level, BlockPos position, Player player, BlockHitResult hitResult)
+	{
+		return IHarvestableBlock.useItemOn(this, ItemStack.EMPTY, level, state, position).result();
+	} // end useWithoutItem()
 
 
 
@@ -221,29 +227,16 @@ public class ShulkwartBlock extends Block implements IAgingBlock, IHarvestableBl
 	} // end validAction()
 
 	@Override
-	public boolean isHarvestable(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
+	public @NotNull BlockState getResultingState(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
 	{
-		return (state.getValue(this.getAgeProperty()) == this.getMaxAge()) && action != null && this.validActions(level, state, position).contains(action); // action == ToolActions.SHEARS_HARVEST;
-	} // end isHarvestable()
-
-	@Override
-	public @Nullable BlockState getResultingState(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
-	{
-		if(this.isHarvestable(level, state, position, action)) 
-		{
-			return state.setValue(this.getAgeProperty(), 1);
-		}
-		return null;
+		return state.setValue(this.getAgeProperty(), 1);
 	} // end getResultingState()
 
 	@Override
-	public @Nullable NonNullList<ItemStack> getResults(@NotNull ServerLevel level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
+	public @NotNull NonNullList<ItemStack> getResults(@NotNull ServerLevel level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
 	{
-		if(this.isHarvestable(level, state, position, action)) 
-		{
-			return NonNullList.of(ItemStack.EMPTY, this.m_harvestResults.get());
-		}
-		return null;
+		// TODO, loottable
+		return NonNullList.of(ItemStack.EMPTY, this.m_harvestResults.get());
 	} // end getResults()
 
 

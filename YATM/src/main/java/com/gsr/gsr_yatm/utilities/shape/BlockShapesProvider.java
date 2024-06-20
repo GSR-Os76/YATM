@@ -6,7 +6,6 @@ import org.jetbrains.annotations.NotNull;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.world.level.BlockGetter;
-import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -107,19 +106,6 @@ public class BlockShapesProvider
 			builder.m_occlusionShape = (bs, bg, bp) -> allShapes.getShape(bs, bg, bp, CollisionContext.empty());
 			builder.m_shape = allShapes;
 			builder.m_visualShape = allShapes;
-			return builder;
-		} // end of()
-		
-		@SuppressWarnings("deprecation")
-		public static Builder copyOf(Block copy) 
-		{
-			Builder builder = new Builder();
-			builder.m_blockSupportShape = copy::getBlockSupportShape;
-			builder.m_collisionShape = copy::getCollisionShape;
-			builder.m_interactionShape = copy::getInteractionShape;
-			builder.m_occlusionShape = copy::getOcclusionShape;
-			builder.m_shape = copy::getShape;
-			builder.m_visualShape = copy::getVisualShape;
 			return builder;
 		} // end of()
 		

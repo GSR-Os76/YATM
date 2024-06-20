@@ -89,7 +89,6 @@ public class InfernalumBlock extends ShapeBlock implements IAgingBlock, IYATMPla
 				|| (below.is(this) && this.getAge(below) == this.getMaxAge());
 	} // end canSurvive()
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Block formerNeighbor, @NotNull BlockPos neighborPos, boolean p_60514_)
 	{

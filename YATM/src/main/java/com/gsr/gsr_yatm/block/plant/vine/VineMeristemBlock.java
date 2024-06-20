@@ -1,6 +1,11 @@
 package com.gsr.gsr_yatm.block.plant.vine;
 
+import java.util.Objects;
 import java.util.function.Supplier;
+
+import org.jetbrains.annotations.NotNull;
+
+import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -12,19 +17,21 @@ import net.minecraft.world.level.block.state.BlockState;
 
 public class VineMeristemBlock extends GrowingPlantHeadBlock
 {
-	private final Supplier<Block> m_body;
+	public static final MapCodec<VineMeristemBlock> CODEC = null; // TODO, maybe eventually implement
+	private final @NotNull Supplier<Block> m_body;
+
+
 	
-	
-	public VineMeristemBlock(Properties properties, Supplier<Block> body)
+	public VineMeristemBlock(Properties properties, @NotNull Supplier<Block> body)
 	{
 		super(properties, Direction.DOWN, Block.box(2.0D, 2.0D, 2.0D, 14.0D, 16.0D, 14.0D), false, .2d);
-		this.m_body = body;
+		this.m_body = Objects.requireNonNull(body);
 	} // end constructor()
 
 	
 	
 	@Override
-	protected Block getBodyBlock()
+	protected @NotNull Block getBodyBlock()
 	{
 		return this.m_body.get();
 	} // end getBodyBlock()
@@ -48,5 +55,13 @@ public class VineMeristemBlock extends GrowingPlantHeadBlock
 	{
 		return state.isAir();
 	} // end canGrowInto()
+
+
+
+	@Override
+	protected MapCodec<? extends GrowingPlantHeadBlock> codec()
+	{
+		return VineMeristemBlock.CODEC;
+	} // end codec()
 	
 } // end class

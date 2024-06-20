@@ -15,7 +15,7 @@ import com.gsr.gsr_yatm.fluid.SolarLightFluidType;
 import com.gsr.gsr_yatm.fluid.SoulSapFluidType;
 import com.gsr.gsr_yatm.fluid.SoulSyrupFluidType;
 
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraft.world.level.pathfinder.PathType;
 import net.minecraftforge.fluids.FluidType;
 import net.minecraftforge.fluids.FluidType.Properties;
 import net.minecraftforge.registries.DeferredRegister;
@@ -34,7 +34,7 @@ public class YATMFluidTypes
 	public static final RegistryObject<EssenceOfDecayFluidType> ESSENCE_OF_DECAY = FLUID_TYPES.register("essence_of_decay", () -> new EssenceOfDecayFluidType(Properties.create().viscosity((int)(200))));
 	public static final RegistryObject<EssenceOfSoulsFluidType> ESSENCE_OF_SOULS = FLUID_TYPES.register("essence_of_souls", () -> new EssenceOfSoulsFluidType(Properties.create().viscosity((int)(200))));
 	public static final RegistryObject<LatexFluidType> LATEX = FLUID_TYPES.register("latex", () -> new LatexFluidType(Properties.create().viscosity((int)(4600))));
-	public static final RegistryObject<SiliconOxideFluidType> SILICON_OXIDE = FLUID_TYPES.register("silicon_oxide", () -> new SiliconOxideFluidType(Properties.create().viscosity((int)(24000)).pathType(BlockPathTypes.LAVA).density(2).temperature(1986).canDrown(false)));
+	public static final RegistryObject<SiliconOxideFluidType> SILICON_OXIDE = FLUID_TYPES.register("silicon_oxide", () -> new SiliconOxideFluidType(Properties.create().viscosity((int)(24000)).pathType(PathType.LAVA).density(2).temperature(1986).canDrown(false)));
 	public static final RegistryObject<SoulSapFluidType> SOUL_SAP = FLUID_TYPES.register("soul_sap", () -> new SoulSapFluidType(Properties.create().viscosity((int)(3600))));
 	public static final RegistryObject<SoulSyrupFluidType> SOUL_SYRUP = FLUID_TYPES.register("soul_syrup", () -> new SoulSyrupFluidType(Properties.create().viscosity((int)(21000))));
 

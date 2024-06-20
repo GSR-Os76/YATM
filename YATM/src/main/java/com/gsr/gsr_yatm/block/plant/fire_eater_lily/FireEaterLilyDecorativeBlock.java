@@ -30,7 +30,6 @@ public class FireEaterLilyDecorativeBlock extends ShapeBlock implements Bonemeal
 	
 	
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public void randomTick(@NotNull BlockState state, @NotNull ServerLevel level, @NotNull BlockPos position, @NotNull RandomSource random)
 	{
@@ -58,7 +57,6 @@ public class FireEaterLilyDecorativeBlock extends ShapeBlock implements Bonemeal
 		return level.getBlockState(position.below()).is(YATMBlockTags.FIRE_EATER_LILY_CAN_GROW_ON_KEY);
 	} // end canSurvive()
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Block formerNeighbor, @NotNull BlockPos neighborPos, boolean p_60514_)
 	{

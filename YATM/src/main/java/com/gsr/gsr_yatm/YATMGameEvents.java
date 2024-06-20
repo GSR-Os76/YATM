@@ -8,9 +8,9 @@ import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.item.fluid.GlassBottleItemStack;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMItems;
-import com.gsr.gsr_yatm.registry.YATMMobEffects;
 import com.gsr.gsr_yatm.registry.custom.YATMRegistries;
 import com.gsr.gsr_yatm.utilities.InventoryUtil;
+import com.gsr.gsr_yatm.utilities.YATMMobEffectHolders;
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtil;
 
 import net.minecraft.core.BlockPos;
@@ -237,9 +237,9 @@ public class YATMGameEvents
 			Collection<MobEffectInstance> effects = entity.getActiveEffects();
 			for(MobEffectInstance effect : effects) 
 			{
-				if(effect.getEffect() == YATMMobEffects.SOUL_AFFLICTION.get()) 
+				if(effect.getEffect() == YATMMobEffectHolders.SOUL_AFFLICTION) 
 				{
-					entity.removeEffect(YATMMobEffects.SOUL_AFFLICTION.get());
+					entity.removeEffect(YATMMobEffectHolders.SOUL_AFFLICTION);
 					entity.addEffect(new MobEffectInstance(
 							MobEffects.WITHER, 
 							effect.getDuration(), 

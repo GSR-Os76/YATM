@@ -21,6 +21,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -86,42 +87,49 @@ public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestable
 
 	
 
-	@SuppressWarnings("deprecation")
+	
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
+	public @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack held, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
-		InteractionResult hrvRes = IHarvestableBlock.use(this, level, state, position, player, hand);
-		if(hrvRes != InteractionResult.PASS) 
+		ItemInteractionResult hrvRes = IHarvestableBlock.useItemOn(this, held, level, state, position);
+		if(hrvRes.result() != InteractionResult.PASS) 
 		{
 			return hrvRes;
 		}
 		
-		ItemStack usdItm = player.getItemInHand(hand);
-		if (usdItm.is(YATMItemTags.SPREADS_PHANTASMAL_SHELF_FUNGI_KEY) && this.isFullyGrown(state))
+		if (held.is(YATMItemTags.SPREADS_PHANTASMAL_SHELF_FUNGI_KEY) && this.isFullyGrown(state))
 		{
 			if (!level.isClientSide)
 			{
 				this.spread((ServerLevel) level, state, position, level.random);
 				if(!player.getAbilities().instabuild) 
 				{
-					usdItm.shrink(1);			
+					held.shrink(1);			
 				}
 			}
-			return InteractionResult.sidedSuccess(!level.isClientSide);
+			return ItemInteractionResult.sidedSuccess(!level.isClientSide);
 		}
-		if (usdItm.is(YATMItemTags.GROWS_PHANTASMAL_SHELF_FUNGI_KEY) && !this.isFullyGrown(state))
+		if (held.is(YATMItemTags.GROWS_PHANTASMAL_SHELF_FUNGI_KEY) && !this.isFullyGrown(state))
 		{
 			if (!level.isClientSide)
 			{
-				this.grow((ServerLevel) level, state, position);if(!player.getAbilities().instabuild) 
+				this.grow((ServerLevel) level, state, position);
+				if(!player.getAbilities().instabuild) 
 				{
-					usdItm.shrink(1);
+					held.shrink(1);
 				}
 			}
-			return InteractionResult.sidedSuccess(!level.isClientSide);
+			return ItemInteractionResult.sidedSuccess(!level.isClientSide);
 		}
-		return super.use(state, level, position, player, hand, hitResult);
-	} // end use()
+		return super.useItemOn(held, state, level, position, player, hand, hitResult);
+	} // end useItemOn()
+	
+	@Override
+	protected @NotNull InteractionResult useWithoutItem(BlockState state, Level level, BlockPos position, Player player, BlockHitResult hitResult)
+	{
+		return IHarvestableBlock.useItemOn(this, ItemStack.EMPTY, level, state, position).result();
+	} // end useWithoutItem()
+	
 
 		
 	
@@ -242,29 +250,16 @@ public class PhantasmalShelfFungiBlock extends CropBlock implements IHarvestable
 	} // end validActions()
 
 	@Override
-	public boolean isHarvestable(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
+	public @NotNull BlockState getResultingState(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
 	{
-		return this.isFullyGrown(state) && this.validActions(level, state, position).contains(action);
-	} // end isHarvestAble()
-
-	@Override
-	public @Nullable BlockState getResultingState(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
-	{
-		if(this.isHarvestable(level, state, position, action)) 
-		{
-			return state.setValue(this.getAgeProperty(), 0);
-		}
-		return null;
+		return state.setValue(this.getAgeProperty(), 0);
 	} // end getResultingState()
 
 	@Override
-	public @Nullable NonNullList<ItemStack> getResults(@NotNull ServerLevel level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
+	public @NotNull NonNullList<ItemStack> getResults(@NotNull ServerLevel level, @NotNull BlockState state, @NotNull BlockPos position, @Nullable ToolAction action)
 	{
-		if(this.isHarvestable(level, state, position, action)) 
-		{
-			return NonNullList.of(ItemStack.EMPTY, this.m_harvestResults.get());
-		}
-		return null;
+		// TODO, loottable
+		return NonNullList.of(ItemStack.EMPTY, this.m_harvestResults.get());
 	} // end getResults()
 	
 } // end class

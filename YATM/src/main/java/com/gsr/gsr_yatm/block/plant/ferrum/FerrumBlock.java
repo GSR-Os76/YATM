@@ -23,6 +23,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -93,10 +94,16 @@ public class FerrumBlock extends ShapeBlock implements IAgingBlock, IHarvestable
 	
 	
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
+	public @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack held, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
-		return IHarvestableBlock.use(this, level, state, position, player, hand);
-	} // end use()
+		return IHarvestableBlock.useItemOn(this, held, level, state, position);
+	} // end useItemOn()
+	
+	@Override
+	protected @NotNull InteractionResult useWithoutItem(BlockState state, Level level, BlockPos position, Player player, BlockHitResult hitResult)
+	{
+		return IHarvestableBlock.useItemOn(this, ItemStack.EMPTY, level, state, position).result();
+	} // end useWithoutItem()
 
 
 
@@ -106,7 +113,6 @@ public class FerrumBlock extends ShapeBlock implements IAgingBlock, IHarvestable
 		return level.getBlockState(position.below()).is(YATMBlockTags.FERRUM_CAN_GROW_ON_KEY);
 	} // end canSurvive()
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Block formerNeighbor, @NotNull BlockPos neighborPos, boolean p_60514_)
 	{
@@ -176,6 +182,7 @@ public class FerrumBlock extends ShapeBlock implements IAgingBlock, IHarvestable
 	
 	protected @NotNull ItemStack getHarvestResult()
 	{
+		// TODO, loottable
 		return new ItemStack(Items.IRON_NUGGET, RandomSource.create().nextIntBetweenInclusive(YATMConfigs.FERRUM_MIN_FRUIT_COUNT.get(), YATMConfigs.FERRUM_MAX_FRUIT_COUNT.get()));
 	} // end getHarvestResult()
 

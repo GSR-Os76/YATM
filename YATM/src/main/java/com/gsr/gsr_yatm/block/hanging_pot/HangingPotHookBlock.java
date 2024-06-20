@@ -169,7 +169,7 @@ public class HangingPotHookBlock extends Block implements EntityBlock
 				// if could fill with held, but's already filled, yield
 				if(!toPlaceIsAir && !potIsEmpty) 
 				{
-					return super.use(state, level, position, player, hand, hitResult);
+					return super.useItemOn(state, level, position, player, hand, hitResult);
 				}
 				// remove pot if not filling with held and it is empty
 				else if (toPlaceIsAir && potIsEmpty)
@@ -227,7 +227,7 @@ public class HangingPotHookBlock extends Block implements EntityBlock
 				}
 			}
 		}
-		return super.use(state, level, position, player, hand, hitResult);
+		return super.useItemOn(state, level, position, player, hand, hitResult);
 	} // end use()
 
 	

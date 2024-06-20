@@ -166,13 +166,13 @@ public class CarcassRootRootBlock extends Block implements BonemealableBlock, IO
 	
 	
 	@Override
-	public boolean canSpread(Level level, BlockState state, BlockPos pos)
+	public boolean canSpread(Level level, BlockState state, BlockPos position)
 	{
 		return state.getValue(CarcassRootFoliageBlock.CAN_SPREAD);
 	} // end canSpread
 
 	@Override
-	public @NotNull BlockState setSpreadability(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos pos, boolean isSpreadable)
+	public @NotNull BlockState setSpreadability(@NotNull Level level, @NotNull BlockState state, @NotNull BlockPos position, boolean isSpreadable)
 	{
 		return state.setValue(CarcassRootFoliageBlock.CAN_SPREAD, isSpreadable);
 	} // end setSpreadability()

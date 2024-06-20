@@ -91,7 +91,6 @@ public class FoliumBlock extends ShapeBlock implements IAgingBlock, IYATMPlantab
 						&& (below.getValue(FoliumBlock.AGE) == state.getValue(FoliumBlock.AGE)));
 	} // end canSurvive()
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Block formerNeighbor, @NotNull BlockPos neighborPos, boolean p_60514_)
 	{

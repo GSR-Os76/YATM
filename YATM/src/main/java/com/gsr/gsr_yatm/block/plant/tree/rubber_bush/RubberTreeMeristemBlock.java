@@ -8,6 +8,7 @@ import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.block.plant.tree.soul_afflicted_rubber_bush.SoulAfflictedRubberTreeMeristemBlock;
 import com.gsr.gsr_yatm.data_generation.YATMBlockTags;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
+import com.gsr.gsr_yatm.utilities.YATMTreeGrowers;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
@@ -23,7 +24,7 @@ public class RubberTreeMeristemBlock extends SaplingBlock
 
 	public RubberTreeMeristemBlock(@NotNull Properties properties)
 	{
-		super(new RubberTreeGrower(), Objects.requireNonNull(properties));
+		super(YATMTreeGrowers.RUBBER, Objects.requireNonNull(properties));
 	} // end constructor
 
 	

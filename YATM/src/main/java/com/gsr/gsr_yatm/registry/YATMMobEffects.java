@@ -26,7 +26,7 @@ public class YATMMobEffects
 
 	public static final RegistryObject<InstantTeleportationMobEffect> CHORUS_INSTANT_TELEPORTATION = MOB_EFFECTS.register("chorus_instant_teleportation", () -> new InstantTeleportationMobEffect(MobEffectCategory.NEUTRAL, 0x78_59_78_FF, SoundEvents.CHORUS_FRUIT_TELEPORT));
 	public static final RegistryObject<InstantTeleportationMobEffect> ENDER_INSTANT_TELEPORTATION = MOB_EFFECTS.register("ender_instant_teleportation", () -> new InstantTeleportationMobEffect(MobEffectCategory.NEUTRAL, 0x10_5E_51_FF, SoundEvents.SHULKER_TELEPORT));
-	public static final RegistryObject<MoltFatigueMobEffect> MOLT_FATIGUE = MOB_EFFECTS.register("molt_fatigue", () -> (MoltFatigueMobEffect)(new MoltFatigueMobEffect(MobEffectCategory.HARMFUL, 0xC4_C3_AF_FF).addAttributeModifier(Attributes.ARMOR, YATMMobEffects.FRESH_ARMOR_MODIFIER_UUID.toString(), -3.0D, AttributeModifier.Operation.ADDITION)));
+	public static final RegistryObject<MoltFatigueMobEffect> MOLT_FATIGUE = MOB_EFFECTS.register("molt_fatigue", () -> (MoltFatigueMobEffect)(new MoltFatigueMobEffect(MobEffectCategory.HARMFUL, 0xC4_C3_AF_FF).addAttributeModifier(Attributes.ARMOR, YATMMobEffects.FRESH_ARMOR_MODIFIER_UUID.toString(), -3.0D, AttributeModifier.Operation.ADD_VALUE)));
 	public static final RegistryObject<SoulAfflictionMobEffect> SOUL_AFFLICTION = MOB_EFFECTS.register("soul_affliction", () -> new SoulAfflictionMobEffect(MobEffectCategory.NEUTRAL, 0x39_EA_F0_FF));
 
 } // end class

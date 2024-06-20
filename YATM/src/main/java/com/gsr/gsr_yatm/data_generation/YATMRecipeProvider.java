@@ -1,7 +1,7 @@
 package com.gsr.gsr_yatm.data_generation;
 
 import java.util.Objects;
-import java.util.Optional;
+import java.util.concurrent.CompletableFuture;
 import java.util.function.BiConsumer;
 import org.apache.logging.log4j.util.TriConsumer;
 import org.jetbrains.annotations.NotNull;
@@ -27,9 +27,8 @@ import com.gsr.gsr_yatm.registry.YATMItems;
 import com.gsr.gsr_yatm.utilities.contract.Contract;
 import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
-import net.minecraft.advancements.CriteriaTriggers;
 import net.minecraft.advancements.Criterion;
-import net.minecraft.advancements.critereon.EnterBlockTrigger;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.RecipeCategory;
 import net.minecraft.data.recipes.RecipeOutput;
@@ -55,9 +54,9 @@ import net.minecraftforge.fluids.FluidStack;
 public class YATMRecipeProvider extends RecipeProvider
 {
 	// TODO, investigate melting and spinning recipes unknown category log messages.
-	public YATMRecipeProvider(@NotNull PackOutput output)
+	public YATMRecipeProvider(@NotNull PackOutput output, CompletableFuture<HolderLookup.Provider> registries)
 	{
-		super(Objects.requireNonNull(output));
+		super(Objects.requireNonNull(output), registries);
 	} // end constructor
 	
 	
@@ -201,7 +200,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		
 		this.addSign(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_SIGN.get(), YetAnotherTechMod.MODID + ":rubber_sign_from_shaped_crafting");
 		this.addHangingSign(output, YATMItems.STRIPPED_RUBBER_LOG.get(), YATMItems.RUBBER_HANGING_SIGN.get(), YetAnotherTechMod.MODID + ":rubber_hanging_sign_from_shaped_crafting");
-		this.addBoat(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_BOAT.get(), "rubber_boat_from_shaped_crafting");
+		this.addBoat(output, YATMItemTags.RUBBER_TREE_PLANKS_KEY, YATMItems.RUBBER_BOAT.get());
 		super.chestBoat(output, YATMItems.RUBBER_CHEST_BOAT.get(), YATMItems.RUBBER_BOAT.get());
 
 	} // end addRubberWoodCoreRecipes()
@@ -228,7 +227,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		
 		this.addSign(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_SIGN.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_sign_from_shaped_crafting");
 		this.addHangingSign(output, YATMItems.SOUL_AFFLICTED_STRIPPED_RUBBER_LOG.get(), YATMItems.SOUL_AFFLICTED_RUBBER_HANGING_SIGN.get(), YetAnotherTechMod.MODID + ":soul_afflicted_rubber_hanging_sign_from_shaped_crafting");
-		this.addBoat(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_BOAT.get(), "soul_afflicted_rubber_boat_from_shaped_crafting");
+		this.addBoat(output, YATMItemTags.SOUL_AFFLICTED_RUBBER_TREE_PLANKS_KEY, YATMItems.SOUL_AFFLICTED_RUBBER_BOAT.get());
 		super.chestBoat(output, YATMItems.SOUL_AFFLICTED_RUBBER_CHEST_BOAT.get(), YATMItems.SOUL_AFFLICTED_RUBBER_BOAT.get());
 
 	} // end addSoulAfflictedRubberWoodCoreRecipes()
@@ -803,7 +802,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.save(output);
 	} // end addHangingSign()
 	
-	protected void addBoat(@NotNull RecipeOutput output, TagKey<Item> planks, Item boat, String key) 
+	protected void addBoat(@NotNull RecipeOutput output, TagKey<Item> planks, Item boat) 
 	{
 		ShapedRecipeBuilder.shaped(RecipeCategory.TRANSPORTATION, boat)
 		.group("boat")
@@ -811,7 +810,7 @@ public class YATMRecipeProvider extends RecipeProvider
 		.pattern("P P")
 		.pattern("PPP")
 		.define('P', planks)
-		.unlockedBy("in_water", CriteriaTriggers.ENTER_BLOCK.createCriterion(new EnterBlockTrigger.TriggerInstance(Optional.empty(), Blocks.WATER, Optional.empty())))
+		.unlockedBy("in_water", RecipeProvider.insideOf(Blocks.WATER))
 		.save(output);
 	} // end addBoat()
 	

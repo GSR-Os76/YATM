@@ -78,8 +78,8 @@ public class IceCoralBlock extends Block implements IAgingBlock, IYATMPlantableB
 	{
 		return super.getStateForPlacement(context).setValue(IceCoralBlock.WATERLOGGED, context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER);
 	} // end getStateForPlacement()
-
-	@SuppressWarnings("deprecation")
+	
+	@Override
 	public @NotNull BlockState updateShape(@NotNull BlockState state, Direction direction, BlockState stateSecond, @NotNull LevelAccessor level, @NotNull BlockPos position, BlockPos positionSecond)
 	{
 		if (state.getValue(IceCoralBlock.WATERLOGGED))
@@ -89,8 +89,8 @@ public class IceCoralBlock extends Block implements IAgingBlock, IYATMPlantableB
 
 		return super.updateShape(state, direction, stateSecond, level, position, positionSecond);
 	} // end updateShape()
-
-	@SuppressWarnings("deprecation")
+	
+	@Override
 	public @NotNull FluidState getFluidState(@NotNull BlockState state)
 	{
 		return state.getValue(IceCoralBlock.WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
@@ -107,7 +107,6 @@ public class IceCoralBlock extends Block implements IAgingBlock, IYATMPlantableB
 		return level.getBlockState(position.below()).is(YATMBlockTags.ICE_CORAL_CAN_GROW_ON_KEY);
 	} // end canSurvive()
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Block formerNeighbor, @NotNull BlockPos neighborPos, boolean p_60514_)
 	{
