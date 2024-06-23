@@ -39,6 +39,7 @@ import com.gsr.gsr_yatm.item.armor.LazyArmorItem;
 import com.gsr.gsr_yatm.item.tool.PoweredToolScreen;
 import com.gsr.gsr_yatm.recipe.bioreaction.CompostableBioreactionRecipeProvider;
 import com.gsr.gsr_yatm.recipe.smelting.WrappedSmeltingRecipeProvider;
+import com.gsr.gsr_yatm.registry.YATMArmorMaterials;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 import com.gsr.gsr_yatm.registry.YATMBlocks;
 import com.gsr.gsr_yatm.registry.YATMCreativeModeTabs;
@@ -96,6 +97,7 @@ public class YATMModEvents
 	public static final ResourceLocation CURRENT_STORED_ITEM_PROPERTY = new ResourceLocation(YetAnotherTechMod.MODID, "power");
 	public static void register(IEventBus modEventBus)
 	{
+		YATMArmorMaterials.ARMOR_MATERIALS.register(modEventBus);
 		YATMBlocks.BLOCKS.register(modEventBus);
 		YATMBlockEntityTypes.BLOCK_ENTITY_TYPES.register(modEventBus);		
 		YATMEntityTypes.ENTITY_TYPES.register(modEventBus);

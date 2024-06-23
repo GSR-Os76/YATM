@@ -258,29 +258,25 @@ public class YATMConfigs
 	
 	public static final ConfigValue<Integer> DECAY_NETHERITE_ITEM_DAMAGE_REDUCTION_FACTOR = YATMConfigs.s_builder.pop().pop().pop().push("Armor: ").push("Decay Netherite: ").comment("The amount of damage removed from the armor piece's itemstack per unit of wither damage that the wearer recieves.").define("item_damage_reduction_factor", 9);
 	public static final ConfigValue<Double> DECAY_NETHERITE_NETHERITE_RELATIVE_DEFENSE_FACTOR = YATMConfigs.s_builder.netheriteRelativeDefenceFactor(0.89d);
-	public static final ConfigValue<Double> DECAY_NETHERITE_NETHERITE_RELATIVE_DURABILITY_FACTOR = YATMConfigs.s_builder.netheriteRelativeDurabilityFactor(0.5d);
 	public static final ConfigValue<Double> DECAY_NETHERITE_NETHERITE_RELATIVE_ENCHANTMENT_FACTOR = YATMConfigs.s_builder.netheriteRelativeEnchantmentFactor(1.0d);
 	public static final ConfigValue<Double> DECAY_NETHERITE_NETHERITE_RELATIVE_KNOCKBACK_RESISTANCE_FACTOR = YATMConfigs.s_builder.netheriteRelativeKnockbackResistanceFactor(1.0d);
 	public static final ConfigValue<Double> DECAY_NETHERITE_NETHERITE_RELATIVE_TOUGHNESS_FACTOR = YATMConfigs.s_builder.netheriteRelativeToughnessFactor(0.72d);
 	
 	// TODO, maybe add the word ARMOR in to be clearer
-	public static final ConfigValue<Integer> FOLIAR_STEEL_BOOTS_DEFENSE = YATMConfigs.s_builder.pop().push("Foliar Steel: ").comment("The boot's defense.").define("boots_defense", 2);
-	public static final ConfigValue<Integer> FOLIAR_STEEL_BOOTS_DURABILITY = YATMConfigs.s_builder.comment("The boot's durability.").define("boots_durability", 13 * 27);
-	public static final ConfigValue<Boolean> FOLIAR_STEEL_CAN_BREAK = YATMConfigs.s_builder.comment("Defines if the armor will break from incoming damage if it would deplete the durability, otherwise the armor simply stops providing bonuses until recharged.").define("can_break", false);
-	public static final ConfigValue<Integer> FOLIAR_STEEL_CHESTPLATE_DEFENSE = YATMConfigs.s_builder.comment("The chestplate's defense.").define("chestplate_defense", 6);
-	public static final ConfigValue<Integer> FOLIAR_STEEL_CHESTPLATE_DURABILITY = YATMConfigs.s_builder.comment("The chestplate's durability.").define("chestplate_durability", 16 * 27);
-	public static final ConfigValue<Integer> FOLIAR_STEEL_CU_PER_DURABILITY = YATMConfigs.s_builder.comment("The current said to be stored in each item per unit of (durability minus one).").defineInRange("chestplate_durability", 1, 1, Integer.MAX_VALUE);
-	public static final ConfigValue<Integer> FOLIAR_STEEL_ENCHANTMENT_VALUE = YATMConfigs.s_builder.comment("The enchantment value.").define("enchantment_value", 15);
-	public static final ConfigValue<Integer> FOLIAR_STEEL_HELMET_DEFENSE = YATMConfigs.s_builder.comment("The helmet's defense.").define("helmet_defense", 5);
-	public static final ConfigValue<Integer> FOLIAR_STEEL_HELMET_DURABILITY = YATMConfigs.s_builder.comment("The helmet's durability.").define("helmet_durability", 11 * 27);
-	public static final ConfigValue<Double> FOLIAR_STEEL_KNOCKBACK_RESISTANCE = YATMConfigs.s_builder.comment("The knockback resistance.").define("knockback_resistance", 0.1d);
-	public static final ConfigValue<Integer> FOLIAR_STEEL_LEGGINGS_DEFENSE = YATMConfigs.s_builder.comment("The legging's defense.").define("leggings_defense", 2);
-	public static final ConfigValue<Integer> FOLIAR_STEEL_LEGGINGS_DURABILITY = YATMConfigs.s_builder.comment("The legging's durability.").define("leggings_durability", 15 * 27);
-	public static final ConfigValue<Double> FOLIAR_STEEL_TOUGHNESS = YATMConfigs.s_builder.comment("The armor's toughness.").define("toughness", 3d);
+	
+	public static final ConfigValue<Integer> FOLIAR_STEEL_ARMOR_BODY_DEFENSE = YATMConfigs.s_builder.pop().push("Foliar Steel: ").comment("The body's defense.").define("body_defense", 8);
+	public static final ConfigValue<Integer> FOLIAR_STEEL_ARMOR_BOOTS_DEFENSE = YATMConfigs.s_builder.comment("The boot's defense.").define("boots_defense", 2);
+	public static final ConfigValue<Boolean> FOLIAR_STEEL_ARMOR_CAN_BREAK = YATMConfigs.s_builder.comment("Defines if the armor will break from incoming damage if it would deplete the durability, otherwise the armor simply stops providing bonuses until recharged.").define("can_break", false);
+	public static final ConfigValue<Integer> FOLIAR_STEEL_ARMOR_CHESTPLATE_DEFENSE = YATMConfigs.s_builder.comment("The chestplate's defense.").define("chestplate_defense", 7);
+	public static final ConfigValue<Integer> FOLIAR_STEEL_ARMOR_CU_PER_DURABILITY = YATMConfigs.s_builder.comment("The current said to be stored in each item per unit of (durability minus one).").defineInRange("chestplate_durability", 1, 1, Integer.MAX_VALUE);
+	public static final ConfigValue<Integer> FOLIAR_STEEL_ARMOR_ENCHANTMENT_VALUE = YATMConfigs.s_builder.comment("The enchantment value.").define("enchantment_value", 15);
+	public static final ConfigValue<Integer> FOLIAR_STEEL_ARMOR_HELMET_DEFENSE = YATMConfigs.s_builder.comment("The helmet's defense.").define("helmet_defense", 3);
+	public static final ConfigValue<Float> FOLIAR_STEEL_ARMOR_KNOCKBACK_RESISTANCE = YATMConfigs.s_builder.comment("The knockback resistance.").define("knockback_resistance", 0.1f);
+	public static final ConfigValue<Integer> FOLIAR_STEEL_ARMOR_LEGGINGS_DEFENSE = YATMConfigs.s_builder.comment("The legging's defense.").define("leggings_defense", 5);
+	public static final ConfigValue<Float> FOLIAR_STEEL_ARMOR_TOUGHNESS = YATMConfigs.s_builder.comment("The armor's toughness.").define("toughness", 3f);
 	
 	public static final ConfigValue<Integer> SOUL_ADORNED_NETHERITE_ITEM_DAMAGE_REDUCTION = YATMConfigs.s_builder.pop().push("Soul Adorned Netherite: ").comment("The amount of damage removed from the armor piece's itemstack each repair tick.").define("item_damage_reduction_factor", 1);
 	public static final ConfigValue<Double> SOUL_ADORNED_NETHERITE_NETHERITE_RELATIVE_DEFENSE_FACTOR = YATMConfigs.s_builder.netheriteRelativeDefenceFactor(0.625d);
-	public static final ConfigValue<Double> SOUL_ADORNED_NETHERITE_NETHERITE_RELATIVE_DURABILITY_FACTOR = YATMConfigs.s_builder.netheriteRelativeDurabilityFactor(1.6d);
 	public static final ConfigValue<Double> SOUL_ADORNED_NETHERITE_NETHERITE_RELATIVE_ENCHANTMENT_FACTOR = YATMConfigs.s_builder.netheriteRelativeEnchantmentFactor(2.0d);
 	public static final ConfigValue<Double> SOUL_ADORNED_NETHERITE_NETHERITE_RELATIVE_KNOCKBACK_RESISTANCE_FACTOR = YATMConfigs.s_builder.netheriteRelativeKnockbackResistanceFactor(1.0d);
 	public static final ConfigValue<Double> SOUL_ADORNED_NETHERITE_NETHERITE_RELATIVE_TOUGHNESS_FACTOR = YATMConfigs.s_builder.netheriteRelativeToughnessFactor(1.33d);

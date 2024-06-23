@@ -218,6 +218,17 @@ public class ConfigBuilderHelper extends ForgeConfigSpec.Builder
 		return this.comment("The proportion of toughness the armor has relative to Netherite armor.").define("netherite_relative_toughness_factor", f);
 	} // end netheriteRelativeToughnessFactor()
 	
+	public @NotNull ConfigValue<Float> netheriteRelativeKnockbackResistanceFactor(float f)
+	{
+		return this.comment("The proportion of knockback resistance which the armor has relative to Netherite armor.").define("netherite_relative_knockback_resistance_factor", f);
+	} // end netheriteRelativeKnockbackResistanceFactor()
+	
+	public @NotNull ConfigValue<Float> netheriteRelativeToughnessFactor(float f)
+	{
+		return this.comment("The proportion of toughness the armor has relative to Netherite armor.").define("netherite_relative_toughness_factor", f);
+	} // end netheriteRelativeToughnessFactor()
+	
+	
 	
 	
 	public @NotNull ConfigValue<Integer> outputComponentRecheckPeriod(@NotNull String name, @NotNegative int period)

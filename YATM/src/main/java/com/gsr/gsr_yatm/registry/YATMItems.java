@@ -5,7 +5,6 @@ import org.jetbrains.annotations.NotNull;
 import com.gsr.gsr_yatm.YATMConfigs;
 import com.gsr.gsr_yatm.YATMFoods;
 import com.gsr.gsr_yatm.YetAnotherTechMod;
-import com.gsr.gsr_yatm.armor.YATMArmorMaterials;
 import com.gsr.gsr_yatm.block.fuel.FuelBlockItem;
 import com.gsr.gsr_yatm.entity.boat.YATMBoatType;
 import com.gsr.gsr_yatm.item.BonusType;

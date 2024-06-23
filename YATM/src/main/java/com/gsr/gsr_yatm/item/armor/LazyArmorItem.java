@@ -6,7 +6,7 @@ import java.util.UUID;
 import org.jetbrains.annotations.NotNull;
 
 import com.google.common.collect.ImmutableMultimap;
-import com.gsr.gsr_yatm.armor.YATMArmorMaterials;
+import com.gsr.gsr_yatm.registry.YATMArmorMaterials;
 
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
