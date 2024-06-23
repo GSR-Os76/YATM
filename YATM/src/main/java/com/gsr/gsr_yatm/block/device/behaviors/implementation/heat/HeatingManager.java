@@ -19,6 +19,7 @@ import com.gsr.gsr_yatm.utilities.generic.Property;
 import com.gsr.gsr_yatm.utilities.network.container_data.implementation.PropertyContainerData;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
@@ -120,7 +121,7 @@ public class HeatingManager implements ISerializableBehavior, ITickableBehavior
 	
 
 	@Override
-	public @Nullable CompoundTag serializeNBT()
+	public @Nullable CompoundTag serializeNBT(@NotNull HolderLookup.Provider registryAccess)
 	{
 		if (this.m_burnProgress > 0 && this.m_burnTime > 0)
 		{
@@ -134,7 +135,7 @@ public class HeatingManager implements ISerializableBehavior, ITickableBehavior
 	} // serializeNBT() 
 
 	@Override
-	public void deserializeNBT(@NotNull CompoundTag tag)
+	public void deserializeNBT(@NotNull HolderLookup.Provider registryAccess, @NotNull CompoundTag tag)
 	{
 		if (tag.contains(HeatingManager.BURN_TIME_ELAPSED_TAG_NAME) && tag.contains(HeatingManager.BURN_TIME_INITIAL_TAG_NAME)&& tag.contains(HeatingManager.BURN_TEMP_TAG_NAME))
 		{

@@ -17,7 +17,9 @@ import com.gsr.gsr_yatm.utilities.generic.Property;
 import com.gsr.gsr_yatm.utilities.network.container_data.implementation.PropertyContainerData;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -141,27 +143,27 @@ public class FillTankManager implements ISerializableBehavior, ITickableBehavior
 	
 
 	@Override
-	public @Nullable CompoundTag serializeNBT()
+	public @Nullable CompoundTag serializeNBT(@NotNull HolderLookup.Provider registryAccess)
 	{
 		if(this.m_initial > 0 && this.m_buffer.getFluidAmount() > 0 && this.m_initialItemStack != null) 
 		{
 			CompoundTag tag = new CompoundTag();
 			tag.put(FillTankManager.BUFFER_TAG_NAME, this.m_buffer.writeToNBT(new CompoundTag()));
 			tag.putInt(FillTankManager.INITIAL_TAG_NAME, this.m_initial);
-			tag.put(FillTankManager.STACK_TAG_NAME, this.m_initialItemStack.save(new CompoundTag()));
+			tag.put(FillTankManager.STACK_TAG_NAME, ItemStack.CODEC.encodeStart(NbtOps.INSTANCE, this.m_initialItemStack).getOrThrow());
 			return tag;
 		}
 		return null;
 	} // end serializeNBT()
 
 	@Override
-	public void deserializeNBT(@NotNull CompoundTag tag)
+	public void deserializeNBT(@NotNull HolderLookup.Provider registryAccess, @NotNull CompoundTag tag)
 	{
 		if (tag.contains(FillTankManager.BUFFER_TAG_NAME) && tag.contains(FillTankManager.INITIAL_TAG_NAME) && tag.contains(FillTankManager.STACK_TAG_NAME))
 		{
 			this.m_buffer.readFromNBT(tag.getCompound(FillTankManager.BUFFER_TAG_NAME));
 			this.m_initial = tag.getInt(FillTankManager.INITIAL_TAG_NAME);
-			this.m_initialItemStack = ItemStack.of(tag.getCompound(FillTankManager.STACK_TAG_NAME));
+			this.m_initialItemStack = ItemStack.CODEC.decode(NbtOps.INSTANCE, tag.getCompound(FillTankManager.STACK_TAG_NAME)).getOrThrow().getFirst();
 		}
 	} // end deserializeNBT()
 	

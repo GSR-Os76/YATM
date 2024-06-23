@@ -15,6 +15,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.stats.Stats;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
+import net.minecraft.world.ItemInteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.ItemStack;
@@ -22,12 +23,12 @@ import net.minecraft.world.level.BlockGetter;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelReader;
 import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.EntityBlock;
 import net.minecraft.world.level.block.FlowerPotBlock;
 import net.minecraft.world.level.block.entity.BlockEntity;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.phys.BlockHitResult;
+import net.minecraft.world.phys.HitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
@@ -45,20 +46,18 @@ public class HangingPotHookBlock extends Block implements EntityBlock
 
 	
 	
-	@SuppressWarnings("deprecation")
 	@Override
-	public ItemStack getCloneItemStack(BlockGetter blockGetter, BlockPos position, BlockState state) 
+	public ItemStack getCloneItemStack(BlockState state, HitResult hitResult, @NotNull LevelReader level, @NotNull BlockPos position, Player player) 
 	{
-		BlockEntity be = blockGetter.getBlockEntity(position);
-		if (be != null && be instanceof HangingPotHookBlockEntity hphbe)
+		if (level.getBlockEntity(position) instanceof HangingPotHookBlockEntity hphbe)
 		{
 			FlowerPotBlock pot = hphbe.getPot();
 			if (pot != null)
 			{
-				return pot.getCloneItemStack(blockGetter, position, state);
+				return pot.getCloneItemStack(level, position, state);
 			}
 		}
-		return super.getCloneItemStack(blockGetter, position, state);
+		return super.getCloneItemStack(state, hitResult, level, position, player);
 	} // end getCloneItemStack()
 	
 	
@@ -69,7 +68,6 @@ public class HangingPotHookBlock extends Block implements EntityBlock
 		return Block.canSupportCenter(level, position.above(), Direction.DOWN);
 	} // end canSurvive()
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Block formerNeighbor, @NotNull BlockPos neighborPos, boolean p_60514_)
 	{
@@ -82,7 +80,6 @@ public class HangingPotHookBlock extends Block implements EntityBlock
 	
 	
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public VoxelShape getCollisionShape(BlockState state, BlockGetter blockGetter, BlockPos position, CollisionContext collisionContext)
 	{
@@ -115,7 +112,6 @@ public class HangingPotHookBlock extends Block implements EntityBlock
 
 
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public void onRemove(BlockState fromState, Level level, BlockPos position, BlockState toState, boolean p_60519_)
 	{
@@ -137,15 +133,14 @@ public class HangingPotHookBlock extends Block implements EntityBlock
 
 	
 	
-	@SuppressWarnings("deprecation")
+	
+	
 	@Override
-	public InteractionResult use(BlockState state, Level level, BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
+	public @NotNull ItemInteractionResult useItemOn(@NotNull ItemStack held, @NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, Player player, InteractionHand hand, BlockHitResult hitResult)
 	{
-		BlockEntity be = level.getBlockEntity(position);
-		if (be != null && be instanceof HangingPotHookBlockEntity hphbe)
+		if (level.getBlockEntity(position) instanceof HangingPotHookBlockEntity hphbe)
 		{
 			FlowerPotBlock pot = hphbe.getPot();
-			ItemStack held = player.getItemInHand(hand);
 			Block heldBlock = held.getItem() instanceof BlockItem bi ? bi.getBlock() : null;
 
 			// set pot on to hook
@@ -157,22 +152,22 @@ public class HangingPotHookBlock extends Block implements EntityBlock
 				{
 					held.shrink(1);
 				}
-				return InteractionResult.sidedSuccess(level.isClientSide);
+				return ItemInteractionResult.sidedSuccess(level.isClientSide);
 			}
 			// set plant into the pot, or remove plant from pot, or remove pot
 			else if (pot != null)
 			{
-				Block toPlaceMaybe = pot.getEmptyPot().getFullPotsView().getOrDefault(ForgeRegistries.BLOCKS.getKey(heldBlock), ForgeRegistries.BLOCKS.getDelegateOrThrow(Blocks.AIR)).get();
-				boolean toPlaceIsAir = toPlaceMaybe == Blocks.AIR;
-				ItemStack potContent = new ItemStack(pot.getContent());
+				Block toPlaceMaybe/*fullPotToPlace*/ = pot.getEmptyPot().getFullPotsView().getOrDefault(ForgeRegistries.BLOCKS.getKey(heldBlock), () -> (Block)null).get();
+				boolean nothingToPlace = toPlaceMaybe == null;
+				ItemStack potContent = new ItemStack(pot.getPotted());
 				boolean potIsEmpty = potContent.isEmpty();
 				// if could fill with held, but's already filled, yield
-				if(!toPlaceIsAir && !potIsEmpty) 
+				if(!nothingToPlace && !potIsEmpty) 
 				{
-					return super.useItemOn(state, level, position, player, hand, hitResult);
+					return super.useItemOn(held, state, level, position, player, hand, hitResult);
 				}
 				// remove pot if not filling with held and it is empty
-				else if (toPlaceIsAir && potIsEmpty)
+				else if (nothingToPlace && potIsEmpty) // TODO, theoretically unattainable route
 				{
 					ItemStack toDrop = new ItemStack(pot);
 					if (held.isEmpty())
@@ -185,7 +180,7 @@ public class HangingPotHookBlock extends Block implements EntityBlock
 					}
 					hphbe.setPot(null);
 					level.playSound(player, position, SoundEvents.CHAIN_BREAK, SoundSource.BLOCKS);
-					return InteractionResult.sidedSuccess(level.isClientSide);
+					return ItemInteractionResult.sidedSuccess(level.isClientSide);
 				}
 				else
 				{
@@ -200,7 +195,7 @@ public class HangingPotHookBlock extends Block implements EntityBlock
 							{
 								held.shrink(1);
 							}
-							return InteractionResult.sidedSuccess(level.isClientSide);
+							return ItemInteractionResult.sidedSuccess(level.isClientSide);
 						}
 
 					}
@@ -222,18 +217,68 @@ public class HangingPotHookBlock extends Block implements EntityBlock
 						{
 							level.playSound(player, position, SoundEvents.CHAIN_BREAK, SoundSource.BLOCKS);
 						}
-						return InteractionResult.sidedSuccess(level.isClientSide);
+						return ItemInteractionResult.sidedSuccess(level.isClientSide);
 					}
 				}
 			}
 		}
-		return super.useItemOn(state, level, position, player, hand, hitResult);
-	} // end use()
+		return super.useItemOn(held, state, level, position, player, hand, hitResult);
+	} // end useItemOn()
+
+	@Override
+	protected @NotNull InteractionResult useWithoutItem(BlockState state, Level level, BlockPos position, Player player, BlockHitResult hitResult)
+	{
+		if (level.getBlockEntity(position) instanceof HangingPotHookBlockEntity hphbe)
+		{
+			FlowerPotBlock pot = hphbe.getPot();
+			
+			// if pot on the hook: remove plant from the pot, or remove pot
+			if (pot != null)
+			{
+				ItemStack potContent = new ItemStack(pot.getPotted());
+
+				ItemStack toDrop;
+				// remove pot if it's empty
+				if (potContent.isEmpty())
+				{
+					toDrop = new ItemStack(pot);
+					hphbe.setPot(null);
+				}
+				// remove pot content is it's not empty, or if it doesn't have an empty pot state, remove the pot
+				else
+				{
+					
+					FlowerPotBlock emptyPot = pot.getEmptyPot();
+					toDrop = emptyPot == pot  ? new ItemStack(pot) : potContent;
+					FlowerPotBlock newPot = emptyPot == pot ? null : emptyPot;
+					hphbe.setPot(newPot);
+				}
+//				if (held.isEmpty())
+//				{
+//					player.setItemInHand(hand, potContent);
+//				}
+				/*else*/ if (!player.addItem(toDrop))
+				{
+					InventoryUtil.drop(level, position, toDrop);
+				}
+				
+				// if pot removed play the dechaining sound
+				if(hphbe.getPot() == null) 
+				{
+					level.playSound(player, position, SoundEvents.CHAIN_BREAK, SoundSource.BLOCKS);
+				}
+				return InteractionResult.sidedSuccess(level.isClientSide);
+			}
+		}
+		return super.useWithoutItem(state, level, position, player, hitResult);
+	} // end useWithoutItem()
+
+	
 
 	
 
 	@Override
-	public BlockEntity newBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
+	public @NotNull BlockEntity newBlockEntity(@NotNull BlockPos position, @NotNull BlockState state)
 	{
 		return new HangingPotHookBlockEntity(position, state);
 	} // end newBlockEntity()

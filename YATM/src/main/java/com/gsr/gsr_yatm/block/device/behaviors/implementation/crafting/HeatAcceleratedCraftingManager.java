@@ -15,6 +15,7 @@ import com.gsr.gsr_yatm.block.device.behaviors.ITickableBehavior;
 import com.gsr.gsr_yatm.recipe.IHeatedRecipe;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.level.Level;
 
@@ -73,7 +74,7 @@ public class HeatAcceleratedCraftingManager implements ISerializableBehavior, IT
 
 
 	@Override
-	public @Nullable CompoundTag serializeNBT()
+	public @Nullable CompoundTag serializeNBT(@NotNull HolderLookup.Provider registryAccess)
 	{
 		if (this.m_recipeSupplier.get() != null)
 		{
@@ -86,7 +87,7 @@ public class HeatAcceleratedCraftingManager implements ISerializableBehavior, IT
 	} // end serializeNBT()
 
 	@Override
-	public void deserializeNBT(@NotNull CompoundTag tag)
+	public void deserializeNBT(@NotNull HolderLookup.Provider registryAccess, @NotNull CompoundTag tag)
 	{
 		if (tag.contains(HeatAcceleratedCraftingManager.TICKS_PERFORMED_TAG_NAME) && tag.contains(HeatAcceleratedCraftingManager.TICKS_SCHEDULED_TAG_NAME))
 		{

@@ -22,6 +22,7 @@ import com.gsr.gsr_yatm.utilities.network.container_data.implementation.Property
 import com.gsr.gsr_yatm.utilities.recipe.RecipeUtil;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.Container;
 import net.minecraft.world.inventory.ContainerData;
@@ -184,7 +185,7 @@ public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, 
 	
 	
 	@Override
-	public @Nullable CompoundTag serializeNBT()
+	public @Nullable CompoundTag serializeNBT(@NotNull HolderLookup.Provider registryAccess)
 	{
 		if(this.m_activeRecipe != null && this.m_craftCountDown > 0 && this.m_craftTime > 0) 
 		{
@@ -198,7 +199,7 @@ public class CraftingManager<T extends ITimedRecipe<C, A>, C extends Container, 
 	} // end serializeNBT()
 	
 	@Override
-	public void deserializeNBT(@NotNull CompoundTag tag)
+	public void deserializeNBT(@NotNull HolderLookup.Provider registryAccess, @NotNull CompoundTag tag)
 	{
 		if(tag.contains(CraftingManager.RECIPE_IDENTIFIER_TAG_NAME) && tag.contains(CraftingManager.CRAFT_PROGESS_TAG_NAME) && tag.contains(CraftingManager.CRAFT_TIME_TAG_NAME)) 
 		{

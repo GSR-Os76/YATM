@@ -8,6 +8,7 @@ import org.jetbrains.annotations.Nullable;
 import com.gsr.gsr_yatm.registry.YATMBlockEntityTypes;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.block.Block;
@@ -47,34 +48,34 @@ public class HangingPotHookBlockEntity extends BlockEntity
 	} // end setPot()
 
 
+	
+	
 
 	@Override
-	protected void saveAdditional(@NotNull CompoundTag tag)
+	protected void saveAdditional(@NotNull CompoundTag tag, HolderLookup.Provider holderLookup)
 	{
-		super.saveAdditional(tag);
+		super.saveAdditional(tag, holderLookup);
 		tag.putString(HangingPotHookBlockEntity.POT_TAG_NAME, this.m_pot == null ? HangingPotHookBlockEntity.NULL_KEY : ForgeRegistries.BLOCKS.getKey(this.m_pot).toString());
-		
 	} // end saveAdditional()
-
+	
 	@Override
-	public void load(@NotNull CompoundTag tag)
+	protected void loadAdditional(@NotNull CompoundTag tag, HolderLookup.Provider holderLookup)
 	{
-		super.load(tag);
+		super.loadAdditional(tag, holderLookup);
 		if(tag.contains(HangingPotHookBlockEntity.POT_TAG_NAME))
 		{
 			String value = tag.getString(HangingPotHookBlockEntity.POT_TAG_NAME);
 			Block block = value.equals(HangingPotHookBlockEntity.NULL_KEY) ? null : ForgeRegistries.BLOCKS.getValue(new ResourceLocation(value));
 			this.m_pot = ((block != null && block instanceof FlowerPotBlock fb) ? fb : null);
 		}
-	} // end load()
-
-
+	} // end loadAdditional()
+	
+	
 
 	@Override
-	public @NotNull CompoundTag getUpdateTag()
+	public @NotNull CompoundTag getUpdateTag(@NotNull HolderLookup.Provider holderLookup)
 	{
-		CompoundTag tag = super.getUpdateTag();
-		
+		CompoundTag tag = super.getUpdateTag(holderLookup);
 		tag.putString(HangingPotHookBlockEntity.POT_TAG_NAME, this.m_pot == null ? HangingPotHookBlockEntity.NULL_KEY : ForgeRegistries.BLOCKS.getKey(this.m_pot).toString());
 		
 		return tag;

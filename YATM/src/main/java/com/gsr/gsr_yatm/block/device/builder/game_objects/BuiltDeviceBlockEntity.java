@@ -26,6 +26,7 @@ import com.gsr.gsr_yatm.utilities.contract.annotation.NotNegative;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.core.NonNullList;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.world.inventory.ContainerData;
@@ -194,12 +195,12 @@ public abstract class BuiltDeviceBlockEntity extends BlockEntity implements IDev
 
 
 	@Override
-	protected void saveAdditional(@NotNull CompoundTag nbt)
+	protected void saveAdditional(@NotNull CompoundTag nbt, @NotNull HolderLookup.Provider holderLookup)
 	{
-		super.saveAdditional(nbt);
+		super.saveAdditional(nbt, holderLookup);
 		for (ISerializableBehavior s : this.m_nbtSerializers)
 		{
-			CompoundTag d = s.serializeNBT();
+			CompoundTag d = s.serializeNBT(holderLookup);
 			if (d != null)
 			{
 				nbt.put(s.key(), d);
@@ -208,14 +209,14 @@ public abstract class BuiltDeviceBlockEntity extends BlockEntity implements IDev
 	} // end saveAdditional()
 
 	@Override
-	public void load(@NotNull CompoundTag nbt)
+	public void loadAdditional(@NotNull CompoundTag nbt, @NotNull HolderLookup.Provider holderLookup)
 	{
-		super.load(nbt);
+		super.loadAdditional(nbt, holderLookup);
 		for (ISerializableBehavior s : this.m_nbtSerializers)
 		{
 			if (nbt.contains(s.key()))
 			{
-				s.deserializeNBT(nbt.getCompound(s.key()));
+				s.deserializeNBT(holderLookup, nbt.getCompound(s.key()));
 			}
 		}
 		this.m_loadListeners.forEach(ILoadListenerBehavior::onLoad);

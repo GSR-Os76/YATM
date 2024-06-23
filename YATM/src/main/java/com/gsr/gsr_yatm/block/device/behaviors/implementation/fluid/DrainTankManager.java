@@ -17,7 +17,9 @@ import com.gsr.gsr_yatm.utilities.generic.Property;
 import com.gsr.gsr_yatm.utilities.network.container_data.implementation.PropertyContainerData;
 
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.NbtOps;
 import net.minecraft.world.inventory.ContainerData;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
@@ -142,28 +144,27 @@ public class DrainTankManager implements ISerializableBehavior, ITickableBehavio
 	
 
 	@Override
-	public @Nullable CompoundTag serializeNBT()
+	public @Nullable CompoundTag serializeNBT(@NotNull HolderLookup.Provider registryAccess)
 	{
 		if (this.m_countDown > 0 && this.m_initial > 0 && this.m_initialItemStack != null)
 		{
 			CompoundTag tag = new CompoundTag();
 			tag.putInt(DrainTankManager.COUNT_DOWN_TAG_NAME, this.m_countDown);
 			tag.putInt(DrainTankManager.TRANSFER_INITIAL_TAG_NAME, this.m_initial);
-			tag.put(DrainTankManager.STACK_TAG_NAME, this.m_initialItemStack.save(new CompoundTag()));
+			tag.put(DrainTankManager.STACK_TAG_NAME, ItemStack.CODEC.encodeStart(NbtOps.INSTANCE, this.m_initialItemStack).getOrThrow());
 			return tag;
 		}
 		return null;
 	} // end serializeNBT()
 
 	@Override
-	public void deserializeNBT(@NotNull CompoundTag tag)
+	public void deserializeNBT(@NotNull HolderLookup.Provider registryAccess, @NotNull CompoundTag tag)
 	{
 		if (tag.contains(DrainTankManager.COUNT_DOWN_TAG_NAME) && tag.contains(DrainTankManager.TRANSFER_INITIAL_TAG_NAME) && tag.contains(DrainTankManager.STACK_TAG_NAME))
 		{
 			this.m_countDown = tag.getInt(DrainTankManager.COUNT_DOWN_TAG_NAME);
 			this.m_initial = tag.getInt(DrainTankManager.TRANSFER_INITIAL_TAG_NAME);
-			this.m_initialItemStack = ItemStack.of(tag.getCompound(DrainTankManager.STACK_TAG_NAME));
-			
+			this.m_initialItemStack = ItemStack.CODEC.decode(NbtOps.INSTANCE, tag.getCompound(DrainTankManager.STACK_TAG_NAME)).getOrThrow().getFirst();
 		}
 	} // end deserializeNBT()
 	

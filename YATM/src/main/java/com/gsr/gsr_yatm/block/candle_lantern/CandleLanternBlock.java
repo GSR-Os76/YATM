@@ -7,10 +7,11 @@ import org.jetbrains.annotations.NotNull;
 import com.google.common.collect.ImmutableList;
 import com.gsr.gsr_yatm.utilities.BlockUtilities;
 import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
+import com.gsr.gsr_yatm.utilities.shape.YATMBlockShapes;
+import com.mojang.serialization.MapCodec;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.context.BlockPlaceContext;
@@ -34,6 +35,8 @@ import net.minecraft.world.phys.shapes.VoxelShape;
 
 public class CandleLanternBlock extends AbstractCandleBlock implements SimpleWaterloggedBlock
 {
+    public static final MapCodec<CandleLanternBlock> CODEC = simpleCodec(CandleLanternBlock::new);
+
 	public static final BooleanProperty HANGING = BlockStateProperties.HANGING;
 	public static final BooleanProperty LIT = AbstractCandleBlock.LIT;
 	public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -43,6 +46,11 @@ public class CandleLanternBlock extends AbstractCandleBlock implements SimpleWat
 	private final @NotNull ICollisionVoxelShapeProvider m_shape;
 	
 	
+	
+	private CandleLanternBlock(@NotNull Properties properties) 
+	{
+		this(Objects.requireNonNull(properties), YATMBlockShapes.CANDLE_LANTERN); // TODO, temp for the lack of a ICollisionVoxelShapeProvider codec
+	}
 	 
 	public CandleLanternBlock(@NotNull Properties properties, @NotNull ICollisionVoxelShapeProvider shape)
 	{
@@ -72,21 +80,22 @@ public class CandleLanternBlock extends AbstractCandleBlock implements SimpleWat
 	
 
 	
-	@SuppressWarnings("deprecation")
+	
+	
 	@Override
-	public InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult)
+	protected @NotNull InteractionResult useWithoutItem(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Player player, BlockHitResult hitResult)
 	{
-		if (state.getValue(CandleLanternBlock.LIT) && player.getItemInHand(hand).isEmpty() && player.getAbilities().mayBuild)
+		if (state.getValue(CandleLanternBlock.LIT) && player.getAbilities().mayBuild)
 		{
 			AbstractCandleBlock.extinguish(player, state, level, position);
 			return InteractionResult.sidedSuccess(level.isClientSide);
 		}
-		return super.useItemOn(state, level, position, player, hand, hitResult);		
-	} // end user()
+		return super.useWithoutItem(state, level, position, player, hitResult);
+	} // end useWithoutItem
+
 	
 	
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public @NotNull BlockState updateShape(@NotNull BlockState state, Direction direction, BlockState stateSecond, @NotNull LevelAccessor level, @NotNull BlockPos position, BlockPos positionSecond)
 	{
@@ -94,11 +103,9 @@ public class CandleLanternBlock extends AbstractCandleBlock implements SimpleWat
 		{
 			level.scheduleTick(position, Fluids.WATER, Fluids.WATER.getTickDelay(level));
 		}
-
 		return super.updateShape(state, direction, stateSecond, level, position, positionSecond);
 	} // end updateShape()
 
-	@SuppressWarnings("deprecation")
 	@Override
 	public FluidState getFluidState(@NotNull BlockState state)
 	{
@@ -135,7 +142,6 @@ public class CandleLanternBlock extends AbstractCandleBlock implements SimpleWat
 		return Block.canSupportCenter(level, position.relative(supportSide.getOpposite()), supportSide);
 	} // end canSurvive()
 	
-	@SuppressWarnings("deprecation")
 	@Override
 	public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Block formerNeighbor, @NotNull BlockPos neighborPos, boolean p_60514_)
 	{
@@ -159,6 +165,11 @@ public class CandleLanternBlock extends AbstractCandleBlock implements SimpleWat
 	{
 		return CandleLanternBlock.PARTICLE_OFFSETS;
 	} // end getParticleOffsets()	
-	
+
+	@Override
+	protected @NotNull MapCodec<? extends AbstractCandleBlock> codec()
+	{
+		return CandleLanternBlock.CODEC;
+	} // end codec()
 	
 } // end class

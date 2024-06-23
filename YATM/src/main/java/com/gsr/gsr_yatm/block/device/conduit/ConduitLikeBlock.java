@@ -15,9 +15,6 @@ import com.gsr.gsr_yatm.utilities.shape.ICollisionVoxelShapeProvider;
 
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResult;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.EntityBlock;
@@ -27,7 +24,6 @@ import net.minecraft.world.level.block.entity.BlockEntityType;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition.Builder;
 import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.phys.BlockHitResult;
 
 public abstract class ConduitLikeBlock extends ShapeBlock implements EntityBlock
 {
@@ -63,23 +59,23 @@ public abstract class ConduitLikeBlock extends ShapeBlock implements EntityBlock
 	} // end createBlockStateDefinition()
 
 	
-	@Override	 
-	public InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult)
-	{
-//		TODO, this		
-//		if(player.getItemInHand(hand).is(YATMItemTags.DEVICE_ADJUSTERS_KEY)) 
-//		{
-//			AABB bb = new AABB(x, y, z, maxX, maxY, maxZ);
-//			
-//			AABB.ofSize(position.getCenter(), jumpFactor, friction, explosionResistance)
-//			detected collision with specifc branchs, and toggle state as allowed
-//		
-//			level.setBlock(position, state.cycle(TankBlock.DRAINING), Block.UPDATE_CLIENTS);
-//			return InteractionResult.sidedSuccess(level.isClientSide);
-//		}
-//		
-		return InteractionResult.PASS;
-	} // end use()
+//	@Override	 
+//	public InteractionResult use(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, @NotNull Player player, @NotNull InteractionHand hand, @NotNull BlockHitResult hitResult)
+//	{
+////		TODO, this		
+////		if(player.getItemInHand(hand).is(YATMItemTags.DEVICE_ADJUSTERS_KEY)) 
+////		{
+////			AABB bb = new AABB(x, y, z, maxX, maxY, maxZ);
+////			
+////			AABB.ofSize(position.getCenter(), jumpFactor, friction, explosionResistance)
+////			detected collision with specifc branchs, and toggle state as allowed
+////		
+////			level.setBlock(position, state.cycle(TankBlock.DRAINING), Block.UPDATE_CLIENTS);
+////			return InteractionResult.sidedSuccess(level.isClientSide);
+////		}
+////		
+//		return InteractionResult.PASS;
+//	} // end use()
 
 	@Override
 	public void neighborChanged(@NotNull BlockState state, @NotNull Level level, @NotNull BlockPos position, Block changeFrom, BlockPos changePosition, boolean p_60514_)

@@ -3,6 +3,7 @@ package com.gsr.gsr_yatm.block.device.behaviors;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
+import net.minecraft.core.HolderLookup;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraftforge.common.util.INBTSerializable;
 
@@ -15,9 +16,11 @@ public interface ISerializableBehavior extends INBTSerializable<CompoundTag>, IB
 	} // end key()
 	
 	@Override
-	@Nullable CompoundTag serializeNBT();
+	@Nullable CompoundTag serializeNBT(@NotNull HolderLookup.Provider registryAccess);
 
 	@Override
-	void deserializeNBT(@NotNull CompoundTag nbt);
+	void deserializeNBT(@NotNull HolderLookup.Provider registryAccess,  @NotNull CompoundTag nbt);
+	
+	
 	
 } // end interface

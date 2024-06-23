@@ -48,7 +48,6 @@ public class WaterloggableBlock extends ShapeBlock implements SimpleWaterloggedB
 		return super.getStateForPlacement(context).setValue(WaterloggableBlock.WATERLOGGED, context.getLevel().getFluidState(context.getClickedPos()).getType() == Fluids.WATER);
 	} // end getStateForPlacement()
 
-	@SuppressWarnings("deprecation")
 	public @NotNull BlockState updateShape(@NotNull BlockState state, Direction direction, BlockState stateSecond, @NotNull LevelAccessor level, @NotNull BlockPos position, BlockPos positionSecond)
 	{
 		if (state.getValue(AerialRootsBlock.WATERLOGGED))
@@ -58,7 +57,6 @@ public class WaterloggableBlock extends ShapeBlock implements SimpleWaterloggedB
 		return super.updateShape(state, direction, stateSecond, level, position, positionSecond);
 	} // end updateShape()
 
-	@SuppressWarnings("deprecation")
 	public @NotNull FluidState getFluidState(@NotNull BlockState state)
 	{
 		return state.getValue(AerialRootsBlock.WATERLOGGED) ? Fluids.WATER.getSource(false) : super.getFluidState(state);
